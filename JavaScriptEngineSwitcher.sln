@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Core", "JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj", "{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Msie", "JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj", "{50AD3B1C-A295-42AC-979A-CD244429983C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.V8", "JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj", "{1BAEC601-B244-48D3-BE27-351E133EEF73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Tests", "JavaScriptEngineSwitcher.Tests\JavaScriptEngineSwitcher.Tests.csproj", "{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Jurassic", "JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj", "{2E667689-F072-401F-A9A5-09F1A2ED025C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50AD3B1C-A295-42AC-979A-CD244429983C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50AD3B1C-A295-42AC-979A-CD244429983C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50AD3B1C-A295-42AC-979A-CD244429983C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50AD3B1C-A295-42AC-979A-CD244429983C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BAEC601-B244-48D3-BE27-351E133EEF73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BAEC601-B244-48D3-BE27-351E133EEF73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BAEC601-B244-48D3-BE27-351E133EEF73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BAEC601-B244-48D3-BE27-351E133EEF73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

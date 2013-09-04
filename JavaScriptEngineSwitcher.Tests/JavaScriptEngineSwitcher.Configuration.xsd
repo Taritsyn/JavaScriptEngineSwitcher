@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+	id="javaScriptEngineSwitcherConfiguration"
+	targetNamespace="http://tempuri.org/JavaScriptEngineSwitcher.Configuration.xsd"
+	elementFormDefault="qualified"
+	xmlns="http://tempuri.org/JavaScriptEngineSwitcher.Configuration.xsd"
+	xmlns:mstns="http://tempuri.org/JavaScriptEngineSwitcher.Configuration.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="jsEngineSwitcher">
+	<xs:annotation>
+	  <xs:documentation>Bundle Transformer configuration settings</xs:documentation>
+	</xs:annotation>
+	<xs:complexType>
+	  <xs:all>
+		<xs:element name="core" type="CoreConfiguration_SchemaType" minOccurs="0" maxOccurs="1" />
+		<xs:element name="v8" type="V8Configuration_SchemaType" minOccurs="0" maxOccurs="1" />
+	  </xs:all>
+	</xs:complexType>
+  </xs:element>
+
+  <!-- Core configuration settings -->
+  <xs:complexType name="CoreConfiguration_SchemaType">
+	<xs:annotation>
+	  <xs:documentation>Configuration settings of core</xs:documentation>
+	</xs:annotation>
+	<xs:all>
+	  <xs:element name="engines" type="JsEngineRegistrationList_SchemaType" minOccurs="0" maxOccurs="1" />
+	</xs:all>
+	<xs:attribute name="defaultEngine" type="xs:string" use="optional" default="">
+	  <xs:annotation>
+		<xs:documentation>Name of default JavaScript engine</xs:documentation>
+	  </xs:annotation>
+	</xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="JsEngineRegistrationList_SchemaType">
+	<xs:annotation>
+	  <xs:documentation>List of registered JavaScript engines</xs:documentation>
+	</xs:annotation>
+	<xs:choice minOccurs="0" maxOccurs="unbounded">
+	  <xs:element name="add" type="AddJsEngineRegistration_SchemaType" />
+	  <xs:element name="remove" type="RemoveJsEngineRegistration_SchemaType" />
+	  <xs:element name="clear" type="ClearJsEngineRegistration_SchemaType" />
+	</xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="AddJsEngineRegistration_SchemaType">
+	<xs:annotation>
+	  <xs:documentation>Adds JavaScript engine registration</xs:documentation>
+	</xs:annotation>
+	<xs:attribute name="name" type="xs:string" use="required">
+	  <xs:annotation>
+		<xs:documentation>JavaScript engine name</xs:documentation>
+	  </xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="type" type="xs:string" use="required">
+	  <xs:annotation>
+		<xs:documentation>JavaScript engine .NET-type name</xs:documentation>
+	  </xs:annotation>
+	</xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="RemoveJsEngineRegistration_SchemaType">
+	<xs:annotation>
+	  <xs:documentation>Removes JavaScript engine registration</xs:documentation>
+	</xs:annotation>
+	<xs:attribute name="name" type="xs:string" use="required">
+	  <xs:annotation>
+		<xs:documentation>JavaScript engine name</xs:documentation>
+	  </xs:annotation>
+	</xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ClearJsEngineRegistration_SchemaType">
+	<xs:annotation>
+	  <xs:documentation>Removes all JavaScript engine registrations, that specified above</xs:documentation>
+	</xs:annotation>
+  </xs:complexType>
+  <!--/ Core configuration settings -->
+
+  <!-- V8 configuration settings -->
+  <xs:complexType name="V8Configuration_SchemaType">
+	<xs:annotation>
+	  <xs:documentation>Configuration settings of V8 JavaScript engine</xs:documentation>
+	</xs:annotation>
+	<xs:attribute name="noesisJavascriptAssembliesDirectoryPath" type="xs:string" use="optional" default="">
+	  <xs:annotation>
+		<xs:documentation>Path to directory that contains the Noesis Javascript .NET assemblies</xs:documentation>
+	  </xs:annotation>
+	</xs:attribute>
+  </xs:complexType>
+  <!--/ V8 configuration settings -->
+</xs:schema>

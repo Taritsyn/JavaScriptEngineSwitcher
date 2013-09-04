@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Jurassic</id>
+    <version>2.1.1</version>
+    <title>Jurassic</title>
+    <authors>Paul Bartrum</authors>
+    <owners>Paul Bartrum</owners>
+    <licenseUrl>http://www.opensource.org/licenses/MS-PL</licenseUrl>
+    <projectUrl>http://jurassic.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Jurassic is an implementation of the ECMAScript language and runtime.</description>
+    <summary>Jurassic is an implementation of the ECMAScript language and runtime.</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>javascript ECMAScript</tags>
+  </metadata>
+</package>
