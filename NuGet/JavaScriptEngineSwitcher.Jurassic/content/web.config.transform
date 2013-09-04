@@ -1,0 +1,9 @@
+﻿<configuration>
+	<jsEngineSwitcher xmlns="http://tempuri.org/JavaScriptEngineSwitcher.Configuration.xsd">
+		<core>
+			<engines>
+				<add name="JurassicJsEngine" type="JavaScriptEngineSwitcher.Jurassic.JurassicJsEngine, JavaScriptEngineSwitcher.Jurassic" />
+			</engines>
+		</core>
+	</jsEngineSwitcher>
+</configuration>

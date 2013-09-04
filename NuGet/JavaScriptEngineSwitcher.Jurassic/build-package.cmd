@@ -1,0 +1,2 @@
+\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe ..\..\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj /p:Configuration=Release
+..\nuget.exe pack ..\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.nuspec

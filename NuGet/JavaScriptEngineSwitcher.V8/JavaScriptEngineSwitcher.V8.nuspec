@@ -1,0 +1,34 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>JavaScriptEngineSwitcher.V8</id>
+    <version>0.9.0</version>
+	<title>JavaScript Engine Switcher for .Net: V8</title>
+    <authors>Andrey Taritsyn</authors>
+    <owners>Andrey Taritsyn</owners>
+    <licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
+    <iconUrl>http://raw.github.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>JavaScriptEngineSwitcher.V8 contains adapter V8JsEngine (wrapper for the Noesis Javascript Engine for .Net (http://javascriptdotnet.codeplex.com)). For correct working of the Noesis Javascript Engine require assemblies msvcp100.dll and msvcr100.dll from the Microsoft Visual C++ 2010.</description>
+    <summary>JavaScriptEngineSwitcher.V8 contains adapter V8JsEngine (wrapper for the Noesis Javascript Engine for .Net).</summary>
+	<copyright>Copyright 2013 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+    <language>en-US</language>
+    <tags>JavaScript ECMAScript V8 Noesis</tags>
+    <dependencies>
+      <dependency id="JavaScriptEngineSwitcher.Core" version="0.9.0" />
+    </dependencies>
+    <references>
+      <reference file="JavaScriptEngineSwitcher.V8.dll" />
+    </references>
+  </metadata>
+  <files>
+    <file src="..\..\JavaScriptEngineSwitcher.V8\bin\Release\JavaScriptEngineSwitcher.V8.dll" target="lib\net40" />
+	<file src="..\..\JavaScriptEngineSwitcher.V8\bin\Release\**\JavaScriptEngineSwitcher.V8.resources.dll" target="lib\net40" />
+	<file src="..\..\JavaScriptEngineSwitcher.V8\Noesis.Javascript\x86\Noesis.Javascript.dll" target="content\Noesis.Javascript\x86" />
+	<file src="..\..\JavaScriptEngineSwitcher.V8\Noesis.Javascript\x64\Noesis.Javascript.dll" target="content\Noesis.Javascript\x64" />
+	<file src="content\web.config.transform" target="content" />
+	<file src="content\app.config.transform" target="content" />
+	<file src="readme.txt" />
+  </files>
+</package>

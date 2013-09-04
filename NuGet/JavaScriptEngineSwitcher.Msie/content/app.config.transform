@@ -1,0 +1,9 @@
+﻿<configuration>
+	<jsEngineSwitcher xmlns="http://tempuri.org/JavaScriptEngineSwitcher.Configuration.xsd">
+		<core>
+			<engines>
+				<add name="MsieJsEngine" type="JavaScriptEngineSwitcher.Msie.MsieJsEngine, JavaScriptEngineSwitcher.Msie" />
+			</engines>
+		</core>
+	</jsEngineSwitcher>
+</configuration>

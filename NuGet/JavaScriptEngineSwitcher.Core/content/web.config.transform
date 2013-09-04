@@ -1,0 +1,8 @@
+﻿<configuration>
+	<configSections>
+		<sectionGroup name="jsEngineSwitcher">
+			<section name="core" type="JavaScriptEngineSwitcher.Core.Configuration.CoreConfiguration, JavaScriptEngineSwitcher.Core" />
+		</sectionGroup>
+	</configSections>
+	<jsEngineSwitcher xmlns="http://tempuri.org/JavaScriptEngineSwitcher.Configuration.xsd"></jsEngineSwitcher>
+</configuration>

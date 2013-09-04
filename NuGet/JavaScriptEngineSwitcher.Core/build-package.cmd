@@ -1,0 +1,2 @@
+\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe ..\..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj /p:Configuration=Release
+..\nuget.exe pack ..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.nuspec

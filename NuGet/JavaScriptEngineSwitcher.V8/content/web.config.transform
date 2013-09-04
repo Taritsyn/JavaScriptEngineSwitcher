@@ -1,0 +1,23 @@
+﻿<configuration>
+	<configSections>
+		<sectionGroup name="jsEngineSwitcher">
+			<section name="v8" type="JavaScriptEngineSwitcher.V8.Configuration.V8Configuration, JavaScriptEngineSwitcher.V8" />
+		</sectionGroup>
+	</configSections>
+	<jsEngineSwitcher xmlns="http://tempuri.org/JavaScriptEngineSwitcher.Configuration.xsd">
+		<core>
+			<engines>
+				<add name="V8JsEngine" type="JavaScriptEngineSwitcher.V8.V8JsEngine, JavaScriptEngineSwitcher.V8" />
+			</engines>
+		</core>
+	</jsEngineSwitcher>
+	<system.webServer>
+		<security>
+			<requestFiltering>
+				<hiddenSegments>
+					<add segment="Noesis.Javascript" />
+				</hiddenSegments>
+			</requestFiltering>
+		</security>
+	</system.webServer>
+</configuration>
