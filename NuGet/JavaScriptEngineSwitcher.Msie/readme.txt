@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: MSIE 0.9.0
+      README file for JavaScript Engine Switcher for .Net: MSIE 0.9.2
 
    ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@
    ===========
    DESCRIPTION
    ===========   
-   JavaScriptEngineSwitcher.Msie contains adapter MsieJsEngine (wrapper 
+   JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper 
    for the MSIE JavaScript Engine for .Net
    (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct 
    working of the MSIE JavaScript Engine it is recommended to install 

@@ -127,10 +127,10 @@
     <value>You do not specified a name of assembly.</value>
   </data>
   <data name="Common_FileNotExist" xml:space="preserve">
-    <value>File {0} not exist.</value>
+    <value>File '{0}' not exist.</value>
   </data>
   <data name="Common_InstanceCreationFailed" xml:space="preserve">
-    <value>During instantiate an object of type '{0}' from assembly '{1}' error occurred.</value>
+    <value>During instantiate an object of type `{0}` from assembly `{1}` error occurred.</value>
   </data>
   <data name="Common_TypeNameIsEmpty" xml:space="preserve">
     <value>You do not specified a type name.</value>
@@ -145,7 +145,7 @@
     <value>Default JavaScript engine not specified.</value>
   </data>
   <data name="Configuration_JsEngineNotRegistered" xml:space="preserve">
-    <value>JavaScript engine with name '{0}' is not registered in configuration file.</value>
+    <value>JavaScript engine with name `{0}` is not registered in configuration file.</value>
   </data>
   <data name="ErrorDetails_Category" xml:space="preserve">
     <value>Category</value>
@@ -175,7 +175,7 @@
     <value>The function name '{0}' is forbidden, as is contained in the list of reserved words of JavaScript language.</value>
   </data>
   <data name="Runtime_FunctionParameterTypeNotSupported" xml:space="preserve">
-    <value>One of the function parameters '{0}' has a type '{1}', which is not supported.</value>
+    <value>One of the function parameters '{0}' has a type `{1}`, which is not supported.</value>
   </data>
   <data name="Runtime_InvalidFunctionNameFormat" xml:space="preserve">
     <value>The function name '{0}' has incorrect format.</value>
@@ -190,12 +190,12 @@ See more details:
 {1}</value>
   </data>
   <data name="Runtime_ReturnValueTypeNotSupported" xml:space="preserve">
-    <value>The type of return value '{0}' is not supported.</value>
+    <value>The type of return value `{0}` is not supported.</value>
   </data>
   <data name="Runtime_VariableNameIsForbidden" xml:space="preserve">
     <value>The variable name '{0}' is forbidden, as is contained in the list of reserved words of JavaScript language.</value>
   </data>
   <data name="Runtime_VariableTypeNotSupported" xml:space="preserve">
-    <value>The variable '{0}' has a type '{1}', which is not supported.</value>
+    <value>The variable '{0}' has a type `{1}`, which is not supported.</value>
   </data>
 </root>

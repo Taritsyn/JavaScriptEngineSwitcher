@@ -127,10 +127,10 @@
     <value>Вы не указали имя сборки!</value>
   </data>
   <data name="Common_FileNotExist" xml:space="preserve">
-    <value>Файл {0} не существует!</value>
+    <value>Файл "{0}" не существует!</value>
   </data>
   <data name="Common_InstanceCreationFailed" xml:space="preserve">
-    <value>При создании экземпляра объекта типа "{0}" из сборки "{1}" произошла ошибка!</value>
+    <value>При создании экземпляра объекта типа `{0}` из сборки `{1}` произошла ошибка!</value>
   </data>
   <data name="Common_TypeNameIsEmpty" xml:space="preserve">
     <value>Вы не указали имя типа!</value>
@@ -145,7 +145,7 @@
     <value>Не указан JavaScript-движок, который должен использоваться по умолчанию!</value>
   </data>
   <data name="Configuration_JsEngineNotRegistered" xml:space="preserve">
-    <value>JavaScript-движок с именем "{0}" не зарегистрирован в конфигурационном файле!</value>
+    <value>JavaScript-движок с именем `{0}` не зарегистрирован в конфигурационном файле!</value>
   </data>
   <data name="ErrorDetails_Category" xml:space="preserve">
     <value>Категория</value>
@@ -175,7 +175,7 @@
     <value>Имя функции "{0}" запрещено, т.к. входит в список зарезервированных слов JavaScript!</value>
   </data>
   <data name="Runtime_FunctionParameterTypeNotSupported" xml:space="preserve">
-    <value>Один из параметров функции "{0}" имеет тип "{1}", который не поддерживается!</value>
+    <value>Один из параметров функции "{0}" имеет тип `{1}`, который не поддерживается!</value>
   </data>
   <data name="Runtime_InvalidFunctionNameFormat" xml:space="preserve">
     <value>Имя функции "{0}" имеет некорректный формат!</value>
@@ -190,12 +190,12 @@
 {1}</value>
   </data>
   <data name="Runtime_ReturnValueTypeNotSupported" xml:space="preserve">
-    <value>Тип возвращаемого значения "{0}" не поддерживается!</value>
+    <value>Тип возвращаемого значения `{0}` не поддерживается!</value>
   </data>
   <data name="Runtime_VariableNameIsForbidden" xml:space="preserve">
     <value>Имя переменной "{0}" запрещено, т.к. входит в список зарезервированных слов JavaScript!</value>
   </data>
   <data name="Runtime_VariableTypeNotSupported" xml:space="preserve">
-    <value>Переменная "{0}" имеет тип "{1}", который не поддерживается!</value>
+    <value>Переменная "{0}" имеет тип `{1}`, который не поддерживается!</value>
   </data>
 </root>

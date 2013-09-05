@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: Core 0.9.0
+      README file for JavaScript Engine Switcher for .Net: Core 0.9.2
 
    ----------------------------------------------------------------------
 

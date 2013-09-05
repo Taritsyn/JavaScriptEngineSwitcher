@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-    README file for JavaScript Engine Switcher for .Net: Jurassic 0.9.0
+    README file for JavaScript Engine Switcher for .Net: Jurassic 0.9.2
 
    ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@
    ===========
    DESCRIPTION
    ===========   
-   JavaScriptEngineSwitcher.Jurassic contains adapter JurassicJsEngine 
+   JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` 
    (wrapper for the Jurassic JavaScript Engine 
    (http://jurassic.codeplex.com)).
 

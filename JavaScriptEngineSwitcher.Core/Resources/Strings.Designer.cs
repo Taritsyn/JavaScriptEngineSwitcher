@@ -88,7 +88,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File {0} not exist..
+        ///   Looks up a localized string similar to File &apos;{0}&apos; not exist..
         /// </summary>
         public static string Common_FileNotExist {
             get {
@@ -97,7 +97,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to During instantiate an object of type &apos;{0}&apos; from assembly &apos;{1}&apos; error occurred..
+        ///   Looks up a localized string similar to During instantiate an object of type `{0}` from assembly `{1}` error occurred..
         /// </summary>
         public static string Common_InstanceCreationFailed {
             get {
@@ -142,7 +142,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JavaScript engine with name &apos;{0}&apos; is not registered in configuration file..
+        ///   Looks up a localized string similar to JavaScript engine with name `{0}` is not registered in configuration file..
         /// </summary>
         public static string Configuration_JsEngineNotRegistered {
             get {
@@ -232,7 +232,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One of the function parameters &apos;{0}&apos; has a type &apos;{1}&apos;, which is not supported..
+        ///   Looks up a localized string similar to One of the function parameters &apos;{0}&apos; has a type `{1}`, which is not supported..
         /// </summary>
         public static string Runtime_FunctionParameterTypeNotSupported {
             get {
@@ -271,7 +271,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The type of return value &apos;{0}&apos; is not supported..
+        ///   Looks up a localized string similar to The type of return value `{0}` is not supported..
         /// </summary>
         public static string Runtime_ReturnValueTypeNotSupported {
             get {
@@ -289,7 +289,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The variable &apos;{0}&apos; has a type &apos;{1}&apos;, which is not supported..
+        ///   Looks up a localized string similar to The variable &apos;{0}&apos; has a type `{1}`, which is not supported..
         /// </summary>
         public static string Runtime_VariableTypeNotSupported {
             get {

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>JavaScriptEngineSwitcher.V8</id>
-    <version>0.9.0</version>
+    <version>0.9.2</version>
 	<title>JavaScript Engine Switcher for .Net: V8</title>
     <authors>Andrey Taritsyn</authors>
     <owners>Andrey Taritsyn</owners>
@@ -10,13 +10,13 @@
     <projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
     <iconUrl>http://raw.github.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>JavaScriptEngineSwitcher.V8 contains adapter V8JsEngine (wrapper for the Noesis Javascript Engine for .Net (http://javascriptdotnet.codeplex.com)). For correct working of the Noesis Javascript Engine require assemblies msvcp100.dll and msvcr100.dll from the Microsoft Visual C++ 2010.</description>
-    <summary>JavaScriptEngineSwitcher.V8 contains adapter V8JsEngine (wrapper for the Noesis Javascript Engine for .Net).</summary>
+    <description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Noesis Javascript Engine for .Net (http://javascriptdotnet.codeplex.com)). For correct working of the Noesis Javascript Engine require assemblies `msvcp100.dll` and `msvcr100.dll` from the Microsoft Visual C++ 2010.</description>
+    <summary>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Noesis Javascript Engine for .Net).</summary>
 	<copyright>Copyright 2013 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
     <language>en-US</language>
     <tags>JavaScript ECMAScript V8 Noesis</tags>
     <dependencies>
-      <dependency id="JavaScriptEngineSwitcher.Core" version="0.9.0" />
+      <dependency id="JavaScriptEngineSwitcher.Core" version="0.9.2" />
     </dependencies>
     <references>
       <reference file="JavaScriptEngineSwitcher.V8.dll" />

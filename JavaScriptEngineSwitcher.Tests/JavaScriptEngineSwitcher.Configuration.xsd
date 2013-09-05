@@ -8,7 +8,7 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="jsEngineSwitcher">
 	<xs:annotation>
-	  <xs:documentation>Bundle Transformer configuration settings</xs:documentation>
+	  <xs:documentation>Configuration settings of JavaScript Engine Switcher</xs:documentation>
 	</xs:annotation>
 	<xs:complexType>
 	  <xs:all>
