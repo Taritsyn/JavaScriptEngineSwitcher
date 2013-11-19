@@ -2,16 +2,13 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Configuration;
-	using System.IO;
-	using System.Reflection;
 	using System.Web.Script.Serialization;
+
+	using Noesis.Javascript;
 
 	using Core;
 	using Core.Constants;
 	using CoreStrings = Core.Resources.Strings;
-	using Configuration;
-	using Resources;
 
 	/// <summary>
 	/// Adapter for Noesis Javascript .NET
@@ -19,70 +16,19 @@
 	public sealed class V8JsEngine : JsEngineBase
 	{
 		/// <summary>
-		/// Full name of JS engine assembly
+		/// Full name of JavaScript engine
 		/// </summary>
-		private const string JS_ENGINE_ASSEMBLY_FULL_NAME
-			= "Noesis.Javascript, Version=0.0.0.0, Culture=neutral, PublicKeyToken=ae36d046c7f89f85";
-
-		/// <summary>
-		/// Name of JS context type
-		/// </summary>
-		private const string JS_CONTEXT_TYPE_NAME = "Noesis.Javascript.JavascriptContext";
-
-		/// <summary>
-		/// Name of JS exception type
-		/// </summary>
-		private const string JS_EXCEPTION_TYPE_NAME = "Noesis.Javascript.JavascriptException";
-
-		/// <summary>
-		/// Assembly, which contains JS Engine
-		/// </summary>
-		private static Assembly _jsEngineAssembly;
-
-		/// <summary>
-		/// Synchronizer of assembly loading
-		/// </summary>
-		private static readonly object _assemblyLoadingSynchronizer = new object();
-
-		/// <summary>
-		/// Flag that assembly is loaded
-		/// </summary>
-		private bool _assemblyLoaded;
-
-		/// <summary>
-		/// Type of JS context
-		/// </summary>
-		private Type _jsContextType;
-
-		/// <summary>
-		/// Type of JS exception
-		/// </summary>
-		private Type _jsExceptionType;
-
-		/// <summary>
-		/// Instance of JS engine
-		/// </summary>
-		private object _jsEngineObject;
-
-		/// <summary>
-		/// Information about the method <code>Run</code>
-		/// </summary>
-		private MethodInfo _runMethodInfo;
-
-		/// <summary>
-		/// Information about the method <code>GetParameter</code>
-		/// </summary>
-		private MethodInfo _getParameterMethodInfo;
-
-		/// <summary>
-		/// Information about the method <code>SetParameter</code>
-		/// </summary>
-		private MethodInfo _setParameterMethodInfo;
+		private const string JS_ENGINE_FULL_NAME = "V8 JavaScript engine";
 
 		/// <summary>
 		/// Synchronizer of code execution
 		/// </summary>
 		private readonly object _executionSynchronizer = new object();
+
+		/// <summary>
+		/// JS-context
+		/// </summary>
+		private readonly JavascriptContext _jsContext;
 
 		/// <summary>
 		/// JS-serializer
@@ -95,138 +41,47 @@
 		private bool _disposed;
 
 
-		/// <summary>
-		/// Constructs instance of adapter for Noesis Javascript .NET
-		/// </summary>
-		public V8JsEngine() : this(JsEngineSwitcher.Current.GetV8Configuration())
-		{ }
-
-		/// <summary>
-		/// Constructs instance of adapter for Noesis Javascript .NET
-		/// </summary>
-		/// <param name="v8Config">Configuration settings of V8 JavaScript engine</param>
-		public V8JsEngine(V8Configuration v8Config)
+		static V8JsEngine()
 		{
 			try
 			{
-				LoadAssembly(v8Config.NoesisJavascriptAssembliesDirectoryPath);
-
-				_jsContextType = _jsEngineAssembly.GetType(JS_CONTEXT_TYPE_NAME);
-				_jsExceptionType = _jsEngineAssembly.GetType(JS_EXCEPTION_TYPE_NAME);
-				_jsEngineObject = _jsEngineAssembly.CreateInstance(JS_CONTEXT_TYPE_NAME);
-
-				_runMethodInfo = _jsContextType.GetMethod("Run", new[] {typeof(string)});
-				_getParameterMethodInfo = _jsContextType.GetMethod("GetParameter", new[] {typeof(string)});
-				_setParameterMethodInfo = _jsContextType.GetMethod("SetParameter",
-					new[] {typeof(string), typeof(object)});
+				AssemblyResolver.Initialize();
 			}
 			catch (Exception e)
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						"V8 JavaScript engine", e.Message), e);
+						JS_ENGINE_FULL_NAME, e.Message), e);
+			}
+		}
+
+		/// <summary>
+		/// Constructs instance of adapter for Noesis Javascript .NET
+		/// </summary>
+		public V8JsEngine()
+		{
+			try
+			{
+				_jsContext = new JavascriptContext();
+			}
+			catch (Exception e)
+			{
+				throw new JsEngineLoadException(
+					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
+						JS_ENGINE_FULL_NAME, e.Message), e);
 			}
 
 			_jsSerializer = new JavaScriptSerializer();
 		}
 
-
-		/// <summary>
-		/// Loads assembly, which contains JS Engine
-		/// </summary>
-		/// <param name="noesisJavascriptAssembliesDirectoryPath">Path to directory that contains 
-		/// the Noesis Javascript .NET assemblies</param>
-		private void LoadAssembly(string noesisJavascriptAssembliesDirectoryPath)
-		{
-			lock (_assemblyLoadingSynchronizer)
-			{
-				if (!_assemblyLoaded)
-				{
-					string assemblyDirectoryPath;
-					if (!string.IsNullOrWhiteSpace(noesisJavascriptAssembliesDirectoryPath))
-					{
-						assemblyDirectoryPath = noesisJavascriptAssembliesDirectoryPath;
-						if (!Directory.Exists(assemblyDirectoryPath))
-						{
-							throw new ConfigurationErrorsException(
-								string.Format(Strings.Engines_NoesisJavascriptAssembliesDirectoryNotFound,
-									assemblyDirectoryPath));
-						}
-					}
-					else
-					{
-						string binDirectoryPath = AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
-						assemblyDirectoryPath = Path.Combine(binDirectoryPath, @"../Noesis.Javascript/");
-					}
-
-					string platform = (IntPtr.Size == 4) ? "x86" : "x64";
-					string assemblyPath = Path.Combine(assemblyDirectoryPath, 
-						string.Format("{0}/Noesis.Javascript.dll", platform));
-
-					Assembly assembly;
-					if (File.Exists(assemblyPath))
-					{
-						assembly = Assembly.LoadFile(assemblyPath);
-					}
-					else
-					{
-						assembly = Assembly.Load(JS_ENGINE_ASSEMBLY_FULL_NAME);
-					}
-
-					_jsEngineAssembly = assembly;
-					_assemblyLoaded = true;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Runs JS-code
-		/// </summary>
-		/// <param name="sourceCode">JS-code</param>
-		private void Run(string sourceCode)
-		{
-			_runMethodInfo.Invoke(_jsEngineObject, new object[] { sourceCode });
-		}
-
-		/// <summary>
-		/// Gets a value of parameter
-		/// </summary>
-		/// <param name="name">Name of parameter</param>
-		/// <returns>Value of parameter</returns>
-		private object GetParameter(string name)
-		{
-			var value = _getParameterMethodInfo.Invoke(_jsEngineObject, new object[] { name });
-
-			return value;
-		}
-
-		/// <summary>
-		/// Sets a value of parameter
-		/// </summary>
-		/// <param name="name">Name of parameter</param>
-		/// <param name="value">Value of parameter</param>
-		private void SetParameter(string name, object value)
-		{
-			_setParameterMethodInfo.Invoke(_jsEngineObject, new[] { name, value });
-		}
-
-		private bool IsJavascriptException(Exception exception)
-		{
-			bool result = (_jsExceptionType == exception.GetType());
-
-			return result;
-		}
-
 		private static JsRuntimeException ConvertJavascriptExceptionToJsRuntimeException(
-			Exception jsException)
+			JavascriptException jsException)
 		{
-			dynamic dynamicJsException = jsException;
-
 			var jsRuntimeException = new JsRuntimeException(jsException.Message, jsException)
 			{
 				EngineName = EngineName.V8JsEngine,
-				LineNumber = (int)dynamicJsException.Line,
-				ColumnNumber = (int)dynamicJsException.StartColumn + 1,
+				LineNumber = jsException.Line,
+				ColumnNumber = jsException.StartColumn + 1,
 				Source = jsException.Source,
 				HelpLink = jsException.HelpLink
 			};
@@ -273,18 +128,12 @@
 			{
 				try
 				{
-					Run(string.Format("var {0} = {1};", resultingParameterName, processedExpression));
-					result = GetParameter(resultingParameterName);
+					_jsContext.Run(string.Format("var {0} = {1};", resultingParameterName, processedExpression));
+					result = _jsContext.GetParameter(resultingParameterName);
 				}
-				catch (TargetInvocationException e)
+				catch (JavascriptException e)
 				{
-					Exception innerException = e.InnerException;
-					if (IsJavascriptException(innerException))
-					{
-						throw ConvertJavascriptExceptionToJsRuntimeException(innerException);
-					}
-
-					throw innerException;
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
 				}
 			}
 
@@ -298,19 +147,16 @@
 
 		protected override void InnerExecute(string code)
 		{
-			try
+			lock (_executionSynchronizer)
 			{
-				Run(code);
-			}
-			catch (TargetInvocationException e)
-			{
-				Exception innerException = e.InnerException;
-				if (IsJavascriptException(innerException))
+				try
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(innerException);
+					_jsContext.Run(code);
 				}
-
-				throw innerException;
+				catch (JavascriptException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
 			}
 		}
 
@@ -333,23 +179,17 @@
 							string parameterName = string.Format("param{0}", argumentIndex + 1);
 							object argument = args[argumentIndex];
 
-							SetParameter(parameterName, argument);
+							_jsContext.SetParameter(parameterName, argument);
 							parameters.Add(parameterName);
 						}
 
-						Run(string.Format("var {0} = {1}({2});", resultingParameterName, 
+						_jsContext.Run(string.Format("var {0} = {1}({2});", resultingParameterName, 
 							functionName, string.Join(", ", parameters)));
-						result = GetParameter(resultingParameterName);
+						result = _jsContext.GetParameter(resultingParameterName);
 					}
-					catch (TargetInvocationException e)
+					catch (JavascriptException e)
 					{
-						Exception innerException = e.InnerException;
-						if (IsJavascriptException(innerException))
-						{
-							throw ConvertJavascriptExceptionToJsRuntimeException(innerException);
-						}
-
-						throw innerException;
+						throw ConvertJavascriptExceptionToJsRuntimeException(e);
 					}
 				}
 			}
@@ -359,18 +199,12 @@
 				{
 					try
 					{
-						Run(string.Format("var {0} = {1}();", resultingParameterName, functionName));
-						result = GetParameter(resultingParameterName);
+						_jsContext.Run(string.Format("var {0} = {1}();", resultingParameterName, functionName));
+						result = _jsContext.GetParameter(resultingParameterName);
 					}
-					catch (TargetInvocationException e)
+					catch (JavascriptException e)
 					{
-						Exception innerException = e.InnerException;
-						if (IsJavascriptException(innerException))
-						{
-							throw ConvertJavascriptExceptionToJsRuntimeException(innerException);
-						}
-
-						throw innerException;
+						throw ConvertJavascriptExceptionToJsRuntimeException(e);
 					}
 				}
 			}
@@ -396,19 +230,16 @@
 		{
 			object result;
 
-			try
+			lock (_executionSynchronizer)
 			{
-				result = GetParameter(variableName);
-			}
-			catch (TargetInvocationException e)
-			{
-				Exception innerException = e.InnerException;
-				if (IsJavascriptException(innerException))
+				try
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(innerException);
+					result = _jsContext.GetParameter(variableName);
 				}
-
-				throw innerException;
+				catch (JavascriptException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
 			}
 
 			return result;
@@ -421,19 +252,16 @@
 
 		protected override void InnerSetVariableValue(string variableName, object value)
 		{
-			try
+			lock (_executionSynchronizer)
 			{
-				SetParameter(variableName, value);
-			}
-			catch (TargetInvocationException e)
-			{
-				Exception innerException = e.InnerException;
-				if (IsJavascriptException(innerException))
+				try
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(innerException);
+					_jsContext.SetParameter(variableName, value);
 				}
-
-				throw innerException;
+				catch (JavascriptException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
 			}
 		}
 
@@ -452,18 +280,9 @@
 			{
 				_disposed = true;
 
-				_runMethodInfo = null;
-				_getParameterMethodInfo = null;
-				_setParameterMethodInfo = null;
-
-				if (_jsEngineObject != null && _jsContextType != null)
+				if (_jsContext != null)
 				{
-					var disposeMethodInfo = _jsContextType.GetMethod("Dispose");
-					disposeMethodInfo.Invoke(_jsEngineObject, new object[0]);
-
-					_jsEngineObject = null;
-					_jsContextType = null;
-					_jsExceptionType = null;
+					_jsContext.Dispose();
 				}
 			}
 		}

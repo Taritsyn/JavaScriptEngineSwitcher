@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Engines_NoesisJavascriptAssembliesDirectoryNotFound" xml:space="preserve">
-    <value>Указанная вами директория "{0}", в которой расположены сборки Noesis Javascript .NET, не найдена!</value>
+    <value>Не удалось загрузить сборку Noesis Javascript .NET, потому что директория "{0}" не существует.</value>
+  </data>
+  <data name="Engines_NoesisJavascriptAssemblyFileNotFound" xml:space="preserve">
+    <value>Не удалось загрузить сборку Noesis Javascript .NET, потому что файл "{0}" не существует.</value>
   </data>
 </root>

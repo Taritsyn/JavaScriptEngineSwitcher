@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Jurassic", "JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj", "{2E667689-F072-401F-A9A5-09F1A2ED025C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.ConsoleTests", "JavaScriptEngineSwitcher.ConsoleTests\JavaScriptEngineSwitcher.ConsoleTests.csproj", "{29C7BCA6-6F44-4984-B68C-E08064DEC532}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29C7BCA6-6F44-4984-B68C-E08064DEC532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C7BCA6-6F44-4984-B68C-E08064DEC532}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29C7BCA6-6F44-4984-B68C-E08064DEC532}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C7BCA6-6F44-4984-B68C-E08064DEC532}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

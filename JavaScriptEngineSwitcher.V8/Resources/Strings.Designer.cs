@@ -61,11 +61,20 @@ namespace JavaScriptEngineSwitcher.V8.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The specified directory &apos;{0}&apos;, that contains the Noesis Javascript .NET assemblies, is not found..
+        ///   Looks up a localized string similar to Failed to load the Noesis Javascript .NET assembly, because the directory &apos;{0}&apos; does not exist..
         /// </summary>
         public static string Engines_NoesisJavascriptAssembliesDirectoryNotFound {
             get {
                 return ResourceManager.GetString("Engines_NoesisJavascriptAssembliesDirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load the Noesis Javascript .NET assembly, because the file &apos;{0}&apos; does not exist..
+        /// </summary>
+        public static string Engines_NoesisJavascriptAssemblyFileNotFound {
+            get {
+                return ResourceManager.GetString("Engines_NoesisJavascriptAssemblyFileNotFound", resourceCulture);
             }
         }
     }
