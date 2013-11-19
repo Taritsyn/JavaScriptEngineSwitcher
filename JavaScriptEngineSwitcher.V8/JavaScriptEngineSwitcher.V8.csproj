@@ -86,7 +86,6 @@
       <LastGenOutput>Strings.ru-ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="..\Binaries\Noesis.Javascript\Output\Noesis.Javascript.x64.dll">
       <Link>Noesis.Javascript\Noesis.Javascript.x64.dll</Link>
@@ -99,16 +98,17 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>del "Noesis.JavaScript.dll"
-
-cd "$(ProjectDir)..\Binaries\Noesis.Javascript\"
+    <PostBuildEvent>del "Noesis.JavaScript.dll"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>cd "$(ProjectDir)..\Binaries\Noesis.Javascript\"
 
 set outputDirectoryPath=Output
 if exist %25outputDirectoryPath%25 rmdir /s /q %25outputDirectoryPath%25
 mkdir %25outputDirectoryPath%25
 
 copy /y "x86\Noesis.Javascript.dll" "%25outputDirectoryPath%25\Noesis.Javascript.x86.dll"
-copy /y "x64\Noesis.Javascript.dll" "%25outputDirectoryPath%25\Noesis.Javascript.x64.dll"</PostBuildEvent>
+copy /y "x64\Noesis.Javascript.dll" "%25outputDirectoryPath%25\Noesis.Javascript.x64.dll"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
