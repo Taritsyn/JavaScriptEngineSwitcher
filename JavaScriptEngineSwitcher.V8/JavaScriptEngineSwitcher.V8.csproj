@@ -36,34 +36,29 @@
     <AssemblyOriginatorKeyFile>..\JavaScriptEngineSwitcher.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Noesis.Javascript">
-      <HintPath>..\Binaries\Noesis.Javascript\x86\Noesis.Javascript.dll</HintPath>
+    <Reference Include="ClearScript">
+      <HintPath>..\Binaries\ClearScript\ClearScript.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Strings.ru-ru.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.ru-ru.resx</DependentUpon>
-    </Compile>
     <Compile Include="V8JsEngine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\JavaScriptEngineSwitcher.snk">
+      <Link>JavaScriptEngineSwitcher.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Binaries\ClearScript\x86\ClearScriptV8-32.dll">
+      <Link>ClearScript.V8\ClearScriptV8-32.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj">
@@ -72,43 +67,32 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\JavaScriptEngineSwitcher.snk">
-      <Link>JavaScriptEngineSwitcher.snk</Link>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Strings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Strings.ru-ru.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.ru-ru.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Binaries\Noesis.Javascript\Output\Noesis.Javascript.x64.dll">
-      <Link>Noesis.Javascript\Noesis.Javascript.x64.dll</Link>
+    <None Include="..\Binaries\ClearScript\x86\v8-ia32.dll">
+      <Link>ClearScript.V8\v8-ia32.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\Binaries\Noesis.Javascript\Output\Noesis.Javascript.x86.dll">
-      <Link>Noesis.Javascript\Noesis.Javascript.x86.dll</Link>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="..\Binaries\ClearScript\x64\ClearScriptV8-64.dll">
+      <Link>ClearScript.V8\ClearScriptV8-64.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Binaries\ClearScript\x64\v8-x64.dll">
+      <Link>ClearScript.V8\v8-x64.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>del "Noesis.JavaScript.dll"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>cd "$(ProjectDir)..\Binaries\Noesis.Javascript\"
-
-set outputDirectoryPath=Output
-if exist %25outputDirectoryPath%25 rmdir /s /q %25outputDirectoryPath%25
-mkdir %25outputDirectoryPath%25
-
-copy /y "x86\Noesis.Javascript.dll" "%25outputDirectoryPath%25\Noesis.Javascript.x86.dll"
-copy /y "x64\Noesis.Javascript.dll" "%25outputDirectoryPath%25\Noesis.Javascript.x64.dll"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,6 @@
 param($installPath, $toolsPath, $package, $project)
 
-$assemblyDirectoryName = "Noesis.Javascript"
+$assemblyDirectoryName = "ClearScript.V8"
 
 if ($project.Type -eq "Web Site") {
 	$projectDirectoryPath = $project.Properties.Item("FullPath").Value

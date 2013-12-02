@@ -1,7 +1,7 @@
 param($installPath, $toolsPath, $package, $project)
 
-$assemblyDirectoryName = "Noesis.Javascript"
-$assemblyName = "Noesis.Javascript"
+$assemblyDirectoryName = "ClearScript.V8"
+$assemblyFileNames = "ClearScriptV8-32.dll", "v8-ia32.dll", "ClearScriptV8-64.dll", "v8-x64.dll"
 
 if ($project.Type -eq "Web Site") {
 	$projectDirectoryPath = $project.Properties.Item("FullPath").Value
@@ -18,12 +18,10 @@ if ($project.Type -eq "Web Site") {
 }
 else {
 	$assemblyDirectoryItem = $project.ProjectItems.Item($assemblyDirectoryName)
-
-	$assembly32Item = $assemblyDirectoryItem.ProjectItems.Item($assemblyName + ".x86.dll")
-	$assembly32Item.Properties.Item("BuildAction").Value = 0
-	$assembly32Item.Properties.Item("CopyToOutputDirectory").Value = 1
-
-	$assembly64Item = $assemblyDirectoryItem.ProjectItems.Item($assemblyName + ".x64.dll")
-	$assembly64Item.Properties.Item("BuildAction").Value = 0
-	$assembly64Item.Properties.Item("CopyToOutputDirectory").Value = 1
+	
+	foreach ($assemblyFileName in $assemblyFileNames) {
+		$assemblyItem = $assemblyDirectoryItem.ProjectItems.Item($assemblyFileName)
+		$assemblyItem.Properties.Item("BuildAction").Value = 0
+		$assemblyItem.Properties.Item("CopyToOutputDirectory").Value = 1
+	}
 }

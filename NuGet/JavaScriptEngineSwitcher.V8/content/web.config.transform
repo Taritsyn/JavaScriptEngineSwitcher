@@ -10,7 +10,7 @@
 		<security>
 			<requestFiltering>
 				<hiddenSegments>
-					<add segment="Noesis.Javascript" />
+					<add segment="ClearScript.V8" />
 				</hiddenSegments>
 			</requestFiltering>
 		</security>

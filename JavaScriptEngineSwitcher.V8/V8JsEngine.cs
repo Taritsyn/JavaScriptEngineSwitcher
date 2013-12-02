@@ -2,16 +2,20 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
+	using System.Text.RegularExpressions;
+	using System.Web;
 	using System.Web.Script.Serialization;
 
-	using Noesis.Javascript;
+	using Microsoft.ClearScript;
+	using Microsoft.ClearScript.V8;
 
 	using Core;
 	using Core.Constants;
 	using CoreStrings = Core.Resources.Strings;
 
 	/// <summary>
-	/// Adapter for Noesis Javascript .NET
+	/// Adapter for Microsoft ClearScript.V8
 	/// </summary>
 	public sealed class V8JsEngine : JsEngineBase
 	{
@@ -21,19 +25,30 @@
 		private const string JS_ENGINE_FULL_NAME = "V8 JavaScript engine";
 
 		/// <summary>
+		/// Name of directory, that contains the Microsoft ClearScript.V8 assemblies
+		/// </summary>
+		private const string ASSEMBLY_DIRECTORY_NAME = "ClearScript.V8";
+
+		/// <summary>
 		/// Synchronizer of code execution
 		/// </summary>
 		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
-		/// JS-context
+		/// JS-engine
 		/// </summary>
-		private readonly JavascriptContext _jsContext;
+		private V8ScriptEngine _jsEngine;
 
 		/// <summary>
 		/// JS-serializer
 		/// </summary>
-		private readonly JavaScriptSerializer _jsSerializer;
+		private JavaScriptSerializer _jsSerializer;
+
+		/// <summary>
+		/// Regular expression for working with the string representation of error
+		/// </summary>
+		private static readonly Regex _errorStringRegex =
+			new Regex(@"at Script Document:(?<lineNumber>\d+):(?<columnNumber>\d+)");
 
 		/// <summary>
 		/// Flag that object is destroyed
@@ -41,28 +56,40 @@
 		private bool _disposed;
 
 
+		/// <summary>
+		/// Sets a path under the base directory where the assembly resolver should probe for private assemblies
+		/// </summary>
 		static V8JsEngine()
 		{
-			try
+			var currentDomain = AppDomain.CurrentDomain;
+
+			string binDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
+			if (string.IsNullOrEmpty(binDirectoryPath))
 			{
-				AssemblyResolver.Initialize();
+				// `PrivateBinPath` property is empty in test scenarios, so
+				// need to use the `BaseDirectory` property
+				binDirectoryPath = currentDomain.BaseDirectory;
 			}
-			catch (Exception e)
+
+			string assemblyDirectoryPath = Path.Combine(binDirectoryPath, ASSEMBLY_DIRECTORY_NAME);
+			if (!Directory.Exists(assemblyDirectoryPath) && HttpContext.Current != null)
 			{
-				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						JS_ENGINE_FULL_NAME, e.Message), e);
+				// Fix for WebMatrix
+				string applicationRootPath = HttpContext.Current.Server.MapPath("~");
+				assemblyDirectoryPath = Path.Combine(applicationRootPath, ASSEMBLY_DIRECTORY_NAME);
 			}
+
+			currentDomain.AppendPrivatePath(assemblyDirectoryPath);
 		}
 
 		/// <summary>
-		/// Constructs instance of adapter for Noesis Javascript .NET
+		/// Constructs instance of adapter for Microsoft ClearScript.V8
 		/// </summary>
 		public V8JsEngine()
 		{
 			try
 			{
-				_jsContext = new JavascriptContext();
+				_jsEngine = new V8ScriptEngine();
 			}
 			catch (Exception e)
 			{
@@ -70,20 +97,32 @@
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
 						JS_ENGINE_FULL_NAME, e.Message), e);
 			}
-
 			_jsSerializer = new JavaScriptSerializer();
 		}
 
-		private static JsRuntimeException ConvertJavascriptExceptionToJsRuntimeException(
-			JavascriptException jsException)
+		private static JsRuntimeException ConvertScriptEngineExceptionToJsRuntimeException(
+			ScriptEngineException scriptEngineException)
 		{
-			var jsRuntimeException = new JsRuntimeException(jsException.Message, jsException)
+			string errorDetails = scriptEngineException.ErrorDetails;
+			int lineNumber = 0;
+			int columnNumber = 0;
+
+			Match errorStringMatch = _errorStringRegex.Match(errorDetails);
+			if (errorStringMatch.Success)
+			{
+				GroupCollection errorStringGroups = errorStringMatch.Groups;
+
+				lineNumber = int.Parse(errorStringGroups["lineNumber"].Value);
+				columnNumber = int.Parse(errorStringGroups["columnNumber"].Value);
+			}
+
+			var jsRuntimeException = new JsRuntimeException(errorDetails)
 			{
 				EngineName = EngineName.V8JsEngine,
-				LineNumber = jsException.Line,
-				ColumnNumber = jsException.StartColumn + 1,
-				Source = jsException.Source,
-				HelpLink = jsException.HelpLink
+				LineNumber = lineNumber,
+				ColumnNumber = columnNumber,
+				Source = scriptEngineException.Source,
+				HelpLink = scriptEngineException.HelpLink
 			};
 
 			return jsRuntimeException;
@@ -115,25 +154,17 @@
 
 		protected override object InnerEvaluate(string expression)
 		{
-			const string resultingParameterName = "result";
-			string processedExpression = expression.TrimEnd();
-			if (processedExpression.EndsWith(";"))
-			{
-				processedExpression = processedExpression.TrimEnd(';');
-			}
-
 			object result;
 
-			lock(_executionSynchronizer)
+			lock (_executionSynchronizer)
 			{
 				try
 				{
-					_jsContext.Run(string.Format("var {0} = {1};", resultingParameterName, processedExpression));
-					result = _jsContext.GetParameter(resultingParameterName);
+					result = _jsEngine.Evaluate(expression);
 				}
-				catch (JavascriptException e)
+				catch (ScriptEngineException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 				}
 			}
 
@@ -151,20 +182,21 @@
 			{
 				try
 				{
-					_jsContext.Run(code);
+					_jsEngine.Execute(code);
 				}
-				catch (JavascriptException e)
+				catch (ScriptEngineException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 				}
 			}
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
-			object result;
 			const string resultingParameterName = "result";
 			int argumentCount = args.Length;
+
+			object result;
 
 			if (argumentCount > 0)
 			{
@@ -179,17 +211,17 @@
 							string parameterName = string.Format("param{0}", argumentIndex + 1);
 							object argument = args[argumentIndex];
 
-							_jsContext.SetParameter(parameterName, argument);
+							_jsEngine.Script[parameterName] = argument;
 							parameters.Add(parameterName);
 						}
 
-						_jsContext.Run(string.Format("var {0} = {1}({2});", resultingParameterName, 
+						_jsEngine.Execute(string.Format("var {0} = {1}({2});", resultingParameterName, 
 							functionName, string.Join(", ", parameters)));
-						result = _jsContext.GetParameter(resultingParameterName);
+						result = _jsEngine.Script[resultingParameterName];
 					}
-					catch (JavascriptException e)
+					catch (ScriptEngineException e)
 					{
-						throw ConvertJavascriptExceptionToJsRuntimeException(e);
+						throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 					}
 				}
 			}
@@ -199,12 +231,12 @@
 				{
 					try
 					{
-						_jsContext.Run(string.Format("var {0} = {1}();", resultingParameterName, functionName));
-						result = _jsContext.GetParameter(resultingParameterName);
+						_jsEngine.Execute(string.Format("var {0} = {1}();", resultingParameterName, functionName));
+						result = _jsEngine.Script[resultingParameterName];
 					}
-					catch (JavascriptException e)
+					catch (ScriptEngineException e)
 					{
-						throw ConvertJavascriptExceptionToJsRuntimeException(e);
+						throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 					}
 				}
 			}
@@ -234,11 +266,11 @@
 			{
 				try
 				{
-					result = _jsContext.GetParameter(variableName);
+					result = _jsEngine.Script[variableName];
 				}
-				catch (JavascriptException e)
+				catch (ScriptEngineException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 				}
 			}
 
@@ -256,11 +288,11 @@
 			{
 				try
 				{
-					_jsContext.SetParameter(variableName, value);
+					_jsEngine.Script[variableName] = value;
 				}
-				catch (JavascriptException e)
+				catch (ScriptEngineException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 				}
 			}
 		}
@@ -280,10 +312,13 @@
 			{
 				_disposed = true;
 
-				if (_jsContext != null)
+				if (_jsEngine != null)
 				{
-					_jsContext.Dispose();
+					_jsEngine.Dispose();
+					_jsEngine = null;
 				}
+
+				_jsSerializer = null;
 			}
 		}
 	}
