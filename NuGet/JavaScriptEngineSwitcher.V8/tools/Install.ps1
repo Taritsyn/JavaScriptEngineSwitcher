@@ -22,6 +22,6 @@ else {
 	foreach ($assemblyFileName in $assemblyFileNames) {
 		$assemblyItem = $assemblyDirectoryItem.ProjectItems.Item($assemblyFileName)
 		$assemblyItem.Properties.Item("BuildAction").Value = 0
-		$assemblyItem.Properties.Item("CopyToOutputDirectory").Value = 1
+		$assemblyItem.Properties.Item("CopyToOutputDirectory").Value = 2
 	}
 }

@@ -1,7 +1,7 @@
 ﻿
 
    -----------------------------------------------------------------------
-    README file for JavaScript Engine Switcher for .Net: V8 0.9.5 Alpha 1
+    README file for JavaScript Engine Switcher for .Net: V8 0.9.5 Alpha 2
 
    -----------------------------------------------------------------------
 
@@ -17,12 +17,6 @@
    Microsoft ClearScript.V8 require assemblies `msvcp110.dll` and 
    `msvcr110.dll` from the Visual C++ Redistributable for Visual Studio
    2012.
-   
-   =============
-   RELEASE NOTES
-   =============
-   Noesis Javascript .NET was replaced by the Microsoft ClearScript.V8
-   library.
    
    ====================
    POST-INSTALL ACTIONS

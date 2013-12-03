@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>JavaScriptEngineSwitcher.V8</id>
-    <version>0.9.5-Alpha1</version>
+    <version>0.9.5-Alpha2</version>
 	<title>JavaScript Engine Switcher for .Net: V8</title>
     <authors>Andrey Taritsyn</authors>
     <owners>Andrey Taritsyn</owners>
@@ -12,7 +12,6 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://clearscript.codeplex.com) version 5.3.10 with support of V8 version 3.23.13). For correct working of the Microsoft ClearScript.V8 require assemblies `msvcp110.dll` and `msvcr110.dll` from the Visual C++ Redistributable for Visual Studio 2012.</description>
     <summary>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 version 5.3.10 with support of V8 version 3.23.13).</summary>
-	<releaseNotes>Noesis Javascript .NET was replaced by the Microsoft ClearScript.V8 library.</releaseNotes>
 	<copyright>Copyright 2013 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
     <language>en-US</language>
     <tags>JavaScript ECMAScript V8 ClearScript</tags>
