@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>JavaScriptEngineSwitcher.ConfigurationIntelliSense</id>
-    <version>0.9.2</version>
+    <version>0.9.5</version>
 	<title>JavaScript Engine Switcher for .Net: IntelliSense</title>
     <authors>Andrey Taritsyn</authors>
     <owners>Andrey Taritsyn</owners>

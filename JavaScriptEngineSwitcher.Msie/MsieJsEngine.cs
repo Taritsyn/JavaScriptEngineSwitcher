@@ -17,7 +17,7 @@
 		/// <summary>
 		/// MSIE JS engine
 		/// </summary>
-		private readonly OriginalJsEngine _jsEngine;
+		private OriginalJsEngine _jsEngine;
 
 		/// <summary>
 		/// Flag that object is destroyed
@@ -219,6 +219,7 @@
 				if (_jsEngine != null)
 				{
 					_jsEngine.Dispose();
+					_jsEngine = null;
 				}
 			}
 		}

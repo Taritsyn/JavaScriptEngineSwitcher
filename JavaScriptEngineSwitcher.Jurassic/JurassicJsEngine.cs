@@ -21,7 +21,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Jurassic JS engine
 		/// </summary>
-		private readonly OriginalJsEngine _jsEngine;
+		private OriginalJsEngine _jsEngine;
 
 
 		/// <summary>
@@ -213,19 +213,16 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override void InnerRemoveVariable(string variableName)
 		{
-			try
-			{
-				_jsEngine.SetGlobalValue(variableName, OriginalUndefined.Value);
-			}
-			catch (OriginJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
-			}
+			string code = string.Format(@"if (typeof {0} !== 'undefined') {{
+	{0} = undefined;
+}}", variableName);
+
+			InnerExecute(code);
 		}
 
 		public override void Dispose()
 		{
-			// Not used
+			_jsEngine = null;
 		}
 	}
 }
