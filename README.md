@@ -5,18 +5,21 @@ JavaScript Engine Switcher determines unified interface for access to the basic 
 This library allows you to quickly and easily switch to using of another JavaScript engine.
 
 The supported .NET types are as follows:
-* System.Boolean
-* System.Int32
-* System.Double
-* System.String
+ * System.Boolean
+ * System.Int32
+ * System.Double
+ * System.String
 
-#Installation
+## Installation
 This library can be installed through NuGet:
-* [JS Engine Switcher: Core](http://nuget.org/packages/JavaScriptEngineSwitcher.Core)
-* [JS Engine Switcher: IntelliSense](http://nuget.org/packages/JavaScriptEngineSwitcher.ConfigurationIntelliSense)
-* [JS Engine Switcher: MSIE](http://nuget.org/packages/JavaScriptEngineSwitcher.Msie)
-* [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8)
-* [JS Engine Switcher: Jurassic](http://nuget.org/packages/JavaScriptEngineSwitcher.Jurassic)
+ * [JS Engine Switcher: Core](http://nuget.org/packages/JavaScriptEngineSwitcher.Core)
+ * [JS Engine Switcher: IntelliSense](http://nuget.org/packages/JavaScriptEngineSwitcher.ConfigurationIntelliSense)
+ * [JS Engine Switcher: MSIE](http://nuget.org/packages/JavaScriptEngineSwitcher.Msie)
+ * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8)
+ * [JS Engine Switcher: Jurassic](http://nuget.org/packages/JavaScriptEngineSwitcher.Jurassic)
 
-# License
+## Release History
+See the [changelog](CHANGELOG.md).
+
+## License
 [Apache License Version 2.0](http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE)
