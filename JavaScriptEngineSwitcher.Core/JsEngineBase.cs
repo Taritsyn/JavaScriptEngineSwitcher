@@ -13,6 +13,17 @@
 	/// </summary>
 	public abstract class JsEngineBase : IJsEngine
 	{
+		public abstract string Name
+		{
+			get;
+		}
+
+		public abstract string Version
+		{
+			get;
+		}
+
+
 		public object Evaluate(string expression)
 		{
 			if (string.IsNullOrWhiteSpace(expression))
@@ -109,21 +120,10 @@
 					string.Format(Strings.Common_ArgumentIsEmpty, "functionName"), "functionName");
 			}
 
-			if (args == null)
-			{
-				throw new ArgumentNullException("args", Strings.Common_ValueIsNull);
-			}
-
 			if (!ValidationHelpers.CheckNameFormat(functionName))
 			{
 				throw new FormatException(
 					string.Format(Strings.Runtime_InvalidFunctionNameFormat, functionName));
-			}
-
-			if (!ValidationHelpers.CheckNameAllowability(functionName))
-			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_FunctionNameIsForbidden, functionName));
 			}
 
 			int argumentCount = args.Length;
@@ -158,11 +158,6 @@
 					string.Format(Strings.Common_ArgumentIsEmpty, "functionName"), "functionName");
 			}
 
-			if (args == null)
-			{
-				throw new ArgumentNullException("args", Strings.Common_ValueIsNull);
-			}
-
 			Type returnValueType = typeof(T);
 			if (!ValidationHelpers.IsSupportedType(returnValueType))
 			{
@@ -174,12 +169,6 @@
 			{
 				throw new FormatException(
 					string.Format(Strings.Runtime_InvalidFunctionNameFormat, functionName));
-			}
-
-			if (!ValidationHelpers.CheckNameAllowability(functionName))
-			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_FunctionNameIsForbidden, functionName));
 			}
 
 			int argumentCount = args.Length;
@@ -220,12 +209,6 @@
 					string.Format(Strings.Runtime_InvalidVariableNameFormat, variableName));
 			}
 
-			if (!ValidationHelpers.CheckNameAllowability(variableName))
-			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_VariableNameIsForbidden, variableName));
-			}
-
 			return InnerHasVariable(variableName);
 		}
 
@@ -241,12 +224,6 @@
 			{
 				throw new FormatException(
 					string.Format(Strings.Runtime_InvalidVariableNameFormat, variableName));
-			}
-
-			if (!ValidationHelpers.CheckNameAllowability(variableName))
-			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_VariableNameIsForbidden, variableName));
 			}
 
 			return InnerGetVariableValue(variableName);
@@ -273,12 +250,6 @@
 					string.Format(Strings.Runtime_InvalidVariableNameFormat, variableName));
 			}
 
-			if (!ValidationHelpers.CheckNameAllowability(variableName))
-			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_VariableNameIsForbidden, variableName));
-			}
-
 			return InnerGetVariableValue<T>(variableName);
 		}
 
@@ -294,12 +265,6 @@
 			{
 				throw new FormatException(
 					string.Format(Strings.Runtime_InvalidVariableNameFormat, variableName));
-			}
-
-			if (!ValidationHelpers.CheckNameAllowability(variableName))
-			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_VariableNameIsForbidden, variableName));
 			}
 
 			if (value != null)
@@ -329,12 +294,6 @@
 			{
 				throw new FormatException(
 					string.Format(Strings.Runtime_InvalidVariableNameFormat, variableName));
-			}
-
-			if (!ValidationHelpers.CheckNameAllowability(variableName))
-			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_VariableNameIsForbidden, variableName));
 			}
 
 			InnerRemoveVariable(variableName);

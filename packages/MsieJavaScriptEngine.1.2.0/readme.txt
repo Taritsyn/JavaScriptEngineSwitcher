@@ -1,7 +1,7 @@
 
 
    ----------------------------------------------------------------------
-           README file for MSIE JavaScript Engine for .NET 1.1.3
+           README file for MSIE JavaScript Engine for .NET 1.2.0
 
    ----------------------------------------------------------------------
 
@@ -19,7 +19,8 @@
    =============
    RELEASE NOTES
    =============
-   Access modifier of the JsEngineLoadException class has changed to public.
+   1. Fixed errors in ECMAScript 5 Polyfill;
+   2. Added support of JavaScript `undefined` type.
 
    ============
    PROJECT SITE

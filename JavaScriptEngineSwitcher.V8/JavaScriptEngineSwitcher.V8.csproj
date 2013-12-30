@@ -57,7 +57,7 @@
   <ItemGroup>
     <None Include="..\Binaries\ClearScript\x86\ClearScriptV8-32.dll">
       <Link>ClearScript.V8\ClearScriptV8-32.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -69,20 +69,20 @@
   <ItemGroup>
     <None Include="..\Binaries\ClearScript\x86\v8-ia32.dll">
       <Link>ClearScript.V8\v8-ia32.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <None Include="..\Binaries\ClearScript\x64\ClearScriptV8-64.dll">
       <Link>ClearScript.V8\ClearScriptV8-64.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Binaries\ClearScript\x64\v8-x64.dll">
       <Link>ClearScript.V8\v8-x64.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

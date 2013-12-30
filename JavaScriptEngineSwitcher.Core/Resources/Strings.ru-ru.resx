@@ -156,6 +156,9 @@
   <data name="ErrorDetails_EngineName" xml:space="preserve">
     <value>Название движка</value>
   </data>
+  <data name="ErrorDetails_EngineVersion" xml:space="preserve">
+    <value>Версия движка</value>
+  </data>
   <data name="ErrorDetails_ErrorCode" xml:space="preserve">
     <value>Код ошибки</value>
   </data>

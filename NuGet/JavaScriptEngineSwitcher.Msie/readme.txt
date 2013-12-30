@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: MSIE 0.9.5
+      README file for JavaScript Engine Switcher for .Net: MSIE 1.0.0
 
    ----------------------------------------------------------------------
 
@@ -16,6 +16,11 @@
    (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct 
    working of the MSIE JavaScript Engine it is recommended to install 
    Internet Explorer 9 and above on a server.
+   
+   =============
+   RELEASE NOTES
+   =============
+   Added support of MSIE JavaScript Engine version 1.2.0.
 
    =============
    DOCUMENTATION

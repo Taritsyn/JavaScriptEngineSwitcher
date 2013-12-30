@@ -17,6 +17,15 @@
 		}
 
 		/// <summary>
+		/// Gets or sets a version of original JavaScript engine
+		/// </summary>
+		public string EngineVersion
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a error code
 		/// </summary>
 		public string ErrorCode

@@ -1,12 +1,13 @@
 ﻿namespace JavaScriptEngineSwitcher.Msie
 {
 	using System;
+	using System.Globalization;
 
 	using MsieJavaScriptEngine.ActiveScript;
 	using OriginalJsEngine = MsieJavaScriptEngine.MsieJsEngine;
+	using OriginalUndefined = MsieJavaScriptEngine.Undefined;
 
 	using Core;
-	using Core.Constants;
 	using CoreStrings = Core.Resources.Strings;
 
 	/// <summary>
@@ -24,6 +25,22 @@
 		/// </summary>
 		private bool _disposed;
 
+		/// <summary>
+		/// Gets a name of JavaScript engine
+		/// </summary>
+		public override string Name
+		{
+			get { return "MSIE JavaScript engine"; }
+		}
+
+		/// <summary>
+		/// Gets a version of original JavaScript engine
+		/// </summary>
+		public override string Version
+		{
+			get { return string.Empty; }
+		}
+
 
 		/// <summary>
 		/// Constructs instance of adapter for MSIE JavaScript engine
@@ -38,19 +55,50 @@
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						"MSIE JavaScript engine", e.Message), e);
+						Name, e.Message), e);
 			}
 		}
 
 
-		private static JsRuntimeException ConvertActiveScriptExceptionToJsRuntimeException(
+		/// <summary>
+		/// Executes a mapping from the host type to a MSIE type
+		/// </summary>
+		/// <param name="value">The source value</param>
+		/// <returns>The mapped value</returns>
+		private static object MapToMsieType(object value)
+		{
+			if (value is Undefined)
+			{
+				return OriginalUndefined.Value;
+			}
+
+			return value;
+		}
+
+		/// <summary>
+		/// Executes a mapping from the MSIE type to a host type
+		/// </summary>
+		/// <param name="value">The source value</param>
+		/// <returns>The mapped value</returns>
+		private static object MapToHostType(object value)
+		{
+			if (value is OriginalUndefined)
+			{
+				return Undefined.Value;
+			}
+
+			return value;
+		}
+
+		private JsRuntimeException ConvertActiveScriptExceptionToJsRuntimeException(
 			ActiveScriptException activeScriptException)
 		{
 			var jsRuntimeException = new JsRuntimeException(activeScriptException.Message, 
 				activeScriptException)
 			{
-				EngineName = EngineName.MsieJsEngine, 
-				ErrorCode = activeScriptException.ErrorCode.ToString(),
+				EngineName = Name,
+				EngineVersion = Version,
+				ErrorCode = activeScriptException.ErrorCode.ToString(CultureInfo.InvariantCulture),
 				Category = activeScriptException.Subcategory,
 				LineNumber = (int)activeScriptException.LineNumber,
 				ColumnNumber = activeScriptException.ColumnNumber,
@@ -75,23 +123,16 @@
 				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
 			}
 
+			result = MapToHostType(result);
+
 			return result;
 		}
 
 		protected override T InnerEvaluate<T>(string expression)
 		{
-			T result;
+			object result = InnerEvaluate(expression);
 
-			try
-			{
-				result = _jsEngine.Evaluate<T>(expression);
-			}
-			catch (ActiveScriptException e)
-			{
-				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
-			}
-
-			return result;
+			return _jsEngine.ConvertToType<T>(result);
 		}
 
 		protected override void InnerExecute(string code)
@@ -109,33 +150,36 @@
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
 			object result;
+			int argumentCount = args.Length;
+			var processedArgs = new object[argumentCount];
+
+			if (argumentCount > 0)
+			{
+				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
+				{
+					processedArgs[argumentIndex] = MapToMsieType(args[argumentIndex]);
+				}
+			}
 
 			try
 			{
-				result = _jsEngine.CallFunction(functionName, args);
+				result = _jsEngine.CallFunction(functionName, processedArgs);
 			}
 			catch (ActiveScriptException e)
 			{
 				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
 			}
+
+			result = MapToHostType(result);
 
 			return result;
 		}
 
 		protected override T InnerCallFunction<T>(string functionName, params object[] args)
 		{
-			T result;
+			object result = InnerCallFunction(functionName, args);
 
-			try
-			{
-				result = _jsEngine.CallFunction<T>(functionName, args);
-			}
-			catch (ActiveScriptException e)
-			{
-				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
-			}
-
-			return result;
+			return _jsEngine.ConvertToType<T>(result);
 		}
 
 		protected override bool InnerHasVariable(string variableName)
@@ -167,30 +211,25 @@
 				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
 			}
 
+			result = MapToHostType(result);
+
 			return result;
 		}
 
 		protected override T InnerGetVariableValue<T>(string variableName)
 		{
-			T result;
+			object result = InnerGetVariableValue(variableName);
 
-			try
-			{
-				result = _jsEngine.GetVariableValue<T>(variableName);
-			}
-			catch (ActiveScriptException e)
-			{
-				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
-			}
-
-			return result;
+			return _jsEngine.ConvertToType<T>(result);
 		}
 
 		protected override void InnerSetVariableValue(string variableName, object value)
 		{
+			object processedValue = MapToMsieType(value);
+
 			try
 			{
-				_jsEngine.SetVariableValue(variableName, value);
+				_jsEngine.SetVariableValue(variableName, processedValue);
 			}
 			catch (ActiveScriptException e)
 			{

@@ -66,6 +66,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.ru-ru.resx</DependentUpon>
     </Compile>
+    <Compile Include="Undefined.cs" />
     <Compile Include="Utilities\StringBuilderExtensions.cs" />
     <Compile Include="Utilities\Utils.cs" />
   </ItemGroup>
@@ -73,10 +74,12 @@
     <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.ru-ru.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.ru-ru.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

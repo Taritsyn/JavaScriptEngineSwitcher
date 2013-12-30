@@ -156,6 +156,9 @@
   <data name="ErrorDetails_EngineName" xml:space="preserve">
     <value>Engine name</value>
   </data>
+  <data name="ErrorDetails_EngineVersion" xml:space="preserve">
+    <value>Engine version</value>
+  </data>
   <data name="ErrorDetails_ErrorCode" xml:space="preserve">
     <value>Error code</value>
   </data>

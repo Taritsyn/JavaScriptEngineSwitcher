@@ -10,6 +10,23 @@
 	public interface IJsEngine : IDisposable
 	{
 		/// <summary>
+		/// Gets a name of JavaScript engine
+		/// </summary>
+		string Name
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Gets a version of original JavaScript engine
+		/// </summary>
+		string Version
+		{
+			get;
+		}
+
+
+		/// <summary>
 		/// Evaluates an expression
 		/// </summary>
 		/// <param name="expression">JS-expression</param>

@@ -1,6 +1,7 @@
 ﻿namespace JavaScriptEngineSwitcher.Core.Helpers
 {
 	using System;
+	using System.Globalization;
 	using System.Text;
 
 	using Resources;
@@ -23,6 +24,11 @@
 				jsRuntimeException.Message);
 			errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_EngineName,
 				jsRuntimeException.EngineName);
+			if (!string.IsNullOrWhiteSpace(jsRuntimeException.EngineVersion))
+			{
+				errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_EngineVersion,
+					jsRuntimeException.EngineVersion);
+			}
 			if (!string.IsNullOrWhiteSpace(jsRuntimeException.ErrorCode))
 			{
 				errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_ErrorCode,
@@ -36,12 +42,12 @@
 			if (jsRuntimeException.LineNumber > 0)
 			{
 				errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_LineNumber,
-					jsRuntimeException.LineNumber.ToString());
+					jsRuntimeException.LineNumber.ToString(CultureInfo.InvariantCulture));
 			}
 			if (jsRuntimeException.ColumnNumber > 0)
 			{
 				errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_ColumnNumber,
-					jsRuntimeException.ColumnNumber.ToString());	
+					jsRuntimeException.ColumnNumber.ToString(CultureInfo.InvariantCulture));	
 			}
 			if (!string.IsNullOrWhiteSpace(jsRuntimeException.SourceFragment))
 			{

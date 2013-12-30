@@ -1,16 +1,16 @@
-﻿using OriginalJsEngine = Jurassic.ScriptEngine;
+﻿using Jurassic;
+using OriginalJsEngine = Jurassic.ScriptEngine;
 using OriginalConcatenatedString = Jurassic.ConcatenatedString;
 using OriginalNull = Jurassic.Null;
 using OriginalUndefined = Jurassic.Undefined;
 using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
-using OriginJsException = Jurassic.JavaScriptException;
+using OriginalJsException = Jurassic.JavaScriptException;
 
 namespace JavaScriptEngineSwitcher.Jurassic
 {
 	using System;
 
 	using Core;
-	using Core.Constants;
 	using CoreStrings = Core.Resources.Strings;
 
 	/// <summary>
@@ -23,6 +23,22 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// </summary>
 		private OriginalJsEngine _jsEngine;
 
+		/// <summary>
+		/// Gets a name of JavaScript engine
+		/// </summary>
+		public override string Name
+		{
+			get { return "Jurassic JavaScript engine"; }
+		}
+
+		/// <summary>
+		/// Gets a version of original JavaScript engine
+		/// </summary>
+		public override string Version
+		{
+			get { return "Sep 30 2013"; }
+		}
+
 
 		/// <summary>
 		/// Constructs instance of adapter for Jurassic
@@ -33,39 +49,70 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			{
 				_jsEngine = new OriginalJsEngine
 				{
-					CompatibilityMode = OriginalCompatibilityMode.Latest
+					CompatibilityMode = OriginalCompatibilityMode.Latest,
+					EnableExposedClrTypes = true
 				};
 			}
 			catch (Exception e)
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						"Jurassic JavaScript engine", e.Message), e);
+						Name, e.Message), e);
 			}
 		}
 
-
-		private static object FixJurassicTypes(object value)
+		/// <summary>
+		/// Executes a mapping from the host type to a Jurassic type
+		/// </summary>
+		/// <param name="value">The source value</param>
+		/// <returns>The mapped value</returns>
+		private static object MapToJurassicType(object value)
 		{
-			var result = value;
+			if (value == null)
+			{
+				return OriginalNull.Value;
+			}
+
+			if (value is Undefined)
+			{
+				return OriginalUndefined.Value;
+			}
+
+			return value;
+		}
+
+		/// <summary>
+		/// Executes a mapping from the Jurassic type to a host type
+		/// </summary>
+		/// <param name="value">The source value</param>
+		/// <returns>The mapped value</returns>
+		private static object MapToHostType(object value)
+		{
 			if (value is OriginalConcatenatedString)
 			{
-				result = result.ToString();
-			}
-			else if (value is OriginalNull || value is OriginalUndefined)
-			{
-				result = null;
+				return value.ToString();
 			}
 
-			return result;
+			if (value is OriginalNull)
+			{
+				return null;
+			}
+
+			if (value is OriginalUndefined)
+			{
+				return Undefined.Value;
+			}
+
+			return value;
 		}
 
-		private static JsRuntimeException ConvertJavascriptExceptionToJsRuntimeException(
-			OriginJsException jsException)
+		private JsRuntimeException ConvertJavascriptExceptionToJsRuntimeException(
+			OriginalJsException jsException)
 		{
 			var jsRuntimeException = new JsRuntimeException(jsException.Message, jsException)
 			{
-				EngineName = EngineName.JurassicJsEngine,
+				EngineName = Name,
+				EngineVersion = Version,
 				Category = jsException.Name,
 				LineNumber = jsException.LineNumber,
 				ColumnNumber = 0,
@@ -85,30 +132,21 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			{
 				result = _jsEngine.Evaluate(expression);
 			}
-			catch (OriginJsException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertJavascriptExceptionToJsRuntimeException(e);
 			}
 
-			result = FixJurassicTypes(result);
-
+			result = MapToHostType(result);
+			
 			return result;
 		}
 
 		protected override T InnerEvaluate<T>(string expression)
 		{
-			T result;
+			object result = InnerEvaluate(expression);
 
-			try
-			{
-				result = _jsEngine.Evaluate<T>(expression);
-			}
-			catch (OriginJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
-			}
-
-			return result;
+			return TypeConverter.ConvertTo<T>(_jsEngine, result);
 		}
 
 		protected override void InnerExecute(string code)
@@ -117,7 +155,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			{
 				_jsEngine.Execute(code);
 			}
-			catch (OriginJsException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertJavascriptExceptionToJsRuntimeException(e);
 			}
@@ -125,42 +163,48 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
+			int argumentCount = args.Length;
+			var processedArgs = new object[argumentCount];
+
+			if (argumentCount > 0)
+			{
+				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
+				{
+					processedArgs[argumentIndex] = MapToJurassicType(args[argumentIndex]);
+				}
+			}
+
 			object result;
 
 			try
 			{
-				result = _jsEngine.CallGlobalFunction(functionName, args);
+				result = _jsEngine.CallGlobalFunction(functionName, processedArgs);
 			}
-			catch (OriginJsException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertJavascriptExceptionToJsRuntimeException(e);
 			}
 
-			result = FixJurassicTypes(result);
+			result = MapToHostType(result);
 
 			return result;
 		}
 
 		protected override T InnerCallFunction<T>(string functionName, params object[] args)
 		{
-			T result;
+			object result = InnerCallFunction(functionName, args);
 
-			try
-			{
-				result = _jsEngine.CallGlobalFunction<T>(functionName, args);
-			}
-			catch (OriginJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
-			}
-
-			return result;
+			return TypeConverter.ConvertTo<T>(_jsEngine, result);
 		}
 
 		protected override bool InnerHasVariable(string variableName)
 		{
-			string expression = string.Format("(typeof {0} !== 'undefined');", variableName);
-			var result = InnerEvaluate<bool>(expression);
+			bool result = _jsEngine.HasGlobalValue(variableName);
+			if (result)
+			{
+				object value = _jsEngine.GetGlobalValue(variableName);
+				result = (value.ToString() != "undefined");
+			}
 
 			return result;
 		}
@@ -173,39 +217,32 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			{
 				result = _jsEngine.GetGlobalValue(variableName);
 			}
-			catch (OriginJsException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertJavascriptExceptionToJsRuntimeException(e);
 			}
 
-			result = FixJurassicTypes(result);
+			result = MapToHostType(result);
 
 			return result;
 		}
 
 		protected override T InnerGetVariableValue<T>(string variableName)
 		{
-			T result;
+			object result = InnerGetVariableValue(variableName);
 
-			try
-			{
-				result = _jsEngine.GetGlobalValue<T>(variableName);
-			}
-			catch (OriginJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
-			}
-
-			return result;
+			return TypeConverter.ConvertTo<T>(_jsEngine, result);
 		}
 
 		protected override void InnerSetVariableValue(string variableName, object value)
 		{
+			object processedValue = MapToJurassicType(value);
+
 			try
 			{
-				_jsEngine.SetGlobalValue(variableName, value);
+				_jsEngine.SetGlobalValue(variableName, processedValue);
 			}
-			catch (OriginJsException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertJavascriptExceptionToJsRuntimeException(e);
 			}
@@ -213,11 +250,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override void InnerRemoveVariable(string variableName)
 		{
-			string code = string.Format(@"if (typeof {0} !== 'undefined') {{
-	{0} = undefined;
-}}", variableName);
-
-			InnerExecute(code);
+			InnerSetVariableValue(variableName, Undefined.Value);
 		}
 
 		public override void Dispose()

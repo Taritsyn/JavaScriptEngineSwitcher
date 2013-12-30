@@ -3,15 +3,16 @@
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
+	using System.Reflection;
 	using System.Text.RegularExpressions;
 	using System.Web;
 	using System.Web.Script.Serialization;
 
-	using Microsoft.ClearScript;
 	using Microsoft.ClearScript.V8;
+	using OriginalUndefined = Microsoft.ClearScript.Undefined;
+	using OriginalJsException = Microsoft.ClearScript.ScriptEngineException;
 
 	using Core;
-	using Core.Constants;
 	using CoreStrings = Core.Resources.Strings;
 
 	/// <summary>
@@ -19,11 +20,6 @@
 	/// </summary>
 	public sealed class V8JsEngine : JsEngineBase
 	{
-		/// <summary>
-		/// Full name of JavaScript engine
-		/// </summary>
-		private const string JS_ENGINE_FULL_NAME = "V8 JavaScript engine";
-
 		/// <summary>
 		/// Name of directory, that contains the Microsoft ClearScript.V8 assemblies
 		/// </summary>
@@ -45,6 +41,11 @@
 		private JavaScriptSerializer _jsSerializer;
 
 		/// <summary>
+		/// ClearScript <code>undefined</code> value
+		/// </summary>
+		private static readonly OriginalUndefined _originalUndefinedValue;
+
+		/// <summary>
 		/// Regular expression for working with the string representation of error
 		/// </summary>
 		private static readonly Regex _errorStringRegex =
@@ -55,12 +56,30 @@
 		/// </summary>
 		private bool _disposed;
 
+		/// <summary>
+		/// Gets a name of JavaScript engine
+		/// </summary>
+		public override string Name
+		{
+			get { return "V8 JavaScript engine"; }
+		}
 
 		/// <summary>
-		/// Sets a path under the base directory where the assembly resolver should probe for private assemblies
+		/// Gets a version of original JavaScript engine
+		/// </summary>
+		public override string Version
+		{
+			get { return "3.23.13"; }
+		}
+
+
+		/// <summary>
+		/// Static constructor
 		/// </summary>
 		static V8JsEngine()
 		{
+			// Sets a path under the base directory where the assembly resolver 
+			// should probe for private assemblies
 			var currentDomain = AppDomain.CurrentDomain;
 
 			string binDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
@@ -80,6 +99,14 @@
 			}
 
 			currentDomain.AppendPrivatePath(assemblyDirectoryPath);
+
+			// Gets a ClearScript <code>undefined</code> value
+			FieldInfo undefinedValueFieldInfo = typeof(OriginalUndefined).GetField("Value",
+				BindingFlags.NonPublic | BindingFlags.Static);
+			if (undefinedValueFieldInfo != null)
+			{
+				_originalUndefinedValue = (OriginalUndefined)undefinedValueFieldInfo.GetValue(null);
+			}
 		}
 
 		/// <summary>
@@ -95,13 +122,44 @@
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						JS_ENGINE_FULL_NAME, e.Message), e);
+						Name, e.Message), e);
 			}
 			_jsSerializer = new JavaScriptSerializer();
 		}
 
-		private static JsRuntimeException ConvertScriptEngineExceptionToJsRuntimeException(
-			ScriptEngineException scriptEngineException)
+
+		/// <summary>
+		/// Executes a mapping from the host type to a ClearScript type
+		/// </summary>
+		/// <param name="value">The source value</param>
+		/// <returns>The mapped value</returns>
+		private static object MapToClearScriptType(object value)
+		{
+			if (value is Undefined)
+			{
+				return _originalUndefinedValue;
+			}
+
+			return value;
+		}
+
+		/// <summary>
+		/// Executes a mapping from the ClearScript type to a host type
+		/// </summary>
+		/// <param name="value">The source value</param>
+		/// <returns>The mapped value</returns>
+		private static object MapToHostType(object value)
+		{
+			if (value is OriginalUndefined)
+			{
+				return Undefined.Value;
+			}
+
+			return value;
+		}
+
+		private JsRuntimeException ConvertScriptEngineExceptionToJsRuntimeException(
+			OriginalJsException scriptEngineException)
 		{
 			string errorDetails = scriptEngineException.ErrorDetails;
 			int lineNumber = 0;
@@ -118,7 +176,8 @@
 
 			var jsRuntimeException = new JsRuntimeException(errorDetails)
 			{
-				EngineName = EngineName.V8JsEngine,
+				EngineName = Name,
+				EngineVersion = Version,
 				LineNumber = lineNumber,
 				ColumnNumber = columnNumber,
 				Source = scriptEngineException.Source,
@@ -162,18 +221,22 @@
 				{
 					result = _jsEngine.Evaluate(expression);
 				}
-				catch (ScriptEngineException e)
+				catch (OriginalJsException e)
 				{
 					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 				}
 			}
+
+			result = MapToHostType(result);
 
 			return result;
 		}
 
 		protected override T InnerEvaluate<T>(string expression)
 		{
-			return ConvertToType<T>(InnerEvaluate(expression));
+			object result = InnerEvaluate(expression);
+
+			return ConvertToType<T>(result);
 		}
 
 		protected override void InnerExecute(string code)
@@ -184,7 +247,7 @@
 				{
 					_jsEngine.Execute(code);
 				}
-				catch (ScriptEngineException e)
+				catch (OriginalJsException e)
 				{
 					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 				}
@@ -194,9 +257,8 @@
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
 			const string resultingParameterName = "result";
-			int argumentCount = args.Length;
-
 			object result;
+			int argumentCount = args.Length;
 
 			if (argumentCount > 0)
 			{
@@ -209,7 +271,7 @@
 						for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
 						{
 							string parameterName = string.Format("param{0}", argumentIndex + 1);
-							object argument = args[argumentIndex];
+							object argument = MapToClearScriptType(args[argumentIndex]);
 
 							_jsEngine.Script[parameterName] = argument;
 							parameters.Add(parameterName);
@@ -219,7 +281,7 @@
 							functionName, string.Join(", ", parameters)));
 						result = _jsEngine.Script[resultingParameterName];
 					}
-					catch (ScriptEngineException e)
+					catch (OriginalJsException e)
 					{
 						throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 					}
@@ -234,20 +296,23 @@
 						_jsEngine.Execute(string.Format("var {0} = {1}();", resultingParameterName, functionName));
 						result = _jsEngine.Script[resultingParameterName];
 					}
-					catch (ScriptEngineException e)
+					catch (OriginalJsException e)
 					{
 						throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 					}
 				}
 			}
 
+			result = MapToHostType(result);
 
 			return result;
 		}
 
 		protected override T InnerCallFunction<T>(string functionName, params object[] args)
 		{
-			return ConvertToType<T>(InnerCallFunction(functionName, args));
+			object result = InnerCallFunction(functionName, args);
+
+			return ConvertToType<T>(result);
 		}
 
 		protected override bool InnerHasVariable(string variableName)
@@ -268,29 +333,35 @@
 				{
 					result = _jsEngine.Script[variableName];
 				}
-				catch (ScriptEngineException e)
+				catch (OriginalJsException e)
 				{
 					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 				}
 			}
+
+			result = MapToHostType(result);
 
 			return result;
 		}
 
 		protected override T InnerGetVariableValue<T>(string variableName)
 		{
-			return ConvertToType<T>(InnerGetVariableValue(variableName));
+			object result = InnerGetVariableValue(variableName);
+
+			return ConvertToType<T>(result);
 		}
 
 		protected override void InnerSetVariableValue(string variableName, object value)
 		{
+			object processedValue = MapToClearScriptType(value);
+
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					_jsEngine.Script[variableName] = value;
+					_jsEngine.Script[variableName] = processedValue;
 				}
-				catch (ScriptEngineException e)
+				catch (OriginalJsException e)
 				{
 					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 				}
@@ -299,11 +370,7 @@
 
 		protected override void InnerRemoveVariable(string variableName)
 		{
-			string code = string.Format(@"if (typeof {0} !== 'undefined') {{
-	{0} = undefined;
-}}", variableName);
-
-			InnerExecute(code);
+			InnerSetVariableValue(variableName, Undefined.Value);
 		}
 
 		public override void Dispose()
