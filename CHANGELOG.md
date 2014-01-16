@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## January 16, 2014 - v1.1.0
+
+* In JavaScriptEngineSwitcher.Msie added support of [MSIE JavaScript Engine](http://github.com/Taritsyn/MsieJavaScriptEngine) version 1.3.0
+* In JavaScriptEngineSwitcher.V8 improved performance of `CallFunction` method
+* In JavaScriptEngineSwitcher.Jurassic added support of [Jurassic](http://jurassic.codeplex.com/) version of January 11 2014
+
 ## December 30, 2013 - v1.0.0
 
 * Added support of JavaScript `undefined` type

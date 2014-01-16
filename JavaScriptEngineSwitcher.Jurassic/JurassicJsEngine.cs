@@ -19,6 +19,16 @@ namespace JavaScriptEngineSwitcher.Jurassic
 	public sealed class JurassicJsEngine : JsEngineBase
 	{
 		/// <summary>
+		/// Name of JavaScript engine
+		/// </summary>
+		private const string ENGINE_NAME = "Jurassic JavaScript engine";
+
+		/// <summary>
+		/// Version of original JavaScript engine
+		/// </summary>
+		private const string ENGINE_VERSION = "Jan 11 2014";
+
+		/// <summary>
 		/// Jurassic JS engine
 		/// </summary>
 		private OriginalJsEngine _jsEngine;
@@ -28,7 +38,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// </summary>
 		public override string Name
 		{
-			get { return "Jurassic JavaScript engine"; }
+			get { return ENGINE_NAME; }
 		}
 
 		/// <summary>
@@ -36,7 +46,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// </summary>
 		public override string Version
 		{
-			get { return "Sep 30 2013"; }
+			get { return ENGINE_VERSION; }
 		}
 
 
@@ -57,7 +67,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						Name, e.Message), e);
+						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
 			}
 		}
 
@@ -109,10 +119,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		private JsRuntimeException ConvertJavascriptExceptionToJsRuntimeException(
 			OriginalJsException jsException)
 		{
-			var jsRuntimeException = new JsRuntimeException(jsException.Message, jsException)
+			var jsRuntimeException = new JsRuntimeException(jsException.Message, ENGINE_NAME, ENGINE_VERSION,
+				jsException)
 			{
-				EngineName = Name,
-				EngineVersion = Version,
 				Category = jsException.Name,
 				LineNumber = jsException.LineNumber,
 				ColumnNumber = 0,
@@ -123,6 +132,8 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 			return jsRuntimeException;
 		}
+
+		#region JsEngineBase implementation
 
 		protected override object InnerEvaluate(string expression)
 		{
@@ -253,9 +264,20 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			InnerSetVariableValue(variableName, Undefined.Value);
 		}
 
+		#endregion
+
+		#region IDisposable implementation
+
 		public override void Dispose()
 		{
-			_jsEngine = null;
+			if (!_disposed)
+			{
+				_disposed = true;
+
+				_jsEngine = null;
+			}
 		}
+
+		#endregion
 	}
 }

@@ -126,6 +126,9 @@
   <data name="Common_AssemblyNameIsEmpty" xml:space="preserve">
     <value>Вы не указали имя сборки!</value>
   </data>
+  <data name="Common_EnumValueConversionFailed" xml:space="preserve">
+    <value>Невозможно преобразовать значение "{0}" перечислимого типа `{1}` в значение перечислимого типа `{2}`!</value>
+  </data>
   <data name="Common_FileNotExist" xml:space="preserve">
     <value>Файл "{0}" не существует!</value>
   </data>
@@ -191,6 +194,9 @@
 Смотрите более подробную информацию об ошибке:
 
 {1}</value>
+  </data>
+  <data name="Runtime_MethodInfoNotLoaded" xml:space="preserve">
+    <value>Не удалось загрузить информацию о методе "{1}" типа `{0}`!</value>
   </data>
   <data name="Runtime_ReturnValueTypeNotSupported" xml:space="preserve">
     <value>Тип возвращаемого значения `{0}` не поддерживается!</value>

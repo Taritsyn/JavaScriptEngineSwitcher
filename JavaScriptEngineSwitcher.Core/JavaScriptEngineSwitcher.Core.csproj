@@ -44,7 +44,6 @@
     <Compile Include="Configuration\CoreConfiguration.cs" />
     <Compile Include="Configuration\JsEngineRegistration.cs" />
     <Compile Include="Configuration\JsEngineRegistrationList.cs" />
-    <Compile Include="Constants\EngineName.cs" />
     <Compile Include="EmptyValueException.cs" />
     <Compile Include="Helpers\JsRuntimeErrorHelpers.cs" />
     <Compile Include="Helpers\ValidationHelpers.cs" />
@@ -53,6 +52,7 @@
     <Compile Include="JsEngineLoadException.cs" />
     <Compile Include="JsEngineNotFoundException.cs" />
     <Compile Include="JsEngineSwitcher.cs" />
+    <Compile Include="JsException.cs" />
     <Compile Include="JsRuntimeException.cs" />
     <Compile Include="NotSupportedTypeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

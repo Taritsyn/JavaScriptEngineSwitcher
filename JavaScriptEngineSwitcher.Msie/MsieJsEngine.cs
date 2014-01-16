@@ -1,14 +1,19 @@
 ﻿namespace JavaScriptEngineSwitcher.Msie
 {
 	using System;
-	using System.Globalization;
 
-	using MsieJavaScriptEngine.ActiveScript;
 	using OriginalJsEngine = MsieJavaScriptEngine.MsieJsEngine;
+	using OriginalJsEngineMode = MsieJavaScriptEngine.JsEngineMode;
+	using OriginalJsTypeConverter = MsieJavaScriptEngine.JsTypeConverter;
 	using OriginalUndefined = MsieJavaScriptEngine.Undefined;
+	using OriginalJsEngineLoadException = MsieJavaScriptEngine.JsEngineLoadException;
+	using OriginalJsRuntimeException = MsieJavaScriptEngine.JsRuntimeException;
 
 	using Core;
+	using Core.Utilities;
 	using CoreStrings = Core.Resources.Strings;
+
+	using Configuration;
 
 	/// <summary>
 	/// Adapter for MSIE JavaScript engine
@@ -16,21 +21,26 @@
 	public sealed class MsieJsEngine : JsEngineBase
 	{
 		/// <summary>
+		/// Name of JavaScript engine
+		/// </summary>
+		private const string ENGINE_NAME = "MSIE JavaScript engine";
+
+		/// <summary>
+		/// Version of original JavaScript engine
+		/// </summary>
+		private string _engineVersion;
+
+		/// <summary>
 		/// MSIE JS engine
 		/// </summary>
 		private OriginalJsEngine _jsEngine;
-
-		/// <summary>
-		/// Flag that object is destroyed
-		/// </summary>
-		private bool _disposed;
 
 		/// <summary>
 		/// Gets a name of JavaScript engine
 		/// </summary>
 		public override string Name
 		{
-			get { return "MSIE JavaScript engine"; }
+			get { return ENGINE_NAME; }
 		}
 
 		/// <summary>
@@ -38,7 +48,7 @@
 		/// </summary>
 		public override string Version
 		{
-			get { return string.Empty; }
+			get { return _engineVersion; }
 		}
 
 
@@ -46,16 +56,34 @@
 		/// Constructs instance of adapter for MSIE JavaScript engine
 		/// </summary>
 		public MsieJsEngine()
+			: this(JsEngineSwitcher.Current.GetMsieConfiguration())
+		{ }
+
+		/// <summary>
+		/// Constructs instance of adapter for MSIE JavaScript engine
+		/// </summary>
+		/// <param name="msieConfig">Configuration settings of MSIE JavaScript engine</param>
+		public MsieJsEngine(MsieConfiguration msieConfig)
 		{
+			OriginalJsEngineMode engineMode =
+				Utils.GetEnumFromOtherEnum<JsEngineMode, OriginalJsEngineMode>(msieConfig.EngineMode);
+
 			try
 			{
-				_jsEngine = new OriginalJsEngine(true, true);
+				_jsEngine = new OriginalJsEngine(engineMode, true, true);
+				_engineVersion = _jsEngine.Mode;
+			}
+			catch (OriginalJsEngineLoadException e)
+			{
+				throw new JsEngineLoadException(
+					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
+						ENGINE_NAME, e.Message), ENGINE_NAME, e.EngineMode, e);
 			}
 			catch (Exception e)
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						Name, e.Message), e);
+						ENGINE_NAME, e.Message), ENGINE_NAME, _engineVersion, e);
 			}
 		}
 
@@ -90,25 +118,25 @@
 			return value;
 		}
 
-		private JsRuntimeException ConvertActiveScriptExceptionToJsRuntimeException(
-			ActiveScriptException activeScriptException)
+		private JsRuntimeException ConvertMsieJsRuntimeExceptionToJsRuntimeException(
+			OriginalJsRuntimeException msieJsRuntimeException)
 		{
-			var jsRuntimeException = new JsRuntimeException(activeScriptException.Message, 
-				activeScriptException)
+			var jsRuntimeException = new JsRuntimeException(msieJsRuntimeException.Message,
+				ENGINE_NAME, _engineVersion, msieJsRuntimeException)
 			{
-				EngineName = Name,
-				EngineVersion = Version,
-				ErrorCode = activeScriptException.ErrorCode.ToString(CultureInfo.InvariantCulture),
-				Category = activeScriptException.Subcategory,
-				LineNumber = (int)activeScriptException.LineNumber,
-				ColumnNumber = activeScriptException.ColumnNumber,
-				SourceFragment = activeScriptException.SourceError,
-				Source = activeScriptException.Source,
-				HelpLink = activeScriptException.HelpLink
+				ErrorCode = msieJsRuntimeException.ErrorCode,
+				Category = msieJsRuntimeException.Category,
+				LineNumber = msieJsRuntimeException.LineNumber,
+				ColumnNumber = msieJsRuntimeException.ColumnNumber,
+				SourceFragment = msieJsRuntimeException.SourceFragment,
+				Source = msieJsRuntimeException.Source,
+				HelpLink = msieJsRuntimeException.HelpLink
 			};
 
 			return jsRuntimeException;
 		}
+
+		#region JsEngineBase implementation
 
 		protected override object InnerEvaluate(string expression)
 		{
@@ -118,9 +146,9 @@
 			{
 				result = _jsEngine.Evaluate(expression);
 			}
-			catch (ActiveScriptException e)
+			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
 			}
 
 			result = MapToHostType(result);
@@ -132,7 +160,7 @@
 		{
 			object result = InnerEvaluate(expression);
 
-			return _jsEngine.ConvertToType<T>(result);
+			return OriginalJsTypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerExecute(string code)
@@ -141,9 +169,9 @@
 			{
 				_jsEngine.Execute(code);
 			}
-			catch (ActiveScriptException e)
+			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
 			}
 		}
 
@@ -165,9 +193,9 @@
 			{
 				result = _jsEngine.CallFunction(functionName, processedArgs);
 			}
-			catch (ActiveScriptException e)
+			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
 			}
 
 			result = MapToHostType(result);
@@ -179,7 +207,7 @@
 		{
 			object result = InnerCallFunction(functionName, args);
 
-			return _jsEngine.ConvertToType<T>(result);
+			return OriginalJsTypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override bool InnerHasVariable(string variableName)
@@ -190,9 +218,9 @@
 			{
 				result = _jsEngine.HasVariable(variableName);
 			}
-			catch (ActiveScriptException e)
+			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
 			}
 
 			return result;
@@ -206,9 +234,9 @@
 			{
 				result = _jsEngine.GetVariableValue(variableName);
 			}
-			catch (ActiveScriptException e)
+			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
 			}
 
 			result = MapToHostType(result);
@@ -220,7 +248,7 @@
 		{
 			object result = InnerGetVariableValue(variableName);
 
-			return _jsEngine.ConvertToType<T>(result);
+			return OriginalJsTypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerSetVariableValue(string variableName, object value)
@@ -231,9 +259,9 @@
 			{
 				_jsEngine.SetVariableValue(variableName, processedValue);
 			}
-			catch (ActiveScriptException e)
+			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
 			}
 		}
 
@@ -243,11 +271,15 @@
 			{
 				_jsEngine.RemoveVariable(variableName);
 			}
-			catch (ActiveScriptException e)
+			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertActiveScriptExceptionToJsRuntimeException(e);
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
 			}
 		}
+
+		#endregion
+
+		#region IDisposable implementation
 
 		public override void Dispose()
 		{
@@ -262,5 +294,7 @@
 				}
 			}
 		}
+
+		#endregion
 	}
 }

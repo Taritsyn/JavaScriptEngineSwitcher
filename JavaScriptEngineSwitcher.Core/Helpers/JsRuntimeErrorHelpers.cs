@@ -8,10 +8,34 @@
 	using Utilities;
 
 	/// <summary>
-	/// JavaScript runtime error helpers
+	/// JavaScript error helpers
 	/// </summary>
 	public static class JsRuntimeErrorHelpers
 	{
+		/// <summary>
+		/// Generates a detailed error message
+		/// </summary>
+		/// <param name="jsEngineLoadException">JavaScript engine load exception</param>
+		/// <returns>Detailed error message</returns>
+		public static string Format(JsEngineLoadException jsEngineLoadException)
+		{
+			var errorMessage = new StringBuilder();
+			errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_Message,
+				jsEngineLoadException.Message);
+			if (!string.IsNullOrWhiteSpace(jsEngineLoadException.EngineName))
+			{
+				errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_EngineName,
+					jsEngineLoadException.EngineName);
+			}
+			if (!string.IsNullOrWhiteSpace(jsEngineLoadException.EngineVersion))
+			{
+				errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_EngineVersion,
+					jsEngineLoadException.EngineVersion);
+			}
+
+			return errorMessage.ToString();
+		}
+
 		/// <summary>
 		/// Generates a detailed error message
 		/// </summary>
@@ -22,8 +46,11 @@
 			var errorMessage = new StringBuilder();
 			errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_Message,
 				jsRuntimeException.Message);
-			errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_EngineName,
-				jsRuntimeException.EngineName);
+			if (!string.IsNullOrWhiteSpace(jsRuntimeException.EngineName))
+			{
+				errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_EngineName,
+					jsRuntimeException.EngineName);
+			}
 			if (!string.IsNullOrWhiteSpace(jsRuntimeException.EngineVersion))
 			{
 				errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_EngineVersion,

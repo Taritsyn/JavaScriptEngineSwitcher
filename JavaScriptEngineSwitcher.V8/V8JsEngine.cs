@@ -1,7 +1,6 @@
 ﻿namespace JavaScriptEngineSwitcher.V8
 {
 	using System;
-	using System.Collections.Generic;
 	using System.IO;
 	using System.Reflection;
 	using System.Text.RegularExpressions;
@@ -15,20 +14,27 @@
 	using Core;
 	using CoreStrings = Core.Resources.Strings;
 
+	using Resources;
+
 	/// <summary>
 	/// Adapter for Microsoft ClearScript.V8
 	/// </summary>
 	public sealed class V8JsEngine : JsEngineBase
 	{
 		/// <summary>
+		/// Name of JavaScript engine
+		/// </summary>
+		private const string ENGINE_NAME = "V8 JavaScript engine";
+
+		/// <summary>
+		/// Version of original JavaScript engine
+		/// </summary>
+		private const string ENGINE_VERSION = "3.23.13";
+
+		/// <summary>
 		/// Name of directory, that contains the Microsoft ClearScript.V8 assemblies
 		/// </summary>
 		private const string ASSEMBLY_DIRECTORY_NAME = "ClearScript.V8";
-
-		/// <summary>
-		/// Synchronizer of code execution
-		/// </summary>
-		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
 		/// JS-engine
@@ -43,25 +49,30 @@
 		/// <summary>
 		/// ClearScript <code>undefined</code> value
 		/// </summary>
-		private static readonly OriginalUndefined _originalUndefinedValue;
+		private static OriginalUndefined _originalUndefinedValue;
 
+		/// <summary>
+		/// Information about `InvokeMethod` method of `Microsoft.ClearScript.Windows.WindowsScriptItem` type
+		/// </summary>
+		private static MethodInfo _winScriptItemInvokeMethodInfo;
+		
 		/// <summary>
 		/// Regular expression for working with the string representation of error
 		/// </summary>
 		private static readonly Regex _errorStringRegex =
-			new Regex(@"at Script Document:(?<lineNumber>\d+):(?<columnNumber>\d+)");
+			new Regex(@"at Script Document(?:\s*\[\d+\])?:(?<lineNumber>\d+):(?<columnNumber>\d+)");
 
 		/// <summary>
-		/// Flag that object is destroyed
+		/// Synchronizer of code execution
 		/// </summary>
-		private bool _disposed;
+		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
 		/// Gets a name of JavaScript engine
 		/// </summary>
 		public override string Name
 		{
-			get { return "V8 JavaScript engine"; }
+			get { return ENGINE_NAME; }
 		}
 
 		/// <summary>
@@ -69,7 +80,7 @@
 		/// </summary>
 		public override string Version
 		{
-			get { return "3.23.13"; }
+			get { return ENGINE_VERSION; }
 		}
 
 
@@ -78,8 +89,36 @@
 		/// </summary>
 		static V8JsEngine()
 		{
-			// Sets a path under the base directory where the assembly resolver 
-			// should probe for private assemblies
+			ResolveAssemblyPath();
+			LoadUndefinedValue();
+			LoadWinScriptItemInvokeMethodInfo();
+		}
+
+		/// <summary>
+		/// Constructs instance of adapter for Microsoft ClearScript.V8
+		/// </summary>
+		public V8JsEngine()
+		{
+			try
+			{
+				_jsEngine = new V8ScriptEngine();
+			}
+			catch (Exception e)
+			{
+				throw new JsEngineLoadException(
+					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
+						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
+			}
+			_jsSerializer = new JavaScriptSerializer();
+		}
+
+
+		/// <summary>
+		/// Sets a path under the base directory where the assembly resolver
+		/// should probe for private assemblies
+		/// </summary>
+		private static void ResolveAssemblyPath()
+		{
 			var currentDomain = AppDomain.CurrentDomain;
 
 			string binDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
@@ -99,34 +138,62 @@
 			}
 
 			currentDomain.AppendPrivatePath(assemblyDirectoryPath);
+		}
 
-			// Gets a ClearScript <code>undefined</code> value
+		/// <summary>
+		/// Loads a ClearScript <code>undefined</code> value
+		/// </summary>
+		private static void LoadUndefinedValue()
+		{
 			FieldInfo undefinedValueFieldInfo = typeof(OriginalUndefined).GetField("Value",
 				BindingFlags.NonPublic | BindingFlags.Static);
+			OriginalUndefined originalUndefinedValue = null;
+
 			if (undefinedValueFieldInfo != null)
 			{
-				_originalUndefinedValue = (OriginalUndefined)undefinedValueFieldInfo.GetValue(null);
+				originalUndefinedValue = undefinedValueFieldInfo.GetValue(null) as OriginalUndefined;
+			}
+
+			if (originalUndefinedValue != null)
+			{
+				_originalUndefinedValue = originalUndefinedValue;
+			}
+			else
+			{
+				throw new JsEngineLoadException(Strings.Runtime_ClearScriptUndefinedValueNotLoaded,
+					ENGINE_NAME, ENGINE_VERSION);
 			}
 		}
 
 		/// <summary>
-		/// Constructs instance of adapter for Microsoft ClearScript.V8
+		/// Loads a `InvokeMethod` method information of `Microsoft.ClearScript.Windows.WindowsScriptItem` type
 		/// </summary>
-		public V8JsEngine()
+		private static void LoadWinScriptItemInvokeMethodInfo()
 		{
-			try
+			const string typeName = "Microsoft.ClearScript.V8.V8ScriptItem";
+			const string methodName = "InvokeMethod";
+
+			Assembly clearScriptAssembly = typeof(V8ScriptEngine).Assembly;
+			Type winScriptItemType = clearScriptAssembly.GetType(typeName);
+			MethodInfo winScriptItemInvokeMethodInfo = null;
+
+			if (winScriptItemType != null)
 			{
-				_jsEngine = new V8ScriptEngine();
+				winScriptItemInvokeMethodInfo = winScriptItemType.GetMethod(methodName,
+					BindingFlags.Instance | BindingFlags.Public);
 			}
-			catch (Exception e)
+
+			if (winScriptItemInvokeMethodInfo != null)
+			{
+				_winScriptItemInvokeMethodInfo = winScriptItemInvokeMethodInfo;
+			}
+			else
 			{
 				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						Name, e.Message), e);
+					string.Format(CoreStrings.Runtime_MethodInfoNotLoaded, typeName, methodName),
+						ENGINE_NAME, ENGINE_VERSION);
 			}
-			_jsSerializer = new JavaScriptSerializer();
 		}
-
 
 		/// <summary>
 		/// Executes a mapping from the host type to a ClearScript type
@@ -174,10 +241,9 @@
 				columnNumber = int.Parse(errorStringGroups["columnNumber"].Value);
 			}
 
-			var jsRuntimeException = new JsRuntimeException(errorDetails)
+			var jsRuntimeException = new JsRuntimeException(errorDetails, ENGINE_NAME, ENGINE_VERSION,
+				scriptEngineException)
 			{
-				EngineName = Name,
-				EngineVersion = Version,
 				LineNumber = lineNumber,
 				ColumnNumber = columnNumber,
 				Source = scriptEngineException.Source,
@@ -210,6 +276,8 @@
 
 			return result;
 		}
+
+		#region JsEngineBase implementation
 
 		protected override object InnerEvaluate(string expression)
 		{
@@ -256,50 +324,40 @@
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
-			const string resultingParameterName = "result";
 			object result;
 			int argumentCount = args.Length;
+			var processedArgs = new object[argumentCount];
 
 			if (argumentCount > 0)
 			{
-				var parameters = new List<string>();
-
-				lock (_executionSynchronizer)
+				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
 				{
-					try
-					{
-						for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
-						{
-							string parameterName = string.Format("param{0}", argumentIndex + 1);
-							object argument = MapToClearScriptType(args[argumentIndex]);
-
-							_jsEngine.Script[parameterName] = argument;
-							parameters.Add(parameterName);
-						}
-
-						_jsEngine.Execute(string.Format("var {0} = {1}({2});", resultingParameterName, 
-							functionName, string.Join(", ", parameters)));
-						result = _jsEngine.Script[resultingParameterName];
-					}
-					catch (OriginalJsException e)
-					{
-						throw ConvertScriptEngineExceptionToJsRuntimeException(e);
-					}
+					processedArgs[argumentIndex] = MapToClearScriptType(args[argumentIndex]);
 				}
 			}
-			else
+
+			lock (_executionSynchronizer)
 			{
-				lock (_executionSynchronizer)
+				try
 				{
-					try
+					object obj = _jsEngine.Script;
+					result = _winScriptItemInvokeMethodInfo.Invoke(obj, new object[] {functionName, processedArgs});
+				}
+				catch (TargetInvocationException e)
+				{
+					Exception innerException = e.InnerException;
+					if (innerException != null)
 					{
-						_jsEngine.Execute(string.Format("var {0} = {1}();", resultingParameterName, functionName));
-						result = _jsEngine.Script[resultingParameterName];
+						var scriptEngineException = e.InnerException as OriginalJsException;
+						if (scriptEngineException != null)
+						{
+							throw ConvertScriptEngineExceptionToJsRuntimeException(scriptEngineException);
+						}
+
+						throw innerException;
 					}
-					catch (OriginalJsException e)
-					{
-						throw ConvertScriptEngineExceptionToJsRuntimeException(e);
-					}
+
+					throw;
 				}
 			}
 
@@ -373,6 +431,10 @@
 			InnerSetVariableValue(variableName, Undefined.Value);
 		}
 
+		#endregion
+
+		#region IDisposable implementation
+
 		public override void Dispose()
 		{
 			if (!_disposed)
@@ -388,5 +450,7 @@
 				_jsSerializer = null;
 			}
 		}
+
+		#endregion
 	}
 }

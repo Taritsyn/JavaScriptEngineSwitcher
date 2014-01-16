@@ -13,6 +13,42 @@
 	/// </summary>
 	public abstract class JsEngineBase : IJsEngine
 	{
+		/// <summary>
+		/// Flag that object is destroyed
+		/// </summary>
+		protected bool _disposed;
+
+
+		private void VerifyNotDisposed()
+		{
+			if (_disposed)
+			{
+				throw new ObjectDisposedException(ToString());
+			}
+		}
+
+		protected abstract object InnerEvaluate(string expression);
+
+		protected abstract T InnerEvaluate<T>(string expression);
+
+		protected abstract void InnerExecute(string code);
+
+		protected abstract object InnerCallFunction(string functionName, params object[] args);
+
+		protected abstract T InnerCallFunction<T>(string functionName, params object[] args);
+
+		protected abstract bool InnerHasVariable(string variableName);
+
+		protected abstract object InnerGetVariableValue(string variableName);
+
+		protected abstract T InnerGetVariableValue<T>(string variableName);
+
+		protected abstract void InnerSetVariableValue(string variableName, object value);
+
+		protected abstract void InnerRemoveVariable(string variableName);
+
+		#region IJsEngine implementation
+
 		public abstract string Name
 		{
 			get;
@@ -26,6 +62,8 @@
 
 		public object Evaluate(string expression)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(expression))
 			{
 				throw new ArgumentException(
@@ -37,6 +75,8 @@
 
 		public T Evaluate<T>(string expression)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(expression))
 			{
 				throw new ArgumentException(
@@ -55,6 +95,8 @@
 
 		public void Execute(string code)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(code))
 			{
 				throw new ArgumentException(
@@ -66,6 +108,8 @@
 
 		public void ExecuteFile(string path, Encoding encoding = null)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(path))
 			{
 				throw new ArgumentException(
@@ -78,6 +122,8 @@
 
 		public void ExecuteResource(string resourceName, Type type)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
@@ -96,6 +142,8 @@
 
 		public void ExecuteResource(string resourceName, Assembly assembly)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
@@ -114,6 +162,8 @@
 
 		public object CallFunction(string functionName, params object[] args)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(functionName))
 			{
 				throw new ArgumentException(
@@ -152,6 +202,8 @@
 
 		public T CallFunction<T>(string functionName, params object[] args)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(functionName))
 			{
 				throw new ArgumentException(
@@ -197,6 +249,8 @@
 
 		public bool HasVariable(string variableName)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(variableName))
 			{
 				throw new ArgumentException(
@@ -214,6 +268,8 @@
 
 		public object GetVariableValue(string variableName)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(variableName))
 			{
 				throw new ArgumentException(
@@ -231,6 +287,8 @@
 
 		public T GetVariableValue<T>(string variableName)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(variableName))
 			{
 				throw new ArgumentException(
@@ -255,6 +313,8 @@
 
 		public void SetVariableValue(string variableName, object value)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(variableName))
 			{
 				throw new ArgumentException(
@@ -284,6 +344,8 @@
 
 		public void RemoveVariable(string variableName)
 		{
+			VerifyNotDisposed();
+
 			if (string.IsNullOrWhiteSpace(variableName))
 			{
 				throw new ArgumentException(
@@ -299,26 +361,12 @@
 			InnerRemoveVariable(variableName);
 		}
 
+		#endregion
+
+		#region IDisposable implementation
+
 		public abstract void Dispose();
 
-		protected abstract object InnerEvaluate(string expression);
-
-		protected abstract T InnerEvaluate<T>(string expression);
-
-		protected abstract void InnerExecute(string code);
-
-		protected abstract object InnerCallFunction(string functionName, params object[] args);
-
-		protected abstract T InnerCallFunction<T>(string functionName, params object[] args);
-
-		protected abstract bool InnerHasVariable(string variableName);
-
-		protected abstract object InnerGetVariableValue(string variableName);
-
-		protected abstract T InnerGetVariableValue<T>(string variableName);
-
-		protected abstract void InnerSetVariableValue(string variableName, object value);
-
-		protected abstract void InnerRemoveVariable(string variableName);
+		#endregion
 	}
 }

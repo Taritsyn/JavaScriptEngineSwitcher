@@ -5,26 +5,8 @@
 	/// <summary>
 	/// The exception that is thrown during a execution of code by JavaScript engine
 	/// </summary>
-	public sealed class JsRuntimeException : Exception
+	public sealed class JsRuntimeException : JsException
 	{
-		/// <summary>
-		/// Gets or sets a name of JavaScript engine
-		/// </summary>
-		public string EngineName
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets a version of original JavaScript engine
-		/// </summary>
-		public string EngineVersion
-		{
-			get;
-			set;
-		}
-
 		/// <summary>
 		/// Gets or sets a error code
 		/// </summary>
@@ -71,7 +53,7 @@
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the JavaScriptEngineSwitcher.Core.JsRuntimeException class 
+		/// Initializes a new instance of the <see cref="JsRuntimeException"/> class 
 		/// with a specified error message
 		/// </summary>
 		/// <param name="message">The message that describes the error</param>
@@ -80,15 +62,38 @@
 		{ }
 
 		/// <summary>
-		/// Initializes a new instance of the JavaScriptEngineSwitcher.Core.JsRuntimeException class 
+		/// Initializes a new instance of the <see cref="JsRuntimeException"/> class 
 		/// with a specified error message and a reference to the inner exception that is the cause of this exception
 		/// </summary>
 		/// <param name="message">The error message that explains the reason for the exception</param>
 		/// <param name="innerException">The exception that is the cause of the current exception</param>
 		public JsRuntimeException(string message, Exception innerException)
-			: base(message, innerException)
+			: this(message, string.Empty, string.Empty, innerException)
+		{ }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JsRuntimeException"/> class 
+		/// with a specified error message and a reference to the inner exception that is the cause of this exception
+		/// </summary>
+		/// <param name="message">The error message that explains the reason for the exception</param>
+		/// <param name="engineName">Name of JavaScript engine</param>
+		/// <param name="engineVersion">Version of original JavaScript engine</param>
+		public JsRuntimeException(string message, string engineName, string engineVersion)
+			: this(message, engineName, engineVersion, null)
+		{ }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JsRuntimeException"/> class 
+		/// with a specified error message and a reference to the inner exception that is the cause of this exception
+		/// </summary>
+		/// <param name="message">The error message that explains the reason for the exception</param>
+		/// <param name="engineName">Name of JavaScript engine</param>
+		/// <param name="engineVersion">Version of original JavaScript engine</param>
+		/// <param name="innerException">The exception that is the cause of the current exception</param>
+		public JsRuntimeException(string message, string engineName, string engineVersion, 
+			Exception innerException)
+			: base(message, engineName, engineVersion, innerException)
 		{
-			EngineName = string.Empty;
 			ErrorCode = string.Empty;
 			Category = string.Empty;
 			LineNumber = 0;

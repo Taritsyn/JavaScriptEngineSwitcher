@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>MsieJavaScriptEngine</id>
+    <version>1.3.0</version>
+    <title>MSIE JavaScript Engine for .NET</title>
+    <authors>Andrey Taritsyn</authors>
+    <owners>Andrey Taritsyn</owners>
+    <licenseUrl>http://github.com/Taritsyn/MsieJavaScriptEngine/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>http://github.com/Taritsyn/MsieJavaScriptEngine</projectUrl>
+    <iconUrl>http://i.imgur.com/cbiHK.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This project is a .NET wrapper for working with the Internet Explorer's JavaScript engines (JsRT version of Chakra, ActiveScript version of Chakra and Classic JavaScript Engine). Project was based on the code of SassAndCoffee.JavaScript (http://github.com/paulcbetts/SassAndCoffee) and Chakra Sample Hosts (http://github.com/panopticoncentral/chakra-host).</description>
+    <summary>This project is a .NET wrapper for working with the Internet Explorer's JavaScript engines (JsRT version of Chakra, ActiveScript version of Chakra and Classic JavaScript Engine).</summary>
+    <releaseNotes>1. Added support of the JsRT version of Chakra;
+2. Now the MSIE JavaScript Engine can work in 4 modes: `Auto` (selected by default), `Classic`, `ChakraActiveScript` and `ChakraJsRt`;
+3. Following methods are obsolete: `HasProperty`, `GetPropertyValue`, `SetPropertyValue` and `RemoveProperty`.</releaseNotes>
+    <copyright>Copyright 2014 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+    <language>en-US</language>
+    <tags>JavaScript ECMAScript MSIE IE Chakra</tags>
+    <references>
+      <reference file="MsieJavaScriptEngine.dll" />
+    </references>
+  </metadata>
+</package>
