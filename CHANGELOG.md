@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## January 17, 2014 - v1.1.1
+
+* In JavaScriptEngineSwitcher.V8 added support of the [ClearScript](http://clearscript.codeplex.com/) version 5.3.11 (support of V8 version 3.24.17)
+
 ## January 16, 2014 - v1.1.0
 
 * In JavaScriptEngineSwitcher.Msie added support of [MSIE JavaScript Engine](http://github.com/Taritsyn/MsieJavaScriptEngine) version 1.3.0

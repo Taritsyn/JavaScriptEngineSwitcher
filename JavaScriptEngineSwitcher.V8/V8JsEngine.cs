@@ -1,10 +1,8 @@
 ﻿namespace JavaScriptEngineSwitcher.V8
 {
 	using System;
-	using System.IO;
 	using System.Reflection;
 	using System.Text.RegularExpressions;
-	using System.Web;
 	using System.Web.Script.Serialization;
 
 	using Microsoft.ClearScript.V8;
@@ -29,12 +27,7 @@
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "3.23.13";
-
-		/// <summary>
-		/// Name of directory, that contains the Microsoft ClearScript.V8 assemblies
-		/// </summary>
-		private const string ASSEMBLY_DIRECTORY_NAME = "ClearScript.V8";
+		private const string ENGINE_VERSION = "3.24.17";
 
 		/// <summary>
 		/// JS-engine
@@ -89,7 +82,7 @@
 		/// </summary>
 		static V8JsEngine()
 		{
-			ResolveAssemblyPath();
+			AssemblyResolver.Initialize();
 			LoadUndefinedValue();
 			LoadWinScriptItemInvokeMethodInfo();
 		}
@@ -109,36 +102,10 @@
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
 						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
 			}
+
 			_jsSerializer = new JavaScriptSerializer();
 		}
 
-
-		/// <summary>
-		/// Sets a path under the base directory where the assembly resolver
-		/// should probe for private assemblies
-		/// </summary>
-		private static void ResolveAssemblyPath()
-		{
-			var currentDomain = AppDomain.CurrentDomain;
-
-			string binDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
-			if (string.IsNullOrEmpty(binDirectoryPath))
-			{
-				// `PrivateBinPath` property is empty in test scenarios, so
-				// need to use the `BaseDirectory` property
-				binDirectoryPath = currentDomain.BaseDirectory;
-			}
-
-			string assemblyDirectoryPath = Path.Combine(binDirectoryPath, ASSEMBLY_DIRECTORY_NAME);
-			if (!Directory.Exists(assemblyDirectoryPath) && HttpContext.Current != null)
-			{
-				// Fix for WebMatrix
-				string applicationRootPath = HttpContext.Current.Server.MapPath("~");
-				assemblyDirectoryPath = Path.Combine(applicationRootPath, ASSEMBLY_DIRECTORY_NAME);
-			}
-
-			currentDomain.AppendPrivatePath(assemblyDirectoryPath);
-		}
 
 		/// <summary>
 		/// Loads a ClearScript <code>undefined</code> value
@@ -160,7 +127,7 @@
 			}
 			else
 			{
-				throw new JsEngineLoadException(Strings.Runtime_ClearScriptUndefinedValueNotLoaded,
+				throw new JsEngineLoadException(Strings.Engines_ClearScriptUndefinedValueNotLoaded,
 					ENGINE_NAME, ENGINE_VERSION);
 			}
 		}

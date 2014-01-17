@@ -63,9 +63,27 @@ namespace JavaScriptEngineSwitcher.V8.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Failed to load the ClearScript `undefined` value..
         /// </summary>
-        internal static string Runtime_ClearScriptUndefinedValueNotLoaded {
+        internal static string Engines_ClearScriptUndefinedValueNotLoaded {
             get {
-                return ResourceManager.GetString("Runtime_ClearScriptUndefinedValueNotLoaded", resourceCulture);
+                return ResourceManager.GetString("Engines_ClearScriptUndefinedValueNotLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load the ClearScriptV8 assembly, because the directory &apos;{0}&apos; does not exist..
+        /// </summary>
+        internal static string Engines_ClearScriptV8AssembliesDirectoryNotFound {
+            get {
+                return ResourceManager.GetString("Engines_ClearScriptV8AssembliesDirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load the ClearScriptV8 assembly, because the file &apos;{0}&apos; does not exist..
+        /// </summary>
+        internal static string Engines_ClearScriptV8AssemblyFileNotFound {
+            get {
+                return ResourceManager.GetString("Engines_ClearScriptV8AssemblyFileNotFound", resourceCulture);
             }
         }
     }
