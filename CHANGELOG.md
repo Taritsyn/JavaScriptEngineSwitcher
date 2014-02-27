@@ -1,20 +1,24 @@
 Change log
 ==========
 
+## February 27, 2014 - v1.1.2
+
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.4.0
+
 ## January 17, 2014 - v1.1.1
 
-* In JavaScriptEngineSwitcher.V8 added support of the [ClearScript](http://clearscript.codeplex.com/) version 5.3.11 (support of V8 version 3.24.17)
+ * In JavaScriptEngineSwitcher.V8 added support of the [ClearScript](http://clearscript.codeplex.com/) version 5.3.11 (support of V8 version 3.24.17)
 
 ## January 16, 2014 - v1.1.0
 
-* In JavaScriptEngineSwitcher.Msie added support of [MSIE JavaScript Engine](http://github.com/Taritsyn/MsieJavaScriptEngine) version 1.3.0
-* In JavaScriptEngineSwitcher.V8 improved performance of `CallFunction` method
-* In JavaScriptEngineSwitcher.Jurassic added support of [Jurassic](http://jurassic.codeplex.com/) version of January 11 2014
+ * In JavaScriptEngineSwitcher.Msie added support of [MSIE JavaScript Engine](http://github.com/Taritsyn/MsieJavaScriptEngine) version 1.3.0
+ * In JavaScriptEngineSwitcher.V8 improved performance of `CallFunction` method
+ * In JavaScriptEngineSwitcher.Jurassic added support of [Jurassic](http://jurassic.codeplex.com/) version of January 11 2014
 
 ## December 30, 2013 - v1.0.0
 
-* Added support of JavaScript `undefined` type
-* In JavaScriptEngineSwitcher.Msie added support of [MSIE JavaScript Engine](http://github.com/Taritsyn/MsieJavaScriptEngine) version 1.2.0
+ * Added support of JavaScript `undefined` type
+ * In JavaScriptEngineSwitcher.Msie added support of [MSIE JavaScript Engine](http://github.com/Taritsyn/MsieJavaScriptEngine) version 1.2.0
 
 ## December 7, 2013 - v0.9.5
 
