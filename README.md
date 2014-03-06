@@ -24,3 +24,8 @@ See the [changelog](CHANGELOG.md).
 
 ## License
 [Apache License Version 2.0](http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE)
+
+## Who's Using JavaScript Engine Switcher
+If you use the JavaScript Engine Switcher in some project, please send me a message so I can include it in this list:
+
+ * [Bundle Transformer](http://bundletransformer.codeplex.com/) by Andrey Taritsyn
