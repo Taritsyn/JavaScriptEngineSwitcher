@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Core", "JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj", "{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Msie", "JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj", "{50AD3B1C-A295-42AC-979A-CD244429983C}"
@@ -10,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Tests", "JavaScriptEngineSwitcher.Tests\JavaScriptEngineSwitcher.Tests.csproj", "{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Jurassic", "JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj", "{2E667689-F072-401F-A9A5-09F1A2ED025C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Jint", "JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.csproj", "{D021995F-F1BB-49BD-B6E0-5D7F4571BA4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,10 @@ Global
 		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D021995F-F1BB-49BD-B6E0-5D7F4571BA4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D021995F-F1BB-49BD-B6E0-5D7F4571BA4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D021995F-F1BB-49BD-B6E0-5D7F4571BA4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D021995F-F1BB-49BD-B6E0-5D7F4571BA4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

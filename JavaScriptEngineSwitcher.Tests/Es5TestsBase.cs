@@ -1,4 +1,7 @@
-﻿namespace JavaScriptEngineSwitcher.Tests
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace JavaScriptEngineSwitcher.Tests
 {
 	using System;
 
@@ -111,8 +114,7 @@
 		function (value, index, array) {
 			return value.length > 5;
 		})
-	.toString()
-	;";
+	.toString();";
 			const string targetOutput = "Chakra,SpiderMonkey,Jurassic";
 
 			// Act
@@ -254,8 +256,7 @@ engines.forEach(function(value, index, array) {{
 		function (value, index, array) {
 			return value + ' JS Engine';
 		})
-	.toString()
-	;";
+	.toString();";
 			const string targetOutput = "Chakra JS Engine,V8 JS Engine,SpiderMonkey JS Engine,Jurassic JS Engine";
 
 			// Act
@@ -366,15 +367,19 @@ engines.forEach(function(value, index, array) {{
 		[Test]
 		public virtual void ObjectKeysMethodIsSupported()
 		{
+			// NOTE: ECMAScript standard does not define ordering for keys so we can't rely on any
+			// particular order. Some engines return keys in the order they were defined, others 
+			// return them sorted. 
+
 			// Arrange
 			const string input1 = "Object.keys(['a', 'b', 'c']).toString();";
-			const string targetOutput1 = "0,1,2";
+			var targetOutput1 = new List<string> { "0", "1", "2" };
 
 			const string input2 = "Object.keys({ 0: 'a', 1: 'b', 2: 'c' }).toString();";
-			const string targetOutput2 = "0,1,2";
+			var targetOutput2 = new List<string> { "0", "1", "2" };
 
 			const string input3 = "Object.keys({ 100: 'a', 2: 'b', 7: 'c' }).toString();";
-			const string targetOutput3 = "2,7,100";
+			var targetOutput3 = new List<string> {"100", "2", "7" };
 
 			const string initCode4 = @"var myObj = function() { };
 myObj.prototype = { getFoo: { value: function () { return this.foo } } };;
@@ -384,9 +389,12 @@ myObj.foo = 1;
 			const string targetOutput4 = "foo";
 
 			// Act
-			var output1 = _jsEngine.Evaluate<string>(input1);
-			var output2 = _jsEngine.Evaluate<string>(input2);
-			var output3 = _jsEngine.Evaluate<string>(input3);
+			var output1 = _jsEngine.Evaluate<string>(input1).Split(',');
+			var output2 = _jsEngine.Evaluate<string>(input2).Split(',');
+			var output3 = _jsEngine.Evaluate<string>(input3).Split(',');
+			Array.Sort(output1);
+			Array.Sort(output2);
+			Array.Sort(output3);
 
 			_jsEngine.Execute(initCode4);
 			var output4 = _jsEngine.Evaluate<string>(input4);
