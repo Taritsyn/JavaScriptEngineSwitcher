@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}</ProjectGuid>
+    <ProjectGuid>{D021995F-F1BB-49BD-B6E0-5D7F4571BA4C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JavaScriptEngineSwitcher.Tests</RootNamespace>
-    <AssemblyName>JavaScriptEngineSwitcher.Tests</AssemblyName>
+    <RootNamespace>JavaScriptEngineSwitcher.Jint</RootNamespace>
+    <AssemblyName>JavaScriptEngineSwitcher.Jint</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -29,60 +29,34 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\JavaScriptEngineSwitcher.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    <Reference Include="Jint, Version=2.1.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\Jint\Jint.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Es5TestsBase.cs" />
-    <Compile Include="Jint\CommonTests.cs" />
-    <Compile Include="Jint\Es5Tests.cs" />
-    <Compile Include="Jurassic\CommonTests.cs" />
-    <Compile Include="CommonTestsBase.cs" />
-    <Compile Include="Jurassic\Es5Tests.cs" />
-    <Compile Include="Msie\CommonTests.cs" />
-    <Compile Include="Msie\Es5Tests.cs" />
+    <Compile Include="JintJsEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V8\CommonTests.cs" />
-    <Compile Include="V8\Es5Tests.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="JavaScriptEngineSwitcher.Configuration.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj">
       <Project>{5c903eef-bad1-43b8-bfe2-e4ee4d204410}</Project>
       <Name>JavaScriptEngineSwitcher.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.csproj">
-      <Project>{d021995f-f1bb-49bd-b6e0-5d7f4571ba4c}</Project>
-      <Name>JavaScriptEngineSwitcher.Jint</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj">
-      <Project>{2e667689-f072-401f-a9a5-09f1a2ed025c}</Project>
-      <Name>JavaScriptEngineSwitcher.Jurassic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj">
-      <Project>{50ad3b1c-a295-42ac-979a-cd244429983c}</Project>
-      <Name>JavaScriptEngineSwitcher.Msie</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj">
-      <Project>{1baec601-b244-48d3-be27-351e133eef73}</Project>
-      <Name>JavaScriptEngineSwitcher.V8</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\power.js" />
-    <EmbeddedResource Include="Resources\cube.js" />
-    <Content Include="Resources\square.js" />
+    <None Include="..\JavaScriptEngineSwitcher.snk">
+      <Link>JavaScriptEngineSwitcher.snk</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
