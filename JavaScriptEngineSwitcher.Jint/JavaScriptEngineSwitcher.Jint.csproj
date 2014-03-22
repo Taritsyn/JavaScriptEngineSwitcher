@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{50AD3B1C-A295-42AC-979A-CD244429983C}</ProjectGuid>
+    <ProjectGuid>{26ECE52E-991F-4E12-BB88-467201038EFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JavaScriptEngineSwitcher.Msie</RootNamespace>
-    <AssemblyName>JavaScriptEngineSwitcher.Msie</AssemblyName>
+    <RootNamespace>JavaScriptEngineSwitcher.Jint</RootNamespace>
+    <AssemblyName>JavaScriptEngineSwitcher.Jint</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,26 +36,22 @@
     <AssemblyOriginatorKeyFile>..\JavaScriptEngineSwitcher.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MsieJavaScriptEngine, Version=1.4.1.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
+    <Reference Include="Jint, Version=2.1.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MsieJavaScriptEngine.1.4.1\lib\net40\MsieJavaScriptEngine.dll</HintPath>
+      <HintPath>..\Binaries\Jint\Jint.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\MsieConfiguration.cs" />
-    <Compile Include="JsEngineMode.cs" />
-    <Compile Include="JsEngineSwitcherExtensions.cs" />
-    <Compile Include="MsieJsEngine.cs" />
+    <Compile Include="JintJsEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\JavaScriptEngineSwitcher.snk">
       <Link>JavaScriptEngineSwitcher.snk</Link>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj">

@@ -180,6 +180,9 @@
   <data name="Runtime_FunctionNameIsForbidden" xml:space="preserve">
     <value>Имя функции "{0}" запрещено, т.к. входит в список зарезервированных слов JavaScript!</value>
   </data>
+  <data name="Runtime_FunctionNotExist" xml:space="preserve">
+    <value>Функция с именем "{0}" не существует!</value>
+  </data>
   <data name="Runtime_FunctionParameterTypeNotSupported" xml:space="preserve">
     <value>Один из параметров функции "{0}" имеет тип `{1}`, который не поддерживается!</value>
   </data>

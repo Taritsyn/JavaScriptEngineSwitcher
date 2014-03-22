@@ -111,8 +111,7 @@
 		function (value, index, array) {
 			return value.length > 5;
 		})
-	.toString()
-	;";
+	.toString();";
 			const string targetOutput = "Chakra,SpiderMonkey,Jurassic";
 
 			// Act
@@ -254,8 +253,7 @@ engines.forEach(function(value, index, array) {{
 		function (value, index, array) {
 			return value + ' JS Engine';
 		})
-	.toString()
-	;";
+	.toString();";
 			const string targetOutput = "Chakra JS Engine,V8 JS Engine,SpiderMonkey JS Engine,Jurassic JS Engine";
 
 			// Act

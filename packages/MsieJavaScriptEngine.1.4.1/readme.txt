@@ -1,7 +1,7 @@
 
 
    ----------------------------------------------------------------------
-           README file for MSIE JavaScript Engine for .NET 1.4.0
+           README file for MSIE JavaScript Engine for .NET 1.4.1
 
    ----------------------------------------------------------------------
 
@@ -21,14 +21,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Removed following methods: `HasProperty`, `GetPropertyValue`, 
-      `SetPropertyValue` and `RemoveProperty`;
-   2. Fixed bug #3 "execute code from different threads";
-   3. Now in the `ChakraJsRt` mode is available a more detailed
-      information about errors;
-   4. In ECMAScript 5 Polyfill improved a performance of the
-      `String.prototype.trim` function;
-   5. JSON2 library was updated to version of February 4, 2014.
+   Fixed minor bugs.
 
    ============
    PROJECT SITE

@@ -180,6 +180,9 @@
   <data name="Runtime_FunctionNameIsForbidden" xml:space="preserve">
     <value>The function name '{0}' is forbidden, as is contained in the list of reserved words of JavaScript language.</value>
   </data>
+  <data name="Runtime_FunctionNotExist" xml:space="preserve">
+    <value>The function with the name '{0}' does not exist.</value>
+  </data>
   <data name="Runtime_FunctionParameterTypeNotSupported" xml:space="preserve">
     <value>One of the function parameters '{0}' has a type `{1}`, which is not supported.</value>
   </data>

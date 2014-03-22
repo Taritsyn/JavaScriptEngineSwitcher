@@ -12,7 +12,7 @@
 		/// Regular expression for format placeholder
 		/// </summary>
 		private static readonly Regex _formatPlaceholderRegExp =
-			new Regex(@"\{[0-9]\}", RegexOptions.Multiline | RegexOptions.Compiled);
+			new Regex(@"\{[0-9]+\}", RegexOptions.Multiline);
 
 		/// <summary>
 		/// Appends the default line terminator to the end of the current System.Text.StringBuilder object

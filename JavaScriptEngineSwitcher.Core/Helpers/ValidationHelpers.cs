@@ -20,8 +20,7 @@
 		/// <summary>
 		/// Regular expression for working with JS-names
 		/// </summary>
-		private static readonly Regex _jsNameRegex = new Regex(@"^[A-Za-z_\$]+[0-9A-Za-z_\$]*$",
-			RegexOptions.Compiled);
+		private static readonly Regex _jsNameRegex = new Regex(@"^[A-Za-z_\$][0-9A-Za-z_\$]*$");
 		
 
 		/// <summary>

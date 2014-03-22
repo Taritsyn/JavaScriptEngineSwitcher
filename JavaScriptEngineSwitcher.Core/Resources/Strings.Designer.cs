@@ -250,6 +250,15 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The function with the name &apos;{0}&apos; does not exist..
+        /// </summary>
+        public static string Runtime_FunctionNotExist {
+            get {
+                return ResourceManager.GetString("Runtime_FunctionNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to One of the function parameters &apos;{0}&apos; has a type `{1}`, which is not supported..
         /// </summary>
         public static string Runtime_FunctionParameterTypeNotSupported {
