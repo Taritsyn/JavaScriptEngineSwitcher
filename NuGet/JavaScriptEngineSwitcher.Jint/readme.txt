@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: MSIE 1.1.3
+      README file for JavaScript Engine Switcher for .Net: Jint 1.0.0
 
    ----------------------------------------------------------------------
 
@@ -11,16 +11,14 @@
    ===========
    DESCRIPTION
    ===========   
-   JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper 
-   for the MSIE JavaScript Engine for .Net
-   (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct 
-   working of the MSIE JavaScript Engine it is recommended to install 
-   Internet Explorer 9 and above on a server.
+   JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` 
+   (wrapper for the Jint JavaScript Engine 
+   (http://github.com/sebastienros/jint) version of March 21 2014).
    
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 1.4.1.
+   Special thanks to Daniel Lo Nigro for idea of this module.
 
    =============
    DOCUMENTATION

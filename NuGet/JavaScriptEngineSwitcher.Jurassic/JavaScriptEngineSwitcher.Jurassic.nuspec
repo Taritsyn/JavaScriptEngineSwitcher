@@ -2,22 +2,21 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>JavaScriptEngineSwitcher.Jurassic</id>
-    <version>1.1.0</version>
+    <version>1.1.3</version>
 	<title>JavaScript Engine Switcher for .Net: Jurassic</title>
     <authors>Andrey Taritsyn</authors>
     <owners>Andrey Taritsyn</owners>
     <licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
     <projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
-    <iconUrl>http://raw.github.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://jurassic.codeplex.com) version of January 11 2014).</description>
     <summary>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine version of January 11 2014).</summary>
-	<releaseNotes>Jurassic was updated to version of January 11 2014.</releaseNotes>
 	<copyright>Copyright 2014 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
     <language>en-US</language>
     <tags>JavaScript ECMAScript Jurassic</tags>
     <dependencies>
-      <dependency id="JavaScriptEngineSwitcher.Core" version="1.1.0" />
+      <dependency id="JavaScriptEngineSwitcher.Core" version="1.1.3" />
     </dependencies>
     <references>
       <reference file="JavaScriptEngineSwitcher.Jurassic.dll" />

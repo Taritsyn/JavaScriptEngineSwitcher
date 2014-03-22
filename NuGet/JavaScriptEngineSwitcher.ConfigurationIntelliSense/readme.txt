@@ -1,7 +1,7 @@
 ﻿
 
    -------------------------------------------------------------------------
-    README file for JavaScript Engine Switcher for .Net: IntelliSense 1.1.0
+    README file for JavaScript Engine Switcher for .Net: IntelliSense 1.1.3
 
    -------------------------------------------------------------------------
 
@@ -14,12 +14,6 @@
    JavaScriptEngineSwitcher.ConfigurationIntelliSense adds IntelliSense 
    support when editing the `jsEngineSwitcher` configuration section in the 
    Web.config or App.config file.
-   
-   =============
-   RELEASE NOTES
-   =============
-   Added support of IntelliSense for the
-   `/configuration/jsEngineSwitcher/msie` configuration section.
    
    =============
    DOCUMENTATION

@@ -1,0 +1,9 @@
+﻿<configuration>
+	<jsEngineSwitcher xmlns="http://tempuri.org/JavaScriptEngineSwitcher.Configuration.xsd">
+		<core>
+			<engines>
+				<add name="JintJsEngine" type="JavaScriptEngineSwitcher.Jint.JintJsEngine, JavaScriptEngineSwitcher.Jint" />
+			</engines>
+		</core>
+	</jsEngineSwitcher>
+</configuration>

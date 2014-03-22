@@ -6,6 +6,9 @@ call build-package.cmd
 cd %packages_directory%\JavaScriptEngineSwitcher.ConfigurationIntelliSense
 call build-package.cmd
 
+cd %packages_directory%\JavaScriptEngineSwitcher.Jint
+call build-package.cmd
+
 cd %packages_directory%\JavaScriptEngineSwitcher.Jurassic
 call build-package.cmd
 
