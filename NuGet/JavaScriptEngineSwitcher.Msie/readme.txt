@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: MSIE 1.1.3
+      README file for JavaScript Engine Switcher for .Net: MSIE 1.1.4
 
    ----------------------------------------------------------------------
 
@@ -20,7 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 1.4.1.
+   Added support of MSIE JavaScript Engine version 1.4.2.
 
    =============
    DOCUMENTATION

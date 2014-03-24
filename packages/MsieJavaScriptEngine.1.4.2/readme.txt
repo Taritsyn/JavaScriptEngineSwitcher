@@ -1,7 +1,7 @@
 
 
    ----------------------------------------------------------------------
-           README file for MSIE JavaScript Engine for .NET 1.4.1
+           README file for MSIE JavaScript Engine for .NET 1.4.2
 
    ----------------------------------------------------------------------
 
@@ -21,7 +21,8 @@
    =============
    RELEASE NOTES
    =============
-   Fixed minor bugs.
+   Fixed JavaScriptEngineSwitcher.Msie's bug #5 "MSIE "Catastrophic
+   failure" when disposing".
 
    ============
    PROJECT SITE

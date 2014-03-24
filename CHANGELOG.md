@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## March 24, 2014 - v1.1.4
+
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.4.2
+
 ## March 22, 2014 - v1.1.3
 
  * Added module based on the [Jint](http://github.com/sebastienros/jint). Special thanks to [Daniel Lo Nigro](http://github.com/Daniel15) for the idea of this module. 
