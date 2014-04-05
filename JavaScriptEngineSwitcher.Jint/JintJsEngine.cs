@@ -1,7 +1,7 @@
 ﻿using OriginalJsEngine = Jint.Engine;
 using OriginalJsValue = Jint.Native.JsValue;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
-using OriginalParserException = Jint.Parser.ParserError;
+using OriginalParserException = Jint.Parser.ParserException;
 using OriginalJsException = Jint.Runtime.JavaScriptException;
 using IOriginalCallable = Jint.Native.ICallable;
 
@@ -26,7 +26,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Mar 21, 2014";
+		private const string ENGINE_VERSION = "Apr 5, 2014";
 
 		/// <summary>
 		/// Jint JS engine
@@ -106,7 +106,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			return value.ToObject();
 		}
 
-		private JsRuntimeException ConvertParserErrorToJsRuntimeException(
+		private JsRuntimeException ConvertParserExceptionToJsRuntimeException(
 			OriginalParserException jsParserException)
 		{
 			string message = jsParserException.Description;
@@ -190,7 +190,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			}
 			catch (OriginalParserException e)
 			{
-				throw ConvertParserErrorToJsRuntimeException(e);
+				throw ConvertParserExceptionToJsRuntimeException(e);
 			}
 			catch (OriginalJsException e)
 			{
@@ -217,7 +217,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			}
 			catch (OriginalParserException e)
 			{
-				throw ConvertParserErrorToJsRuntimeException(e);
+				throw ConvertParserExceptionToJsRuntimeException(e);
 			}
 			catch (OriginalJsException e)
 			{

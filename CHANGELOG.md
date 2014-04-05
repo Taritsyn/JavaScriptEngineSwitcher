@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## April 5, 2014 - v1.1.5
+
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version of April 5, 2014
+
 ## March 24, 2014 - v1.1.4
 
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.4.2
@@ -23,7 +27,7 @@ Change log
 
  * In JavaScriptEngineSwitcher.Msie added support of [MSIE JavaScript Engine](http://github.com/Taritsyn/MsieJavaScriptEngine) version 1.3.0
  * In JavaScriptEngineSwitcher.V8 improved performance of `CallFunction` method
- * In JavaScriptEngineSwitcher.Jurassic added support of [Jurassic](http://jurassic.codeplex.com/) version of January 11 2014
+ * In JavaScriptEngineSwitcher.Jurassic added support of [Jurassic](http://jurassic.codeplex.com/) version of January 11, 2014
 
 ## December 30, 2013 - v1.0.0
 
@@ -33,7 +37,7 @@ Change log
 ## December 7, 2013 - v0.9.5
 
  * In JavaScriptEngineSwitcher.V8 the [Noesis Javascript .NET](http://javascriptdotnet.codeplex.com/) was replaced by the [Microsoft ClearScript.V8](http://clearscript.codeplex.com/) library (solves a problem of `V8JsEngine` stable work on 64-bit version of IIS 8.X)
- * In JavaScriptEngineSwitcher.Jurassic added support of [Jurassic](http://jurassic.codeplex.com/) version of September 30 2013
+ * In JavaScriptEngineSwitcher.Jurassic added support of [Jurassic](http://jurassic.codeplex.com/) version of September 30, 2013
  
 ## November 19, 2013 - v0.9.3
 
