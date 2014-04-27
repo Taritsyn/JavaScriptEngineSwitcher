@@ -36,7 +36,8 @@
     <AssemblyOriginatorKeyFile>..\JavaScriptEngineSwitcher.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Jurassic">
+    <Reference Include="Jurassic, Version=2.1.0.0, Culture=neutral, PublicKeyToken=67039d2c577b4c08, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Binaries\Jurassic\Jurassic.dll</HintPath>
     </Reference>
     <Reference Include="System" />

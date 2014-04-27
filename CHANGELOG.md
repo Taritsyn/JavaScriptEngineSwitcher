@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## April 27, 2014 - v1.1.6
+
+ * In solution was enabled NuGet package restore
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.4.3
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of April 26, 2014
+
 ## April 5, 2014 - v1.1.5
 
  * In JavaScriptEngineSwitcher.Jint added support of Jint version of April 5, 2014
