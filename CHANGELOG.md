@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## May 7, 2014 - v1.1.7
+
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version of April 29, 2014
+
 ## April 27, 2014 - v1.1.6
 
  * In solution was enabled NuGet package restore

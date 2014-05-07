@@ -36,7 +36,8 @@
     <AssemblyOriginatorKeyFile>..\JavaScriptEngineSwitcher.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClearScript">
+    <Reference Include="ClearScript, Version=5.3.11.0, Culture=neutral, PublicKeyToken=9cf053058a55d576, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Binaries\ClearScript\ClearScript.dll</HintPath>
     </Reference>
     <Reference Include="System" />
