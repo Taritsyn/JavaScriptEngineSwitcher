@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## May 20, 2014 - v1.1.8
+
+* In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version of May 17, 2014
+* In JavaScriptEngineSwitcher.Jint added support of Jint version of May 16, 2014
+
 ## May 7, 2014 - v1.1.7
 
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version of April 29, 2014
