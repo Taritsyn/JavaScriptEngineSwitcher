@@ -31,5 +31,6 @@ See the [changelog](CHANGELOG.md).
 ## Who's Using JavaScript Engine Switcher
 If you use the JavaScript Engine Switcher in some project, please send me a message so I can include it in this list:
 
+ * [Autoprefixer for .NET](http://github.com/digitalcreations/autoprefixer) by Vegard Larsen
  * [Bundle Transformer](http://bundletransformer.codeplex.com/) by Andrey Taritsyn
  * [ReactJS.NET](http://reactjs.net/) by Daniel Lo Nigro
