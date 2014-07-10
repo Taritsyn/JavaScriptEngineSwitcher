@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: Jint 1.1.9
+      README file for JavaScript Engine Switcher for .Net: Jint 1.1.10
 
    ----------------------------------------------------------------------
 
@@ -13,12 +13,12 @@
    ===========   
    JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` 
    (wrapper for the Jint JavaScript Engine 
-   (http://github.com/sebastienros/jint) version of June 5, 2014).
+   (http://github.com/sebastienros/jint) version 2.2.0).
    
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version of June 5, 2014.
+   Added support of Jint version 2.2.0.
 
    =============
    DOCUMENTATION
