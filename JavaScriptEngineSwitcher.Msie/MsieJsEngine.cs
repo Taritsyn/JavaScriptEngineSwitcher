@@ -28,7 +28,7 @@
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private string _engineVersion;
+		private readonly string _engineVersion;
 
 		/// <summary>
 		/// MSIE JS engine
