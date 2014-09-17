@@ -26,7 +26,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Aug 16, 2014";
+		private const string ENGINE_VERSION = "Sep 16, 2014";
 
 		/// <summary>
 		/// Jint JS engine

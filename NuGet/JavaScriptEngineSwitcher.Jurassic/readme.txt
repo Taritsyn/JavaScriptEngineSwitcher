@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-    README file for JavaScript Engine Switcher for .Net: Jurassic 1.1.6
+    README file for JavaScript Engine Switcher for .Net: Jurassic 1.1.13
 
    ----------------------------------------------------------------------
 
@@ -13,12 +13,12 @@
    ===========   
    JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` 
    (wrapper for the Jurassic JavaScript Engine 
-   (http://jurassic.codeplex.com) version of April 26, 2014).
+   (http://jurassic.codeplex.com) version of September 5, 2014).
    
    =============
    RELEASE NOTES
    =============
-   Jurassic was updated to version of April 26, 2014.
+   Jurassic was updated to version of September 5, 2014.
 
    =============
    DOCUMENTATION
