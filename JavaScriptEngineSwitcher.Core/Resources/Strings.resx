@@ -126,6 +126,9 @@
   <data name="Common_AssemblyNameIsEmpty" xml:space="preserve">
     <value>You do not specified a name of assembly.</value>
   </data>
+  <data name="Common_CannotConvertObjectToType" xml:space="preserve">
+    <value>Cannot convert object of type `{0}` to type `{1}`.</value>
+  </data>
   <data name="Common_EnumValueConversionFailed" xml:space="preserve">
     <value>Can not convert value '{0}' of enumeration type `{1}` to value of enumeration type `{2}`.</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Common_ValueIsNull" xml:space="preserve">
     <value>Value cannot be null.</value>
+  </data>
+  <data name="Common_ValueTypeCannotBeNull" xml:space="preserve">
+    <value>Cannot convert null to a value type.</value>
   </data>
   <data name="Configuration_DefaultJsEngineNotSpecified" xml:space="preserve">
     <value>Default JavaScript engine not specified.</value>

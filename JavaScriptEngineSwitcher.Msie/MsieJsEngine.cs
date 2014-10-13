@@ -3,11 +3,11 @@
 	using System;
 
 	using OriginalJsEngine = MsieJavaScriptEngine.MsieJsEngine;
-	using OriginalJsEngineMode = MsieJavaScriptEngine.JsEngineMode;
-	using OriginalJsTypeConverter = MsieJavaScriptEngine.JsTypeConverter;
-	using OriginalUndefined = MsieJavaScriptEngine.Undefined;
 	using OriginalJsEngineLoadException = MsieJavaScriptEngine.JsEngineLoadException;
+	using OriginalJsEngineMode = MsieJavaScriptEngine.JsEngineMode;
 	using OriginalJsRuntimeException = MsieJavaScriptEngine.JsRuntimeException;
+	using OriginalTypeConverter = MsieJavaScriptEngine.Utilities.TypeConverter;
+	using OriginalUndefined = MsieJavaScriptEngine.Undefined;
 
 	using Core;
 	using Core.Utilities;
@@ -160,7 +160,7 @@
 		{
 			object result = InnerEvaluate(expression);
 
-			return OriginalJsTypeConverter.ConvertToType<T>(result);
+			return OriginalTypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerExecute(string code)
@@ -207,7 +207,7 @@
 		{
 			object result = InnerCallFunction(functionName, args);
 
-			return OriginalJsTypeConverter.ConvertToType<T>(result);
+			return OriginalTypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override bool InnerHasVariable(string variableName)
@@ -248,7 +248,7 @@
 		{
 			object result = InnerGetVariableValue(variableName);
 
-			return OriginalJsTypeConverter.ConvertToType<T>(result);
+			return OriginalTypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerSetVariableValue(string variableName, object value)

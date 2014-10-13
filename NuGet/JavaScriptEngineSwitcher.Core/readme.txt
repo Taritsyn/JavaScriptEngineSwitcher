@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: Core 1.1.3
+      README file for JavaScript Engine Switcher for .Net: Core 1.2.0
 
    ----------------------------------------------------------------------
 
@@ -20,7 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   Fixed minor bugs.
+   Assembly is now targeted on the .NET Framework 4 Client Profile.
 
    =============
    DOCUMENTATION

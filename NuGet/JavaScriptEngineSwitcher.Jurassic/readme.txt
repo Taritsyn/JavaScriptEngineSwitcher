@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-    README file for JavaScript Engine Switcher for .Net: Jurassic 1.1.13
+    README file for JavaScript Engine Switcher for .Net: Jurassic 1.2.0
 
    ----------------------------------------------------------------------
 
@@ -18,7 +18,7 @@
    =============
    RELEASE NOTES
    =============
-   Jurassic was updated to version of September 5, 2014.
+   Assembly is now targeted on the .NET Framework 4 Client Profile.
 
    =============
    DOCUMENTATION

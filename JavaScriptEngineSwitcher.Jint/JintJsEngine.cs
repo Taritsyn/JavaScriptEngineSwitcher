@@ -1,16 +1,16 @@
-﻿using OriginalJsEngine = Jint.Engine;
+﻿using IOriginalCallable = Jint.Native.ICallable;
+using OriginalJsEngine = Jint.Engine;
+using OriginalJsException = Jint.Runtime.JavaScriptException;
 using OriginalJsValue = Jint.Native.JsValue;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
 using OriginalParserException = Jint.Parser.ParserException;
-using OriginalJsException = Jint.Runtime.JavaScriptException;
-using IOriginalCallable = Jint.Native.ICallable;
 
 namespace JavaScriptEngineSwitcher.Jint
 {
 	using System;
-	using System.Web.Script.Serialization;
 
 	using Core;
+	using Core.Utilities;
 	using CoreStrings = Core.Resources.Strings;
 
 	/// <summary>
@@ -26,17 +26,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Sep 16, 2014";
+		private const string ENGINE_VERSION = "Oct 9, 2014";
 
 		/// <summary>
 		/// Jint JS engine
 		/// </summary>
 		private OriginalJsEngine _jsEngine;
-
-		/// <summary>
-		/// JS-serializer
-		/// </summary>
-		private JavaScriptSerializer _jsSerializer;
 
 		/// <summary>
 		/// Gets a name of JavaScript engine
@@ -70,8 +65,6 @@ namespace JavaScriptEngineSwitcher.Jint
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
 						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
 			}
-
-			_jsSerializer = new JavaScriptSerializer();
 		}
 
 		#region JsEngineBase implementation
@@ -155,30 +148,6 @@ namespace JavaScriptEngineSwitcher.Jint
 
 			return jsRuntimeException;
 		}
-
-		/// <summary>
-		/// Converts a given value to the specified type
-		/// </summary>
-		/// <typeparam name="T">The type to which value will be converted</typeparam>
-		/// <param name="value">The value to convert</param>
-		/// <returns>The value that has been converted to the target type</returns>
-		private T ConvertToType<T>(object value)
-		{
-			return (T)ConvertToType(value, typeof(T));
-		}
-
-		/// <summary>
-		/// Converts a specified value to the specified type
-		/// </summary>
-		/// <param name="value">The value to convert</param>
-		/// <param name="targetType">The type to convert the value to</param>
-		/// <returns>The value that has been converted to the target type</returns>
-		private object ConvertToType(object value, Type targetType)
-		{
-			object result = _jsSerializer.ConvertToType(value, targetType);
-
-			return result;
-		}
 		
 		protected override object InnerEvaluate(string expression)
 		{
@@ -206,7 +175,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			object result = InnerEvaluate(expression);
 
-			return ConvertToType<T>(result);
+			return TypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerExecute(string code)
@@ -276,7 +245,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			object result = InnerCallFunction(functionName, args);
 
-			return ConvertToType<T>(result);
+			return TypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override bool InnerHasVariable(string variableName)
@@ -318,7 +287,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			object result = InnerGetVariableValue(variableName);
 
-			return ConvertToType<T>(result);
+			return TypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerSetVariableValue(string variableName, object value)
@@ -351,7 +320,6 @@ namespace JavaScriptEngineSwitcher.Jint
 				_disposed = true;
 
 				_jsEngine = null;
-				_jsSerializer = null;
 			}
 		}
 

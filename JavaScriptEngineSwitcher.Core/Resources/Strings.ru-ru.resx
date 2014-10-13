@@ -126,6 +126,9 @@
   <data name="Common_AssemblyNameIsEmpty" xml:space="preserve">
     <value>Вы не указали имя сборки!</value>
   </data>
+  <data name="Common_CannotConvertObjectToType" xml:space="preserve">
+    <value>Невозможно преобразовать объект типа `{0}` в тип `{1}`!</value>
+  </data>
   <data name="Common_EnumValueConversionFailed" xml:space="preserve">
     <value>Невозможно преобразовать значение "{0}" перечислимого типа `{1}` в значение перечислимого типа `{2}`!</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Common_ValueIsNull" xml:space="preserve">
     <value>Значение не должно быть равно null!</value>
+  </data>
+  <data name="Common_ValueTypeCannotBeNull" xml:space="preserve">
+    <value>Невозможно преобразовать null в значимый тип!</value>
   </data>
   <data name="Configuration_DefaultJsEngineNotSpecified" xml:space="preserve">
     <value>Не указан JavaScript-движок, который должен использоваться по умолчанию!</value>

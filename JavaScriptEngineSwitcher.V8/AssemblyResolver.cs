@@ -3,7 +3,7 @@
 	using System;
 	using System.IO;
 	using System.Reflection;
-	using System.Web;
+	using System.Text.RegularExpressions;
 
 	using Resources;
 
@@ -21,6 +21,11 @@
 		/// Name of the ClearScriptV8 assembly
 		/// </summary>
 		private const string ASSEMBLY_NAME = "ClearScriptV8";
+
+		/// <summary>
+		/// Regular expression for working with the `bin` directory path
+		/// </summary>
+		private static readonly Regex _binDirectoryRegex = new Regex(@"\\bin\\?$", RegexOptions.IgnoreCase);
 
 
 		/// <summary>
@@ -52,10 +57,9 @@
 
 				if (!Directory.Exists(assemblyDirectoryPath))
 				{
-					if (HttpContext.Current != null)
+					if (_binDirectoryRegex.IsMatch(binDirectoryPath))
 					{
-						// Fix for WebMatrix
-						string applicationRootPath = HttpContext.Current.Server.MapPath("~");
+						string applicationRootPath = _binDirectoryRegex.Replace(binDirectoryPath, string.Empty);
 						assemblyDirectoryPath = Path.Combine(applicationRootPath, ASSEMBLY_DIRECTORY_NAME);
 
 						if (!Directory.Exists(assemblyDirectoryPath))

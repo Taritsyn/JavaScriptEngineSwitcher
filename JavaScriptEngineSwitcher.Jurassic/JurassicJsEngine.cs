@@ -1,10 +1,10 @@
-﻿using OriginalJsEngine = Jurassic.ScriptEngine;
-using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
-using OriginalJsTypeConverter = Jurassic.TypeConverter;
+﻿using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
 using OriginalConcatenatedString = Jurassic.ConcatenatedString;
-using OriginalNull = Jurassic.Null;
-using OriginalUndefined = Jurassic.Undefined;
+using OriginalJsEngine = Jurassic.ScriptEngine;
 using OriginalJsException = Jurassic.JavaScriptException;
+using OriginalNull = Jurassic.Null;
+using OriginalTypeConverter = Jurassic.TypeConverter;
+using OriginalUndefined = Jurassic.Undefined;
 
 namespace JavaScriptEngineSwitcher.Jurassic
 {
@@ -157,7 +157,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			object result = InnerEvaluate(expression);
 
-			return OriginalJsTypeConverter.ConvertTo<T>(_jsEngine, result);
+			return OriginalTypeConverter.ConvertTo<T>(_jsEngine, result);
 		}
 
 		protected override void InnerExecute(string code)
@@ -205,7 +205,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			object result = InnerCallFunction(functionName, args);
 
-			return OriginalJsTypeConverter.ConvertTo<T>(_jsEngine, result);
+			return OriginalTypeConverter.ConvertTo<T>(_jsEngine, result);
 		}
 
 		protected override bool InnerHasVariable(string variableName)
@@ -242,7 +242,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			object result = InnerGetVariableValue(variableName);
 
-			return OriginalJsTypeConverter.ConvertTo<T>(_jsEngine, result);
+			return OriginalTypeConverter.ConvertTo<T>(_jsEngine, result);
 		}
 
 		protected override void InnerSetVariableValue(string variableName, object value)

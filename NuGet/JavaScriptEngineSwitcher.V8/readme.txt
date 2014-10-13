@@ -1,7 +1,7 @@
 ﻿
 
    -----------------------------------------------------------------------
-        README file for JavaScript Engine Switcher for .Net: V8 1.1.13
+        README file for JavaScript Engine Switcher for .Net: V8 1.2.0
 
    -----------------------------------------------------------------------
 
@@ -21,7 +21,9 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version of September 6, 2014.
+   1. Removed dependencies on `System.Web.dll` and
+      `System.Web.Extensions.dll`;
+   2. Assembly is now targeted on the .NET Framework 4 Client Profile.
    
    ====================
    POST-INSTALL ACTIONS

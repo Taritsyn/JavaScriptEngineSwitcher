@@ -3,13 +3,13 @@
 	using System;
 	using System.Reflection;
 	using System.Text.RegularExpressions;
-	using System.Web.Script.Serialization;
 
 	using Microsoft.ClearScript.V8;
-	using OriginalUndefined = Microsoft.ClearScript.Undefined;
 	using OriginalJsException = Microsoft.ClearScript.ScriptEngineException;
+	using OriginalUndefined = Microsoft.ClearScript.Undefined;
 
 	using Core;
+	using Core.Utilities;
 	using CoreStrings = Core.Resources.Strings;
 
 	using Resources;
@@ -33,11 +33,6 @@
 		/// JS-engine
 		/// </summary>
 		private V8ScriptEngine _jsEngine;
-
-		/// <summary>
-		/// JS-serializer
-		/// </summary>
-		private JavaScriptSerializer _jsSerializer;
 
 		/// <summary>
 		/// ClearScript <code>undefined</code> value
@@ -103,8 +98,6 @@
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
 						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
 			}
-
-			_jsSerializer = new JavaScriptSerializer();
 		}
 
 
@@ -221,30 +214,6 @@
 			return jsRuntimeException;
 		}
 
-		/// <summary>
-		/// Converts a given value to the specified type
-		/// </summary>
-		/// <typeparam name="T">The type to which value will be converted</typeparam>
-		/// <param name="value">The value to convert</param>
-		/// <returns>The value that has been converted to the target type</returns>
-		private T ConvertToType<T>(object value)
-		{
-			return (T)ConvertToType(value, typeof(T));
-		}
-
-		/// <summary>
-		/// Converts a specified value to the specified type
-		/// </summary>
-		/// <param name="value">The value to convert</param>
-		/// <param name="targetType">The type to convert the value to</param>
-		/// <returns>The value that has been converted to the target type</returns>
-		private object ConvertToType(object value, Type targetType)
-		{
-			object result = _jsSerializer.ConvertToType(value, targetType);
-
-			return result;
-		}
-
 		#region JsEngineBase implementation
 
 		protected override object InnerEvaluate(string expression)
@@ -272,7 +241,7 @@
 		{
 			object result = InnerEvaluate(expression);
 
-			return ConvertToType<T>(result);
+			return TypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerExecute(string code)
@@ -338,7 +307,7 @@
 		{
 			object result = InnerCallFunction(functionName, args);
 
-			return ConvertToType<T>(result);
+			return TypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override bool InnerHasVariable(string variableName)
@@ -374,7 +343,7 @@
 		{
 			object result = InnerGetVariableValue(variableName);
 
-			return ConvertToType<T>(result);
+			return TypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerSetVariableValue(string variableName, object value)
@@ -414,8 +383,6 @@
 					_jsEngine.Dispose();
 					_jsEngine = null;
 				}
-
-				_jsSerializer = null;
 			}
 		}
 

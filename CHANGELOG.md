@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## October 13, 2014 - v1.2.0
+
+* From JavaScriptEngineSwitcher.V8 and JavaScriptEngineSwitcher.Jint removed dependency on `System.Web.Extensions.dll`
+* All assemblies is now targeted on the .NET Framework 4 Client Profile
+* In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.0
+* In JavaScriptEngineSwitcher.Jint added support of Jint version of October 9, 2014
+
 ## September 17, 2014 - v1.1.13
 
 * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version of September 6, 2014
