@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>JavaScriptEngineSwitcher.Jint</id>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 	<title>JavaScript Engine Switcher for .Net: Jint</title>
     <authors>Andrey Taritsyn</authors>
     <owners>Andrey Taritsyn</owners>
@@ -10,11 +10,9 @@
     <projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version of October 9, 2014).</description>
-    <summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version of October 9, 2014).</summary>
-	<releaseNotes>1. Jint was updated to version of October 9, 2014;
-2. Removed dependency on `System.Web.Extensions.dll`;
-3. Assembly is now targeted on the .NET Framework 4 Client Profile.</releaseNotes>
+    <description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version of October 21, 2014).</description>
+    <summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version of October 21, 2014).</summary>
+	<releaseNotes>Jint was updated to version of October 21, 2014.</releaseNotes>
 	<copyright>Copyright 2014 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
     <language>en-US</language>
     <tags>JavaScript ECMAScript Jint</tags>

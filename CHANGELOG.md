@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## October 22, 2014 - v1.2.1
+
+* In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.0 (support of V8 version 3.26.31.15)
+* In JavaScriptEngineSwitcher.Jint added support of Jint version of October 21, 2014
+
 ## October 13, 2014 - v1.2.0
 
 * From JavaScriptEngineSwitcher.V8 and JavaScriptEngineSwitcher.Jint removed dependency on `System.Web.Extensions.dll`

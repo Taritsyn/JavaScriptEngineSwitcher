@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: Jint 1.2.0
+      README file for JavaScript Engine Switcher for .Net: Jint 1.2.1
 
    ----------------------------------------------------------------------
 
@@ -13,14 +13,12 @@
    ===========   
    JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` 
    (wrapper for the Jint JavaScript Engine 
-   (http://github.com/sebastienros/jint) version of October 9, 2014).
+   (http://github.com/sebastienros/jint) version of October 21, 2014).
    
    =============
    RELEASE NOTES
    =============
-   1. Jint was updated to version of October 9, 2014;
-   2. Removed dependency on `System.Web.Extensions.dll`;
-   3. Assembly is now targeted on the .NET Framework 4 Client Profile.
+   Jint was updated to version of October 21, 2014.
 
    =============
    DOCUMENTATION
