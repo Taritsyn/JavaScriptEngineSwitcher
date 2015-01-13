@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## January 13, 2015 - v1.2.2
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.1
+
 ## October 22, 2014 - v1.2.1
 
 * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.0 (support of V8 version 3.26.31.15)

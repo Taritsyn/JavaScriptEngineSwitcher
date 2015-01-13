@@ -1,11 +1,11 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: MSIE 1.2.0
+      README file for JavaScript Engine Switcher for .Net: MSIE 1.2.2
 
    ----------------------------------------------------------------------
 
-          Copyright 2014 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2012-2015 Andrey Taritsyn - http://www.taritsyn.ru
 		  
 		  
    ===========
@@ -20,8 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of MSIE JavaScript Engine version 1.5.0;
-   2. Assembly is now targeted on the .NET Framework 4 Client Profile.
+   Added support of MSIE JavaScript Engine version 1.5.1.
 
    =============
    DOCUMENTATION

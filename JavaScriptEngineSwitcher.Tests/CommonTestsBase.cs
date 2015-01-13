@@ -16,6 +16,7 @@
 		public abstract void SetUp();
 
 		#region Evaluation of code
+
 		[Test]
 		public virtual void EvaluationOfExpressionWithUndefinedResultIsCorrect()
 		{
@@ -104,9 +105,11 @@
 			// Assert
 			Assert.AreEqual(targetOutput, output);
 		}
+
 		#endregion
 
 		#region Execution of code
+
 		[Test]
 		public virtual void ExecutionOfCodeIsCorrect()
 		{
@@ -172,9 +175,11 @@
 			// Assert
 			Assert.AreEqual(targetOutput, output);
 		}
+
 		#endregion
 
 		#region Calling of functions
+
 		[Test]
 		public void CallingOfFunctionWithoutParametersIsCorrect()
 		{
@@ -442,9 +447,11 @@
 			// Assert
 			Assert.AreEqual("Hello, Petya!", output);
 		}
+
 		#endregion
 
 		#region Getting, setting and removing variables
+
 		[Test]
 		public virtual void SettingAndGettingVariableWithUndefinedValueIsCorrect()
 		{
@@ -604,6 +611,7 @@
 			Assert.IsTrue(variableBeforeRemovingExists);
 			Assert.IsFalse(variableAfterRemovingExists);
 		}
+
 		#endregion
 
 		[TestFixtureTearDown]

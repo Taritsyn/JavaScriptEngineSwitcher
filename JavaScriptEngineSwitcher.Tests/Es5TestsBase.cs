@@ -12,55 +12,9 @@
 
 		[TestFixtureSetUp]
 		public abstract void SetUp();
-
-		#region Function methods
-		[Test]
-		public virtual void FunctionBindIsSupported()
-		{
-			// Arrange
-			const string initCode = @"var a = 5, 
-	module = {
-		a: 12,
-		getA: function() { return this.a; }
-	},
-	getA = module.getA
-	;";
-
-			const string input1 = "getA();";
-			const int targetOutput1 = 5;
-
-			const string input2 = "getA.bind(module)();";
-			const int targetOutput2 = 12;
-
-			// Act
-			_jsEngine.Execute(initCode);
-
-			var output1 = _jsEngine.Evaluate<int>(input1);
-			var output2 = _jsEngine.Evaluate<int>(input2);
-
-			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-		}
-		#endregion
-
-		#region String methods
-		[Test]
-		public virtual void StringTrimMethodIsSupported()
-		{
-			// Arrange
-			const string input = "'	foo '.trim();";
-			const string targetOutput = "foo";
-
-			// Act
-			var output = _jsEngine.Evaluate<string>(input);
-
-			// Assert
-			Assert.AreEqual(targetOutput, output);
-		}
-		#endregion
-
+		
 		#region Array methods
+
 		[Test]
 		public virtual void ArrayEveryMethodIsSupported()
 		{
@@ -85,23 +39,6 @@
 		}
 
 		[Test]
-		public virtual void ArraySomeMethodIsSupported()
-		{
-			// Arrange
-			const string initCode = "var engines = ['Chakra', 'V8', 'SpiderMonkey', 'Jurassic'];";
-
-			const string input = "engines.some(function (value, index, array) { return value.length < 10; });";
-			const bool targetOutput = true;
-
-			// Act
-			_jsEngine.Execute(initCode);
-			var output = _jsEngine.Evaluate<bool>(input);
-
-			// Assert
-			Assert.AreEqual(targetOutput, output);
-		}
-
-		[Test]
 		public virtual void ArrayFilterMethodIsSupported()
 		{
 			// Arrange
@@ -121,7 +58,7 @@
 			// Assert
 			Assert.AreEqual(targetOutput, output);
 		}
-
+		
 		[Test]
 		public virtual void ArrayForEachMethodIsSupported()
 		{
@@ -193,6 +130,25 @@ engines.forEach(function(value, index, array) {{
 			Assert.AreEqual(targetOutput5, output5);
 			Assert.AreEqual(targetOutput6, output6);
 			Assert.AreEqual(targetOutput7, output7);
+		}
+
+		[Test]
+		public virtual void ArrayIsArrayMethodIsSupported()
+		{
+			// Arrange
+			const string input1 = "Array.isArray({ length: 0 });";
+			const bool targetOutput1 = false;
+
+			const string input2 = "Array.isArray([1, 2, 3, 4, 5]);";
+			const bool targetOutput2 = true;
+
+			// Act
+			var output1 = _jsEngine.Evaluate<bool>(input1);
+			var output2 = _jsEngine.Evaluate<bool>(input2);
+
+			// Assert
+			Assert.AreEqual(targetOutput1, output1);
+			Assert.AreEqual(targetOutput2, output2);
 		}
 
 		[Test]
@@ -311,26 +267,26 @@ engines.forEach(function(value, index, array) {{
 		}
 
 		[Test]
-		public virtual void ArrayIsArrayMethodIsSupported()
+		public virtual void ArraySomeMethodIsSupported()
 		{
 			// Arrange
-			const string input1 = "Array.isArray({ length: 0 });";
-			const bool targetOutput1 = false;
+			const string initCode = "var engines = ['Chakra', 'V8', 'SpiderMonkey', 'Jurassic'];";
 
-			const string input2 = "Array.isArray([1, 2, 3, 4, 5]);";
-			const bool targetOutput2 = true;
+			const string input = "engines.some(function (value, index, array) { return value.length < 10; });";
+			const bool targetOutput = true;
 
 			// Act
-			var output1 = _jsEngine.Evaluate<bool>(input1);
-			var output2 = _jsEngine.Evaluate<bool>(input2);
+			_jsEngine.Execute(initCode);
+			var output = _jsEngine.Evaluate<bool>(input);
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.AreEqual(targetOutput, output);
 		}
-		#endregion
 
+		#endregion
+		
 		#region Date methods
+
 		[Test]
 		public virtual void DateNowMethodIsSupported()
 		{
@@ -349,7 +305,7 @@ engines.forEach(function(value, index, array) {{
 		public virtual void DateToIsoStringMethodIsSupported()
 		{
 			// Arrange
-			const string input = "(new Date(2013, 11, 10, 21, 36, 24)).toISOString();";
+			const string input = @"(new Date(1386696984000)).toISOString();";
 			const string targetOutput = "2013-12-10T17:36:24.000Z";
 
 			// Act
@@ -358,43 +314,80 @@ engines.forEach(function(value, index, array) {{
 			// Assert
 			Assert.AreEqual(targetOutput, output);
 		}
+
 		#endregion
 
-		#region Object methods
+		#region Function methods
+
 		[Test]
-		public virtual void ObjectKeysMethodIsSupported()
+		public virtual void FunctionBindIsSupported()
 		{
 			// Arrange
-			const string input1 = "Object.keys(['a', 'b', 'c']).toString();";
-			const string targetOutput1 = "0,1,2";
+			const string initCode = @"var a = 5, 
+	module = {
+		a: 12,
+		getA: function() { return this.a; }
+	},
+	getA = module.getA
+	;";
 
-			const string input2 = "Object.keys({ 0: 'a', 1: 'b', 2: 'c' }).toString();";
-			const string targetOutput2 = "0,1,2";
+			const string input1 = "getA();";
+			const int targetOutput1 = 5;
 
-			const string input3 = "Object.keys({ 100: 'a', 2: 'b', 7: 'c' }).toString();";
-			const string targetOutput3 = "2,7,100";
-
-			const string initCode4 = @"var myObj = function() { };
-myObj.prototype = { getFoo: { value: function () { return this.foo } } };;
-myObj.foo = 1;
-";
-			const string input4 = "Object.keys(myObj).toString();";
-			const string targetOutput4 = "foo";
+			const string input2 = "getA.bind(module)();";
+			const int targetOutput2 = 12;
 
 			// Act
-			var output1 = _jsEngine.Evaluate<string>(input1);
-			var output2 = _jsEngine.Evaluate<string>(input2);
-			var output3 = _jsEngine.Evaluate<string>(input3);
+			_jsEngine.Execute(initCode);
 
-			_jsEngine.Execute(initCode4);
-			var output4 = _jsEngine.Evaluate<string>(input4);
+			var output1 = _jsEngine.Evaluate<int>(input1);
+			var output2 = _jsEngine.Evaluate<int>(input2);
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
 			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
-			Assert.AreEqual(targetOutput4, output4);
 		}
+
+		#endregion
+		
+		#region JSON methods
+
+		[Test]
+		public virtual void JsonParseMethodIsSupported()
+		{
+			// Arrange
+			const string initCode = "var obj = JSON.parse('{ \"foo\": \"bar\" }');";
+			const string input = "obj.foo;";
+			const string targetOutput = "bar";
+
+			// Act
+			_jsEngine.Execute(initCode);
+			var output = _jsEngine.Evaluate<string>(input);
+
+			// Assert
+			Assert.AreEqual(targetOutput, output);
+		}
+
+		[Test]
+		public virtual void JsonStringifyMethodIsSupported()
+		{
+			// Arrange
+			const string initCode = @"var obj = new Object();
+obj['foo'] = 'bar';";
+			const string input = "JSON.stringify(obj);";
+			const string targetOutput = "{\"foo\":\"bar\"}";
+
+			// Act
+			_jsEngine.Execute(initCode);
+			var output = _jsEngine.Evaluate<string>(input);
+
+			// Assert
+			Assert.AreEqual(targetOutput, output);
+		}
+
+		#endregion
+
+		#region Object methods
 
 		[Test]
 		public virtual void ObjectCreateMethodIsSupported()
@@ -442,41 +435,84 @@ greeter.name = 'Vasya'";
 			Assert.AreEqual(targetOutput3A, output3A);
 			Assert.AreEqual(targetOutput3B, output3B);
 		}
+		
+		[Test]
+		public virtual void ObjectKeysMethodIsSupported()
+		{
+			// Arrange
+			const string input1 = "Object.keys(['a', 'b', 'c']).toString();";
+			const string targetOutput1 = "0,1,2";
+
+			const string input2 = "Object.keys({ 0: 'a', 1: 'b', 2: 'c' }).toString();";
+			const string targetOutput2 = "0,1,2";
+
+			const string input3 = "Object.keys({ 100: 'a', 2: 'b', 7: 'c' }).toString();";
+			const string targetOutput3 = "2,7,100";
+
+			const string initCode4 = @"var myObj = function() { };
+myObj.prototype = { getFoo: { value: function () { return this.foo } } };;
+myObj.foo = 1;
+";
+			const string input4 = "Object.keys(myObj).toString();";
+			const string targetOutput4 = "foo";
+
+			// Act
+			var output1 = _jsEngine.Evaluate<string>(input1);
+			var output2 = _jsEngine.Evaluate<string>(input2);
+			var output3 = _jsEngine.Evaluate<string>(input3);
+
+			_jsEngine.Execute(initCode4);
+			var output4 = _jsEngine.Evaluate<string>(input4);
+
+			// Assert
+			Assert.AreEqual(targetOutput1, output1);
+			Assert.AreEqual(targetOutput2, output2);
+			Assert.AreEqual(targetOutput3, output3);
+			Assert.AreEqual(targetOutput4, output4);
+		}
+
 		#endregion
 
-		#region JSON methods
+		#region String methods
+
 		[Test]
-		public virtual void JsonParseMethodIsSupported()
+		public virtual void StringSplitMethodIsCorrect()
 		{
 			// Arrange
-			const string initCode = "var obj = JSON.parse('{ \"foo\": \"bar\" }');";
-			const string input = "obj.foo;";
-			const string targetOutput = "bar";
+			const string input1 = "'aaaa'.split(/a/).length;";
+			const int targetOutput1 = 5;
+
+			const string input2 = @"'|a|b|c|'.split(/\|/).length";
+			const int targetOutput2 = 5;
+
+			const string input3 = @"'1, 2, 3, 4'.split(/\s*(,)\s*/).length";
+			const int targetOutput3 = 7;
 
 			// Act
-			_jsEngine.Execute(initCode);
+			var output1 = _jsEngine.Evaluate<int>(input1);
+			var output2 = _jsEngine.Evaluate<int>(input2);
+			var output3 = _jsEngine.Evaluate<int>(input3);
+
+			// Assert
+			Assert.AreEqual(targetOutput1, output1);
+			Assert.AreEqual(targetOutput2, output2);
+			Assert.AreEqual(targetOutput3, output3);
+		}
+
+		[Test]
+		public virtual void StringTrimMethodIsSupported()
+		{
+			// Arrange
+			const string input = "'	foo '.trim();";
+			const string targetOutput = "foo";
+
+			// Act
 			var output = _jsEngine.Evaluate<string>(input);
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
 		}
 
-		[Test]
-		public virtual void JsonStringifyMethodIsSupported()
-		{
-			// Arrange
-			const string initCode = @"var obj = new Object();
-obj['foo'] = 'bar';";
-			const string input = "JSON.stringify(obj);";
-			const string targetOutput = "{\"foo\":\"bar\"}";
-
-			// Act
-			_jsEngine.Execute(initCode);
-			var output = _jsEngine.Evaluate<string>(input);
-
-			// Assert
-			Assert.AreEqual(targetOutput, output);
-		}
 		#endregion
 
 		[TestFixtureTearDown]

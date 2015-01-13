@@ -14,6 +14,7 @@
 		}
 
 		#region Object methods
+
 		[Test]
 		public override void ObjectKeysMethodIsSupported()
 		{
@@ -48,6 +49,7 @@ myObj.foo = 1;
 			Assert.AreEqual(targetOutput3, output3);
 			Assert.AreEqual(targetOutput4, output4);
 		}
+
 		#endregion
 	}
 }
