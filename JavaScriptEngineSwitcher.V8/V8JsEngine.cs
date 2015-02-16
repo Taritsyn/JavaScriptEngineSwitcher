@@ -12,6 +12,7 @@
 	using Core.Utilities;
 	using CoreStrings = Core.Resources.Strings;
 
+	using Configuration;
 	using Resources;
 
 	/// <summary>
@@ -27,7 +28,7 @@
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "3.26.31.15";
+		private const string ENGINE_VERSION = "3.30.33.16";
 
 		/// <summary>
 		/// JS-engine
@@ -43,12 +44,12 @@
 		/// Information about `InvokeMethod` method of `Microsoft.ClearScript.Windows.WindowsScriptItem` type
 		/// </summary>
 		private static MethodInfo _winScriptItemInvokeMethodInfo;
-		
+
 		/// <summary>
 		/// Regular expression for working with the string representation of error
 		/// </summary>
 		private static readonly Regex _errorStringRegex =
-			new Regex(@"at (?:[A-Za-z_\$][0-9A-Za-z_\$]* )?" + 
+			new Regex(@"at (?:[A-Za-z_\$][0-9A-Za-z_\$]* )?" +
 				@"\(?Script Document(?:\s*\[\d+\])?:(?<lineNumber>\d+):(?<columnNumber>\d+)\)?");
 
 		/// <summary>
@@ -87,10 +88,38 @@
 		/// Constructs instance of adapter for Microsoft ClearScript.V8
 		/// </summary>
 		public V8JsEngine()
+			: this(JsEngineSwitcher.Current.GetV8Configuration())
+		{ }
+
+		/// <summary>
+		/// Constructs instance of adapter for Microsoft ClearScript.V8
+		/// </summary>
+		/// <param name="v8Config">Configuration settings of V8 JavaScript engine</param>
+		public V8JsEngine(V8Configuration v8Config)
 		{
+			V8RuntimeConstraints constraints = new V8RuntimeConstraints
+			{
+				MaxNewSpaceSize = v8Config.MaxNewSpaceSize,
+				MaxOldSpaceSize = v8Config.MaxOldSpaceSize,
+				MaxExecutableSize = v8Config.MaxExecutableSize
+			};
+
+			V8ScriptEngineFlags flags = V8ScriptEngineFlags.None;
+			if (v8Config.EnableDebugging && v8Config.DisableGlobalMembers)
+			{
+				flags = V8ScriptEngineFlags.EnableDebugging | V8ScriptEngineFlags.DisableGlobalMembers;
+			}
+			else if (v8Config.EnableDebugging || v8Config.DisableGlobalMembers)
+			{
+				flags = v8Config.EnableDebugging ?
+					V8ScriptEngineFlags.EnableDebugging : V8ScriptEngineFlags.DisableGlobalMembers;
+			}
+
+			int debugPort = v8Config.DebugPort;
+
 			try
 			{
-				_jsEngine = new V8ScriptEngine();
+				_jsEngine = new V8ScriptEngine(constraints, flags, debugPort);
 			}
 			catch (Exception e)
 			{

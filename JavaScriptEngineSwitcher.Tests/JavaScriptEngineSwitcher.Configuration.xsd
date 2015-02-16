@@ -14,9 +14,19 @@
 			<xs:all>
 				<xs:element name="core" type="CoreConfiguration_SchemaType" minOccurs="0" maxOccurs="1" />
 				<xs:element name="msie" type="MsieConfiguration_SchemaType" minOccurs="0" maxOccurs="1" />
+				<xs:element name="v8" type="V8Configuration_SchemaType" minOccurs="0" maxOccurs="1" />
 			</xs:all>
 		</xs:complexType>
 	</xs:element>
+
+	<!-- Simple types -->
+	<xs:simpleType name="Boolean_SchemaType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="true" />
+			<xs:enumeration value="false" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- /Simple types -->
 
 	<!-- Core configuration settings -->
 	<xs:complexType name="CoreConfiguration_SchemaType">
@@ -114,4 +124,66 @@
 		</xs:attribute>
 	</xs:complexType>
 	<!--/ MSIE configuration settings -->
+
+	<!-- V8 configuration settings -->
+	<xs:complexType name="V8Configuration_SchemaType">
+		<xs:annotation>
+			<xs:documentation>Configuration settings of V8 JavaScript engine</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="enableDebugging" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to enable script debugging features</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="debugPort" use="optional" default="9222">
+			<xs:annotation>
+				<xs:documentation>TCP/IP port on which to listen for a debugger connection</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0" />
+					<xs:maxInclusive value="65535" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="disableGlobalMembers" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to disable global members</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="maxNewSpaceSize" use="optional" default="0">
+			<xs:annotation>
+				<xs:documentation>Maximum size of the new object heap in bytes</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0" />
+					<xs:maxInclusive value="2147483647" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="maxOldSpaceSize" use="optional" default="0">
+			<xs:annotation>
+				<xs:documentation>Maximum size of the old object heap in bytes</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0" />
+					<xs:maxInclusive value="2147483647" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="maxExecutableSize" use="optional" default="0">
+			<xs:annotation>
+				<xs:documentation>Maximum size of the executable code heap in bytes</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0" />
+					<xs:maxInclusive value="2147483647" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<!--/ V8 configuration settings -->
 </xs:schema>

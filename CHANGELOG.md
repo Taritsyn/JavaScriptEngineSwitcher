@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## February 16, 2015 - v1.2.3
+ * In JavaScriptEngineSwitcher.ConfigurationIntelliSense added definitions for configuration settings of V8 JavaScript engine
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.1 (support of V8 version 3.30.33.16) and added the ability to change configuration settings of V8 JavaScript engine: `EnableDebugging` (default `false`), `DebugPort` (default `9222`), `DisableGlobalMembers` (default `false`), `MaxNewSpaceSize` (default `0`), `MaxOldSpaceSize` (default `0`) and `MaxExecutableSize` (default `0`)
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version of February 14, 2015
+
 ## January 13, 2015 - v1.2.2
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.1
 

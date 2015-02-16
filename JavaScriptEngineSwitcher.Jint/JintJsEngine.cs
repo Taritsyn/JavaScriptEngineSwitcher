@@ -26,7 +26,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Oct 21, 2014";
+		private const string ENGINE_VERSION = "Feb 14, 2015";
 
 		/// <summary>
 		/// Jint JS engine
@@ -57,7 +57,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			try
 			{
-				_jsEngine = new OriginalJsEngine();
+				_jsEngine = new OriginalJsEngine(c => c.LimitRecursion(20678));
 			}
 			catch (Exception e)
 			{
