@@ -19,7 +19,7 @@
 		protected bool _disposed;
 
 
-		private void VerifyNotDisposed()
+		protected void VerifyNotDisposed()
 		{
 			if (_disposed)
 			{
@@ -60,7 +60,7 @@
 		}
 
 
-		public object Evaluate(string expression)
+		public virtual object Evaluate(string expression)
 		{
 			VerifyNotDisposed();
 
@@ -73,7 +73,7 @@
 			return InnerEvaluate(expression);
 		}
 
-		public T Evaluate<T>(string expression)
+		public virtual T Evaluate<T>(string expression)
 		{
 			VerifyNotDisposed();
 
@@ -93,7 +93,7 @@
 			return InnerEvaluate<T>(expression);
 		}
 
-		public void Execute(string code)
+		public virtual void Execute(string code)
 		{
 			VerifyNotDisposed();
 
@@ -106,7 +106,7 @@
 			InnerExecute(code);
 		}
 
-		public void ExecuteFile(string path, Encoding encoding = null)
+		public virtual void ExecuteFile(string path, Encoding encoding = null)
 		{
 			VerifyNotDisposed();
 
@@ -120,7 +120,7 @@
 			Execute(code);
 		}
 
-		public void ExecuteResource(string resourceName, Type type)
+		public virtual void ExecuteResource(string resourceName, Type type)
 		{
 			VerifyNotDisposed();
 
@@ -140,7 +140,7 @@
 			Execute(code);
 		}
 
-		public void ExecuteResource(string resourceName, Assembly assembly)
+		public virtual void ExecuteResource(string resourceName, Assembly assembly)
 		{
 			VerifyNotDisposed();
 
@@ -160,7 +160,7 @@
 			Execute(code);
 		}
 
-		public object CallFunction(string functionName, params object[] args)
+		public virtual object CallFunction(string functionName, params object[] args)
 		{
 			VerifyNotDisposed();
 
@@ -200,7 +200,7 @@
 			return InnerCallFunction(functionName, args);
 		}
 
-		public T CallFunction<T>(string functionName, params object[] args)
+		public virtual T CallFunction<T>(string functionName, params object[] args)
 		{
 			VerifyNotDisposed();
 
@@ -247,7 +247,7 @@
 			return InnerCallFunction<T>(functionName, args);
 		}
 
-		public bool HasVariable(string variableName)
+		public virtual bool HasVariable(string variableName)
 		{
 			VerifyNotDisposed();
 
@@ -266,7 +266,7 @@
 			return InnerHasVariable(variableName);
 		}
 
-		public object GetVariableValue(string variableName)
+		public virtual object GetVariableValue(string variableName)
 		{
 			VerifyNotDisposed();
 
@@ -285,7 +285,7 @@
 			return InnerGetVariableValue(variableName);
 		}
 
-		public T GetVariableValue<T>(string variableName)
+		public virtual T GetVariableValue<T>(string variableName)
 		{
 			VerifyNotDisposed();
 
@@ -311,7 +311,7 @@
 			return InnerGetVariableValue<T>(variableName);
 		}
 
-		public void SetVariableValue(string variableName, object value)
+		public virtual void SetVariableValue(string variableName, object value)
 		{
 			VerifyNotDisposed();
 
@@ -342,7 +342,7 @@
 			InnerSetVariableValue(variableName, value);
 		}
 
-		public void RemoveVariable(string variableName)
+		public virtual void RemoveVariable(string variableName)
 		{
 			VerifyNotDisposed();
 

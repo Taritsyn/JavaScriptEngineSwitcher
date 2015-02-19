@@ -3,7 +3,7 @@
 	using System;
 	using System.Linq;
 	using System.Text.RegularExpressions;
-	
+
 	/// <summary>
 	/// Validation helpers
 	/// </summary>
@@ -14,14 +14,14 @@
 		/// </summary>
 		private static readonly Type[] _supportedTypes =
 		{
-			typeof(Undefined), typeof(Boolean), typeof(Int32), typeof(Double), typeof(String)		 		
+			typeof(Undefined), typeof(Boolean), typeof(Int32), typeof(Double), typeof(String)
 		};
 
 		/// <summary>
 		/// Regular expression for working with JS-names
 		/// </summary>
 		private static readonly Regex _jsNameRegex = new Regex(@"^[A-Za-z_\$][0-9A-Za-z_\$]*$");
-		
+
 
 		/// <summary>
 		/// Checks whether supports a .NET type

@@ -2,7 +2,7 @@
 {
 	using System;
 	using System.Configuration;
-	
+
 	using Configuration;
 	using Resources;
 	using Utilities;
@@ -66,7 +66,7 @@
 		}
 
 		/// <summary>
-		/// Creates a instance of default JavaScript engine based on the settings 
+		/// Creates a instance of default JavaScript engine based on the settings
 		/// that specified in configuration files (App.config or Web.config)
 		/// </summary>
 		/// <returns>JavaScript engine</returns>

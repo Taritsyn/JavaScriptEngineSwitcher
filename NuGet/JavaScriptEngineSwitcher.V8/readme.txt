@@ -1,13 +1,13 @@
 ﻿
 
    -----------------------------------------------------------------------
-        README file for JavaScript Engine Switcher for .Net: V8 1.2.3
+        README file for JavaScript Engine Switcher for .Net: V8 1.2.4
 
    -----------------------------------------------------------------------
 
       Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru
-		  
-		  
+
+
    ===========
    DESCRIPTION
    ===========   
@@ -17,18 +17,7 @@
    working of the Microsoft ClearScript.V8 require assemblies
    `msvcp110.dll` and `msvcr110.dll` from the Visual C++ Redistributable
    for Visual Studio 2012.
-   
-   =============
-   RELEASE NOTES
-   =============
-   1. Microsoft ClearScript.V8 was updated to version 5.4.1 (support of V8
-      version 3.30.33.16);
-   2. Added the ability to change configuration settings of V8 JavaScript
-      engine: `EnableDebugging` (default `false`), `DebugPort` (default
-      `9222`), `DisableGlobalMembers` (default `false`), `MaxNewSpaceSize`
-      (default `0`), `MaxOldSpaceSize` (default `0`) and
-      `MaxExecutableSize` (default `0`).
-   
+
    ====================
    POST-INSTALL ACTIONS
    ==================== 

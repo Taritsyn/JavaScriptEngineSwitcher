@@ -74,7 +74,7 @@
 			if (jsRuntimeException.ColumnNumber > 0)
 			{
 				errorMessage.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_ColumnNumber,
-					jsRuntimeException.ColumnNumber.ToString(CultureInfo.InvariantCulture));	
+					jsRuntimeException.ColumnNumber.ToString(CultureInfo.InvariantCulture));
 			}
 			if (!string.IsNullOrWhiteSpace(jsRuntimeException.SourceFragment))
 			{

@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-  <metadata>
-    <id>JavaScriptEngineSwitcher.Core</id>
-    <version>1.2.0</version>
-	<title>JavaScript Engine Switcher for .Net: Core</title>
-    <authors>Andrey Taritsyn</authors>
-    <owners>Andrey Taritsyn</owners>
-    <licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
-    <projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Core_Logo128x128.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic and Jint). This library allows you to quickly and easily switch to using of another JavaScript engine.</description>
-    <summary>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic and Jint).</summary>
-	<releaseNotes>Assembly is now targeted on the .NET Framework 4 Client Profile.</releaseNotes>
-	<copyright>Copyright 2014 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
-    <language>en-US</language>
-    <tags>JavaScript ECMAScript</tags>
-    <references>
-      <reference file="JavaScriptEngineSwitcher.Core.dll" />
-    </references>
-  </metadata>
-  <files>
-    <file src="..\..\JavaScriptEngineSwitcher.Core\bin\Release\JavaScriptEngineSwitcher.Core.dll" target="lib\net40" />
-	<file src="..\..\JavaScriptEngineSwitcher.Core\bin\Release\**\JavaScriptEngineSwitcher.Core.resources.dll" target="lib\net40" />
-	<file src="content\web.config.transform" target="content" />
-	<file src="content\app.config.transform" target="content" />
-	<file src="readme.txt" />
-  </files>
+	<metadata>
+		<id>JavaScriptEngineSwitcher.Core</id>
+		<version>1.2.4</version>
+		<title>JavaScript Engine Switcher for .Net: Core</title>
+		<authors>Andrey Taritsyn</authors>
+		<owners>Andrey Taritsyn</owners>
+		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
+		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Core_Logo128x128.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic and Jint). This library allows you to quickly and easily switch to using of another JavaScript engine.</description>
+		<summary>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic and Jint).</summary>
+		<releaseNotes>In `JsEngineBase` class all public non-abstract methods are now is virtual.</releaseNotes>
+		<copyright>Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+		<language>en-US</language>
+		<tags>JavaScript ECMAScript</tags>
+		<references>
+			<reference file="JavaScriptEngineSwitcher.Core.dll" />
+		</references>
+	</metadata>
+	<files>
+		<file src="..\..\JavaScriptEngineSwitcher.Core\bin\Release\JavaScriptEngineSwitcher.Core.dll" target="lib\net40" />
+		<file src="..\..\JavaScriptEngineSwitcher.Core\bin\Release\**\JavaScriptEngineSwitcher.Core.resources.dll" target="lib\net40" />
+		<file src="content\web.config.transform" target="content" />
+		<file src="content\app.config.transform" target="content" />
+		<file src="readme.txt" />
+	</files>
 </package>

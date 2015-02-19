@@ -9,9 +9,13 @@ using OriginalUndefined = Jurassic.Undefined;
 namespace JavaScriptEngineSwitcher.Jurassic
 {
 	using System;
+	using System.IO;
+	using System.Text;
 
 	using Core;
 	using CoreStrings = Core.Resources.Strings;
+
+	using Configuration;
 
 	/// <summary>
 	/// Adapter for Jurassic JavaScript engine
@@ -54,13 +58,24 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// Constructs instance of adapter for Jurassic
 		/// </summary>
 		public JurassicJsEngine()
+			: this(JsEngineSwitcher.Current.GetJurassicConfiguration())
+		{ }
+
+		/// <summary>
+		/// Constructs instance of adapter for Jurassic
+		/// </summary>
+		/// <param name="jurassicConfig">Configuration settings of Jurassic JavaScript engine</param>
+		public JurassicJsEngine(JurassicConfiguration jurassicConfig)
 		{
 			try
 			{
 				_jsEngine = new OriginalJsEngine
 				{
+					EnableDebugging = jurassicConfig.EnableDebugging,
 					CompatibilityMode = OriginalCompatibilityMode.Latest,
-					EnableExposedClrTypes = true
+					EnableExposedClrTypes = true,
+					EnableILAnalysis = jurassicConfig.EnableIlAnalysis,
+					ForceStrictMode = jurassicConfig.StrictMode
 				};
 			}
 			catch (Exception e)
@@ -149,7 +164,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			}
 
 			result = MapToHostType(result);
-			
+
 			return result;
 		}
 
@@ -262,6 +277,32 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		protected override void InnerRemoveVariable(string variableName)
 		{
 			InnerSetVariableValue(variableName, Undefined.Value);
+		}
+
+		public override void ExecuteFile(string path, Encoding encoding = null)
+		{
+			VerifyNotDisposed();
+
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, "path"), "path");
+			}
+
+			if (!File.Exists(path))
+			{
+				throw new FileNotFoundException(
+					string.Format(CoreStrings.Common_FileNotExist, path), path);
+			}
+
+			try
+			{
+				_jsEngine.ExecuteFile(path, encoding);
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertJavascriptExceptionToJsRuntimeException(e);
+			}
 		}
 
 		#endregion

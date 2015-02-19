@@ -4,6 +4,8 @@ using OriginalJsException = Jint.Runtime.JavaScriptException;
 using OriginalJsValue = Jint.Native.JsValue;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
 using OriginalParserException = Jint.Parser.ParserException;
+using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
+using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
 
 namespace JavaScriptEngineSwitcher.Jint
 {
@@ -12,6 +14,9 @@ namespace JavaScriptEngineSwitcher.Jint
 	using Core;
 	using Core.Utilities;
 	using CoreStrings = Core.Resources.Strings;
+
+	using Configuration;
+	using Resources;
 
 	/// <summary>
 	/// Adapter for Jint JavaScript engine
@@ -54,10 +59,24 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// Constructs instance of adapter for Jint
 		/// </summary>
 		public JintJsEngine()
+			: this(JsEngineSwitcher.Current.GetJintConfiguration())
+		{ }
+
+		/// <summary>
+		/// Constructs instance of adapter for Jint
+		/// </summary>
+		/// <param name="jintConfig">Configuration settings of Jint JavaScript engine</param>
+		public JintJsEngine(JintConfiguration jintConfig)
 		{
 			try
 			{
-				_jsEngine = new OriginalJsEngine(c => c.LimitRecursion(20678));
+				_jsEngine = new OriginalJsEngine(config => config
+					.AllowDebuggerStatement(jintConfig.EnableDebugging)
+					.LimitRecursion(jintConfig.MaxRecursionDepth)
+					.MaxStatements(jintConfig.MaxStatements)
+					.Strict(jintConfig.StrictMode)
+					.TimeoutInterval(TimeSpan.FromMilliseconds(jintConfig.Timeout))
+				);
 			}
 			catch (Exception e)
 			{
@@ -148,7 +167,52 @@ namespace JavaScriptEngineSwitcher.Jint
 
 			return jsRuntimeException;
 		}
-		
+
+		private JsRuntimeException ConvertRecursionDepthOverflowExceptionToJsRuntimeException(
+			OriginalRecursionDepthOverflowException jsRecursionException)
+		{
+			string message = string.Format(Strings.Runtime_RecursionDepthOverflow,
+				jsRecursionException.CallChain);
+
+			var jsRuntimeException = new JsRuntimeException(message,
+				ENGINE_NAME, ENGINE_VERSION, jsRecursionException)
+			{
+				Category = "RecursionDepthOverflowError",
+				Source = jsRecursionException.Source,
+				HelpLink = jsRecursionException.HelpLink
+			};
+
+			return jsRuntimeException;
+		}
+
+		private JsRuntimeException ConvertStatementsCountOverflowExceptionToJsRuntimeException(
+			OriginalStatementsCountOverflowException jsStatementsException)
+		{
+			var jsRuntimeException = new JsRuntimeException(Strings.Runtime_StatementsCountOverflow,
+				ENGINE_NAME, ENGINE_VERSION)
+			{
+				Category = "StatementsCountOverflowError",
+				Source = jsStatementsException.Source,
+				HelpLink = jsStatementsException.HelpLink
+			};
+
+			return jsRuntimeException;
+		}
+
+		private JsRuntimeException ConvertTimeoutExceptionToJsRuntimeException(
+			TimeoutException jsTimeoutException)
+		{
+			var jsRuntimeException = new JsRuntimeException(Strings.Runtime_ExecutionTimeout,
+				ENGINE_NAME, ENGINE_VERSION)
+			{
+				Category = "TimeoutError",
+				Source = jsTimeoutException.Source,
+				HelpLink = jsTimeoutException.HelpLink
+			};
+
+			return jsRuntimeException;
+		}
+
 		protected override object InnerEvaluate(string expression)
 		{
 			OriginalJsValue resultValue;
@@ -164,6 +228,18 @@ namespace JavaScriptEngineSwitcher.Jint
 			catch (OriginalJsException e)
 			{
 				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+			}
+			catch (OriginalRecursionDepthOverflowException e)
+			{
+				throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
+			}
+			catch (OriginalStatementsCountOverflowException e)
+			{
+				throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
+			}
+			catch (TimeoutException e)
+			{
+				throw ConvertTimeoutExceptionToJsRuntimeException(e);
 			}
 
 			object result = MapToHostType(resultValue);
@@ -191,6 +267,18 @@ namespace JavaScriptEngineSwitcher.Jint
 			catch (OriginalJsException e)
 			{
 				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+			}
+			catch (OriginalRecursionDepthOverflowException e)
+			{
+				throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
+			}
+			catch (OriginalStatementsCountOverflowException e)
+			{
+				throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
+			}
+			catch (TimeoutException e)
+			{
+				throw ConvertTimeoutExceptionToJsRuntimeException(e);
 			}
 		}
 
@@ -234,6 +322,18 @@ namespace JavaScriptEngineSwitcher.Jint
 			catch (OriginalJsException e)
 			{
 				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+			}
+			catch (OriginalRecursionDepthOverflowException e)
+			{
+				throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
+			}
+			catch (OriginalStatementsCountOverflowException e)
+			{
+				throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
+			}
+			catch (TimeoutException e)
+			{
+				throw ConvertTimeoutExceptionToJsRuntimeException(e);
 			}
 
 			object result = MapToHostType(resultValue);

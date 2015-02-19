@@ -9,6 +9,7 @@
 	{
 		/// <summary>
 		/// Gets or sets a flag for whether to enable script debugging features
+		/// (allows a TCP/IP-based debugging)
 		/// </summary>
 		[ConfigurationProperty("enableDebugging", DefaultValue = false)]
 		public bool EnableDebugging

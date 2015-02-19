@@ -1,35 +1,34 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-  <metadata>
-    <id>JavaScriptEngineSwitcher.Msie</id>
-    <version>1.2.2</version>
-	<title>JavaScript Engine Switcher for .Net: MSIE</title>
-    <authors>Andrey Taritsyn</authors>
-    <owners>Andrey Taritsyn</owners>
-    <licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
-    <projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9 and above on a server.</description>
-    <summary>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net).</summary>
-	<releaseNotes>Added support of MSIE JavaScript Engine version 1.5.1.</releaseNotes>
-	<copyright>Copyright (c) 2012-2015 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
-    <language>en-US</language>
-    <tags>JavaScript ECMAScript MSIE IE Chakra</tags>
-    <dependencies>
-      <dependency id="JavaScriptEngineSwitcher.Core" version="1.2.0" />
-      <dependency id="MsieJavaScriptEngine" version="1.5.1" />
-    </dependencies>
-    <references>
-      <reference file="JavaScriptEngineSwitcher.Msie.dll" />
-    </references>
-  </metadata>
-  <files>
-    <file src="..\..\JavaScriptEngineSwitcher.Msie\bin\Release\JavaScriptEngineSwitcher.Msie.dll" target="lib\net40" />
-	<file src="..\..\JavaScriptEngineSwitcher.Msie\bin\Release\**\JavaScriptEngineSwitcher.Msie.resources.dll" target="lib\net40" />
-	<file src="content\web.config.transform" target="content" />
-	<file src="content\app.config.transform" target="content" />
-	<file src="readme.txt" />
-	<file src="..\..\Licenses\msie-javascript-engine-license.txt" />
-  </files>
+	<metadata>
+		<id>JavaScriptEngineSwitcher.Msie</id>
+		<version>1.2.4</version>
+		<title>JavaScript Engine Switcher for .Net: MSIE</title>
+		<authors>Andrey Taritsyn</authors>
+		<owners>Andrey Taritsyn</owners>
+		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
+		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9 and above on a server.</description>
+		<summary>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net).</summary>
+		<copyright>Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+		<language>en-US</language>
+		<tags>JavaScript ECMAScript MSIE IE Chakra</tags>
+		<dependencies>
+			<dependency id="JavaScriptEngineSwitcher.Core" version="1.2.4" />
+			<dependency id="MsieJavaScriptEngine" version="1.5.1" />
+		</dependencies>
+		<references>
+			<reference file="JavaScriptEngineSwitcher.Msie.dll" />
+		</references>
+	</metadata>
+	<files>
+		<file src="..\..\JavaScriptEngineSwitcher.Msie\bin\Release\JavaScriptEngineSwitcher.Msie.dll" target="lib\net40" />
+		<file src="..\..\JavaScriptEngineSwitcher.Msie\bin\Release\**\JavaScriptEngineSwitcher.Msie.resources.dll" target="lib\net40" />
+		<file src="content\web.config.transform" target="content" />
+		<file src="content\app.config.transform" target="content" />
+		<file src="readme.txt" />
+		<file src="..\..\Licenses\msie-javascript-engine-license.txt" />
+	</files>
 </package>

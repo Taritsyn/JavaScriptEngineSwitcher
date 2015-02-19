@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-  <metadata>
-    <id>JavaScriptEngineSwitcher.ConfigurationIntelliSense</id>
-    <version>1.2.3</version>
-	<title>JavaScript Engine Switcher for .Net: IntelliSense</title>
-    <authors>Andrey Taritsyn</authors>
-    <owners>Andrey Taritsyn</owners>
-    <licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
-    <projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ConfigurationIntelliSense_Logo128x128.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>JavaScriptEngineSwitcher.ConfigurationIntelliSense adds IntelliSense support when editing the `jsEngineSwitcher` configuration section in the Web.config or App.config file.</description>
-    <summary>JavaScriptEngineSwitcher.ConfigurationIntelliSense adds IntelliSense support when editing the `jsEngineSwitcher` configuration section in the Web.config or App.config file.</summary>
-	<releaseNotes>Added definitions for configuration settings of V8 JavaScript engine.</releaseNotes>
-	<copyright>Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
-    <language>en-US</language>
-    <tags>App.config Web.config IntelliSense</tags>
-  </metadata>
-  <files>
-	<file src="..\..\JavaScriptEngineSwitcher.Tests\JavaScriptEngineSwitcher.Configuration.xsd" target="content" />
-  </files>
+	<metadata>
+		<id>JavaScriptEngineSwitcher.ConfigurationIntelliSense</id>
+		<version>1.2.4</version>
+		<title>JavaScript Engine Switcher for .Net: IntelliSense</title>
+		<authors>Andrey Taritsyn</authors>
+		<owners>Andrey Taritsyn</owners>
+		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
+		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ConfigurationIntelliSense_Logo128x128.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>JavaScriptEngineSwitcher.ConfigurationIntelliSense adds IntelliSense support when editing the `jsEngineSwitcher` configuration section in the Web.config or App.config file.</description>
+		<summary>JavaScriptEngineSwitcher.ConfigurationIntelliSense adds IntelliSense support when editing the `jsEngineSwitcher` configuration section in the Web.config or App.config file.</summary>
+		<releaseNotes>Added definitions for configuration settings of Jurassic and Jint JavaScript engines.</releaseNotes>
+		<copyright>Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+		<language>en-US</language>
+		<tags>App.config Web.config IntelliSense</tags>
+	</metadata>
+	<files>
+		<file src="..\..\JavaScriptEngineSwitcher.Tests\JavaScriptEngineSwitcher.Configuration.xsd" target="content" />
+	</files>
 </package>

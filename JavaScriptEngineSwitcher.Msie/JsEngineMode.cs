@@ -11,7 +11,7 @@
 		Auto = 0,
 
 		/// <summary>
-		/// Classic MSIE JavaScript engine (supports ECMAScript 3 with 
+		/// Classic MSIE JavaScript engine (supports ECMAScript 3 with
 		/// possibility of using the ECMAScript 5 Polyfill and the JSON2 library).
 		/// Requires Internet Explorer 6 or higher on the machine.
 		/// </summary>

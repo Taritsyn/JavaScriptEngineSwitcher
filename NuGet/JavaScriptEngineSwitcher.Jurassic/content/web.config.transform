@@ -1,4 +1,9 @@
 ﻿<configuration>
+	<configSections>
+		<sectionGroup name="jsEngineSwitcher">
+			<section name="jurassic" type="JavaScriptEngineSwitcher.Jurassic.Configuration.JurassicConfiguration, JavaScriptEngineSwitcher.Jurassic" />
+		</sectionGroup>
+	</configSections>
 	<jsEngineSwitcher xmlns="http://tempuri.org/JavaScriptEngineSwitcher.Configuration.xsd">
 		<core>
 			<engines>

@@ -15,6 +15,8 @@
 				<xs:element name="core" type="CoreConfiguration_SchemaType" minOccurs="0" maxOccurs="1" />
 				<xs:element name="msie" type="MsieConfiguration_SchemaType" minOccurs="0" maxOccurs="1" />
 				<xs:element name="v8" type="V8Configuration_SchemaType" minOccurs="0" maxOccurs="1" />
+				<xs:element name="jurassic" type="JurassicConfiguration_SchemaType" minOccurs="0" maxOccurs="1" />
+				<xs:element name="jint" type="JintConfiguration_SchemaType" minOccurs="0" maxOccurs="1" />
 			</xs:all>
 		</xs:complexType>
 	</xs:element>
@@ -132,7 +134,7 @@
 		</xs:annotation>
 		<xs:attribute name="enableDebugging" type="Boolean_SchemaType" use="optional" default="false">
 			<xs:annotation>
-				<xs:documentation>Flag for whether to enable script debugging features</xs:documentation>
+				<xs:documentation>Flag for whether to enable script debugging features (allows a TCP/IP-based debugging)</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="debugPort" use="optional" default="9222">
@@ -186,4 +188,80 @@
 		</xs:attribute>
 	</xs:complexType>
 	<!--/ V8 configuration settings -->
+
+	<!-- Jurassic configuration settings -->
+	<xs:complexType name="JurassicConfiguration_SchemaType">
+		<xs:annotation>
+			<xs:documentation>Configuration settings of Jurassic JavaScript engine</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="enableDebugging" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to enable script debugging features (allows a generation of debug information)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="enableIlAnalysis" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to disassemble any generated IL and store it in the associated function</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="strictMode" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to allow run the script in strict mode</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!--/ Jurassic configuration settings -->
+
+	<!-- Jint configuration settings -->
+	<xs:complexType name="JintConfiguration_SchemaType">
+		<xs:annotation>
+			<xs:documentation>Configuration settings of Jint JavaScript engine</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="enableDebugging" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to enable script debugging features (allows a `debugger` statement to be called in a script)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="maxRecursionDepth" use="optional" default="20678">
+			<xs:annotation>
+				<xs:documentation>Maximum allowed depth of recursion:
+ -1 - recursion without limits;
+  N - one scope function can be called no more than N times.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="-1" />
+					<xs:maxInclusive value="2147483647" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="maxStatements" use="optional" default="0">
+			<xs:annotation>
+				<xs:documentation>Maximum number of statements</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0" />
+					<xs:maxInclusive value="2147483647" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="strictMode" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to allow run the script in strict mode</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="timeout" use="optional" default="0">
+			<xs:annotation>
+				<xs:documentation>Number of milliseconds to wait before the script execution times out</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0" />
+					<xs:maxInclusive value="2147483647" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<!--/ Jint configuration settings -->
 </xs:schema>

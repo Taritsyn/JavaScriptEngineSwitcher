@@ -196,7 +196,7 @@
 			// Assert
 			Assert.AreEqual(targetOutput, output);
 		}
-		
+
 		[Test]
 		public virtual void CallingOfFunctionWithUndefinedResultIsCorrect()
 		{
@@ -316,7 +316,7 @@
 		{
 			// Arrange
 			const string functionCode = @"function determineArgumentsTypes() {
-	var result = '', 
+	var result = '',
 		argumentIndex,
 		argumentCount = arguments.length
 		;
@@ -345,7 +345,7 @@
 		{
 			// Arrange
 			const string functionCode = @"function and() {
-	var result = null, 
+	var result = null,
 		argumentIndex,
 		argumentCount = arguments.length,
 		argumentValue
@@ -353,7 +353,7 @@
 
 	for (argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++) {
 		argumentValue = arguments[argumentIndex];
-	
+
 		if (result !== null) {
 			result = result && argumentValue;
 		}
@@ -378,7 +378,7 @@
 		{
 			// Arrange
 			const string functionCode = @"function sum() {
-	var result = 0, 
+	var result = 0,
 		argumentIndex,
 		argumentCount = arguments.length
 		;
@@ -403,7 +403,7 @@
 		{
 			// Arrange
 			const string functionCode = @"function sum() {
-	var result = 0, 
+	var result = 0,
 		argumentIndex,
 		argumentCount = arguments.length
 		;

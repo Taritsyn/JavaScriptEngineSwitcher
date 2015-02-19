@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## February 19, 2015 - v1.2.4
+ * In `JsEngineBase` class all public non-abstract methods are now is virtual
+ * In JavaScriptEngineSwitcher.ConfigurationIntelliSense added definitions for configuration settings of Jurassic and Jint JavaScript engines
+ * In JavaScriptEngineSwitcher.Jurassic added the ability to change configuration settings of Jurassic JavaScript engine: `EnableDebugging` (default `false`), `EnableIlAnalysis` (default `false`) and `StrictMode` (default `false`)
+ * In JavaScriptEngineSwitcher.Jint added the ability to change configuration settings of Jint JavaScript engine: `EnableDebugging` (default `false`), `MaxRecursionDepth` (default `20678`), `MaxStatements` (default `0`), `StrictMode` (default `false`) and `Timeout` (default `0`)
+
 ## February 16, 2015 - v1.2.3
  * In JavaScriptEngineSwitcher.ConfigurationIntelliSense added definitions for configuration settings of V8 JavaScript engine
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.1 (support of V8 version 3.30.33.16) and added the ability to change configuration settings of V8 JavaScript engine: `EnableDebugging` (default `false`), `DebugPort` (default `9222`), `DisableGlobalMembers` (default `false`), `MaxNewSpaceSize` (default `0`), `MaxOldSpaceSize` (default `0`) and `MaxExecutableSize` (default `0`)

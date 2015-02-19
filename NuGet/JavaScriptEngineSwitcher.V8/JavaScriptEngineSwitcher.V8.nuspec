@@ -1,44 +1,42 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-  <metadata>
-    <id>JavaScriptEngineSwitcher.V8</id>
-    <version>1.2.3</version>
-	<title>JavaScript Engine Switcher for .Net: V8</title>
-    <authors>Andrey Taritsyn</authors>
-    <owners>Andrey Taritsyn</owners>
-    <licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
-    <projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://clearscript.codeplex.com) version 5.4.1 with support of V8 version 3.30.33.16). For correct working of the Microsoft ClearScript.V8 require assemblies `msvcp110.dll` and `msvcr110.dll` from the Visual C++ Redistributable for Visual Studio 2012.</description>
-    <summary>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 version 5.4.1 with support of V8 version 3.30.33.16).</summary>
-	<releaseNotes>1. Microsoft ClearScript.V8 was updated to version 5.4.1 (support of V8 version 3.30.33.16);
-2. Added the ability to change configuration settings of V8 JavaScript engine: `EnableDebugging` (default `false`), `DebugPort` (default `9222`), `DisableGlobalMembers` (default `false`), `MaxNewSpaceSize` (default `0`), `MaxOldSpaceSize` (default `0`) and `MaxExecutableSize` (default `0`).</releaseNotes>
-	<copyright>Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
-    <language>en-US</language>
-    <tags>JavaScript ECMAScript V8 ClearScript</tags>
-    <dependencies>
-      <dependency id="JavaScriptEngineSwitcher.Core" version="1.2.0" />
-    </dependencies>
-    <references>
-      <reference file="JavaScriptEngineSwitcher.V8.dll" />
-	  <reference file="ClearScript.dll" />
-    </references>
-  </metadata>
-  <files>
-    <file src="..\..\JavaScriptEngineSwitcher.V8\bin\Release\JavaScriptEngineSwitcher.V8.dll" target="lib\net40" />
-	<file src="..\..\JavaScriptEngineSwitcher.V8\bin\Release\**\JavaScriptEngineSwitcher.V8.resources.dll" target="lib\net40" />
-	<file src="..\..\Binaries\ClearScript\ClearScript.dll" target="lib\net40" />
-	<file src="..\..\Binaries\ClearScript\x86\ClearScriptV8-32.dll" target="content\ClearScript.V8" />
-	<file src="..\..\Binaries\ClearScript\x86\v8-ia32.dll" target="content\ClearScript.V8" />
-	<file src="..\..\Binaries\ClearScript\x64\ClearScriptV8-64.dll" target="content\ClearScript.V8" />
-	<file src="..\..\Binaries\ClearScript\x64\v8-x64.dll" target="content\ClearScript.V8" />
-	<file src="content\web.config.transform" target="content" />
-	<file src="content\app.config.transform" target="content" />
-	<file src="tools\Install.ps1" target="tools" />
-	<file src="tools\Uninstall.ps1" target="tools" />
-	<file src="readme.txt" />
-	<file src="..\..\Licenses\clearscript-license.txt" />
-	<file src="..\..\Licenses\v8-license.txt" />
-  </files>
+	<metadata>
+		<id>JavaScriptEngineSwitcher.V8</id>
+		<version>1.2.4</version>
+		<title>JavaScript Engine Switcher for .Net: V8</title>
+		<authors>Andrey Taritsyn</authors>
+		<owners>Andrey Taritsyn</owners>
+		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
+		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://clearscript.codeplex.com) version 5.4.1 with support of V8 version 3.30.33.16). For correct working of the Microsoft ClearScript.V8 require assemblies `msvcp110.dll` and `msvcr110.dll` from the Visual C++ Redistributable for Visual Studio 2012.</description>
+		<summary>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 version 5.4.1 with support of V8 version 3.30.33.16).</summary>
+		<copyright>Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+		<language>en-US</language>
+		<tags>JavaScript ECMAScript V8 ClearScript</tags>
+		<dependencies>
+			<dependency id="JavaScriptEngineSwitcher.Core" version="1.2.4" />
+		</dependencies>
+		<references>
+			<reference file="JavaScriptEngineSwitcher.V8.dll" />
+			<reference file="ClearScript.dll" />
+		</references>
+	</metadata>
+	<files>
+		<file src="..\..\JavaScriptEngineSwitcher.V8\bin\Release\JavaScriptEngineSwitcher.V8.dll" target="lib\net40" />
+		<file src="..\..\JavaScriptEngineSwitcher.V8\bin\Release\**\JavaScriptEngineSwitcher.V8.resources.dll" target="lib\net40" />
+		<file src="..\..\Binaries\ClearScript\ClearScript.dll" target="lib\net40" />
+		<file src="..\..\Binaries\ClearScript\x86\ClearScriptV8-32.dll" target="content\ClearScript.V8" />
+		<file src="..\..\Binaries\ClearScript\x86\v8-ia32.dll" target="content\ClearScript.V8" />
+		<file src="..\..\Binaries\ClearScript\x64\ClearScriptV8-64.dll" target="content\ClearScript.V8" />
+		<file src="..\..\Binaries\ClearScript\x64\v8-x64.dll" target="content\ClearScript.V8" />
+		<file src="content\web.config.transform" target="content" />
+		<file src="content\app.config.transform" target="content" />
+		<file src="tools\Install.ps1" target="tools" />
+		<file src="tools\Uninstall.ps1" target="tools" />
+		<file src="readme.txt" />
+		<file src="..\..\Licenses\clearscript-license.txt" />
+		<file src="..\..\Licenses\v8-license.txt" />
+	</files>
 </package>

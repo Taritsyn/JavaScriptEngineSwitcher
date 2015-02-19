@@ -12,7 +12,7 @@
 
 		[TestFixtureSetUp]
 		public abstract void SetUp();
-		
+
 		#region Array methods
 
 		[Test]
@@ -58,7 +58,7 @@
 			// Assert
 			Assert.AreEqual(targetOutput, output);
 		}
-		
+
 		[Test]
 		public virtual void ArrayForEachMethodIsSupported()
 		{
@@ -284,7 +284,7 @@ engines.forEach(function(value, index, array) {{
 		}
 
 		#endregion
-		
+
 		#region Date methods
 
 		[Test]
@@ -323,7 +323,7 @@ engines.forEach(function(value, index, array) {{
 		public virtual void FunctionBindIsSupported()
 		{
 			// Arrange
-			const string initCode = @"var a = 5, 
+			const string initCode = @"var a = 5,
 	module = {
 		a: 12,
 		getA: function() { return this.a; }
@@ -349,7 +349,7 @@ engines.forEach(function(value, index, array) {{
 		}
 
 		#endregion
-		
+
 		#region JSON methods
 
 		[Test]
@@ -435,7 +435,7 @@ greeter.name = 'Vasya'";
 			Assert.AreEqual(targetOutput3A, output3A);
 			Assert.AreEqual(targetOutput3B, output3B);
 		}
-		
+
 		[Test]
 		public virtual void ObjectKeysMethodIsSupported()
 		{

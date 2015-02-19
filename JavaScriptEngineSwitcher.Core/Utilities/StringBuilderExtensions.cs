@@ -25,9 +25,9 @@
 		}
 
 		/// <summary>
-		/// Appends the string returned by processing a composite format string, which 
-		/// contains zero or more format items, with default line terminator to this instance. 
-		/// Each format item is replaced by the string representation of a corresponding 
+		/// Appends the string returned by processing a composite format string, which
+		/// contains zero or more format items, with default line terminator to this instance.
+		/// Each format item is replaced by the string representation of a corresponding
 		/// argument in a parameter array.
 		/// </summary>
 		/// <param name="sb">Object StringBuilder</param>
