@@ -33,5 +33,6 @@ If you use the JavaScript Engine Switcher in some project, please send me a mess
 
  * [Autoprefixer for .NET](http://github.com/digitalcreations/autoprefixer) by Vegard Larsen
  * [Bundle Transformer](http://bundletransformer.codeplex.com/) by Andrey Taritsyn
+ * [Cruncher](http://github.com/JimBobSquarePants/Cruncher) by James South
  * [JSPool](http://dan.cx/projects/jspool) by Daniel Lo Nigro
  * [ReactJS.NET](http://reactjs.net/) by Daniel Lo Nigro
