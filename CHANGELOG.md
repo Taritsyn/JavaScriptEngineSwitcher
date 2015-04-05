@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## April 5, 2015 - v1.2.5
+ * In JavaScriptEngineSwitcher.ConfigurationIntelliSense updated definitions for configuration settings of Jint JavaScript engine
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.2
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version of March 29, 2015 and in configuration settings was changed default value of `MaxRecursionDepth` property from `20678` to `-1`
+
 ## February 19, 2015 - v1.2.4
  * In `JsEngineBase` class all public non-abstract methods are now is virtual
  * In JavaScriptEngineSwitcher.ConfigurationIntelliSense added definitions for configuration settings of Jurassic and Jint JavaScript engines

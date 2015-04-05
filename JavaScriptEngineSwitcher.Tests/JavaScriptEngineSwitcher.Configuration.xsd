@@ -222,7 +222,7 @@
 				<xs:documentation>Flag for whether to enable script debugging features (allows a `debugger` statement to be called in a script)</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="maxRecursionDepth" use="optional" default="20678">
+		<xs:attribute name="maxRecursionDepth" use="optional" default="-1">
 			<xs:annotation>
 				<xs:documentation>Maximum allowed depth of recursion:
  -1 - recursion without limits;

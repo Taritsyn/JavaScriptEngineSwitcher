@@ -1,7 +1,7 @@
 ﻿
 
    -------------------------------------------------------------------------
-    README file for JavaScript Engine Switcher for .Net: IntelliSense 1.2.4
+    README file for JavaScript Engine Switcher for .Net: IntelliSense 1.2.5
 
    -------------------------------------------------------------------------
 
@@ -18,8 +18,7 @@
    =============
    RELEASE NOTES
    =============
-   Added definitions for configuration settings of Jurassic and Jint
-   JavaScript engines.
+   Updated definitions for configuration settings of Jint JavaScript engine.
 
    =============
    DOCUMENTATION

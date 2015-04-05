@@ -23,7 +23,7 @@
 		///	   -1 - recursion without limits;
 		///     N - one scope function can be called no more than N times.
 		/// </summary>
-		[ConfigurationProperty("maxRecursionDepth", DefaultValue = 20678)]
+		[ConfigurationProperty("maxRecursionDepth", DefaultValue = -1)]
 		[IntegerValidator(MinValue = -1, MaxValue = int.MaxValue, ExcludeRange = false)]
 		public int MaxRecursionDepth
 		{
