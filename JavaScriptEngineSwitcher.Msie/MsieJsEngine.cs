@@ -53,18 +53,20 @@
 
 
 		/// <summary>
-		/// Constructs instance of adapter for MSIE JavaScript engine
+		/// Constructs a instance of adapter for MSIE JavaScript engine
 		/// </summary>
 		public MsieJsEngine()
 			: this(JsEngineSwitcher.Current.GetMsieConfiguration())
 		{ }
 
 		/// <summary>
-		/// Constructs instance of adapter for MSIE JavaScript engine
+		/// Constructs a instance of adapter for MSIE JavaScript engine
 		/// </summary>
-		/// <param name="msieConfig">Configuration settings of MSIE JavaScript engine</param>
-		public MsieJsEngine(MsieConfiguration msieConfig)
+		/// <param name="config">Configuration settings of MSIE JavaScript engine</param>
+		public MsieJsEngine(MsieConfiguration config)
 		{
+			MsieConfiguration msieConfig = config ?? new MsieConfiguration();
+
 			OriginalJsEngineMode engineMode =
 				Utils.GetEnumFromOtherEnum<JsEngineMode, OriginalJsEngineMode>(msieConfig.EngineMode);
 

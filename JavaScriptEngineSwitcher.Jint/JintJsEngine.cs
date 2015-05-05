@@ -31,7 +31,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Mar 29, 2015";
+		private const string ENGINE_VERSION = "Apr 30, 2015";
 
 		/// <summary>
 		/// Jint JS engine
@@ -56,21 +56,23 @@ namespace JavaScriptEngineSwitcher.Jint
 
 
 		/// <summary>
-		/// Constructs instance of adapter for Jint
+		/// Constructs a instance of adapter for Jint
 		/// </summary>
 		public JintJsEngine()
 			: this(JsEngineSwitcher.Current.GetJintConfiguration())
 		{ }
 
 		/// <summary>
-		/// Constructs instance of adapter for Jint
+		/// Constructs a instance of adapter for Jint
 		/// </summary>
-		/// <param name="jintConfig">Configuration settings of Jint JavaScript engine</param>
-		public JintJsEngine(JintConfiguration jintConfig)
+		/// <param name="config">Configuration settings of Jint JavaScript engine</param>
+		public JintJsEngine(JintConfiguration config)
 		{
+			JintConfiguration jintConfig = config ?? new JintConfiguration();
+
 			try
 			{
-				_jsEngine = new OriginalJsEngine(config => config
+				_jsEngine = new OriginalJsEngine(c => c
 					.AllowDebuggerStatement(jintConfig.EnableDebugging)
 					.LimitRecursion(jintConfig.MaxRecursionDepth)
 					.MaxStatements(jintConfig.MaxStatements)

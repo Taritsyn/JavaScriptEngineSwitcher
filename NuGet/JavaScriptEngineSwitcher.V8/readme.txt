@@ -1,7 +1,7 @@
 ﻿
 
    -----------------------------------------------------------------------
-        README file for JavaScript Engine Switcher for .Net: V8 1.2.4
+        README file for JavaScript Engine Switcher for .Net: V8 1.2.6
 
    -----------------------------------------------------------------------
 
@@ -17,6 +17,11 @@
    working of the Microsoft ClearScript.V8 require assemblies
    `msvcp110.dll` and `msvcr110.dll` from the Visual C++ Redistributable
    for Visual Studio 2012.
+
+   =============
+   RELEASE NOTES
+   =============
+   Fixed a bug #12 “V8 config can be null”.
 
    ====================
    POST-INSTALL ACTIONS

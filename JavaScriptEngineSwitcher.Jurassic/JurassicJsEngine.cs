@@ -55,18 +55,20 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 
 		/// <summary>
-		/// Constructs instance of adapter for Jurassic
+		/// Constructs a instance of adapter for Jurassic
 		/// </summary>
 		public JurassicJsEngine()
 			: this(JsEngineSwitcher.Current.GetJurassicConfiguration())
 		{ }
 
 		/// <summary>
-		/// Constructs instance of adapter for Jurassic
+		/// Constructs a instance of adapter for Jurassic
 		/// </summary>
-		/// <param name="jurassicConfig">Configuration settings of Jurassic JavaScript engine</param>
-		public JurassicJsEngine(JurassicConfiguration jurassicConfig)
+		/// <param name="config">Configuration settings of Jurassic JavaScript engine</param>
+		public JurassicJsEngine(JurassicConfiguration config)
 		{
+			JurassicConfiguration jurassicConfig = config ?? new JurassicConfiguration();
+
 			try
 			{
 				_jsEngine = new OriginalJsEngine

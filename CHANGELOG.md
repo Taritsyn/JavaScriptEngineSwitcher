@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## May 5, 2015 - v1.2.6
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.3
+ * In JavaScriptEngineSwitcher.V8 fixed a [bug #12](http://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/12) “V8 config can be null”
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version of April 30, 2015
+
 ## April 5, 2015 - v1.2.5
  * In JavaScriptEngineSwitcher.ConfigurationIntelliSense updated definitions for configuration settings of Jint JavaScript engine
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.2

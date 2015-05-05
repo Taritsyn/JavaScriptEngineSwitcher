@@ -85,18 +85,20 @@
 		}
 
 		/// <summary>
-		/// Constructs instance of adapter for Microsoft ClearScript.V8
+		/// Constructs a instance of adapter for Microsoft ClearScript.V8
 		/// </summary>
 		public V8JsEngine()
 			: this(JsEngineSwitcher.Current.GetV8Configuration())
 		{ }
 
 		/// <summary>
-		/// Constructs instance of adapter for Microsoft ClearScript.V8
+		/// Constructs a instance of adapter for Microsoft ClearScript.V8
 		/// </summary>
-		/// <param name="v8Config">Configuration settings of V8 JavaScript engine</param>
-		public V8JsEngine(V8Configuration v8Config)
+		/// <param name="config">Configuration settings of V8 JavaScript engine</param>
+		public V8JsEngine(V8Configuration config)
 		{
+			V8Configuration v8Config = config ?? new V8Configuration();
+
 			V8RuntimeConstraints constraints = new V8RuntimeConstraints
 			{
 				MaxNewSpaceSize = v8Config.MaxNewSpaceSize,
