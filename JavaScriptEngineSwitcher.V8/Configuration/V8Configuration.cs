@@ -40,7 +40,7 @@
 		}
 
 		/// <summary>
-		/// Gets or sets a maximum size of the new object heap in bytes
+		/// Gets or sets a maximum size of the new object heap in mebibytes
 		/// </summary>
 		[ConfigurationProperty("maxNewSpaceSize", DefaultValue = 0)]
 		[IntegerValidator(MinValue = 0, MaxValue = int.MaxValue, ExcludeRange = false)]
@@ -51,7 +51,7 @@
 		}
 
 		/// <summary>
-		/// Gets or sets a maximum size of the old object heap in bytes
+		/// Gets or sets a maximum size of the old object heap in mebibytes
 		/// </summary>
 		[ConfigurationProperty("maxOldSpaceSize", DefaultValue = 0)]
 		[IntegerValidator(MinValue = 0, MaxValue = int.MaxValue, ExcludeRange = false)]
@@ -62,7 +62,7 @@
 		}
 
 		/// <summary>
-		/// Gets or sets a maximum size of the executable code heap in bytes
+		/// Gets or sets a maximum size of the executable code heap in mebibytes
 		/// </summary>
 		[ConfigurationProperty("maxExecutableSize", DefaultValue = 0)]
 		[IntegerValidator(MinValue = 0, MaxValue = int.MaxValue, ExcludeRange = false)]

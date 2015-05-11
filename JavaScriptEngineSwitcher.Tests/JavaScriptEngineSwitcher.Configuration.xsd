@@ -155,7 +155,7 @@
 		</xs:attribute>
 		<xs:attribute name="maxNewSpaceSize" use="optional" default="0">
 			<xs:annotation>
-				<xs:documentation>Maximum size of the new object heap in bytes</xs:documentation>
+				<xs:documentation>Maximum size of the new object heap in mebibytes</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:int">
@@ -166,7 +166,7 @@
 		</xs:attribute>
 		<xs:attribute name="maxOldSpaceSize" use="optional" default="0">
 			<xs:annotation>
-				<xs:documentation>Maximum size of the old object heap in bytes</xs:documentation>
+				<xs:documentation>Maximum size of the old object heap in mebibytes</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:int">
@@ -177,7 +177,7 @@
 		</xs:attribute>
 		<xs:attribute name="maxExecutableSize" use="optional" default="0">
 			<xs:annotation>
-				<xs:documentation>Maximum size of the executable code heap in bytes</xs:documentation>
+				<xs:documentation>Maximum size of the executable code heap in mebibytes</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:int">
