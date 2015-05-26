@@ -31,7 +31,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Apr 30, 2015";
+		private const string ENGINE_VERSION = "2.5.0";
 
 		/// <summary>
 		/// Jint JS engine
@@ -163,6 +163,8 @@ namespace JavaScriptEngineSwitcher.Jint
 				jsException)
 			{
 				Category = category,
+				LineNumber = jsException.LineNumber,
+				ColumnNumber = jsException.Column,
 				Source = jsException.Source,
 				HelpLink = jsException.HelpLink
 			};

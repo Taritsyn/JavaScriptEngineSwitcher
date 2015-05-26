@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## May 26, 2015 - v1.2.8
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.5.0
+
 ## May 11, 2015 - v1.2.7
  * In JavaScriptEngineSwitcher.ConfigurationIntelliSense updated definitions for configuration settings of V8 JavaScript engine
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.2 (support of V8 version 4.2.77.18)
