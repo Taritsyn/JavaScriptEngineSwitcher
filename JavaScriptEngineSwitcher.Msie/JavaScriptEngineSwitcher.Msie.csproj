@@ -39,9 +39,9 @@
     <AssemblyOriginatorKeyFile>..\JavaScriptEngineSwitcher.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MsieJavaScriptEngine, Version=1.5.3.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MsieJavaScriptEngine.1.5.3\lib\net40\MsieJavaScriptEngine.dll</HintPath>
+    <Reference Include="MsieJavaScriptEngine, Version=1.5.4.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
+      <HintPath>..\packages\MsieJavaScriptEngine.1.5.4\lib\net40\MsieJavaScriptEngine.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

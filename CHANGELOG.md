@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## June 28, 2015 - v1.2.9
+ * In JavaScriptEngineSwitcher.ConfigurationIntelliSense updated definitions for configuration settings of MSIE and Jint JavaScript engines
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.4 and in configuration settings added 2 new properties: `UseEcmaScript5Polyfill` (default `false`) and `UseJson2Library` (default `false`)
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.2.1 (support of V8 version 4.2.77.18)
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of June 23, 2015
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version of June 24, 2015 and in configuration settings added one new property - `AllowDebuggerStatement` (default `false`)
+
 ## May 26, 2015 - v1.2.8
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.5.0
 

@@ -6,6 +6,7 @@
 	using OriginalJsEngineLoadException = MsieJavaScriptEngine.JsEngineLoadException;
 	using OriginalJsEngineMode = MsieJavaScriptEngine.JsEngineMode;
 	using OriginalJsRuntimeException = MsieJavaScriptEngine.JsRuntimeException;
+	using OriginalJsEngineSettings = MsieJavaScriptEngine.JsEngineSettings;
 	using OriginalTypeConverter = MsieJavaScriptEngine.Utilities.TypeConverter;
 	using OriginalUndefined = MsieJavaScriptEngine.Undefined;
 
@@ -67,12 +68,15 @@
 		{
 			MsieConfiguration msieConfig = config ?? new MsieConfiguration();
 
-			OriginalJsEngineMode engineMode =
-				Utils.GetEnumFromOtherEnum<JsEngineMode, OriginalJsEngineMode>(msieConfig.EngineMode);
-
 			try
 			{
-				_jsEngine = new OriginalJsEngine(engineMode, true, true);
+				_jsEngine = new OriginalJsEngine(new OriginalJsEngineSettings
+				{
+					EngineMode = Utils.GetEnumFromOtherEnum<JsEngineMode, OriginalJsEngineMode>(
+						msieConfig.EngineMode),
+					UseEcmaScript5Polyfill = msieConfig.UseEcmaScript5Polyfill,
+					UseJson2Library = msieConfig.UseJson2Library
+				});
 				_engineVersion = _jsEngine.Mode;
 			}
 			catch (OriginalJsEngineLoadException e)

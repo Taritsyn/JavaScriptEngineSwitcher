@@ -31,7 +31,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "2.5.0";
+		private const string ENGINE_VERSION = "Jun 24, 2015";
 
 		/// <summary>
 		/// Jint JS engine
@@ -73,7 +73,8 @@ namespace JavaScriptEngineSwitcher.Jint
 			try
 			{
 				_jsEngine = new OriginalJsEngine(c => c
-					.AllowDebuggerStatement(jintConfig.EnableDebugging)
+					.AllowDebuggerStatement(jintConfig.AllowDebuggerStatement)
+					.DebugMode(jintConfig.EnableDebugging)
 					.LimitRecursion(jintConfig.MaxRecursionDepth)
 					.MaxStatements(jintConfig.MaxStatements)
 					.Strict(jintConfig.StrictMode)

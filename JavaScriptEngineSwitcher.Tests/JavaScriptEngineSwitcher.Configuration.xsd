@@ -124,6 +124,16 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
+		<xs:attribute name="useEcmaScript5Polyfill" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to use the ECMAScript 5 Polyfill</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="useJson2Library" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to use the JSON2 library</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<!--/ MSIE configuration settings -->
 
@@ -217,9 +227,14 @@
 		<xs:annotation>
 			<xs:documentation>Configuration settings of Jint JavaScript engine</xs:documentation>
 		</xs:annotation>
+		<xs:attribute name="allowDebuggerStatement" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to allow the `debugger` statement to be called in a script</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="enableDebugging" type="Boolean_SchemaType" use="optional" default="false">
 			<xs:annotation>
-				<xs:documentation>Flag for whether to enable script debugging features (allows a `debugger` statement to be called in a script)</xs:documentation>
+				<xs:documentation>Flag for whether to enable debug mode</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="maxRecursionDepth" use="optional" default="-1">

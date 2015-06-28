@@ -8,8 +8,18 @@
 	public sealed class JintConfiguration : ConfigurationSection
 	{
 		/// <summary>
-		/// Gets or sets a flag for whether to enable script debugging features
-		/// (allows a <code>debugger</code> statement to be called in a script)
+		/// Gets or sets a flag for whether to allow the <code>debugger</code> statement
+		/// to be called in a script
+		/// </summary>
+		[ConfigurationProperty("allowDebuggerStatement", DefaultValue = false)]
+		public bool AllowDebuggerStatement
+		{
+			get { return (bool)this["allowDebuggerStatement"]; }
+			set { this["allowDebuggerStatement"] = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets a flag for whether to enable debug mode
 		/// </summary>
 		[ConfigurationProperty("enableDebugging", DefaultValue = false)]
 		public bool EnableDebugging

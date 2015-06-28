@@ -16,5 +16,25 @@
 			get { return (JsEngineMode)this["engineMode"]; }
 			set { this["engineMode"] = value; }
 		}
+
+		/// <summary>
+		/// Gets or sets a flag for whether to use the ECMAScript 5 Polyfill
+		/// </summary>
+		[ConfigurationProperty("useEcmaScript5Polyfill", DefaultValue = false)]
+		public bool UseEcmaScript5Polyfill
+		{
+			get { return (bool)this["useEcmaScript5Polyfill"]; }
+			set { this["useEcmaScript5Polyfill"] = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets a flag for whether to use the JSON2 library
+		/// </summary>
+		[ConfigurationProperty("useJson2Library", DefaultValue = false)]
+		public bool UseJson2Library
+		{
+			get { return (bool)this["useJson2Library"]; }
+			set { this["useJson2Library"] = value; }
+		}
 	}
 }

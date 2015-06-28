@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: MSIE 1.2.6
+      README file for JavaScript Engine Switcher for .Net: MSIE 1.2.9
 
    ----------------------------------------------------------------------
 
@@ -20,7 +20,10 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 1.5.3.
+   1. Added support of MSIE JavaScript Engine version 1.5.4;
+   2. In configuration settings of MSIE JavaScript Engine added 2 new
+      properties: `UseEcmaScript5Polyfill` (default `false`) and
+      `UseJson2Library` (default `false`).
 
    =============
    DOCUMENTATION
