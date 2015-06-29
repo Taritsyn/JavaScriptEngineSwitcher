@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## June 29, 2015 - v1.2.10
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.5
+
 ## June 28, 2015 - v1.2.9
  * In JavaScriptEngineSwitcher.ConfigurationIntelliSense updated definitions for configuration settings of MSIE and Jint JavaScript engines
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.4 and in configuration settings added 2 new properties: `UseEcmaScript5Polyfill` (default `false`) and `UseJson2Library` (default `false`)
