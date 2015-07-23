@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## July 23, 2015 - v1.2.11
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.6
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of July 14, 2015
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version of July 8, 2015
+
 ## June 29, 2015 - v1.2.10
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.5.5
 
