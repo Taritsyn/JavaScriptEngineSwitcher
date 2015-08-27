@@ -1,7 +1,7 @@
 ﻿
 
    -----------------------------------------------------------------------
-        README file for JavaScript Engine Switcher for .Net: V8 1.2.9
+        README file for JavaScript Engine Switcher for .Net: V8 1.3.0
 
    -----------------------------------------------------------------------
 
@@ -10,30 +10,33 @@
 
    ===========
    DESCRIPTION
-   ===========   
-   JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for 
+   ===========
+   JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for
    the Microsoft ClearScript.V8 (http://clearscript.codeplex.com) version
-   5.4.2.1 with support of V8 version 4.2.77.18. For correct
+   5.4.3 with support of V8 version 4.4.63.29. For correct
    working of the Microsoft ClearScript.V8 require assemblies
-   `msvcp110.dll` and `msvcr110.dll` from the Visual C++ Redistributable
-   for Visual Studio 2012.
+   `msvcp120.dll` and `msvcr120.dll` from the Visual C++ Redistributable
+   Packages for Visual Studio 2013.
 
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 5.4.2.1 (support of V8
-   version 4.2.77.18).
+   1. Microsoft ClearScript.V8 was updated to version 5.4.3 (support of V8
+      version 4.4.63.29);
+   2. New version of the Microsoft ClearScript.V8 requires assemblies
+      `msvcp120.dll` and `msvcr120.dll` from the Visual C++
+      Redistributable Packages for Visual Studio 2013.
 
    ====================
    POST-INSTALL ACTIONS
-   ==================== 
-   If in your system does not assemblies `msvcp110.dll` and 
-   `msvcr110.dll`, then download and install the Visual C++ 
-   Redistributable for Visual Studio 2012
-   (http://www.microsoft.com/en-us/download/details.aspx?id=30679)
+   ====================
+   If in your system does not assemblies `msvcp120.dll` and
+   `msvcr120.dll`, then download and install the Visual C++
+   Redistributable Packages for Visual Studio 2013
+   (http://www.microsoft.com/en-us/download/details.aspx?id=40784).
 
    =============
    DOCUMENTATION
    =============
-   See documentation on GitHub - 
+   See documentation on GitHub -
    http://github.com/Taritsyn/JavaScriptEngineSwitcher
