@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## November 5, 2015 - v1.3.1
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of August 24, 2015
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.7.1
+
 ## August 27, 2015 - v1.3.0
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.3 (support of V8 version 4.4.63.29) and now requires assemblies `msvcp120.dll` and `msvcr120.dll` from the [Visual C++ Redistributable Packages for Visual Studio 2013](http://www.microsoft.com/en-us/download/details.aspx?id=40784)
 

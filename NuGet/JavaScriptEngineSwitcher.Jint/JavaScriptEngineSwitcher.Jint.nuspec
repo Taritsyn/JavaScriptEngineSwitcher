@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Jint</id>
-		<version>1.2.11</version>
+		<version>1.3.1</version>
 		<title>JavaScript Engine Switcher for .Net: Jint</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -10,24 +10,23 @@
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version of July 8, 2015).</description>
-		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version of July 8, 2015).</summary>
-		<releaseNotes>Jint was updated to version of July 8, 2015.</releaseNotes>
+		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.7.1).</description>
+		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version 2.7.1).</summary>
+		<releaseNotes>Jint was updated to version 2.7.1.</releaseNotes>
 		<copyright>Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScript ECMAScript Jint</tags>
 		<dependencies>
 			<dependency id="JavaScriptEngineSwitcher.Core" version="1.2.4" />
+			<dependency id="Jint" version="2.7.1" />
 		</dependencies>
 		<references>
 			<reference file="JavaScriptEngineSwitcher.Jint.dll" />
-			<reference file="Jint.dll" />
 		</references>
 	</metadata>
 	<files>
 		<file src="..\..\JavaScriptEngineSwitcher.Jint\bin\Release\JavaScriptEngineSwitcher.Jint.dll" target="lib\net40" />
 		<file src="..\..\JavaScriptEngineSwitcher.Jint\bin\Release\**\JavaScriptEngineSwitcher.Jint.resources.dll" target="lib\net40" />
-		<file src="..\..\Binaries\Jint\Jint.dll" target="lib\net40" />
 		<file src="content\web.config.transform" target="content" />
 		<file src="content\app.config.transform" target="content" />
 		<file src="readme.txt" />
