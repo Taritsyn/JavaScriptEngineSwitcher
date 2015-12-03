@@ -7,21 +7,16 @@ if ($project.Type -eq "Web Site") {
 	$projectDirectoryPath = $project.Properties.Item("FullPath").Value
 	$binDirectoryPath = Join-Path $projectDirectoryPath "bin"
 	$assemblyDirectoryPath = Join-Path $projectDirectoryPath $assemblyDirectoryName
-	
+
 	if (Test-Path $assemblyDirectoryPath) {
 		if (!(Test-Path $binDirectoryPath)) {
-			New-Item -ItemType Directory -Path $binDirectoryPath
+			New-Item -ItemType Directory -Force -Path $binDirectoryPath
 		}
-		
+
 		Move-Item $assemblyDirectoryPath $binDirectoryPath -Force
 	}
 }
 else {
 	$assemblyDirectoryItem = $project.ProjectItems.Item($assemblyDirectoryName)
-	
-	foreach ($assemblyFileName in $assemblyFileNames) {
-		$assemblyItem = $assemblyDirectoryItem.ProjectItems.Item($assemblyFileName)
-		$assemblyItem.Properties.Item("BuildAction").Value = 0
-		$assemblyItem.Properties.Item("CopyToOutputDirectory").Value = 2
-	}
+	$assemblyDirectoryItem.Delete()
 }

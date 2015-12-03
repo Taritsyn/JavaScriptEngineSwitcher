@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## December 3, 2015 - v1.4.0
+ * In JavaScriptEngineSwitcher.ConfigurationIntelliSense updated definitions for configuration settings of MSIE JavaScript engine
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.6.0 and `ChakraJsRt` mode was renamed to `ChakraIeJsRt`
+ * In JavaScriptEngineSwitcher.V8 NuGet package solved the problem with restoring native assemblies
+
 ## November 5, 2015 - v1.3.1
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of August 24, 2015
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.7.1

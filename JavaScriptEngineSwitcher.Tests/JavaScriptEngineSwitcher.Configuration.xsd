@@ -116,9 +116,14 @@
 							<xs:documentation>ActiveScript version of Chakra JavaScript engine (supports ECMAScript 3 with possibility of using the ECMAScript 5 Polyfill and the JSON2 library). Requires Internet Explorer 9 or higher on the machine.</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
-					<xs:enumeration value="ChakraJsRt">
+					<xs:enumeration value="ChakraIeJsRt">
 						<xs:annotation>
-							<xs:documentation>JsRT version of Chakra JavaScript engine (supports ECMAScript 5). Requires Internet Explorer 11 or higher on the machine.</xs:documentation>
+							<xs:documentation>“Legacy” JsRT version of Chakra JavaScript engine (supports ECMAScript 5). Requires Internet Explorer 11 or higher on the machine.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="ChakraEdgeJsRt">
+						<xs:annotation>
+							<xs:documentation>“Edge” JsRT version of Chakra JavaScript engine (supports ECMAScript 5). Requires Microsoft Edge on the machine.</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
 				</xs:restriction>

@@ -1,7 +1,7 @@
 ﻿
 
    -------------------------------------------------------------------------
-    README file for JavaScript Engine Switcher for .Net: IntelliSense 1.2.9
+    README file for JavaScript Engine Switcher for .Net: IntelliSense 1.4.0
 
    -------------------------------------------------------------------------
 
@@ -18,8 +18,7 @@
    =============
    RELEASE NOTES
    =============
-   Updated definitions for configuration settings of MSIE and Jint
-   JavaScript engines.
+   Updated definitions for configuration settings of MSIE JavaScript engine.
 
    =============
    DOCUMENTATION

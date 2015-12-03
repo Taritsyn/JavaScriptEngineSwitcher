@@ -1,1 +1,1 @@
-..\nuget.exe pack ..\JavaScriptEngineSwitcher.ConfigurationIntelliSense\JavaScriptEngineSwitcher.ConfigurationIntelliSense.nuspec
+..\..\.nuget\nuget.exe pack ..\JavaScriptEngineSwitcher.ConfigurationIntelliSense\JavaScriptEngineSwitcher.ConfigurationIntelliSense.nuspec
