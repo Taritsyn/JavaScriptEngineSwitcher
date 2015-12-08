@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.V8</id>
-		<version>1.4.0</version>
+		<version>1.4.1</version>
 		<title>JavaScript Engine Switcher for .Net: V8</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -10,9 +10,9 @@
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://clearscript.codeplex.com) version 5.4.3 with support of V8 version 4.4.63.29). For correct working of the Microsoft ClearScript.V8 require assemblies `msvcp120.dll` and `msvcr120.dll` from the Visual C++ Redistributable Packages for Visual Studio 2013.</description>
-		<summary>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 version 5.4.3 with support of V8 version 4.4.63.29).</summary>
-		<releaseNotes>In NuGet package solved the problem with restoring native assemblies.</releaseNotes>
+		<description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://clearscript.codeplex.com) version 5.4.4 with support of V8 version 4.7.80.25). For correct working of the Microsoft ClearScript.V8 require assemblies `msvcp120.dll` and `msvcr120.dll` from the Visual C++ Redistributable Packages for Visual Studio 2013.</description>
+		<summary>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 version 5.4.4 with support of V8 version 4.7.80.25).</summary>
+		<releaseNotes>Microsoft ClearScript.V8 was updated to version 5.4.4 (support of V8 version 4.7.80.25).</releaseNotes>
 		<copyright>Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScript ECMAScript V8 ClearScript</tags>

@@ -28,7 +28,7 @@
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "4.4.63.29";
+		private const string ENGINE_VERSION = "4.7.80.25";
 
 		/// <summary>
 		/// JS-engine

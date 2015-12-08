@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## December 8, 2015 - v1.4.1
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.4 (support of V8 version 4.7.80.25)
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version of December 2, 2015
+
 ## December 3, 2015 - v1.4.0
  * In JavaScriptEngineSwitcher.ConfigurationIntelliSense updated definitions for configuration settings of MSIE JavaScript engine
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.6.0 and `ChakraJsRt` mode was renamed to `ChakraIeJsRt`
