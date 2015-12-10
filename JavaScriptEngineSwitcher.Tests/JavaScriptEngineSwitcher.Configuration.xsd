@@ -118,7 +118,7 @@
 					</xs:enumeration>
 					<xs:enumeration value="ChakraIeJsRt">
 						<xs:annotation>
-							<xs:documentation>“Legacy” JsRT version of Chakra JavaScript engine (supports ECMAScript 5). Requires Internet Explorer 11 or higher on the machine.</xs:documentation>
+							<xs:documentation>“IE” JsRT version of Chakra JavaScript engine (supports ECMAScript 5). Requires Internet Explorer 11 or Microsoft Edge on the machine.</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
 					<xs:enumeration value="ChakraEdgeJsRt">

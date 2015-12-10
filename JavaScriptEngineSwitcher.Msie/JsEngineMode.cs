@@ -25,8 +25,8 @@
 		ChakraActiveScript,
 
 		/// <summary>
-		/// “Legacy” JsRT version of Chakra JavaScript engine (supports ECMAScript 5).
-		/// Requires Internet Explorer 11 or higher on the machine.
+		/// “IE” JsRT version of Chakra JavaScript engine (supports ECMAScript 5).
+		/// Requires Internet Explorer 11 or Microsoft Edge on the machine.
 		/// </summary>
 		ChakraIeJsRt,
 
