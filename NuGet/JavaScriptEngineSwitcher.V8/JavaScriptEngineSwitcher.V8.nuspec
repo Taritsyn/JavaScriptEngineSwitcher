@@ -25,8 +25,8 @@
 		</references>
 	</metadata>
 	<files>
-		<file src="..\..\JavaScriptEngineSwitcher.V8\bin\Release\JavaScriptEngineSwitcher.V8.dll" target="lib\net40" />
-		<file src="..\..\JavaScriptEngineSwitcher.V8\bin\Release\**\JavaScriptEngineSwitcher.V8.resources.dll" target="lib\net40" />
+		<file src="..\..\src\JavaScriptEngineSwitcher.V8\bin\Release\JavaScriptEngineSwitcher.V8.dll" target="lib\net40" />
+		<file src="..\..\src\JavaScriptEngineSwitcher.V8\bin\Release\**\JavaScriptEngineSwitcher.V8.resources.dll" target="lib\net40" />
 		<file src="..\..\Binaries\ClearScript\ClearScript.dll" target="lib\net40" />
 		<file src="..\..\Binaries\ClearScript\x86\ClearScriptV8-32.dll" target="content\ClearScript.V8" />
 		<file src="..\..\Binaries\ClearScript\x86\v8-ia32.dll" target="content\ClearScript.V8" />

@@ -1,24 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Core", "JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj", "{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Msie", "JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj", "{50AD3B1C-A295-42AC-979A-CD244429983C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.V8", "JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj", "{1BAEC601-B244-48D3-BE27-351E133EEF73}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Tests", "JavaScriptEngineSwitcher.Tests\JavaScriptEngineSwitcher.Tests.csproj", "{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Jurassic", "JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj", "{2E667689-F072-401F-A9A5-09F1A2ED025C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Jint", "JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.csproj", "{26ECE52E-991F-4E12-BB88-467201038EFF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3261AD87-FA7B-4B2B-9121-6E58F8B88B23}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FF05A998-0DDD-40EC-9B92-7A8FF1AA9888}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0A72641D-5115-4199-9496-973092040ADF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Core", "src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj", "{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Jint", "src\JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.csproj", "{26ECE52E-991F-4E12-BB88-467201038EFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Jurassic", "src\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj", "{2E667689-F072-401F-A9A5-09F1A2ED025C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Msie", "src\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj", "{50AD3B1C-A295-42AC-979A-CD244429983C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.V8", "src\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj", "{1BAEC601-B244-48D3-BE27-351E133EEF73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Tests", "test\JavaScriptEngineSwitcher.Tests\JavaScriptEngineSwitcher.Tests.csproj", "{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +34,14 @@ Global
 		{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26ECE52E-991F-4E12-BB88-467201038EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26ECE52E-991F-4E12-BB88-467201038EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26ECE52E-991F-4E12-BB88-467201038EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26ECE52E-991F-4E12-BB88-467201038EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{50AD3B1C-A295-42AC-979A-CD244429983C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{50AD3B1C-A295-42AC-979A-CD244429983C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50AD3B1C-A295-42AC-979A-CD244429983C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,16 +54,16 @@ Global
 		{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C91107D-6DC4-41FC-B976-0C76E1DFD52A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E667689-F072-401F-A9A5-09F1A2ED025C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26ECE52E-991F-4E12-BB88-467201038EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26ECE52E-991F-4E12-BB88-467201038EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26ECE52E-991F-4E12-BB88-467201038EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26ECE52E-991F-4E12-BB88-467201038EFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410} = {FF05A998-0DDD-40EC-9B92-7A8FF1AA9888}
+		{26ECE52E-991F-4E12-BB88-467201038EFF} = {FF05A998-0DDD-40EC-9B92-7A8FF1AA9888}
+		{2E667689-F072-401F-A9A5-09F1A2ED025C} = {FF05A998-0DDD-40EC-9B92-7A8FF1AA9888}
+		{50AD3B1C-A295-42AC-979A-CD244429983C} = {FF05A998-0DDD-40EC-9B92-7A8FF1AA9888}
+		{1BAEC601-B244-48D3-BE27-351E133EEF73} = {FF05A998-0DDD-40EC-9B92-7A8FF1AA9888}
+		{7C91107D-6DC4-41FC-B976-0C76E1DFD52A} = {0A72641D-5115-4199-9496-973092040ADF}
 	EndGlobalSection
 EndGlobal

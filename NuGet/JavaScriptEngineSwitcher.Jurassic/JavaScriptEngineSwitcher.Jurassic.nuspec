@@ -25,8 +25,8 @@
 		</references>
 	</metadata>
 	<files>
-		<file src="..\..\JavaScriptEngineSwitcher.Jurassic\bin\Release\JavaScriptEngineSwitcher.Jurassic.dll" target="lib\net40" />
-		<file src="..\..\JavaScriptEngineSwitcher.Jurassic\bin\Release\**\JavaScriptEngineSwitcher.Jurassic.resources.dll" target="lib\net40" />
+		<file src="..\..\src\JavaScriptEngineSwitcher.Jurassic\bin\Release\JavaScriptEngineSwitcher.Jurassic.dll" target="lib\net40" />
+		<file src="..\..\src\JavaScriptEngineSwitcher.Jurassic\bin\Release\**\JavaScriptEngineSwitcher.Jurassic.resources.dll" target="lib\net40" />
 		<file src="..\..\Binaries\Jurassic\Jurassic.dll" target="lib\net40" />
 		<file src="content\web.config.transform" target="content" />
 		<file src="content\app.config.transform" target="content" />

@@ -1,2 +1,2 @@
-\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe ..\..\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj /p:Configuration=Release
+\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe ..\..\src\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj /p:Configuration=Release
 ..\..\.nuget\nuget.exe pack ..\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.nuspec

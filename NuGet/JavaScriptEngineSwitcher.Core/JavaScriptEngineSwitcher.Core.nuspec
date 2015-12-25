@@ -21,8 +21,8 @@
 		</references>
 	</metadata>
 	<files>
-		<file src="..\..\JavaScriptEngineSwitcher.Core\bin\Release\JavaScriptEngineSwitcher.Core.dll" target="lib\net40" />
-		<file src="..\..\JavaScriptEngineSwitcher.Core\bin\Release\**\JavaScriptEngineSwitcher.Core.resources.dll" target="lib\net40" />
+		<file src="..\..\src\JavaScriptEngineSwitcher.Core\bin\Release\JavaScriptEngineSwitcher.Core.dll" target="lib\net40" />
+		<file src="..\..\src\JavaScriptEngineSwitcher.Core\bin\Release\**\JavaScriptEngineSwitcher.Core.resources.dll" target="lib\net40" />
 		<file src="content\web.config.transform" target="content" />
 		<file src="content\app.config.transform" target="content" />
 		<file src="readme.txt" />

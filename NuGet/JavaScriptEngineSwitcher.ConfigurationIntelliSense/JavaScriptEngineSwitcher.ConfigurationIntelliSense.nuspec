@@ -18,6 +18,6 @@
 		<tags>App.config Web.config IntelliSense</tags>
 	</metadata>
 	<files>
-		<file src="..\..\JavaScriptEngineSwitcher.Tests\JavaScriptEngineSwitcher.Configuration.xsd" target="content" />
+		<file src="..\..\test\JavaScriptEngineSwitcher.Tests\JavaScriptEngineSwitcher.Configuration.xsd" target="content" />
 	</files>
 </package>

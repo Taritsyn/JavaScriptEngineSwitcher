@@ -33,8 +33,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj">
+      <Project>{5c903eef-bad1-43b8-bfe2-e4ee4d204410}</Project>
+      <Name>JavaScriptEngineSwitcher.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.csproj">
+      <Project>{26ece52e-991f-4e12-bb88-467201038eff}</Project>
+      <Name>JavaScriptEngineSwitcher.Jint</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj">
+      <Project>{2e667689-f072-401f-a9a5-09f1a2ed025c}</Project>
+      <Name>JavaScriptEngineSwitcher.Jurassic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj">
+      <Project>{50ad3b1c-a295-42ac-979a-cd244429983c}</Project>
+      <Name>JavaScriptEngineSwitcher.Msie</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj">
+      <Project>{1baec601-b244-48d3-be27-351e133eef73}</Project>
+      <Name>JavaScriptEngineSwitcher.V8</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,29 +80,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj">
-      <Project>{5c903eef-bad1-43b8-bfe2-e4ee4d204410}</Project>
-      <Name>JavaScriptEngineSwitcher.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.csproj">
-      <Project>{26ece52e-991f-4e12-bb88-467201038eff}</Project>
-      <Name>JavaScriptEngineSwitcher.Jint</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj">
-      <Project>{2e667689-f072-401f-a9a5-09f1a2ed025c}</Project>
-      <Name>JavaScriptEngineSwitcher.Jurassic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj">
-      <Project>{50ad3b1c-a295-42ac-979a-cd244429983c}</Project>
-      <Name>JavaScriptEngineSwitcher.Msie</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj">
-      <Project>{1baec601-b244-48d3-be27-351e133eef73}</Project>
-      <Name>JavaScriptEngineSwitcher.V8</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\power.js" />

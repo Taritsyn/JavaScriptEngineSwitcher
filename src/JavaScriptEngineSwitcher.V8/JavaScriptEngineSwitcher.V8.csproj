@@ -34,12 +34,18 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\JavaScriptEngineSwitcher.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\JavaScriptEngineSwitcher.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj">
+      <Project>{5c903eef-bad1-43b8-bfe2-e4ee4d204410}</Project>
+      <Name>JavaScriptEngineSwitcher.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="ClearScript, Version=5.4.4.0, Culture=neutral, PublicKeyToken=935d0c957da47c73, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\ClearScript\ClearScript.dll</HintPath>
+      <HintPath>..\..\Binaries\ClearScript\ClearScript.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -64,26 +70,8 @@
     <Compile Include="V8JsEngine.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\JavaScriptEngineSwitcher.snk">
+    <None Include="..\..\JavaScriptEngineSwitcher.snk">
       <Link>JavaScriptEngineSwitcher.snk</Link>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Binaries\ClearScript\x86\ClearScriptV8-32.dll">
-      <Link>ClearScript.V8\ClearScriptV8-32.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj">
-      <Project>{5c903eef-bad1-43b8-bfe2-e4ee4d204410}</Project>
-      <Name>JavaScriptEngineSwitcher.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Binaries\ClearScript\x86\v8-ia32.dll">
-      <Link>ClearScript.V8\v8-ia32.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -99,13 +87,25 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Binaries\ClearScript\x64\ClearScriptV8-64.dll">
+    <None Include="..\..\Binaries\ClearScript\x86\ClearScriptV8-32.dll">
+      <Link>ClearScript.V8\ClearScriptV8-32.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Binaries\ClearScript\x64\ClearScriptV8-64.dll">
       <Link>ClearScript.V8\ClearScriptV8-64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Binaries\ClearScript\x64\v8-x64.dll">
+    <None Include="..\..\Binaries\ClearScript\x86\v8-ia32.dll">
+      <Link>ClearScript.V8\v8-ia32.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Binaries\ClearScript\x64\v8-x64.dll">
       <Link>ClearScript.V8\v8-x64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

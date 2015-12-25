@@ -1,2 +1,2 @@
-\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe ..\..\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj /p:Configuration=Release
+\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe ..\..\src\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj /p:Configuration=Release
 ..\..\.nuget\nuget.exe pack ..\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.nuspec

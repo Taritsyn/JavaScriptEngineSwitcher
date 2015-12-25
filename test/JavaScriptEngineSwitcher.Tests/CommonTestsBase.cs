@@ -428,7 +428,7 @@
 		{
 			// Arrange
 			const string functionCode = @"function concatenate() {
-	var result = '', 
+	var result = '',
 		argumentIndex,
 		argumentCount = arguments.length
 		;
