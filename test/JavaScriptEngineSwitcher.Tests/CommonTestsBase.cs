@@ -8,12 +8,9 @@
 
 	using Core;
 
-	public abstract class CommonTestsBase
+	public abstract class CommonTestsBase : FileSystemTestBase
 	{
-		protected IJsEngine _jsEngine;
-
-		[TestFixtureSetUp]
-		public abstract void SetUp();
+		protected abstract IJsEngine CreateJsEngine();
 
 		#region Evaluation of code
 
@@ -25,7 +22,12 @@
 			var targetOutput = Undefined.Value;
 
 			// Act
-			var output = _jsEngine.Evaluate(input);
+			object output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output = jsEngine.Evaluate(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -39,7 +41,12 @@
 			const object targetOutput = null;
 
 			// Act
-			var output = _jsEngine.Evaluate(input);
+			object output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output = jsEngine.Evaluate(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -56,8 +63,14 @@
 			const bool targetOutput2 = false;
 
 			// Act
-			var output1 = _jsEngine.Evaluate<bool>(input1);
-			var output2 = _jsEngine.Evaluate<bool>(input2);
+			bool output1;
+			bool output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output1 = jsEngine.Evaluate<bool>(input1);
+				output2 = jsEngine.Evaluate<bool>(input2);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -72,7 +85,12 @@
 			const int targetOutput = 36;
 
 			// Act
-			var output = _jsEngine.Evaluate<int>(input);
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output = jsEngine.Evaluate<int>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -86,7 +104,12 @@
 			const double targetOutput = 3.36;
 
 			// Act
-			var output = Math.Round(_jsEngine.Evaluate<double>(input), 2);
+			double output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output = Math.Round(jsEngine.Evaluate<double>(input), 2);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -100,7 +123,12 @@
 			const string targetOutput = "Hello, Vasya?";
 
 			// Act
-			var output = _jsEngine.Evaluate<string>(input);
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output = jsEngine.Evaluate<string>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -121,8 +149,13 @@
 			const int targetOutput = 16;
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = _jsEngine.Evaluate<int>(input);
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.Evaluate<int>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -132,13 +165,18 @@
 		public virtual void ExecutionOfFileIsCorrect()
 		{
 			// Arrange
-			string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"../../Resources/square.js");
+			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "JavaScriptEngineSwitcher.Tests/Files/square.js"));
 			const string input = "square(6);";
 			const int targetOutput = 36;
 
 			// Act
-			_jsEngine.ExecuteFile(filePath);
-			var output = _jsEngine.Evaluate<int>(input);
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.ExecuteFile(filePath);
+				output = jsEngine.Evaluate<int>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -153,8 +191,13 @@
 			const int targetOutput = 125;
 
 			// Act
-			_jsEngine.ExecuteResource(resourceName, GetType());
-			var output = _jsEngine.Evaluate<int>(input);
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.ExecuteResource(resourceName, GetType());
+				output = jsEngine.Evaluate<int>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -169,8 +212,13 @@
 			const int targetOutput = 64;
 
 			// Act
-			_jsEngine.ExecuteResource(resourceName, Assembly.GetExecutingAssembly());
-			var output = _jsEngine.Evaluate<int>(input);
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.ExecuteResource(resourceName, Assembly.GetExecutingAssembly());
+				output = jsEngine.Evaluate<int>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -190,8 +238,13 @@
 			const string targetOutput = "Hooray!";
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = (string)_jsEngine.CallFunction("hooray");
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = (string)jsEngine.CallFunction("hooray");
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -211,8 +264,13 @@
 			object input = Undefined.Value;
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = _jsEngine.CallFunction("testUndefined", input);
+			object output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction("testUndefined", input);
+			}
 
 			// Assert
 			Assert.AreEqual(input, output);
@@ -232,8 +290,13 @@
 			const object input = null;
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = _jsEngine.CallFunction("testNull", input);
+			object output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction("testNull", input);
+			}
 
 			// Assert
 			Assert.AreEqual(input, output);
@@ -250,8 +313,13 @@
 			const bool targetOutput = true;
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = _jsEngine.CallFunction<bool>("inverse", input);
+			bool output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction<bool>("inverse", input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -268,8 +336,13 @@
 			const int targetOutput = -28;
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = _jsEngine.CallFunction<int>("negate", input);
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction<int>("negate", input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -286,8 +359,13 @@
 			const double targetOutput = 9.6;
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = Math.Round(_jsEngine.CallFunction<double>("triple", input), 1);
+			double output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = Math.Round(jsEngine.CallFunction<double>("triple", input), 1);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -304,8 +382,13 @@
 			const string targetOutput = "Hello, Vovan!";
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = _jsEngine.CallFunction<string>("greeting", input);
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction<string>("greeting", input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -332,9 +415,14 @@
 }";
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = (string)_jsEngine.CallFunction("determineArgumentsTypes", Undefined.Value, null,
-				true, 12, 3.14, "test");
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = (string)jsEngine.CallFunction("determineArgumentsTypes", Undefined.Value, null,
+					true, 12, 3.14, "test");
+			}
 
 			// Assert
 			Assert.AreEqual("undefined, object, boolean, number, number, string", output);
@@ -366,8 +454,13 @@
 }";
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = _jsEngine.CallFunction<bool>("and", true, true, false, true);
+			bool output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction<bool>("and", true, true, false, true);
+			}
 
 			// Assert
 			Assert.AreEqual(false, output);
@@ -391,8 +484,13 @@
 }";
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = _jsEngine.CallFunction<int>("sum", 120, 5, 18, 63);
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction<int>("sum", 120, 5, 18, 63);
+			}
 
 			// Assert
 			Assert.AreEqual(206, output);
@@ -416,8 +514,13 @@
 }";
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = Math.Round(_jsEngine.CallFunction<double>("sum", 22000, 8.5, 0.05, 3), 2);
+			double output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = Math.Round(jsEngine.CallFunction<double>("sum", 22000, 8.5, 0.05, 3), 2);
+			}
 
 			// Assert
 			Assert.AreEqual(22011.55, output);
@@ -441,8 +544,13 @@
 }";
 
 			// Act
-			_jsEngine.Execute(functionCode);
-			var output = _jsEngine.CallFunction<string>("concatenate", "Hello", ",", " ", "Petya", "!");
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction<string>("concatenate", "Hello", ",", " ", "Petya", "!");
+			}
 
 			// Assert
 			Assert.AreEqual("Hello, Petya!", output);
@@ -460,9 +568,15 @@
 			object input = Undefined.Value;
 
 			// Act
-			_jsEngine.SetVariableValue(variableName, input);
-			bool variableExists = _jsEngine.HasVariable(variableName);
-			var output = _jsEngine.GetVariableValue(variableName);
+			bool variableExists;
+			object output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.SetVariableValue(variableName, input);
+				variableExists = jsEngine.HasVariable(variableName);
+				output = jsEngine.GetVariableValue(variableName);
+			}
 
 			// Assert
 			Assert.IsFalse(variableExists);
@@ -477,9 +591,15 @@
 			const object input = null;
 
 			// Act
-			_jsEngine.SetVariableValue(variableName, input);
-			bool variableExists = _jsEngine.HasVariable(variableName);
-			var output = _jsEngine.GetVariableValue(variableName);
+			bool variableExists;
+			object output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.SetVariableValue(variableName, input);
+				variableExists = jsEngine.HasVariable(variableName);
+				output = jsEngine.GetVariableValue(variableName);
+			}
 
 			// Assert
 			Assert.IsTrue(variableExists);
@@ -498,13 +618,20 @@
 			const bool input2 = true;
 
 			// Act
-			_jsEngine.SetVariableValue(variableName, input1);
-			bool variableExists = _jsEngine.HasVariable(variableName);
-			_jsEngine.Execute(string.Format("{0} = !{0};", variableName));
-			var output1 = _jsEngine.GetVariableValue<bool>(variableName);
+			bool variableExists;
+			bool output1;
+			bool output2;
 
-			_jsEngine.SetVariableValue(variableName, input2);
-			var output2 = _jsEngine.GetVariableValue<bool>(variableName);
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.SetVariableValue(variableName, input1);
+				variableExists = jsEngine.HasVariable(variableName);
+				jsEngine.Execute(string.Format("{0} = !{0};", variableName));
+				output1 = jsEngine.GetVariableValue<bool>(variableName);
+
+				jsEngine.SetVariableValue(variableName, input2);
+				output2 = jsEngine.GetVariableValue<bool>(variableName);
+			}
 
 			// Assert
 			Assert.IsTrue(variableExists);
@@ -525,13 +652,20 @@
 			const int input2 = 711;
 
 			// Act
-			_jsEngine.SetVariableValue(variableName, input1);
-			bool variableExists = _jsEngine.HasVariable(variableName);
-			_jsEngine.Execute(string.Format("{0} += 3;", variableName));
-			var output1 = _jsEngine.GetVariableValue<int>(variableName);
+			bool variableExists;
+			int output1;
+			int output2;
 
-			_jsEngine.SetVariableValue(variableName, input2);
-			var output2 = _jsEngine.GetVariableValue<int>(variableName);
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.SetVariableValue(variableName, input1);
+				variableExists = jsEngine.HasVariable(variableName);
+				jsEngine.Execute(string.Format("{0} += 3;", variableName));
+				output1 = jsEngine.GetVariableValue<int>(variableName);
+
+				jsEngine.SetVariableValue(variableName, input2);
+				output2 = jsEngine.GetVariableValue<int>(variableName);
+			}
 
 			// Assert
 			Assert.IsTrue(variableExists);
@@ -552,13 +686,20 @@
 			const double input2 = 3.50;
 
 			// Act
-			_jsEngine.SetVariableValue(variableName, input1);
-			bool variableExists = _jsEngine.HasVariable(variableName);
-			_jsEngine.Execute(string.Format("{0} -= 0.03;", variableName));
-			var output1 = Math.Round(_jsEngine.GetVariableValue<double>(variableName), 2);
+			bool variableExists;
+			double output1;
+			double output2;
 
-			_jsEngine.SetVariableValue(variableName, input2);
-			var output2 = Math.Round(_jsEngine.GetVariableValue<double>(variableName), 2);
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.SetVariableValue(variableName, input1);
+				variableExists = jsEngine.HasVariable(variableName);
+				jsEngine.Execute(string.Format("{0} -= 0.03;", variableName));
+				output1 = Math.Round(jsEngine.GetVariableValue<double>(variableName), 2);
+
+				jsEngine.SetVariableValue(variableName, input2);
+				output2 = Math.Round(jsEngine.GetVariableValue<double>(variableName), 2);
+			}
 
 			// Assert
 			Assert.IsTrue(variableExists);
@@ -579,13 +720,20 @@
 			const string input2 = "Hurrah";
 
 			// Act
-			_jsEngine.SetVariableValue(variableName, input1);
-			bool variableExists = _jsEngine.HasVariable(variableName);
-			_jsEngine.Execute(string.Format("{0} += '!';", variableName));
-			var output1 = _jsEngine.GetVariableValue<string>(variableName);
+			bool variableExists;
+			string output1;
+			string output2;
 
-			_jsEngine.SetVariableValue(variableName, input2);
-			var output2 = _jsEngine.GetVariableValue<string>(variableName);
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.SetVariableValue(variableName, input1);
+				variableExists = jsEngine.HasVariable(variableName);
+				jsEngine.Execute(string.Format("{0} += '!';", variableName));
+				output1 = jsEngine.GetVariableValue<string>(variableName);
+
+				jsEngine.SetVariableValue(variableName, input2);
+				output2 = jsEngine.GetVariableValue<string>(variableName);
+			}
 
 			// Assert
 			Assert.IsTrue(variableExists);
@@ -602,10 +750,16 @@
 			const double input = 120.55;
 
 			// Act
-			_jsEngine.SetVariableValue(variableName, input);
-			bool variableBeforeRemovingExists = _jsEngine.HasVariable(variableName);
-			_jsEngine.RemoveVariable(variableName);
-			bool variableAfterRemovingExists = _jsEngine.HasVariable(variableName);
+			bool variableBeforeRemovingExists;
+			bool variableAfterRemovingExists;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.SetVariableValue(variableName, input);
+				variableBeforeRemovingExists = jsEngine.HasVariable(variableName);
+				jsEngine.RemoveVariable(variableName);
+				variableAfterRemovingExists = jsEngine.HasVariable(variableName);
+			}
 
 			// Assert
 			Assert.IsTrue(variableBeforeRemovingExists);
@@ -613,15 +767,5 @@
 		}
 
 		#endregion
-
-		[TestFixtureTearDown]
-		public virtual void TearDown()
-		{
-			if (_jsEngine != null)
-			{
-				_jsEngine.Dispose();
-				_jsEngine = null;
-			}
-		}
 	}
 }

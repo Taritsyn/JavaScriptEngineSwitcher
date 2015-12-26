@@ -4,13 +4,13 @@
 
 	using Core;
 
-	[TestFixture]
 	public class Es5Tests : Es5TestsBase
 	{
-		[TestFixtureSetUp]
-		public override void SetUp()
+		protected override IJsEngine CreateJsEngine()
 		{
-			_jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("JurassicJsEngine");
+			var jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("JurassicJsEngine");
+
+			return jsEngine;
 		}
 
 		#region Object methods
@@ -36,12 +36,20 @@ myObj.foo = 1;
 			const string targetOutput4 = "displayName,foo";
 
 			// Act
-			var output1 = _jsEngine.Evaluate<string>(input1);
-			var output2 = _jsEngine.Evaluate<string>(input2);
-			var output3 = _jsEngine.Evaluate<string>(input3);
+			string output1;
+			string output2;
+			string output3;
+			string output4;
 
-			_jsEngine.Execute(input4A);
-			var output4 = _jsEngine.Evaluate<string>(input4B);
+			using (var jsEngine = CreateJsEngine())
+			{
+				output1 = jsEngine.Evaluate<string>(input1);
+				output2 = jsEngine.Evaluate<string>(input2);
+				output3 = jsEngine.Evaluate<string>(input3);
+
+				jsEngine.Execute(input4A);
+				output4 = jsEngine.Evaluate<string>(input4B);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);

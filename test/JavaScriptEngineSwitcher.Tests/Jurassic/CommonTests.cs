@@ -1,16 +1,14 @@
 ﻿namespace JavaScriptEngineSwitcher.Tests.Jurassic
 {
-	using NUnit.Framework;
-
 	using Core;
 
-	[TestFixture]
 	public class CommonTests : CommonTestsBase
 	{
-		[TestFixtureSetUp]
-		public override void SetUp()
+		protected override IJsEngine CreateJsEngine()
 		{
-			_jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("JurassicJsEngine");
+			var jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("JurassicJsEngine");
+
+			return jsEngine;
 		}
 	}
 }

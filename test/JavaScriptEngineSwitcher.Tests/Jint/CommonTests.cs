@@ -1,16 +1,14 @@
 ﻿namespace JavaScriptEngineSwitcher.Tests.Jint
 {
-	using NUnit.Framework;
-
 	using Core;
 
-	[TestFixture]
 	public class CommonTests : CommonTestsBase
 	{
-		[TestFixtureSetUp]
-		public override void SetUp()
+		protected override IJsEngine CreateJsEngine()
 		{
-			_jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("JintJsEngine");
+			var jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("JintJsEngine");
+
+			return jsEngine;
 		}
 	}
 }

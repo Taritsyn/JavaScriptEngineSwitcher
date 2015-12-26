@@ -8,10 +8,7 @@
 
 	public abstract class Es5TestsBase
 	{
-		protected IJsEngine _jsEngine;
-
-		[TestFixtureSetUp]
-		public abstract void SetUp();
+		protected abstract IJsEngine CreateJsEngine();
 
 		#region Array methods
 
@@ -28,10 +25,16 @@
 			const bool targetOutput2 = false;
 
 			// Act
-			_jsEngine.Execute(initCode);
+			bool output1;
+			bool output2;
 
-			var output1 = _jsEngine.Evaluate<bool>(input1);
-			var output2 = _jsEngine.Evaluate<bool>(input2);
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode);
+
+				output1 = jsEngine.Evaluate<bool>(input1);
+				output2 = jsEngine.Evaluate<bool>(input2);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -52,8 +55,13 @@
 			const string targetOutput = "Chakra,SpiderMonkey,Jurassic";
 
 			// Act
-			_jsEngine.Execute(initCode);
-			var output = _jsEngine.Evaluate<string>(input);
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode);
+				output = jsEngine.Evaluate<string>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -77,8 +85,13 @@ engines.forEach(function(value, index, array) {{
 			const string targetOutput = "Chakra;V8;SpiderMonkey;Jurassic";
 
 			// Act
-			_jsEngine.Execute(initCode);
-			var output = _jsEngine.GetVariableValue<string>(resultVariableName);
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode);
+				output = jsEngine.GetVariableValue<string>(resultVariableName);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -112,15 +125,26 @@ engines.forEach(function(value, index, array) {{
 			const int targetOutput7 = -1;
 
 			// Act
-			_jsEngine.Execute(initCode);
+			int output1;
+			int output2;
+			int output3;
+			int output4;
+			int output5;
+			int output6;
+			int output7;
 
-			var output1 = _jsEngine.Evaluate<int>(input1);
-			var output2 = _jsEngine.Evaluate<int>(input2);
-			var output3 = _jsEngine.Evaluate<int>(input3);
-			var output4 = _jsEngine.Evaluate<int>(input4);
-			var output5 = _jsEngine.Evaluate<int>(input5);
-			var output6 = _jsEngine.Evaluate<int>(input6);
-			var output7 = _jsEngine.Evaluate<int>(input7);
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode);
+
+				output1 = jsEngine.Evaluate<int>(input1);
+				output2 = jsEngine.Evaluate<int>(input2);
+				output3 = jsEngine.Evaluate<int>(input3);
+				output4 = jsEngine.Evaluate<int>(input4);
+				output5 = jsEngine.Evaluate<int>(input5);
+				output6 = jsEngine.Evaluate<int>(input6);
+				output7 = jsEngine.Evaluate<int>(input7);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -143,8 +167,14 @@ engines.forEach(function(value, index, array) {{
 			const bool targetOutput2 = true;
 
 			// Act
-			var output1 = _jsEngine.Evaluate<bool>(input1);
-			var output2 = _jsEngine.Evaluate<bool>(input2);
+			bool output1;
+			bool output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output1 = jsEngine.Evaluate<bool>(input1);
+				output2 = jsEngine.Evaluate<bool>(input2);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -179,15 +209,26 @@ engines.forEach(function(value, index, array) {{
 			const int targetOutput7 = -1;
 
 			// Act
-			_jsEngine.Execute(initCode);
+			int output1;
+			int output2;
+			int output3;
+			int output4;
+			int output5;
+			int output6;
+			int output7;
 
-			var output1 = _jsEngine.Evaluate<int>(input1);
-			var output2 = _jsEngine.Evaluate<int>(input2);
-			var output3 = _jsEngine.Evaluate<int>(input3);
-			var output4 = _jsEngine.Evaluate<int>(input4);
-			var output5 = _jsEngine.Evaluate<int>(input5);
-			var output6 = _jsEngine.Evaluate<int>(input6);
-			var output7 = _jsEngine.Evaluate<int>(input7);
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode);
+
+				output1 = jsEngine.Evaluate<int>(input1);
+				output2 = jsEngine.Evaluate<int>(input2);
+				output3 = jsEngine.Evaluate<int>(input3);
+				output4 = jsEngine.Evaluate<int>(input4);
+				output5 = jsEngine.Evaluate<int>(input5);
+				output6 = jsEngine.Evaluate<int>(input6);
+				output7 = jsEngine.Evaluate<int>(input7);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -213,8 +254,13 @@ engines.forEach(function(value, index, array) {{
 			const string targetOutput = "Chakra JS Engine,V8 JS Engine,SpiderMonkey JS Engine,Jurassic JS Engine";
 
 			// Act
-			_jsEngine.Execute(initCode);
-			var output = _jsEngine.Evaluate<string>(input);
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode);
+				output = jsEngine.Evaluate<string>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -235,8 +281,14 @@ engines.forEach(function(value, index, array) {{
 			const int targetOutput2 = 18;
 
 			// Act
-			var output1 = _jsEngine.Evaluate<int>(input1);
-			var output2 = _jsEngine.Evaluate<int>(input2);
+			int output1;
+			int output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output1 = jsEngine.Evaluate<int>(input1);
+				output2 = jsEngine.Evaluate<int>(input2);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -258,8 +310,14 @@ engines.forEach(function(value, index, array) {{
 			const int targetOutput2 = -8;
 
 			// Act
-			var output1 = _jsEngine.Evaluate<int>(input1);
-			var output2 = _jsEngine.Evaluate<int>(input2);
+			int output1;
+			int output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output1 = jsEngine.Evaluate<int>(input1);
+				output2 = jsEngine.Evaluate<int>(input2);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -276,8 +334,13 @@ engines.forEach(function(value, index, array) {{
 			const bool targetOutput = true;
 
 			// Act
-			_jsEngine.Execute(initCode);
-			var output = _jsEngine.Evaluate<bool>(input);
+			bool output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode);
+				output = jsEngine.Evaluate<bool>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -295,7 +358,12 @@ engines.forEach(function(value, index, array) {{
 			DateTime targetOutput = DateTime.Now.ToUniversalTime();
 
 			// Act
-			var output = new DateTime(1970, 01, 01).AddMilliseconds(_jsEngine.Evaluate<double>(input));
+			DateTime output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output = new DateTime(1970, 01, 01).AddMilliseconds(jsEngine.Evaluate<double>(input));
+			}
 
 			// Assert
 			Assert.IsTrue(Math.Abs((targetOutput - output).TotalMilliseconds) < 100);
@@ -309,7 +377,12 @@ engines.forEach(function(value, index, array) {{
 			const string targetOutput = "2013-12-10T17:36:24.000Z";
 
 			// Act
-			var output = _jsEngine.Evaluate<string>(input);
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output = jsEngine.Evaluate<string>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -338,10 +411,16 @@ engines.forEach(function(value, index, array) {{
 			const int targetOutput2 = 12;
 
 			// Act
-			_jsEngine.Execute(initCode);
+			int output1;
+			int output2;
 
-			var output1 = _jsEngine.Evaluate<int>(input1);
-			var output2 = _jsEngine.Evaluate<int>(input2);
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode);
+
+				output1 = jsEngine.Evaluate<int>(input1);
+				output2 = jsEngine.Evaluate<int>(input2);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -361,8 +440,13 @@ engines.forEach(function(value, index, array) {{
 			const string targetOutput = "bar";
 
 			// Act
-			_jsEngine.Execute(initCode);
-			var output = _jsEngine.Evaluate<string>(input);
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode);
+				output = jsEngine.Evaluate<string>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -378,8 +462,13 @@ obj['foo'] = 'bar';";
 			const string targetOutput = "{\"foo\":\"bar\"}";
 
 			// Act
-			_jsEngine.Execute(initCode);
-			var output = _jsEngine.Evaluate<string>(input);
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode);
+				output = jsEngine.Evaluate<string>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
@@ -418,15 +507,23 @@ greeter.name = 'Vasya'";
 			const string targetOutput3B = "Hello, Vasya!";
 
 			// Act
-			_jsEngine.Execute(initCode1);
-			var output1 = _jsEngine.Evaluate(input1);
+			object output1;
+			object output2;
+			int output3A;
+			string output3B;
 
-			_jsEngine.Execute(initCode2);
-			var output2 = _jsEngine.Evaluate(input2);
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(initCode1);
+				output1 = jsEngine.Evaluate(input1);
 
-			_jsEngine.Execute(initCode3);
-			var output3A = _jsEngine.Evaluate<int>(input3A);
-			var output3B = _jsEngine.Evaluate<string>(input3B);
+				jsEngine.Execute(initCode2);
+				output2 = jsEngine.Evaluate(input2);
+
+				jsEngine.Execute(initCode3);
+				output3A = jsEngine.Evaluate<int>(input3A);
+				output3B = jsEngine.Evaluate<string>(input3B);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -457,12 +554,20 @@ myObj.foo = 1;
 			const string targetOutput4 = "foo";
 
 			// Act
-			var output1 = _jsEngine.Evaluate<string>(input1);
-			var output2 = _jsEngine.Evaluate<string>(input2);
-			var output3 = _jsEngine.Evaluate<string>(input3);
+			string output1;
+			string output2;
+			string output3;
+			string output4;
 
-			_jsEngine.Execute(initCode4);
-			var output4 = _jsEngine.Evaluate<string>(input4);
+			using (var jsEngine = CreateJsEngine())
+			{
+				output1 = jsEngine.Evaluate<string>(input1);
+				output2 = jsEngine.Evaluate<string>(input2);
+				output3 = jsEngine.Evaluate<string>(input3);
+
+				jsEngine.Execute(initCode4);
+				output4 = jsEngine.Evaluate<string>(input4);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -489,9 +594,16 @@ myObj.foo = 1;
 			const int targetOutput3 = 7;
 
 			// Act
-			var output1 = _jsEngine.Evaluate<int>(input1);
-			var output2 = _jsEngine.Evaluate<int>(input2);
-			var output3 = _jsEngine.Evaluate<int>(input3);
+			int output1;
+			int output2;
+			int output3;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output1 = jsEngine.Evaluate<int>(input1);
+				output2 = jsEngine.Evaluate<int>(input2);
+				output3 = jsEngine.Evaluate<int>(input3);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput1, output1);
@@ -507,22 +619,17 @@ myObj.foo = 1;
 			const string targetOutput = "foo";
 
 			// Act
-			var output = _jsEngine.Evaluate<string>(input);
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output = jsEngine.Evaluate<string>(input);
+			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, output);
 		}
 
 		#endregion
-
-		[TestFixtureTearDown]
-		public virtual void TearDown()
-		{
-			if (_jsEngine != null)
-			{
-				_jsEngine.Dispose();
-				_jsEngine = null;
-			}
-		}
 	}
 }

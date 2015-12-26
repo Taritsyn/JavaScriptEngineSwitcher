@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Es5TestsBase.cs" />
+    <Compile Include="FileSystemTestBase.cs" />
     <Compile Include="Jint\CommonTests.cs" />
     <Compile Include="Jint\Es5Tests.cs" />
     <Compile Include="Jurassic\CommonTests.cs" />
