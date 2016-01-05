@@ -1,11 +1,11 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: Core 1.2.4
+       README file for JS Engine Switcher for .Net: Core 1.5.0 Alpha 1
 
    ----------------------------------------------------------------------
 
-      Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -20,8 +20,8 @@
    =============
    RELEASE NOTES
    =============
-   In `JsEngineBase` class all public non-abstract methods are now is
-   virtual.
+   Added the `EmbedHostObject` method (embeds a instance of simple class,
+   structure or delegate to script code).
 
    =============
    DOCUMENTATION

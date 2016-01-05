@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ConfigurationIntelliSense</id>
-		<version>1.4.0</version>
+		<version>1.5.0-alpha1</version>
 		<title>JavaScript Engine Switcher for .Net: IntelliSense</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -12,8 +12,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.ConfigurationIntelliSense adds IntelliSense support when editing the `jsEngineSwitcher` configuration section in the Web.config or App.config file.</description>
 		<summary>JavaScriptEngineSwitcher.ConfigurationIntelliSense adds IntelliSense support when editing the `jsEngineSwitcher` configuration section in the Web.config or App.config file.</summary>
-		<releaseNotes>Updated definitions for configuration settings of MSIE JavaScript engine.</releaseNotes>
-		<copyright>Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>App.config Web.config IntelliSense</tags>
 	</metadata>

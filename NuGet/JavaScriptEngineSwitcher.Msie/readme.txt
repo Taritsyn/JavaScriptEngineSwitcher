@@ -1,11 +1,11 @@
 ﻿
 
    ----------------------------------------------------------------------
-      README file for JavaScript Engine Switcher for .Net: MSIE 1.4.0
+       README file for JS Engine Switcher for .Net: MSIE 1.5.0 Alpha 1
 
    ----------------------------------------------------------------------
 
-      Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -20,8 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of MSIE JavaScript Engine version 1.6.0;
-   2. `ChakraJsRt` mode was renamed to `ChakraIeJsRt`.
+   Added support of MSIE JavaScript Engine version 1.7.0 Alpha 1.
 
    =============
    DOCUMENTATION

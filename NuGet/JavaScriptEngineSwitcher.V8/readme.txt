@@ -1,11 +1,11 @@
 ﻿
 
    -----------------------------------------------------------------------
-        README file for JavaScript Engine Switcher for .Net: V8 1.4.1
+        README file for JS Engine Switcher for .Net: V8 1.5.0 Alpha 1
 
    -----------------------------------------------------------------------
 
-      Copyright (c) 2013-2015 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -17,12 +17,6 @@
    working of the Microsoft ClearScript.V8 require assemblies
    `msvcp120.dll` and `msvcr120.dll` from the Visual C++ Redistributable
    Packages for Visual Studio 2013.
-
-   =============
-   RELEASE NOTES
-   =============
-   Microsoft ClearScript.V8 was updated to version 5.4.4 (support of V8
-   version 4.7.80.25).
 
    ====================
    POST-INSTALL ACTIONS

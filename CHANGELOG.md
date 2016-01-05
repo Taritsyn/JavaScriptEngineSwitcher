@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## January 5, 2016 - v1.5.0 Alpha 1
+ * Added the `EmbedHostObject` method (embeds a instance of simple class, structure or delegate to script code)
+
 ## December 8, 2015 - v1.4.1
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.4 (support of V8 version 4.7.80.25)
  * In JavaScriptEngineSwitcher.Jint added support of Jint version of December 2, 2015
