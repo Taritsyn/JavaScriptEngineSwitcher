@@ -4,7 +4,7 @@
 	using System.IO;
 	using System.Text.RegularExpressions;
 
-	public abstract class FileSystemTestBase
+	public abstract class FileSystemTestsBase
 	{
 		/// <summary>
 		/// Regular expression for working with the `bin` directory path
@@ -14,7 +14,7 @@
 		protected string _baseDirectoryPath;
 
 
-		protected FileSystemTestBase()
+		protected FileSystemTestsBase()
 		{
 			string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
 			if (_binDirRegex.IsMatch(baseDirectoryPath))

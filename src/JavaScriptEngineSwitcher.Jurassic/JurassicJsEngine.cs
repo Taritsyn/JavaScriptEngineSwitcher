@@ -281,6 +281,28 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			InnerSetVariableValue(variableName, Undefined.Value);
 		}
 
+		protected override void InnerEmbedHostObject(string itemName, object value)
+		{
+			object processedValue = MapToJurassicType(value);
+
+			try
+			{
+				var delegateValue = processedValue as Delegate;
+				if (delegateValue != null)
+				{
+					_jsEngine.SetGlobalFunction(itemName, delegateValue);
+				}
+				else
+				{
+					_jsEngine.SetGlobalValue(itemName, processedValue);
+				}
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertJavascriptExceptionToJsRuntimeException(e);
+			}
+		}
+
 		public override void ExecuteFile(string path, Encoding encoding = null)
 		{
 			VerifyNotDisposed();

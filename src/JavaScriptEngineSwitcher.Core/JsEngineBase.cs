@@ -47,6 +47,11 @@
 
 		protected abstract void InnerRemoveVariable(string variableName);
 
+		protected virtual void InnerEmbedHostObject(string itemName, object value)
+		{
+			throw new NotImplementedException();
+		}
+
 		#region IJsEngine implementation
 
 		public abstract string Name
@@ -359,6 +364,42 @@
 			}
 
 			InnerRemoveVariable(variableName);
+		}
+
+		public virtual void EmbedHostObject(string itemName, object value)
+		{
+			VerifyNotDisposed();
+
+			if (string.IsNullOrWhiteSpace(itemName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, "itemName"), "itemName");
+			}
+
+			if (!ValidationHelpers.CheckNameFormat(itemName))
+			{
+				throw new FormatException(
+					string.Format(Strings.Runtime_InvalidScriptItemNameFormat, itemName));
+			}
+
+			if (value != null)
+			{
+				Type itemType = value.GetType();
+
+				if (ValidationHelpers.IsPrimitiveType(itemType)
+					|| itemType == typeof(Undefined)
+					|| itemType == typeof(DateTime))
+				{
+					throw new NotSupportedTypeException(
+						string.Format(Strings.Runtime_EmbeddedHostObjectTypeNotSupported, itemType.FullName));
+				}
+			}
+			else
+			{
+				throw new ArgumentNullException("value", string.Format(Strings.Common_ArgumentIsNull, "value"));
+			}
+
+			InnerEmbedHostObject(itemName, value);
 		}
 
 		#endregion

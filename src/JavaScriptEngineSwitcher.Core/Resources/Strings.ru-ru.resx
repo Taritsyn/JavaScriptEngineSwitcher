@@ -183,6 +183,9 @@
   <data name="Resources_ResourceIsNull" xml:space="preserve">
     <value>Ресурс с именем "{0}" содержит значение равное null!</value>
   </data>
+  <data name="Runtime_EmbeddedHostObjectTypeNotSupported" xml:space="preserve">
+    <value>Встраиваемый объекта хоста "{0}" имеет тип `{1}`, который не поддерживается!</value>
+  </data>
   <data name="Runtime_FunctionNameIsForbidden" xml:space="preserve">
     <value>Имя функции "{0}" запрещено, т.к. входит в список зарезервированных слов JavaScript!</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="Runtime_InvalidFunctionNameFormat" xml:space="preserve">
     <value>Имя функции "{0}" имеет некорректный формат!</value>
+  </data>
+  <data name="Runtime_InvalidScriptItemNameFormat" xml:space="preserve">
+    <value>Имя скриптового элемента "{0}" имеет некорректный формат!</value>
   </data>
   <data name="Runtime_InvalidVariableNameFormat" xml:space="preserve">
     <value>Имя переменной "{0}" имеет некорректный формат!</value>

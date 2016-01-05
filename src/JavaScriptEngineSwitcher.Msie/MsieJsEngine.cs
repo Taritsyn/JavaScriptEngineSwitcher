@@ -283,6 +283,20 @@
 			}
 		}
 
+		protected override void InnerEmbedHostObject(string itemName, object value)
+		{
+			object processedValue = MapToMsieType(value);
+
+			try
+			{
+				_jsEngine.EmbedHostObject(itemName, processedValue);
+			}
+			catch (OriginalJsRuntimeException e)
+			{
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+			}
+		}
+
 		#endregion
 
 		#region IDisposable implementation

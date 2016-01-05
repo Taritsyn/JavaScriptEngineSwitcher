@@ -8,7 +8,7 @@
 
 	using Core;
 
-	public abstract class CommonTestsBase : FileSystemTestBase
+	public abstract class CommonTestsBase : FileSystemTestsBase
 	{
 		protected abstract IJsEngine CreateJsEngine();
 
@@ -519,7 +519,7 @@
 			using (var jsEngine = CreateJsEngine())
 			{
 				jsEngine.Execute(functionCode);
-				output = Math.Round(jsEngine.CallFunction<double>("sum", 22000, 8.5, 0.05, 3), 2);
+				output = jsEngine.CallFunction<double>("sum", 22000, 8.5, 0.05, 3);
 			}
 
 			// Assert

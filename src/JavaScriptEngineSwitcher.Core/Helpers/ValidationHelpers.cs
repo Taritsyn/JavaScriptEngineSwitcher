@@ -18,6 +18,18 @@
 		};
 
 		/// <summary>
+		/// List of primitive type codes
+		/// </summary>
+		private static readonly TypeCode[] _primitiveTypeCodes = new[]
+		{
+			TypeCode.Boolean,
+			TypeCode.SByte, TypeCode.Byte,
+			TypeCode.Int16, TypeCode.UInt16, TypeCode.Int32, TypeCode.UInt32, TypeCode.Int64, TypeCode.UInt64,
+			TypeCode.Single, TypeCode.Double, TypeCode.Decimal,
+			TypeCode.Char, TypeCode.String
+		};
+
+		/// <summary>
 		/// Regular expression for working with JS-names
 		/// </summary>
 		private static readonly Regex _jsNameRegex = new Regex(@"^[A-Za-z_\$][0-9A-Za-z_\$]*$");
@@ -31,6 +43,19 @@
 		public static bool IsSupportedType(Type type)
 		{
 			bool result = _supportedTypes.Contains(type);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Checks whether .NET type is primitive
+		/// </summary>
+		/// <param name="type">.NET type</param>
+		/// <returns>Result of check (true - is primitive; false - is not primitive)</returns>
+		public static bool IsPrimitiveType(Type type)
+		{
+			TypeCode typeCode = Type.GetTypeCode(type);
+			bool result = _primitiveTypeCodes.Contains(typeCode);
 
 			return result;
 		}

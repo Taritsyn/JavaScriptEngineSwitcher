@@ -399,6 +399,23 @@
 			InnerSetVariableValue(variableName, Undefined.Value);
 		}
 
+		protected override void InnerEmbedHostObject(string itemName, object value)
+		{
+			object processedValue = MapToClearScriptType(value);
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					_jsEngine.AddHostObject(itemName, processedValue);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
+				}
+			}
+		}
+
 		#endregion
 
 		#region IDisposable implementation

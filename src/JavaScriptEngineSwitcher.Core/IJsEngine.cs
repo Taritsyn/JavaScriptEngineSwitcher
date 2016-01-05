@@ -119,5 +119,13 @@
 		/// </summary>
 		/// <param name="variableName">Variable name</param>
 		void RemoveVariable(string variableName);
+
+		/// <summary>
+		/// Embeds a host object to script code
+		/// </summary>
+		/// <param name="itemName">The name for the new global variable or function that will represent the object</param>
+		/// <param name="value">The object to expose</param>
+		/// <remarks>Allows to embed instances of simple classes (or structures) and delegates.</remarks>
+		void EmbedHostObject(string itemName, object value);
 	}
 }

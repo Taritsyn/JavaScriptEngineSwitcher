@@ -414,6 +414,20 @@ namespace JavaScriptEngineSwitcher.Jint
 			InnerSetVariableValue(variableName, Undefined.Value);
 		}
 
+		protected override void InnerEmbedHostObject(string itemName, object value)
+		{
+			OriginalJsValue processedValue = MapToJintType(value);
+
+			try
+			{
+				_jsEngine.SetValue(itemName, processedValue);
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+			}
+		}
+
 		#endregion
 
 		#region IDisposable implementation
