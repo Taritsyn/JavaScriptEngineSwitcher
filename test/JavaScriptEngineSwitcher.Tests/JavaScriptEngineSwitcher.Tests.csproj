@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.ChakraCore\JavaScriptEngineSwitcher.ChakraCore.csproj">
+      <Project>{698a1aff-b84d-4fb1-b514-d18ffab5066d}</Project>
+      <Name>JavaScriptEngineSwitcher.ChakraCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj">
       <Project>{5c903eef-bad1-43b8-bfe2-e4ee4d204410}</Project>
       <Name>JavaScriptEngineSwitcher.Core</Name>
@@ -63,6 +67,8 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChakraCore\CommonTests.cs" />
+    <Compile Include="ChakraCore\Es5Tests.cs" />
     <Compile Include="Es5TestsBase.cs" />
     <Compile Include="FileSystemTestsBase.cs" />
     <Compile Include="InteropTestsBase.cs" />
