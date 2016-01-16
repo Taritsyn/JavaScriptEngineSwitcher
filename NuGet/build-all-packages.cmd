@@ -17,3 +17,6 @@ call build-package.cmd
 
 cd %packages_directory%\JavaScriptEngineSwitcher.V8
 call build-package.cmd
+
+cd %packages_directory%\JavaScriptEngineSwitcher.ChakraCore
+call build-package.cmd

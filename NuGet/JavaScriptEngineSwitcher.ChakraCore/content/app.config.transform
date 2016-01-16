@@ -1,0 +1,9 @@
+﻿<configuration>
+	<jsEngineSwitcher xmlns="http://tempuri.org/JavaScriptEngineSwitcher.Configuration.xsd">
+		<core>
+			<engines>
+				<add name="ChakraCoreJsEngine" type="JavaScriptEngineSwitcher.ChakraCore.ChakraCoreJsEngine, JavaScriptEngineSwitcher.ChakraCore" />
+			</engines>
+		</core>
+	</jsEngineSwitcher>
+</configuration>

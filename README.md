@@ -21,6 +21,7 @@ This library can be installed through NuGet:
  * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8)
  * [JS Engine Switcher: Jurassic](http://nuget.org/packages/JavaScriptEngineSwitcher.Jurassic)
  * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint)
+ * [JS Engine Switcher: ChakraCore](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore)
 
 ## Release History
 See the [changelog](CHANGELOG.md).

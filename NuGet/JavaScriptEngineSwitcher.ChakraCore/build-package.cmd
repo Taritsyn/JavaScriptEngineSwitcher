@@ -1,0 +1,2 @@
+\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe ..\..\src\JavaScriptEngineSwitcher.ChakraCore\JavaScriptEngineSwitcher.ChakraCore.csproj /p:Configuration=Release
+..\..\.nuget\nuget.exe pack ..\JavaScriptEngineSwitcher.ChakraCore\JavaScriptEngineSwitcher.ChakraCore.nuspec
