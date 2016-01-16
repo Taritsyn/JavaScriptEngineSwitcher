@@ -95,6 +95,11 @@
 		<xs:annotation>
 			<xs:documentation>Configuration settings of MSIE JavaScript engine</xs:documentation>
 		</xs:annotation>
+		<xs:attribute name="enableDebugging" type="Boolean_SchemaType" use="optional" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag for whether to enable script debugging features (only works in the `ChakraIeJsRt` and `ChakraEdgeJsRt` modes)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="engineMode" use="optional" default="Auto">
 			<xs:annotation>
 				<xs:documentation>JavaScript engine mode</xs:documentation>

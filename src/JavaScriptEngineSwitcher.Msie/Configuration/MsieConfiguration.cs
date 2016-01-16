@@ -8,6 +8,17 @@
 	public sealed class MsieConfiguration : ConfigurationSection
 	{
 		/// <summary>
+		/// Gets or sets a flag for whether to enable script debugging features
+		/// (only works in the <code>ChakraIeJsRt</code> and <code>ChakraEdgeJsRt</code> modes)
+		/// </summary>
+		[ConfigurationProperty("enableDebugging", DefaultValue = false)]
+		public bool EnableDebugging
+		{
+			get { return (bool)this["enableDebugging"]; }
+			set { this["enableDebugging"] = value; }
+		}
+
+		/// <summary>
 		/// Gets or sets a JavaScript engine mode
 		/// </summary>
 		[ConfigurationProperty("engineMode", DefaultValue = JsEngineMode.Auto)]

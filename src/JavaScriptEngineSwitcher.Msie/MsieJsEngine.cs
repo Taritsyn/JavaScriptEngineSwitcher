@@ -72,6 +72,7 @@
 			{
 				_jsEngine = new OriginalJsEngine(new OriginalJsEngineSettings
 				{
+					EnableDebugging = msieConfig.EnableDebugging,
 					EngineMode = Utils.GetEnumFromOtherEnum<JsEngineMode, OriginalJsEngineMode>(
 						msieConfig.EngineMode),
 					UseEcmaScript5Polyfill = msieConfig.UseEcmaScript5Polyfill,
