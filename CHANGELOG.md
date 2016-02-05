@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## February 5, 2016 - v1.5.0 Alpha 3
+ * In JavaScriptEngineSwitcher.ChakraCore added support of the `EmbedHostObject` method
+
 ## January 16, 2016 - v1.5.0 Alpha 2
  * Added module based on the [ChakraCore](http://github.com/Microsoft/ChakraCore). JavaScriptEngineSwitcher.ChakraCore does not yet support the `EmbedHostObject` method.
  * In JavaScriptEngineSwitcher.ConfigurationIntelliSense updated definitions for configuration settings of MSIE JavaScript engine
