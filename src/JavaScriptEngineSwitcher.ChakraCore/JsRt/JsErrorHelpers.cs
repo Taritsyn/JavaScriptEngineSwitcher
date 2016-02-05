@@ -112,5 +112,117 @@
 				}
 			}
 		}
+
+		/// <summary>
+		/// Creates a new JavaScript error object
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		/// <param name="message">The message that describes the error</param>
+		/// <returns>The new error object</returns>
+		public static JsValue CreateError(string message)
+		{
+			JsValue messageValue = JsValue.FromString(message);
+			JsValue errorValue = JsValue.CreateError(messageValue);
+
+			return errorValue;
+		}
+
+		/// <summary>
+		/// Creates a new JavaScript RangeError error object
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		/// <param name="message">The message that describes the error</param>
+		/// <returns>The new error object</returns>
+		public static JsValue CreateRangeError(string message)
+		{
+			JsValue messageValue = JsValue.FromString(message);
+			JsValue errorValue = JsValue.CreateRangeError(messageValue);
+
+			return errorValue;
+		}
+
+		/// <summary>
+		/// Creates a new JavaScript ReferenceError error object
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		/// <param name="message">The message that describes the error</param>
+		/// <returns>The new error object</returns>
+		public static JsValue CreateReferenceError(string message)
+		{
+			JsValue messageValue = JsValue.FromString(message);
+			JsValue errorValue = JsValue.CreateReferenceError(messageValue);
+
+			return errorValue;
+		}
+
+		/// <summary>
+		/// Creates a new JavaScript SyntaxError error object
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		/// <param name="message">The message that describes the error</param>
+		/// <returns>The new error object</returns>
+		public static JsValue CreateSyntaxError(string message)
+		{
+			JsValue messageValue = JsValue.FromString(message);
+			JsValue errorValue = JsValue.CreateSyntaxError(messageValue);
+
+			return errorValue;
+		}
+
+		/// <summary>
+		/// Creates a new JavaScript TypeError error object
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		/// <param name="message">The message that describes the error</param>
+		/// <returns>The new error object</returns>
+		public static JsValue CreateTypeError(string message)
+		{
+			JsValue messageValue = JsValue.FromString(message);
+			JsValue errorValue = JsValue.CreateTypeError(messageValue);
+
+			return errorValue;
+		}
+
+		/// <summary>
+		/// Creates a new JavaScript URIError error object
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		/// <param name="message">The message that describes the error</param>
+		/// <returns>The new error object</returns>
+		public static JsValue CreateUriError(string message)
+		{
+			JsValue messageValue = JsValue.FromString(message);
+			JsValue errorValue = JsValue.CreateUriError(messageValue);
+
+			return errorValue;
+		}
+
+		/// <summary>
+		/// Sets a exception
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		/// <param name="exception">The error object</param>
+		public static void SetException(JsValue exception)
+		{
+			JsErrorCode innerError = NativeMethods.JsSetException(exception);
+			if (innerError != JsErrorCode.NoError)
+			{
+				throw new JsFatalException(innerError);
+			}
+		}
 	}
 }

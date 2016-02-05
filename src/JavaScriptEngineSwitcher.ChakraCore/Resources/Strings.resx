@@ -123,4 +123,34 @@
   <data name="Engines_ChakraCoreAssemblyDirectoryNotFound" xml:space="preserve">
     <value>The '{0}' directory, that should contain `ChakraCore.dll` assembly, does not exist.</value>
   </data>
+  <data name="Runtime_HostDelegateInvocationFailed" xml:space="preserve">
+    <value>During invocation of the host delegate an error has occurred - “{0}”.</value>
+  </data>
+  <data name="Runtime_HostObjectFieldGettingFailed" xml:space="preserve">
+    <value>During getting value of '{0}' field of the host object an error has occurred - “{1}”.</value>
+  </data>
+  <data name="Runtime_HostObjectFieldSettingFailed" xml:space="preserve">
+    <value>During setting value of '{0}' field of the host object an error has occurred - “{1}”.</value>
+  </data>
+  <data name="Runtime_HostObjectMethodInvocationFailed" xml:space="preserve">
+    <value>During invocation of '{0}' method of the host object an error has occurred - “{1}”.</value>
+  </data>
+  <data name="Runtime_HostObjectPropertyGettingFailed" xml:space="preserve">
+    <value>During getting value of '{0}' property of the host object an error has occurred - “{1}”.</value>
+  </data>
+  <data name="Runtime_HostObjectPropertySettingFailed" xml:space="preserve">
+    <value>During setting value of '{0}' property of the host object an error has occurred - “{1}”.</value>
+  </data>
+  <data name="Runtime_InvalidThisContextForHostObjectField" xml:space="preserve">
+    <value>Could not retrieve field '{0}' of the host object, because there was an invalid `this` context.</value>
+  </data>
+  <data name="Runtime_InvalidThisContextForHostObjectMethod" xml:space="preserve">
+    <value>Could not call method '{0}' of the host object, because there was an invalid `this` context.</value>
+  </data>
+  <data name="Runtime_InvalidThisContextForHostObjectProperty" xml:space="preserve">
+    <value>Could not retrieve property '{0}' of the host object, because there was an invalid `this` context.</value>
+  </data>
+  <data name="Runtime_SuitableMethodOfHostObjectNotFound" xml:space="preserve">
+    <value>Could not find suitable method or not enough arguments to invoke of '{0}' method of the host object.</value>
+  </data>
 </root>

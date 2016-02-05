@@ -77,5 +77,95 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources {
                 return ResourceManager.GetString("Engines_ChakraCoreAssemblyDirectoryNotFound", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During invocation of the host delegate an error has occurred - “{0}”..
+        /// </summary>
+        internal static string Runtime_HostDelegateInvocationFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostDelegateInvocationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During getting value of &apos;{0}&apos; field of the host object an error has occurred - “{1}”..
+        /// </summary>
+        internal static string Runtime_HostObjectFieldGettingFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostObjectFieldGettingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During setting value of &apos;{0}&apos; field of the host object an error has occurred - “{1}”..
+        /// </summary>
+        internal static string Runtime_HostObjectFieldSettingFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostObjectFieldSettingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During invocation of &apos;{0}&apos; method of the host object an error has occurred - “{1}”..
+        /// </summary>
+        internal static string Runtime_HostObjectMethodInvocationFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostObjectMethodInvocationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During getting value of &apos;{0}&apos; property of the host object an error has occurred - “{1}”..
+        /// </summary>
+        internal static string Runtime_HostObjectPropertyGettingFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostObjectPropertyGettingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During setting value of &apos;{0}&apos; property of the host object an error has occurred - “{1}”..
+        /// </summary>
+        internal static string Runtime_HostObjectPropertySettingFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostObjectPropertySettingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not retrieve field &apos;{0}&apos; of the host object, because there was an invalid `this` context..
+        /// </summary>
+        internal static string Runtime_InvalidThisContextForHostObjectField {
+            get {
+                return ResourceManager.GetString("Runtime_InvalidThisContextForHostObjectField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not call method &apos;{0}&apos; of the host object, because there was an invalid `this` context..
+        /// </summary>
+        internal static string Runtime_InvalidThisContextForHostObjectMethod {
+            get {
+                return ResourceManager.GetString("Runtime_InvalidThisContextForHostObjectMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not retrieve property &apos;{0}&apos; of the host object, because there was an invalid `this` context..
+        /// </summary>
+        internal static string Runtime_InvalidThisContextForHostObjectProperty {
+            get {
+                return ResourceManager.GetString("Runtime_InvalidThisContextForHostObjectProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find suitable method or not enough arguments to invoke of &apos;{0}&apos; method of the host object..
+        /// </summary>
+        internal static string Runtime_SuitableMethodOfHostObjectNotFound {
+            get {
+                return ResourceManager.GetString("Runtime_SuitableMethodOfHostObjectNotFound", resourceCulture);
+            }
+        }
     }
 }

@@ -123,4 +123,34 @@
   <data name="Engines_ChakraCoreAssemblyDirectoryNotFound" xml:space="preserve">
     <value>Директория "{0}", в которой должна находится сборка `ChakraCore.dll`, не существует!</value>
   </data>
+  <data name="Runtime_HostDelegateInvocationFailed" xml:space="preserve">
+    <value>Во время вызова делегата хоста произошла ошибка - «{0}»!</value>
+  </data>
+  <data name="Runtime_HostObjectFieldGettingFailed" xml:space="preserve">
+    <value>Во время получения значения поля "{0}" объекта хоста произошла ошибка - «{1}»!</value>
+  </data>
+  <data name="Runtime_HostObjectFieldSettingFailed" xml:space="preserve">
+    <value>Во время присваивания значения полю "{0}" объекта хоста произошла ошибка - «{1}»!</value>
+  </data>
+  <data name="Runtime_HostObjectMethodInvocationFailed" xml:space="preserve">
+    <value>Во время вызова метода "{0}" объекта хоста произошла ошибка - «{1}»!</value>
+  </data>
+  <data name="Runtime_HostObjectPropertyGettingFailed" xml:space="preserve">
+    <value>Во время получения значения свойства "{0}" объекта хоста произошла ошибка - «{1}»!</value>
+  </data>
+  <data name="Runtime_HostObjectPropertySettingFailed" xml:space="preserve">
+    <value>Во время присваивания значения свойству "{0}" объекта хоста произошла ошибка - «{1}»!</value>
+  </data>
+  <data name="Runtime_InvalidThisContextForHostObjectField" xml:space="preserve">
+    <value>Не удалось получить поле "{0}" объекта хоста, потому что контекст `this` недействителен!</value>
+  </data>
+  <data name="Runtime_InvalidThisContextForHostObjectMethod" xml:space="preserve">
+    <value>Не удалось вызвать метод "{0}" объекта хоста, потому что контекст `this` недействителен!</value>
+  </data>
+  <data name="Runtime_InvalidThisContextForHostObjectProperty" xml:space="preserve">
+    <value>Не удалось получить свойство "{0}" объекта хоста, потому что контекст `this` недействителен!</value>
+  </data>
+  <data name="Runtime_SuitableMethodOfHostObjectNotFound" xml:space="preserve">
+    <value>Не получается найти подходящий метод или не хватает аргументов для вызова метода "{0}"объекта хоста!</value>
+  </data>
 </root>

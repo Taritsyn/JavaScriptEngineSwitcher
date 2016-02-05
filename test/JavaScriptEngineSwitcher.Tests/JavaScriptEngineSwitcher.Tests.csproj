@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="ChakraCore\CommonTests.cs" />
     <Compile Include="ChakraCore\Es5Tests.cs" />
+    <Compile Include="ChakraCore\InteropTests.cs" />
     <Compile Include="Es5TestsBase.cs" />
     <Compile Include="FileSystemTestsBase.cs" />
     <Compile Include="InteropTestsBase.cs" />
