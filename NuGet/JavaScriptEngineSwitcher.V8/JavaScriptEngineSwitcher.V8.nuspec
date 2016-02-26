@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.V8</id>
-		<version>1.5.0-alpha1</version>
+		<version>1.5.0-beta1</version>
 		<title>JavaScript Engine Switcher for .Net: V8</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -16,7 +16,7 @@
 		<language>en-US</language>
 		<tags>JavaScript ECMAScript V8 ClearScript</tags>
 		<dependencies>
-			<dependency id="JavaScriptEngineSwitcher.Core" version="1.5.0-alpha1" />
+			<dependency id="JavaScriptEngineSwitcher.Core" version="1.5.0-beta1" />
 		</dependencies>
 		<references>
 			<reference file="JavaScriptEngineSwitcher.V8.dll" />

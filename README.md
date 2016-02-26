@@ -1,7 +1,7 @@
 JavaScript Engine Switcher
 ==========================
 
-JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([MSIE JavaScript Engine for .Net](http://github.com/Taritsyn/MsieJavaScriptEngine), [Microsoft ClearScript.V8](http://clearscript.codeplex.com), [Jurassic](http://jurassic.codeplex.com) and [Jint](http://github.com/sebastienros/jint)).
+JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([MSIE JavaScript Engine for .Net](http://github.com/Taritsyn/MsieJavaScriptEngine), [Microsoft ClearScript.V8](http://clearscript.codeplex.com), [Jurassic](http://github.com/paulbartrum/jurassic) and [Jint](http://github.com/sebastienros/jint)).
 This library allows you to quickly and easily switch to using of another JavaScript engine.
 
 The supported .NET types are as follows:

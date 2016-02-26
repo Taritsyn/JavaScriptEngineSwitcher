@@ -1,7 +1,7 @@
 ﻿
 
    -----------------------------------------------------------------------
-    README file for JS Engine Switcher for .Net: ChakraCore 1.5.0 Alpha 3
+     README file for JS Engine Switcher for .Net: ChakraCore 1.5.0 Beta 1
 
    -----------------------------------------------------------------------
 
@@ -21,12 +21,6 @@
    For correct working of the ChakraCore require assemblies `msvcp120.dll`
    and `msvcr120.dll` from the Visual C++ Redistributable Packages for
    Visual Studio 2013.
-
-   =============
-   RELEASE NOTES
-   =============
-   Added support of the `EmbedHostObject` method (embeds a instance of
-   simple class, structure or delegate to script code).
 
    ====================
    POST-INSTALL ACTIONS

@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-       README file for JS Engine Switcher for .Net: Core 1.5.0 Alpha 1
+       README file for JS Engine Switcher for .Net: Core 1.5.0 Beta 1
 
    ----------------------------------------------------------------------
 
@@ -20,8 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   Added the `EmbedHostObject` method (embeds a instance of simple class,
-   structure or delegate to script code).
+   Added the `EmbedHostType` method (embeds a host type to script code).
 
    =============
    DOCUMENTATION

@@ -1,7 +1,7 @@
 ﻿
 
    -----------------------------------------------------------------------
-        README file for JS Engine Switcher for .Net: V8 1.5.0 Alpha 1
+         README file for JS Engine Switcher for .Net: V8 1.5.0 Beta 1
 
    -----------------------------------------------------------------------
 

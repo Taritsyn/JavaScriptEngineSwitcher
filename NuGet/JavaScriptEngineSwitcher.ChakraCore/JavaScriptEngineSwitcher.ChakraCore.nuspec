@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore</id>
-		<version>1.5.0-alpha3</version>
+		<version>1.5.0-beta1</version>
 		<title>JavaScript Engine Switcher for .Net: ChakraCore</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -14,12 +14,11 @@
 
 For correct working of the ChakraCore require assemblies `msvcp120.dll` and `msvcr120.dll` from the Visual C++ Redistributable Packages for Visual Studio 2013.</description>
 		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore version 1.1).</summary>
-		<releaseNotes>Added support of the `EmbedHostObject` method (embeds a instance of simple class, structure or delegate to script code).</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScript ECMAScript ChakraCore</tags>
 		<dependencies>
-			<dependency id="JavaScriptEngineSwitcher.Core" version="1.5.0-alpha1" />
+			<dependency id="JavaScriptEngineSwitcher.Core" version="1.5.0-beta1" />
 		</dependencies>
 		<references>
 			<reference file="JavaScriptEngineSwitcher.ChakraCore.dll" />
