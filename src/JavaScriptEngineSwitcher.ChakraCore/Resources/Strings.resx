@@ -141,6 +141,27 @@
   <data name="Runtime_HostObjectPropertySettingFailed" xml:space="preserve">
     <value>During setting value of '{0}' property of the host object an error has occurred - “{1}”.</value>
   </data>
+  <data name="Runtime_HostTypeConstructorInvocationFailed" xml:space="preserve">
+    <value>During invocation of constructor of the `{0}` host type an error has occurred - “{1}”.</value>
+  </data>
+  <data name="Runtime_HostTypeConstructorNotFound" xml:space="preserve">
+    <value>Could not create instance of the `{0}` host type, because it does not have any public constructor.</value>
+  </data>
+  <data name="Runtime_HostTypeFieldGettingFailed" xml:space="preserve">
+    <value>During getting value of '{0}' field of the `{1}` host type an error has occurred - “{2}”.</value>
+  </data>
+  <data name="Runtime_HostTypeFieldSettingFailed" xml:space="preserve">
+    <value>During setting value of '{0}' field of the `{1}` host type an error has occurred - “{2}”.</value>
+  </data>
+  <data name="Runtime_HostTypeMethodInvocationFailed" xml:space="preserve">
+    <value>During invocation of '{0}' method of the `{1}` host type an error has occurred - “{2}”.</value>
+  </data>
+  <data name="Runtime_HostTypePropertyGettingFailed" xml:space="preserve">
+    <value>During getting value of '{0}' property of the `{1}` host type an error has occurred - “{2}”.</value>
+  </data>
+  <data name="Runtime_HostTypePropertySettingFailed" xml:space="preserve">
+    <value>During setting value of '{0}' property of the host type `{1}` an error has occurred - “{2}”.</value>
+  </data>
   <data name="Runtime_InvalidThisContextForHostObjectField" xml:space="preserve">
     <value>Could not retrieve field '{0}' of the host object, because there was an invalid `this` context.</value>
   </data>
@@ -149,6 +170,9 @@
   </data>
   <data name="Runtime_InvalidThisContextForHostObjectProperty" xml:space="preserve">
     <value>Could not retrieve property '{0}' of the host object, because there was an invalid `this` context.</value>
+  </data>
+  <data name="Runtime_SuitableConstructorOfHostTypeNotFound" xml:space="preserve">
+    <value>Could not find suitable constructor or not enough arguments to invoke of constructor of the `{0}` host type.</value>
   </data>
   <data name="Runtime_SuitableMethodOfHostObjectNotFound" xml:space="preserve">
     <value>Could not find suitable method or not enough arguments to invoke of '{0}' method of the host object.</value>

@@ -52,6 +52,11 @@
 			throw new NotImplementedException();
 		}
 
+		protected virtual void InnerEmbedHostType(string itemName, Type type)
+		{
+			throw new NotImplementedException();
+		}
+
 		#region IJsEngine implementation
 
 		public abstract string Name
@@ -391,7 +396,7 @@
 					|| itemType == typeof(DateTime))
 				{
 					throw new NotSupportedTypeException(
-						string.Format(Strings.Runtime_EmbeddedHostObjectTypeNotSupported, itemType.FullName));
+						string.Format(Strings.Runtime_EmbeddedHostObjectTypeNotSupported, itemName, itemType.FullName));
 				}
 			}
 			else
@@ -400,6 +405,39 @@
 			}
 
 			InnerEmbedHostObject(itemName, value);
+		}
+
+		public virtual void EmbedHostType(string itemName, Type type)
+		{
+			VerifyNotDisposed();
+
+			if (string.IsNullOrWhiteSpace(itemName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, "itemName"), "itemName");
+			}
+
+			if (!ValidationHelpers.CheckNameFormat(itemName))
+			{
+				throw new FormatException(
+					string.Format(Strings.Runtime_InvalidScriptItemNameFormat, itemName));
+			}
+
+			if (type != null)
+			{
+				if (ValidationHelpers.IsPrimitiveType(type)
+					|| type == typeof(Undefined))
+				{
+					throw new NotSupportedTypeException(
+						string.Format(Strings.Runtime_EmbeddedHostTypeNotSupported, type.FullName));
+				}
+			}
+			else
+			{
+				throw new ArgumentNullException("type", string.Format(Strings.Common_ArgumentIsNull, "type"));
+			}
+
+			InnerEmbedHostType(itemName, type);
 		}
 
 		#endregion

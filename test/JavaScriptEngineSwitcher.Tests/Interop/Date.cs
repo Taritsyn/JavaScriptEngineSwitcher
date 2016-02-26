@@ -1,5 +1,7 @@
 ﻿namespace JavaScriptEngineSwitcher.Tests.Interop
 {
+	using System;
+
 	public struct Date
 	{
 		private static readonly int[] _cumulativeDays = { 0, 31, 59, 90, 120, 151, 181,
@@ -8,6 +10,17 @@
 		public int Year;
 		public int Month;
 		public int Day;
+
+		public static Date Today
+		{
+			get
+			{
+				DateTime currentDateTime = DateTime.Today;
+				Date currentDate = new Date(currentDateTime.Year, currentDateTime.Month, currentDateTime.Day);
+
+				return currentDate;
+			}
+		}
 
 
 		public Date(int year, int month, int day)

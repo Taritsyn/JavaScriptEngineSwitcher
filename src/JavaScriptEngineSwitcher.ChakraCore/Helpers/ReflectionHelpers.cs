@@ -11,6 +11,21 @@
 	/// </summary>
 	internal static class ReflectionHelpers
 	{
+		public static BindingFlags GetDefaultBindingFlags(bool instance)
+		{
+			BindingFlags bindingFlags = BindingFlags.Public;
+			if (instance)
+			{
+				bindingFlags |= BindingFlags.Instance;
+			}
+			else
+			{
+				bindingFlags |= BindingFlags.Static;
+			}
+
+			return bindingFlags;
+		}
+
 		public static void FixFieldValueType(ref object value, FieldInfo field)
 		{
 			Type valueType = value.GetType();
@@ -67,7 +82,7 @@
 			}
 		}
 
-		public static MethodInfo GetBestFitMethod(MethodInfo[] methods, object[] argValues)
+		public static MethodBase GetBestFitMethod(MethodBase[] methods, object[] argValues)
 		{
 			int argCount = argValues.Length;
 			var methodCandidates = methods

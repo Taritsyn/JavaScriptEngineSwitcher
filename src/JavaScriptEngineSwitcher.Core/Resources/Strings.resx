@@ -186,6 +186,9 @@
   <data name="Runtime_EmbeddedHostObjectTypeNotSupported" xml:space="preserve">
     <value>The embedded host object '{0}' has a type `{1}`, which is not supported.</value>
   </data>
+  <data name="Runtime_EmbeddedHostTypeNotSupported" xml:space="preserve">
+    <value>The embedded host type `{0}` is not supported.</value>
+  </data>
   <data name="Runtime_FunctionNameIsForbidden" xml:space="preserve">
     <value>The function name '{0}' is forbidden, as is contained in the list of reserved words of JavaScript language.</value>
   </data>

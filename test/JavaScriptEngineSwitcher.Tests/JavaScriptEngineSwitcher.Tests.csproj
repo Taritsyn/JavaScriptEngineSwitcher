@@ -73,10 +73,15 @@
     <Compile Include="Es5TestsBase.cs" />
     <Compile Include="FileSystemTestsBase.cs" />
     <Compile Include="InteropTestsBase.cs" />
+    <Compile Include="Interop\Base64Encoder.cs" />
+    <Compile Include="Interop\BundleTable.cs" />
     <Compile Include="Interop\Date.cs" />
     <Compile Include="Interop\FileManager.cs" />
     <Compile Include="Interop\Person.cs" />
+    <Compile Include="Interop\Point3D.cs" />
+    <Compile Include="Interop\PredefinedStrings.cs" />
     <Compile Include="Interop\Product.cs" />
+    <Compile Include="Interop\SimpleSingleton.cs" />
     <Compile Include="Interop\Temperature.cs" />
     <Compile Include="Jint\CommonTests.cs" />
     <Compile Include="Jint\Es5Tests.cs" />
@@ -103,6 +108,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\power.js" />
     <EmbeddedResource Include="Resources\cube.js" />
+    <Content Include="Files\link.txt" />
+    <Content Include="Files\square.js" />
     <Content Include="Resources\square.js" />
   </ItemGroup>
   <ItemGroup />

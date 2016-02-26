@@ -24,5 +24,11 @@
 			FirstName = firstName;
 			LastName = lastName;
 		}
+
+
+		public override string ToString()
+		{
+			return string.Format("{{FirstName={0},LastName={1}}}", FirstName, LastName);
+		}
 	}
 }

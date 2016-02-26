@@ -298,6 +298,18 @@
 			}
 		}
 
+		protected override void InnerEmbedHostType(string itemName, Type type)
+		{
+			try
+			{
+				_jsEngine.EmbedHostType(itemName, type);
+			}
+			catch (OriginalJsRuntimeException e)
+			{
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+			}
+		}
+
 		#endregion
 
 		#region IDisposable implementation

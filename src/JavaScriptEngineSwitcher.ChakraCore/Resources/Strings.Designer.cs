@@ -133,6 +133,69 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to During invocation of constructor of the `{0}` host type an error has occurred - “{1}”..
+        /// </summary>
+        internal static string Runtime_HostTypeConstructorInvocationFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostTypeConstructorInvocationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not create instance of the `{0}` host type, because it does not have any public constructor..
+        /// </summary>
+        internal static string Runtime_HostTypeConstructorNotFound {
+            get {
+                return ResourceManager.GetString("Runtime_HostTypeConstructorNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During getting value of &apos;{0}&apos; field of the `{1}` host type an error has occurred - “{2}”..
+        /// </summary>
+        internal static string Runtime_HostTypeFieldGettingFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostTypeFieldGettingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During setting value of &apos;{0}&apos; field of the `{1}` host type an error has occurred - “{2}”..
+        /// </summary>
+        internal static string Runtime_HostTypeFieldSettingFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostTypeFieldSettingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During invocation of &apos;{0}&apos; method of the `{1}` host type an error has occurred - “{2}”..
+        /// </summary>
+        internal static string Runtime_HostTypeMethodInvocationFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostTypeMethodInvocationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During getting value of &apos;{0}&apos; property of the `{1}` host type an error has occurred - “{2}”..
+        /// </summary>
+        internal static string Runtime_HostTypePropertyGettingFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostTypePropertyGettingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During setting value of &apos;{0}&apos; property of the host type `{1}` an error has occurred - “{2}”..
+        /// </summary>
+        internal static string Runtime_HostTypePropertySettingFailed {
+            get {
+                return ResourceManager.GetString("Runtime_HostTypePropertySettingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not retrieve field &apos;{0}&apos; of the host object, because there was an invalid `this` context..
         /// </summary>
         internal static string Runtime_InvalidThisContextForHostObjectField {
@@ -156,6 +219,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources {
         internal static string Runtime_InvalidThisContextForHostObjectProperty {
             get {
                 return ResourceManager.GetString("Runtime_InvalidThisContextForHostObjectProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find suitable constructor or not enough arguments to invoke of constructor of the `{0}` host type..
+        /// </summary>
+        internal static string Runtime_SuitableConstructorOfHostTypeNotFound {
+            get {
+                return ResourceManager.GetString("Runtime_SuitableConstructorOfHostTypeNotFound", resourceCulture);
             }
         }
         

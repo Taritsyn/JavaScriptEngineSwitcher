@@ -141,6 +141,27 @@
   <data name="Runtime_HostObjectPropertySettingFailed" xml:space="preserve">
     <value>Во время присваивания значения свойству "{0}" объекта хоста произошла ошибка - «{1}»!</value>
   </data>
+  <data name="Runtime_HostTypeConstructorInvocationFailed" xml:space="preserve">
+    <value>Во время вызова конструктора типа хоста `{0}` произошла ошибка - «{1}»!</value>
+  </data>
+  <data name="Runtime_HostTypeConstructorNotFound" xml:space="preserve">
+    <value>Не удается создать экземпляр типа хоста `{0}`, потому что он не имеет ни одного публичного конструктора!</value>
+  </data>
+  <data name="Runtime_HostTypeFieldGettingFailed" xml:space="preserve">
+    <value>Во время получения значения поля "{0}" типа хоста `{1}` произошла ошибка - «{2}»!</value>
+  </data>
+  <data name="Runtime_HostTypeFieldSettingFailed" xml:space="preserve">
+    <value>Во время присваивания значения полю "{0}" типа хоста `{1}` произошла ошибка - «{2}»!</value>
+  </data>
+  <data name="Runtime_HostTypeMethodInvocationFailed" xml:space="preserve">
+    <value>Во время вызова метода "{0}" типа хоста `{1}` произошла ошибка - «{2}»!</value>
+  </data>
+  <data name="Runtime_HostTypePropertyGettingFailed" xml:space="preserve">
+    <value>Во время получения значения свойства "{0}" типа хоста `{1}` произошла ошибка - «{2}»!</value>
+  </data>
+  <data name="Runtime_HostTypePropertySettingFailed" xml:space="preserve">
+    <value>Во время присваивания значения свойству "{0}" типа хоста `{1}` произошла ошибка - «{2}»!</value>
+  </data>
   <data name="Runtime_InvalidThisContextForHostObjectField" xml:space="preserve">
     <value>Не удалось получить поле "{0}" объекта хоста, потому что контекст `this` недействителен!</value>
   </data>
@@ -150,7 +171,10 @@
   <data name="Runtime_InvalidThisContextForHostObjectProperty" xml:space="preserve">
     <value>Не удалось получить свойство "{0}" объекта хоста, потому что контекст `this` недействителен!</value>
   </data>
+  <data name="Runtime_SuitableConstructorOfHostTypeNotFound" xml:space="preserve">
+    <value>Не получается найти подходящий конструктор или не хватает аргументов для вызова конструктора `{0}` типа хоста!</value>
+  </data>
   <data name="Runtime_SuitableMethodOfHostObjectNotFound" xml:space="preserve">
-    <value>Не получается найти подходящий метод или не хватает аргументов для вызова метода "{0}"объекта хоста!</value>
+    <value>Не получается найти подходящий метод или не хватает аргументов для вызова метода "{0}" объекта хоста!</value>
   </data>
 </root>

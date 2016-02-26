@@ -30,7 +30,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Aug 24, 2015";
+		private const string ENGINE_VERSION = "Feb 24, 2016";
 
 		/// <summary>
 		/// Jurassic JS engine
@@ -296,6 +296,18 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					_jsEngine.SetGlobalValue(itemName, processedValue);
 				}
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertJavascriptExceptionToJsRuntimeException(e);
+			}
+		}
+
+		protected override void InnerEmbedHostType(string itemName, Type type)
+		{
+			try
+			{
+				_jsEngine.SetGlobalValue(itemName, type);
 			}
 			catch (OriginalJsException e)
 			{

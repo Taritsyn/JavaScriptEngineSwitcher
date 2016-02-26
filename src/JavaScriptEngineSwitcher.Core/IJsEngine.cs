@@ -127,5 +127,16 @@
 		/// <param name="value">The object to expose</param>
 		/// <remarks>Allows to embed instances of simple classes (or structures) and delegates.</remarks>
 		void EmbedHostObject(string itemName, object value);
+
+		/// <summary>
+		/// Embeds a host type to script code
+		/// </summary>
+		/// <param name="itemName">The name for the new global variable that will represent the type</param>
+		/// <param name="type">The type to expose</param>
+		/// <remarks>
+		/// Host types are exposed to script code in the form of objects whose properties and
+		/// methods are bound to the type's static members.
+		/// </remarks>
+		void EmbedHostType(string itemName, Type type);
 	}
 }

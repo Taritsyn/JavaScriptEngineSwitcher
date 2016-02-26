@@ -308,28 +308,17 @@
 
 		private JsValue CreateExternalObjectFromObject(object value)
 		{
-			Type type = value.GetType();
-			var defaultBindingFlags = BindingFlags.Instance | BindingFlags.Public;
-
-			FieldInfo[] fields = type.GetFields(defaultBindingFlags);
-			PropertyInfo[] properties = type.GetProperties(defaultBindingFlags);
-			MethodInfo[] methods = type.GetMethods(defaultBindingFlags);
-
 			GCHandle handle = GCHandle.Alloc(value);
 			_externalObjects.Add(value);
 
 			JsValue objValue = JsValue.CreateExternalObject(
 				GCHandle.ToIntPtr(handle), _externalObjectFinalizeCallback);
+			Type type = value.GetType();
 
-			ProjectFields(objValue, fields);
-			ProjectProperties(objValue, properties);
-			ProjectMethods(objValue, methods);
-
-			JsValue freezeMethodValue = JsValue.GlobalObject
-				.GetProperty("Object")
-				.GetProperty("freeze")
-				;
-			freezeMethodValue.CallFunction(objValue);
+			ProjectFields(objValue, type, true);
+			ProjectProperties(objValue, type, true);
+			ProjectMethods(objValue, type, true);
+			FreezeObject(objValue);
 
 			return objValue;
 		}
@@ -353,6 +342,27 @@
 			{
 				_externalObjects.Remove(obj);
 			}
+		}
+
+		private JsValue CreateObjectFromType(Type type)
+		{
+			JsValue typeValue = CreateConstructor(type);
+
+			ProjectFields(typeValue, type, false);
+			ProjectProperties(typeValue, type, false);
+			ProjectMethods(typeValue, type, false);
+			FreezeObject(typeValue);
+
+			return typeValue;
+		}
+
+		private void FreezeObject(JsValue objValue)
+		{
+			JsValue freezeMethodValue = JsValue.GlobalObject
+				.GetProperty("Object")
+				.GetProperty("freeze")
+				;
+			freezeMethodValue.CallFunction(objValue);
 		}
 
 		private JsValue CreateFunctionFromDelegate(Delegate value)
@@ -390,8 +400,80 @@
 			return functionValue;
 		}
 
-		private void ProjectFields(JsValue target, FieldInfo[] fields)
+		private JsValue CreateConstructor(Type type)
 		{
+			string typeName = type.FullName;
+			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(true);
+			ConstructorInfo[] constructors = type.GetConstructors(defaultBindingFlags);
+
+			JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
+			{
+				JsValue resultValue;
+				JsValue undefinedValue = JsValue.Undefined;
+
+				object[] processedArgs = MapToHostType(args.Skip(1).ToArray());
+				object result;
+
+				if (processedArgs.Length == 0 && type.IsValueType)
+				{
+					result = Activator.CreateInstance(type);
+					resultValue = MapToScriptType(result);
+
+					return resultValue;
+				}
+
+				if (constructors.Length == 0)
+				{
+					JsValue errorValue = JsErrorHelpers.CreateError(
+						string.Format(Strings.Runtime_HostTypeConstructorNotFound, typeName));
+					JsErrorHelpers.SetException(errorValue);
+
+					return undefinedValue;
+				}
+
+				var bestFitConstructor = (ConstructorInfo)ReflectionHelpers.GetBestFitMethod(
+					constructors, processedArgs);
+				if (bestFitConstructor == null)
+				{
+					JsValue errorValue = JsErrorHelpers.CreateReferenceError(
+						string.Format(Strings.Runtime_SuitableConstructorOfHostTypeNotFound, typeName));
+					JsErrorHelpers.SetException(errorValue);
+
+					return undefinedValue;
+				}
+
+				ReflectionHelpers.FixArgumentTypes(ref processedArgs, bestFitConstructor.GetParameters());
+
+				try
+				{
+					result = bestFitConstructor.Invoke(processedArgs);
+				}
+				catch (Exception e)
+				{
+					JsValue errorValue = JsErrorHelpers.CreateError(
+						string.Format(Strings.Runtime_HostTypeConstructorInvocationFailed, typeName, e.Message));
+					JsErrorHelpers.SetException(errorValue);
+
+					return undefinedValue;
+				}
+
+				resultValue = MapToScriptType(result);
+
+				return resultValue;
+			};
+			_nativeFunctions.Add(nativeFunction);
+
+			JsValue constructorValue = JsValue.CreateFunction(nativeFunction);
+
+			return constructorValue;
+		}
+
+		private void ProjectFields(JsValue target, Type type, bool instance)
+		{
+			string typeName = type.FullName;
+			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(instance);
+			FieldInfo[] fields = type.GetFields(defaultBindingFlags);
+
 			foreach (FieldInfo field in fields)
 			{
 				string fieldName = field.Name;
@@ -404,16 +486,22 @@
 					JsValue thisValue = args[0];
 					JsValue undefinedValue = JsValue.Undefined;
 
-					if (!thisValue.HasExternalData)
-					{
-						JsValue errorValue = JsErrorHelpers.CreateTypeError(
-							string.Format(Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
-						JsErrorHelpers.SetException(errorValue);
+					object thisObj = null;
 
-						return undefinedValue;
+					if (instance)
+					{
+						if (!thisValue.HasExternalData)
+						{
+							JsValue errorValue = JsErrorHelpers.CreateTypeError(
+								string.Format(Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
+							JsErrorHelpers.SetException(errorValue);
+
+							return undefinedValue;
+						}
+
+						thisObj = MapToHostType(thisValue);
 					}
 
-					object thisObj = MapToHostType(thisValue);
 					object result;
 
 					try
@@ -422,8 +510,13 @@
 					}
 					catch (Exception e)
 					{
-						JsValue errorValue = JsErrorHelpers.CreateError(
-							string.Format(Strings.Runtime_HostObjectFieldGettingFailed, fieldName, e.Message));
+						string errorMessage = instance ?
+							string.Format(Strings.Runtime_HostObjectFieldGettingFailed, fieldName, e.Message)
+							:
+							string.Format(Strings.Runtime_HostTypeFieldGettingFailed, fieldName, typeName, e.Message)
+							;
+
+						JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
 						JsErrorHelpers.SetException(errorValue);
 
 						return undefinedValue;
@@ -443,18 +536,23 @@
 					JsValue thisValue = args[0];
 					JsValue undefinedValue = JsValue.Undefined;
 
-					if (!thisValue.HasExternalData)
-					{
-						JsValue errorValue = JsErrorHelpers.CreateTypeError(
-							string.Format(Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
-						JsErrorHelpers.SetException(errorValue);
+					object thisObj = null;
 
-						return undefinedValue;
+					if (instance)
+					{
+						if (!thisValue.HasExternalData)
+						{
+							JsValue errorValue = JsErrorHelpers.CreateTypeError(
+								string.Format(Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
+							JsErrorHelpers.SetException(errorValue);
+
+							return undefinedValue;
+						}
+
+						thisObj = MapToHostType(thisValue);
 					}
 
-					object thisObj = MapToHostType(thisValue);
 					object value = MapToHostType(args.Skip(1).First());
-
 					ReflectionHelpers.FixFieldValueType(ref value, field);
 
 					try
@@ -463,8 +561,13 @@
 					}
 					catch (Exception e)
 					{
-						JsValue errorValue = JsErrorHelpers.CreateError(
-							string.Format(Strings.Runtime_HostObjectFieldSettingFailed, fieldName, e.Message));
+						string errorMessage = instance ?
+							string.Format(Strings.Runtime_HostObjectFieldSettingFailed, fieldName, e.Message)
+							:
+							string.Format(Strings.Runtime_HostTypeFieldSettingFailed, fieldName, typeName, e.Message)
+							;
+
+						JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
 						JsErrorHelpers.SetException(errorValue);
 
 						return undefinedValue;
@@ -481,8 +584,12 @@
 			}
 		}
 
-		private void ProjectProperties(JsValue target, PropertyInfo[] properties)
+		private void ProjectProperties(JsValue target, Type type, bool instance)
 		{
+			string typeName = type.FullName;
+			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(instance);
+			PropertyInfo[] properties = type.GetProperties(defaultBindingFlags);
+
 			foreach (PropertyInfo property in properties)
 			{
 				string propertyName = property.Name;
@@ -497,16 +604,22 @@
 						JsValue thisValue = args[0];
 						JsValue undefinedValue = JsValue.Undefined;
 
-						if (!thisValue.HasExternalData)
-						{
-							JsValue errorValue = JsErrorHelpers.CreateTypeError(
-								string.Format(Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
-							JsErrorHelpers.SetException(errorValue);
+						object thisObj = null;
 
-							return undefinedValue;
+						if (instance)
+						{
+							if (!thisValue.HasExternalData)
+							{
+								JsValue errorValue = JsErrorHelpers.CreateTypeError(
+									string.Format(Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
+								JsErrorHelpers.SetException(errorValue);
+
+								return undefinedValue;
+							}
+
+							thisObj = MapToHostType(thisValue);
 						}
 
-						object thisObj = ToObject(thisValue);
 						object result;
 
 						try
@@ -515,8 +628,15 @@
 						}
 						catch (Exception e)
 						{
-							JsValue errorValue = JsErrorHelpers.CreateError(
-								string.Format(Strings.Runtime_HostObjectPropertyGettingFailed, propertyName, e.Message));
+							string errorMessage = instance ?
+								string.Format(
+									Strings.Runtime_HostObjectPropertyGettingFailed, propertyName, e.Message)
+								:
+								string.Format(
+									Strings.Runtime_HostTypePropertyGettingFailed, propertyName, typeName, e.Message)
+								;
+
+							JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
 							JsErrorHelpers.SetException(errorValue);
 
 							return undefinedValue;
@@ -539,18 +659,23 @@
 						JsValue thisValue = args[0];
 						JsValue undefinedValue = JsValue.Undefined;
 
-						if (!thisValue.HasExternalData)
-						{
-							JsValue errorValue = JsErrorHelpers.CreateTypeError(
-								string.Format(Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
-							JsErrorHelpers.SetException(errorValue);
+						object thisObj = null;
 
-							return undefinedValue;
+						if (instance)
+						{
+							if (!thisValue.HasExternalData)
+							{
+								JsValue errorValue = JsErrorHelpers.CreateTypeError(
+									string.Format(Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
+								JsErrorHelpers.SetException(errorValue);
+
+								return undefinedValue;
+							}
+
+							thisObj = MapToHostType(thisValue);
 						}
 
-						object thisObj = MapToHostType(thisValue);
 						object value = MapToHostType(args.Skip(1).First());
-
 						ReflectionHelpers.FixPropertyValueType(ref value, property);
 
 						try
@@ -559,8 +684,15 @@
 						}
 						catch (Exception e)
 						{
-							JsValue errorValue = JsErrorHelpers.CreateError(
-								string.Format(Strings.Runtime_HostObjectPropertySettingFailed, propertyName, e.Message));
+							string errorMessage = instance ?
+								string.Format(
+									Strings.Runtime_HostObjectPropertySettingFailed, propertyName, e.Message)
+								:
+								string.Format(
+									Strings.Runtime_HostTypePropertySettingFailed, propertyName, typeName, e.Message)
+								;
+
+							JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
 							JsErrorHelpers.SetException(errorValue);
 
 							return undefinedValue;
@@ -578,8 +710,11 @@
 			}
 		}
 
-		private void ProjectMethods(JsValue target, MethodInfo[] methods)
+		private void ProjectMethods(JsValue target, Type type, bool instance)
 		{
+			string typeName = type.FullName;
+			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(instance);
+			MethodInfo[] methods = type.GetMethods(defaultBindingFlags);
 			IEnumerable<IGrouping<string, MethodInfo>> methodGroups = methods.GroupBy(m => m.Name);
 
 			foreach (IGrouping<string, MethodInfo> methodGroup in methodGroups)
@@ -592,19 +727,26 @@
 					JsValue thisValue = args[0];
 					JsValue undefinedValue = JsValue.Undefined;
 
-					if (!thisValue.HasExternalData)
-					{
-						JsValue errorValue = JsErrorHelpers.CreateTypeError(
-							string.Format(Strings.Runtime_InvalidThisContextForHostObjectMethod, methodName));
-						JsErrorHelpers.SetException(errorValue);
+					object thisObj = null;
 
-						return undefinedValue;
+					if (instance)
+					{
+						if (!thisValue.HasExternalData)
+						{
+							JsValue errorValue = JsErrorHelpers.CreateTypeError(
+								string.Format(Strings.Runtime_InvalidThisContextForHostObjectMethod, methodName));
+							JsErrorHelpers.SetException(errorValue);
+
+							return undefinedValue;
+						}
+
+						thisObj = MapToHostType(thisValue);
 					}
 
-					object thisObj = MapToHostType(thisValue);
 					object[] processedArgs = MapToHostType(args.Skip(1).ToArray());
 
-					MethodInfo bestFitMethod = ReflectionHelpers.GetBestFitMethod(methodCandidates, processedArgs);
+					var bestFitMethod = (MethodInfo)ReflectionHelpers.GetBestFitMethod(
+						methodCandidates, processedArgs);
 					if (bestFitMethod == null)
 					{
 						JsValue errorValue = JsErrorHelpers.CreateReferenceError(
@@ -624,8 +766,15 @@
 					}
 					catch (Exception e)
 					{
-						JsValue errorValue = JsErrorHelpers.CreateError(
-							string.Format(Strings.Runtime_HostObjectMethodInvocationFailed, methodName, e.Message));
+						string errorMessage = instance ?
+							string.Format(
+								Strings.Runtime_HostObjectMethodInvocationFailed, methodName, e.Message)
+							:
+							string.Format(
+								Strings.Runtime_HostTypeMethodInvocationFailed, methodName, typeName, e.Message)
+							;
+
+						JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
 						JsErrorHelpers.SetException(errorValue);
 
 						return undefinedValue;
@@ -834,12 +983,21 @@
 			});
 		}
 
-		public override void EmbedHostObject(string itemName, object value)
+		protected override void InnerEmbedHostObject(string itemName, object value)
 		{
 			InvokeScript(() =>
 			{
 				JsValue processedValue = MapToScriptType(value);
 				JsValue.GlobalObject.SetProperty(itemName, processedValue, true);
+			});
+		}
+
+		protected override void InnerEmbedHostType(string itemName, Type type)
+		{
+			InvokeScript(() =>
+			{
+				JsValue typeValue = CreateObjectFromType(type);
+				JsValue.GlobalObject.SetProperty(itemName, typeValue, true);
 			});
 		}
 

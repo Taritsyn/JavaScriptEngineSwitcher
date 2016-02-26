@@ -6,6 +6,7 @@ using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
 using OriginalParserException = Jint.Parser.ParserException;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
+using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
 
 namespace JavaScriptEngineSwitcher.Jint
 {
@@ -31,7 +32,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Dec 2, 2015";
+		private const string ENGINE_VERSION = "Feb 18, 2016";
 
 		/// <summary>
 		/// Jint JS engine
@@ -421,6 +422,20 @@ namespace JavaScriptEngineSwitcher.Jint
 			try
 			{
 				_jsEngine.SetValue(itemName, processedValue);
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+			}
+		}
+
+		protected override void InnerEmbedHostType(string itemName, Type type)
+		{
+			OriginalTypeReference typeReference = OriginalTypeReference.CreateTypeReference(_jsEngine, type);
+
+			try
+			{
+				_jsEngine.SetValue(itemName, typeReference);
 			}
 			catch (OriginalJsException e)
 			{

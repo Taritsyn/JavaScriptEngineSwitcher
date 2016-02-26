@@ -186,6 +186,9 @@
   <data name="Runtime_EmbeddedHostObjectTypeNotSupported" xml:space="preserve">
     <value>Встраиваемый объекта хоста "{0}" имеет тип `{1}`, который не поддерживается!</value>
   </data>
+  <data name="Runtime_EmbeddedHostTypeNotSupported" xml:space="preserve">
+    <value>Встраиваемый тип хоста `{0}` не поддерживается!</value>
+  </data>
   <data name="Runtime_FunctionNameIsForbidden" xml:space="preserve">
     <value>Имя функции "{0}" запрещено, т.к. входит в список зарезервированных слов JavaScript!</value>
   </data>
