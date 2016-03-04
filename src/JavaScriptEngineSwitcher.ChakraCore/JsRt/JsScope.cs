@@ -2,6 +2,8 @@
 {
 	using System;
 
+	using Core;
+
 	/// <summary>
 	/// The scope automatically sets a context to current and resets the original context
 	/// when disposed
@@ -16,7 +18,7 @@
 		/// <summary>
 		/// Whether the structure has been disposed
 		/// </summary>
-		private bool _disposed;
+		private StatedFlag _disposedFlag;
 
 
 		/// <summary>
@@ -25,7 +27,7 @@
 		/// <param name="context">The context to create the scope for</param>
 		public JsScope(JsContext context)
 		{
-			_disposed = false;
+			_disposedFlag = new StatedFlag();
 			_previousContext = JsContext.Current;
 
 			JsContext.Current = context;
@@ -39,13 +41,10 @@
 		/// </summary>
 		public void Dispose()
 		{
-			if (_disposed)
+			if (_disposedFlag.Set())
 			{
-				return;
+				JsContext.Current = _previousContext;
 			}
-
-			JsContext.Current = _previousContext;
-			_disposed = true;
 		}
 
 		#endregion

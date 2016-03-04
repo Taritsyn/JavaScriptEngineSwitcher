@@ -159,10 +159,8 @@
 		{
 			lock (_runSynchronizer)
 			{
-				if (!_disposed)
+				if (_disposedFlag.Set())
 				{
-					_disposed = true;
-
 					_jsRuntime.Dispose();
 
 					_externalObjects.Clear();

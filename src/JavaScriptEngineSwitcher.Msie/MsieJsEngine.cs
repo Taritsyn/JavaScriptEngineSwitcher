@@ -316,10 +316,8 @@
 
 		public override void Dispose()
 		{
-			if (!_disposed)
+			if (_disposedFlag.Set())
 			{
-				_disposed = true;
-
 				if (_jsEngine != null)
 				{
 					_jsEngine.Dispose();

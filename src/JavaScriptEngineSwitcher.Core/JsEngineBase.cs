@@ -16,12 +16,12 @@
 		/// <summary>
 		/// Flag that object is destroyed
 		/// </summary>
-		protected bool _disposed;
+		protected InterlockedStatedFlag _disposedFlag = new InterlockedStatedFlag();
 
 
 		protected void VerifyNotDisposed()
 		{
-			if (_disposed)
+			if (_disposedFlag.IsSet())
 			{
 				throw new ObjectDisposedException(ToString());
 			}

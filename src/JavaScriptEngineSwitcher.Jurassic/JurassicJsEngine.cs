@@ -30,7 +30,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Feb 24, 2016";
+		private const string ENGINE_VERSION = "Mar 4, 2016";
 
 		/// <summary>
 		/// Jurassic JS engine
@@ -347,10 +347,8 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		public override void Dispose()
 		{
-			if (!_disposed)
+			if (_disposedFlag.Set())
 			{
-				_disposed = true;
-
 				_jsEngine = null;
 			}
 		}

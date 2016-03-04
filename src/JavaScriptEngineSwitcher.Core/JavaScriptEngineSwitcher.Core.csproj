@@ -49,6 +49,7 @@
     <Compile Include="Helpers\JsRuntimeErrorHelpers.cs" />
     <Compile Include="Helpers\ValidationHelpers.cs" />
     <Compile Include="IJsEngine.cs" />
+    <Compile Include="InterlockedStatedFlag.cs" />
     <Compile Include="JsEngineBase.cs" />
     <Compile Include="JsEngineLoadException.cs" />
     <Compile Include="JsEngineNotFoundException.cs" />
@@ -67,6 +68,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.ru-ru.resx</DependentUpon>
     </Compile>
+    <Compile Include="StatedFlag.cs" />
     <Compile Include="Undefined.cs" />
     <Compile Include="Utilities\StringBuilderExtensions.cs" />
     <Compile Include="Utilities\TypeConverter.cs" />

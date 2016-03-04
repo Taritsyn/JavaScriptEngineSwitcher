@@ -32,7 +32,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Feb 18, 2016";
+		private const string ENGINE_VERSION = "Mar 3, 2016";
 
 		/// <summary>
 		/// Jint JS engine
@@ -449,10 +449,8 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		public override void Dispose()
 		{
-			if (!_disposed)
+			if (_disposedFlag.Set())
 			{
-				_disposed = true;
-
 				_jsEngine = null;
 			}
 		}
