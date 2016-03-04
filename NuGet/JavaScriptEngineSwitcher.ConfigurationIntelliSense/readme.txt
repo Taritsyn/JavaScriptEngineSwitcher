@@ -1,7 +1,7 @@
 ﻿
 
    -------------------------------------------------------------------------
-     README file for JS Engine Switcher for .Net: IntelliSense 1.5.0 Beta 1
+        README file for JS Engine Switcher for .Net: IntelliSense 1.5.0
 
    -------------------------------------------------------------------------
 
@@ -10,13 +10,18 @@
 
    ===========
    DESCRIPTION
-   ===========   
-   JavaScriptEngineSwitcher.ConfigurationIntelliSense adds IntelliSense 
-   support when editing the `jsEngineSwitcher` configuration section in the 
+   ===========
+   JavaScriptEngineSwitcher.ConfigurationIntelliSense adds IntelliSense
+   support when editing the `jsEngineSwitcher` configuration section in the
    Web.config or App.config file.
+
+   =============
+   RELEASE NOTES
+   =============
+   Updated definitions for configuration settings of MSIE JavaScript engine.
 
    =============
    DOCUMENTATION
    =============
-   See documentation on GitHub - 
+   See documentation on GitHub -
    http://github.com/Taritsyn/JavaScriptEngineSwitcher

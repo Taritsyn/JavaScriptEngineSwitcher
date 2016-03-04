@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore</id>
-		<version>1.5.0-beta1</version>
+		<version>1.5.0</version>
 		<title>JavaScript Engine Switcher for .Net: ChakraCore</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -18,7 +18,7 @@ For correct working of the ChakraCore require assemblies `msvcp120.dll` and `msv
 		<language>en-US</language>
 		<tags>JavaScript ECMAScript ChakraCore</tags>
 		<dependencies>
-			<dependency id="JavaScriptEngineSwitcher.Core" version="1.5.0-beta1" />
+			<dependency id="JavaScriptEngineSwitcher.Core" version="1.5.0" />
 		</dependencies>
 		<references>
 			<reference file="JavaScriptEngineSwitcher.ChakraCore.dll" />

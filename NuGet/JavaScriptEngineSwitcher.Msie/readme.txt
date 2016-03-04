@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-       README file for JS Engine Switcher for .Net: MSIE 1.5.0 Beta 1
+           README file for JS Engine Switcher for .Net: MSIE 1.5.0
 
    ----------------------------------------------------------------------
 
@@ -20,7 +20,9 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 1.7.0 Beta 1.
+   1. Added support of MSIE JavaScript Engine version 1.7.0;
+   2. In configuration settings was added one new property -
+      `EnableDebugging` (default `false`).
 
    =============
    DOCUMENTATION

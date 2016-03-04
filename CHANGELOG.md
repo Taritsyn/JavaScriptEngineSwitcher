@@ -1,6 +1,15 @@
 Change log
 ==========
 
+## March 4, 2016 - v1.5.0
+ * Added the `EmbedHostObject` (embeds a instance of simple class, structure or delegate to script code) and `EmbedHostType` (embeds a host type to script code) methods
+ * In JavaScriptEngineSwitcher.ConfigurationIntelliSense updated definitions for configuration settings of MSIE JavaScript engine
+ * Added module based on the ChakraCore
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.7.0 and in configuration settings was added one new property - `EnableDebugging` (default `false`)
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version of March 2, 2016
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of March 4, 2016
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version of March 3, 2016
+
 ## February 26, 2016 - v1.5.0 Beta 1
  * Added the `EmbedHostType` method (embeds a host type to script code)
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 1.7.0 Beta 1
