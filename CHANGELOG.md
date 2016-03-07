@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## March 7, 2016 - v1.5.1
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of March 5, 2016
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version of March 6, 2016
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version of March 6, 2016
+
 ## March 4, 2016 - v1.5.0
  * Added the `EmbedHostObject` (embeds a instance of simple class, structure or delegate to script code) and `EmbedHostType` (embeds a host type to script code) methods
  * In JavaScriptEngineSwitcher.ConfigurationIntelliSense updated definitions for configuration settings of MSIE JavaScript engine
