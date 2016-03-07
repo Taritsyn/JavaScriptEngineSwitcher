@@ -30,7 +30,7 @@
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "1.1";
+		private const string ENGINE_VERSION = "Mar 6, 2016";
 
 		/// <summary>
 		/// Instance of JavaScript runtime
@@ -43,9 +43,9 @@
 		private readonly JsContext _jsContext;
 
 		/// <summary>
-		/// Run synchronizer
+		/// Synchronizer of code execution
 		/// </summary>
-		private readonly object _runSynchronizer = new object();
+		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
 		/// List of external objects
@@ -120,7 +120,7 @@
 
 		private void InvokeScript(Action action)
 		{
-			lock (_runSynchronizer)
+			lock (_executionSynchronizer)
 			using (new JsScope(_jsContext))
 			{
 				try
@@ -136,7 +136,7 @@
 
 		private T InvokeScript<T>(Func<T> func)
 		{
-			lock (_runSynchronizer)
+			lock (_executionSynchronizer)
 			using (new JsScope(_jsContext))
 			{
 				try
@@ -157,9 +157,9 @@
 		/// managed objects contained in fields of class</param>
 		private void Dispose(bool disposing)
 		{
-			lock (_runSynchronizer)
+			if (_disposedFlag.Set())
 			{
-				if (_disposedFlag.Set())
+				lock (_executionSynchronizer)
 				{
 					_jsRuntime.Dispose();
 
@@ -336,7 +336,7 @@
 				return;
 			}
 
-			lock (_runSynchronizer)
+			lock (_executionSynchronizer)
 			{
 				_externalObjects.Remove(obj);
 			}

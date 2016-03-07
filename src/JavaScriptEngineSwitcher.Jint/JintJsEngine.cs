@@ -32,12 +32,17 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Mar 3, 2016";
+		private const string ENGINE_VERSION = "Mar 6, 2016";
 
 		/// <summary>
 		/// Jint JS engine
 		/// </summary>
 		private OriginalJsEngine _jsEngine;
+
+		/// <summary>
+		/// Synchronizer of code execution
+		/// </summary>
+		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
 		/// Gets a name of JavaScript engine
@@ -221,34 +226,39 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override object InnerEvaluate(string expression)
 		{
-			OriginalJsValue resultValue;
+			object result;
 
-			try
+			lock (_executionSynchronizer)
 			{
-				resultValue = _jsEngine.Execute(expression).GetCompletionValue();
-			}
-			catch (OriginalParserException e)
-			{
-				throw ConvertParserExceptionToJsRuntimeException(e);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
-			}
-			catch (OriginalRecursionDepthOverflowException e)
-			{
-				throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
-			}
-			catch (OriginalStatementsCountOverflowException e)
-			{
-				throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
-			}
-			catch (TimeoutException e)
-			{
-				throw ConvertTimeoutExceptionToJsRuntimeException(e);
-			}
+				OriginalJsValue resultValue;
 
-			object result = MapToHostType(resultValue);
+				try
+				{
+					resultValue = _jsEngine.Execute(expression).GetCompletionValue();
+				}
+				catch (OriginalParserException e)
+				{
+					throw ConvertParserExceptionToJsRuntimeException(e);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				}
+				catch (OriginalRecursionDepthOverflowException e)
+				{
+					throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
+				}
+				catch (OriginalStatementsCountOverflowException e)
+				{
+					throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
+				}
+				catch (TimeoutException e)
+				{
+					throw ConvertTimeoutExceptionToJsRuntimeException(e);
+				}
+
+				result = MapToHostType(resultValue);
+			}
 
 			return result;
 		}
@@ -262,87 +272,95 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override void InnerExecute(string code)
 		{
-			try
+			lock (_executionSynchronizer)
 			{
-				_jsEngine.Execute(code);
-			}
-			catch (OriginalParserException e)
-			{
-				throw ConvertParserExceptionToJsRuntimeException(e);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
-			}
-			catch (OriginalRecursionDepthOverflowException e)
-			{
-				throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
-			}
-			catch (OriginalStatementsCountOverflowException e)
-			{
-				throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
-			}
-			catch (TimeoutException e)
-			{
-				throw ConvertTimeoutExceptionToJsRuntimeException(e);
+				try
+				{
+					_jsEngine.Execute(code);
+				}
+				catch (OriginalParserException e)
+				{
+					throw ConvertParserExceptionToJsRuntimeException(e);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				}
+				catch (OriginalRecursionDepthOverflowException e)
+				{
+					throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
+				}
+				catch (OriginalStatementsCountOverflowException e)
+				{
+					throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
+				}
+				catch (TimeoutException e)
+				{
+					throw ConvertTimeoutExceptionToJsRuntimeException(e);
+				}
 			}
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
-			OriginalJsValue functionValue;
+			object result;
 
-			try
+			lock (_executionSynchronizer)
 			{
-				functionValue = _jsEngine.GetValue(functionName);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
-			}
+				OriginalJsValue functionValue;
 
-			var callable = functionValue.TryCast<IOriginalCallable>();
-			if (callable == null)
-			{
-				throw new JsRuntimeException(
-					string.Format(CoreStrings.Runtime_FunctionNotExist, functionName));
-			}
-
-			int argumentCount = args.Length;
-			var processedArgs = new OriginalJsValue[argumentCount];
-
-			if (argumentCount > 0)
-			{
-				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
+				try
 				{
-					processedArgs[argumentIndex] = MapToJintType(args[argumentIndex]);
+					functionValue = _jsEngine.GetValue(functionName);
 				}
-			}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				}
 
-			OriginalJsValue resultValue;
+				var callable = functionValue.TryCast<IOriginalCallable>();
+				if (callable == null)
+				{
+					throw new JsRuntimeException(
+						string.Format(CoreStrings.Runtime_FunctionNotExist, functionName));
+				}
 
-			try
-			{
-				resultValue = callable.Call(functionValue, processedArgs);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
-			}
-			catch (OriginalRecursionDepthOverflowException e)
-			{
-				throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
-			}
-			catch (OriginalStatementsCountOverflowException e)
-			{
-				throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
-			}
-			catch (TimeoutException e)
-			{
-				throw ConvertTimeoutExceptionToJsRuntimeException(e);
-			}
+				int argumentCount = args.Length;
+				var processedArgs = new OriginalJsValue[argumentCount];
 
-			object result = MapToHostType(resultValue);
+				if (argumentCount > 0)
+				{
+					for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
+					{
+						processedArgs[argumentIndex] = MapToJintType(args[argumentIndex]);
+					}
+				}
+
+				OriginalJsValue resultValue;
+
+				try
+				{
+					resultValue = callable.Call(functionValue, processedArgs);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				}
+				catch (OriginalRecursionDepthOverflowException e)
+				{
+					throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
+				}
+				catch (OriginalStatementsCountOverflowException e)
+				{
+					throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
+				}
+				catch (TimeoutException e)
+				{
+					throw ConvertTimeoutExceptionToJsRuntimeException(e);
+				}
+
+				result = MapToHostType(resultValue);
+			}
 
 			return result;
 		}
@@ -358,14 +376,17 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			bool result;
 
-			try
+			lock (_executionSynchronizer)
 			{
-				OriginalJsValue variableValue = _jsEngine.GetValue(variableName);
-				result = !variableValue.IsUndefined();
-			}
-			catch (OriginalJsException)
-			{
-				result = false;
+				try
+				{
+					OriginalJsValue variableValue = _jsEngine.GetValue(variableName);
+					result = !variableValue.IsUndefined();
+				}
+				catch (OriginalJsException)
+				{
+					result = false;
+				}
 			}
 
 			return result;
@@ -373,18 +394,23 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override object InnerGetVariableValue(string variableName)
 		{
-			OriginalJsValue variableValue;
+			object result;
 
-			try
+			lock (_executionSynchronizer)
 			{
-				variableValue = _jsEngine.GetValue(variableName);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
-			}
+				OriginalJsValue variableValue;
 
-			object result = MapToHostType(variableValue);
+				try
+				{
+					variableValue = _jsEngine.GetValue(variableName);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				}
+
+				result = MapToHostType(variableValue);
+			}
 
 			return result;
 		}
@@ -398,15 +424,18 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override void InnerSetVariableValue(string variableName, object value)
 		{
-			OriginalJsValue processedValue = MapToJintType(value);
+			lock (_executionSynchronizer)
+			{
+				OriginalJsValue processedValue = MapToJintType(value);
 
-			try
-			{
-				_jsEngine.SetValue(variableName, processedValue);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				try
+				{
+					_jsEngine.SetValue(variableName, processedValue);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				}
 			}
 		}
 
@@ -417,29 +446,35 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override void InnerEmbedHostObject(string itemName, object value)
 		{
-			OriginalJsValue processedValue = MapToJintType(value);
+			lock (_executionSynchronizer)
+			{
+				OriginalJsValue processedValue = MapToJintType(value);
 
-			try
-			{
-				_jsEngine.SetValue(itemName, processedValue);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				try
+				{
+					_jsEngine.SetValue(itemName, processedValue);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				}
 			}
 		}
 
 		protected override void InnerEmbedHostType(string itemName, Type type)
 		{
-			OriginalTypeReference typeReference = OriginalTypeReference.CreateTypeReference(_jsEngine, type);
+			lock (_executionSynchronizer)
+			{
+				OriginalTypeReference typeReference = OriginalTypeReference.CreateTypeReference(_jsEngine, type);
 
-			try
-			{
-				_jsEngine.SetValue(itemName, typeReference);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				try
+				{
+					_jsEngine.SetValue(itemName, typeReference);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+				}
 			}
 		}
 
@@ -451,7 +486,10 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			if (_disposedFlag.Set())
 			{
-				_jsEngine = null;
+				lock (_executionSynchronizer)
+				{
+					_jsEngine = null;
+				}
 			}
 		}
 

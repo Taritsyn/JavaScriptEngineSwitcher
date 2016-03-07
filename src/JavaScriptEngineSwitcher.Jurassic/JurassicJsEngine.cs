@@ -30,12 +30,17 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Mar 4, 2016";
+		private const string ENGINE_VERSION = "Mar 5, 2016";
 
 		/// <summary>
 		/// Jurassic JS engine
 		/// </summary>
 		private OriginalJsEngine _jsEngine;
+
+		/// <summary>
+		/// Synchronizer of code execution
+		/// </summary>
+		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
 		/// Gets a name of JavaScript engine
@@ -156,13 +161,20 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			object result;
 
-			try
+			lock (_executionSynchronizer)
 			{
-				result = _jsEngine.Evaluate(expression);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				try
+				{
+					result = _jsEngine.Evaluate(expression);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
+				catch (NotImplementedException e)
+				{
+					throw new JsRuntimeException(e.Message, e);
+				}
 			}
 
 			result = MapToHostType(result);
@@ -179,13 +191,20 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override void InnerExecute(string code)
 		{
-			try
+			lock (_executionSynchronizer)
 			{
-				_jsEngine.Execute(code);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				try
+				{
+					_jsEngine.Execute(code);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
+				catch (NotImplementedException e)
+				{
+					throw new JsRuntimeException(e.Message, e);
+				}
 			}
 		}
 
@@ -204,13 +223,20 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 			object result;
 
-			try
+			lock (_executionSynchronizer)
 			{
-				result = _jsEngine.CallGlobalFunction(functionName, processedArgs);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				try
+				{
+					result = _jsEngine.CallGlobalFunction(functionName, processedArgs);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
+				catch (NotImplementedException e)
+				{
+					throw new JsRuntimeException(e.Message, e);
+				}
 			}
 
 			result = MapToHostType(result);
@@ -227,11 +253,16 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override bool InnerHasVariable(string variableName)
 		{
-			bool result = _jsEngine.HasGlobalValue(variableName);
-			if (result)
+			bool result;
+
+			lock (_executionSynchronizer)
 			{
-				object value = _jsEngine.GetGlobalValue(variableName);
-				result = (value.ToString() != "undefined");
+				result = _jsEngine.HasGlobalValue(variableName);
+				if (result)
+				{
+					object value = _jsEngine.GetGlobalValue(variableName);
+					result = value.ToString() != "undefined";
+				}
 			}
 
 			return result;
@@ -241,13 +272,16 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			object result;
 
-			try
+			lock (_executionSynchronizer)
 			{
-				result = _jsEngine.GetGlobalValue(variableName);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				try
+				{
+					result = _jsEngine.GetGlobalValue(variableName);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
 			}
 
 			result = MapToHostType(result);
@@ -266,13 +300,16 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			object processedValue = MapToJurassicType(value);
 
-			try
+			lock (_executionSynchronizer)
 			{
-				_jsEngine.SetGlobalValue(variableName, processedValue);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				try
+				{
+					_jsEngine.SetGlobalValue(variableName, processedValue);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
 			}
 		}
 
@@ -285,33 +322,39 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			object processedValue = MapToJurassicType(value);
 
-			try
+			lock (_executionSynchronizer)
 			{
-				var delegateValue = processedValue as Delegate;
-				if (delegateValue != null)
+				try
 				{
-					_jsEngine.SetGlobalFunction(itemName, delegateValue);
+					var delegateValue = processedValue as Delegate;
+					if (delegateValue != null)
+					{
+						_jsEngine.SetGlobalFunction(itemName, delegateValue);
+					}
+					else
+					{
+						_jsEngine.SetGlobalValue(itemName, processedValue);
+					}
 				}
-				else
+				catch (OriginalJsException e)
 				{
-					_jsEngine.SetGlobalValue(itemName, processedValue);
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
 				}
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
 			}
 		}
 
 		protected override void InnerEmbedHostType(string itemName, Type type)
 		{
-			try
+			lock (_executionSynchronizer)
 			{
-				_jsEngine.SetGlobalValue(itemName, type);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				try
+				{
+					_jsEngine.SetGlobalValue(itemName, type);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
 			}
 		}
 
@@ -331,13 +374,16 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					string.Format(CoreStrings.Common_FileNotExist, path), path);
 			}
 
-			try
+			lock (_executionSynchronizer)
 			{
-				_jsEngine.ExecuteFile(path, encoding);
-			}
-			catch (OriginalJsException e)
-			{
-				throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				try
+				{
+					_jsEngine.ExecuteFile(path, encoding);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
 			}
 		}
 
@@ -349,7 +395,10 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			if (_disposedFlag.Set())
 			{
-				_jsEngine = null;
+				lock (_executionSynchronizer)
+				{
+					_jsEngine = null;
+				}
 			}
 		}
 
