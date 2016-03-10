@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## March 10, 2016 - v1.5.2
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.5 (support of V8 version 4.9.385.30)
+
 ## March 7, 2016 - v1.5.1
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of March 5, 2016
  * In JavaScriptEngineSwitcher.Jint added support of Jint version of March 6, 2016
