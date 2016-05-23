@@ -32,8 +32,9 @@ See the [changelog](CHANGELOG.md).
 ## Who's Using JavaScript Engine Switcher
 If you use the JavaScript Engine Switcher in some project, please send me a message so I can include it in this list:
 
- * [Autoprefixer for .NET](http://github.com/digitalcreations/autoprefixer) by Vegard Larsen
  * [Bundle Transformer](http://bundletransformer.codeplex.com/) by Andrey Taritsyn
  * [Cruncher](http://github.com/JimBobSquarePants/Cruncher) by James South
  * [JSPool](http://dan.cx/projects/jspool) by Daniel Lo Nigro
  * [ReactJS.NET](http://reactjs.net/) by Daniel Lo Nigro
+ * [T1.Scripts](http://nuget.org/packages/T1.Scripts) 
+ * [zxcvbn.net](http://github.com/darcythomas/zxcvbn.net) by Darcy Thomas
