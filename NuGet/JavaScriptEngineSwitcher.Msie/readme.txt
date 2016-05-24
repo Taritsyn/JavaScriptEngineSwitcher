@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-           README file for JS Engine Switcher for .Net: MSIE 1.5.0
+           README file for JS Engine Switcher for .Net: MSIE 1.5.4
 
    ----------------------------------------------------------------------
 

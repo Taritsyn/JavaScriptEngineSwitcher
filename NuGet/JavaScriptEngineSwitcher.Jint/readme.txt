@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-           README file for JS Engine Switcher for .Net: Jint 1.5.3
+           README file for JS Engine Switcher for .Net: Jint 1.5.4
 
    ----------------------------------------------------------------------
 

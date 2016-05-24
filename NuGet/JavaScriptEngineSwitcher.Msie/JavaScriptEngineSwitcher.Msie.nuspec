@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Msie</id>
-		<version>1.5.0</version>
+		<version>1.5.4</version>
 		<title>JavaScript Engine Switcher for .Net: MSIE</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
