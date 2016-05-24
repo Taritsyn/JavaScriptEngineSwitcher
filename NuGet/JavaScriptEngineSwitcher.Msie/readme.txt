@@ -20,9 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of MSIE JavaScript Engine version 1.7.0;
-   2. In configuration settings was added one new property -
-      `EnableDebugging` (default `false`).
+   Added support of MSIE JavaScript Engine version 1.7.1.
 
    =============
    DOCUMENTATION

@@ -13,12 +13,12 @@
    ===========
    JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine`
    (wrapper for the Jint JavaScript Engine
-   (http://github.com/sebastienros/jint) version of April 12, 2016).
+   (http://github.com/sebastienros/jint) version of May 12, 2016).
 
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version of April 12, 2016.
+   Jint was updated to version of May 12, 2016.
 
    =============
    DOCUMENTATION
