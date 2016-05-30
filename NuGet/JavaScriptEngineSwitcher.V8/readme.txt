@@ -1,7 +1,7 @@
 ﻿
 
    -----------------------------------------------------------------------
-            README file for JS Engine Switcher for .Net: V8 1.5.4
+            README file for JS Engine Switcher for .Net: V8 1.5.5
 
    -----------------------------------------------------------------------
 
@@ -13,15 +13,16 @@
    ===========
    JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for
    the Microsoft ClearScript.V8 (http://clearscript.codeplex.com) version
-   of May 9, 2016 with support of V8 version 4.9.385.30. For correct
-   working of the Microsoft ClearScript.V8 require assemblies
-   `msvcp120.dll` and `msvcr120.dll` from the Visual C++ Redistributable
-   Packages for Visual Studio 2013.
+   5.4.6 with support of V8 version 5.1.281.50. For correct working of the
+   Microsoft ClearScript.V8 require assemblies `msvcp120.dll` and
+   `msvcr120.dll` from the Visual C++ Redistributable Packages for Visual
+   Studio 2013.
 
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version of May 9, 2016.
+   Microsoft ClearScript.V8 was updated to version 5.4.6 (support of V8
+   version 5.1.281.50).
 
    ====================
    POST-INSTALL ACTIONS
