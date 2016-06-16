@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## June 16, 2016 - v1.5.7
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of June 14, 2016
+
 ## June 8, 2016 - v1.5.6
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of June 4, 2016
 
