@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Jurassic</id>
-		<version>1.5.7</version>
+		<version>1.5.8</version>
 		<title>JavaScript Engine Switcher for .Net: Jurassic</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -10,9 +10,9 @@
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of June 14, 2016).</description>
-		<summary>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine version of June 14, 2016).</summary>
-		<releaseNotes>Jurassic was updated to version of June 14, 2016.</releaseNotes>
+		<description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of June 29, 2016).</description>
+		<summary>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine version of June 29, 2016).</summary>
+		<releaseNotes>Jurassic was updated to version of June 29, 2016.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScript ECMAScript Jurassic</tags>
