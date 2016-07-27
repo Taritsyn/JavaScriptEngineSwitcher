@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Jint</id>
-		<version>1.5.4</version>
+		<version>1.5.9</version>
 		<title>JavaScript Engine Switcher for .Net: Jint</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>

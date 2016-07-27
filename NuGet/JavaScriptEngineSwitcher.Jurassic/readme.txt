@@ -1,7 +1,7 @@
 ﻿
 
    ----------------------------------------------------------------------
-         README file for JS Engine Switcher for .Net: Jurassic 1.5.8
+         README file for JS Engine Switcher for .Net: Jurassic 1.5.9
 
    ----------------------------------------------------------------------
 

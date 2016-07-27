@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## July 27, 2016 - v1.5.9
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of July 15, 2016
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.9.1
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.2
+
 ## June 30, 2016 - v1.5.8
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version of June 20, 2016 (support of V8 version 5.1.281.65)
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of June 29, 2016

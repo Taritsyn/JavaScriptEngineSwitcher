@@ -1,7 +1,7 @@
 ﻿
 
    -----------------------------------------------------------------------
-        README file for JS Engine Switcher for .Net: ChakraCore 1.5.4
+        README file for JS Engine Switcher for .Net: ChakraCore 1.5.9
 
    -----------------------------------------------------------------------
 
