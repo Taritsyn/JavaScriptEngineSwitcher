@@ -10,15 +10,15 @@
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.9).</description>
-		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version 2.9).</summary>
-		<releaseNotes>Jint was updated to version 2.9.</releaseNotes>
+		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.9.1).</description>
+		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version 2.9.1).</summary>
+		<releaseNotes>Jint was updated to version 2.9.1.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScript ECMAScript Jint</tags>
 		<dependencies>
 			<dependency id="JavaScriptEngineSwitcher.Core" version="1.5.0" />
-			<dependency id="Jint" version="2.9" />
+			<dependency id="Jint" version="2.9.1" />
 		</dependencies>
 		<references>
 			<reference file="JavaScriptEngineSwitcher.Jint.dll" />
