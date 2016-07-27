@@ -13,7 +13,7 @@
    ===========
    JavaScriptEngineSwitcher.ChakraCore contains adapter
    `ChakraCoreJsEngine` (wrapper for the ChakraCore
-   (http://github.com/Microsoft/ChakraCore) version of May 24, 2016).
+   (http://github.com/Microsoft/ChakraCore) version 1.2).
    Project was based on the code of Chakra-Samples
    (http://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet
    (http://github.com/robpaveza/jsrt-dotnet).
@@ -25,7 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version of May 24, 2016.
+   ChakraCore was updated to version 1.2.
 
    ====================
    POST-INSTALL ACTIONS

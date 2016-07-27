@@ -30,7 +30,7 @@
 		/// <summary>
 		/// Version of original JavaScript engine
 		/// </summary>
-		private const string ENGINE_VERSION = "May 24, 2016";
+		private const string ENGINE_VERSION = "1.2";
 
 		/// <summary>
 		/// Instance of JavaScript runtime
