@@ -1,11 +1,11 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
+﻿using System;
+using System.Linq;
+using System.Reflection;
+
+using JavaScriptEngineSwitcher.Core.Utilities;
+
+namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 {
-	using System;
-	using System.Linq;
-	using System.Reflection;
-
-	using Core.Utilities;
-
 	/// <summary>
 	/// Reflection helpers
 	/// </summary>

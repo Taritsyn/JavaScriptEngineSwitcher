@@ -1,7 +1,7 @@
-﻿namespace JavaScriptEngineSwitcher.Core
-{
-	using System.Threading;
+﻿using System.Threading;
 
+namespace JavaScriptEngineSwitcher.Core
+{
 	public struct InterlockedStatedFlag
 	{
 		private int _counter;

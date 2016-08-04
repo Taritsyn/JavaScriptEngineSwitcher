@@ -1,14 +1,14 @@
-﻿namespace JavaScriptEngineSwitcher.Core
-{
-	using System;
+﻿using System;
 
+namespace JavaScriptEngineSwitcher.Core
+{
 	/// <summary>
-	/// The exception that is thrown during the work of JavaScript engine
+	/// The exception that is thrown during the work of JS engine
 	/// </summary>
 	public class JsException : Exception
 	{
 		/// <summary>
-		/// Gets a name of JavaScript engine
+		/// Gets a name of JS engine
 		/// </summary>
 		public string EngineName
 		{
@@ -17,7 +17,7 @@
 		}
 
 		/// <summary>
-		/// Gets a version of original JavaScript engine
+		/// Gets a version of original JS engine
 		/// </summary>
 		public string EngineVersion
 		{

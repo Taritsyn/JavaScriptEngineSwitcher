@@ -1,4 +1,6 @@
-﻿using IOriginalCallable = Jint.Native.ICallable;
+﻿using System;
+
+using IOriginalCallable = Jint.Native.ICallable;
 using OriginalJsEngine = Jint.Engine;
 using OriginalJsException = Jint.Runtime.JavaScriptException;
 using OriginalJsValue = Jint.Native.JsValue;
@@ -8,29 +10,26 @@ using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverf
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
 using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
 
+using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Utilities;
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+
+using JavaScriptEngineSwitcher.Jint.Resources;
+
 namespace JavaScriptEngineSwitcher.Jint
 {
-	using System;
-
-	using Core;
-	using Core.Utilities;
-	using CoreStrings = Core.Resources.Strings;
-
-	using Configuration;
-	using Resources;
-
 	/// <summary>
-	/// Adapter for Jint JavaScript engine
+	/// Adapter for the Jint JS engine
 	/// </summary>
 	public sealed class JintJsEngine : JsEngineBase
 	{
 		/// <summary>
-		/// Name of JavaScript engine
+		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "Jint JavaScript engine";
+		private const string ENGINE_NAME = "Jint JS engine";
 
 		/// <summary>
-		/// Version of original JavaScript engine
+		/// Version of original JS engine
 		/// </summary>
 		private const string ENGINE_VERSION = "2.9.1";
 
@@ -45,7 +44,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
-		/// Gets a name of JavaScript engine
+		/// Gets a name of JS engine
 		/// </summary>
 		public override string Name
 		{
@@ -53,7 +52,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 		/// <summary>
-		/// Gets a version of original JavaScript engine
+		/// Gets a version of original JS engine
 		/// </summary>
 		public override string Version
 		{
@@ -62,29 +61,29 @@ namespace JavaScriptEngineSwitcher.Jint
 
 
 		/// <summary>
-		/// Constructs a instance of adapter for Jint
+		/// Constructs a instance of adapter for the Jint JS engine
 		/// </summary>
 		public JintJsEngine()
-			: this(JsEngineSwitcher.Current.GetJintConfiguration())
+			: this(new JintSettings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for Jint
+		/// Constructs a instance of adapter for the Jint JS engine
 		/// </summary>
-		/// <param name="config">Configuration settings of Jint JavaScript engine</param>
-		public JintJsEngine(JintConfiguration config)
+		/// <param name="settings">Settings of the Jint JS engine</param>
+		public JintJsEngine(JintSettings settings)
 		{
-			JintConfiguration jintConfig = config ?? new JintConfiguration();
+			JintSettings jintSettings = settings ?? new JintSettings();
 
 			try
 			{
 				_jsEngine = new OriginalJsEngine(c => c
-					.AllowDebuggerStatement(jintConfig.AllowDebuggerStatement)
-					.DebugMode(jintConfig.EnableDebugging)
-					.LimitRecursion(jintConfig.MaxRecursionDepth)
-					.MaxStatements(jintConfig.MaxStatements)
-					.Strict(jintConfig.StrictMode)
-					.TimeoutInterval(TimeSpan.FromMilliseconds(jintConfig.Timeout))
+					.AllowDebuggerStatement(jintSettings.AllowDebuggerStatement)
+					.DebugMode(jintSettings.EnableDebugging)
+					.LimitRecursion(jintSettings.MaxRecursionDepth)
+					.MaxStatements(jintSettings.MaxStatements)
+					.Strict(jintSettings.StrictMode)
+					.TimeoutInterval(TimeSpan.FromMilliseconds(jintSettings.Timeout))
 				);
 			}
 			catch (Exception e)

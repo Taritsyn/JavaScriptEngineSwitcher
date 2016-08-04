@@ -1,8 +1,8 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
-{
-	using System;
-	using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
+namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
+{
 	/// <summary>
 	/// Attributes of a runtime
 	/// </summary>

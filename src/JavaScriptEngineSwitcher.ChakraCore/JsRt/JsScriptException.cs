@@ -1,7 +1,7 @@
+using System;
+
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
-	using System;
-
 	/// <summary>
 	/// The script exception
 	/// </summary>

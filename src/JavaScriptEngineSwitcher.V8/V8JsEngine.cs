@@ -1,37 +1,36 @@
-﻿namespace JavaScriptEngineSwitcher.V8
+﻿using System;
+using System.Reflection;
+using System.Text.RegularExpressions;
+
+using Microsoft.ClearScript.V8;
+using OriginalJsException = Microsoft.ClearScript.ScriptEngineException;
+using OriginalUndefined = Microsoft.ClearScript.Undefined;
+
+using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Utilities;
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+
+using JavaScriptEngineSwitcher.V8.Resources;
+
+namespace JavaScriptEngineSwitcher.V8
 {
-	using System;
-	using System.Reflection;
-	using System.Text.RegularExpressions;
-
-	using Microsoft.ClearScript.V8;
-	using OriginalJsException = Microsoft.ClearScript.ScriptEngineException;
-	using OriginalUndefined = Microsoft.ClearScript.Undefined;
-
-	using Core;
-	using Core.Utilities;
-	using CoreStrings = Core.Resources.Strings;
-
-	using Configuration;
-	using Resources;
-
 	/// <summary>
-	/// Adapter for Microsoft ClearScript.V8
+	/// Adapter for the V8 JS engine (Microsoft ClearScript.V8)
 	/// </summary>
 	public sealed class V8JsEngine : JsEngineBase
 	{
 		/// <summary>
-		/// Name of JavaScript engine
+		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "V8 JavaScript engine";
+		private const string ENGINE_NAME = "V8 JS engine";
 
 		/// <summary>
-		/// Version of original JavaScript engine
+		/// Version of original JS engine
 		/// </summary>
 		private const string ENGINE_VERSION = "5.1.281.65";
 
 		/// <summary>
-		/// JS-engine
+		/// V8 JS engine
 		/// </summary>
 		private V8ScriptEngine _jsEngine;
 
@@ -41,9 +40,9 @@
 		private static OriginalUndefined _originalUndefinedValue;
 
 		/// <summary>
-		/// Information about `InvokeMethod` method of `Microsoft.ClearScript.Windows.WindowsScriptItem` type
+		/// Information about `InvokeMethod` method of `Microsoft.ClearScript.V8.V8ScriptItem` type
 		/// </summary>
-		private static MethodInfo _winScriptItemInvokeMethodInfo;
+		private static MethodInfo _v8ScriptItemInvokeMethodInfo;
 
 		/// <summary>
 		/// Regular expression for working with the string representation of error
@@ -58,7 +57,7 @@
 		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
-		/// Gets a name of JavaScript engine
+		/// Gets a name of JS engine
 		/// </summary>
 		public override string Name
 		{
@@ -66,7 +65,7 @@
 		}
 
 		/// <summary>
-		/// Gets a version of original JavaScript engine
+		/// Gets a version of original JS engine
 		/// </summary>
 		public override string Version
 		{
@@ -85,39 +84,38 @@
 		}
 
 		/// <summary>
-		/// Constructs a instance of adapter for Microsoft ClearScript.V8
+		/// Constructs a instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
 		/// </summary>
 		public V8JsEngine()
-			: this(JsEngineSwitcher.Current.GetV8Configuration())
+			: this(new V8Settings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for Microsoft ClearScript.V8
+		/// Constructs a instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
 		/// </summary>
-		/// <param name="config">Configuration settings of V8 JavaScript engine</param>
-		public V8JsEngine(V8Configuration config)
+		/// <param name="settings">Settings of the V8 JS engine</param>
+		public V8JsEngine(V8Settings settings)
 		{
-			V8Configuration v8Config = config ?? new V8Configuration();
+			V8Settings v8Settings = settings ?? new V8Settings();
 
 			V8RuntimeConstraints constraints = new V8RuntimeConstraints
 			{
-				MaxNewSpaceSize = v8Config.MaxNewSpaceSize,
-				MaxOldSpaceSize = v8Config.MaxOldSpaceSize,
-				MaxExecutableSize = v8Config.MaxExecutableSize
+				MaxNewSpaceSize = v8Settings.MaxNewSpaceSize,
+				MaxOldSpaceSize = v8Settings.MaxOldSpaceSize,
+				MaxExecutableSize = v8Settings.MaxExecutableSize
 			};
 
 			V8ScriptEngineFlags flags = V8ScriptEngineFlags.None;
-			if (v8Config.EnableDebugging && v8Config.DisableGlobalMembers)
+			if (v8Settings.EnableDebugging)
 			{
-				flags = V8ScriptEngineFlags.EnableDebugging | V8ScriptEngineFlags.DisableGlobalMembers;
+				flags |= V8ScriptEngineFlags.EnableDebugging;
 			}
-			else if (v8Config.EnableDebugging || v8Config.DisableGlobalMembers)
+			if (v8Settings.DisableGlobalMembers)
 			{
-				flags = v8Config.EnableDebugging ?
-					V8ScriptEngineFlags.EnableDebugging : V8ScriptEngineFlags.DisableGlobalMembers;
+				flags |= V8ScriptEngineFlags.DisableGlobalMembers;
 			}
 
-			int debugPort = v8Config.DebugPort;
+			int debugPort = v8Settings.DebugPort;
 
 			try
 			{
@@ -158,7 +156,7 @@
 		}
 
 		/// <summary>
-		/// Loads a `InvokeMethod` method information of `Microsoft.ClearScript.Windows.WindowsScriptItem` type
+		/// Loads a `InvokeMethod` method information of `Microsoft.ClearScript.V8.V8ScriptItem` type
 		/// </summary>
 		private static void LoadWinScriptItemInvokeMethodInfo()
 		{
@@ -166,23 +164,23 @@
 			const string methodName = "InvokeMethod";
 
 			Assembly clearScriptAssembly = typeof(V8ScriptEngine).Assembly;
-			Type winScriptItemType = clearScriptAssembly.GetType(typeName);
-			MethodInfo winScriptItemInvokeMethodInfo = null;
+			Type v8ScriptItemType = clearScriptAssembly.GetType(typeName);
+			MethodInfo v8ScriptItemInvokeMethodInfo = null;
 
-			if (winScriptItemType != null)
+			if (v8ScriptItemType != null)
 			{
-				winScriptItemInvokeMethodInfo = winScriptItemType.GetMethod(methodName,
+				v8ScriptItemInvokeMethodInfo = v8ScriptItemType.GetMethod(methodName,
 					BindingFlags.Instance | BindingFlags.Public);
 			}
 
-			if (winScriptItemInvokeMethodInfo != null)
+			if (v8ScriptItemInvokeMethodInfo != null)
 			{
-				_winScriptItemInvokeMethodInfo = winScriptItemInvokeMethodInfo;
+				_v8ScriptItemInvokeMethodInfo = v8ScriptItemInvokeMethodInfo;
 			}
 			else
 			{
 				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_MethodInfoNotLoaded, typeName, methodName),
+					string.Format(Strings.Runtime_MethodInfoNotLoaded, typeName, methodName),
 						ENGINE_NAME, ENGINE_VERSION);
 			}
 		}
@@ -309,7 +307,7 @@
 				try
 				{
 					object obj = _jsEngine.Script;
-					result = _winScriptItemInvokeMethodInfo.Invoke(obj, new object[] {functionName, processedArgs});
+					result = _v8ScriptItemInvokeMethodInfo.Invoke(obj, new object[] { functionName, processedArgs });
 				}
 				catch (TargetInvocationException e)
 				{

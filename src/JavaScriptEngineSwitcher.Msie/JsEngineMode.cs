@@ -1,7 +1,7 @@
 ﻿namespace JavaScriptEngineSwitcher.Msie
 {
 	/// <summary>
-	/// JavaScript engine modes
+	/// MSIE JS engine modes
 	/// </summary>
 	public enum JsEngineMode
 	{

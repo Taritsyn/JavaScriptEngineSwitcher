@@ -1,10 +1,10 @@
-﻿namespace JavaScriptEngineSwitcher.Tests
-{
-	using System;
-	using System.IO;
-	using System.Text.RegularExpressions;
+﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 
-	public abstract class FileSystemTestsBase
+namespace JavaScriptEngineSwitcher.Tests
+{
+	public abstract class FileSystemTestsBase : TestsBase
 	{
 		/// <summary>
 		/// Regular expression for working with the `bin` directory path

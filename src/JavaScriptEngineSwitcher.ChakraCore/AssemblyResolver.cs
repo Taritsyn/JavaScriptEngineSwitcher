@@ -1,12 +1,12 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore
+﻿using System;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+
+using JavaScriptEngineSwitcher.ChakraCore.Resources;
+
+namespace JavaScriptEngineSwitcher.ChakraCore
 {
-	using System;
-	using System.IO;
-	using System.Runtime.InteropServices;
-	using System.Text.RegularExpressions;
-
-	using Resources;
-
 	/// <summary>
 	/// Assembly resolver
 	/// </summary>

@@ -1,7 +1,7 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
-{
-	using System;
+﻿using System;
 
+namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
+{
 	/// <summary>
 	/// Numeric helpers
 	/// </summary>

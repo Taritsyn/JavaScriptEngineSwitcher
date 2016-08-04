@@ -1,14 +1,14 @@
-﻿namespace JavaScriptEngineSwitcher.Core
-{
-	using System;
+﻿using System;
 
+namespace JavaScriptEngineSwitcher.Core
+{
 	/// <summary>
 	/// The exception that is thrown when a specified value is null or empty
 	/// </summary>
 	public sealed class EmptyValueException : Exception
 	{
 		/// <summary>
-		/// Initializes a new instance of the JavaScriptEngineSwitcher.Core.EmptyValueException class
+		/// Initializes a new instance of the <see cref="EmptyValueException"/> class
 		/// with a specified error message
 		/// </summary>
 		/// <param name="message">The message that describes the error</param>
@@ -17,7 +17,7 @@
 		{ }
 
 		/// <summary>
-		/// Initializes a new instance of the JavaScriptEngineSwitcher.Core.EmptyValueException class
+		/// Initializes a new instance of the <see cref="EmptyValueException"/> class
 		/// with a specified error message and a reference to the inner exception that is the cause of this exception
 		/// </summary>
 		/// <param name="message">The error message that explains the reason for the exception</param>

@@ -1,7 +1,7 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
-{
-	using System;
+﻿using System;
 
+namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
+{
 	/// <summary>
 	/// User implemented callback routine for memory allocation events
 	/// </summary>

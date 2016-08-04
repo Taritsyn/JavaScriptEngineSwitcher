@@ -1,20 +1,18 @@
-﻿namespace JavaScriptEngineSwitcher.Tests
+﻿using System;
+using System.IO;
+using System.Reflection;
+
+using Xunit;
+
+using JavaScriptEngineSwitcher.Core;
+
+namespace JavaScriptEngineSwitcher.Tests
 {
-	using System;
-	using System.IO;
-	using System.Reflection;
-
-	using NUnit.Framework;
-
-	using Core;
-
 	public abstract class CommonTestsBase : FileSystemTestsBase
 	{
-		protected abstract IJsEngine CreateJsEngine();
-
 		#region Evaluation of code
 
-		[Test]
+		[Fact]
 		public virtual void EvaluationOfExpressionWithUndefinedResultIsCorrect()
 		{
 			// Arrange
@@ -30,10 +28,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EvaluationOfExpressionWithNullResultIsCorrect()
 		{
 			// Arrange
@@ -49,10 +47,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EvaluationOfExpressionWithBooleanResultIsCorrect()
 		{
 			// Arrange
@@ -73,11 +71,11 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EvaluationOfExpressionWithIntegerResultIsCorrect()
 		{
 			// Arrange
@@ -93,10 +91,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EvaluationOfExpressionWithDoubleResultIsCorrect()
 		{
 			// Arrange
@@ -112,10 +110,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EvaluationOfExpressionWithStringResultIsCorrect()
 		{
 			// Arrange
@@ -131,14 +129,14 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
 
 		#region Execution of code
 
-		[Test]
+		[Fact]
 		public virtual void ExecutionOfCodeIsCorrect()
 		{
 			// Arrange
@@ -158,10 +156,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ExecutionOfFileIsCorrect()
 		{
 			// Arrange
@@ -179,10 +177,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ExecutionOfResourceByTypeIsCorrect()
 		{
 			// Arrange
@@ -200,10 +198,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ExecutionOfResourceByAssemblyIsCorrect()
 		{
 			// Arrange
@@ -221,14 +219,14 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
 
 		#region Calling of functions
 
-		[Test]
+		[Fact]
 		public void CallingOfFunctionWithoutParametersIsCorrect()
 		{
 			// Arrange
@@ -247,10 +245,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithUndefinedResultIsCorrect()
 		{
 			// Arrange
@@ -273,10 +271,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(input, output);
+			Assert.Equal(input, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithNullResultIsCorrect()
 		{
 			// Arrange
@@ -299,10 +297,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(input, output);
+			Assert.Equal(input, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithBooleanResultIsCorrect()
 		{
 			// Arrange
@@ -322,10 +320,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithIntegerResultIsCorrect()
 		{
 			// Arrange
@@ -345,10 +343,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithDoubleResultIsCorrect()
 		{
 			// Arrange
@@ -368,10 +366,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithStringResultIsCorrect()
 		{
 			// Arrange
@@ -391,10 +389,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithManyParametersIsCorrect()
 		{
 			// Arrange
@@ -425,10 +423,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual("undefined, object, boolean, number, number, string", output);
+			Assert.Equal("undefined, object, boolean, number, number, string", output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithManyParametersAndBooleanResultIsCorrect()
 		{
 			// Arrange
@@ -463,10 +461,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(false, output);
+			Assert.Equal(false, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithManyParametersAndIntegerResultIsCorrect()
 		{
 			// Arrange
@@ -493,10 +491,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(206, output);
+			Assert.Equal(206, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithManyParametersAndDoubleResultIsCorrect()
 		{
 			// Arrange
@@ -523,10 +521,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(22011.55, output);
+			Assert.Equal(22011.55, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CallingOfFunctionWithManyParametersAndStringResultIsCorrect()
 		{
 			// Arrange
@@ -553,14 +551,14 @@
 			}
 
 			// Assert
-			Assert.AreEqual("Hello, Petya!", output);
+			Assert.Equal("Hello, Petya!", output);
 		}
 
 		#endregion
 
 		#region Getting, setting and removing variables
 
-		[Test]
+		[Fact]
 		public virtual void SettingAndGettingVariableWithUndefinedValueIsCorrect()
 		{
 			// Arrange
@@ -579,11 +577,11 @@
 			}
 
 			// Assert
-			Assert.IsFalse(variableExists);
-			Assert.AreEqual(input, output);
+			Assert.False(variableExists);
+			Assert.Equal(input, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void SettingAndGettingVariableWithNullValueIsCorrect()
 		{
 			// Arrange
@@ -602,11 +600,11 @@
 			}
 
 			// Assert
-			Assert.IsTrue(variableExists);
-			Assert.AreEqual(input, output);
+			Assert.True(variableExists);
+			Assert.Equal(input, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void SettingAndGettingVariableWithBooleanValueIsCorrect()
 		{
 			// Arrange
@@ -634,13 +632,13 @@
 			}
 
 			// Assert
-			Assert.IsTrue(variableExists);
-			Assert.AreEqual(targetOutput1, output1);
+			Assert.True(variableExists);
+			Assert.Equal(targetOutput1, output1);
 
-			Assert.AreEqual(input2, output2);
+			Assert.Equal(input2, output2);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void SettingAndGettingVariableWithIntegerValueIsCorrect()
 		{
 			// Arrange
@@ -668,13 +666,13 @@
 			}
 
 			// Assert
-			Assert.IsTrue(variableExists);
-			Assert.AreEqual(targetOutput1, output1);
+			Assert.True(variableExists);
+			Assert.Equal(targetOutput1, output1);
 
-			Assert.AreEqual(input2, output2);
+			Assert.Equal(input2, output2);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void SettingAndGettingVariableWithDoubleValueIsCorrect()
 		{
 			// Arrange
@@ -702,13 +700,13 @@
 			}
 
 			// Assert
-			Assert.IsTrue(variableExists);
-			Assert.AreEqual(targetOutput1, output1);
+			Assert.True(variableExists);
+			Assert.Equal(targetOutput1, output1);
 
-			Assert.AreEqual(input2, output2);
+			Assert.Equal(input2, output2);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void SettingAndGettingVariableWithStringValueIsCorrect()
 		{
 			// Arrange
@@ -736,13 +734,13 @@
 			}
 
 			// Assert
-			Assert.IsTrue(variableExists);
-			Assert.AreEqual(targetOutput1, output1);
+			Assert.True(variableExists);
+			Assert.Equal(targetOutput1, output1);
 
-			Assert.AreEqual(input2, output2);
+			Assert.Equal(input2, output2);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void RemovingVariableIsCorrect()
 		{
 			// Arrange
@@ -762,8 +760,8 @@
 			}
 
 			// Assert
-			Assert.IsTrue(variableBeforeRemovingExists);
-			Assert.IsFalse(variableAfterRemovingExists);
+			Assert.True(variableBeforeRemovingExists);
+			Assert.False(variableAfterRemovingExists);
 		}
 
 		#endregion

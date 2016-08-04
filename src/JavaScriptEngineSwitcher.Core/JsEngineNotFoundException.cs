@@ -1,9 +1,9 @@
-﻿namespace JavaScriptEngineSwitcher.Core
-{
-	using System;
+﻿using System;
 
+namespace JavaScriptEngineSwitcher.Core
+{
 	/// <summary>
-	/// The exception that is thrown when a JavaScript engine is not found
+	/// The exception that is thrown when a JS engine is not found
 	/// </summary>
 	public sealed class JsEngineNotFoundException : Exception
 	{

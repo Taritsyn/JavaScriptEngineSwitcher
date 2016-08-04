@@ -1,12 +1,12 @@
-﻿namespace JavaScriptEngineSwitcher.Core.Utilities
+﻿using System;
+using System.ComponentModel;
+using System.Globalization;
+using OriginalTypeConverter = System.ComponentModel.TypeConverter;
+
+using JavaScriptEngineSwitcher.Core.Resources;
+
+namespace JavaScriptEngineSwitcher.Core.Utilities
 {
-	using System;
-	using System.ComponentModel;
-	using System.Globalization;
-	using OriginalTypeConverter = System.ComponentModel.TypeConverter;
-
-	using Resources;
-
 	/// <summary>
 	/// Type converter
 	/// </summary>
@@ -170,7 +170,7 @@
 
 			if (type.IsGenericType)
 			{
-				return (type.GetGenericTypeDefinition() != typeof(Nullable<>));
+				return type.GetGenericTypeDefinition() != typeof(Nullable<>);
 			}
 
 			return true;

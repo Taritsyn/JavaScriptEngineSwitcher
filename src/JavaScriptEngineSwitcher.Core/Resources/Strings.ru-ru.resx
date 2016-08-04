@@ -123,9 +123,6 @@
   <data name="Common_ArgumentIsNull" xml:space="preserve">
     <value>Параметр с именем "{0}" не должен содержать значение равное null!</value>
   </data>
-  <data name="Common_AssemblyNameIsEmpty" xml:space="preserve">
-    <value>Вы не указали имя сборки!</value>
-  </data>
   <data name="Common_CannotConvertObjectToType" xml:space="preserve">
     <value>Невозможно преобразовать объект типа `{0}` в тип `{1}`!</value>
   </data>
@@ -134,12 +131,6 @@
   </data>
   <data name="Common_FileNotExist" xml:space="preserve">
     <value>Файл "{0}" не существует!</value>
-  </data>
-  <data name="Common_InstanceCreationFailed" xml:space="preserve">
-    <value>При создании экземпляра объекта типа `{0}` из сборки `{1}` произошла ошибка!</value>
-  </data>
-  <data name="Common_TypeNameIsEmpty" xml:space="preserve">
-    <value>Вы не указали имя типа!</value>
   </data>
   <data name="Common_ValueIsEmpty" xml:space="preserve">
     <value>Значение не должно быть пустым!</value>
@@ -150,11 +141,11 @@
   <data name="Common_ValueTypeCannotBeNull" xml:space="preserve">
     <value>Невозможно преобразовать null в значимый тип!</value>
   </data>
-  <data name="Configuration_DefaultJsEngineNotSpecified" xml:space="preserve">
-    <value>Не указан JavaScript-движок, который должен использоваться по умолчанию!</value>
+  <data name="Configuration_DefaultJsEngineNameNotSpecified" xml:space="preserve">
+    <value>Не указано имя JavaScript-движка, который должен использоваться по умолчанию!</value>
   </data>
-  <data name="Configuration_JsEngineNotRegistered" xml:space="preserve">
-    <value>JavaScript-движок с именем `{0}` не зарегистрирован в конфигурационном файле!</value>
+  <data name="Configuration_JsEngineFactoryNotFound" xml:space="preserve">
+    <value>Не удалось найти фабрику, создающую экземпляр JavaScript-движка с именем `{0}`!</value>
   </data>
   <data name="ErrorDetails_Category" xml:space="preserve">
     <value>Категория</value>
@@ -189,9 +180,6 @@
   <data name="Runtime_EmbeddedHostTypeNotSupported" xml:space="preserve">
     <value>Встраиваемый тип хоста `{0}` не поддерживается!</value>
   </data>
-  <data name="Runtime_FunctionNameIsForbidden" xml:space="preserve">
-    <value>Имя функции "{0}" запрещено, т.к. входит в список зарезервированных слов JavaScript!</value>
-  </data>
   <data name="Runtime_FunctionNotExist" xml:space="preserve">
     <value>Функция с именем "{0}" не существует!</value>
   </data>
@@ -213,14 +201,8 @@
 
 {1}</value>
   </data>
-  <data name="Runtime_MethodInfoNotLoaded" xml:space="preserve">
-    <value>Не удалось загрузить информацию о методе "{1}" типа `{0}`!</value>
-  </data>
   <data name="Runtime_ReturnValueTypeNotSupported" xml:space="preserve">
     <value>Тип возвращаемого значения `{0}` не поддерживается!</value>
-  </data>
-  <data name="Runtime_VariableNameIsForbidden" xml:space="preserve">
-    <value>Имя переменной "{0}" запрещено, т.к. входит в список зарезервированных слов JavaScript!</value>
   </data>
   <data name="Runtime_VariableTypeNotSupported" xml:space="preserve">
     <value>Переменная "{0}" имеет тип `{1}`, который не поддерживается!</value>

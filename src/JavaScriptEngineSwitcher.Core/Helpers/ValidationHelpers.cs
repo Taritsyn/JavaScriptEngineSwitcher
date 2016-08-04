@@ -1,9 +1,9 @@
-﻿namespace JavaScriptEngineSwitcher.Core.Helpers
-{
-	using System;
-	using System.Linq;
-	using System.Text.RegularExpressions;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
+namespace JavaScriptEngineSwitcher.Core.Helpers
+{
 	/// <summary>
 	/// Validation helpers
 	/// </summary>

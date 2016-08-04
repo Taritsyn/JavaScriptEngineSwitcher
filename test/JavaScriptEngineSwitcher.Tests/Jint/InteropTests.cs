@@ -1,14 +1,10 @@
 ﻿namespace JavaScriptEngineSwitcher.Tests.Jint
 {
-	using Core;
-
 	public class InteropTests : InteropTestsBase
 	{
-		protected override IJsEngine CreateJsEngine()
+		protected override string EngineName
 		{
-			var jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("JintJsEngine");
-
-			return jsEngine;
+			get { return "JintJsEngine"; }
 		}
 	}
 }

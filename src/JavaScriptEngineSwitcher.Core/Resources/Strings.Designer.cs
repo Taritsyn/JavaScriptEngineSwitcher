@@ -79,15 +79,6 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not specified a name of assembly..
-        /// </summary>
-        public static string Common_AssemblyNameIsEmpty {
-            get {
-                return ResourceManager.GetString("Common_AssemblyNameIsEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cannot convert object of type `{0}` to type `{1}`..
         /// </summary>
         public static string Common_CannotConvertObjectToType {
@@ -111,24 +102,6 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         public static string Common_FileNotExist {
             get {
                 return ResourceManager.GetString("Common_FileNotExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to During instantiate an object of type `{0}` from assembly `{1}` error occurred..
-        /// </summary>
-        public static string Common_InstanceCreationFailed {
-            get {
-                return ResourceManager.GetString("Common_InstanceCreationFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You do not specified a type name..
-        /// </summary>
-        public static string Common_TypeNameIsEmpty {
-            get {
-                return ResourceManager.GetString("Common_TypeNameIsEmpty", resourceCulture);
             }
         }
         
@@ -160,20 +133,20 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default JavaScript engine not specified..
+        ///   Looks up a localized string similar to Name of default JavaScript engine not specified..
         /// </summary>
-        public static string Configuration_DefaultJsEngineNotSpecified {
+        public static string Configuration_DefaultJsEngineNameNotSpecified {
             get {
-                return ResourceManager.GetString("Configuration_DefaultJsEngineNotSpecified", resourceCulture);
+                return ResourceManager.GetString("Configuration_DefaultJsEngineNameNotSpecified", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JavaScript engine with name `{0}` is not registered in configuration file..
+        ///   Looks up a localized string similar to Could not find a factory, that creates an instance of the JavaScript engine with name `{0}`..
         /// </summary>
-        public static string Configuration_JsEngineNotRegistered {
+        public static string Configuration_JsEngineFactoryNotFound {
             get {
-                return ResourceManager.GetString("Configuration_JsEngineNotRegistered", resourceCulture);
+                return ResourceManager.GetString("Configuration_JsEngineFactoryNotFound", resourceCulture);
             }
         }
         
@@ -277,15 +250,6 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The function name &apos;{0}&apos; is forbidden, as is contained in the list of reserved words of JavaScript language..
-        /// </summary>
-        public static string Runtime_FunctionNameIsForbidden {
-            get {
-                return ResourceManager.GetString("Runtime_FunctionNameIsForbidden", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The function with the name &apos;{0}&apos; does not exist..
         /// </summary>
         public static string Runtime_FunctionNotExist {
@@ -343,29 +307,11 @@ namespace JavaScriptEngineSwitcher.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to load information about the method &apos;{1}&apos; of type `{0}`..
-        /// </summary>
-        public static string Runtime_MethodInfoNotLoaded {
-            get {
-                return ResourceManager.GetString("Runtime_MethodInfoNotLoaded", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The type of return value `{0}` is not supported..
         /// </summary>
         public static string Runtime_ReturnValueTypeNotSupported {
             get {
                 return ResourceManager.GetString("Runtime_ReturnValueTypeNotSupported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The variable name &apos;{0}&apos; is forbidden, as is contained in the list of reserved words of JavaScript language..
-        /// </summary>
-        public static string Runtime_VariableNameIsForbidden {
-            get {
-                return ResourceManager.GetString("Runtime_VariableNameIsForbidden", resourceCulture);
             }
         }
         

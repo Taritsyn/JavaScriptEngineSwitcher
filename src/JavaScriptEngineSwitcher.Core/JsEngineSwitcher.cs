@@ -1,36 +1,44 @@
-﻿namespace JavaScriptEngineSwitcher.Core
+﻿using System;
+
+using JavaScriptEngineSwitcher.Core.Resources;
+
+namespace JavaScriptEngineSwitcher.Core
 {
-	using System;
-	using System.Configuration;
-
-	using Configuration;
-	using Resources;
-	using Utilities;
-
 	/// <summary>
-	/// JavaScript engine switcher
+	/// JS engine switcher
 	/// </summary>
 	public sealed class JsEngineSwitcher
 	{
 		/// <summary>
-		/// Instance of JavaScript engine switcher
+		/// Instance of JS engine switcher
 		/// </summary>
 		private static readonly Lazy<JsEngineSwitcher> _instance =
 			new Lazy<JsEngineSwitcher>(() => new JsEngineSwitcher());
 
 		/// <summary>
-		/// Configuration settings of core
+		/// Gets a instance of JS engine switcher
 		/// </summary>
-		private readonly Lazy<CoreConfiguration> _coreConfig =
-			new Lazy<CoreConfiguration>(() =>
-				(CoreConfiguration)ConfigurationManager.GetSection("jsEngineSwitcher/core"));
-
-		/// <summary>
-		/// Gets a instance of JavaScript engine switcher
-		/// </summary>
-		public static JsEngineSwitcher Current
+		public static JsEngineSwitcher Instance
 		{
 			get { return _instance.Value; }
+		}
+
+		/// <summary>
+		/// Gets or sets a name of default JS engine
+		/// </summary>
+		public string DefaultEngineName
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets a collection of JS engine factories
+		/// </summary>
+		public JsEngineFactoryCollection EngineFactories
+		{
+			get;
+			private set;
 		}
 
 
@@ -38,44 +46,45 @@
 		/// Private constructor for implementation Singleton pattern
 		/// </summary>
 		private JsEngineSwitcher()
-		{ }
+		{
+			DefaultEngineName = string.Empty;
+			EngineFactories = new JsEngineFactoryCollection();
+		}
 
 
 		/// <summary>
-		/// Creates a instance of JavaScript engine
+		/// Creates a instance of JS engine
 		/// </summary>
-		/// <param name="name">JavaScript engine name</param>
-		/// <returns>JavaScript engine</returns>
+		/// <param name="name">JS engine name</param>
+		/// <returns>JS engine</returns>
 		public IJsEngine CreateJsEngineInstance(string name)
 		{
-			IJsEngine jsEngine;
-			JsEngineRegistrationList jsEngineRegistrationList = _coreConfig.Value.Engines;
-			JsEngineRegistration jsEngineRegistration = jsEngineRegistrationList[name];
+			IJsEngine engine;
+			IJsEngineFactory engineFactory = EngineFactories.Get(name);
 
-			if (jsEngineRegistration != null)
+			if (engineFactory != null)
 			{
-				jsEngine = Utils.CreateInstanceByFullTypeName<IJsEngine>(jsEngineRegistration.Type);
+				engine = engineFactory.CreateEngine();
 			}
 			else
 			{
 				throw new JsEngineNotFoundException(
-					string.Format(Strings.Configuration_JsEngineNotRegistered, name));
+					string.Format(Strings.Configuration_JsEngineFactoryNotFound, name));
 			}
 
-			return jsEngine;
+			return engine;
 		}
 
 		/// <summary>
-		/// Creates a instance of default JavaScript engine based on the settings
-		/// that specified in configuration files (App.config or Web.config)
+		/// Creates a instance of default JS engine
 		/// </summary>
-		/// <returns>JavaScript engine</returns>
+		/// <returns>JS engine</returns>
 		public IJsEngine CreateDefaultJsEngineInstance()
 		{
-			string defaultJsEngineName = _coreConfig.Value.DefaultEngine;
+			string defaultJsEngineName = DefaultEngineName;
 			if (string.IsNullOrWhiteSpace(defaultJsEngineName))
 			{
-				throw new ConfigurationErrorsException(Strings.Configuration_DefaultJsEngineNotSpecified);
+				throw new EmptyValueException(Strings.Configuration_DefaultJsEngineNameNotSpecified);
 			}
 
 			IJsEngine jsEngine = CreateJsEngineInstance(defaultJsEngineName);

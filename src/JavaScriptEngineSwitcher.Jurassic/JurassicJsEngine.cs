@@ -1,4 +1,8 @@
-﻿using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
+﻿using System;
+using System.IO;
+using System.Text;
+
+using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
 using OriginalConcatenatedString = Jurassic.ConcatenatedString;
 using OriginalJsEngine = Jurassic.ScriptEngine;
 using OriginalJsException = Jurassic.JavaScriptException;
@@ -6,29 +10,23 @@ using OriginalNull = Jurassic.Null;
 using OriginalTypeConverter = Jurassic.TypeConverter;
 using OriginalUndefined = Jurassic.Undefined;
 
+using JavaScriptEngineSwitcher.Core;
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+
 namespace JavaScriptEngineSwitcher.Jurassic
 {
-	using System;
-	using System.IO;
-	using System.Text;
-
-	using Core;
-	using CoreStrings = Core.Resources.Strings;
-
-	using Configuration;
-
 	/// <summary>
-	/// Adapter for Jurassic JavaScript engine
+	/// Adapter for the Jurassic JS engine
 	/// </summary>
 	public sealed class JurassicJsEngine : JsEngineBase
 	{
 		/// <summary>
-		/// Name of JavaScript engine
+		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "Jurassic JavaScript engine";
+		private const string ENGINE_NAME = "Jurassic JS engine";
 
 		/// <summary>
-		/// Version of original JavaScript engine
+		/// Version of original JS engine
 		/// </summary>
 		private const string ENGINE_VERSION = "Jul 15, 2016";
 
@@ -43,7 +41,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
-		/// Gets a name of JavaScript engine
+		/// Gets a name of JS engine
 		/// </summary>
 		public override string Name
 		{
@@ -51,7 +49,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		}
 
 		/// <summary>
-		/// Gets a version of original JavaScript engine
+		/// Gets a version of original JS engine
 		/// </summary>
 		public override string Version
 		{
@@ -60,29 +58,29 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 
 		/// <summary>
-		/// Constructs a instance of adapter for Jurassic
+		/// Constructs a instance of adapter for the Jurassic JS engine
 		/// </summary>
 		public JurassicJsEngine()
-			: this(JsEngineSwitcher.Current.GetJurassicConfiguration())
+			: this(new JurassicSettings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for Jurassic
+		/// Constructs a instance of adapter for the Jurassic JS engine
 		/// </summary>
-		/// <param name="config">Configuration settings of Jurassic JavaScript engine</param>
-		public JurassicJsEngine(JurassicConfiguration config)
+		/// <param name="settings">Settings of the Jurassic JS engine</param>
+		public JurassicJsEngine(JurassicSettings settings)
 		{
-			JurassicConfiguration jurassicConfig = config ?? new JurassicConfiguration();
+			JurassicSettings jurassicSettings = settings ?? new JurassicSettings();
 
 			try
 			{
 				_jsEngine = new OriginalJsEngine
 				{
-					EnableDebugging = jurassicConfig.EnableDebugging,
+					EnableDebugging = jurassicSettings.EnableDebugging,
 					CompatibilityMode = OriginalCompatibilityMode.Latest,
 					EnableExposedClrTypes = true,
-					EnableILAnalysis = jurassicConfig.EnableIlAnalysis,
-					ForceStrictMode = jurassicConfig.StrictMode
+					EnableILAnalysis = jurassicSettings.EnableIlAnalysis,
+					ForceStrictMode = jurassicSettings.StrictMode
 				};
 			}
 			catch (Exception e)

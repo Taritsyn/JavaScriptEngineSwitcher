@@ -1,8 +1,8 @@
-﻿namespace JavaScriptEngineSwitcher.Tests.Interop
-{
-	using System;
-	using System.Text;
+﻿using System;
+using System.Text;
 
+namespace JavaScriptEngineSwitcher.Tests.Interop
+{
 	public static class Base64Encoder
 	{
 		public const int DATA_URI_MAX = 32768;

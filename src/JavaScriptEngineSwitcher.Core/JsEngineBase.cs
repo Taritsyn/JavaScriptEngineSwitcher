@@ -1,15 +1,15 @@
-﻿namespace JavaScriptEngineSwitcher.Core
+﻿using System;
+using System.Reflection;
+using System.Text;
+
+using JavaScriptEngineSwitcher.Core.Helpers;
+using JavaScriptEngineSwitcher.Core.Resources;
+using JavaScriptEngineSwitcher.Core.Utilities;
+
+namespace JavaScriptEngineSwitcher.Core
 {
-	using System;
-	using System.Reflection;
-	using System.Text;
-
-	using Helpers;
-	using Resources;
-	using Utilities;
-
 	/// <summary>
-	/// Base class of JavaScript engine
+	/// Base class of JS engine
 	/// </summary>
 	public abstract class JsEngineBase : IJsEngine
 	{

@@ -1,21 +1,21 @@
-﻿namespace JavaScriptEngineSwitcher.Core.Helpers
+﻿using System;
+using System.Globalization;
+using System.Text;
+
+using JavaScriptEngineSwitcher.Core.Resources;
+using JavaScriptEngineSwitcher.Core.Utilities;
+
+namespace JavaScriptEngineSwitcher.Core.Helpers
 {
-	using System;
-	using System.Globalization;
-	using System.Text;
-
-	using Resources;
-	using Utilities;
-
 	/// <summary>
-	/// JavaScript error helpers
+	/// JS error helpers
 	/// </summary>
 	public static class JsRuntimeErrorHelpers
 	{
 		/// <summary>
 		/// Generates a detailed error message
 		/// </summary>
-		/// <param name="jsEngineLoadException">JavaScript engine load exception</param>
+		/// <param name="jsEngineLoadException">JS engine load exception</param>
 		/// <returns>Detailed error message</returns>
 		public static string Format(JsEngineLoadException jsEngineLoadException)
 		{
@@ -39,7 +39,7 @@
 		/// <summary>
 		/// Generates a detailed error message
 		/// </summary>
-		/// <param name="jsRuntimeException">JavaScript runtime exception</param>
+		/// <param name="jsRuntimeException">JS runtime exception</param>
 		/// <returns>Detailed error message</returns>
 		public static string Format(JsRuntimeException jsRuntimeException)
 		{

@@ -1,12 +1,12 @@
-﻿namespace JavaScriptEngineSwitcher.V8
+﻿using System;
+using System.IO;
+using System.Reflection;
+using System.Text.RegularExpressions;
+
+using JavaScriptEngineSwitcher.V8.Resources;
+
+namespace JavaScriptEngineSwitcher.V8
 {
-	using System;
-	using System.IO;
-	using System.Reflection;
-	using System.Text.RegularExpressions;
-
-	using Resources;
-
 	/// <summary>
 	/// Assembly resolver
 	/// </summary>

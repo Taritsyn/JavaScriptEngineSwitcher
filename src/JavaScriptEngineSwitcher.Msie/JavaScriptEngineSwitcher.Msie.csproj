@@ -50,14 +50,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\MsieConfiguration.cs" />
+    <Compile Include="JsEngineFactoryCollectionExtensions.cs" />
+    <Compile Include="MsieJsEngineFactory.cs" />
     <Compile Include="JsEngineMode.cs" />
-    <Compile Include="JsEngineSwitcherExtensions.cs" />
     <Compile Include="MsieJsEngine.cs" />
+    <Compile Include="MsieSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

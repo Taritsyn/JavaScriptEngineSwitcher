@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="AssemblyResolver.cs" />
     <Compile Include="ChakraCoreJsEngine.cs" />
+    <Compile Include="ChakraCoreJsEngineFactory.cs" />
     <Compile Include="Helpers\NumericHelpers.cs" />
     <Compile Include="Helpers\ReflectionHelpers.cs" />
+    <Compile Include="JsEngineFactoryCollectionExtensions.cs" />
     <Compile Include="JsRt\JsBackgroundWorkItemCallback.cs" />
     <Compile Include="JsRt\JsBeforeCollectCallback.cs" />
     <Compile Include="JsRt\JsContext.cs" />

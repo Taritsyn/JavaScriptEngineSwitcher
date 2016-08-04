@@ -1,9 +1,9 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
+﻿using System;
+
+using JavaScriptEngineSwitcher.Core;
+
+namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
-	using System;
-
-	using Core;
-
 	/// <summary>
 	/// The scope automatically sets a context to current and resets the original context
 	/// when disposed

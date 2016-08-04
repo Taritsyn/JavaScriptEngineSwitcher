@@ -1,26 +1,22 @@
-﻿namespace JavaScriptEngineSwitcher.Tests
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+
+using Xunit;
+
+using JavaScriptEngineSwitcher.Tests.Interop;
+
+namespace JavaScriptEngineSwitcher.Tests
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Drawing;
-	using System.IO;
-	using System.Linq;
-
-	using NUnit.Framework;
-
-	using Core;
-	using Interop;
-
-	[TestFixture]
 	public abstract class InteropTestsBase : FileSystemTestsBase
 	{
-		protected abstract IJsEngine CreateJsEngine();
-
 		#region Embedding of objects
 
 		#region Objects with fields
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithFieldsIsCorrect()
 		{
 			// Arrange
@@ -52,12 +48,12 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeWithFieldsIsCorrect()
 		{
 			// Arrange
@@ -89,15 +85,15 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
 		#endregion
 
 		#region Objects with properties
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfBuiltinValueTypeWithPropertiesIsCorrect()
 		{
 			// Arrange
@@ -132,13 +128,13 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
-			Assert.AreEqual(targetOutput4, output4);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
+			Assert.Equal(targetOutput4, output4);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfBuiltinReferenceTypeWithPropertiesIsCorrect()
 		{
 			// Arrange
@@ -168,12 +164,12 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithPropertiesIsCorrect()
 		{
 			// Arrange
@@ -203,12 +199,12 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeWithPropertiesIsCorrect()
 		{
 			// Arrange
@@ -235,28 +231,28 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
 		#endregion
 
 		#region Objects with methods
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfBuiltinValueTypeWithMethodsIsCorrect()
 		{
 			// Arrange
 			var color = Color.FromArgb(84, 139, 212);
 
 			const string input1 = "color.GetHue()";
-			const double targetOutput1 = 214.21875d;
+			const double targetOutput1 = 214.21875;
 
 			const string input2 = "color.GetSaturation()";
-			const double targetOutput2 = 0.59813079999999996d;
+			const double targetOutput2 = 0.59813;
 
 			const string input3 = "color.GetBrightness()";
-			const double targetOutput3 = 0.58039220000000002d;
+			const double targetOutput3 = 0.58039;
 
 			// Act
 			double output1;
@@ -267,18 +263,18 @@
 			{
 				jsEngine.EmbedHostObject("color", color);
 
-				output1 = Math.Round(jsEngine.Evaluate<double>(input1), 7);
-				output2 = Math.Round(jsEngine.Evaluate<double>(input2), 7);
-				output3 = Math.Round(jsEngine.Evaluate<double>(input3), 7);
+				output1 = Math.Round(jsEngine.Evaluate<double>(input1), 5);
+				output2 = Math.Round(jsEngine.Evaluate<double>(input2), 5);
+				output3 = Math.Round(jsEngine.Evaluate<double>(input3), 5);
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfBuiltinReferenceTypeWithMethodIsCorrect()
 		{
 			// Arrange
@@ -297,10 +293,10 @@
 			}
 
 			// Assert
-			Assert.IsTrue(targetOutput.Contains(output));
+			Assert.True(targetOutput.Contains(output));
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithMethodIsCorrect()
 		{
 			// Arrange
@@ -319,10 +315,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeWithMethodIsCorrect()
 		{
 			// Arrange
@@ -342,14 +338,14 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
 
 		#region Delegates
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfDelegateWithoutParametersIsCorrect()
 		{
 			// Arrange
@@ -384,11 +380,11 @@
 			}
 
 			// Assert
-			Assert.IsNotNullOrEmpty(output);
-			Assert.IsTrue(output.Length == targetOutputLength);
+			Assert.NotEmpty(output);
+			Assert.True(output.Length == targetOutputLength);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfDelegateWithOneParameterIsCorrect()
 		{
 			// Arrange
@@ -407,10 +403,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfDelegateWithTwoParametersIsCorrect()
 		{
 			// Arrange
@@ -429,7 +425,7 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
@@ -441,7 +437,7 @@
 
 		#region Creating of instances
 
-		[Test]
+		[Fact]
 		public virtual void CreatingAnInstanceOfEmbeddedBuiltinValueTypeIsCorrect()
 		{
 			// Arrange
@@ -460,10 +456,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CreatingAnInstanceOfEmbeddedBuiltinReferenceTypeIsCorrect()
 		{
 			// Arrange
@@ -486,10 +482,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CreatingAnInstanceOfEmbeddedCustomValueTypeIsCorrect()
 		{
 			// Arrange
@@ -508,10 +504,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void CreatingAnInstanceOfEmbeddedCustomReferenceTypeIsCorrect()
 		{
 			// Arrange
@@ -530,14 +526,14 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
 
 		#region Types with constants
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfBuiltinReferenceTypeWithConstantsIsCorrect()
 		{
 			// Arrange
@@ -562,11 +558,11 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfCustomValueTypeWithConstantsIsCorrect()
 		{
 			// Arrange
@@ -596,12 +592,12 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfCustomReferenceTypeWithConstantIsCorrect()
 		{
 			// Arrange
@@ -620,14 +616,14 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
 
 		#region Types with fields
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfBuiltinValueTypeWithFieldIsCorrect()
 		{
 			// Arrange
@@ -646,10 +642,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfBuiltinReferenceTypeWithFieldIsCorrect()
 		{
 			// Arrange
@@ -668,10 +664,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfCustomValueTypeWithFieldIsCorrect()
 		{
 			// Arrange
@@ -690,10 +686,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfCustomReferenceTypeWithFieldIsCorrect()
 		{
 			// Arrange
@@ -712,14 +708,14 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
 
 		#region Types with properties
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfBuiltinValueTypeWithPropertyIsCorrect()
 		{
 			// Arrange
@@ -738,10 +734,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfBuiltinReferenceTypeWithPropertyIsCorrect()
 		{
 			// Arrange
@@ -760,10 +756,10 @@
 			}
 
 			// Assert
-			Assert.IsTrue(targetOutput.Contains(output));
+			Assert.True(targetOutput.Contains(output));
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfCustomValueTypeWithPropertyIsCorrect()
 		{
 			// Arrange
@@ -793,10 +789,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfCustomReferenceTypeWithPropertyIsCorrect()
 		{
 			// Arrange
@@ -818,14 +814,14 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
 
 		#region Types with methods
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfBuiltinValueTypeWithMethodIsCorrect()
 		{
 			// Arrange
@@ -844,10 +840,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfBuiltinReferenceTypeWithMethodIsCorrect()
 		{
 			// Arrange
@@ -866,10 +862,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfCustomValueTypeWithMethodIsCorrect()
 		{
 			// Arrange
@@ -888,10 +884,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void EmbeddingOfCustomReferenceTypeWithMethodIsCorrect()
 		{
 			// Arrange
@@ -910,7 +906,7 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
