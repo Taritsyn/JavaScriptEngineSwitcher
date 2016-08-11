@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <returns>Сontent of the embedded resource as string</returns>
 		public static string GetResourceAsString(string resourceName, Type type)
 		{
-			Assembly assembly = type.Assembly;
+			Assembly assembly = type.GetTypeInfo().Assembly;
 
 			return GetResourceAsString(resourceName, assembly);
 		}
@@ -61,9 +61,10 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 
 			string content;
 
-			using (var file = new StreamReader(path, encoding ?? Encoding.UTF8))
+			using (var stream = File.OpenRead(path))
+			using (var reader = new StreamReader(stream, encoding ?? Encoding.UTF8))
 			{
-				content = file.ReadToEnd();
+				content = reader.ReadToEnd();
 			}
 
 			return content;

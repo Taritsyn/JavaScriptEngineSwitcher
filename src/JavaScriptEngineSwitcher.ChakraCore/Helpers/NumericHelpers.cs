@@ -1,5 +1,7 @@
 ﻿using System;
 
+using JavaScriptEngineSwitcher.Core.Utilities;
+
 namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 {
 	/// <summary>
@@ -17,7 +19,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 		/// <returns>true if the specified type is one of the numeric types; otherwise, false</returns>
 		public static bool IsNumericType(Type type)
 		{
-			TypeCode typeCode = Type.GetTypeCode(type);
+			TypeCode typeCode = type.GetTypeCode();
 
 			switch (typeCode)
 			{

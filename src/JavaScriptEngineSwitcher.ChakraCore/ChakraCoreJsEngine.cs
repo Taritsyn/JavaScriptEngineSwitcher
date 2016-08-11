@@ -189,7 +189,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				return JsValue.Undefined;
 			}
 
-			TypeCode typeCode = Type.GetTypeCode(value.GetType());
+			TypeCode typeCode = value.GetType().GetTypeCode();
 
 			switch (typeCode)
 			{
@@ -368,9 +368,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 			{
 				object[] processedArgs = MapToHostType(args.Skip(1).ToArray());
+				ParameterInfo[] parameters = value.GetMethodInfo().GetParameters();
 				JsValue undefinedValue = JsValue.Undefined;
 
-				ReflectionHelpers.FixArgumentTypes(ref processedArgs, value.Method.GetParameters());
+				ReflectionHelpers.FixArgumentTypes(ref processedArgs, parameters);
 
 				object result;
 
@@ -400,6 +401,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		private JsValue CreateConstructor(Type type)
 		{
+			TypeInfo typeInfo = type.GetTypeInfo();
 			string typeName = type.FullName;
 			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(true);
 			ConstructorInfo[] constructors = type.GetConstructors(defaultBindingFlags);
@@ -412,7 +414,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				object[] processedArgs = MapToHostType(args.Skip(1).ToArray());
 				object result;
 
-				if (processedArgs.Length == 0 && type.IsValueType)
+				if (processedArgs.Length == 0 && typeInfo.IsValueType)
 				{
 					result = Activator.CreateInstance(type);
 					resultValue = MapToScriptType(result);

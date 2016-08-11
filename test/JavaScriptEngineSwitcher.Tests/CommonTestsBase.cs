@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 
 using Xunit;
 
@@ -163,7 +162,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		public virtual void ExecutionOfFileIsCorrect()
 		{
 			// Arrange
-			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "JavaScriptEngineSwitcher.Tests/Files/square.js"));
+			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "Files/square.js"));
 			const string input = "square(6);";
 			const int targetOutput = 36;
 
@@ -214,7 +213,7 @@ namespace JavaScriptEngineSwitcher.Tests
 
 			using (var jsEngine = CreateJsEngine())
 			{
-				jsEngine.ExecuteResource(resourceName, Assembly.GetExecutingAssembly());
+				jsEngine.ExecuteResource(resourceName, GetType());
 				output = jsEngine.Evaluate<int>(input);
 			}
 

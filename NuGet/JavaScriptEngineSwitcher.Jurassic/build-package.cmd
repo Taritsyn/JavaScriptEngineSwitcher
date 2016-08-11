@@ -1,2 +1,20 @@
-\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe ..\..\src\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj /p:Configuration=Release
-..\..\.nuget\nuget.exe pack ..\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.nuspec
+set project_name=JavaScriptEngineSwitcher.Jurassic
+set project_source_dir=..\..\src\%project_name%
+set project_bin_dir=%project_source_dir%\bin\Release
+set binaries_dir=..\..\Binaries\Jurassic
+set licenses_dir=..\..\Licenses
+set nuget_package_manager=..\..\.nuget\nuget.exe
+
+call "..\setup.cmd"
+
+rmdir lib /Q/S
+del jurassic-license.txt /Q/S
+
+%net40_msbuild% "%project_source_dir%\%project_name%.Net40.csproj" /p:Configuration=Release
+xcopy "%project_bin_dir%\%project_name%.dll" lib\net40-client\
+xcopy "%project_bin_dir%\ru-ru\%project_name%.resources.dll" lib\net40-client\ru-ru\
+xcopy "%binaries_dir%\Jurassic.dll" lib\net40-client\
+
+copy "%licenses_dir%\jurassic-license.txt" jurassic-license.txt /Y
+
+%nuget_package_manager% pack "..\%project_name%\%project_name%.nuspec"

@@ -1,0 +1,30 @@
+﻿{
+	"version": "2.0.0-alpha1",
+
+	"dependencies": {
+		"JavaScriptEngineSwitcher.Core": "2.0.0-alpha1"
+	},
+
+	"buildOptions": {
+		"warningsAsErrors": true,
+		"keyFile": "../../tools/Key.snk",
+		"nowarn": [
+			"CS1591"
+		],
+		"xmlDoc": true
+	},
+
+	"frameworks": {
+		"netstandard1.3": {
+			"dependencies": {
+				"System.Diagnostics.Tools": "4.0.1",
+				"Microsoft.Extensions.PlatformAbstractions": "1.0.0"
+			}
+		},
+		"net452": {}
+	},
+
+	"scripts": {
+		"precompile": "../../build resx"
+	}
+}

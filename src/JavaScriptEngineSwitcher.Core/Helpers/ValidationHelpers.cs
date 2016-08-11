@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
+using JavaScriptEngineSwitcher.Core.Utilities;
+
 namespace JavaScriptEngineSwitcher.Core.Helpers
 {
 	/// <summary>
@@ -54,7 +56,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// <returns>Result of check (true - is primitive; false - is not primitive)</returns>
 		public static bool IsPrimitiveType(Type type)
 		{
-			TypeCode typeCode = Type.GetTypeCode(type);
+			TypeCode typeCode = type.GetTypeCode();
 			bool result = _primitiveTypeCodes.Contains(typeCode);
 
 			return result;

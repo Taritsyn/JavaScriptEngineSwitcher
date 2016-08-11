@@ -1,7 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
+#if NETSTANDARD1_3
+
+using Microsoft.Extensions.PlatformAbstractions;
+#endif
+
+using JavaScriptEngineSwitcher.Core.Helpers;
 
 using JavaScriptEngineSwitcher.ChakraCore.Resources;
 
@@ -13,17 +18,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 	internal static class AssemblyResolver
 	{
 		/// <summary>
-		/// Name of directory, that contains the ChakraCore assemblies
+		/// Name of the ChakraCore assembly
 		/// </summary>
-		private const string ASSEMBLY_DIRECTORY_NAME = "ChakraCore";
+		private const string ASSEMBLY_NAME = "ChakraCore";
 
-		/// <summary>
-		/// Regular expression for working with the `bin` directory path
-		/// </summary>
-		private static readonly Regex _binDirectoryRegex = new Regex(@"\\bin\\?$", RegexOptions.IgnoreCase);
-
-
-		[DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		[DllImport("kernel32.dll", SetLastError = true)]
 		private static extern bool SetDllDirectory(string lpPathName);
 
 		/// <summary>
@@ -31,37 +30,40 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public static void Initialize()
 		{
-			var currentDomain = AppDomain.CurrentDomain;
-			string platform = Environment.Is64BitProcess ? "x64" : "x86";
+			string baseDirectoryPath;
+			bool is64BitProcess;
 
-			string binDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
-			if (string.IsNullOrEmpty(binDirectoryPath))
+#if NETSTANDARD1_3
+			baseDirectoryPath = PlatformServices.Default.Application.ApplicationBasePath;
+			is64BitProcess = IntPtr.Size == 8;
+#else
+			AppDomain currentDomain = AppDomain.CurrentDomain;
+			baseDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
+			if (string.IsNullOrEmpty(baseDirectoryPath))
 			{
 				// `PrivateBinPath` property is empty in test scenarios, so
 				// need to use the `BaseDirectory` property
-				binDirectoryPath = currentDomain.BaseDirectory;
+				baseDirectoryPath = currentDomain.BaseDirectory;
+			}
+			is64BitProcess = Environment.Is64BitProcess;
+#endif
+
+			if (!PathHelpers.ContainsDirectory(baseDirectoryPath, "bin"))
+			{
+				return;
 			}
 
-			string assemblyDirectoryPath = Path.Combine(binDirectoryPath, ASSEMBLY_DIRECTORY_NAME, platform);
+			string platform = is64BitProcess ? "x64" : "x86";
+			string assemblyFileName = ASSEMBLY_NAME + ".dll";
+			string assemblyDirectoryPath = Path.Combine(baseDirectoryPath, platform);
+			string assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
 
-			if (!Directory.Exists(assemblyDirectoryPath))
+			if (!File.Exists(assemblyFilePath))
 			{
-				if (_binDirectoryRegex.IsMatch(binDirectoryPath))
-				{
-					string applicationRootPath = _binDirectoryRegex.Replace(binDirectoryPath, string.Empty);
-					assemblyDirectoryPath = Path.Combine(applicationRootPath, ASSEMBLY_DIRECTORY_NAME, platform);
-
-					if (!Directory.Exists(assemblyDirectoryPath))
-					{
-						throw new DirectoryNotFoundException(
-							string.Format(Strings.Engines_ChakraCoreAssemblyDirectoryNotFound, assemblyDirectoryPath));
-					}
-				}
-				else
-				{
-					throw new DirectoryNotFoundException(
-						string.Format(Strings.Engines_ChakraCoreAssemblyDirectoryNotFound, assemblyDirectoryPath));
-				}
+				string projectDirectoryPath = PathHelpers.RemoveDirectoryFromPath(baseDirectoryPath, "bin");
+				string solutionDirectoryPath = Path.GetFullPath(Path.Combine(projectDirectoryPath, "../../"));
+				assemblyDirectoryPath = Path.GetFullPath(
+					Path.Combine(solutionDirectoryPath, "Binaries/ChakraCore/", platform));
 			}
 
 			if (!SetDllDirectory(assemblyDirectoryPath))

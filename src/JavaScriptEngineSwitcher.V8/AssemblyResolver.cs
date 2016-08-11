@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 using JavaScriptEngineSwitcher.V8.Resources;
 
@@ -13,19 +12,9 @@ namespace JavaScriptEngineSwitcher.V8
 	internal static class AssemblyResolver
 	{
 		/// <summary>
-		/// Name of directory, that contains the Microsoft ClearScript.V8 assemblies
-		/// </summary>
-		private const string ASSEMBLY_DIRECTORY_NAME = "ClearScript.V8";
-
-		/// <summary>
 		/// Name of the ClearScriptV8 assembly
 		/// </summary>
 		private const string ASSEMBLY_NAME = "ClearScriptV8";
-
-		/// <summary>
-		/// Regular expression for working with the `bin` directory path
-		/// </summary>
-		private static readonly Regex _binDirectoryRegex = new Regex(@"\\bin\\?$", RegexOptions.IgnoreCase);
 
 
 		/// <summary>
@@ -41,8 +30,6 @@ namespace JavaScriptEngineSwitcher.V8
 			if (args.Name.StartsWith(ASSEMBLY_NAME, StringComparison.OrdinalIgnoreCase))
 			{
 				var currentDomain = (AppDomain)sender;
-				string platform = Environment.Is64BitProcess ? "64" : "32";
-
 				string binDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
 				if (string.IsNullOrEmpty(binDirectoryPath))
 				{
@@ -51,30 +38,27 @@ namespace JavaScriptEngineSwitcher.V8
 					binDirectoryPath = currentDomain.BaseDirectory;
 				}
 
-				string assemblyDirectoryPath = Path.Combine(binDirectoryPath, ASSEMBLY_DIRECTORY_NAME);
-				string assemblyFileName = string.Format("{0}-{1}.dll", ASSEMBLY_NAME, platform);
+				string platformName;
+				int platformBitness;
+				if (Environment.Is64BitProcess)
+				{
+					platformName = "x64";
+					platformBitness = 64;
+				}
+				else
+				{
+					platformName = "x86";
+					platformBitness = 32;
+				}
+
+				string assemblyDirectoryPath = Path.Combine(binDirectoryPath, platformName);
+				string assemblyFileName = string.Format("{0}-{1}.dll", ASSEMBLY_NAME, platformBitness);
 				string assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
 
 				if (!Directory.Exists(assemblyDirectoryPath))
 				{
-					if (_binDirectoryRegex.IsMatch(binDirectoryPath))
-					{
-						string applicationRootPath = _binDirectoryRegex.Replace(binDirectoryPath, string.Empty);
-						assemblyDirectoryPath = Path.Combine(applicationRootPath, ASSEMBLY_DIRECTORY_NAME);
-
-						if (!Directory.Exists(assemblyDirectoryPath))
-						{
-							throw new DirectoryNotFoundException(
-								string.Format(Strings.Engines_ClearScriptV8AssembliesDirectoryNotFound, assemblyDirectoryPath));
-						}
-
-						assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
-					}
-					else
-					{
-						throw new DirectoryNotFoundException(
-							string.Format(Strings.Engines_ClearScriptV8AssembliesDirectoryNotFound, assemblyDirectoryPath));
-					}
+					throw new DirectoryNotFoundException(
+						string.Format(Strings.Engines_ClearScriptV8AssembliesDirectoryNotFound, assemblyDirectoryPath));
 				}
 
 				if (!File.Exists(assemblyFilePath))

@@ -1,0 +1,56 @@
+﻿{
+	"version": "2.0.0-alpha1",
+
+	"dependencies": {
+		"dotnet-test-xunit": "2.2.0-preview2-build1029",
+		"Microsoft.Extensions.PlatformAbstractions": "1.0.0",
+		"Microsoft.NETCore.Platforms": "1.0.1",
+		"xunit": "2.2.0-beta2-build3300",
+		"JavaScriptEngineSwitcher.ChakraCore": "2.0.0-alpha1",
+		"JavaScriptEngineSwitcher.Core": "2.0.0-alpha1"
+	},
+
+	"buildOptions": {
+		"warningsAsErrors": true,
+		"emitEntryPoint": false,
+		"embed": {
+			"includeFiles": [ "Resources/cube.js", "Resources/power.js" ]
+		}
+	},
+
+	"testRunner": "xunit",
+
+	"frameworks": {
+		"netcoreapp1.0": {
+			"imports": [
+				"dnxcore50",
+				"portable-net451+win8"
+			],
+			"dependencies": {
+				"Microsoft.NETCore.App": {
+					"version": "1.0.0",
+					"type": "platform"
+				}
+			},
+			"buildOptions": {
+				"compile": {
+					"exclude": [ "Jurassic/**/*.*", "V8/**/*.*", "Jint/**/*.*", "Msie/**/*.*" ]
+				}
+			}
+		},
+		"net452": {
+			"dependencies": {
+				"JavaScriptEngineSwitcher.Jint": "2.0.0-alpha1",
+				"JavaScriptEngineSwitcher.Msie": "2.0.0-alpha1"
+			},
+			"frameworkAssemblies": {
+				"System.Drawing": "4.0.0.0"
+			},
+			"buildOptions": {
+				"compile": {
+					"exclude": [ "Jurassic/**/*.*", "V8/**/*.*", "Interop/Drawing/**/*.*" ]
+				}
+			}
+		}
+	}
+}

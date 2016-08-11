@@ -57,7 +57,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// </summary>
 		/// <param name="name">JS engine name</param>
 		/// <returns>JS engine</returns>
-		public IJsEngine CreateJsEngineInstance(string name)
+		public IJsEngine CreateEngine(string name)
 		{
 			IJsEngine engine;
 			IJsEngineFactory engineFactory = EngineFactories.Get(name);
@@ -79,7 +79,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// Creates a instance of default JS engine
 		/// </summary>
 		/// <returns>JS engine</returns>
-		public IJsEngine CreateDefaultJsEngineInstance()
+		public IJsEngine CreateDefaultEngine()
 		{
 			string defaultJsEngineName = DefaultEngineName;
 			if (string.IsNullOrWhiteSpace(defaultJsEngineName))
@@ -87,7 +87,7 @@ namespace JavaScriptEngineSwitcher.Core
 				throw new EmptyValueException(Strings.Configuration_DefaultJsEngineNameNotSpecified);
 			}
 
-			IJsEngine jsEngine = CreateJsEngineInstance(defaultJsEngineName);
+			IJsEngine jsEngine = CreateEngine(defaultJsEngineName);
 
 			return jsEngine;
 		}

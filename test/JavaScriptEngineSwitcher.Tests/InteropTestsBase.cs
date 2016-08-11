@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+#if !NETCOREAPP1_0
 using System.Drawing;
+#endif
 using System.IO;
 using System.Linq;
 
 using Xunit;
 
 using JavaScriptEngineSwitcher.Tests.Interop;
+#if NETCOREAPP1_0
+using JavaScriptEngineSwitcher.Tests.Interop.Drawing;
+#endif
 
 namespace JavaScriptEngineSwitcher.Tests
 {
@@ -323,7 +328,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		{
 			// Arrange
 			var fileManager = new FileManager();
-			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "JavaScriptEngineSwitcher.Tests/Files/link.txt"));
+			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "Files/link.txt"));
 
 			string input = string.Format("fileManager.ReadFile('{0}')", filePath.Replace(@"\", @"\\"));
 			const string targetOutput = "http://www.panopticoncentral.net/2015/09/09/the-two-faces-of-jsrt-in-windows-10/";
