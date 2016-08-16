@@ -2,10 +2,10 @@
 using JavaScriptEngineSwitcher.Core;
 #if !NETCOREAPP1_0
 using JavaScriptEngineSwitcher.Jint;
+using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 #endif
 #if NET40
-using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.V8;
 #endif
 
@@ -29,10 +29,10 @@ namespace JavaScriptEngineSwitcher.Tests
 							.AddChakraCore()
 #if !NETCOREAPP1_0
 							.AddJint()
+							.AddJurassic()
 							.AddMsie()
 #endif
 #if NET40
-							.AddJurassic()
 							.AddV8()
 #endif
 							;

@@ -1,0 +1,11 @@
+﻿{
+	"version": "2016.7.15",
+
+	"frameworks": {
+		"net452": {
+			"bin": {
+				"assembly": "../../Binaries/Jurassic/Jurassic.dll"
+			}
+		}
+	}
+}

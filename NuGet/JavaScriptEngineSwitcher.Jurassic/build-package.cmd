@@ -15,6 +15,12 @@ xcopy "%project_bin_dir%\%project_name%.dll" lib\net40-client\
 xcopy "%project_bin_dir%\ru-ru\%project_name%.resources.dll" lib\net40-client\ru-ru\
 xcopy "%binaries_dir%\Jurassic.dll" lib\net40-client\
 
+%dotnet_cli% build "%project_source_dir%" --framework net452 --configuration Release --no-dependencies --no-incremental
+xcopy "%project_bin_dir%\net452\%project_name%.dll" lib\net452\
+xcopy "%project_bin_dir%\net452\%project_name%.xml" lib\net452\
+xcopy "%project_bin_dir%\net452\ru-ru\%project_name%.resources.dll" lib\net452\ru-ru\
+xcopy "%binaries_dir%\Jurassic.dll" lib\net452\
+
 copy "%licenses_dir%\jurassic-license.txt" jurassic-license.txt /Y
 
 %nuget_package_manager% pack "..\%project_name%\%project_name%.nuspec"
