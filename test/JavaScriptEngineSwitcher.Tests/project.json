@@ -42,14 +42,15 @@
 			"dependencies": {
 				"JavaScriptEngineSwitcher.Jint": "2.0.0-alpha1",
 				"JavaScriptEngineSwitcher.Jurassic": "2.0.0-alpha1",
-				"JavaScriptEngineSwitcher.Msie": "2.0.0-alpha1"
+				"JavaScriptEngineSwitcher.Msie": "2.0.0-alpha1",
+				"JavaScriptEngineSwitcher.V8": "2.0.0-alpha1"
 			},
 			"frameworkAssemblies": {
 				"System.Drawing": "4.0.0.0"
 			},
 			"buildOptions": {
 				"compile": {
-					"exclude": [ "Interop/Drawing/**/*.*", "V8/**/*.*" ]
+					"exclude": [ "Interop/Drawing/**/*.*" ]
 				}
 			}
 		}

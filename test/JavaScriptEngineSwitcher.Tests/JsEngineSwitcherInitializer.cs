@@ -4,8 +4,6 @@ using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-#endif
-#if NET40
 using JavaScriptEngineSwitcher.V8;
 #endif
 
@@ -31,8 +29,6 @@ namespace JavaScriptEngineSwitcher.Tests
 							.AddJint()
 							.AddJurassic()
 							.AddMsie()
-#endif
-#if NET40
 							.AddV8()
 #endif
 							;

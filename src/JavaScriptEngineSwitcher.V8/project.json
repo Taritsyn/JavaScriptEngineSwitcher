@@ -2,7 +2,7 @@
 	"version": "2.0.0-alpha1",
 
 	"dependencies": {
-		"JurassicPrecompiled": "2016.7.15",
+		"ClearScriptPrecompiled": "2016.6.20",
 		"JavaScriptEngineSwitcher.Core": "2.0.0-alpha1"
 	},
 
@@ -17,5 +17,9 @@
 
 	"frameworks": {
 		"net452": {}
+	},
+
+	"scripts": {
+		"precompile": "../../build resx"
 	}
 }

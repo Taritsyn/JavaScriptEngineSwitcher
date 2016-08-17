@@ -20,6 +20,9 @@
 			<group targetFramework=".NETFramework4.0-Client">
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0-alpha1" />
 			</group>
+			<group targetFramework=".NETFramework4.5.2">
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0-alpha1" />
+			</group>
 		</dependencies>
 		<references>
 			<reference file="JavaScriptEngineSwitcher.V8.dll" />

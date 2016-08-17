@@ -120,13 +120,10 @@
   <data name="Engines_ClearScriptUndefinedValueNotLoaded" xml:space="preserve">
     <value>Failed to load the ClearScript `undefined` value.</value>
   </data>
-  <data name="Engines_ClearScriptV8AssembliesDirectoryNotFound" xml:space="preserve">
-    <value>Failed to load the ClearScriptV8 assembly, because the directory '{0}' does not exist.</value>
-  </data>
   <data name="Engines_ClearScriptV8AssemblyFileNotFound" xml:space="preserve">
-    <value>Failed to load the ClearScriptV8 assembly, because the file '{0}' does not exist.</value>
+    <value>Failed to load the ClearScriptV8 assembly, because the '{0}' file does not exist.</value>
   </data>
   <data name="Runtime_MethodInfoNotLoaded" xml:space="preserve">
-    <value>Failed to load information about the method '{1}' of type `{0}`.</value>
+    <value>Failed to load information about the `{1}` method of type `{0}`.</value>
   </data>
 </root>

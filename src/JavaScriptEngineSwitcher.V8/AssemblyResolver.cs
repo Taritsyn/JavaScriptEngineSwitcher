@@ -2,6 +2,8 @@
 using System.IO;
 using System.Reflection;
 
+using JavaScriptEngineSwitcher.Core.Helpers;
+
 using JavaScriptEngineSwitcher.V8.Resources;
 
 namespace JavaScriptEngineSwitcher.V8
@@ -30,12 +32,12 @@ namespace JavaScriptEngineSwitcher.V8
 			if (args.Name.StartsWith(ASSEMBLY_NAME, StringComparison.OrdinalIgnoreCase))
 			{
 				var currentDomain = (AppDomain)sender;
-				string binDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
-				if (string.IsNullOrEmpty(binDirectoryPath))
+				string baseDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
+				if (string.IsNullOrEmpty(baseDirectoryPath))
 				{
 					// `PrivateBinPath` property is empty in test scenarios, so
 					// need to use the `BaseDirectory` property
-					binDirectoryPath = currentDomain.BaseDirectory;
+					baseDirectoryPath = currentDomain.BaseDirectory;
 				}
 
 				string platformName;
@@ -51,20 +53,26 @@ namespace JavaScriptEngineSwitcher.V8
 					platformBitness = 32;
 				}
 
-				string assemblyDirectoryPath = Path.Combine(binDirectoryPath, platformName);
+				string assemblyDirectoryPath = Path.Combine(baseDirectoryPath, platformName);
 				string assemblyFileName = string.Format("{0}-{1}.dll", ASSEMBLY_NAME, platformBitness);
 				string assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
+				bool assemblyFileExists = File.Exists(assemblyFilePath);
 
-				if (!Directory.Exists(assemblyDirectoryPath))
+				if (!assemblyFileExists)
 				{
-					throw new DirectoryNotFoundException(
-						string.Format(Strings.Engines_ClearScriptV8AssembliesDirectoryNotFound, assemblyDirectoryPath));
+					string projectDirectoryPath = PathHelpers.RemoveDirectoryFromPath(baseDirectoryPath, "bin");
+					string solutionDirectoryPath = Path.GetFullPath(Path.Combine(projectDirectoryPath, "../../"));
+					assemblyDirectoryPath = Path.GetFullPath(
+						Path.Combine(solutionDirectoryPath, "Binaries/ClearScript/", platformName));
+					assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
+					assemblyFileExists = File.Exists(assemblyFilePath);
 				}
 
-				if (!File.Exists(assemblyFilePath))
+
+				if (!assemblyFileExists)
 				{
 					throw new FileNotFoundException(
-						string.Format(Strings.Engines_ClearScriptV8AssemblyFileNotFound, assemblyFilePath));
+						string.Format(Strings.Engines_ClearScriptV8AssemblyFileNotFound, assemblyFileName));
 				}
 
 				return Assembly.LoadFile(assemblyFilePath);

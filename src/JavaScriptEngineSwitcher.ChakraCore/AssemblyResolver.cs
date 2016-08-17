@@ -57,13 +57,21 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			string assemblyFileName = ASSEMBLY_NAME + ".dll";
 			string assemblyDirectoryPath = Path.Combine(baseDirectoryPath, platform);
 			string assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
+			bool assemblyFileExists = File.Exists(assemblyFilePath);
 
-			if (!File.Exists(assemblyFilePath))
+			if (!assemblyFileExists)
 			{
 				string projectDirectoryPath = PathHelpers.RemoveDirectoryFromPath(baseDirectoryPath, "bin");
 				string solutionDirectoryPath = Path.GetFullPath(Path.Combine(projectDirectoryPath, "../../"));
 				assemblyDirectoryPath = Path.GetFullPath(
 					Path.Combine(solutionDirectoryPath, "Binaries/ChakraCore/", platform));
+				assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
+				assemblyFileExists = File.Exists(assemblyFilePath);
+			}
+
+			if (!assemblyFileExists)
+			{
+				return;
 			}
 
 			if (!SetDllDirectory(assemblyDirectoryPath))

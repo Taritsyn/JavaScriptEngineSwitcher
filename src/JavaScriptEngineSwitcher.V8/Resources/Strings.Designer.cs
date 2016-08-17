@@ -68,15 +68,7 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Failed to load the ClearScriptV8 assembly, because the directory '{0}' does not exist."
-		/// </summary>
-		public static string Engines_ClearScriptV8AssembliesDirectoryNotFound
-		{
-			get { return GetString("Engines_ClearScriptV8AssembliesDirectoryNotFound"); }
-		}
-
-		/// <summary>
-		/// Looks up a localized string similar to "Failed to load the ClearScriptV8 assembly, because the file '{0}' does not exist."
+		/// Looks up a localized string similar to "Failed to load the ClearScriptV8 assembly, because the '{0}' file does not exist."
 		/// </summary>
 		public static string Engines_ClearScriptV8AssemblyFileNotFound
 		{
@@ -84,7 +76,7 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Failed to load information about the method '{1}' of type `{0}`."
+		/// Looks up a localized string similar to "Failed to load information about the `{1}` method of type `{0}`."
 		/// </summary>
 		public static string Runtime_MethodInfoNotLoaded
 		{
