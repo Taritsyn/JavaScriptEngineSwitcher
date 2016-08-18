@@ -26,12 +26,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "Jint JS engine";
+		public const string EngineName = "JintJsEngine";
 
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string ENGINE_VERSION = "2.9.1";
+		private const string EngineVersion = "2.9.1";
 
 		/// <summary>
 		/// Jint JS engine
@@ -48,7 +48,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// </summary>
 		public override string Name
 		{
-			get { return ENGINE_NAME; }
+			get { return EngineName; }
 		}
 
 		/// <summary>
@@ -56,7 +56,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// </summary>
 		public override string Version
 		{
-			get { return ENGINE_VERSION; }
+			get { return EngineVersion; }
 		}
 
 
@@ -90,7 +90,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
+						EngineName, e.Message), EngineName, EngineVersion, e);
 			}
 		}
 
@@ -135,7 +135,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				message = jsParserException.Message;
 			}
 
-			var jsRuntimeException = new JsRuntimeException(message, ENGINE_NAME, ENGINE_VERSION,
+			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
 				jsParserException)
 			{
 				Category = "ParserError",
@@ -165,7 +165,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 			}
 
-			var jsRuntimeException = new JsRuntimeException(jsException.Message, ENGINE_NAME, ENGINE_VERSION,
+			var jsRuntimeException = new JsRuntimeException(jsException.Message, EngineName, EngineVersion,
 				jsException)
 			{
 				Category = category,
@@ -185,7 +185,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				jsRecursionException.CallChain);
 
 			var jsRuntimeException = new JsRuntimeException(message,
-				ENGINE_NAME, ENGINE_VERSION, jsRecursionException)
+				EngineName, EngineVersion, jsRecursionException)
 			{
 				Category = "RecursionDepthOverflowError",
 				Source = jsRecursionException.Source,
@@ -199,7 +199,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			OriginalStatementsCountOverflowException jsStatementsException)
 		{
 			var jsRuntimeException = new JsRuntimeException(Strings.Runtime_StatementsCountOverflow,
-				ENGINE_NAME, ENGINE_VERSION)
+				EngineName, EngineVersion)
 			{
 				Category = "StatementsCountOverflowError",
 				Source = jsStatementsException.Source,
@@ -213,7 +213,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			TimeoutException jsTimeoutException)
 		{
 			var jsRuntimeException = new JsRuntimeException(Strings.Runtime_ExecutionTimeout,
-				ENGINE_NAME, ENGINE_VERSION)
+				EngineName, EngineVersion)
 			{
 				Category = "TimeoutError",
 				Source = jsTimeoutException.Source,

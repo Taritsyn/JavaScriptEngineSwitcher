@@ -17,6 +17,11 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <returns>The code of the underlying type</returns>
 		public static TypeCode GetTypeCode(this Type source)
 		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
 			TypeCode typeCode;
 
 #if NETSTANDARD1_3
@@ -107,6 +112,11 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <returns>The converted object</returns>
 		public static TypeInfo GetTypeInfo(this Type source)
 		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
 			return new TypeInfo(source);
 		}
 #endif

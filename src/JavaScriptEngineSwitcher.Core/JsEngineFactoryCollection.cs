@@ -42,7 +42,30 @@ namespace JavaScriptEngineSwitcher.Core
 				throw new ArgumentNullException("factory");
 			}
 
-			_factories[factory.EngineName] = factory;
+			string engineName = factory.EngineName;
+			if (_factories.ContainsKey(engineName))
+			{
+				_factories[engineName] = factory;
+			}
+			else
+			{
+				_factories.Add(engineName, factory);
+			}
+		}
+
+		/// <summary>
+		/// Removes a single factory from the collection
+		/// </summary>
+		/// <param name="engineName">Name of JS engine</param>
+		/// <returns>A boolean value indicating whether the factory was succesfully removed from the collection</returns>
+		public bool Remove(string engineName)
+		{
+			if (engineName == null)
+			{
+				throw new ArgumentNullException("engineName");
+			}
+
+			return _factories.Remove(engineName);
 		}
 
 		/// <summary>

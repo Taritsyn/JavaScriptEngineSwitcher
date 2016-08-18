@@ -23,12 +23,12 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "Jurassic JS engine";
+		public const string EngineName = "JurassicJsEngine";
 
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string ENGINE_VERSION = "Jul 15, 2016";
+		private const string EngineVersion = "Jul 15, 2016";
 
 		/// <summary>
 		/// Jurassic JS engine
@@ -45,7 +45,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// </summary>
 		public override string Name
 		{
-			get { return ENGINE_NAME; }
+			get { return EngineName; }
 		}
 
 		/// <summary>
@@ -53,7 +53,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// </summary>
 		public override string Version
 		{
-			get { return ENGINE_VERSION; }
+			get { return EngineVersion; }
 		}
 
 
@@ -87,7 +87,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
+						EngineName, e.Message), EngineName, EngineVersion, e);
 			}
 		}
 
@@ -139,7 +139,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		private JsRuntimeException ConvertJavascriptExceptionToJsRuntimeException(
 			OriginalJsException jsException)
 		{
-			var jsRuntimeException = new JsRuntimeException(jsException.Message, ENGINE_NAME, ENGINE_VERSION,
+			var jsRuntimeException = new JsRuntimeException(jsException.Message, EngineName, EngineVersion,
 				jsException)
 			{
 				Category = jsException.Name,

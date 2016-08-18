@@ -25,12 +25,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "ChakraCore JS engine";
+		public const string EngineName = "ChakraCoreJsEngine";
 
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string ENGINE_VERSION = "1.2";
+		private const string EngineVersion = "1.2";
 
 		/// <summary>
 		/// Instance of JS runtime
@@ -67,7 +67,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public override string Name
 		{
-			get { return ENGINE_NAME; }
+			get { return EngineName; }
 		}
 
 		/// <summary>
@@ -75,7 +75,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public override string Version
 		{
-			get { return ENGINE_VERSION; }
+			get { return EngineVersion; }
 		}
 
 
@@ -101,7 +101,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
+						EngineName, e.Message), EngineName, EngineVersion, e);
 			}
 
 			_externalObjects = new HashSet<object>();
@@ -847,7 +847,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				category = "Fatal error";
 			}
 
-			var jsEngineException = new JsRuntimeException(message, ENGINE_NAME, ENGINE_VERSION)
+			var jsEngineException = new JsRuntimeException(message, EngineName, EngineVersion)
 			{
 				ErrorCode = ((uint)jsException.ErrorCode).ToString(CultureInfo.InvariantCulture),
 				Category = category,

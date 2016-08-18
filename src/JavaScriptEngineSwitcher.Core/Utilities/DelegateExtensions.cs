@@ -15,6 +15,11 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <returns>An object that represents the method</returns>
 		public static MethodInfo GetMethodInfo(this Delegate source)
 		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
 			return source.Method;
 		}
 	}

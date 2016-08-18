@@ -12,7 +12,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public string EngineName
 		{
-			get { return "ChakraCoreJsEngine"; }
+			get { return ChakraCoreJsEngine.EngineName; }
 		}
 
 

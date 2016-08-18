@@ -22,7 +22,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		/// <summary>
 		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "MSIE JS engine";
+		public const string EngineName = "MsieJsEngine";
 
 		/// <summary>
 		/// Version of original JS engine
@@ -39,7 +39,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		/// </summary>
 		public override string Name
 		{
-			get { return ENGINE_NAME; }
+			get { return EngineName; }
 		}
 
 		/// <summary>
@@ -82,13 +82,13 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						ENGINE_NAME, e.Message), ENGINE_NAME, e.EngineMode, e);
+						EngineName, e.Message), EngineName, e.EngineMode, e);
 			}
 			catch (Exception e)
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						ENGINE_NAME, e.Message), ENGINE_NAME, _engineVersion, e);
+						EngineName, e.Message), EngineName, _engineVersion, e);
 			}
 		}
 
@@ -127,7 +127,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			OriginalJsRuntimeException msieJsRuntimeException)
 		{
 			var jsRuntimeException = new JsRuntimeException(msieJsRuntimeException.Message,
-				ENGINE_NAME, _engineVersion, msieJsRuntimeException)
+				EngineName, _engineVersion, msieJsRuntimeException)
 			{
 				ErrorCode = msieJsRuntimeException.ErrorCode,
 				Category = msieJsRuntimeException.Category,

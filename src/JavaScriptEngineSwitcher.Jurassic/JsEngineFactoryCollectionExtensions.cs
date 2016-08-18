@@ -1,4 +1,6 @@
-﻿using JavaScriptEngineSwitcher.Core;
+﻿using System;
+
+using JavaScriptEngineSwitcher.Core;
 
 namespace JavaScriptEngineSwitcher.Jurassic
 {
@@ -15,7 +17,38 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
 		public static JsEngineFactoryCollection AddJurassic(this JsEngineFactoryCollection source)
 		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
 			return source.AddJurassic(new JurassicSettings());
+		}
+
+		/// <summary>
+		/// Adds a instance of <see cref="JurassicJsEngineFactory"/> to
+		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// </summary>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="configure">The delegate to configure the provided <see cref="JurassicSettings"/></param>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		public static JsEngineFactoryCollection AddJurassic(this JsEngineFactoryCollection source,
+			Action<JurassicSettings> configure)
+		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
+			if (configure == null)
+			{
+				throw new ArgumentNullException("configure");
+			}
+
+			var settings = new JurassicSettings();
+			configure(settings);
+
+			return source.AddJurassic(settings);
 		}
 
 		/// <summary>
@@ -28,6 +61,16 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		public static JsEngineFactoryCollection AddJurassic(this JsEngineFactoryCollection source,
 			JurassicSettings settings)
 		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
+			if (settings == null)
+			{
+				throw new ArgumentNullException("settings");
+			}
+
 			source.Add(new JurassicJsEngineFactory(settings));
 
 			return source;

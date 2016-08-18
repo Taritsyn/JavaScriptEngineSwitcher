@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// </summary>
 		public string EngineName
 		{
-			get { return "JintJsEngine"; }
+			get { return JintJsEngine.EngineName; }
 		}
 
 

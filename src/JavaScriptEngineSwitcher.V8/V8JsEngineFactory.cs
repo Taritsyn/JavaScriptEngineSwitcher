@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// </summary>
 		public string EngineName
 		{
-			get { return "V8JsEngine"; }
+			get { return V8JsEngine.EngineName; }
 		}
 
 

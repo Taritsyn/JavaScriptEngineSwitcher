@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		/// </summary>
 		public string EngineName
 		{
-			get { return "MsieJsEngine"; }
+			get { return MsieJsEngine.EngineName; }
 		}
 
 

@@ -22,12 +22,12 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "V8 JS engine";
+		public const string EngineName = "V8JsEngine";
 
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string ENGINE_VERSION = "5.1.281.65";
+		private const string EngineVersion = "5.1.281.65";
 
 		/// <summary>
 		/// V8 JS engine
@@ -61,7 +61,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// </summary>
 		public override string Name
 		{
-			get { return ENGINE_NAME; }
+			get { return EngineName; }
 		}
 
 		/// <summary>
@@ -69,7 +69,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// </summary>
 		public override string Version
 		{
-			get { return ENGINE_VERSION; }
+			get { return EngineVersion; }
 		}
 
 
@@ -125,7 +125,7 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
+						EngineName, e.Message), EngineName, EngineVersion, e);
 			}
 		}
 
@@ -151,7 +151,7 @@ namespace JavaScriptEngineSwitcher.V8
 			else
 			{
 				throw new JsEngineLoadException(Strings.Engines_ClearScriptUndefinedValueNotLoaded,
-					ENGINE_NAME, ENGINE_VERSION);
+					EngineName, EngineVersion);
 			}
 		}
 
@@ -181,7 +181,7 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				throw new JsEngineLoadException(
 					string.Format(Strings.Runtime_MethodInfoNotLoaded, typeName, methodName),
-						ENGINE_NAME, ENGINE_VERSION);
+						EngineName, EngineVersion);
 			}
 		}
 
@@ -231,7 +231,7 @@ namespace JavaScriptEngineSwitcher.V8
 				columnNumber = int.Parse(errorStringGroups["columnNumber"].Value);
 			}
 
-			var jsRuntimeException = new JsRuntimeException(errorDetails, ENGINE_NAME, ENGINE_VERSION,
+			var jsRuntimeException = new JsRuntimeException(errorDetails, EngineName, EngineVersion,
 				scriptEngineException)
 			{
 				LineNumber = lineNumber,

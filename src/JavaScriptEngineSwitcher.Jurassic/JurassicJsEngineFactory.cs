@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// </summary>
 		public string EngineName
 		{
-			get { return "JurassicJsEngine"; }
+			get { return JurassicJsEngine.EngineName; }
 		}
 
 
