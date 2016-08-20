@@ -1,33 +1,31 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
-		<id>JavaScriptEngineSwitcher.Jint</id>
+		<id>JavaScriptEngineSwitcher.NetCore1.DependencyInjection</id>
 		<version>2.0.0-alpha1</version>
-		<title>JS Engine Switcher for .Net: Jint</title>
+		<title>JS Engine Switcher for .Net: .NET Core 1.X Dependency Injection</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
 		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
-		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.9.1).</description>
-		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version 2.9.1).</summary>
-		<releaseNotes></releaseNotes>
+		<description>JavaScriptEngineSwitcher.NetCore1.DependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</description>
+		<summary>JavaScriptEngineSwitcher.NetCore1.DependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</summary>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
-		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript Jint</tags>
+		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript DI</tags>
 		<dependencies>
-			<group targetFramework=".NETFramework4.0-Client">
-				<dependency id="Jint" version="2.9.1" />
+			<group targetFramework=".NETFramework4.5.2">
+				<dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="1.0.0" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0-alpha1" />
 			</group>
-			<group targetFramework=".NETFramework4.5.2">
-				<dependency id="Jint" version="2.9.1" />
+			<group targetFramework=".NETStandard1.3">
+				<dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="1.0.0" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0-alpha1" />
 			</group>
 		</dependencies>
 		<references>
-			<reference file="JavaScriptEngineSwitcher.Jint.dll" />
+			<reference file="JavaScriptEngineSwitcher.NetCore1.DependencyInjection.dll" />
 		</references>
 	</metadata>
 	<files>

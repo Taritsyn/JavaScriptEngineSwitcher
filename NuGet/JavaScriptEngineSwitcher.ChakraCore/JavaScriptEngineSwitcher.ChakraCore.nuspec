@@ -3,7 +3,7 @@
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore</id>
 		<version>2.0.0-alpha1</version>
-		<title>JavaScript Engine Switcher for .Net: ChakraCore</title>
+		<title>JS Engine Switcher for .Net: ChakraCore</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
 		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
