@@ -1,0 +1,77 @@
+﻿@using JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4.Infrastructure.Helpers
+@using JavaScriptEngineSwitcher.Sample.Logic.Models
+@using JavaScriptEngineSwitcher.Sample.Resources
+
+@model JsEvaluationViewModel
+
+@{
+	ViewBag.Title = "Demo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Demo", "Home", FormMethod.Post, new { data_form_type = "evaluation-form" }))
+{
+	<div class="evaluation-form">
+		<div class="evaluation-input-output">
+			<section class="evaluation-input">
+				<div class="form-group">
+					@Html.CustomLabelFor(m => m.EngineName, true, true)
+					@(Html.DropDownListFor(m => m.EngineName, Model.AvailableEngineList,
+						new { @class = "form-control" })
+					)
+				</div>
+
+				<div class="form-group">
+					@Html.CustomLabelFor(m => m.Expression, true, true)
+					<div class="textarea-wrapper">
+						@(Html.TextAreaFor(m => m.Expression,
+							new
+							{
+								@class = "form-control evaluation-input-field",
+								data_control_type = "evaluation-input-field",
+								rows = 12,
+								cols = 80
+							})
+						)
+					</div>
+					@Html.ValidationMessageFor(m => m.Expression)
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn" data-control-type="evaluate-button">@EvaluationStrings.ButtonText_Evaluate</button>
+				</div>
+			</section>
+
+			@if (Model.Result != null)
+			{
+				<section class="evaluation-output">
+					@if (Model.Result.Errors.Count == 0)
+					{
+						<div class="form-group">
+							@Html.CustomLabelFor(m => m.Result.Value, true, true)
+							@(Html.TextAreaFor(m => m.Result.Value,
+								new
+								{
+									@class = "form-control evaluation-output-field",
+									data_control_type = "evaluation-output-field",
+									rows = 12,
+									cols = 80,
+									@readonly = "readonly"
+								})
+							)
+						</div>
+					}
+
+					@if (Model.Result.Errors.Count > 0)
+					{
+						@Html.Partial("_JsEvaluationErrorList", Model.Result.Errors)
+					}
+				</section>
+			}
+		</div>
+	</div>
+}
+
+@section Scripts {
+	<script src="~/scripts/build/evaluation-form-scripts.min.js"></script>
+}
