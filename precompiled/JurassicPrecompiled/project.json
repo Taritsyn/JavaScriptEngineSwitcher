@@ -2,7 +2,7 @@
 	"version": "2016.7.15",
 
 	"frameworks": {
-		"net452": {
+		"net451": {
 			"bin": {
 				"assembly": "../../Binaries/Jurassic/Jurassic.dll"
 			}

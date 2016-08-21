@@ -2,7 +2,7 @@
 	"version": "2016.6.20",
 
 	"frameworks": {
-		"net452": {
+		"net451": {
 			"bin": {
 				"assembly": "../../Binaries/ClearScript/ClearScript.dll"
 			}

@@ -18,7 +18,7 @@
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client" />
-			<group targetFramework=".NETFramework4.5.2" />
+			<group targetFramework=".NETFramework4.5.1" />
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="System.Collections" version="4.0.11" />
 				<dependency id="System.ComponentModel.TypeConverter" version="4.1.0" />

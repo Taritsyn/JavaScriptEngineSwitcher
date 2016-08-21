@@ -18,11 +18,11 @@ xcopy "%project_bin_dir%\%project_name%.dll" lib\net40-client\
 xcopy "%project_bin_dir%\ru-ru\%project_name%.resources.dll" lib\net40-client\ru-ru\
 xcopy "%binaries_dir%\ClearScript.dll" lib\net40-client\
 
-%dotnet_cli% build "%project_source_dir%" --framework net452 --configuration Release --no-dependencies --no-incremental
-xcopy "%project_bin_dir%\net452\%project_name%.dll" lib\net452\
-xcopy "%project_bin_dir%\net452\%project_name%.xml" lib\net452\
-xcopy "%project_bin_dir%\net452\ru-ru\%project_name%.resources.dll" lib\net452\ru-ru\
-xcopy "%binaries_dir%\ClearScript.dll" lib\net452\
+%dotnet_cli% build "%project_source_dir%" --framework net451 --configuration Release --no-dependencies --no-incremental
+xcopy "%project_bin_dir%\net451\%project_name%.dll" lib\net451\
+xcopy "%project_bin_dir%\net451\%project_name%.xml" lib\net451\
+xcopy "%project_bin_dir%\net451\ru-ru\%project_name%.resources.dll" lib\net451\ru-ru\
+xcopy "%binaries_dir%\ClearScript.dll" lib\net451\
 
 xcopy "%binaries_dir%\x86\ClearScriptV8-32.dll" runtimes\win7-x86\native\
 xcopy "%binaries_dir%\x86\v8-ia32.dll" runtimes\win7-x86\native\

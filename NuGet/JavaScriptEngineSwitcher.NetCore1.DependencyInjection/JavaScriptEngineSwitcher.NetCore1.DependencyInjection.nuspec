@@ -8,6 +8,7 @@
 		<owners>Andrey Taritsyn</owners>
 		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/2.0/Icons/JavaScriptEngineSwitcher_NetCore1_DependencyInjection_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.NetCore1.DependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</description>
 		<summary>JavaScriptEngineSwitcher.NetCore1.DependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</summary>
@@ -15,7 +16,7 @@
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript DI</tags>
 		<dependencies>
-			<group targetFramework=".NETFramework4.5.2">
+			<group targetFramework=".NETFramework4.5.1">
 				<dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="1.0.0" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0-alpha1" />
 			</group>

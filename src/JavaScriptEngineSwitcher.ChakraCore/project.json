@@ -21,7 +21,7 @@
 				"Microsoft.Extensions.PlatformAbstractions": "1.0.0"
 			}
 		},
-		"net452": {}
+		"net451": {}
 	},
 
 	"scripts": {

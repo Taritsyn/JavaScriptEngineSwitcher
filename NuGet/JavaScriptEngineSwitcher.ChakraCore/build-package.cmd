@@ -18,10 +18,10 @@ del jsrt-dotnet-license.txt /Q/S
 xcopy "%project_bin_dir%\%project_name%.dll" lib\net40-client\
 xcopy "%project_bin_dir%\ru-ru\%project_name%.resources.dll" lib\net40-client\ru-ru\
 
-%dotnet_cli% build "%project_source_dir%" --framework net452 --configuration Release --no-dependencies --no-incremental
-xcopy "%project_bin_dir%\net452\%project_name%.dll" lib\net452\
-xcopy "%project_bin_dir%\net452\%project_name%.xml" lib\net452\
-xcopy "%project_bin_dir%\net452\ru-ru\%project_name%.resources.dll" lib\net452\ru-ru\
+%dotnet_cli% build "%project_source_dir%" --framework net451 --configuration Release --no-dependencies --no-incremental
+xcopy "%project_bin_dir%\net451\%project_name%.dll" lib\net451\
+xcopy "%project_bin_dir%\net451\%project_name%.xml" lib\net451\
+xcopy "%project_bin_dir%\net451\ru-ru\%project_name%.resources.dll" lib\net451\ru-ru\
 
 %dotnet_cli% build "%project_source_dir%" --framework netstandard1.3 --configuration Release --no-dependencies --no-incremental
 xcopy "%project_bin_dir%\netstandard1.3\%project_name%.dll" lib\netstandard1.3\
