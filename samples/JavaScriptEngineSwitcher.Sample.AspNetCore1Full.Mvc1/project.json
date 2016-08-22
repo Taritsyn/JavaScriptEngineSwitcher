@@ -25,7 +25,7 @@
 		"JavaScriptEngineSwitcher.Sample.Logic": "2.0.0-alpha1",
 		"JavaScriptEngineSwitcher.Sample.Resources": "2.0.0-alpha1",
 		"JavaScriptEngineSwitcher.V8": "2.0.0-alpha1",
-		"JavaScriptEngineSwitcher.NetCore1.DependencyInjection": "2.0.0-alpha1"
+		"JavaScriptEngineSwitcher.Extensions.MsDependencyInjection": "2.0.0-alpha1"
 	},
 
 	"tools": {

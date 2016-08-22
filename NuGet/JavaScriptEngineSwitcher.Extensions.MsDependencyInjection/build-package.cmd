@@ -1,4 +1,4 @@
-set project_name=JavaScriptEngineSwitcher.NetCore1.DependencyInjection
+set project_name=JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 set project_source_dir=..\..\src\%project_name%
 set project_bin_dir=%project_source_dir%\bin\Release
 set nuget_package_manager=..\..\.nuget\nuget.exe

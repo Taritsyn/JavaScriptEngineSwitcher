@@ -22,7 +22,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "JurassicPrecompiled", "prec
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "JavaScriptEngineSwitcher.Core", "src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.xproj", "{13559975-F99D-4B93-BF46-227C0B6E0DFB}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "JavaScriptEngineSwitcher.NetCore1.DependencyInjection", "src\JavaScriptEngineSwitcher.NetCore1.DependencyInjection\JavaScriptEngineSwitcher.NetCore1.DependencyInjection.xproj", "{5B693A49-BEC2-4532-ADFE-80C4AA930E27}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "JavaScriptEngineSwitcher.Extensions.MsDependencyInjection", "src\JavaScriptEngineSwitcher.Extensions.MsDependencyInjection\JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.xproj", "{5B693A49-BEC2-4532-ADFE-80C4AA930E27}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "JavaScriptEngineSwitcher.Msie", "src\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.xproj", "{B3C4AA95-2227-47DD-B58C-22FA589CB28D}"
 EndProject

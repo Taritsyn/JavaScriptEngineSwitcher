@@ -6,8 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using JavaScriptEngineSwitcher.ChakraCore;
-using JavaScriptEngineSwitcher.Core;
-using JavaScriptEngineSwitcher.NetCore1.DependencyInjection;
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 
 namespace JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1

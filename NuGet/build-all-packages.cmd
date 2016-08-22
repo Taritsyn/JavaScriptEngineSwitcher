@@ -3,7 +3,7 @@ set packages_directory="C:\Projects\JavaScriptEngineSwitcher\NuGet"
 cd %packages_directory%\JavaScriptEngineSwitcher.Core
 call build-package.cmd
 
-cd %packages_directory%\JavaScriptEngineSwitcher.NetCore1.DependencyInjection
+cd %packages_directory%\JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 call build-package.cmd
 
 cd %packages_directory%\JavaScriptEngineSwitcher.ChakraCore

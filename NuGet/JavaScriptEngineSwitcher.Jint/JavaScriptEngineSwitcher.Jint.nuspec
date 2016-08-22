@@ -3,7 +3,7 @@
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Jint</id>
 		<version>2.0.0-alpha1</version>
-		<title>JS Engine Switcher for .Net: Jint</title>
+		<title>JS Engine Switcher: Jint</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
 		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>

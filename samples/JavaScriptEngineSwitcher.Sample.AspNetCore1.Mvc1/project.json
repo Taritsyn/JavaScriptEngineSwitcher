@@ -23,7 +23,7 @@
 		"Microsoft.Extensions.Logging.Debug": "1.0.0",
 		"Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
 		"JavaScriptEngineSwitcher.ChakraCore": "2.0.0-alpha1",
-		"JavaScriptEngineSwitcher.NetCore1.DependencyInjection": "2.0.0-alpha1",
+		"JavaScriptEngineSwitcher.Extensions.MsDependencyInjection": "2.0.0-alpha1",
 		"JavaScriptEngineSwitcher.Sample.Logic": "2.0.0-alpha1"
 	},
 

@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-     README file for JS Engine Switcher for .Net: .NET Core 1.X DI v2.0.0 Alpha 1
+      README file for JS Engine Switcher: MS Dependency Injection v2.0.0 Alpha 1
 
    --------------------------------------------------------------------------------
 
@@ -11,7 +11,7 @@
    ===========
    DESCRIPTION
    ===========
-   JavaScriptEngineSwitcher.NetCore1.DependencyInjection contains extension methods
+   JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods
    for adding the JS engine switcher in an `IServiceCollection`.
 
    =============

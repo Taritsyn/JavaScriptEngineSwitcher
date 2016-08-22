@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-           README file for JS Engine Switcher for .Net: MSIE v2.0.0 Alpha 1
+                README file for JS Engine Switcher: MSIE v2.0.0 Alpha 1
 
    --------------------------------------------------------------------------------
 

@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("JavaScriptEngineSwitcher.NetCore1.DependencyInjection")]
+[assembly: AssemblyTitle("JavaScriptEngineSwitcher.Extensions.MsDependencyInjection")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JavaScript Engine Switcher for .Net: .NET Core 1.X Dependency Injection")]
+[assembly: AssemblyProduct("JavaScript Engine Switcher: MS Dependency Injection")]
 [assembly: AssemblyCopyright("Copyright © 2013-2016 Andrey Taritsyn")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

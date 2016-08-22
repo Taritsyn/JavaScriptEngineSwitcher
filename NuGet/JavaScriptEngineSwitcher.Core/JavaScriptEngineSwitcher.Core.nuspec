@@ -3,7 +3,7 @@
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Core</id>
 		<version>2.0.0-alpha1</version>
-		<title>JS Engine Switcher for .Net: Core</title>
+		<title>JS Engine Switcher: Core</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
 		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>

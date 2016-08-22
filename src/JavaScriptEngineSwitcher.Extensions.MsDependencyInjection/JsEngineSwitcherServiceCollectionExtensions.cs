@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using JavaScriptEngineSwitcher.Core;
 
-namespace JavaScriptEngineSwitcher.NetCore1.DependencyInjection
+namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 {
 	/// <summary>
 	/// Extension methods for adding the JS engine switcher in an <see cref="IServiceCollection" />
