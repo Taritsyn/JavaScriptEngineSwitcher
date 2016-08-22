@@ -40,7 +40,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Sample.Resources.Net40", "samples\JavaScriptEngineSwitcher.Sample.Resources\JavaScriptEngineSwitcher.Sample.Resources.Net40.csproj", "{6860B000-AA2E-4607-BBE0-A406D901DFDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Sample.Logic.Net40", "samples\JavaScriptEngineSwitcher.Sample.Logic.Net40\JavaScriptEngineSwitcher.Sample.Logic.Net40.csproj", "{4E8DC7D0-8121-4FB3-9DF5-788B755852A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Sample.Logic.Net40", "samples\JavaScriptEngineSwitcher.Sample.Logic\JavaScriptEngineSwitcher.Sample.Logic.Net40.csproj", "{4E8DC7D0-8121-4FB3-9DF5-788B755852A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4.Net40", "samples\JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4\JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4.Net40.csproj", "{8124DF18-4A0B-4648-8B90-4A6D3E4EF2F3}"
 EndProject

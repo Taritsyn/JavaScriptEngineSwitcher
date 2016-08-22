@@ -1,0 +1,21 @@
+﻿{
+	"version": "2.0.0-alpha1",
+
+	"dependencies": {},
+
+	"frameworks": {
+		"netstandard1.3": {
+			"dependencies": {
+				"System.Globalization": "4.0.11",
+				"System.Reflection": "4.1.0",
+				"System.Resources.ResourceManager": "4.0.1",
+				"System.Runtime.InteropServices": "4.1.0"
+			}
+		},
+		"net451": {}
+	},
+
+	"scripts": {
+		"precompile": "../../build resx"
+	}
+}

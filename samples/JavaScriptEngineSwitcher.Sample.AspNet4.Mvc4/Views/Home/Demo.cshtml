@@ -61,8 +61,7 @@
 							)
 						</div>
 					}
-
-					@if (Model.Result.Errors.Count > 0)
+					else
 					{
 						@Html.Partial("_JsEvaluationErrorList", Model.Result.Errors)
 					}
