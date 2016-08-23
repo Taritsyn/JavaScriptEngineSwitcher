@@ -27,7 +27,10 @@ This library can be installed through NuGet:
 See the [changelog](CHANGELOG.md).
 
 ## License
-[Apache License Version 2.0](http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE)
+[Apache License Version 2.0](LICENSE)
+
+## Version 2.0
+At the moment I'm working on a [version 2.0](/Taritsyn/JavaScriptEngineSwitcher/tree/2.0). The main purpose of new version: make the JavaScript Engine Switcher compatible with ASP.NET Core.
 
 ## Who's Using JavaScript Engine Switcher
 If you use the JavaScript Engine Switcher in some project, please send me a message so I can include it in this list:
