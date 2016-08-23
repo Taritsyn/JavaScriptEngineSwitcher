@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## August 23, 2016 - v2.0.0 Alpha 1
+ * Removed dependency on `System.Configuration.dll` (no longer supported configuration by using the `Web.config` and `App.config` files)
+ * In JavaScriptEngineSwitcher.Core and JavaScriptEngineSwitcher.ChakraCore added support of .NET Core 1.0
+ * Now all modules are support of .NET Framework 4.5.1 and can be used in web applications based on the “ASP.NET Core Web Application (.NET Framework)” template
+ * Created a JavaScriptEngineSwitcher.Extensions.MsDependencyInjection package, that contains extension methods for adding the JS engine switcher in an `IServiceCollection`
+ * JavaScriptEngineSwitcher.ConfigurationIntelliSense package is no longer required for the current version of the JavaScript Engine Switcher
+
 ## July 27, 2016 - v1.5.9
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of July 15, 2016
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.9.1

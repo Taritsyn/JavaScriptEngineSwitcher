@@ -19,7 +19,8 @@
    =============
    RELEASE NOTES
    =============
-
+   Removed dependency on `System.Configuration.dll` (no longer supported
+   configuration by using the Web.config and App.config files).
 
    =============
    DOCUMENTATION
