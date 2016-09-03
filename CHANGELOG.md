@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## September 3, 2016 - v2.0.0 Alpha 2
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.0.0 Alpha 1
+
 ## August 23, 2016 - v2.0.0 Alpha 1
  * Removed dependency on `System.Configuration.dll` (no longer supported configuration by using the `Web.config` and `App.config` files)
  * In JavaScriptEngineSwitcher.Core and JavaScriptEngineSwitcher.ChakraCore added support of .NET Core 1.0
