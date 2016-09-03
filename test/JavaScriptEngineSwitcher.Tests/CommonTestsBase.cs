@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 
 using Xunit;
 
@@ -213,7 +214,7 @@ namespace JavaScriptEngineSwitcher.Tests
 
 			using (var jsEngine = CreateJsEngine())
 			{
-				jsEngine.ExecuteResource(resourceName, GetType());
+				jsEngine.ExecuteResource(resourceName, GetType().GetTypeInfo().Assembly);
 				output = jsEngine.Evaluate<int>(input);
 			}
 

@@ -21,11 +21,6 @@
    `msvcr120.dll` from the Visual C++ Redistributable Packages for Visual Studio
    2013.
 
-   =============
-   RELEASE NOTES
-   =============
-   Added support of .NET Core 1.0.
-
    ====================
    POST-INSTALL ACTIONS
    ====================

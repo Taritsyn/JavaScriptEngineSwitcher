@@ -12,17 +12,21 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9 and above on a server.</description>
 		<summary>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net).</summary>
-		<releaseNotes>Removed dependency on `System.Configuration.dll` (no longer supported configuration by using the Web.config and App.config files).</releaseNotes>
+		<releaseNotes>Added support of MSIE JavaScript Engine version 2.0.0 Alpha 1.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript MSIE IE Chakra</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client">
-				<dependency id="MsieJavaScriptEngine" version="1.7.1" />
+				<dependency id="MsieJavaScriptEngine" version="2.0.0-alpha1" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0-alpha1" />
 			</group>
 			<group targetFramework=".NETFramework4.5.1">
-				<dependency id="MsieJavaScriptEngine" version="1.7.1" />
+				<dependency id="MsieJavaScriptEngine" version="2.0.0-alpha1" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0-alpha1" />
+			</group>
+			<group targetFramework=".NETStandard1.3">
+				<dependency id="MsieJavaScriptEngine" version="2.0.0-alpha1" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0-alpha1" />
 			</group>
 		</dependencies>

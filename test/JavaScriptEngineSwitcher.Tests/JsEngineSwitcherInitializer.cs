@@ -1,9 +1,9 @@
 ﻿using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Msie;
 #if !NETCOREAPP1_0
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
-using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.V8;
 #endif
 
@@ -25,10 +25,10 @@ namespace JavaScriptEngineSwitcher.Tests
 					{
 						JsEngineSwitcher.Instance.EngineFactories
 							.AddChakraCore()
+							.AddMsie()
 #if !NETCOREAPP1_0
 							.AddJint()
 							.AddJurassic()
-							.AddMsie()
 							.AddV8()
 #endif
 							;

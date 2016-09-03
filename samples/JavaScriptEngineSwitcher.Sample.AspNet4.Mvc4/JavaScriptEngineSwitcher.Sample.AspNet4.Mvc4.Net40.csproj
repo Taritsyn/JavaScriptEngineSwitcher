@@ -164,7 +164,7 @@
       <Project>{1baec601-b244-48d3-be27-351e133eef73}</Project>
       <Name>JavaScriptEngineSwitcher.V8.Net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Logic.Net40\JavaScriptEngineSwitcher.Sample.Logic.Net40.csproj">
+    <ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Logic\JavaScriptEngineSwitcher.Sample.Logic.Net40.csproj">
       <Project>{4e8dc7d0-8121-4fb3-9df5-788b755852a2}</Project>
       <Name>JavaScriptEngineSwitcher.Sample.Logic.Net40</Name>
     </ProjectReference>

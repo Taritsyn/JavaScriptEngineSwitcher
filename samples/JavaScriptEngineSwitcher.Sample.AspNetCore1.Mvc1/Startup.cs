@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
+using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 
 namespace JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1
@@ -51,6 +52,7 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1
 				options.DefaultEngineName = ChakraCoreJsEngine.EngineName
 			)
 				.AddChakraCore()
+				.AddMsie()
 				;
 
 			// Add framework services.

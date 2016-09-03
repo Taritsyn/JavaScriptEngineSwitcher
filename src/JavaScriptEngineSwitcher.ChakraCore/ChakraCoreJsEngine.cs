@@ -50,7 +50,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// List of external objects
 		/// </summary>
-		private readonly ISet<object> _externalObjects;
+		private ISet<object> _externalObjects = new HashSet<object>();
 
 		/// <summary>
 		/// Callback for finalization of external object
@@ -60,7 +60,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// List of native function callbacks
 		/// </summary>
-		private readonly ISet<JsNativeFunction> _nativeFunctions;
+		private ISet<JsNativeFunction> _nativeFunctions = new HashSet<JsNativeFunction>();
 
 		/// <summary>
 		/// Gets a name of JS engine
@@ -104,9 +104,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						EngineName, e.Message), EngineName, EngineVersion, e);
 			}
 
-			_externalObjects = new HashSet<object>();
 			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
-			_nativeFunctions = new HashSet<JsNativeFunction>();
 		}
 
 		/// <summary>
@@ -163,8 +161,18 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				{
 					_jsRuntime.Dispose();
 
-					_externalObjects.Clear();
-					_nativeFunctions.Clear();
+					if (_externalObjects != null)
+					{
+						_externalObjects.Clear();
+						_externalObjects = null;
+					}
+
+					if (_nativeFunctions != null)
+					{
+						_nativeFunctions.Clear();
+						_nativeFunctions = null;
+					}
+
 					_externalObjectFinalizeCallback = null;
 				}
 			}

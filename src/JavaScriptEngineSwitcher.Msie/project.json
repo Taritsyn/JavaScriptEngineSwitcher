@@ -1,8 +1,8 @@
 ﻿{
-	"version": "2.0.0-alpha1",
+	"version": "2.0.0-alpha2",
 
 	"dependencies": {
-		"MsieJavaScriptEngine": "1.7.1",
+		"MsieJavaScriptEngine": "2.0.0-alpha1",
 		"JavaScriptEngineSwitcher.Core": "2.0.0-alpha1"
 	},
 
@@ -16,6 +16,7 @@
 	},
 
 	"frameworks": {
+		"netstandard1.3": {},
 		"net451": {}
 	}
 }

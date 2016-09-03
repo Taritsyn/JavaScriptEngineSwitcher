@@ -14,7 +14,6 @@
 
 For correct working of the ChakraCore require assemblies `msvcp120.dll` and `msvcr120.dll` from the Visual C++ Redistributable Packages for Visual Studio 2013.</description>
 		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore version 1.2).</summary>
-		<releaseNotes>Added support of .NET Core 1.0.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore</tags>
@@ -27,6 +26,8 @@ For correct working of the ChakraCore require assemblies `msvcp120.dll` and `msv
 			</group>
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="System.Diagnostics.Tools" version="4.0.1" />
+				<dependency id="System.Reflection.Extensions" version="4.0.1" />
+				<dependency id="System.Reflection.TypeExtensions" version="4.1.0" />
 				<dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.0.0" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0-alpha1" />
 			</group>
