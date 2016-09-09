@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NET40
+using System;
 using System.Reflection;
 
 namespace JavaScriptEngineSwitcher.Core.Utilities
@@ -24,3 +25,4 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		}
 	}
 }
+#endif

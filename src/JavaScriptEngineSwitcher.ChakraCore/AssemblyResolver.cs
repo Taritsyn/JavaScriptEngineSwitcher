@@ -7,6 +7,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 #endif
 
 using JavaScriptEngineSwitcher.Core.Helpers;
+using JavaScriptEngineSwitcher.Core.Utilities;
 
 using JavaScriptEngineSwitcher.ChakraCore.Resources;
 
@@ -30,12 +31,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public static void Initialize()
 		{
+			bool is64BitProcess = Utils.Is64BitProcess();
 			string baseDirectoryPath;
-			bool is64BitProcess;
 
 #if NETSTANDARD1_3
 			baseDirectoryPath = PlatformServices.Default.Application.ApplicationBasePath;
-			is64BitProcess = IntPtr.Size == 8;
 #else
 			AppDomain currentDomain = AppDomain.CurrentDomain;
 			baseDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
@@ -45,7 +45,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				// need to use the `BaseDirectory` property
 				baseDirectoryPath = currentDomain.BaseDirectory;
 			}
-			is64BitProcess = Environment.Is64BitProcess;
 #endif
 
 			if (!PathHelpers.ContainsDirectory(baseDirectoryPath, "bin"))

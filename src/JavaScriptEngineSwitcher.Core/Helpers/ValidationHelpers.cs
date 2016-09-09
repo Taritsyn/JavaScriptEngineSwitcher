@@ -22,7 +22,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// <summary>
 		/// List of primitive type codes
 		/// </summary>
-		private static readonly TypeCode[] _primitiveTypeCodes = new[]
+		private static readonly TypeCode[] _primitiveTypeCodes =
 		{
 			TypeCode.Boolean,
 			TypeCode.SByte, TypeCode.Byte,

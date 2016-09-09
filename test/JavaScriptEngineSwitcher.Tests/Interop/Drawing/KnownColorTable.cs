@@ -1,4 +1,5 @@
-﻿namespace JavaScriptEngineSwitcher.Tests.Interop.Drawing
+﻿#if NETCOREAPP1_0
+namespace JavaScriptEngineSwitcher.Tests.Interop.Drawing
 {
 	internal static class KnownColorTable
 	{
@@ -23,3 +24,4 @@
 		}
 	}
 }
+#endif

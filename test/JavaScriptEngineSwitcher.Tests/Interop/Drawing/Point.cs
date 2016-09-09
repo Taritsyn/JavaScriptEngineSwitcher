@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿#if NETCOREAPP1_0
+using System.Globalization;
 
 namespace JavaScriptEngineSwitcher.Tests.Interop.Drawing
 {
@@ -75,3 +76,4 @@ namespace JavaScriptEngineSwitcher.Tests.Interop.Drawing
 		}
 	}
 }
+#endif

@@ -50,7 +50,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// List of external objects
 		/// </summary>
-		private ISet<object> _externalObjects = new HashSet<object>();
+		private readonly HashSet<object> _externalObjects = new HashSet<object>();
 
 		/// <summary>
 		/// Callback for finalization of external object
@@ -60,7 +60,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// List of native function callbacks
 		/// </summary>
-		private ISet<JsNativeFunction> _nativeFunctions = new HashSet<JsNativeFunction>();
+		private readonly HashSet<JsNativeFunction> _nativeFunctions = new HashSet<JsNativeFunction>();
 
 		/// <summary>
 		/// Gets a name of JS engine
@@ -92,6 +92,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public ChakraCoreJsEngine()
 		{
+			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
+
 			try
 			{
 				_jsRuntime = JsRuntime.Create(JsRuntimeAttributes.AllowScriptInterrupt, JsRuntimeVersion.VersionEdge, null);
@@ -103,8 +105,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
 						EngineName, e.Message), EngineName, EngineVersion, e);
 			}
-
-			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
 		}
 
 		/// <summary>
@@ -164,13 +164,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					if (_externalObjects != null)
 					{
 						_externalObjects.Clear();
-						_externalObjects = null;
 					}
 
 					if (_nativeFunctions != null)
 					{
 						_nativeFunctions.Clear();
-						_nativeFunctions = null;
 					}
 
 					_externalObjectFinalizeCallback = null;
@@ -346,7 +344,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			lock (_executionSynchronizer)
 			{
-				_externalObjects.Remove(obj);
+				if (_externalObjects != null)
+				{
+					_externalObjects.Remove(obj);
+				}
 			}
 		}
 

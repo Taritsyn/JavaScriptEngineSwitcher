@@ -10,7 +10,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 	/// <summary>
 	/// JS error helpers
 	/// </summary>
-	public static class JsRuntimeErrorHelpers
+	public static class JsErrorHelpers
 	{
 		/// <summary>
 		/// Generates a detailed error message

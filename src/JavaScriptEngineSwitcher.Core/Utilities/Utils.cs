@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 using JavaScriptEngineSwitcher.Core.Resources;
@@ -9,6 +10,22 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 {
 	public static class Utils
 	{
+		/// <summary>
+		/// Determines whether the current process is a 64-bit process
+		/// </summary>
+		/// <returns>true if the process is 64-bit; otherwise, false</returns>
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		public static bool Is64BitProcess()
+		{
+#if NETSTANDARD1_3
+			bool is64Bit = IntPtr.Size == 8;
+#else
+			bool is64Bit = Environment.Is64BitProcess;
+#endif
+
+			return is64Bit;
+		}
+
 		/// <summary>
 		/// Gets a content of the embedded resource as string
 		/// </summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NETCOREAPP1_0
+using System;
 using System.Text;
 
 namespace JavaScriptEngineSwitcher.Tests.Interop.Drawing
@@ -383,3 +384,4 @@ namespace JavaScriptEngineSwitcher.Tests.Interop.Drawing
 		}
 	}
 }
+#endif
