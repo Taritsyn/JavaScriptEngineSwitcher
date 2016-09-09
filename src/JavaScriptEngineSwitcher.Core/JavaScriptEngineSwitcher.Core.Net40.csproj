@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmptyValueException.cs" />
-    <Compile Include="Helpers\JsRuntimeErrorHelpers.cs" />
+    <Compile Include="Helpers\JsErrorHelpers.cs" />
     <Compile Include="Helpers\PathHelpers.cs" />
     <Compile Include="Helpers\ValidationHelpers.cs" />
     <Compile Include="IJsEngine.cs" />
