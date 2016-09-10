@@ -4,7 +4,7 @@
 	"frameworks": {
 		"net451": {
 			"bin": {
-				"assembly": "../../Binaries/Jurassic/Jurassic.dll"
+				"assembly": "../../lib/Jurassic/Jurassic.dll"
 			}
 		}
 	}

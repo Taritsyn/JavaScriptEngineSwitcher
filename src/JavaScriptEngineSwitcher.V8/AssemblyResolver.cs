@@ -63,7 +63,7 @@ namespace JavaScriptEngineSwitcher.V8
 					string projectDirectoryPath = PathHelpers.RemoveDirectoryFromPath(baseDirectoryPath, "bin");
 					string solutionDirectoryPath = Path.GetFullPath(Path.Combine(projectDirectoryPath, "../../"));
 					assemblyDirectoryPath = Path.GetFullPath(
-						Path.Combine(solutionDirectoryPath, "Binaries/ClearScript/", platformName));
+						Path.Combine(solutionDirectoryPath, "lib/ClearScript/", platformName));
 					assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
 					assemblyFileExists = File.Exists(assemblyFilePath);
 				}

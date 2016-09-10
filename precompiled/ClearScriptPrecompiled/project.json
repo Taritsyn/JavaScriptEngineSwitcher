@@ -4,7 +4,7 @@
 	"frameworks": {
 		"net451": {
 			"bin": {
-				"assembly": "../../Binaries/ClearScript/ClearScript.dll"
+				"assembly": "../../lib/ClearScript/ClearScript.dll"
 			}
 		}
 	}

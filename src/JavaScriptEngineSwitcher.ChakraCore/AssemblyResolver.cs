@@ -63,7 +63,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				string projectDirectoryPath = PathHelpers.RemoveDirectoryFromPath(baseDirectoryPath, "bin");
 				string solutionDirectoryPath = Path.GetFullPath(Path.Combine(projectDirectoryPath, "../../"));
 				assemblyDirectoryPath = Path.GetFullPath(
-					Path.Combine(solutionDirectoryPath, "Binaries/ChakraCore/", platform));
+					Path.Combine(solutionDirectoryPath, "lib/ChakraCore/", platform));
 				assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
 				assemblyFileExists = File.Exists(assemblyFilePath);
 			}
