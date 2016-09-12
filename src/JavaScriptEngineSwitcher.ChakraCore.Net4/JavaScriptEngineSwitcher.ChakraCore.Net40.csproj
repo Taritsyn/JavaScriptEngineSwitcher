@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{698A1AFF-B84D-4FB1-B514-D18FFAB5066D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JavaScriptEngineSwitcher.ChakraCore</RootNamespace>
+    <AssemblyName>JavaScriptEngineSwitcher.ChakraCore</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\tools\Key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JavaScriptEngineSwitcher.Core.Net4\JavaScriptEngineSwitcher.Core.Net40.csproj">
+      <Project>{5c903eef-bad1-43b8-bfe2-e4ee4d204410}</Project>
+      <Name>JavaScriptEngineSwitcher.Core.Net40</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\lib\ChakraCore\x64\ChakraCore.dll">
+      <Link>x64\ChakraCore.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\lib\ChakraCore\x86\ChakraCore.dll">
+      <Link>x86\ChakraCore.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\tools\Key.snk">
+      <Link>Key.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\AssemblyResolver.cs">
+      <Link>AssemblyResolver.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\ChakraCoreJsEngine.cs">
+      <Link>ChakraCoreJsEngine.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\ChakraCoreJsEngineFactory.cs">
+      <Link>ChakraCoreJsEngineFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\Helpers\NumericHelpers.cs">
+      <Link>Helpers\NumericHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\Helpers\ReflectionHelpers.cs">
+      <Link>Helpers\ReflectionHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsEngineFactoryCollectionExtensions.cs">
+      <Link>JsEngineFactoryCollectionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsBackgroundWorkItemCallback.cs">
+      <Link>JsRt\JsBackgroundWorkItemCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsBeforeCollectCallback.cs">
+      <Link>JsRt\JsBeforeCollectCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsContext.cs">
+      <Link>JsRt\JsContext.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsEngineException.cs">
+      <Link>JsRt\JsEngineException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsErrorCode.cs">
+      <Link>JsRt\JsErrorCode.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsErrorHelpers.cs">
+      <Link>JsRt\JsErrorHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsException.cs">
+      <Link>JsRt\JsException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsFatalException.cs">
+      <Link>JsRt\JsFatalException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsMemoryAllocationCallback.cs">
+      <Link>JsRt\JsMemoryAllocationCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsMemoryEventType.cs">
+      <Link>JsRt\JsMemoryEventType.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsNativeFunction.cs">
+      <Link>JsRt\JsNativeFunction.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsObjectBeforeCollectCallback.cs">
+      <Link>JsRt\JsObjectBeforeCollectCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsObjectFinalizeCallback.cs">
+      <Link>JsRt\JsObjectFinalizeCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsPromiseContinuationCallback.cs">
+      <Link>JsRt\JsPromiseContinuationCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsPropertyId.cs">
+      <Link>JsRt\JsPropertyId.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsPropertyIdType.cs">
+      <Link>JsRt\JsPropertyIdType.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsRuntime.cs">
+      <Link>JsRt\JsRuntime.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsRuntimeAttributes.cs">
+      <Link>JsRt\JsRuntimeAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsRuntimeVersion.cs">
+      <Link>JsRt\JsRuntimeVersion.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsScope.cs">
+      <Link>JsRt\JsScope.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsScriptException.cs">
+      <Link>JsRt\JsScriptException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsSerializedScriptLoadSourceCallback.cs">
+      <Link>JsRt\JsSerializedScriptLoadSourceCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsSerializedScriptUnloadCallback.cs">
+      <Link>JsRt\JsSerializedScriptUnloadCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsSourceContext.cs">
+      <Link>JsRt\JsSourceContext.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsThreadServiceCallback.cs">
+      <Link>JsRt\JsThreadServiceCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsTypedArrayType.cs">
+      <Link>JsRt\JsTypedArrayType.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsUsageException.cs">
+      <Link>JsRt\JsUsageException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsValue.cs">
+      <Link>JsRt\JsValue.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsValueExtensions.cs">
+      <Link>JsRt\JsValueExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsValueType.cs">
+      <Link>JsRt\JsValueType.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\NativeMethods.cs">
+      <Link>JsRt\NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\Properties\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\Resources\Strings.Designer.cs">
+      <Link>Resources\Strings.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\Resources\Strings.ru-ru.Designer.cs">
+      <Link>Resources\Strings.ru-ru.Designer.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\JavaScriptEngineSwitcher.ChakraCore\Resources\Strings.resx">
+      <Link>Resources\Strings.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JavaScriptEngineSwitcher.ChakraCore\Resources\Strings.ru-ru.resx">
+      <Link>Resources\Strings.ru-ru.resx</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>SET VS_PROJECT_DIR=$(ProjectDir)..\JavaScriptEngineSwitcher.ChakraCore
+
+cd "$(ProjectDir)..\..\"
+build resx</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

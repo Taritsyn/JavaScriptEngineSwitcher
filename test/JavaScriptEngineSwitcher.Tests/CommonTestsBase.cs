@@ -163,7 +163,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		public virtual void ExecutionOfFileIsCorrect()
 		{
 			// Arrange
-			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "Files/square.js"));
+			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "../SharedFiles/square.js"));
 			const string input = "square(6);";
 			const int targetOutput = 36;
 

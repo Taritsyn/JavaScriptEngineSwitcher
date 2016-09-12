@@ -39,27 +39,27 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.ChakraCore\JavaScriptEngineSwitcher.ChakraCore.Net40.csproj">
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.ChakraCore.Net4\JavaScriptEngineSwitcher.ChakraCore.Net40.csproj">
       <Project>{698a1aff-b84d-4fb1-b514-d18ffab5066d}</Project>
       <Name>JavaScriptEngineSwitcher.ChakraCore.Net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.Net40.csproj">
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core.Net4\JavaScriptEngineSwitcher.Core.Net40.csproj">
       <Project>{5c903eef-bad1-43b8-bfe2-e4ee4d204410}</Project>
       <Name>JavaScriptEngineSwitcher.Core.Net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.Net40.csproj">
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jint.Net4\JavaScriptEngineSwitcher.Jint.Net40.csproj">
       <Project>{26ece52e-991f-4e12-bb88-467201038eff}</Project>
       <Name>JavaScriptEngineSwitcher.Jint.Net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.Net40.csproj">
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jurassic.Net4\JavaScriptEngineSwitcher.Jurassic.Net40.csproj">
       <Project>{2e667689-f072-401f-a9a5-09f1a2ed025c}</Project>
       <Name>JavaScriptEngineSwitcher.Jurassic.Net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.Net40.csproj">
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Msie.Net4\JavaScriptEngineSwitcher.Msie.Net40.csproj">
       <Project>{50ad3b1c-a295-42ac-979a-cd244429983c}</Project>
       <Name>JavaScriptEngineSwitcher.Msie.Net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.Net40.csproj">
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.V8.Net4\JavaScriptEngineSwitcher.V8.Net40.csproj">
       <Project>{1baec601-b244-48d3-be27-351e133eef73}</Project>
       <Name>JavaScriptEngineSwitcher.V8.Net40</Name>
     </ProjectReference>
@@ -86,50 +86,119 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChakraCore\CommonTests.cs" />
-    <Compile Include="ChakraCore\Es5Tests.cs" />
-    <Compile Include="ChakraCore\InteropTests.cs" />
-    <Compile Include="Es5TestsBase.cs" />
-    <Compile Include="FileSystemTestsBase.cs" />
-    <Compile Include="InteropTestsBase.cs" />
-    <Compile Include="Interop\Base64Encoder.cs" />
-    <Compile Include="Interop\BundleTable.cs" />
-    <Compile Include="Interop\Date.cs" />
-    <Compile Include="Interop\FileManager.cs" />
-    <Compile Include="Interop\Person.cs" />
-    <Compile Include="Interop\Point3D.cs" />
-    <Compile Include="Interop\PredefinedStrings.cs" />
-    <Compile Include="Interop\Product.cs" />
-    <Compile Include="Interop\SimpleSingleton.cs" />
-    <Compile Include="Interop\Temperature.cs" />
-    <Compile Include="Jint\CommonTests.cs" />
-    <Compile Include="Jint\Es5Tests.cs" />
-    <Compile Include="Jint\InteropTests.cs" />
-    <Compile Include="JsEngineSwitcherInitializer.cs" />
-    <Compile Include="Jurassic\CommonTests.cs" />
-    <Compile Include="CommonTestsBase.cs" />
-    <Compile Include="Jurassic\Es5Tests.cs" />
-    <Compile Include="Jurassic\InteropTests.cs" />
-    <Compile Include="Msie\CommonTests.cs" />
-    <Compile Include="Msie\Es5Tests.cs" />
-    <Compile Include="Msie\InteropTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestsBase.cs" />
-    <Compile Include="V8\CommonTests.cs" />
-    <Compile Include="V8\Es5Tests.cs" />
-    <Compile Include="V8\InteropTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\power.js" />
-    <EmbeddedResource Include="Resources\cube.js" />
-    <Content Include="Files\link.txt" />
-    <Content Include="Files\square.js" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\ChakraCore\CommonTests.cs">
+      <Link>ChakraCore\CommonTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\ChakraCore\Es5Tests.cs">
+      <Link>ChakraCore\Es5Tests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\ChakraCore\InteropTests.cs">
+      <Link>ChakraCore\InteropTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\CommonTestsBase.cs">
+      <Link>CommonTestsBase.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Es5TestsBase.cs">
+      <Link>Es5TestsBase.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\FileSystemTestsBase.cs">
+      <Link>FileSystemTestsBase.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\InteropTestsBase.cs">
+      <Link>InteropTestsBase.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Base64Encoder.cs">
+      <Link>Interop\Base64Encoder.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\BundleTable.cs">
+      <Link>Interop\BundleTable.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Date.cs">
+      <Link>Interop\Date.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\FileManager.cs">
+      <Link>Interop\FileManager.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Person.cs">
+      <Link>Interop\Person.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Point3D.cs">
+      <Link>Interop\Point3D.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\PredefinedStrings.cs">
+      <Link>Interop\PredefinedStrings.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Product.cs">
+      <Link>Interop\Product.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\SimpleSingleton.cs">
+      <Link>Interop\SimpleSingleton.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Temperature.cs">
+      <Link>Interop\Temperature.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Jint\CommonTests.cs">
+      <Link>Jint\CommonTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Jint\Es5Tests.cs">
+      <Link>Jint\Es5Tests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Jint\InteropTests.cs">
+      <Link>Jint\InteropTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\JsEngineSwitcherInitializer.cs">
+      <Link>JsEngineSwitcherInitializer.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Jurassic\CommonTests.cs">
+      <Link>Jurassic\CommonTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Jurassic\Es5Tests.cs">
+      <Link>Jurassic\Es5Tests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Jurassic\InteropTests.cs">
+      <Link>Jurassic\InteropTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Msie\CommonTests.cs">
+      <Link>Msie\CommonTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Msie\Es5Tests.cs">
+      <Link>Msie\Es5Tests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Msie\InteropTests.cs">
+      <Link>Msie\InteropTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Properties\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\TestsBase.cs">
+      <Link>TestsBase.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\V8\CommonTests.cs">
+      <Link>V8\CommonTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\V8\Es5Tests.cs">
+      <Link>V8\Es5Tests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\V8\InteropTests.cs">
+      <Link>V8\InteropTests.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\JavaScriptEngineSwitcher.Tests\Resources\cube.js">
+      <Link>Resources\cube.js</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JavaScriptEngineSwitcher.Tests\Resources\power.js">
+      <Link>Resources\power.js</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

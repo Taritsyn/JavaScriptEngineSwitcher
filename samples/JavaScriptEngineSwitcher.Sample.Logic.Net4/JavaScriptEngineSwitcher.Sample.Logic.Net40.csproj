@@ -35,29 +35,39 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\JsEvaluationErrorViewModel.cs" />
-    <Compile Include="Models\JsEvaluationResultViewModel.cs" />
-    <Compile Include="Models\JsEvaluationViewModel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\FileContentService.cs" />
-    <Compile Include="Services\JsEvaluationService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.Net40.csproj">
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core.Net4\JavaScriptEngineSwitcher.Core.Net40.csproj">
       <Project>{5c903eef-bad1-43b8-bfe2-e4ee4d204410}</Project>
       <Name>JavaScriptEngineSwitcher.Core.Net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Resources\JavaScriptEngineSwitcher.Sample.Resources.Net40.csproj">
+    <ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Resources.Net4\JavaScriptEngineSwitcher.Sample.Resources.Net40.csproj">
       <Project>{6860b000-aa2e-4607-bbe0-a406d901dfde}</Project>
       <Name>JavaScriptEngineSwitcher.Sample.Resources.Net40</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\JavaScriptEngineSwitcher.Sample.Logic\Models\JsEvaluationErrorViewModel.cs">
+      <Link>Models\JsEvaluationErrorViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Sample.Logic\Models\JsEvaluationResultViewModel.cs">
+      <Link>Models\JsEvaluationResultViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Sample.Logic\Models\JsEvaluationViewModel.cs">
+      <Link>Models\JsEvaluationViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Sample.Logic\Properties\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Sample.Logic\Services\FileContentService.cs">
+      <Link>Services\FileContentService.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Sample.Logic\Services\JsEvaluationService.cs">
+      <Link>Services\JsEvaluationService.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

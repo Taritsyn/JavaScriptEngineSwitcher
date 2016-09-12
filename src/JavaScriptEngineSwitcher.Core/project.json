@@ -26,22 +26,12 @@
 				"System.Text.Encoding": "4.0.11",
 				"System.Text.RegularExpressions": "4.1.0",
 				"System.Threading": "4.0.11"
-			},
-			"buildOptions": {
-				"compile": {
-					"excludeFiles": [
-						"Utilities/DelegateExtensions.cs",
-						"Utilities/TypeInfo.cs"
-					]
-				}
 			}
 		},
 		"net451": {
 			"buildOptions": {
 				"compile": {
-					"excludeFiles": [
-						"Utilities/DelegateExtensions.cs",
-						"Utilities/TypeInfo.cs",
+					"exclude": [
 						"Utilities/TypeInfoExtensions.cs"
 					]
 				}
