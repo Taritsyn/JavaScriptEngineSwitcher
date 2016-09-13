@@ -2,7 +2,7 @@
 	"version": "2.0.0-alpha2",
 
 	"dependencies": {
-		"MsieJavaScriptEngine": "2.0.0-alpha1",
+		"MsieJavaScriptEngine": "2.0.0-beta1",
 		"JavaScriptEngineSwitcher.Core": "2.0.0-alpha1"
 	},
 
