@@ -72,6 +72,14 @@ namespace JavaScriptEngineSwitcher.V8
 			get { return EngineVersion; }
 		}
 
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return true; }
+		}
+
 
 		/// <summary>
 		/// Static constructor
@@ -426,6 +434,14 @@ namespace JavaScriptEngineSwitcher.V8
 				{
 					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 				}
+			}
+		}
+
+		protected override void InnerCollectGarbage()
+		{
+			lock (_executionSynchronizer)
+			{
+				_jsEngine.CollectGarbage(true);
 			}
 		}
 

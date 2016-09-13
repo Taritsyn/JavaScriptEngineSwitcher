@@ -765,5 +765,26 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		#endregion
+
+		#region Garbage collection
+
+		[Fact]
+		public virtual void GarbageCollectionIsCorrect()
+		{
+			// Arrange
+			const string input = @"arr = []; for (i = 0; i < 1000000; i++) { arr.push(arr); }";
+
+			// Act
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(input);
+				if (jsEngine.SupportsGarbageCollection)
+				{
+					jsEngine.CollectGarbage();
+				}
+			}
+		}
+
+		#endregion
 	}
 }

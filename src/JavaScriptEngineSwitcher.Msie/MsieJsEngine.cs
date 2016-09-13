@@ -50,6 +50,14 @@ namespace JavaScriptEngineSwitcher.Msie
 			get { return _engineVersion; }
 		}
 
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return true; }
+		}
+
 
 		/// <summary>
 		/// Constructs a instance of adapter for the MSIE JS engine
@@ -306,6 +314,11 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
 			}
+		}
+
+		protected override void InnerCollectGarbage()
+		{
+			_jsEngine.CollectGarbage();
 		}
 
 		#endregion

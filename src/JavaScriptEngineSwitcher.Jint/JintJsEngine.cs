@@ -59,6 +59,14 @@ namespace JavaScriptEngineSwitcher.Jint
 			get { return EngineVersion; }
 		}
 
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return false; }
+		}
+
 
 		/// <summary>
 		/// Constructs a instance of adapter for the Jint JS engine
@@ -475,6 +483,11 @@ namespace JavaScriptEngineSwitcher.Jint
 					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
 				}
 			}
+		}
+
+		protected override void InnerCollectGarbage()
+		{
+			throw new NotImplementedException();
 		}
 
 		#endregion

@@ -25,6 +25,14 @@ namespace JavaScriptEngineSwitcher.Core
 			get;
 		}
 
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		bool SupportsGarbageCollection
+		{
+			get;
+		}
+
 
 		/// <summary>
 		/// Evaluates an expression
@@ -138,5 +146,10 @@ namespace JavaScriptEngineSwitcher.Core
 		/// methods are bound to the type's static members.
 		/// </remarks>
 		void EmbedHostType(string itemName, Type type);
+
+		/// <summary>
+		/// Performs a full garbage collection
+		/// </summary>
+		void CollectGarbage();
 	}
 }

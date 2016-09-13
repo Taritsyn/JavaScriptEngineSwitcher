@@ -57,6 +57,11 @@ namespace JavaScriptEngineSwitcher.Core
 			throw new NotImplementedException();
 		}
 
+		protected virtual void InnerCollectGarbage()
+		{
+			throw new NotImplementedException();
+		}
+
 		#region IJsEngine implementation
 
 		public abstract string Name
@@ -67,6 +72,14 @@ namespace JavaScriptEngineSwitcher.Core
 		public abstract string Version
 		{
 			get;
+		}
+
+		public virtual bool SupportsGarbageCollection
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
 		}
 
 
@@ -438,6 +451,13 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 
 			InnerEmbedHostType(itemName, type);
+		}
+
+		public virtual void CollectGarbage()
+		{
+			VerifyNotDisposed();
+
+			InnerCollectGarbage();
 		}
 
 		#endregion

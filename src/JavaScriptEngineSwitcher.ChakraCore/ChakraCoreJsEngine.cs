@@ -78,6 +78,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			get { return EngineVersion; }
 		}
 
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return true; }
+		}
+
 
 		/// <summary>
 		/// Static constructor
@@ -1008,6 +1016,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				JsValue typeValue = CreateObjectFromType(type);
 				JsValue.GlobalObject.SetProperty(itemName, typeValue, true);
 			});
+		}
+
+		protected override void InnerCollectGarbage()
+		{
+			lock (_executionSynchronizer)
+			{
+				_jsRuntime.CollectGarbage();
+			}
 		}
 
 		#endregion
