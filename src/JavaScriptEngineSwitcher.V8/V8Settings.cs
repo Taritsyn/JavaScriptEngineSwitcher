@@ -18,7 +18,7 @@
 		/// <summary>
 		/// Gets or sets a TCP/IP port on which to listen for a debugger connection
 		/// </summary>
-		public int DebugPort
+		public ushort DebugPort
 		{
 			get;
 			set;
