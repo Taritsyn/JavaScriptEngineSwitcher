@@ -72,6 +72,9 @@
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\ChakraCoreJsEngineFactory.cs">
       <Link>ChakraCoreJsEngineFactory.cs</Link>
     </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\ChakraCoreSettings.cs">
+      <Link>ChakraCoreSettings.cs</Link>
+    </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\Helpers\NumericHelpers.cs">
       <Link>Helpers\NumericHelpers.cs</Link>
     </Compile>
@@ -134,9 +137,6 @@
     </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsRuntimeAttributes.cs">
       <Link>JsRt\JsRuntimeAttributes.cs</Link>
-    </Compile>
-    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsRuntimeVersion.cs">
-      <Link>JsRt\JsRuntimeVersion.cs</Link>
     </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsScope.cs">
       <Link>JsRt\JsScope.cs</Link>

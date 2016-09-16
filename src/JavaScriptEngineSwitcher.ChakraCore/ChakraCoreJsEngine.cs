@@ -99,12 +99,40 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// Constructs a instance of adapter for the ChakraCore JS engine
 		/// </summary>
 		public ChakraCoreJsEngine()
+			: this(new ChakraCoreSettings())
+		{ }
+
+		/// <summary>
+		/// Constructs a instance of adapter for the ChakraCore JS engine
+		/// </summary>
+		/// <param name="settings">Settings of the ChakraCore JS engine</param>
+		public ChakraCoreJsEngine(ChakraCoreSettings settings)
 		{
+			ChakraCoreSettings chakraCoreSettings = settings ?? new ChakraCoreSettings();
+
+			JsRuntimeAttributes attributes = JsRuntimeAttributes.None;
+			if (chakraCoreSettings.DisableBackgroundWork)
+			{
+				attributes |= JsRuntimeAttributes.DisableBackgroundWork;
+			}
+			if (chakraCoreSettings.DisableNativeCodeGeneration)
+			{
+				attributes |= JsRuntimeAttributes.DisableNativeCodeGeneration;
+			}
+			if (chakraCoreSettings.DisableEval)
+			{
+				attributes |= JsRuntimeAttributes.DisableEval;
+			}
+			if (chakraCoreSettings.EnableExperimentalFeatures)
+			{
+				attributes |= JsRuntimeAttributes.EnableExperimentalFeatures;
+			}
+
 			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
 
 			try
 			{
-				_jsRuntime = JsRuntime.Create(JsRuntimeAttributes.AllowScriptInterrupt, JsRuntimeVersion.VersionEdge, null);
+				_jsRuntime = JsRuntime.Create(attributes, null);
 				_jsContext = _jsRuntime.CreateContext();
 			}
 			catch (Exception e)

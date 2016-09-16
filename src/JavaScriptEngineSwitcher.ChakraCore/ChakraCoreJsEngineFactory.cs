@@ -8,6 +8,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 	public sealed class ChakraCoreJsEngineFactory : IJsEngineFactory
 	{
 		/// <summary>
+		/// Settings of the ChakraCore JS engine
+		/// </summary>
+		private readonly ChakraCoreSettings _settings;
+
+		/// <summary>
 		/// Gets a name of JS engine
 		/// </summary>
 		public string EngineName
@@ -17,12 +22,29 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 
 		/// <summary>
+		/// Constructs an instance of the ChakraCore JS engine factory
+		/// </summary>
+		public ChakraCoreJsEngineFactory()
+			: this(new ChakraCoreSettings())
+		{ }
+
+		/// <summary>
+		/// Constructs an instance of the ChakraCore JS engine factory
+		/// </summary>
+		/// <param name="settings">Settings of the ChakraCore JS engine</param>
+		public ChakraCoreJsEngineFactory(ChakraCoreSettings settings)
+		{
+			_settings = settings;
+		}
+
+
+		/// <summary>
 		/// Creates a instance of the ChakraCore JS engine
 		/// </summary>
 		/// <returns>Instance of the ChakraCore JS engine</returns>
 		public IJsEngine CreateEngine()
 		{
-			return new ChakraCoreJsEngine();
+			return new ChakraCoreJsEngine(_settings);
 		}
 	}
 }
