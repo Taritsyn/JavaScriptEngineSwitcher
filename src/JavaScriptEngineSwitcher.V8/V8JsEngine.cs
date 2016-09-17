@@ -27,7 +27,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "5.1.281.65";
+		private const string EngineVersion = "5.3.332.45";
 
 		/// <summary>
 		/// V8 JS engine
@@ -106,7 +106,7 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			V8Settings v8Settings = settings ?? new V8Settings();
 
-			V8RuntimeConstraints constraints = new V8RuntimeConstraints
+			var constraints = new V8RuntimeConstraints
 			{
 				MaxNewSpaceSize = v8Settings.MaxNewSpaceSize,
 				MaxOldSpaceSize = v8Settings.MaxOldSpaceSize,
