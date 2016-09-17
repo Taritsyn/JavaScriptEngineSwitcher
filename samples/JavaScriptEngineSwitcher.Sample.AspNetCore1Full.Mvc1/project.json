@@ -1,5 +1,5 @@
 ﻿{
-	"version": "2.0.0-alpha2",
+	"version": "2.0.0-beta1",
 
 	"dependencies": {
 		"Microsoft.AspNetCore.Diagnostics": "1.0.0",
@@ -18,14 +18,14 @@
 		"Microsoft.Extensions.Logging.Console": "1.0.0",
 		"Microsoft.Extensions.Logging.Debug": "1.0.0",
 		"Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-		"JavaScriptEngineSwitcher.ChakraCore": "2.0.0-alpha2",
-		"JavaScriptEngineSwitcher.Jint": "2.0.0-alpha1",
-		"JavaScriptEngineSwitcher.Jurassic": "2.0.0-alpha1",
-		"JavaScriptEngineSwitcher.Msie": "2.0.0-alpha2",
-		"JavaScriptEngineSwitcher.Sample.Logic": "2.0.0-alpha1",
-		"JavaScriptEngineSwitcher.Sample.Resources": "2.0.0-alpha1",
-		"JavaScriptEngineSwitcher.V8": "2.0.0-alpha1",
-		"JavaScriptEngineSwitcher.Extensions.MsDependencyInjection": "2.0.0-alpha1"
+		"JavaScriptEngineSwitcher.ChakraCore": "2.0.0-beta1",
+		"JavaScriptEngineSwitcher.Jint": "2.0.0-beta1",
+		"JavaScriptEngineSwitcher.Jurassic": "2.0.0-beta1",
+		"JavaScriptEngineSwitcher.Msie": "2.0.0-beta1",
+		"JavaScriptEngineSwitcher.Sample.Logic": "2.0.0-beta1",
+		"JavaScriptEngineSwitcher.Sample.Resources": "2.0.0-beta1",
+		"JavaScriptEngineSwitcher.V8": "2.0.0-beta1",
+		"JavaScriptEngineSwitcher.Extensions.MsDependencyInjection": "2.0.0-beta1"
 	},
 
 	"tools": {

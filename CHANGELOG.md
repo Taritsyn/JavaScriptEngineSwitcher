@@ -1,6 +1,19 @@
 Change log
 ==========
 
+## September 17, 2016 - v2.0.0 Beta 1
+ * In `IJsEngine` interface was added `SupportsGarbageCollection` property and `CollectGarbage` method
+ * `JsRuntimeErrorHelpers` class was renamed to `JsErrorHelpers` class
+ * Added support of .NET Core 1.0.1
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.0.0 Beta 2
+ * In JavaScriptEngineSwitcher.V8:
+   * Added support of Microsoft ClearScript.V8 version 5.4.7 (support of V8 version 5.3.332.45)
+   * In configuration settings of the V8 JS engine was changed type of `DebugPort` property from `int` to `ushort`
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of September 13, 2016
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * Added support of ChakraCore version 1.3
+   * Added the ability to change configuration settings of the ChakraCore JS engine: `DisableBackgroundWork` (default `false`), `DisableNativeCodeGeneration` (default `false`), `DisableEval` (default `false`) and `EnableExperimentalFeatures` (default `false`)
+
 ## September 3, 2016 - v2.0.0 Alpha 2
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.0.0 Alpha 1
 

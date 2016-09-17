@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: MSIE v2.0.0 Alpha 2
+                README file for JS Engine Switcher: MSIE v2.0.0 Beta 1
 
    --------------------------------------------------------------------------------
 
@@ -19,7 +19,8 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 2.0.0 Beta 2.
+   1. Added support of MSIE JavaScript Engine version 2.0.0 Beta 2;
+   2. Added support of .NET Core 1.0.1.
 
    =============
    DOCUMENTATION

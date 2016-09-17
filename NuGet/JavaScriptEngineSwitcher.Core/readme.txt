@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: Core v2.0.0 Alpha 1
+                README file for JS Engine Switcher: Core v2.0.0 Beta 1
 
    --------------------------------------------------------------------------------
 
@@ -19,9 +19,10 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of .NET Core 1.0;
-   2. Removed dependency on `System.Configuration.dll` (no longer supported
-      configuration by using the Web.config and App.config files).
+   1. In `IJsEngine` interface was added `SupportsGarbageCollection` property and
+      `CollectGarbage` method;
+   2. `JsRuntimeErrorHelpers` class was renamed to `JsErrorHelpers` class;
+   3. Added support of .NET Core 1.0.1.
 
    =============
    DOCUMENTATION

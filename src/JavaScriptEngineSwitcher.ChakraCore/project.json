@@ -1,8 +1,8 @@
 ﻿{
-	"version": "2.0.0-alpha2",
+	"version": "2.0.0-beta1",
 
 	"dependencies": {
-		"JavaScriptEngineSwitcher.Core": "2.0.0-alpha1"
+		"JavaScriptEngineSwitcher.Core": "2.0.0-beta1"
 	},
 
 	"buildOptions": {

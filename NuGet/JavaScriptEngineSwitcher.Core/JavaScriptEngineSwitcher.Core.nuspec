@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Core</id>
-		<version>2.0.0-alpha1</version>
+		<version>2.0.0-beta1</version>
 		<title>JS Engine Switcher: Core</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -12,8 +12,9 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic, Jint and ChakraCore). This library allows you to quickly and easily switch to using of another JavaScript engine.</description>
 		<summary>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic, Jint and ChakraCore).</summary>
-		<releaseNotes>1. Added support of .NET Core 1.0;
-2. Removed dependency on `System.Configuration.dll` (no longer supported configuration by using the Web.config and App.config files).</releaseNotes>
+		<releaseNotes>1. In `IJsEngine` interface was added `SupportsGarbageCollection` property and `CollectGarbage` method;
+2. `JsRuntimeErrorHelpers` class was renamed to `JsErrorHelpers` class;
+3. Added support of .NET Core 1.0.1.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript</tags>

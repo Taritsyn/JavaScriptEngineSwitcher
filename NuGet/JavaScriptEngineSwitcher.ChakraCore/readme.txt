@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: ChakraCore v2.0.0 Alpha 2
+             README file for JS Engine Switcher: ChakraCore v2.0.0 Beta 1
 
    --------------------------------------------------------------------------------
 
@@ -24,7 +24,12 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.3.
+   1. ChakraCore was updated to version 1.3;
+   2. Added the ability to change configuration settings of the ChakraCore JS
+      engine: `DisableBackgroundWork` (default `false`),
+      `DisableNativeCodeGeneration` (default `false`), `DisableEval` (default
+      `false`) and `EnableExperimentalFeatures` (default `false`);
+   3. Added support of .NET Core 1.0.1.
 
    ====================
    POST-INSTALL ACTIONS
