@@ -13,13 +13,18 @@
    ===========
    JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine`
    (wrapper for the ChakraCore (http://github.com/Microsoft/ChakraCore) version
-   1.2). Project was based on the code of Chakra-Samples
+   1.3). Project was based on the code of Chakra-Samples
    (http://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet
    (http://github.com/robpaveza/jsrt-dotnet).
 
    For correct working of the ChakraCore require assemblies `msvcp120.dll` and
    `msvcr120.dll` from the Visual C++ Redistributable Packages for Visual Studio
    2013.
+
+   =============
+   RELEASE NOTES
+   =============
+   ChakraCore was updated to version 1.3.
 
    ====================
    POST-INSTALL ACTIONS
