@@ -13,13 +13,12 @@
    ===========
    JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper
    for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic)
-   version of July 15, 2016).
+   version of September 13, 2016).
 
    =============
    RELEASE NOTES
    =============
-   Removed dependency on `System.Configuration.dll` (no longer supported
-   configuration by using the Web.config and App.config files).
+   Jurassic was updated to version of September 13, 2016.
 
    =============
    DOCUMENTATION
