@@ -1,8 +1,8 @@
-﻿{
+{
 	"version": "2.0.0-beta1",
 
 	"dependencies": {
-		"MsieJavaScriptEngine": "2.0.0-beta2",
+		"MsieJavaScriptEngine": "2.0.0",
 		"JavaScriptEngineSwitcher.Core": "2.0.0-beta1"
 	},
 

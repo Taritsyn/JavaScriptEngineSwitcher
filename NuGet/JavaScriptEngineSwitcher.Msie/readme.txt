@@ -19,8 +19,11 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of MSIE JavaScript Engine version 2.0.0 Beta 2;
-   2. Added support of .NET Core 1.0.1.
+   1. Removed dependency on `System.Configuration.dll` (no longer supported
+      configuration by using the `Web.config` and `App.config` files);
+   2. Added support of .NET Core 1.0.1 (only supported `ChakraIeJsRt` and
+      `ChakraEdgeJsRt` modes) and .NET Framework 4.5.1;
+   3. Added support of MSIE JavaScript Engine version 2.0.0.
 
    =============
    DOCUMENTATION
