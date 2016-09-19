@@ -1,14 +1,10 @@
 ﻿namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 {
-	using Core;
-
 	public class Es5Tests : Es5TestsBase
 	{
-		protected override IJsEngine CreateJsEngine()
+		protected override string EngineName
 		{
-			var jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("ChakraCoreJsEngine");
-
-			return jsEngine;
+			get { return "ChakraCoreJsEngine"; }
 		}
 	}
 }

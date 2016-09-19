@@ -1,44 +1,44 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+
+using OriginalJsException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsException;
+
+using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Utilities;
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+
+using JavaScriptEngineSwitcher.ChakraCore.Helpers;
+using JavaScriptEngineSwitcher.ChakraCore.JsRt;
+using JavaScriptEngineSwitcher.ChakraCore.Resources;
+
+namespace JavaScriptEngineSwitcher.ChakraCore
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Globalization;
-	using System.Linq;
-	using System.Reflection;
-	using System.Runtime.InteropServices;
-
-	using OriginalJsException = JsRt.JsException;
-
-	using Core;
-	using Core.Utilities;
-	using CoreStrings = Core.Resources.Strings;
-
-	using Helpers;
-	using JsRt;
-	using Resources;
-
 	/// <summary>
-	/// Adapter for ChakraCore JavaScript engine
+	/// Adapter for the ChakraCore JS engine
 	/// </summary>
 	public sealed class ChakraCoreJsEngine : JsEngineBase
 	{
 		/// <summary>
-		/// Name of JavaScript engine
+		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "ChakraCore JavaScript engine";
+		public const string EngineName = "ChakraCoreJsEngine";
 
 		/// <summary>
-		/// Version of original JavaScript engine
+		/// Version of original JS engine
 		/// </summary>
-		private const string ENGINE_VERSION = "1.2";
+		private const string EngineVersion = "1.3";
 
 		/// <summary>
-		/// Instance of JavaScript runtime
+		/// Instance of JS runtime
 		/// </summary>
 		private JsRuntime _jsRuntime;
 
 		/// <summary>
-		/// Instance of JavaScript context
+		/// Instance of JS context
 		/// </summary>
 		private readonly JsContext _jsContext;
 
@@ -50,7 +50,7 @@
 		/// <summary>
 		/// List of external objects
 		/// </summary>
-		private readonly ISet<object> _externalObjects;
+		private readonly HashSet<object> _externalObjects = new HashSet<object>();
 
 		/// <summary>
 		/// Callback for finalization of external object
@@ -60,22 +60,30 @@
 		/// <summary>
 		/// List of native function callbacks
 		/// </summary>
-		private readonly ISet<JsNativeFunction> _nativeFunctions;
+		private readonly HashSet<JsNativeFunction> _nativeFunctions = new HashSet<JsNativeFunction>();
 
 		/// <summary>
-		/// Gets a name of JavaScript engine
+		/// Gets a name of JS engine
 		/// </summary>
 		public override string Name
 		{
-			get { return ENGINE_NAME; }
+			get { return EngineName; }
 		}
 
 		/// <summary>
-		/// Gets a version of original JavaScript engine
+		/// Gets a version of original JS engine
 		/// </summary>
 		public override string Version
 		{
-			get { return ENGINE_VERSION; }
+			get { return EngineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return true; }
 		}
 
 
@@ -88,29 +96,55 @@
 		}
 
 		/// <summary>
-		/// Constructs a instance of adapter for ChakraCore JavaScript engine
+		/// Constructs a instance of adapter for the ChakraCore JS engine
 		/// </summary>
 		public ChakraCoreJsEngine()
+			: this(new ChakraCoreSettings())
+		{ }
+
+		/// <summary>
+		/// Constructs a instance of adapter for the ChakraCore JS engine
+		/// </summary>
+		/// <param name="settings">Settings of the ChakraCore JS engine</param>
+		public ChakraCoreJsEngine(ChakraCoreSettings settings)
 		{
+			ChakraCoreSettings chakraCoreSettings = settings ?? new ChakraCoreSettings();
+
+			JsRuntimeAttributes attributes = JsRuntimeAttributes.None;
+			if (chakraCoreSettings.DisableBackgroundWork)
+			{
+				attributes |= JsRuntimeAttributes.DisableBackgroundWork;
+			}
+			if (chakraCoreSettings.DisableNativeCodeGeneration)
+			{
+				attributes |= JsRuntimeAttributes.DisableNativeCodeGeneration;
+			}
+			if (chakraCoreSettings.DisableEval)
+			{
+				attributes |= JsRuntimeAttributes.DisableEval;
+			}
+			if (chakraCoreSettings.EnableExperimentalFeatures)
+			{
+				attributes |= JsRuntimeAttributes.EnableExperimentalFeatures;
+			}
+
+			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
+
 			try
 			{
-				_jsRuntime = JsRuntime.Create(JsRuntimeAttributes.AllowScriptInterrupt, JsRuntimeVersion.VersionEdge, null);
+				_jsRuntime = JsRuntime.Create(attributes, null);
 				_jsContext = _jsRuntime.CreateContext();
 			}
 			catch (Exception e)
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
+						EngineName, e.Message), EngineName, EngineVersion, e);
 			}
-
-			_externalObjects = new HashSet<object>();
-			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
-			_nativeFunctions = new HashSet<JsNativeFunction>();
 		}
 
 		/// <summary>
-		/// Destructs instance of adapter for ChakraCore JavaScript engine
+		/// Destructs instance of adapter for the ChakraCore JS engine
 		/// </summary>
 		~ChakraCoreJsEngine()
 		{
@@ -163,8 +197,16 @@
 				{
 					_jsRuntime.Dispose();
 
-					_externalObjects.Clear();
-					_nativeFunctions.Clear();
+					if (_externalObjects != null)
+					{
+						_externalObjects.Clear();
+					}
+
+					if (_nativeFunctions != null)
+					{
+						_nativeFunctions.Clear();
+					}
+
 					_externalObjectFinalizeCallback = null;
 				}
 			}
@@ -189,7 +231,7 @@
 				return JsValue.Undefined;
 			}
 
-			TypeCode typeCode = Type.GetTypeCode(value.GetType());
+			TypeCode typeCode = value.GetType().GetTypeCode();
 
 			switch (typeCode)
 			{
@@ -338,7 +380,10 @@
 
 			lock (_executionSynchronizer)
 			{
-				_externalObjects.Remove(obj);
+				if (_externalObjects != null)
+				{
+					_externalObjects.Remove(obj);
+				}
 			}
 		}
 
@@ -368,9 +413,10 @@
 			JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 			{
 				object[] processedArgs = MapToHostType(args.Skip(1).ToArray());
+				ParameterInfo[] parameters = value.GetMethodInfo().GetParameters();
 				JsValue undefinedValue = JsValue.Undefined;
 
-				ReflectionHelpers.FixArgumentTypes(ref processedArgs, value.Method.GetParameters());
+				ReflectionHelpers.FixArgumentTypes(ref processedArgs, parameters);
 
 				object result;
 
@@ -400,6 +446,7 @@
 
 		private JsValue CreateConstructor(Type type)
 		{
+			TypeInfo typeInfo = type.GetTypeInfo();
 			string typeName = type.FullName;
 			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(true);
 			ConstructorInfo[] constructors = type.GetConstructors(defaultBindingFlags);
@@ -412,7 +459,7 @@
 				object[] processedArgs = MapToHostType(args.Skip(1).ToArray());
 				object result;
 
-				if (processedArgs.Length == 0 && type.IsValueType)
+				if (processedArgs.Length == 0 && typeInfo.IsValueType)
 				{
 					result = Activator.CreateInstance(type);
 					resultValue = MapToScriptType(result);
@@ -845,7 +892,7 @@
 				category = "Fatal error";
 			}
 
-			var jsEngineException = new JsRuntimeException(message, ENGINE_NAME, ENGINE_VERSION)
+			var jsEngineException = new JsRuntimeException(message, EngineName, EngineVersion)
 			{
 				ErrorCode = ((uint)jsException.ErrorCode).ToString(CultureInfo.InvariantCulture),
 				Category = category,
@@ -997,6 +1044,14 @@
 				JsValue typeValue = CreateObjectFromType(type);
 				JsValue.GlobalObject.SetProperty(itemName, typeValue, true);
 			});
+		}
+
+		protected override void InnerCollectGarbage()
+		{
+			lock (_executionSynchronizer)
+			{
+				_jsRuntime.CollectGarbage();
+			}
 		}
 
 		#endregion

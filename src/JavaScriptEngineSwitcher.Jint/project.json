@@ -1,0 +1,25 @@
+﻿{
+	"version": "2.0.0",
+
+	"dependencies": {
+		"Jint": "2.9.1",
+		"JavaScriptEngineSwitcher.Core": "2.0.0"
+	},
+
+	"buildOptions": {
+		"warningsAsErrors": true,
+		"keyFile": "../../tools/Key.snk",
+		"nowarn": [
+			"CS1591"
+		],
+		"xmlDoc": true
+	},
+
+	"frameworks": {
+		"net451": {}
+	},
+
+	"scripts": {
+		"precompile": "../../build resx"
+	}
+}

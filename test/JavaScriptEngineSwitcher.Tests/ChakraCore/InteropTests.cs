@@ -1,14 +1,10 @@
 ﻿namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 {
-	using Core;
-
 	public class InteropTests : InteropTestsBase
 	{
-		protected override IJsEngine CreateJsEngine()
+		protected override string EngineName
 		{
-			var jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("ChakraCoreJsEngine");
-
-			return jsEngine;
+			get { return "ChakraCoreJsEngine"; }
 		}
 	}
 }

@@ -1,7 +1,7 @@
-﻿namespace JavaScriptEngineSwitcher.Tests.Interop
-{
-	using System;
+﻿using System;
 
+namespace JavaScriptEngineSwitcher.Tests.Interop
+{
 	public struct Temperature
 	{
 		double _celsius;

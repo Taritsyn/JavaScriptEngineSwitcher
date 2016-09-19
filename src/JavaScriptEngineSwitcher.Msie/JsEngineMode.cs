@@ -1,7 +1,7 @@
 ﻿namespace JavaScriptEngineSwitcher.Msie
 {
 	/// <summary>
-	/// JavaScript engine modes
+	/// MSIE JS engine modes
 	/// </summary>
 	public enum JsEngineMode
 	{
@@ -14,6 +14,7 @@
 		/// Classic MSIE JavaScript engine (supports ECMAScript 3 with
 		/// possibility of using the ECMAScript 5 Polyfill and the JSON2 library).
 		/// Requires Internet Explorer 6 or higher on the machine.
+		/// Not supported in version for .NET Core.
 		/// </summary>
 		Classic,
 
@@ -21,6 +22,7 @@
 		/// ActiveScript version of Chakra JavaScript engine (supports ECMAScript 3
 		/// with possibility of using the ECMAScript 5 Polyfill and the JSON2 library).
 		/// Requires Internet Explorer 9 or higher on the machine.
+		/// Not supported in version for .NET Core.
 		/// </summary>
 		ChakraActiveScript,
 

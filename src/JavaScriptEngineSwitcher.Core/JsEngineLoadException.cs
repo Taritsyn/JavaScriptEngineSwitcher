@@ -1,9 +1,9 @@
-﻿namespace JavaScriptEngineSwitcher.Core
-{
-	using System;
+﻿using System;
 
+namespace JavaScriptEngineSwitcher.Core
+{
 	/// <summary>
-	/// The exception that is thrown when a loading of JavaScript engine is failed
+	/// The exception that is thrown when a loading of JS engine is failed
 	/// </summary>
 	public sealed class JsEngineLoadException : JsException
 	{
@@ -31,8 +31,8 @@
 		/// with a specified error message and a reference to the inner exception that is the cause of this exception
 		/// </summary>
 		/// <param name="message">The error message that explains the reason for the exception</param>
-		/// <param name="engineName">Name of JavaScript engine</param>
-		/// <param name="engineVersion">Version of original JavaScript engine</param>
+		/// <param name="engineName">Name of JS engine</param>
+		/// <param name="engineVersion">Version of original JS engine</param>
 		public JsEngineLoadException(string message, string engineName, string engineVersion)
 			: this(message, engineName, engineVersion, null)
 		{ }
@@ -42,8 +42,8 @@
 		/// with a specified error message and a reference to the inner exception that is the cause of this exception
 		/// </summary>
 		/// <param name="message">The error message that explains the reason for the exception</param>
-		/// <param name="engineName">Name of JavaScript engine</param>
-		/// <param name="engineVersion">Version of original JavaScript engine</param>
+		/// <param name="engineName">Name of JS engine</param>
+		/// <param name="engineVersion">Version of original JS engine</param>
 		/// <param name="innerException">The exception that is the cause of the current exception</param>
 		public JsEngineLoadException(string message, string engineName, string engineVersion,
 			Exception innerException)

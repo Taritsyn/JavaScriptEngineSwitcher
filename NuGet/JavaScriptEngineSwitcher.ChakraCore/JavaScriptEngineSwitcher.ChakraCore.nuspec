@@ -2,42 +2,44 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore</id>
-		<version>1.5.9</version>
-		<title>JavaScript Engine Switcher for .Net: ChakraCore</title>
+		<version>2.0.0</version>
+		<title>JS Engine Switcher: ChakraCore</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
 		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore (http://github.com/Microsoft/ChakraCore) version 1.2). Project was based on the code of Chakra-Samples (http://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet (http://github.com/robpaveza/jsrt-dotnet).
+		<description>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore (http://github.com/Microsoft/ChakraCore) version 1.3). Project was based on the code of Chakra-Samples (http://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet (http://github.com/robpaveza/jsrt-dotnet).
 
 For correct working of the ChakraCore require assemblies `msvcp120.dll` and `msvcr120.dll` from the Visual C++ Redistributable Packages for Visual Studio 2013.</description>
-		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore version 1.2).</summary>
-		<releaseNotes>ChakraCore was updated to version 1.2.</releaseNotes>
+		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore version 1.3).</summary>
+		<releaseNotes>1. Added support of .NET Core 1.0.1 and .NET Framework 4.5.1;
+2. ChakraCore was updated to version 1.3;
+3. Added the ability to change configuration settings of the ChakraCore JS engine: `DisableBackgroundWork` (default `false`), `DisableNativeCodeGeneration` (default `false`), `DisableEval` (default `false`) and `EnableExperimentalFeatures` (default `false`).</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
-		<tags>JavaScript ECMAScript ChakraCore</tags>
+		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore</tags>
 		<dependencies>
-			<dependency id="JavaScriptEngineSwitcher.Core" version="1.5.0" />
+			<group targetFramework=".NETFramework4.0-Client">
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0" />
+			</group>
+			<group targetFramework=".NETFramework4.5.1">
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0" />
+			</group>
+			<group targetFramework=".NETStandard1.3">
+				<dependency id="System.Diagnostics.Tools" version="4.0.1" />
+				<dependency id="System.Reflection.Extensions" version="4.0.1" />
+				<dependency id="System.Reflection.TypeExtensions" version="4.1.0" />
+				<dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.0.0" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0" />
+			</group>
 		</dependencies>
 		<references>
 			<reference file="JavaScriptEngineSwitcher.ChakraCore.dll" />
 		</references>
 	</metadata>
 	<files>
-		<file src="..\..\src\JavaScriptEngineSwitcher.ChakraCore\bin\Release\JavaScriptEngineSwitcher.ChakraCore.dll" target="lib\net40" />
-		<file src="..\..\src\JavaScriptEngineSwitcher.ChakraCore\bin\Release\**\JavaScriptEngineSwitcher.ChakraCore.resources.dll" target="lib\net40" />
-		<file src="..\..\Binaries\ChakraCore\x86\ChakraCore.dll" target="content\ChakraCore\x86" />
-		<file src="..\..\Binaries\ChakraCore\x64\ChakraCore.dll" target="content\ChakraCore\x64" />
-		<file src="build\JavaScriptEngineSwitcher.ChakraCore.props" target="build" />
-		<file src="content\web.config.transform" target="content" />
-		<file src="content\app.config.transform" target="content" />
-		<file src="tools\Install.ps1" target="tools" />
-		<file src="tools\Uninstall.ps1" target="tools" />
-		<file src="readme.txt" />
-		<file src="..\..\Licenses\chakra-core-license.txt" />
-		<file src="..\..\Licenses\chakra-samples-license.txt" />
-		<file src="..\..\Licenses\jsrt-dotnet-license.txt" />
+		<file src="**\*.*" exclude="build-package.cmd" />
 	</files>
 </package>

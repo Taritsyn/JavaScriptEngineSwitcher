@@ -1,9 +1,9 @@
-﻿namespace JavaScriptEngineSwitcher.Core
-{
-	using System;
+﻿using System;
 
+namespace JavaScriptEngineSwitcher.Core
+{
 	/// <summary>
-	/// The exception that is thrown when a .NET type is not supported by JavaScipt engine
+	/// The exception that is thrown when a .NET type is not supported by JS engine
 	/// </summary>
 	public sealed class NotSupportedTypeException : Exception
 	{

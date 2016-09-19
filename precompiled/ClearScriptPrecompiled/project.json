@@ -1,0 +1,11 @@
+﻿{
+	"version": "5.4.7",
+
+	"frameworks": {
+		"net451": {
+			"bin": {
+				"assembly": "../../lib/ClearScript/ClearScript.dll"
+			}
+		}
+	}
+}

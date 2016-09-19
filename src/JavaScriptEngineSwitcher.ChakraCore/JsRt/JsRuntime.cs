@@ -1,7 +1,7 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
-{
-	using System;
+﻿using System;
 
+namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
+{
 	/// <summary>
 	/// The Chakra runtime
 	/// </summary>
@@ -101,36 +101,34 @@
 		/// <summary>
 		/// Creates a new runtime
 		/// </summary>
+		/// <returns>The runtime created</returns>
+		public static JsRuntime Create()
+		{
+			return Create(JsRuntimeAttributes.None, null);
+		}
+
+		/// <summary>
+		/// Creates a new runtime
+		/// </summary>
 		/// <param name="attributes">The attributes of the runtime to be created</param>
-		/// <param name="version">The version of the runtime to be created</param>
+		/// <returns>The runtime created</returns>
+		public static JsRuntime Create(JsRuntimeAttributes attributes)
+		{
+			return Create(attributes, null);
+		}
+
+		/// <summary>
+		/// Creates a new runtime
+		/// </summary>
+		/// <param name="attributes">The attributes of the runtime to be created</param>
 		/// <param name="threadServiceCallback">The thread service for the runtime. Can be null</param>
 		/// <returns>The runtime created</returns>
-		public static JsRuntime Create(JsRuntimeAttributes attributes, JsRuntimeVersion version, JsThreadServiceCallback threadServiceCallback)
+		public static JsRuntime Create(JsRuntimeAttributes attributes, JsThreadServiceCallback threadServiceCallback)
 		{
 			JsRuntime handle;
 			JsErrorHelpers.ThrowIfError(NativeMethods.JsCreateRuntime(attributes, threadServiceCallback, out handle));
 
 			return handle;
-		}
-
-		/// <summary>
-		/// Creates a new runtime
-		/// </summary>
-		/// <param name="attributes">The attributes of the runtime to be created</param>
-		/// <param name="version">The version of the runtime to be created</param>
-		/// <returns>The runtime created</returns>
-		public static JsRuntime Create(JsRuntimeAttributes attributes, JsRuntimeVersion version)
-		{
-			return Create(attributes, version, null);
-		}
-
-		/// <summary>
-		/// Creates a new runtime
-		/// </summary>
-		/// <returns>The runtime created</returns>
-		public static JsRuntime Create()
-		{
-			return Create(JsRuntimeAttributes.None, JsRuntimeVersion.Version11, null);
 		}
 
 		/// <summary>

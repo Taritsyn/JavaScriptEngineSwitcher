@@ -1,16 +1,16 @@
-﻿namespace JavaScriptEngineSwitcher.Core
-{
-	using System;
-	using System.Text;
-	using System.Reflection;
+﻿using System;
+using System.Text;
+using System.Reflection;
 
+namespace JavaScriptEngineSwitcher.Core
+{
 	/// <summary>
-	/// Interface of JavaScript engine
+	/// Defines a interface of JS engine
 	/// </summary>
 	public interface IJsEngine : IDisposable
 	{
 		/// <summary>
-		/// Gets a name of JavaScript engine
+		/// Gets a name of JS engine
 		/// </summary>
 		string Name
 		{
@@ -18,9 +18,17 @@
 		}
 
 		/// <summary>
-		/// Gets a version of original JavaScript engine
+		/// Gets a version of original JS engine
 		/// </summary>
 		string Version
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		bool SupportsGarbageCollection
 		{
 			get;
 		}
@@ -138,5 +146,10 @@
 		/// methods are bound to the type's static members.
 		/// </remarks>
 		void EmbedHostType(string itemName, Type type);
+
+		/// <summary>
+		/// Performs a full garbage collection
+		/// </summary>
+		void CollectGarbage();
 	}
 }

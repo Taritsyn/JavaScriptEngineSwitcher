@@ -1,8 +1,8 @@
-﻿namespace JavaScriptEngineSwitcher.Tests.Interop
-{
-	using System;
-	using System.IO;
+﻿using System;
+using System.IO;
 
+namespace JavaScriptEngineSwitcher.Tests.Interop
+{
 	public sealed class FileManager
 	{
 		public string ReadFile(string path)

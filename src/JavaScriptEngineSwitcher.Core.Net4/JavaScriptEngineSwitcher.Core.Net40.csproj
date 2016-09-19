@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5C903EEF-BAD1-43B8-BFE2-E4EE4D204410}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JavaScriptEngineSwitcher.Core</RootNamespace>
+    <AssemblyName>JavaScriptEngineSwitcher.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\tools\Key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\EmptyValueException.cs">
+      <Link>EmptyValueException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Helpers\JsErrorHelpers.cs">
+      <Link>Helpers\JsErrorHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Helpers\PathHelpers.cs">
+      <Link>Helpers\PathHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Helpers\ValidationHelpers.cs">
+      <Link>Helpers\ValidationHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\IJsEngine.cs">
+      <Link>IJsEngine.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\IJsEngineFactory.cs">
+      <Link>IJsEngineFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\InterlockedStatedFlag.cs">
+      <Link>InterlockedStatedFlag.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\JsEngineBase.cs">
+      <Link>JsEngineBase.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\JsEngineFactoryCollection.cs">
+      <Link>JsEngineFactoryCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\JsEngineLoadException.cs">
+      <Link>JsEngineLoadException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\JsEngineNotFoundException.cs">
+      <Link>JsEngineNotFoundException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\JsEngineSwitcher.cs">
+      <Link>JsEngineSwitcher.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\JsException.cs">
+      <Link>JsException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\JsRuntimeException.cs">
+      <Link>JsRuntimeException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\NotSupportedTypeException.cs">
+      <Link>NotSupportedTypeException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Properties\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Resources\Strings.Designer.cs">
+      <Link>Resources\Strings.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Resources\Strings.ru-ru.Designer.cs">
+      <Link>Resources\Strings.ru-ru.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\StatedFlag.cs">
+      <Link>StatedFlag.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Undefined.cs">
+      <Link>Undefined.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Utilities\StringBuilderExtensions.cs">
+      <Link>Utilities\StringBuilderExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Utilities\TypeConverter.cs">
+      <Link>Utilities\TypeConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Utilities\TypeExtensions.cs">
+      <Link>Utilities\TypeExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Utilities\Utils.cs">
+      <Link>Utilities\Utils.cs</Link>
+    </Compile>
+    <Compile Include="Utilities\DelegateExtensions.cs" />
+    <Compile Include="Utilities\TypeInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\tools\Key.snk">
+      <Link>Key.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\JavaScriptEngineSwitcher.Core\Resources\Strings.resx">
+      <Link>Resources\Strings.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JavaScriptEngineSwitcher.Core\Resources\Strings.ru-ru.resx">
+      <Link>Resources\Strings.ru-ru.resx</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>SET VS_PROJECT_DIR=$(ProjectDir)..\JavaScriptEngineSwitcher.Core
+
+cd "$(ProjectDir)..\..\"
+build resx</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

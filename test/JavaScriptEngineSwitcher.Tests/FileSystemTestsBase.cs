@@ -1,28 +1,35 @@
-﻿namespace JavaScriptEngineSwitcher.Tests
+﻿#if NETCOREAPP1_0 || NET451
+using Microsoft.Extensions.PlatformAbstractions;
+#elif NET40
+using System;
+#else
+#error No implementation for this target
+#endif
+using System.IO;
+
+namespace JavaScriptEngineSwitcher.Tests
 {
-	using System;
-	using System.IO;
-	using System.Text.RegularExpressions;
-
-	public abstract class FileSystemTestsBase
+	public abstract class FileSystemTestsBase : TestsBase
 	{
-		/// <summary>
-		/// Regular expression for working with the `bin` directory path
-		/// </summary>
-		private readonly Regex _binDirRegex = new Regex(@"\\bin\\(?:Debug|Release)\\?$", RegexOptions.IgnoreCase);
-
 		protected string _baseDirectoryPath;
 
 
 		protected FileSystemTestsBase()
 		{
-			string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
-			if (_binDirRegex.IsMatch(baseDirectoryPath))
-			{
-				baseDirectoryPath = Path.GetFullPath(Path.Combine(baseDirectoryPath, @"..\..\..\"));
-			}
-
-			_baseDirectoryPath = baseDirectoryPath;
+#if NETCOREAPP1_0 || NET451
+			var appEnv = PlatformServices.Default.Application;
+			_baseDirectoryPath = Path.Combine(appEnv.ApplicationBasePath,
+#if NETCOREAPP1_0
+				"../../../"
+#else
+				"../../../../"
+#endif
+			);
+#elif NET40
+			_baseDirectoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../");
+#else
+#error No implementation for this target
+#endif
 		}
 	}
 }

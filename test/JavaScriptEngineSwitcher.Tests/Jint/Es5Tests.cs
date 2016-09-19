@@ -1,21 +1,17 @@
-﻿namespace JavaScriptEngineSwitcher.Tests.Jint
+﻿using Xunit;
+
+namespace JavaScriptEngineSwitcher.Tests.Jint
 {
-	using NUnit.Framework;
-
-	using Core;
-
 	public class Es5Tests : Es5TestsBase
 	{
-		protected override IJsEngine CreateJsEngine()
+		protected override string EngineName
 		{
-			var jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("JintJsEngine");
-
-			return jsEngine;
+			get { return "JintJsEngine"; }
 		}
 
 		#region Object methods
 
-		[Test]
+		[Fact]
 		public override void ObjectKeysMethodIsSupported()
 		{
 			// Arrange
@@ -52,10 +48,10 @@ myObj.foo = 1;
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
-			Assert.AreEqual(targetOutput4, output4);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
+			Assert.Equal(targetOutput4, output4);
 		}
 
 		#endregion

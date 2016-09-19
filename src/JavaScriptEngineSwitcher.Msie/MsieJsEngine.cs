@@ -1,33 +1,31 @@
-﻿namespace JavaScriptEngineSwitcher.Msie
+﻿using System;
+
+using OriginalJsEngine = MsieJavaScriptEngine.MsieJsEngine;
+using OriginalJsEngineLoadException = MsieJavaScriptEngine.JsEngineLoadException;
+using OriginalJsEngineMode = MsieJavaScriptEngine.JsEngineMode;
+using OriginalJsRuntimeException = MsieJavaScriptEngine.JsRuntimeException;
+using OriginalJsEngineSettings = MsieJavaScriptEngine.JsEngineSettings;
+using OriginalTypeConverter = MsieJavaScriptEngine.Utilities.TypeConverter;
+using OriginalUndefined = MsieJavaScriptEngine.Undefined;
+
+using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Utilities;
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+
+namespace JavaScriptEngineSwitcher.Msie
 {
-	using System;
-
-	using OriginalJsEngine = MsieJavaScriptEngine.MsieJsEngine;
-	using OriginalJsEngineLoadException = MsieJavaScriptEngine.JsEngineLoadException;
-	using OriginalJsEngineMode = MsieJavaScriptEngine.JsEngineMode;
-	using OriginalJsRuntimeException = MsieJavaScriptEngine.JsRuntimeException;
-	using OriginalJsEngineSettings = MsieJavaScriptEngine.JsEngineSettings;
-	using OriginalTypeConverter = MsieJavaScriptEngine.Utilities.TypeConverter;
-	using OriginalUndefined = MsieJavaScriptEngine.Undefined;
-
-	using Core;
-	using Core.Utilities;
-	using CoreStrings = Core.Resources.Strings;
-
-	using Configuration;
-
 	/// <summary>
-	/// Adapter for MSIE JavaScript engine
+	/// Adapter for the MSIE JS engine
 	/// </summary>
 	public sealed class MsieJsEngine : JsEngineBase
 	{
 		/// <summary>
-		/// Name of JavaScript engine
+		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "MSIE JavaScript engine";
+		public const string EngineName = "MsieJsEngine";
 
 		/// <summary>
-		/// Version of original JavaScript engine
+		/// Version of original JS engine
 		/// </summary>
 		private readonly string _engineVersion;
 
@@ -37,46 +35,54 @@
 		private OriginalJsEngine _jsEngine;
 
 		/// <summary>
-		/// Gets a name of JavaScript engine
+		/// Gets a name of JS engine
 		/// </summary>
 		public override string Name
 		{
-			get { return ENGINE_NAME; }
+			get { return EngineName; }
 		}
 
 		/// <summary>
-		/// Gets a version of original JavaScript engine
+		/// Gets a version of original JS engine
 		/// </summary>
 		public override string Version
 		{
 			get { return _engineVersion; }
 		}
 
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return true; }
+		}
+
 
 		/// <summary>
-		/// Constructs a instance of adapter for MSIE JavaScript engine
+		/// Constructs a instance of adapter for the MSIE JS engine
 		/// </summary>
 		public MsieJsEngine()
-			: this(JsEngineSwitcher.Current.GetMsieConfiguration())
+			: this(new MsieSettings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for MSIE JavaScript engine
+		/// Constructs a instance of adapter for the MSIE JS engine
 		/// </summary>
-		/// <param name="config">Configuration settings of MSIE JavaScript engine</param>
-		public MsieJsEngine(MsieConfiguration config)
+		/// <param name="settings">Settings of the MSIE JS engine</param>
+		public MsieJsEngine(MsieSettings settings)
 		{
-			MsieConfiguration msieConfig = config ?? new MsieConfiguration();
+			MsieSettings msieSettings = settings ?? new MsieSettings();
 
 			try
 			{
 				_jsEngine = new OriginalJsEngine(new OriginalJsEngineSettings
 				{
-					EnableDebugging = msieConfig.EnableDebugging,
+					EnableDebugging = msieSettings.EnableDebugging,
 					EngineMode = Utils.GetEnumFromOtherEnum<JsEngineMode, OriginalJsEngineMode>(
-						msieConfig.EngineMode),
-					UseEcmaScript5Polyfill = msieConfig.UseEcmaScript5Polyfill,
-					UseJson2Library = msieConfig.UseJson2Library
+						msieSettings.EngineMode),
+					UseEcmaScript5Polyfill = msieSettings.UseEcmaScript5Polyfill,
+					UseJson2Library = msieSettings.UseJson2Library
 				});
 				_engineVersion = _jsEngine.Mode;
 			}
@@ -84,13 +90,13 @@
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						ENGINE_NAME, e.Message), ENGINE_NAME, e.EngineMode, e);
+						EngineName, e.Message), EngineName, e.EngineMode, e);
 			}
 			catch (Exception e)
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						ENGINE_NAME, e.Message), ENGINE_NAME, _engineVersion, e);
+						EngineName, e.Message), EngineName, _engineVersion, e);
 			}
 		}
 
@@ -129,7 +135,7 @@
 			OriginalJsRuntimeException msieJsRuntimeException)
 		{
 			var jsRuntimeException = new JsRuntimeException(msieJsRuntimeException.Message,
-				ENGINE_NAME, _engineVersion, msieJsRuntimeException)
+				EngineName, _engineVersion, msieJsRuntimeException)
 			{
 				ErrorCode = msieJsRuntimeException.ErrorCode,
 				Category = msieJsRuntimeException.Category,
@@ -308,6 +314,11 @@
 			{
 				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
 			}
+		}
+
+		protected override void InnerCollectGarbage()
+		{
+			_jsEngine.CollectGarbage();
 		}
 
 		#endregion

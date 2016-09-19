@@ -1,15 +1,15 @@
-﻿namespace JavaScriptEngineSwitcher.Core
+﻿using System;
+using System.Reflection;
+using System.Text;
+
+using JavaScriptEngineSwitcher.Core.Helpers;
+using JavaScriptEngineSwitcher.Core.Resources;
+using JavaScriptEngineSwitcher.Core.Utilities;
+
+namespace JavaScriptEngineSwitcher.Core
 {
-	using System;
-	using System.Reflection;
-	using System.Text;
-
-	using Helpers;
-	using Resources;
-	using Utilities;
-
 	/// <summary>
-	/// Base class of JavaScript engine
+	/// Base class of JS engine
 	/// </summary>
 	public abstract class JsEngineBase : IJsEngine
 	{
@@ -57,6 +57,11 @@
 			throw new NotImplementedException();
 		}
 
+		protected virtual void InnerCollectGarbage()
+		{
+			throw new NotImplementedException();
+		}
+
 		#region IJsEngine implementation
 
 		public abstract string Name
@@ -67,6 +72,14 @@
 		public abstract string Version
 		{
 			get;
+		}
+
+		public virtual bool SupportsGarbageCollection
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
 		}
 
 
@@ -438,6 +451,13 @@
 			}
 
 			InnerEmbedHostType(itemName, type);
+		}
+
+		public virtual void CollectGarbage()
+		{
+			VerifyNotDisposed();
+
+			InnerCollectGarbage();
 		}
 
 		#endregion

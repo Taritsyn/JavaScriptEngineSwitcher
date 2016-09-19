@@ -1,9 +1,11 @@
-﻿namespace JavaScriptEngineSwitcher.Core.Helpers
-{
-	using System;
-	using System.Linq;
-	using System.Text.RegularExpressions;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
+using JavaScriptEngineSwitcher.Core.Utilities;
+
+namespace JavaScriptEngineSwitcher.Core.Helpers
+{
 	/// <summary>
 	/// Validation helpers
 	/// </summary>
@@ -20,7 +22,7 @@
 		/// <summary>
 		/// List of primitive type codes
 		/// </summary>
-		private static readonly TypeCode[] _primitiveTypeCodes = new[]
+		private static readonly TypeCode[] _primitiveTypeCodes =
 		{
 			TypeCode.Boolean,
 			TypeCode.SByte, TypeCode.Byte,
@@ -54,7 +56,7 @@
 		/// <returns>Result of check (true - is primitive; false - is not primitive)</returns>
 		public static bool IsPrimitiveType(Type type)
 		{
-			TypeCode typeCode = Type.GetTypeCode(type);
+			TypeCode typeCode = type.GetTypeCode();
 			bool result = _primitiveTypeCodes.Contains(typeCode);
 
 			return result;

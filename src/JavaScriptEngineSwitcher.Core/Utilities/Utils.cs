@@ -1,14 +1,31 @@
-﻿namespace JavaScriptEngineSwitcher.Core.Utilities
+﻿using System;
+using System.IO;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Text;
+
+using JavaScriptEngineSwitcher.Core.Resources;
+
+namespace JavaScriptEngineSwitcher.Core.Utilities
 {
-	using System;
-	using System.IO;
-	using System.Reflection;
-	using System.Text;
-
-	using Resources;
-
 	public static class Utils
 	{
+		/// <summary>
+		/// Determines whether the current process is a 64-bit process
+		/// </summary>
+		/// <returns>true if the process is 64-bit; otherwise, false</returns>
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		public static bool Is64BitProcess()
+		{
+#if NETSTANDARD1_3
+			bool is64Bit = IntPtr.Size == 8;
+#else
+			bool is64Bit = Environment.Is64BitProcess;
+#endif
+
+			return is64Bit;
+		}
+
 		/// <summary>
 		/// Gets a content of the embedded resource as string
 		/// </summary>
@@ -17,7 +34,7 @@
 		/// <returns>Сontent of the embedded resource as string</returns>
 		public static string GetResourceAsString(string resourceName, Type type)
 		{
-			Assembly assembly = type.Assembly;
+			Assembly assembly = type.GetTypeInfo().Assembly;
 
 			return GetResourceAsString(resourceName, assembly);
 		}
@@ -46,7 +63,7 @@
 		}
 
 		/// <summary>
-		/// Gets text content of the specified file
+		/// Gets a text content of the specified file
 		/// </summary>
 		/// <param name="path">File path</param>
 		/// <param name="encoding">Content encoding</param>
@@ -61,68 +78,17 @@
 
 			string content;
 
-			using (var file = new StreamReader(path, encoding ?? Encoding.UTF8))
+			using (var stream = File.OpenRead(path))
+			using (var reader = new StreamReader(stream, encoding ?? Encoding.UTF8))
 			{
-				content = file.ReadToEnd();
+				content = reader.ReadToEnd();
 			}
 
 			return content;
 		}
 
 		/// <summary>
-		/// Creates instance by specified full type name
-		/// </summary>
-		/// <param name="fullTypeName">Full type name</param>
-		/// <typeparam name="T">Target type</typeparam>
-		/// <returns>Instance of type</returns>
-		internal static T CreateInstanceByFullTypeName<T>(string fullTypeName) where T : class
-		{
-			if (string.IsNullOrWhiteSpace(fullTypeName))
-			{
-				throw new ArgumentNullException(Strings.Common_ValueIsEmpty);
-			}
-
-			string typeName;
-			string assemblyName;
-			Assembly assembly;
-			int commaPosition = fullTypeName.IndexOf(',');
-
-			if (commaPosition != -1)
-			{
-				typeName = fullTypeName.Substring(0, commaPosition).Trim();
-				if (string.IsNullOrEmpty(typeName))
-				{
-					throw new EmptyValueException(Strings.Common_TypeNameIsEmpty);
-				}
-
-				assemblyName = fullTypeName.Substring(commaPosition + 1,
-					fullTypeName.Length - (commaPosition + 1)).Trim();
-				if (string.IsNullOrEmpty(assemblyName))
-				{
-					throw new EmptyValueException(Strings.Common_AssemblyNameIsEmpty);
-				}
-
-				assembly = Assembly.Load(assemblyName);
-			}
-			else
-			{
-				typeName = fullTypeName;
-				assembly = typeof(Utils).Assembly;
-				assemblyName = assembly.FullName;
-			}
-
-			object instance = assembly.CreateInstance(typeName);
-			if (instance == null)
-			{
-				throw new NullReferenceException(string.Format(Strings.Common_InstanceCreationFailed,
-					typeName, assemblyName));
-			}
-
-			return (T)instance;
-		}
-
-		/// <summary>
-		/// Converts value of source enumeration type to value of destination enumeration type
+		/// Converts a value of source enumeration type to value of destination enumeration type
 		/// </summary>
 		/// <typeparam name="TSource">Source enumeration type</typeparam>
 		/// <typeparam name="TDest">Destination enumeration type</typeparam>

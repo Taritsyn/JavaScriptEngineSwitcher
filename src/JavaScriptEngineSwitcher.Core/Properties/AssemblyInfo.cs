@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JavaScript Engine Switcher for .Net: Core")]
+[assembly: AssemblyProduct("JavaScript Engine Switcher: Core")]
 [assembly: AssemblyCopyright("Copyright © 2013-2016 Andrey Taritsyn")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -13,5 +13,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("9f7e9fff-da85-4609-8bee-bdead5a3afe2")]
 
-[assembly: AssemblyVersion("1.5.0.0")]
-[assembly: AssemblyFileVersion("1.5.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]

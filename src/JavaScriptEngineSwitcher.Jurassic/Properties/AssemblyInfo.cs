@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JavaScript Engine Switcher for .Net: Jurassic")]
+[assembly: AssemblyProduct("JavaScript Engine Switcher: Jurassic")]
 [assembly: AssemblyCopyright("Copyright © 2013-2016 Andrey Taritsyn")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -13,5 +13,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("1e4eb77e-0771-4109-832f-20e3475315ed")]
 
-[assembly: AssemblyVersion("1.5.9.0")]
-[assembly: AssemblyFileVersion("1.5.9.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]

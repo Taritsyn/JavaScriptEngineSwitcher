@@ -1,4 +1,6 @@
-﻿using IOriginalCallable = Jint.Native.ICallable;
+﻿using System;
+
+using IOriginalCallable = Jint.Native.ICallable;
 using OriginalJsEngine = Jint.Engine;
 using OriginalJsException = Jint.Runtime.JavaScriptException;
 using OriginalJsValue = Jint.Native.JsValue;
@@ -8,31 +10,28 @@ using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverf
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
 using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
 
+using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Utilities;
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+
+using JavaScriptEngineSwitcher.Jint.Resources;
+
 namespace JavaScriptEngineSwitcher.Jint
 {
-	using System;
-
-	using Core;
-	using Core.Utilities;
-	using CoreStrings = Core.Resources.Strings;
-
-	using Configuration;
-	using Resources;
-
 	/// <summary>
-	/// Adapter for Jint JavaScript engine
+	/// Adapter for the Jint JS engine
 	/// </summary>
 	public sealed class JintJsEngine : JsEngineBase
 	{
 		/// <summary>
-		/// Name of JavaScript engine
+		/// Name of JS engine
 		/// </summary>
-		private const string ENGINE_NAME = "Jint JavaScript engine";
+		public const string EngineName = "JintJsEngine";
 
 		/// <summary>
-		/// Version of original JavaScript engine
+		/// Version of original JS engine
 		/// </summary>
-		private const string ENGINE_VERSION = "2.9.1";
+		private const string EngineVersion = "2.9.1";
 
 		/// <summary>
 		/// Jint JS engine
@@ -45,53 +44,61 @@ namespace JavaScriptEngineSwitcher.Jint
 		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
-		/// Gets a name of JavaScript engine
+		/// Gets a name of JS engine
 		/// </summary>
 		public override string Name
 		{
-			get { return ENGINE_NAME; }
+			get { return EngineName; }
 		}
 
 		/// <summary>
-		/// Gets a version of original JavaScript engine
+		/// Gets a version of original JS engine
 		/// </summary>
 		public override string Version
 		{
-			get { return ENGINE_VERSION; }
+			get { return EngineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return false; }
 		}
 
 
 		/// <summary>
-		/// Constructs a instance of adapter for Jint
+		/// Constructs a instance of adapter for the Jint JS engine
 		/// </summary>
 		public JintJsEngine()
-			: this(JsEngineSwitcher.Current.GetJintConfiguration())
+			: this(new JintSettings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for Jint
+		/// Constructs a instance of adapter for the Jint JS engine
 		/// </summary>
-		/// <param name="config">Configuration settings of Jint JavaScript engine</param>
-		public JintJsEngine(JintConfiguration config)
+		/// <param name="settings">Settings of the Jint JS engine</param>
+		public JintJsEngine(JintSettings settings)
 		{
-			JintConfiguration jintConfig = config ?? new JintConfiguration();
+			JintSettings jintSettings = settings ?? new JintSettings();
 
 			try
 			{
 				_jsEngine = new OriginalJsEngine(c => c
-					.AllowDebuggerStatement(jintConfig.AllowDebuggerStatement)
-					.DebugMode(jintConfig.EnableDebugging)
-					.LimitRecursion(jintConfig.MaxRecursionDepth)
-					.MaxStatements(jintConfig.MaxStatements)
-					.Strict(jintConfig.StrictMode)
-					.TimeoutInterval(TimeSpan.FromMilliseconds(jintConfig.Timeout))
+					.AllowDebuggerStatement(jintSettings.AllowDebuggerStatement)
+					.DebugMode(jintSettings.EnableDebugging)
+					.LimitRecursion(jintSettings.MaxRecursionDepth)
+					.MaxStatements(jintSettings.MaxStatements)
+					.Strict(jintSettings.StrictMode)
+					.TimeoutInterval(TimeSpan.FromMilliseconds(jintSettings.Timeout))
 				);
 			}
 			catch (Exception e)
 			{
 				throw new JsEngineLoadException(
 					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						ENGINE_NAME, e.Message), ENGINE_NAME, ENGINE_VERSION, e);
+						EngineName, e.Message), EngineName, EngineVersion, e);
 			}
 		}
 
@@ -136,7 +143,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				message = jsParserException.Message;
 			}
 
-			var jsRuntimeException = new JsRuntimeException(message, ENGINE_NAME, ENGINE_VERSION,
+			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
 				jsParserException)
 			{
 				Category = "ParserError",
@@ -166,7 +173,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 			}
 
-			var jsRuntimeException = new JsRuntimeException(jsException.Message, ENGINE_NAME, ENGINE_VERSION,
+			var jsRuntimeException = new JsRuntimeException(jsException.Message, EngineName, EngineVersion,
 				jsException)
 			{
 				Category = category,
@@ -186,7 +193,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				jsRecursionException.CallChain);
 
 			var jsRuntimeException = new JsRuntimeException(message,
-				ENGINE_NAME, ENGINE_VERSION, jsRecursionException)
+				EngineName, EngineVersion, jsRecursionException)
 			{
 				Category = "RecursionDepthOverflowError",
 				Source = jsRecursionException.Source,
@@ -200,7 +207,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			OriginalStatementsCountOverflowException jsStatementsException)
 		{
 			var jsRuntimeException = new JsRuntimeException(Strings.Runtime_StatementsCountOverflow,
-				ENGINE_NAME, ENGINE_VERSION)
+				EngineName, EngineVersion)
 			{
 				Category = "StatementsCountOverflowError",
 				Source = jsStatementsException.Source,
@@ -214,7 +221,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			TimeoutException jsTimeoutException)
 		{
 			var jsRuntimeException = new JsRuntimeException(Strings.Runtime_ExecutionTimeout,
-				ENGINE_NAME, ENGINE_VERSION)
+				EngineName, EngineVersion)
 			{
 				Category = "TimeoutError",
 				Source = jsTimeoutException.Source,
@@ -476,6 +483,11 @@ namespace JavaScriptEngineSwitcher.Jint
 					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
 				}
 			}
+		}
+
+		protected override void InnerCollectGarbage()
+		{
+			throw new NotImplementedException();
 		}
 
 		#endregion

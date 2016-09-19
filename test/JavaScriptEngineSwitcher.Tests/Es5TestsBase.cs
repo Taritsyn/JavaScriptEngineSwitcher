@@ -1,18 +1,16 @@
-﻿namespace JavaScriptEngineSwitcher.Tests
+﻿using System;
+
+using Xunit;
+
+using JavaScriptEngineSwitcher.Core;
+
+namespace JavaScriptEngineSwitcher.Tests
 {
-	using System;
-
-	using NUnit.Framework;
-
-	using Core;
-
-	public abstract class Es5TestsBase
+	public abstract class Es5TestsBase : TestsBase
 	{
-		protected abstract IJsEngine CreateJsEngine();
-
 		#region Array methods
 
-		[Test]
+		[Fact]
 		public virtual void ArrayEveryMethodIsSupported()
 		{
 			// Arrange
@@ -37,11 +35,11 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ArrayFilterMethodIsSupported()
 		{
 			// Arrange
@@ -64,10 +62,10 @@
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ArrayForEachMethodIsSupported()
 		{
 			// Arrange
@@ -94,10 +92,10 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ArrayIndexOfMethodIsSupported()
 		{
 			// Arrange
@@ -147,16 +145,16 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
-			Assert.AreEqual(targetOutput4, output4);
-			Assert.AreEqual(targetOutput5, output5);
-			Assert.AreEqual(targetOutput6, output6);
-			Assert.AreEqual(targetOutput7, output7);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
+			Assert.Equal(targetOutput4, output4);
+			Assert.Equal(targetOutput5, output5);
+			Assert.Equal(targetOutput6, output6);
+			Assert.Equal(targetOutput7, output7);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ArrayIsArrayMethodIsSupported()
 		{
 			// Arrange
@@ -177,11 +175,11 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ArrayLastIndexOfMethodIsSupported()
 		{
 			// Arrange
@@ -231,16 +229,16 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
-			Assert.AreEqual(targetOutput4, output4);
-			Assert.AreEqual(targetOutput5, output5);
-			Assert.AreEqual(targetOutput6, output6);
-			Assert.AreEqual(targetOutput7, output7);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
+			Assert.Equal(targetOutput4, output4);
+			Assert.Equal(targetOutput5, output5);
+			Assert.Equal(targetOutput6, output6);
+			Assert.Equal(targetOutput7, output7);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ArrayMapMethodIsSupported()
 		{
 			// Arrange
@@ -263,10 +261,10 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ArrayReduceMethodIsSupported()
 		{
 			// Arrange
@@ -291,11 +289,11 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ArrayReduceRightMethodIsSupported()
 		{
 			// Arrange
@@ -320,11 +318,11 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ArraySomeMethodIsSupported()
 		{
 			// Arrange
@@ -343,14 +341,14 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
 
 		#region Date methods
 
-		[Test]
+		[Fact]
 		public virtual void DateNowMethodIsSupported()
 		{
 			// Arrange
@@ -366,10 +364,10 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.IsTrue(Math.Abs((targetOutput - output).TotalMilliseconds) < 100);
+			Assert.True(Math.Abs((targetOutput - output).TotalMilliseconds) < 1000);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void DateToIsoStringMethodIsSupported()
 		{
 			// Arrange
@@ -385,14 +383,14 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
 
 		#region Function methods
 
-		[Test]
+		[Fact]
 		public virtual void FunctionBindIsSupported()
 		{
 			// Arrange
@@ -423,15 +421,15 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
 		#endregion
 
 		#region JSON methods
 
-		[Test]
+		[Fact]
 		public virtual void JsonParseMethodIsSupported()
 		{
 			// Arrange
@@ -449,10 +447,10 @@ engines.forEach(function(value, index, array) {{
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void JsonStringifyMethodIsSupported()
 		{
 			// Arrange
@@ -471,14 +469,14 @@ obj['foo'] = 'bar';";
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
 
 		#region Object methods
 
-		[Test]
+		[Fact]
 		public virtual void ObjectCreateMethodIsSupported()
 		{
 			// Arrange
@@ -526,14 +524,14 @@ greeter.name = 'Vasya'";
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 
-			Assert.AreEqual(targetOutput3A, output3A);
-			Assert.AreEqual(targetOutput3B, output3B);
+			Assert.Equal(targetOutput3A, output3A);
+			Assert.Equal(targetOutput3B, output3B);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void ObjectKeysMethodIsSupported()
 		{
 			// Arrange
@@ -570,17 +568,17 @@ myObj.foo = 1;
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
-			Assert.AreEqual(targetOutput4, output4);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
+			Assert.Equal(targetOutput4, output4);
 		}
 
 		#endregion
 
 		#region String methods
 
-		[Test]
+		[Fact]
 		public virtual void StringSplitMethodIsCorrect()
 		{
 			// Arrange
@@ -606,12 +604,12 @@ myObj.foo = 1;
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput1, output1);
-			Assert.AreEqual(targetOutput2, output2);
-			Assert.AreEqual(targetOutput3, output3);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
 		}
 
-		[Test]
+		[Fact]
 		public virtual void StringTrimMethodIsSupported()
 		{
 			// Arrange
@@ -627,7 +625,7 @@ myObj.foo = 1;
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion

@@ -120,10 +120,10 @@
   <data name="Engines_ClearScriptUndefinedValueNotLoaded" xml:space="preserve">
     <value>Не удалось загрузить значение `undefined` для ClearScript!</value>
   </data>
-  <data name="Engines_ClearScriptV8AssembliesDirectoryNotFound" xml:space="preserve">
-    <value>Не удалось загрузить сборку ClearScriptV8, потому что директория "{0}" не существует.</value>
-  </data>
   <data name="Engines_ClearScriptV8AssemblyFileNotFound" xml:space="preserve">
     <value>Не удалось загрузить сборку ClearScriptV8, потому что файл "{0}" не существует.</value>
+  </data>
+  <data name="Runtime_MethodInfoNotLoaded" xml:space="preserve">
+    <value>Не удалось загрузить информацию о методе `{1}` типа `{0}`!</value>
   </data>
 </root>

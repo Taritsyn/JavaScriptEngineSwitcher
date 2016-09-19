@@ -1,0 +1,23 @@
+﻿@using JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1.Infrastructure.Helpers
+@using JavaScriptEngineSwitcher.Sample.Logic.Models
+
+@model IList<JsEvaluationErrorViewModel>
+
+<h3 class="evaluation-error-header">Found <strong>@Model.Count</strong> error(s):</h3>
+<ul class="evaluation-error-list list-unstyled">
+	@foreach (var error in Model)
+	{
+		<li>
+			<strong>@error.EngineFullName</strong><br>
+			@if (error.LineNumber > 0)
+			{
+				<text>Line @error.LineNumber, Column @error.ColumnNumber<br></text>
+			}
+			@Html.EncodedReplace(@error.Message, "\n\r?", "<br>")
+			@if (!string.IsNullOrWhiteSpace(error.SourceFragment))
+			{
+				<pre>@error.SourceFragment</pre>
+			}
+		</li>
+	}
+</ul>

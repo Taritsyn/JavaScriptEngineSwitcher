@@ -1,7 +1,7 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
-{
-	using System;
+﻿using System;
 
+namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
+{
 	/// <summary>
 	/// The cookie that identifies a script for debugging purposes
 	/// </summary>

@@ -1,8 +1,8 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
-{
-	using System;
-	using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
+namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
+{
 	/// <summary>
 	/// The function callback
 	/// </summary>

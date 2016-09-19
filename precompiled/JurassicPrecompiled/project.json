@@ -1,0 +1,11 @@
+﻿{
+	"version": "2016.9.19",
+
+	"frameworks": {
+		"net451": {
+			"bin": {
+				"assembly": "../../lib/Jurassic/Jurassic.dll"
+			}
+		}
+	}
+}

@@ -1,14 +1,27 @@
 ﻿namespace JavaScriptEngineSwitcher.Tests.Jurassic
 {
-	using Core;
-
 	public class InteropTests : InteropTestsBase
 	{
-		protected override IJsEngine CreateJsEngine()
+		protected override string EngineName
 		{
-			var jsEngine = JsEngineSwitcher.Current.CreateJsEngineInstance("JurassicJsEngine");
-
-			return jsEngine;
+			get { return "JurassicJsEngine"; }
 		}
+
+		#region Embedding of types
+
+		#region Types with constants
+
+		public override void EmbeddingOfBuiltinReferenceTypeWithConstantsIsCorrect()
+		{ }
+
+		public override void EmbeddingOfCustomValueTypeWithConstantsIsCorrect()
+		{ }
+
+		public override void EmbeddingOfCustomReferenceTypeWithConstantIsCorrect()
+		{ }
+
+		#endregion
+
+		#endregion
 	}
 }
