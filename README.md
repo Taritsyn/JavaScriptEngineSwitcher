@@ -23,14 +23,11 @@ This library can be installed through NuGet:
  * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint)
  * [JS Engine Switcher: ChakraCore](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore)
 
-## Version 2.0
-At the moment I'm working on a [version 2.0](https://github.com/Taritsyn/JavaScriptEngineSwitcher/tree/2.0). The main purpose of new version: make the JavaScript Engine Switcher compatible with ASP.NET Core.
-
 ## Release History
 See the [changelog](CHANGELOG.md).
 
 ## License
-[Apache License Version 2.0](LICENSE)
+[Apache License Version 2.0](http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE)
 
 ## Who's Using JavaScript Engine Switcher
 If you use the JavaScript Engine Switcher in some project, please send me a message so I can include it in this list:
