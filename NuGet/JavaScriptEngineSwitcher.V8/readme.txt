@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                 README file for JS Engine Switcher: V8 v2.0.0 Beta 1
+                     README file for JS Engine Switcher: V8 v2.0.0
 
    --------------------------------------------------------------------------------
 
@@ -20,9 +20,12 @@
    =============
    RELEASE NOTES
    =============
-   1. Microsoft ClearScript.V8 was updated to version 5.4.7 (support of V8 version
+   1. Removed dependency on `System.Configuration.dll` (no longer supported
+      configuration by using the `Web.config` and `App.config` files);
+   2. Added support of .NET Framework 4.5.1;
+   3. Microsoft ClearScript.V8 was updated to version 5.4.7 (support of V8 version
       5.3.332.45);
-   2. In configuration settings of the V8 JS engine was changed type of `DebugPort`
+   4. In configuration settings of the V8 JS engine was changed type of `DebugPort`
       property from `int` to `ushort`.
 
    ====================

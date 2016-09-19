@@ -1,9 +1,9 @@
 ﻿{
-	"version": "2.0.0-beta1",
+	"version": "2.0.0",
 
 	"dependencies": {
 		"Jint": "2.9.1",
-		"JavaScriptEngineSwitcher.Core": "2.0.0-beta1"
+		"JavaScriptEngineSwitcher.Core": "2.0.0"
 	},
 
 	"buildOptions": {

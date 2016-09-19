@@ -1,6 +1,23 @@
 Change log
 ==========
 
+## September 19, 2016 - v2.0.0
+ * Removed dependency on `System.Configuration.dll` (no longer supported configuration by using the `Web.config` and `App.config` files)
+ * In JavaScriptEngineSwitcher.Core, JavaScriptEngineSwitcher.Msie (.NET Core version only works in JsRT modes) and JavaScriptEngineSwitcher.ChakraCore added support of .NET Core 1.0.1
+ * Now all modules are support of .NET Framework 4.5.1 and can be used in web applications based on the “ASP.NET Core Web Application (.NET Framework)” template
+ * In `IJsEngine` interface was added `SupportsGarbageCollection` property and `CollectGarbage` method
+ * `JsRuntimeErrorHelpers` class was renamed to `JsErrorHelpers` class
+ * Created a JavaScriptEngineSwitcher.Extensions.MsDependencyInjection package, that contains extension methods for adding the JS engine switcher in an `IServiceCollection`
+ * JavaScriptEngineSwitcher.ConfigurationIntelliSense package is no longer required for the current version of the JavaScript Engine Switcher
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.0.0
+ * In JavaScriptEngineSwitcher.V8:
+   * Added support of Microsoft ClearScript.V8 version 5.4.7 (support of V8 version 5.3.332.45)
+   * In configuration settings of the V8 JS engine was changed type of `DebugPort` property from `int` to `ushort`
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of September 19, 2016
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * Added support of ChakraCore version 1.3
+   * Added the ability to change configuration settings of the ChakraCore JS engine: `DisableBackgroundWork` (default `false`), `DisableNativeCodeGeneration` (default `false`), `DisableEval` (default `false`) and `EnableExperimentalFeatures` (default `false`)
+
 ## September 17, 2016 - v2.0.0 Beta 1
  * In `IJsEngine` interface was added `SupportsGarbageCollection` property and `CollectGarbage` method
  * `JsRuntimeErrorHelpers` class was renamed to `JsErrorHelpers` class

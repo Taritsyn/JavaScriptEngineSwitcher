@@ -15,13 +15,13 @@ The supported .NET types are as follows:
 ## Installation
 This library can be installed through NuGet:
 
- * [JS Engine Switcher: Core](http://nuget.org/packages/JavaScriptEngineSwitcher.Core/2.0.0-beta1) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
- * [JS Engine Switcher: MS Dependency Injection](http://nuget.org/packages/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/2.0.0-beta1) (supports .NET Framework 4.5.1 and .NET Standard 1.3)
- * [JS Engine Switcher: MSIE](http://nuget.org/packages/JavaScriptEngineSwitcher.Msie/2.0.0-beta1) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
- * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8/2.0.0-beta1) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
- * [JS Engine Switcher: Jurassic](http://nuget.org/packages/JavaScriptEngineSwitcher.Jurassic/2.0.0-beta1) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
- * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint/2.0.0-beta1) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
- * [JS Engine Switcher: ChakraCore](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore/2.0.0-beta1) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
+ * [JS Engine Switcher: Core](http://nuget.org/packages/JavaScriptEngineSwitcher.Core) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
+ * [JS Engine Switcher: MS Dependency Injection](http://nuget.org/packages/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection) (supports .NET Framework 4.5.1 and .NET Standard 1.3)
+ * [JS Engine Switcher: MSIE](http://nuget.org/packages/JavaScriptEngineSwitcher.Msie) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
+ * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
+ * [JS Engine Switcher: Jurassic](http://nuget.org/packages/JavaScriptEngineSwitcher.Jurassic) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
+ * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
+ * [JS Engine Switcher: ChakraCore](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
 
 Before installing of NuGet packages, I recommend to first read [“How to upgrade applications to version 2.X”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/How-to-upgrade-applications-to-version-2.X) section of the documentation.
 
