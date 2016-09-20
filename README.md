@@ -23,7 +23,7 @@ This library can be installed through NuGet:
  * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
  * [JS Engine Switcher: ChakraCore](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
 
-Before installing of NuGet packages, I recommend to first read [“How to upgrade applications to version 2.X”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/How-to-upgrade-applications-to-version-2.X) section of the documentation.
+If you have used the JavaScript Engine Switcher version 1.X, then I recommend to first read [“How to upgrade applications to version 2.X”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/How-to-upgrade-applications-to-version-2.X) section of the documentation.
 
 ## Release History
 See the [changelog](CHANGELOG.md).
