@@ -8,7 +8,8 @@
 		"xunit": "2.2.0-beta2-build3300",
 		"JavaScriptEngineSwitcher.ChakraCore": "2.0.0",
 		"JavaScriptEngineSwitcher.Core": "2.0.0",
-		"JavaScriptEngineSwitcher.Msie": "2.0.0"
+		"JavaScriptEngineSwitcher.Msie": "2.0.0",
+		"JavaScriptEngineSwitcher.Vroom": "2.0.0"
 	},
 
 	"buildOptions": {

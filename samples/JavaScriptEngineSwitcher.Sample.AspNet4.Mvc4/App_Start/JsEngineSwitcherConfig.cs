@@ -4,6 +4,7 @@ using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.V8;
+using JavaScriptEngineSwitcher.Vroom;
 
 namespace JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4
 {
@@ -21,6 +22,7 @@ namespace JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4
 					UseJson2Library = true
 				})
 				.AddV8()
+				.AddVroom()
 				;
 			engineSwitcher.DefaultEngineName = ChakraCoreJsEngine.EngineName;
 		}

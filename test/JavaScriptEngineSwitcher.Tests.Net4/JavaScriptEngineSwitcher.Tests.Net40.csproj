@@ -63,6 +63,10 @@
       <Project>{1baec601-b244-48d3-be27-351e133eef73}</Project>
       <Name>JavaScriptEngineSwitcher.V8.Net40</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Vroom.Net4\JavaScriptEngineSwitcher.Vroom.Net40.csproj">
+      <Project>{64a84c47-c557-4181-8f68-bd945fd052e3}</Project>
+      <Name>JavaScriptEngineSwitcher.Vroom.Net40</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -187,6 +191,15 @@
     </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\V8\InteropTests.cs">
       <Link>V8\InteropTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Vroom\CommonTests.cs">
+      <Link>Vroom\CommonTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Vroom\Es5Tests.cs">
+      <Link>Vroom\Es5Tests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Vroom\InteropTests.cs">
+      <Link>Vroom\InteropTests.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

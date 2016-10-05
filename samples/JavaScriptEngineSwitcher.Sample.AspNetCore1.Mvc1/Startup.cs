@@ -9,6 +9,7 @@ using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
+using JavaScriptEngineSwitcher.Vroom;
 
 namespace JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1
 {
@@ -52,7 +53,12 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1
 				options.DefaultEngineName = ChakraCoreJsEngine.EngineName
 			)
 				.AddChakraCore()
-				.AddMsie()
+				.AddMsie(options =>
+				{
+					options.UseEcmaScript5Polyfill = true;
+					options.UseJson2Library = true;
+				})
+				.AddVroom()
 				;
 
 			// Add framework services.

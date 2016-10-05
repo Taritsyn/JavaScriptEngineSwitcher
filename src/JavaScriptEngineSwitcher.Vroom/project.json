@@ -1,0 +1,31 @@
+﻿{
+	"version": "2.0.0",
+
+	"dependencies": {
+		"System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
+		"VroomJs": "1.2.3",
+		"JavaScriptEngineSwitcher.Core": "2.0.0"
+	},
+
+	"buildOptions": {
+		"warningsAsErrors": true,
+		"keyFile": "../../tools/Key.snk",
+		"nowarn": [
+			"CS1591"
+		],
+		"xmlDoc": true
+	},
+
+	"frameworks": {
+		"netstandard1.6": {},
+		"net451": {
+			"frameworkAssemblies": {
+				"System.Runtime": "4.0.10.0"
+			}
+		}
+	},
+
+	"scripts": {
+		"precompile": "../../build resx"
+	}
+}

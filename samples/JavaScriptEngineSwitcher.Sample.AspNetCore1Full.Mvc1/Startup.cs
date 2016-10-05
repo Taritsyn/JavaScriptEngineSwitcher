@@ -12,6 +12,7 @@ using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 using JavaScriptEngineSwitcher.V8;
+using JavaScriptEngineSwitcher.Vroom;
 
 namespace JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1
 {
@@ -57,11 +58,13 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1
 				.AddChakraCore()
 				.AddJint()
 				.AddJurassic()
-				.AddMsie(options => {
+				.AddMsie(options =>
+				{
 					options.UseEcmaScript5Polyfill = true;
 					options.UseJson2Library = true;
 				})
 				.AddV8()
+				.AddVroom()
 				;
 
 			// Add framework services.

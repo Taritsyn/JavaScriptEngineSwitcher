@@ -1,6 +1,7 @@
 ﻿using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Msie;
+using JavaScriptEngineSwitcher.Vroom;
 #if !NETCOREAPP1_0
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
@@ -11,31 +12,23 @@ namespace JavaScriptEngineSwitcher.Tests
 {
 	internal static class JsEngineSwitcherInitializer
 	{
-		private static readonly object _synchronizer = new object();
-		private static bool _initialized;
+		private static InterlockedStatedFlag _initializedFlag = new InterlockedStatedFlag();
 
 
 		public static void Initialize()
 		{
-			if (!_initialized)
+			if (_initializedFlag.Set())
 			{
-				lock (_synchronizer)
-				{
-					if (!_initialized)
-					{
-						JsEngineSwitcher.Instance.EngineFactories
-							.AddChakraCore()
-							.AddMsie()
+				JsEngineSwitcher.Instance.EngineFactories
+					.AddChakraCore()
+					.AddMsie()
+					.AddVroom()
 #if !NETCOREAPP1_0
-							.AddJint()
-							.AddJurassic()
-							.AddV8()
+					.AddJint()
+					.AddJurassic()
+					.AddV8()
 #endif
-							;
-
-						_initialized = true;
-					}
-				}
+					;
 			}
 		}
 	}
