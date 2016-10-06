@@ -1,7 +1,7 @@
 JavaScript Engine Switcher
 ==========================
 
-JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([MSIE JavaScript Engine for .Net](http://github.com/Taritsyn/MsieJavaScriptEngine), [Microsoft ClearScript.V8](http://clearscript.codeplex.com), [Jurassic](http://github.com/paulbartrum/jurassic), [Jint](http://github.com/sebastienros/jint) and [ChakraCore](http://github.com/Microsoft/ChakraCore)).
+JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([MSIE JavaScript Engine for .Net](http://github.com/Taritsyn/MsieJavaScriptEngine), [Microsoft ClearScript.V8](http://clearscript.codeplex.com), [Jurassic](http://github.com/paulbartrum/jurassic), [Jint](http://github.com/sebastienros/jint), [ChakraCore](http://github.com/Microsoft/ChakraCore) and [VroomJs](http://github.com/pauldotknopf/vroomjs-core)).
 This library allows you to quickly and easily switch to using of another JavaScript engine.
 
 The supported .NET types are as follows:
@@ -22,6 +22,7 @@ This library can be installed through NuGet:
  * [JS Engine Switcher: Jurassic](http://nuget.org/packages/JavaScriptEngineSwitcher.Jurassic) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
  * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
  * [JS Engine Switcher: ChakraCore](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
+ * [JS Engine Switcher: Vroom](http://nuget.org/packages/JavaScriptEngineSwitcher.Vroom) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.6)
 
 If you have used the JavaScript Engine Switcher version 1.X, then I recommend to first read [“How to upgrade applications to version 2.X”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/How-to-upgrade-applications-to-version-2.X) section of the documentation.
 

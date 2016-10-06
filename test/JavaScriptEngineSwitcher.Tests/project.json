@@ -1,5 +1,5 @@
 ﻿{
-	"version": "2.0.0",
+	"version": "2.0.1",
 
 	"dependencies": {
 		"dotnet-test-xunit": "2.2.0-preview2-build1029",
@@ -9,7 +9,7 @@
 		"JavaScriptEngineSwitcher.ChakraCore": "2.0.0",
 		"JavaScriptEngineSwitcher.Core": "2.0.0",
 		"JavaScriptEngineSwitcher.Msie": "2.0.0",
-		"JavaScriptEngineSwitcher.Vroom": "2.0.0"
+		"JavaScriptEngineSwitcher.Vroom": "2.0.1"
 	},
 
 	"buildOptions": {

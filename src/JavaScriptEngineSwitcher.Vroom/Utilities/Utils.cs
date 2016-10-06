@@ -1,17 +1,15 @@
-﻿#if NETSTANDARD1_6 || NET451
+﻿#if NETSTANDARD1_6
 using System.Runtime.InteropServices;
-#elif NET40
+#else
 using System;
 using System.Linq;
-#else
-#error No implementation for this target
 #endif
 
 namespace JavaScriptEngineSwitcher.Vroom.Utilities
 {
 	internal static class Utils
 	{
-#if NET40
+#if !NETSTANDARD1_6
 		/// <summary>
 		/// List of Windows platform identifiers
 		/// </summary>
@@ -30,12 +28,10 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 		/// <returns>true if the operating system is Windows; otherwise, false</returns>
 		public static bool IsWindows()
 		{
-#if NETSTANDARD1_6 || NET451
+#if NETSTANDARD1_6
 			bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-#elif NET40
-			bool isWindows = _windowsPlatformIDs.Contains(Environment.OSVersion.Platform);
 #else
-#error No implementation for this target
+			bool isWindows = _windowsPlatformIDs.Contains(Environment.OSVersion.Platform);
 #endif
 
 			return isWindows;

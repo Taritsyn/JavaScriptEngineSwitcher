@@ -1,0 +1,44 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>JavaScriptEngineSwitcher.Vroom</id>
+		<version>2.0.1</version>
+		<title>JS Engine Switcher: Vroom</title>
+		<authors>Andrey Taritsyn</authors>
+		<owners>Andrey Taritsyn</owners>
+		<licenseUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
+		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the VroomJs (http://github.com/pauldotknopf/vroomjs-core) version 1.2.3 with support of V8 version 3.17.16.2).
+
+For correct working of the VroomJs on Windows require assemblies `msvcr110.dll` from the Visual C++ Redistributable for Visual Studio 2012 and `msvcp140.dll` from the Microsoft Visual C++ 2015 Redistributable.</description>
+		<summary>JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the VroomJs version 1.2.3 with support of V8 version 3.17.16.2).</summary>
+		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+		<language>en-US</language>
+		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript VroomJs V8</tags>
+		<dependencies>
+			<group targetFramework=".NETFramework4.0-Client">
+				<dependency id="VroomJs" version="1.2.3" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0" />
+			</group>
+			<group targetFramework=".NETFramework4.5.1">
+				<dependency id="VroomJs" version="1.2.3" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0" />
+			</group>
+			<group targetFramework=".NETStandard1.6">
+				<dependency id="VroomJs" version="1.2.3" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0" />
+			</group>
+		</dependencies>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System.Runtime" targetFramework=".NETFramework4.5.1" />
+		</frameworkAssemblies>
+		<references>
+			<reference file="JavaScriptEngineSwitcher.Vroom.dll" />
+		</references>
+	</metadata>
+	<files>
+		<file src="**\*.*" exclude="build-package.cmd" />
+	</files>
+</package>

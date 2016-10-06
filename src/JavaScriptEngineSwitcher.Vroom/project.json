@@ -1,8 +1,7 @@
 ﻿{
-	"version": "2.0.0",
+	"version": "2.0.1",
 
 	"dependencies": {
-		"System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
 		"VroomJs": "1.2.3",
 		"JavaScriptEngineSwitcher.Core": "2.0.0"
 	},
@@ -18,11 +17,7 @@
 
 	"frameworks": {
 		"netstandard1.6": {},
-		"net451": {
-			"frameworkAssemblies": {
-				"System.Runtime": "4.0.10.0"
-			}
-		}
+		"net451": {}
 	},
 
 	"scripts": {

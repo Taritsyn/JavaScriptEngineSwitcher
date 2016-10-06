@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## October 6, 2016 - v2.0.1
+ * Added module based on the [VroomJs](http://github.com/pauldotknopf/vroomjs-core). Special thanks to [Daniel Lo Nigro](http://github.com/Daniel15).
+
 ## September 19, 2016 - v2.0.0
  * Removed dependency on `System.Configuration.dll` (no longer supported configuration by using the `Web.config` and `App.config` files)
  * In JavaScriptEngineSwitcher.Core, JavaScriptEngineSwitcher.Msie (.NET Core version only works in JsRT modes) and JavaScriptEngineSwitcher.ChakraCore added support of .NET Core 1.0.1

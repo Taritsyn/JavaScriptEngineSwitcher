@@ -20,3 +20,6 @@ call build-package.cmd
 
 cd %packages_directory%\JavaScriptEngineSwitcher.V8
 call build-package.cmd
+
+cd %packages_directory%\JavaScriptEngineSwitcher.Vroom
+call build-package.cmd
