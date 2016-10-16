@@ -25,6 +25,7 @@
 		"JavaScriptEngineSwitcher.ChakraCore": "2.0.0",
 		"JavaScriptEngineSwitcher.Extensions.MsDependencyInjection": "2.0.0",
 		"JavaScriptEngineSwitcher.Msie": "2.0.0",
+		"JavaScriptEngineSwitcher.Jint": "2.0.0",
 		"JavaScriptEngineSwitcher.Sample.Logic": "2.0.0",
 		"JavaScriptEngineSwitcher.Vroom": "2.0.1"
 	},

@@ -20,6 +20,11 @@ xcopy "%dotnet_project_bin_dir%\net451\%project_name%.dll" lib\net451\
 xcopy "%dotnet_project_bin_dir%\net451\%project_name%.xml" lib\net451\
 xcopy "%dotnet_project_bin_dir%\net451\ru-ru\%project_name%.resources.dll" lib\net451\ru-ru\
 
+%dotnet_cli% build "%dotnet_project_source_dir%" --framework netstandard1.3 --configuration Release --no-dependencies --no-incremental
+xcopy "%dotnet_project_bin_dir%\netstandard1.3\%project_name%.dll" lib\netstandard1.3\
+xcopy "%dotnet_project_bin_dir%\netstandard1.3\%project_name%.xml" lib\netstandard1.3\
+xcopy "%dotnet_project_bin_dir%\netstandard1.3\ru-ru\%project_name%.resources.dll" lib\netstandard1.3\ru-ru\
+
 copy "%licenses_dir%\jint-license.txt" jint-license.txt /Y
 
 %nuget_package_manager% pack "..\%project_name%\%project_name%.nuspec"

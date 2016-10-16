@@ -9,6 +9,7 @@
 		"JavaScriptEngineSwitcher.ChakraCore": "2.0.0",
 		"JavaScriptEngineSwitcher.Core": "2.0.0",
 		"JavaScriptEngineSwitcher.Msie": "2.0.0",
+		"JavaScriptEngineSwitcher.Jint": "2.0.0",
 		"JavaScriptEngineSwitcher.Vroom": "2.0.1"
 	},
 
@@ -36,13 +37,12 @@
 			},
 			"buildOptions": {
 				"compile": {
-					"exclude": [ "Jint/**/*.*", "Jurassic/**/*.*", "V8/**/*.*" ]
+					"exclude": [ "Jurassic/**/*.*", "V8/**/*.*" ]
 				}
 			}
 		},
 		"net451": {
 			"dependencies": {
-				"JavaScriptEngineSwitcher.Jint": "2.0.0",
 				"JavaScriptEngineSwitcher.Jurassic": "2.0.0",
 				"JavaScriptEngineSwitcher.V8": "2.0.0"
 			},

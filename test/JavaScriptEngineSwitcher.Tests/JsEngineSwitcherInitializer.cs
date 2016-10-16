@@ -1,9 +1,9 @@
 ﻿using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Msie;
+using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Vroom;
 #if !NETCOREAPP1_0
-using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.V8;
 #endif
@@ -25,9 +25,9 @@ namespace JavaScriptEngineSwitcher.Tests
 					{
 						EngineMode = JsEngineMode.ChakraIeJsRt
 					})
+					.AddJint()
 					.AddVroom()
 #if !NETCOREAPP1_0
-					.AddJint()
 					.AddJurassic()
 					.AddV8()
 #endif

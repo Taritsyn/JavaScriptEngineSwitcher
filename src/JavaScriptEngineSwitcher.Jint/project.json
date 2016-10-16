@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 
 	"dependencies": {
-		"Jint": "2.9.1",
+		"Jint": "2.10.1",
 		"JavaScriptEngineSwitcher.Core": "2.0.0"
 	},
 
@@ -16,6 +16,7 @@
 	},
 
 	"frameworks": {
+		"netstandard1.3": {},
 		"net451": {}
 	},
 
