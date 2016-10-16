@@ -24,12 +24,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of .NET Core 1.0.1 and .NET Framework 4.5.1;
-   2. ChakraCore was updated to version 1.3;
-   3. Added the ability to change configuration settings of the ChakraCore JS
-      engine: `DisableBackgroundWork` (default `false`),
-      `DisableNativeCodeGeneration` (default `false`), `DisableEval` (default
-      `false`) and `EnableExperimentalFeatures` (default `false`).
+   Was made switch to new ChakraCore API.
 
    ====================
    POST-INSTALL ACTIONS

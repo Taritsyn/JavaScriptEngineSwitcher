@@ -18,6 +18,7 @@ namespace JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4
 				.AddJurassic()
 				.AddMsie(new MsieSettings
 				{
+					EngineMode = JsEngineMode.ChakraIeJsRt,
 					UseEcmaScript5Polyfill = true,
 					UseJson2Library = true
 				})

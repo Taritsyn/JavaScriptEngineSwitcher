@@ -60,6 +60,7 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1
 				.AddJurassic()
 				.AddMsie(options =>
 				{
+					options.EngineMode = JsEngineMode.ChakraIeJsRt;
 					options.UseEcmaScript5Polyfill = true;
 					options.UseJson2Library = true;
 				})

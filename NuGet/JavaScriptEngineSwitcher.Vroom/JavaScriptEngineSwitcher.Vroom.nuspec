@@ -31,9 +31,6 @@ For correct working of the VroomJs on Windows require assemblies `msvcr110.dll` 
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0" />
 			</group>
 		</dependencies>
-		<frameworkAssemblies>
-			<frameworkAssembly assemblyName="System.Runtime" targetFramework=".NETFramework4.5.1" />
-		</frameworkAssemblies>
 		<references>
 			<reference file="JavaScriptEngineSwitcher.Vroom.dll" />
 		</references>

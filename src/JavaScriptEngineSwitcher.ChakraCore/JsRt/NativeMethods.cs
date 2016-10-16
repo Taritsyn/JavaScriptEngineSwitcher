@@ -8,7 +8,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 	/// </summary>
 	internal static class NativeMethods
 	{
-		const string DllName = "ChakraCore.dll";
+		const string DllName = "ChakraCore";
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsCreateRuntime(JsRuntimeAttributes attributes, JsThreadServiceCallback threadService, out JsRuntime runtime);
@@ -61,26 +61,28 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsIdle(out uint nextIdleTick);
 
-		[DllImport(DllName, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsParseScript(string script, JsSourceContext sourceContext, string sourceUrl, out JsValue result);
+		[DllImport(DllName)]
+		internal static extern JsErrorCode JsParseScriptUtf8(string script, JsSourceContext sourceContext, string sourceUrl, out JsValue result);
 
-		[DllImport(DllName, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsRunScript(string script, JsSourceContext sourceContext, string sourceUrl, out JsValue result);
+		[DllImport(DllName)]
+		internal static extern JsErrorCode JsRunScriptUtf8(string script, JsSourceContext sourceContext, string sourceUrl, out JsValue result);
 
-		[DllImport(DllName, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsSerializeScript(string script, byte[] buffer, ref ulong bufferSize);
+		[DllImport(DllName)]
+		internal static extern JsErrorCode JsSerializeScriptUtf8(string script, byte[] buffer, ref ulong bufferSize);
 
-		[DllImport(DllName, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsParseSerializedScript(string script, byte[] buffer, JsSourceContext sourceContext, string sourceUrl, out JsValue result);
+		[DllImport(DllName)]
+		internal static extern JsErrorCode JsParseSerializedScriptUtf8(JsSerializedScriptLoadSourceCallback scriptLoadCallback,
+			JsSerializedScriptUnloadCallback scriptUnloadCallback, byte[] buffer, JsSourceContext sourceContext, string sourceUrl, out JsValue result);
 
-		[DllImport(DllName, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsRunSerializedScript(string script, byte[] buffer, JsSourceContext sourceContext, string sourceUrl, out JsValue result);
+		[DllImport(DllName)]
+		internal static extern JsErrorCode JsRunSerializedScriptUtf8(JsSerializedScriptLoadSourceCallback scriptLoadCallback,
+			JsSerializedScriptUnloadCallback scriptUnloadCallback, byte[] buffer, JsSourceContext sourceContext, string sourceUrl, out JsValue result);
 
-		[DllImport(DllName, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsGetPropertyIdFromName(string name, out JsPropertyId propertyId);
+		[DllImport(DllName)]
+		internal static extern JsErrorCode JsGetPropertyIdFromNameUtf8(string name, out JsPropertyId propertyId);
 
-		[DllImport(DllName, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsGetPropertyNameFromId(JsPropertyId propertyId, out string name);
+		[DllImport(DllName)]
+		internal static extern JsErrorCode JsGetPropertyNameFromIdUtf8Copy(JsPropertyId propertyId, out string name);
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsGetUndefinedValue(out JsValue undefinedValue);
@@ -121,11 +123,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsGetStringLength(JsValue sringValue, out int length);
 
-		[DllImport(DllName, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsPointerToString(string value, UIntPtr stringLength, out JsValue stringValue);
+		[DllImport(DllName)]
+		internal static extern JsErrorCode JsPointerToStringUtf8(string value, UIntPtr stringLength, out JsValue stringValue);
 
 		[DllImport(DllName)]
-		internal static extern JsErrorCode JsStringToPointer(JsValue value, out IntPtr stringValue, out UIntPtr stringLength);
+		internal static extern JsErrorCode JsStringToPointerUtf8Copy(JsValue value, out IntPtr stringValue, out UIntPtr stringLength);
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsConvertValueToString(JsValue value, out JsValue stringValue);
@@ -322,13 +324,5 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsSetContextData(JsContext context, IntPtr data);
-
-		[DllImport(DllName)]
-		internal static extern JsErrorCode JsParseSerializedScriptWithCallback(JsSerializedScriptLoadSourceCallback scriptLoadCallback,
-			JsSerializedScriptUnloadCallback scriptUnloadCallback, byte[] buffer, JsSourceContext sourceContext, string sourceUrl, out JsValue result);
-
-		[DllImport(DllName)]
-		internal static extern JsErrorCode JsRunSerializedScriptWithCallback(JsSerializedScriptLoadSourceCallback scriptLoadCallback,
-			JsSerializedScriptUnloadCallback scriptUnloadCallback, byte[] buffer, JsSourceContext sourceContext, string sourceUrl, out JsValue result);
 	}
 }

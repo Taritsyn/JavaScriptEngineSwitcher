@@ -37,7 +37,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			get
 			{
 				string name;
-				JsErrorHelpers.ThrowIfError(NativeMethods.JsGetPropertyNameFromId(this, out name));
+				JsErrorHelpers.ThrowIfError(NativeMethods.JsGetPropertyNameFromIdUtf8Copy(this, out name));
 
 				return name;
 			}
@@ -71,7 +71,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsPropertyId FromString(string name)
 		{
 			JsPropertyId id;
-			JsErrorHelpers.ThrowIfError(NativeMethods.JsGetPropertyIdFromName(name, out id));
+			JsErrorHelpers.ThrowIfError(NativeMethods.JsGetPropertyIdFromNameUtf8(name, out id));
 
 			return id;
 		}

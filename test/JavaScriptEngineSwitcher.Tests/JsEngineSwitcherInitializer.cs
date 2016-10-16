@@ -21,7 +21,10 @@ namespace JavaScriptEngineSwitcher.Tests
 			{
 				JsEngineSwitcher.Instance.EngineFactories
 					.AddChakraCore()
-					.AddMsie()
+					.AddMsie(new MsieSettings
+					{
+						EngineMode = JsEngineMode.ChakraIeJsRt
+					})
 					.AddVroom()
 #if !NETCOREAPP1_0
 					.AddJint()

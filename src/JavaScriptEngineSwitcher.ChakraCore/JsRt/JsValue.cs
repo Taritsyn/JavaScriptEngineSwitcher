@@ -301,7 +301,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsValue FromString(string value)
 		{
 			JsValue reference;
-			JsErrorHelpers.ThrowIfError(NativeMethods.JsPointerToString(value, new UIntPtr((uint)value.Length), out reference));
+			JsErrorHelpers.ThrowIfError(NativeMethods.JsPointerToStringUtf8(value, new UIntPtr((uint)value.Length), out reference));
 
 			return reference;
 		}
@@ -569,9 +569,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			IntPtr buffer;
 			UIntPtr length;
 
-			JsErrorHelpers.ThrowIfError(NativeMethods.JsStringToPointer(this, out buffer, out length));
+			JsErrorHelpers.ThrowIfError(NativeMethods.JsStringToPointerUtf8Copy(this, out buffer, out length));
 
-			return Marshal.PtrToStringUni(buffer, (int)length);
+			return Marshal.PtrToStringAnsi(buffer, (int)length);
 		}
 
 		/// <summary>

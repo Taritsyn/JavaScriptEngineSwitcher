@@ -55,6 +55,7 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1
 				.AddChakraCore()
 				.AddMsie(options =>
 				{
+					options.EngineMode = JsEngineMode.ChakraIeJsRt;
 					options.UseEcmaScript5Polyfill = true;
 					options.UseJson2Library = true;
 				})
