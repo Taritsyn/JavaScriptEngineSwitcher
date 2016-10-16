@@ -1,5 +1,5 @@
 ﻿{
-	"version": "2.0.1",
+	"version": "2.0.2",
 
 	"dependencies": {
 		"Microsoft.AspNetCore.Diagnostics": "1.0.0",
@@ -18,9 +18,9 @@
 		"Microsoft.Extensions.Logging.Console": "1.0.0",
 		"Microsoft.Extensions.Logging.Debug": "1.0.0",
 		"Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-		"JavaScriptEngineSwitcher.ChakraCore": "2.0.0",
+		"JavaScriptEngineSwitcher.ChakraCore": "2.0.2",
 		"JavaScriptEngineSwitcher.Extensions.MsDependencyInjection": "2.0.0",
-		"JavaScriptEngineSwitcher.Jint": "2.0.0",
+		"JavaScriptEngineSwitcher.Jint": "2.0.2",
 		"JavaScriptEngineSwitcher.Jurassic": "2.0.0",
 		"JavaScriptEngineSwitcher.Msie": "2.0.0",
 		"JavaScriptEngineSwitcher.Sample.Logic": "2.0.0",

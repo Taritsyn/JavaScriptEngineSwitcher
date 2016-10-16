@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## October 16, 2016 - v2.0.2
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.10.1 and .NET Core 1.0.1
+
 ## October 6, 2016 - v2.0.1
  * Added module based on the [VroomJs](http://github.com/pauldotknopf/vroomjs-core). Special thanks to [Daniel Lo Nigro](http://github.com/Daniel15).
 

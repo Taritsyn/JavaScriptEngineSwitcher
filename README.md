@@ -20,7 +20,7 @@ This library can be installed through NuGet:
  * [JS Engine Switcher: MSIE](http://nuget.org/packages/JavaScriptEngineSwitcher.Msie) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
  * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
  * [JS Engine Switcher: Jurassic](http://nuget.org/packages/JavaScriptEngineSwitcher.Jurassic) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
- * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint) (supports .NET Framework 4.0 Client and .NET Framework 4.5.1)
+ * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
  * [JS Engine Switcher: ChakraCore](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.3)
  * [JS Engine Switcher: Vroom](http://nuget.org/packages/JavaScriptEngineSwitcher.Vroom) (supports .NET Framework 4.0 Client, .NET Framework 4.5.1 and .NET Standard 1.6)
 

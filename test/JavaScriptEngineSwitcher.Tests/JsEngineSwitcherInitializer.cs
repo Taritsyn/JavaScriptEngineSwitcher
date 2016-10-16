@@ -1,7 +1,7 @@
 ﻿using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
-using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.Jint;
+using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.Vroom;
 #if !NETCOREAPP1_0
 using JavaScriptEngineSwitcher.Jurassic;
@@ -21,11 +21,11 @@ namespace JavaScriptEngineSwitcher.Tests
 			{
 				JsEngineSwitcher.Instance.EngineFactories
 					.AddChakraCore()
+					.AddJint()
 					.AddMsie(new MsieSettings
 					{
 						EngineMode = JsEngineMode.ChakraIeJsRt
 					})
-					.AddJint()
 					.AddVroom()
 #if !NETCOREAPP1_0
 					.AddJurassic()
