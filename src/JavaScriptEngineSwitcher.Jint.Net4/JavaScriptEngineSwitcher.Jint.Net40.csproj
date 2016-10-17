@@ -45,8 +45,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="jint, Version=2.10.1.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Jint.2.10.1\lib\portable40-net40+sl5+win8+wp8+wpa81\jint.dll</HintPath>
+    <Reference Include="jint, Version=2.10.2.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Jint.2.10.2\lib\portable40-net40+sl5+win8+wp8+wpa81\jint.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

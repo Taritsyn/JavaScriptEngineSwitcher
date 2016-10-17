@@ -2,7 +2,7 @@
 	"version": "2.0.2",
 
 	"dependencies": {
-		"Jint": "2.10.1",
+		"Jint": "2.10.2",
 		"JavaScriptEngineSwitcher.Core": "2.0.0"
 	},
 
