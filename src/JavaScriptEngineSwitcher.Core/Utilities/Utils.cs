@@ -1,7 +1,13 @@
 ﻿using System;
 using System.IO;
+#if !NETSTANDARD1_3
+using System.Linq;
+#endif
 using System.Reflection;
 using System.Runtime.CompilerServices;
+#if NETSTANDARD1_3
+using System.Runtime.InteropServices;
+#endif
 using System.Text;
 
 using JavaScriptEngineSwitcher.Core.Resources;
@@ -10,6 +16,35 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 {
 	public static class Utils
 	{
+#if !NETSTANDARD1_3
+		/// <summary>
+		/// List of Windows platform identifiers
+		/// </summary>
+		private static readonly PlatformID[] _windowsPlatformIDs =
+		{
+			PlatformID.Win32NT,
+			PlatformID.Win32S,
+			PlatformID.Win32Windows,
+			PlatformID.WinCE
+		};
+#endif
+
+
+		/// <summary>
+		/// Determines whether the current operating system is Windows
+		/// </summary>
+		/// <returns>true if the operating system is Windows; otherwise, false</returns>
+		public static bool IsWindows()
+		{
+#if NETSTANDARD1_3
+			bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+#else
+			bool isWindows = _windowsPlatformIDs.Contains(Environment.OSVersion.Platform);
+#endif
+
+			return isWindows;
+		}
+
 		/// <summary>
 		/// Determines whether the current process is a 64-bit process
 		/// </summary>

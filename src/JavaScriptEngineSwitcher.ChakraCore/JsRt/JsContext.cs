@@ -1,5 +1,7 @@
 ﻿using System;
 
+using JavaScriptEngineSwitcher.Core.Utilities;
+
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
 	/// <summary>
@@ -155,7 +157,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsValue ParseScript(string script, JsSourceContext sourceContext, string sourceName)
 		{
 			JsValue result;
-			JsErrorHelpers.ThrowIfError(NativeMethods.JsParseScriptUtf8(script, sourceContext, sourceName, out result));
+			JsErrorCode errorCode = Utils.IsWindows() ?
+				NativeMethods.JsParseScript(script, sourceContext, sourceName, out result)
+				:
+				NativeMethods.JsParseScriptUtf8(script, sourceContext, sourceName, out result)
+				;
+
+			JsErrorHelpers.ThrowIfError(errorCode);
 
 			return result;
 		}
@@ -187,7 +195,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsValue RunScript(string script, JsSourceContext sourceContext, string sourceName)
 		{
 			JsValue result;
-			JsErrorHelpers.ThrowIfError(NativeMethods.JsRunScriptUtf8(script, sourceContext, sourceName, out result));
+			JsErrorCode errorCode = Utils.IsWindows() ?
+				NativeMethods.JsRunScript(script, sourceContext, sourceName, out result)
+				:
+				NativeMethods.JsRunScriptUtf8(script, sourceContext, sourceName, out result)
+				;
+
+			JsErrorHelpers.ThrowIfError(errorCode);
 
 			return result;
 		}
@@ -224,7 +238,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static ulong SerializeScript(string script, byte[] buffer)
 		{
 			var bufferSize = (ulong)buffer.Length;
-			JsErrorHelpers.ThrowIfError(NativeMethods.JsSerializeScriptUtf8(script, buffer, ref bufferSize));
+			JsErrorCode errorCode = Utils.IsWindows() ?
+				NativeMethods.JsSerializeScript(script, buffer, ref bufferSize)
+				:
+				NativeMethods.JsSerializeScriptUtf8(script, buffer, ref bufferSize)
+				;
+
+			JsErrorHelpers.ThrowIfError(errorCode);
 
 			return bufferSize;
 		}

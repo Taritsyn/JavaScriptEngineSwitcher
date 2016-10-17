@@ -24,7 +24,7 @@
    =============
    RELEASE NOTES
    =============
-   Was made switch to new ChakraCore API.
+   Fixed a text encoding errors.
 
    ====================
    POST-INSTALL ACTIONS

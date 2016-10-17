@@ -74,9 +74,6 @@
     <Compile Include="..\JavaScriptEngineSwitcher.Vroom\Utilities\SimplisticJsSerializer.cs">
       <Link>Utilities\SimplisticJsSerializer.cs</Link>
     </Compile>
-    <Compile Include="..\JavaScriptEngineSwitcher.Vroom\Utilities\Utils.cs">
-      <Link>Utilities\Utils.cs</Link>
-    </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Vroom\VroomJsEngine.cs">
       <Link>VroomJsEngine.cs</Link>
     </Compile>

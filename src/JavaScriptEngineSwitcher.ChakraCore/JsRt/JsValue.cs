@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
+using JavaScriptEngineSwitcher.Core.Utilities;
+
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
 	/// <summary>
@@ -301,7 +303,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsValue FromString(string value)
 		{
 			JsValue reference;
-			JsErrorHelpers.ThrowIfError(NativeMethods.JsPointerToStringUtf8(value, new UIntPtr((uint)value.Length), out reference));
+			JsErrorCode errorCode;
+
+			errorCode = Utils.IsWindows() ?
+				NativeMethods.JsPointerToString(value, new UIntPtr((uint)value.Length), out reference)
+				:
+				NativeMethods.JsPointerToStringUtf8(value, new UIntPtr((uint)value.Length), out reference)
+				;
+
+			JsErrorHelpers.ThrowIfError(errorCode);
 
 			return reference;
 		}
@@ -568,10 +578,25 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		{
 			IntPtr buffer;
 			UIntPtr length;
+			JsErrorCode errorCode;
+			string result;
 
-			JsErrorHelpers.ThrowIfError(NativeMethods.JsStringToPointerUtf8Copy(this, out buffer, out length));
+			if (Utils.IsWindows())
+			{
+				errorCode = NativeMethods.JsStringToPointer(this, out buffer, out length);
+				JsErrorHelpers.ThrowIfError(errorCode);
 
-			return Marshal.PtrToStringAnsi(buffer, (int)length);
+				result = Marshal.PtrToStringUni(buffer, (int)length);
+			}
+			else
+			{
+				errorCode = NativeMethods.JsStringToPointerUtf8Copy(this, out buffer, out length);
+				JsErrorHelpers.ThrowIfError(errorCode);
+
+				result = Marshal.PtrToStringAnsi(buffer, (int)length);
+			}
+
+			return result;
 		}
 
 		/// <summary>

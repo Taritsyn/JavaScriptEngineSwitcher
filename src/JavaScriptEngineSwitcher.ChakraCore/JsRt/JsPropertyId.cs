@@ -1,5 +1,7 @@
 ﻿using System;
 
+using JavaScriptEngineSwitcher.Core.Utilities;
+
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
 	/// <summary>
@@ -37,7 +39,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			get
 			{
 				string name;
-				JsErrorHelpers.ThrowIfError(NativeMethods.JsGetPropertyNameFromIdUtf8Copy(this, out name));
+				JsErrorCode errorCode = Utils.IsWindows() ?
+					NativeMethods.JsGetPropertyNameFromId(this, out name)
+					:
+					NativeMethods.JsGetPropertyNameFromIdUtf8Copy(this, out name)
+					;
+
+				JsErrorHelpers.ThrowIfError(errorCode);
 
 				return name;
 			}
@@ -71,7 +79,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsPropertyId FromString(string name)
 		{
 			JsPropertyId id;
-			JsErrorHelpers.ThrowIfError(NativeMethods.JsGetPropertyIdFromNameUtf8(name, out id));
+			JsErrorCode errorCode = Utils.IsWindows() ?
+				NativeMethods.JsGetPropertyIdFromName(name, out id)
+				:
+				NativeMethods.JsGetPropertyIdFromNameUtf8(name, out id)
+				;
+
+			JsErrorHelpers.ThrowIfError(errorCode);
 
 			return id;
 		}

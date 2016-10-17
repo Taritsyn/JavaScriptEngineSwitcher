@@ -13,7 +13,6 @@ using JavaScriptEngineSwitcher.Core.Utilities;
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 
 using JavaScriptEngineSwitcher.Vroom.Utilities;
-using VroomUtils = JavaScriptEngineSwitcher.Vroom.Utilities.Utils;
 
 namespace JavaScriptEngineSwitcher.Vroom
 {
@@ -82,7 +81,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 		/// </summary>
 		static VroomJsEngine()
 		{
-			if (VroomUtils.IsWindows())
+			if (Utils.IsWindows())
 			{
 				OriginalAssemblyLoader.EnsureLoaded();
 			}
