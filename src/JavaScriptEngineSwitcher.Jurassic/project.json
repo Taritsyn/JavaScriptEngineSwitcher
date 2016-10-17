@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 
 	"dependencies": {
-		"JurassicPrecompiled": "2016.9.19",
+		"JurassicPrecompiled": "2016.10.17",
 		"JavaScriptEngineSwitcher.Core": "2.0.0"
 	},
 
