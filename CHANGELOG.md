@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## October 17, 2016 - v2.0.3
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of October 17, 2016
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.10.2
+ * In JavaScriptEngineSwitcher.ChakraCore was made switch to new ChakraCore API
+
 ## October 16, 2016 - v2.0.2
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.10.1 and .NET Core 1.0.1
 
