@@ -303,9 +303,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsValue FromString(string value)
 		{
 			JsValue reference;
-			JsErrorCode errorCode;
-
-			errorCode = Utils.IsWindows() ?
+			JsErrorCode errorCode = Utils.IsWindows() ?
 				NativeMethods.JsPointerToString(value, new UIntPtr((uint)value.Length), out reference)
 				:
 				NativeMethods.JsPointerToStringUtf8(value, new UIntPtr((uint)value.Length), out reference)

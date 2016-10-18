@@ -49,7 +49,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// </summary>
 		private static readonly Regex _errorStringRegex =
 			new Regex(@"at (?:[A-Za-z_\$][0-9A-Za-z_\$]* )?" +
-				@"\(?Script Document(?:\s*\[\d+\])?:(?<lineNumber>\d+):(?<columnNumber>\d+)\)?");
+				@"\(?Script Document(?:\s*\[(temp|\d+)\])?:(?<lineNumber>\d+):(?<columnNumber>\d+)\)?");
 
 		/// <summary>
 		/// Synchronizer of code execution
