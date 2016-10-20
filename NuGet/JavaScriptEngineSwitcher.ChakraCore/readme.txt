@@ -24,7 +24,8 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a text encoding errors.
+   Fixed a errors, that occurred during marshaling of Unicode strings in Unix-based
+   operating systems.
 
    ====================
    POST-INSTALL ACTIONS

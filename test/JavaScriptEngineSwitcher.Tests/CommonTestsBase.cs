@@ -132,6 +132,25 @@ namespace JavaScriptEngineSwitcher.Tests
 			Assert.Equal(targetOutput, output);
 		}
 
+		[Fact]
+		public virtual void EvaluationOfExpressionWithUnicodeStringResultIsCorrect()
+		{
+			// Arrange
+			const string input = "'Привет, ' + \"Вася\" + '?';";
+			const string targetOutput = "Привет, Вася?";
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				output = jsEngine.Evaluate<string>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
 		#endregion
 
 		#region Execution of code
@@ -393,6 +412,29 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
+		public virtual void CallingOfFunctionWithUnicodeStringResultIsCorrect()
+		{
+			// Arrange
+			const string functionCode = @"function privet(name) {
+	return 'Привет, ' + name + '!';
+}";
+			const string input = "Вован";
+			const string targetOutput = "Привет, Вован!";
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction<string>("privet", input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
 		public virtual void CallingOfFunctionWithManyParametersIsCorrect()
 		{
 			// Arrange
@@ -552,6 +594,36 @@ namespace JavaScriptEngineSwitcher.Tests
 
 			// Assert
 			Assert.Equal("Hello, Petya!", output);
+		}
+
+		[Fact]
+		public virtual void CallingOfFunctionWithManyParametersAndUnicodeStringResultIsCorrect()
+		{
+			// Arrange
+			const string functionCode = @"function obedinit() {
+	var result = '',
+		argumentIndex,
+		argumentCount = arguments.length
+		;
+
+	for (argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++) {
+		result += arguments[argumentIndex];
+	}
+
+	return result;
+}";
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction<string>("obedinit", "Привет", ",", " ", "Петя", "!");
+			}
+
+			// Assert
+			Assert.Equal("Привет, Петя!", output);
 		}
 
 		#endregion
@@ -716,6 +788,40 @@ namespace JavaScriptEngineSwitcher.Tests
 			const string targetOutput1 = "Hooray!";
 
 			const string input2 = "Hurrah";
+
+			// Act
+			bool variableExists;
+			string output1;
+			string output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.SetVariableValue(variableName, input1);
+				variableExists = jsEngine.HasVariable(variableName);
+				jsEngine.Execute(string.Format("{0} += '!';", variableName));
+				output1 = jsEngine.GetVariableValue<string>(variableName);
+
+				jsEngine.SetVariableValue(variableName, input2);
+				output2 = jsEngine.GetVariableValue<string>(variableName);
+			}
+
+			// Assert
+			Assert.True(variableExists);
+			Assert.Equal(targetOutput1, output1);
+
+			Assert.Equal(input2, output2);
+		}
+
+		[Fact]
+		public virtual void SettingAndGettingVariableWithUnicodeStringValueIsCorrect()
+		{
+			// Arrange
+			const string variableName = "slovo";
+
+			const string input1 = "Ура";
+			const string targetOutput1 = "Ура!";
+
+			const string input2 = "Урааа";
 
 			// Act
 			bool variableExists;

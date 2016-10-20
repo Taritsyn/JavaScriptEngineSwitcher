@@ -14,7 +14,7 @@
 
 For correct working of the ChakraCore require assemblies `msvcp120.dll` and `msvcr120.dll` from the Visual C++ Redistributable Packages for Visual Studio 2013.</description>
 		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore version 1.3).</summary>
-		<releaseNotes>Fixed a text encoding errors.</releaseNotes>
+		<releaseNotes>Fixed a errors, that occurred during marshaling of Unicode strings in Unix-based operating systems.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore</tags>

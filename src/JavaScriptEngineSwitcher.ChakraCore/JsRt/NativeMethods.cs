@@ -124,10 +124,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		internal static extern JsErrorCode JsGetStringLength(JsValue sringValue, out int length);
 
 		[DllImport(DllName)]
-		internal static extern JsErrorCode JsPointerToStringUtf8(string value, UIntPtr stringLength, out JsValue stringValue);
+		internal static extern JsErrorCode JsPointerToStringUtf8(string value, UIntPtr byteCount, out JsValue stringValue);
 
 		[DllImport(DllName)]
-		internal static extern JsErrorCode JsStringToPointerUtf8Copy(JsValue value, out IntPtr stringValue, out UIntPtr stringLength);
+		internal static extern JsErrorCode JsStringToPointerUtf8Copy(JsValue value, out IntPtr bytes, out UIntPtr byteCount);
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsConvertValueToString(JsValue value, out JsValue stringValue);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 using JavaScriptEngineSwitcher.Core.Utilities;
 
@@ -303,11 +304,18 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsValue FromString(string value)
 		{
 			JsValue reference;
-			JsErrorCode errorCode = Utils.IsWindows() ?
-				NativeMethods.JsPointerToString(value, new UIntPtr((uint)value.Length), out reference)
-				:
-				NativeMethods.JsPointerToStringUtf8(value, new UIntPtr((uint)value.Length), out reference)
-				;
+			JsErrorCode errorCode;
+
+			if (Utils.IsWindows())
+			{
+				int stringLength = value.Length;
+				errorCode = NativeMethods.JsPointerToString(value, new UIntPtr((uint)stringLength), out reference);
+			}
+			else
+			{
+				int byteCount = Encoding.GetEncoding(0).GetByteCount(value);
+				errorCode = NativeMethods.JsPointerToStringUtf8(value, new UIntPtr((uint)byteCount), out reference);
+			}
 
 			JsErrorHelpers.ThrowIfError(errorCode);
 
@@ -574,24 +582,25 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <returns>The string</returns>
 		public new string ToString()
 		{
-			IntPtr buffer;
-			UIntPtr length;
+			IntPtr ptr;
 			JsErrorCode errorCode;
 			string result;
 
 			if (Utils.IsWindows())
 			{
-				errorCode = NativeMethods.JsStringToPointer(this, out buffer, out length);
+				UIntPtr stringLength;
+				errorCode = NativeMethods.JsStringToPointer(this, out ptr, out stringLength);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				result = Marshal.PtrToStringUni(buffer, (int)length);
+				result = Marshal.PtrToStringUni(ptr, (int)stringLength);
 			}
 			else
 			{
-				errorCode = NativeMethods.JsStringToPointerUtf8Copy(this, out buffer, out length);
+				UIntPtr byteCount;
+				errorCode = NativeMethods.JsStringToPointerUtf8Copy(this, out ptr, out byteCount);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				result = Marshal.PtrToStringAnsi(buffer, (int)length);
+				result = Marshal.PtrToStringAnsi(ptr, (int)byteCount);
 			}
 
 			return result;
