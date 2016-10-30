@@ -87,13 +87,18 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 
+#if !NETSTANDARD1_3
 		/// <summary>
 		/// Static constructor
 		/// </summary>
 		static ChakraCoreJsEngine()
 		{
-			AssemblyResolver.Initialize();
+			if (Utils.IsWindows())
+			{
+				AssemblyResolver.Initialize();
+			}
 		}
+#endif
 
 		/// <summary>
 		/// Constructs a instance of adapter for the ChakraCore JS engine

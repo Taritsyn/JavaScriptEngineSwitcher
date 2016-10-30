@@ -47,11 +47,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\lib\ChakraCore\x64\ChakraCore.dll">
+    <None Include="..\..\lib\ChakraCore\win-x64\ChakraCore.dll">
       <Link>x64\ChakraCore.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\lib\ChakraCore\x86\ChakraCore.dll">
+    <None Include="..\..\lib\ChakraCore\win-x86\ChakraCore.dll">
       <Link>x86\ChakraCore.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

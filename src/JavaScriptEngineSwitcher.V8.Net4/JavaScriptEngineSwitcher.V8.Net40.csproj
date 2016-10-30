@@ -52,25 +52,25 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\lib\ClearScript\x64\ClearScriptV8-64.dll">
+    <None Include="..\..\lib\ClearScript\win-x64\ClearScriptV8-64.dll">
       <Link>x64\ClearScriptV8-64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\lib\ClearScript\x64\v8-x64.dll">
+    <None Include="..\..\lib\ClearScript\win-x64\v8-x64.dll">
       <Link>x64\v8-x64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\lib\ClearScript\x86\ClearScriptV8-32.dll">
+    <None Include="..\..\lib\ClearScript\win-x86\ClearScriptV8-32.dll">
       <Link>x86\ClearScriptV8-32.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\lib\ClearScript\x86\v8-ia32.dll">
+    <None Include="..\..\lib\ClearScript\win-x86\v8-ia32.dll">
       <Link>x86\v8-ia32.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

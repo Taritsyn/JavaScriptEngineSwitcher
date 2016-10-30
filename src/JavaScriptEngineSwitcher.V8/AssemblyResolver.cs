@@ -2,8 +2,6 @@
 using System.IO;
 using System.Reflection;
 
-using JavaScriptEngineSwitcher.Core.Helpers;
-
 using JavaScriptEngineSwitcher.V8.Resources;
 
 namespace JavaScriptEngineSwitcher.V8
@@ -60,19 +58,9 @@ namespace JavaScriptEngineSwitcher.V8
 
 				if (!assemblyFileExists)
 				{
-					string projectDirectoryPath = PathHelpers.RemoveDirectoryFromPath(baseDirectoryPath, "bin");
-					string solutionDirectoryPath = Path.GetFullPath(Path.Combine(projectDirectoryPath, "../../"));
-					assemblyDirectoryPath = Path.GetFullPath(
-						Path.Combine(solutionDirectoryPath, "lib/ClearScript/", platformName));
-					assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
-					assemblyFileExists = File.Exists(assemblyFilePath);
-				}
-
-
-				if (!assemblyFileExists)
-				{
 					throw new FileNotFoundException(
-						string.Format(Strings.Engines_ClearScriptV8AssemblyFileNotFound, assemblyFileName));
+						string.Format(Strings.Engines_ClearScriptV8AssemblyFileNotFound,
+							assemblyFileName, platformName));
 				}
 
 				return Assembly.LoadFile(assemblyFilePath);

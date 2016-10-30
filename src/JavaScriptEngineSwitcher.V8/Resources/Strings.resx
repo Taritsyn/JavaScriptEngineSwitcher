@@ -121,7 +121,7 @@
     <value>Failed to load the ClearScript `undefined` value.</value>
   </data>
   <data name="Engines_ClearScriptV8AssemblyFileNotFound" xml:space="preserve">
-    <value>Failed to load the ClearScriptV8 assembly, because the '{0}' file does not exist.</value>
+    <value>Failed to load the ClearScriptV8 assembly, because the '{0}' file does not exist. It is possible, that you have not installed the JavaScriptEngineSwitcher.V8.Native.win-{1} package.</value>
   </data>
   <data name="Runtime_MethodInfoNotLoaded" xml:space="preserve">
     <value>Failed to load information about the `{1}` method of type `{0}`.</value>

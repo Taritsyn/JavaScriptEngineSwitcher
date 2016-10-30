@@ -23,6 +23,8 @@
 		"Microsoft.Extensions.Logging.Debug": "1.0.0",
 		"Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
 		"JavaScriptEngineSwitcher.ChakraCore": "2.0.3",
+		"JavaScriptEngineSwitcher.ChakraCore.Native.win-x64": "2.0.3",
+		"JavaScriptEngineSwitcher.ChakraCore.Native.win-x86": "2.0.3",
 		"JavaScriptEngineSwitcher.Extensions.MsDependencyInjection": "2.0.0",
 		"JavaScriptEngineSwitcher.Jint": "2.0.3",
 		"JavaScriptEngineSwitcher.Msie": "2.0.0",

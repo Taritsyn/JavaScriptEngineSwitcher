@@ -68,7 +68,7 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Failed to load the ClearScriptV8 assembly, because the '{0}' file does not exist."
+		/// Looks up a localized string similar to "Failed to load the ClearScriptV8 assembly, because the '{0}' file does not exist. It is possible,..."
 		/// </summary>
 		public static string Engines_ClearScriptV8AssemblyFileNotFound
 		{

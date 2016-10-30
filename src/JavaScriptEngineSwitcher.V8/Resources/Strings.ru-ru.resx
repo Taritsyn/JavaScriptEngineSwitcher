@@ -121,7 +121,7 @@
     <value>Не удалось загрузить значение `undefined` для ClearScript!</value>
   </data>
   <data name="Engines_ClearScriptV8AssemblyFileNotFound" xml:space="preserve">
-    <value>Не удалось загрузить сборку ClearScriptV8, потому что файл "{0}" не существует.</value>
+    <value>Не удалось загрузить сборку ClearScriptV8, потому что файл "{0}" не существует. Возможно, что вы не установили пакет JavaScriptEngineSwitcher.V8.Native.win-{1}.</value>
   </data>
   <data name="Runtime_MethodInfoNotLoaded" xml:space="preserve">
     <value>Не удалось загрузить информацию о методе `{1}` типа `{0}`!</value>

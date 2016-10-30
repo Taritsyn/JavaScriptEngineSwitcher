@@ -12,22 +12,22 @@
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the
-   Microsoft ClearScript.V8 (http://clearscript.codeplex.com) version 5.4.7 with
-   support of V8 version 5.3.332.45. For correct working of the Microsoft
-   ClearScript.V8 require assemblies `msvcp120.dll` and `msvcr120.dll` from the
-   Visual C++ Redistributable Packages for Visual Studio 2013.
+   Microsoft ClearScript.V8 (http://clearscript.codeplex.com) version 5.4.7).
+
+   This package does not contain the native ClearScript and V8 assemblies.
+   Therefore, you need to choose and install the most appropriate package(s) for
+   your platform. The following packages are available:
+
+    * JavaScriptEngineSwitcher.V8.Native.win-x86
+    * JavaScriptEngineSwitcher.V8.Native.win-x64
 
    =============
    RELEASE NOTES
    =============
-   Fixed a error, that occurred during parsing of the original error  message.
-
-   ====================
-   POST-INSTALL ACTIONS
-   ====================
-   If in your system does not assemblies `msvcp120.dll` and `msvcr120.dll`, then
-   download and install the Visual C++ Redistributable Packages for Visual Studio
-   2013 (http://www.microsoft.com/en-us/download/details.aspx?id=40784).
+   1. Fixed a error, that occurred during parsing of the original error  message;
+   2. Native assemblies have been moved to separate packages:
+      JavaScriptEngineSwitcher.V8.Native.win-x86 and
+      JavaScriptEngineSwitcher.V8.Native.win-x64.
 
    =============
    DOCUMENTATION

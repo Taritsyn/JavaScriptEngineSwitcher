@@ -11,11 +11,4 @@ if ($project.Type -eq "Web Site") {
 	if (Test-Path $assembly32FilePath) {
 		Remove-Item $assembly32FilePath -Force
 	}
-
-	$assembly64DirectoryPath = Join-Path $binDirectoryPath "x64"
-	$assembly64FilePath = Join-Path $assembly64DirectoryPath $assemblyFileName
-	
-	if (Test-Path $assembly64FilePath) {
-		Remove-Item $assembly64FilePath -Force
-	}
 }

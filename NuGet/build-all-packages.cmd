@@ -9,6 +9,12 @@ call build-package.cmd
 cd %packages_directory%\JavaScriptEngineSwitcher.ChakraCore
 call build-package.cmd
 
+cd %packages_directory%\JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
+call build-package.cmd
+
+cd %packages_directory%\JavaScriptEngineSwitcher.ChakraCore.Native.win-x86
+call build-package.cmd
+
 cd %packages_directory%\JavaScriptEngineSwitcher.Jint
 call build-package.cmd
 
@@ -19,6 +25,12 @@ cd %packages_directory%\JavaScriptEngineSwitcher.Msie
 call build-package.cmd
 
 cd %packages_directory%\JavaScriptEngineSwitcher.V8
+call build-package.cmd
+
+cd %packages_directory%\JavaScriptEngineSwitcher.V8.Native.win-x64
+call build-package.cmd
+
+cd %packages_directory%\JavaScriptEngineSwitcher.V8.Native.win-x86
 call build-package.cmd
 
 cd %packages_directory%\JavaScriptEngineSwitcher.Vroom

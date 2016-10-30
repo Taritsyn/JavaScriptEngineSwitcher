@@ -12,27 +12,26 @@
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine`
-   (wrapper for the ChakraCore (http://github.com/Microsoft/ChakraCore) version
-   1.3). Project was based on the code of Chakra-Samples
+   (wrapper for the ChakraCore (http://github.com/Microsoft/ChakraCore)).
+   Project was based on the code of Chakra-Samples
    (http://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet
    (http://github.com/robpaveza/jsrt-dotnet).
 
-   For correct working of the ChakraCore require assemblies `msvcp120.dll` and
-   `msvcr120.dll` from the Visual C++ Redistributable Packages for Visual Studio
-   2013.
+   This package does not contain the native implementations of ChakraCore.
+   Therefore, you need to choose and install the most appropriate package(s) for
+   your platform. The following packages are available:
+
+    * JavaScriptEngineSwitcher.ChakraCore.Native.win-x86
+    * JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
 
    =============
    RELEASE NOTES
    =============
-   Fixed a errors, that occurred during marshaling of Unicode strings in Unix-based
-   operating systems.
-
-   ====================
-   POST-INSTALL ACTIONS
-   ====================
-   If in your system does not assemblies `msvcp120.dll` and `msvcr120.dll`, then
-   download and install the Visual C++ Redistributable Packages for Visual Studio
-   2013 (http://www.microsoft.com/en-us/download/details.aspx?id=40784).
+   1. Fixed a errors, that occurred during marshaling of Unicode strings in
+      Unix-based operating systems;
+   2. Native assemblies have been moved to separate packages:
+      JavaScriptEngineSwitcher.ChakraCore.Native.win-x86 and
+      JavaScriptEngineSwitcher.ChakraCore.Native.win-x64.
 
    =============
    DOCUMENTATION
