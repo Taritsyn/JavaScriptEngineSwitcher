@@ -1,5 +1,5 @@
 ﻿{
-	"version": "2.0.3",
+	"version": "2.1.0-beta1",
 
 	"dependencies": {
 		"JavaScriptEngineSwitcher.Core": "2.0.3"
