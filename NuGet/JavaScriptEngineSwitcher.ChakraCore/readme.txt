@@ -23,22 +23,14 @@
 
     * JavaScriptEngineSwitcher.ChakraCore.Native.win-x86
     * JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
+    * JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm
     * JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64
     * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64
 
    =============
    RELEASE NOTES
    =============
-   1. Fixed a errors, that occurred during marshaling of Unicode strings in
-      Unix-based operating systems;
-   2. Native assemblies have been moved to separate packages:
-      JavaScriptEngineSwitcher.ChakraCore.Native.win-x86 and
-      JavaScriptEngineSwitcher.ChakraCore.Native.win-x64.
-   3. ChakraCore was updated to version of October 29, 2016;
-   4. New version of the ChakraCore for Windows requires `msvcp140.dll` assembly
-      from the Visual C++ Redistributable for Visual Studio 2015;
-   5. Added the JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64 and
-      JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64 packages.
+   Added experimental support of Windows (ARM).
 
    =============
    DOCUMENTATION

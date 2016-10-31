@@ -47,6 +47,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\lib\ChakraCore\win8-arm\ChakraCore.dll">
+      <Link>arm\ChakraCore.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="..\..\lib\ChakraCore\win-x64\ChakraCore.dll">
       <Link>x64\ChakraCore.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

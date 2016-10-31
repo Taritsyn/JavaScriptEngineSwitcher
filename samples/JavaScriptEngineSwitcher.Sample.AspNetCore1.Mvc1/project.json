@@ -25,6 +25,7 @@
 		"JavaScriptEngineSwitcher.ChakraCore": "2.1.0-beta1",
 		"JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64": "2.1.0-beta1",
 		"JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64": "2.1.0-beta1",
+		"JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm": "2.1.0-beta2",
 		"JavaScriptEngineSwitcher.ChakraCore.Native.win-x64": "2.1.0-beta1",
 		"JavaScriptEngineSwitcher.ChakraCore.Native.win-x86": "2.1.0-beta1",
 		"JavaScriptEngineSwitcher.Extensions.MsDependencyInjection": "2.0.0",

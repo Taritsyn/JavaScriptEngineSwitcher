@@ -15,6 +15,9 @@ call build-package.cmd
 cd %packages_directory%\JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64
 call build-package.cmd
 
+cd %packages_directory%\JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm
+call build-package.cmd
+
 cd %packages_directory%\JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
 call build-package.cmd
 
