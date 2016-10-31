@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## October 31, 2016 - v2.1.0 Beta 2
+ * In JavaScriptEngineSwitcher.ChakraCore added experimental support of Windows (ARM)
+
 ## October 30, 2016 - v2.1.0 Beta 1
  * In JavaScriptEngineSwitcher.V8:
    * Fixed a error, that occurred during parsing of the original error  message
