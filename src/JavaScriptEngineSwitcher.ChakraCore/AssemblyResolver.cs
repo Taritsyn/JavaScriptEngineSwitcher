@@ -1,9 +1,7 @@
 ﻿#if !NETSTANDARD1_3
 using System;
 using System.IO;
-#if NET451
 using System.Reflection;
-#endif
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -81,18 +79,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
 		private static bool IsArmProcessorArchitecture()
 		{
-			bool isArm;
-#if NET451
 			PortableExecutableKinds peKind;
 			ImageFileMachine machine;
 
 			typeof(object).Module.GetPEKind(out peKind, out machine);
-			isArm = machine == ImageFileMachine.ARM;
-#elif NET40
-			isArm = false;
-#else
-#error No implementation for this target
-#endif
+			bool isArm = (int)machine == 452 /* ImageFileMachine.ARM */;
 
 			return isArm;
 		}

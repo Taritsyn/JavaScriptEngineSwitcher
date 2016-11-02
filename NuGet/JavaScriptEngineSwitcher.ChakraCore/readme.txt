@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: ChakraCore v2.1.0 Beta 2
+                 README file for JS Engine Switcher: ChakraCore v2.1.0
 
    --------------------------------------------------------------------------------
 
@@ -30,7 +30,16 @@
    =============
    RELEASE NOTES
    =============
-   Added experimental support of Windows (ARM).
+   1. Fixed a errors, that occurred during marshaling of Unicode strings in
+      Unix-like operating systems;
+   2. Native assemblies for Windows have been moved to separate packages:
+      JavaScriptEngineSwitcher.ChakraCore.Native.win-x86 and
+      JavaScriptEngineSwitcher.ChakraCore.Native.win-x64;
+   3. Added a packages, that contains a native assemblies for Windows (ARM),
+      Debian-based Linux (x64) and OS X (x64);
+   4. ChakraCore was updated to version of October 29, 2016;
+   5. New version of the ChakraCore for Windows requires `msvcp140.dll` assembly
+      from the Visual C++ Redistributable for Visual Studio 2015.
 
    =============
    DOCUMENTATION

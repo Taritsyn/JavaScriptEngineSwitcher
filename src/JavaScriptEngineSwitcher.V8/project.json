@@ -1,5 +1,5 @@
 ﻿{
-	"version": "2.1.0-beta1",
+	"version": "2.1.0",
 
 	"dependencies": {
 		"ClearScriptPrecompiled": "5.4.7",

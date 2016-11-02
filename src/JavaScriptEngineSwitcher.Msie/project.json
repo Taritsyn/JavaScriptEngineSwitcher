@@ -3,7 +3,7 @@
 
 	"dependencies": {
 		"MsieJavaScriptEngine": "2.0.0",
-		"JavaScriptEngineSwitcher.Core": "2.0.0"
+		"JavaScriptEngineSwitcher.Core": "2.0.3"
 	},
 
 	"buildOptions": {

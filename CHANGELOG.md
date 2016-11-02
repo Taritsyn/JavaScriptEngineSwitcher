@@ -1,6 +1,18 @@
 Change log
 ==========
 
+## November 2, 2016 - v2.1.0
+ * In JavaScriptEngineSwitcher.V8:
+   * Fixed a error, that occurred during parsing of the original error  message
+   * Native assemblies have been moved to separate packages: JavaScriptEngineSwitcher.V8.Native.win-x86 and JavaScriptEngineSwitcher.V8.Native.win-x64
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of October 27, 2016
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * Fixed a errors, that occurred during marshaling of Unicode strings in Unix-like operating systems
+   * Native assemblies for Windows have been moved to separate packages: JavaScriptEngineSwitcher.ChakraCore.Native.win-x86 and JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
+   * Added a packages, that contains a native assemblies for Windows (ARM), Debian-based Linux (x64) and OS X (x64)
+   * ChakraCore was updated to version of October 29, 2016
+   * New version of the ChakraCore for Windows requires `msvcp140.dll` assembly from the [Visual C++ Redistributable for Visual Studio 2015](http://www.microsoft.com/en-us/download/details.aspx?id=48145)
+
 ## October 31, 2016 - v2.1.0 Beta 2
  * In JavaScriptEngineSwitcher.ChakraCore added experimental support of Windows (ARM)
 
