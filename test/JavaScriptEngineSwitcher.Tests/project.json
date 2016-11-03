@@ -1,5 +1,5 @@
 ﻿{
-	"version": "2.1.0",
+	"version": "2.1.1",
 
 	"dependencies": {
 		"dotnet-test-xunit": "2.2.0-preview2-build1029",
@@ -49,9 +49,9 @@
 		"net451": {
 			"dependencies": {
 				"JavaScriptEngineSwitcher.Jurassic": "2.1.0",
-				"JavaScriptEngineSwitcher.V8": "2.1.0",
-				"JavaScriptEngineSwitcher.V8.Native.win-x64": "2.1.0",
-				"JavaScriptEngineSwitcher.V8.Native.win-x86": "2.1.0"
+				"JavaScriptEngineSwitcher.V8": "2.1.1",
+				"JavaScriptEngineSwitcher.V8.Native.win-x64": "2.1.1",
+				"JavaScriptEngineSwitcher.V8.Native.win-x86": "2.1.1"
 			},
 			"frameworkAssemblies": {
 				"System.Drawing": "4.0.0.0"

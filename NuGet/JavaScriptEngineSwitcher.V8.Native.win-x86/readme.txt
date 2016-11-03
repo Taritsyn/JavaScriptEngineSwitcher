@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: V8 for Windows x86 v2.1.0
+             README file for JS Engine Switcher: V8 for Windows x86 v2.1.1
 
    --------------------------------------------------------------------------------
 
@@ -12,11 +12,17 @@
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.V8 package and contains
-   the native implementation of V8 version 5.3.332.45 for Windows (x86).
+   the native implementation of V8 version 5.4.500.40 for Windows (x86).
 
    For correct working of the Microsoft ClearScript.V8 require assemblies
    `msvcp120.dll` and `msvcr120.dll` from the Visual C++ Redistributable Packages
    for Visual Studio 2013.
+
+   =============
+   RELEASE NOTES
+   =============
+   Microsoft ClearScript.V8 was updated to version 5.4.8 (support of V8 version
+   5.4.500.40).
 
    ====================
    POST-INSTALL ACTIONS
