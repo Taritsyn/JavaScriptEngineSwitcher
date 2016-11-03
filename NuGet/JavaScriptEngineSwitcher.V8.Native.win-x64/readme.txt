@@ -21,8 +21,10 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 5.4.8 (support of V8 version
-   5.4.500.40).
+   1. Fixed a compatibility error with the .NET Framework 4.5.1 target in .NET Core
+      Applications;
+   2. Microsoft ClearScript.V8 was updated to version 5.4.8 (support of V8 version
+      5.4.500.40).
 
    ====================
    POST-INSTALL ACTIONS

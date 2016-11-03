@@ -8,7 +8,7 @@ call "..\setup.cmd"
 rmdir runtimes /Q/S
 del chakra-core-license.txt /Q/S
 
-xcopy "%lib_dir%\win-x64\ChakraCore.dll" runtimes\win-x64\native\
+xcopy "%lib_dir%\win-x64\ChakraCore.dll" runtimes\win7-x64\native\
 copy "%licenses_dir%\chakra-core-license.txt" chakra-core-license.txt /Y
 
 %nuget_package_manager% pack "..\%project_name%\%project_name%.nuspec"

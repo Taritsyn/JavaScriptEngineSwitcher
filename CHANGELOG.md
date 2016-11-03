@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## November 3, 2016 - v2.1.1
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.8 (support of V8 version 5.4.500.40)
+ * In JavaScriptEngineSwitcher.V8.Native.win-x86, JavaScriptEngineSwitcher.V8.Native.win-x64, JavaScriptEngineSwitcher.ChakraCore.Native.win-x86 and JavaScriptEngineSwitcher.ChakraCore.Native.win-x64 packages fixed a compatibility error with the .NET Framework 4.5.1 target in .NET Core Applications
+
 ## November 2, 2016 - v2.1.0
  * In JavaScriptEngineSwitcher.V8:
    * Fixed a error, that occurred during parsing of the original error  message
