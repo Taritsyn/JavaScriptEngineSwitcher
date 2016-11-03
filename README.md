@@ -33,6 +33,9 @@ This library can be installed through NuGet:
 
 If you have used the JavaScript Engine Switcher version 1.X, then I recommend to first read [“How to upgrade applications to version 2.X”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/How-to-upgrade-applications-to-version-2.X) section of the documentation.
 
+## Documentation
+Documentation is located on the [wiki](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki) of this Repo.
+
 ## Release History
 See the [changelog](CHANGELOG.md).
 
