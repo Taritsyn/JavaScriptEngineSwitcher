@@ -153,9 +153,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				Category = jsException.Name,
 				LineNumber = jsException.LineNumber,
 				ColumnNumber = 0,
-				SourceFragment = jsException.SourcePath,
-				Source = jsException.Source,
-				HelpLink = jsException.HelpLink
+				SourceFragment = jsException.SourcePath
 			};
 
 			return jsRuntimeException;

@@ -141,9 +141,7 @@ namespace JavaScriptEngineSwitcher.Msie
 				Category = msieJsRuntimeException.Category,
 				LineNumber = msieJsRuntimeException.LineNumber,
 				ColumnNumber = msieJsRuntimeException.ColumnNumber,
-				SourceFragment = msieJsRuntimeException.SourceFragment,
-				Source = msieJsRuntimeException.Source,
-				HelpLink = msieJsRuntimeException.HelpLink
+				SourceFragment = msieJsRuntimeException.SourceFragment
 			};
 
 			return jsRuntimeException;

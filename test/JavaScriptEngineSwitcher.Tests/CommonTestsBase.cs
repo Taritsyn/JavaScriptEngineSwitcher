@@ -246,7 +246,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		#region Calling of functions
 
 		[Fact]
-		public void CallingOfFunctionWithoutParametersIsCorrect()
+		public virtual void CallingOfFunctionWithoutParametersIsCorrect()
 		{
 			// Arrange
 			const string functionCode = @"function hooray() {
@@ -927,6 +927,7 @@ $variable1 + _variable2 - variable3;";
 			Assert.Equal(5, exception.ColumnNumber);
 		}
 
+		[Fact]
 		public virtual void MappingRuntimeErrorDuringExecutionOfCodeIsCorrect()
 		{
 			// Arrange

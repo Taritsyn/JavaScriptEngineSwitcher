@@ -160,9 +160,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 				Category = category,
 				LineNumber = lineNumber,
 				ColumnNumber = columnNumber,
-				SourceFragment = sourceFragment,
-				Source = jsException.Source,
-				HelpLink = jsException.HelpLink
+				SourceFragment = sourceFragment
 			};
 
 			return jsRuntimeException;

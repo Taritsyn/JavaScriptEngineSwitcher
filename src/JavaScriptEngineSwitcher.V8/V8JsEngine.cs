@@ -243,9 +243,7 @@ namespace JavaScriptEngineSwitcher.V8
 				scriptEngineException)
 			{
 				LineNumber = lineNumber,
-				ColumnNumber = columnNumber,
-				Source = scriptEngineException.Source,
-				HelpLink = scriptEngineException.HelpLink
+				ColumnNumber = columnNumber
 			};
 
 			return jsRuntimeException;

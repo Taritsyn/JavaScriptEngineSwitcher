@@ -1,25 +1,45 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
+﻿#if !NETSTANDARD1_3
+using System;
+using System.Runtime.Serialization;
+#endif
+
+namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
 	/// <summary>
 	/// The API usage exception occurred
 	/// </summary>
+#if !NETSTANDARD1_3
+	[Serializable]
+#endif
 	internal sealed class JsUsageException : JsException
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsUsageException"/> class
 		/// </summary>
-		/// <param name="code">The error code returned</param>
-		public JsUsageException(JsErrorCode code)
-			: this(code, "A fatal exception has occurred in a JavaScript runtime")
+		/// <param name="errorCode">The error code returned</param>
+		public JsUsageException(JsErrorCode errorCode)
+			: this(errorCode, "A fatal exception has occurred in a JavaScript runtime")
 		{ }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsUsageException"/> class
+		/// with a specified error message
 		/// </summary>
-		/// <param name="code">The error code returned</param>
+		/// <param name="errorCode">The error code returned</param>
 		/// <param name="message">The error message</param>
-		public JsUsageException(JsErrorCode code, string message)
-			: base(code, message)
+		public JsUsageException(JsErrorCode errorCode, string message)
+			: base(errorCode, message)
 		{ }
+#if !NETSTANDARD1_3
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JsUsageException"/> class with serialized data
+		/// </summary>
+		/// <param name="info">The object that holds the serialized data</param>
+		/// <param name="context">The contextual information about the source or destination</param>
+		private JsUsageException(SerializationInfo info, StreamingContext context)
+			: base(info, context)
+		{ }
+#endif
 	}
 }

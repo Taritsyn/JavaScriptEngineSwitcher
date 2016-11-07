@@ -903,8 +903,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				Category = category,
 				LineNumber = lineNumber,
 				ColumnNumber = columnNumber,
-				SourceFragment = sourceFragment,
-				HelpLink = jsException.HelpLink
+				SourceFragment = sourceFragment
 			};
 
 			return jsEngineException;

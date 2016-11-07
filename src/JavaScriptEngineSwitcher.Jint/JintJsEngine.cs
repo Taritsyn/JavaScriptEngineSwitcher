@@ -148,9 +148,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				Category = "ParserError",
 				LineNumber = jsParserException.LineNumber,
-				ColumnNumber = jsParserException.Column,
-				Source = jsParserException.Source,
-				HelpLink = jsParserException.HelpLink
+				ColumnNumber = jsParserException.Column
 			};
 
 			return jsRuntimeException;
@@ -178,9 +176,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				Category = category,
 				LineNumber = jsException.LineNumber,
-				ColumnNumber = jsException.Column,
-				Source = jsException.Source,
-				HelpLink = jsException.HelpLink
+				ColumnNumber = jsException.Column
 			};
 
 			return jsRuntimeException;
@@ -192,12 +188,10 @@ namespace JavaScriptEngineSwitcher.Jint
 			string message = string.Format(Strings.Runtime_RecursionDepthOverflow,
 				jsRecursionException.CallChain);
 
-			var jsRuntimeException = new JsRuntimeException(message,
-				EngineName, EngineVersion, jsRecursionException)
+			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
+				jsRecursionException)
 			{
-				Category = "RecursionDepthOverflowError",
-				Source = jsRecursionException.Source,
-				HelpLink = jsRecursionException.HelpLink
+				Category = "RecursionDepthOverflowError"
 			};
 
 			return jsRuntimeException;
@@ -207,11 +201,9 @@ namespace JavaScriptEngineSwitcher.Jint
 			OriginalStatementsCountOverflowException jsStatementsException)
 		{
 			var jsRuntimeException = new JsRuntimeException(Strings.Runtime_StatementsCountOverflow,
-				EngineName, EngineVersion)
+				EngineName, EngineVersion, jsStatementsException)
 			{
-				Category = "StatementsCountOverflowError",
-				Source = jsStatementsException.Source,
-				HelpLink = jsStatementsException.HelpLink
+				Category = "StatementsCountOverflowError"
 			};
 
 			return jsRuntimeException;
