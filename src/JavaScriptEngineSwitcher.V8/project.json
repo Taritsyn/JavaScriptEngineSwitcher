@@ -1,9 +1,9 @@
 ﻿{
-	"version": "2.1.1",
+	"version": "2.1.2",
 
 	"dependencies": {
 		"ClearScriptPrecompiled": "5.4.8",
-		"JavaScriptEngineSwitcher.Core": "2.0.3"
+		"JavaScriptEngineSwitcher.Core": "2.1.2"
 	},
 
 	"buildOptions": {

@@ -1,9 +1,9 @@
 ﻿{
-	"version": "2.0.3",
+	"version": "2.1.2",
 
 	"dependencies": {
 		"VroomJs": "1.2.3",
-		"JavaScriptEngineSwitcher.Core": "2.0.3"
+		"JavaScriptEngineSwitcher.Core": "2.1.2"
 	},
 
 	"buildOptions": {

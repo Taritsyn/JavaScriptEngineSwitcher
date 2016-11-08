@@ -60,6 +60,30 @@ namespace JavaScriptEngineSwitcher.Core
 		public JsException(string message, Exception innerException)
 			: base(message, innerException)
 		{ }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JsException"/> class
+		/// </summary>
+		/// <param name="message">The error message that explains the reason for the exception</param>
+		/// <param name="engineName">Name of JS engine</param>
+		/// <param name="engineVersion">Version of original JS engine</param>
+		public JsException(string message, string engineName, string engineVersion)
+			: this(message, engineName, engineVersion, null)
+		{ }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JsException"/> class
+		/// </summary>
+		/// <param name="message">The error message that explains the reason for the exception</param>
+		/// <param name="engineName">Name of JS engine</param>
+		/// <param name="engineVersion">Version of original JS engine</param>
+		/// <param name="innerException">The exception that is the cause of the current exception</param>
+		public JsException(string message, string engineName, string engineVersion, Exception innerException)
+			: base(message, innerException)
+		{
+			_engineName = engineName;
+			_engineVersion = engineVersion;
+		}
 #if !NETSTANDARD1_3
 
 		/// <summary>
@@ -76,35 +100,9 @@ namespace JavaScriptEngineSwitcher.Core
 				_engineVersion = info.GetString("EngineVersion");
 			}
 		}
-#endif
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="JsException"/> class
-		/// </summary>
-		/// <param name="message">The error message that explains the reason for the exception</param>
-		/// <param name="engineName">Name of JavaScript engine</param>
-		/// <param name="engineVersion">Version of original JavaScript engine</param>
-		public JsException(string message, string engineName, string engineVersion)
-			: this(message, engineName, engineVersion, null)
-		{ }
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="JsException"/> class
-		/// </summary>
-		/// <param name="message">The error message that explains the reason for the exception</param>
-		/// <param name="engineName">Name of JavaScript engine</param>
-		/// <param name="engineVersion">Version of original JavaScript engine</param>
-		/// <param name="innerException">The exception that is the cause of the current exception</param>
-		public JsException(string message, string engineName, string engineVersion, Exception innerException)
-			: base(message, innerException)
-		{
-			_engineName = engineName;
-			_engineVersion = engineVersion;
-		}
-#if !NETSTANDARD1_3
 
 
-	#region Exception overrides
+		#region Exception overrides
 
 		/// <summary>
 		/// Populates a <see cref="SerializationInfo"/> with the data needed to serialize the target object
@@ -124,7 +122,7 @@ namespace JavaScriptEngineSwitcher.Core
 			info.AddValue("EngineVersion", _engineVersion);
 		}
 
-	#endregion
+		#endregion
 #endif
 	}
 }

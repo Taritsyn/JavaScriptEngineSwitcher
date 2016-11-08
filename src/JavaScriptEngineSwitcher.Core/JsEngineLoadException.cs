@@ -32,17 +32,6 @@ namespace JavaScriptEngineSwitcher.Core
 		public JsEngineLoadException(string message, Exception innerException)
 			: base(message, innerException)
 		{ }
-#if !NETSTANDARD1_3
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="JsEngineLoadException"/> class with serialized data
-		/// </summary>
-		/// <param name="info">The object that holds the serialized data</param>
-		/// <param name="context">The contextual information about the source or destination</param>
-		private JsEngineLoadException(SerializationInfo info, StreamingContext context)
-			: base(info, context)
-		{ }
-#endif
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsEngineLoadException"/> class
@@ -65,5 +54,16 @@ namespace JavaScriptEngineSwitcher.Core
 			Exception innerException)
 			: base(message, engineName, engineVersion, innerException)
 		{ }
+#if !NETSTANDARD1_3
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JsEngineLoadException"/> class with serialized data
+		/// </summary>
+		/// <param name="info">The object that holds the serialized data</param>
+		/// <param name="context">The contextual information about the source or destination</param>
+		private JsEngineLoadException(SerializationInfo info, StreamingContext context)
+			: base(info, context)
+		{ }
+#endif
 	}
 }

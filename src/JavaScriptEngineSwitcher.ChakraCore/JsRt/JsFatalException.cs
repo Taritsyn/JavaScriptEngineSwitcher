@@ -18,7 +18,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </summary>
 		/// <param name="errorCode">The error code returned</param>
 		public JsFatalException(JsErrorCode errorCode)
-			: this(errorCode, "A fatal exception has occurred in a JavaScript runtime")
+			: base(errorCode)
 		{ }
 
 		/// <summary>

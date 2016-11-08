@@ -104,26 +104,6 @@ namespace JavaScriptEngineSwitcher.Core
 		public JsRuntimeException(string message, Exception innerException)
 			: base(message, innerException)
 		{ }
-#if !NETSTANDARD1_3
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="JsRuntimeException"/> class with serialized data
-		/// </summary>
-		/// <param name="info">The object that holds the serialized data</param>
-		/// <param name="context">The contextual information about the source or destination</param>
-		private JsRuntimeException(SerializationInfo info, StreamingContext context)
-			: base(info, context)
-		{
-			if (info != null)
-			{
-				_errorCode = info.GetString("ErrorCode");
-				_category = info.GetString("Category");
-				_lineNumber = info.GetInt32("LineNumber");
-				_columnNumber = info.GetInt32("ColumnNumber");
-				_sourceFragment = info.GetString("SourceFragment");
-			}
-		}
-#endif
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsRuntimeException"/> class
@@ -147,6 +127,24 @@ namespace JavaScriptEngineSwitcher.Core
 			: base(message, engineName, engineVersion, innerException)
 		{ }
 #if !NETSTANDARD1_3
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JsRuntimeException"/> class with serialized data
+		/// </summary>
+		/// <param name="info">The object that holds the serialized data</param>
+		/// <param name="context">The contextual information about the source or destination</param>
+		private JsRuntimeException(SerializationInfo info, StreamingContext context)
+			: base(info, context)
+		{
+			if (info != null)
+			{
+				_errorCode = info.GetString("ErrorCode");
+				_category = info.GetString("Category");
+				_lineNumber = info.GetInt32("LineNumber");
+				_columnNumber = info.GetInt32("ColumnNumber");
+				_sourceFragment = info.GetString("SourceFragment");
+			}
+		}
 
 
 		#region JsException overrides

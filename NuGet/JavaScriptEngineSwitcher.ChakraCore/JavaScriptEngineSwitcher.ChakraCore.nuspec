@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore</id>
-		<version>2.1.0</version>
+		<version>2.1.2</version>
 		<title>JS Engine Switcher: ChakraCore</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -20,27 +20,22 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</description>
 		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore).</summary>
-		<releaseNotes>1. Fixed a errors, that occurred during marshaling of Unicode strings in Unix-like operating systems;
-2. Native assemblies for Windows have been moved to separate packages: JavaScriptEngineSwitcher.ChakraCore.Native.win-x86 and JavaScriptEngineSwitcher.ChakraCore.Native.win-x64;
-3. Added a packages, that contains a native assemblies for Windows (ARM), Debian-based Linux (x64) and OS X (x64);
-4. ChakraCore was updated to version of October 29, 2016;
-5. New version of the ChakraCore for Windows requires `msvcp140.dll` assembly from the Visual C++ Redistributable for Visual Studio 2015.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client">
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.3" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
 			</group>
 			<group targetFramework=".NETFramework4.5.1">
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.3" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
 			</group>
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="System.Diagnostics.Tools" version="4.0.1" />
 				<dependency id="System.Reflection.Extensions" version="4.0.1" />
 				<dependency id="System.Reflection.TypeExtensions" version="4.1.0" />
 				<dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.0.0" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.3" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
 			</group>
 		</dependencies>
 		<references>

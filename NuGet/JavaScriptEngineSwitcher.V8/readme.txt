@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                     README file for JS Engine Switcher: V8 v2.1.1
+                     README file for JS Engine Switcher: V8 v2.1.2
 
    --------------------------------------------------------------------------------
 
@@ -20,11 +20,6 @@
 
     * JavaScriptEngineSwitcher.V8.Native.win-x86
     * JavaScriptEngineSwitcher.V8.Native.win-x64
-
-   =============
-   RELEASE NOTES
-   =============
-   Microsoft ClearScript.V8 was updated to version 5.4.8.
 
    =============
    DOCUMENTATION

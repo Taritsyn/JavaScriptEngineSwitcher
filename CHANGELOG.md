@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## November 8, 2016 - v2.1.2
+ * Fixed a error #22 [“Make Exception serializable”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/22)
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.0.1
+
 ## November 3, 2016 - v2.1.1
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.8 (support of V8 version 5.4.500.40)
  * In JavaScriptEngineSwitcher.V8.Native.win-x86, JavaScriptEngineSwitcher.V8.Native.win-x64, JavaScriptEngineSwitcher.ChakraCore.Native.win-x86 and JavaScriptEngineSwitcher.ChakraCore.Native.win-x64 packages fixed a compatibility error with the .NET Framework 4.5.1 target in .NET Core Applications
