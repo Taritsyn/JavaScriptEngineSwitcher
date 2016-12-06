@@ -147,16 +147,22 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
-			if (string.IsNullOrWhiteSpace(resourceName))
+			if (resourceName == null)
 			{
-				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+				throw new ArgumentNullException(
+					"resourceName", string.Format(Strings.Common_ArgumentIsNull, "resourceName"));
 			}
 
 			if (type == null)
 			{
 				throw new ArgumentNullException(
 					"type", string.Format(Strings.Common_ArgumentIsNull, "type"));
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
 			}
 
 			string code = Utils.GetResourceAsString(resourceName, type);
@@ -167,16 +173,22 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
-			if (string.IsNullOrWhiteSpace(resourceName))
+			if (resourceName == null)
 			{
-				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+				throw new ArgumentNullException(
+					"resourceName", string.Format(Strings.Common_ArgumentIsNull, "resourceName"));
 			}
 
 			if (assembly == null)
 			{
 				throw new ArgumentNullException(
 					"assembly", string.Format(Strings.Common_ArgumentIsNull, "assembly"));
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
 			}
 
 			string code = Utils.GetResourceAsString(resourceName, assembly);

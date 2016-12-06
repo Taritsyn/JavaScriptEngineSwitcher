@@ -6,7 +6,7 @@
 	public sealed class ChakraCoreSettings
 	{
 		/// <summary>
-		/// Gets or sets a flag for whether to disable any work (such as garbage collection)
+		/// Gets or sets a flag for whether to disable any background work (such as garbage collection)
 		/// on background threads
 		/// </summary>
 		public bool DisableBackgroundWork

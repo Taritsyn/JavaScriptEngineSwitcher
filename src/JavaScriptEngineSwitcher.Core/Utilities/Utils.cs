@@ -69,9 +69,39 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <returns>Сontent of the embedded resource as string</returns>
 		public static string GetResourceAsString(string resourceName, Type type)
 		{
-			Assembly assembly = type.GetTypeInfo().Assembly;
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					"resourceName", string.Format(Strings.Common_ArgumentIsNull, "resourceName"));
+			}
 
-			return GetResourceAsString(resourceName, assembly);
+			if (type == null)
+			{
+				throw new ArgumentNullException(
+					"type", string.Format(Strings.Common_ArgumentIsNull, "type"));
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+			}
+
+			Assembly assembly = type.GetTypeInfo().Assembly;
+			string nameSpace = type.Namespace;
+
+			if (nameSpace != null && resourceName.StartsWith(nameSpace, StringComparison.Ordinal))
+			{
+				using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+				{
+					return ReadResourceAsString(resourceName, stream);
+				}
+			}
+
+			using (Stream stream = assembly.GetManifestResourceStream(type, resourceName))
+			{
+				return ReadResourceAsString(resourceName, stream);
+			}
 		}
 
 		/// <summary>
@@ -82,18 +112,41 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <returns>Сontent of the embedded resource as string</returns>
 		public static string GetResourceAsString(string resourceName, Assembly assembly)
 		{
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					"resourceName", string.Format(Strings.Common_ArgumentIsNull, "resourceName"));
+			}
+
+			if (assembly == null)
+			{
+				throw new ArgumentNullException(
+					"assembly", string.Format(Strings.Common_ArgumentIsNull, "assembly"));
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+			}
+
 			using (Stream stream = assembly.GetManifestResourceStream(resourceName))
 			{
-				if (stream == null)
-				{
-					throw new NullReferenceException(
-						string.Format(Strings.Resources_ResourceIsNull, resourceName));
-				}
+				return ReadResourceAsString(resourceName, stream);
+			}
+		}
 
-				using (var reader = new StreamReader(stream))
-				{
-					return reader.ReadToEnd();
-				}
+		private static string ReadResourceAsString(string resourceName, Stream stream)
+		{
+			if (stream == null)
+			{
+				throw new NullReferenceException(
+					string.Format(Strings.Resources_ResourceIsNull, resourceName));
+			}
+
+			using (var reader = new StreamReader(stream))
+			{
+				return reader.ReadToEnd();
 			}
 		}
 

@@ -6,7 +6,7 @@
 	public sealed class VroomSettings
 	{
 		/// <summary>
-		/// Gets or sets a maximum size of the young object heap
+		/// Gets or sets a maximum size of the young object heap in bytes
 		/// </summary>
 		public int MaxYoungSpaceSize
 		{
@@ -15,7 +15,7 @@
 		}
 
 		/// <summary>
-		/// Gets or sets a maximum size of the old object heap
+		/// Gets or sets a maximum size of the old object heap in bytes
 		/// </summary>
 		public int MaxOldSpaceSize
 		{

@@ -19,7 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #22 “Make Exception serializable”.
+   Fixed a error #23 “GetResourceAsString does not work as expected”.
 
    =============
    DOCUMENTATION

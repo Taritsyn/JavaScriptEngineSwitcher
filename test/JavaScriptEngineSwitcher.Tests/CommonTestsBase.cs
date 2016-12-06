@@ -200,7 +200,28 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void ExecutionOfResourceByTypeIsCorrect()
+		public virtual void ExecutionOfResourceByNameAndTypeIsCorrect()
+		{
+			// Arrange
+			const string resourceName = "Resources.cube.js";
+			const string input = "cube(5);";
+			const int targetOutput = 125;
+
+			// Act
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.ExecuteResource(resourceName, typeof(CommonTestsBase));
+				output = jsEngine.Evaluate<int>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public virtual void ExecutionOfResourceByFullNameAndTypeIsCorrect()
 		{
 			// Arrange
 			const string resourceName = "JavaScriptEngineSwitcher.Tests.Resources.cube.js";
@@ -212,7 +233,7 @@ namespace JavaScriptEngineSwitcher.Tests
 
 			using (var jsEngine = CreateJsEngine())
 			{
-				jsEngine.ExecuteResource(resourceName, GetType());
+				jsEngine.ExecuteResource(resourceName, typeof(CommonTestsBase));
 				output = jsEngine.Evaluate<int>(input);
 			}
 
@@ -221,7 +242,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void ExecutionOfResourceByAssemblyIsCorrect()
+		public virtual void ExecutionOfResourceByFullNameAndAssemblyIsCorrect()
 		{
 			// Arrange
 			const string resourceName = "JavaScriptEngineSwitcher.Tests.Resources.power.js";
@@ -233,7 +254,7 @@ namespace JavaScriptEngineSwitcher.Tests
 
 			using (var jsEngine = CreateJsEngine())
 			{
-				jsEngine.ExecuteResource(resourceName, GetType().GetTypeInfo().Assembly);
+				jsEngine.ExecuteResource(resourceName, typeof(CommonTestsBase).GetTypeInfo().Assembly);
 				output = jsEngine.Evaluate<int>(input);
 			}
 
