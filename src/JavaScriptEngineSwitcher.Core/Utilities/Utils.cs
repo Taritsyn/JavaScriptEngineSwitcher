@@ -64,8 +64,9 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <summary>
 		/// Gets a content of the embedded resource as string
 		/// </summary>
-		/// <param name="resourceName">Resource name</param>
-		/// <param name="type">Type from assembly that containing an embedded resource</param>
+		/// <param name="resourceName">The case-sensitive resource name without the namespace of the specified type</param>
+		/// <param name="type">The type, that determines the assembly and whose namespace is used to scope
+		/// the resource name</param>
 		/// <returns>Сontent of the embedded resource as string</returns>
 		public static string GetResourceAsString(string resourceName, Type type)
 		{
@@ -89,26 +90,16 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 
 			Assembly assembly = type.GetTypeInfo().Assembly;
 			string nameSpace = type.Namespace;
+			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
 
-			if (nameSpace != null && resourceName.StartsWith(nameSpace, StringComparison.Ordinal))
-			{
-				using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-				{
-					return ReadResourceAsString(resourceName, stream);
-				}
-			}
-
-			using (Stream stream = assembly.GetManifestResourceStream(type, resourceName))
-			{
-				return ReadResourceAsString(resourceName, stream);
-			}
+			return InnerGetResourceAsString(resourceFullName, assembly);
 		}
 
 		/// <summary>
 		/// Gets a content of the embedded resource as string
 		/// </summary>
-		/// <param name="resourceName">Resource name</param>
-		/// <param name="assembly">Assembly that containing an embedded resource</param>
+		/// <param name="resourceName">The case-sensitive resource name</param>
+		/// <param name="assembly">The assembly, which contains the embedded resource</param>
 		/// <returns>Сontent of the embedded resource as string</returns>
 		public static string GetResourceAsString(string resourceName, Assembly assembly)
 		{
@@ -130,23 +121,23 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
 			}
 
-			using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-			{
-				return ReadResourceAsString(resourceName, stream);
-			}
+			return InnerGetResourceAsString(resourceName, assembly);
 		}
 
-		private static string ReadResourceAsString(string resourceName, Stream stream)
+		private static string InnerGetResourceAsString(string resourceName, Assembly assembly)
 		{
-			if (stream == null)
+			using (Stream stream = assembly.GetManifestResourceStream(resourceName))
 			{
-				throw new NullReferenceException(
-					string.Format(Strings.Resources_ResourceIsNull, resourceName));
-			}
+				if (stream == null)
+				{
+					throw new NullReferenceException(
+						string.Format(Strings.Resources_ResourceIsNull, resourceName));
+				}
 
-			using (var reader = new StreamReader(stream))
-			{
-				return reader.ReadToEnd();
+				using (var reader = new StreamReader(stream))
+				{
+					return reader.ReadToEnd();
+				}
 			}
 		}
 

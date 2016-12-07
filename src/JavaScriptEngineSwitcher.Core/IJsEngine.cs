@@ -65,15 +65,16 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <summary>
 		/// Executes a code from embedded JS-resource
 		/// </summary>
-		/// <param name="resourceName">JS-resource name</param>
-		/// <param name="type">Type from assembly that containing an embedded resource</param>
+		/// <param name="resourceName">The case-sensitive resource name without the namespace of the specified type</param>
+		/// <param name="type">The type, that determines the assembly and whose namespace is used to scope
+		/// the resource name</param>
 		void ExecuteResource(string resourceName, Type type);
 
 		/// <summary>
 		/// Executes a code from embedded JS-resource
 		/// </summary>
-		/// <param name="resourceName">JS-resource name</param>
-		/// <param name="assembly">Assembly that containing an embedded resource</param>
+		/// <param name="resourceName">The case-sensitive resource name</param>
+		/// <param name="assembly">The assembly, which contains the embedded resource</param>
 		void ExecuteResource(string resourceName, Assembly assembly);
 
 		/// <summary>

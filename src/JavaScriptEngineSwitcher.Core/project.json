@@ -33,7 +33,6 @@
 			"buildOptions": {
 				"compile": {
 					"exclude": [
-						"Utilities/AssemblyExtensions.cs",
 						"Utilities/TypeInfoExtensions.cs"
 					]
 				}
