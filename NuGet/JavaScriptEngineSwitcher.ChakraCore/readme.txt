@@ -28,6 +28,12 @@
     * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64
 
    =============
+   RELEASE NOTES
+   =============
+   Attempt to prevent occurrence of the access violation exception in the
+   `CallFunction` method.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -

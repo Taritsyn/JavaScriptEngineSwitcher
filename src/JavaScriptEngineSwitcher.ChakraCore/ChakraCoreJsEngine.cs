@@ -241,7 +241,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			switch (typeCode)
 			{
 				case TypeCode.Boolean:
-					return JsValue.FromBoolean((bool)value);
+					return (bool)value ? JsValue.True : JsValue.False;
 
 				case TypeCode.SByte:
 				case TypeCode.Byte:
@@ -333,6 +333,50 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private object[] MapToHostType(JsValue[] args)
 		{
 			return args.Select(MapToHostType).ToArray();
+		}
+
+		/// <summary>
+		/// Adds a reference to the value
+		/// </summary>
+		/// <param name="value">The value</param>
+		private static void AddReferenceToValue(JsValue value)
+		{
+			if (CanHaveReferences(value))
+			{
+				value.AddRef();
+			}
+		}
+
+		/// <summary>
+		/// Removes a reference to the value
+		/// </summary>
+		/// <param name="value">The value</param>
+		private static void RemoveReferenceToValue(JsValue value)
+		{
+			if (CanHaveReferences(value))
+			{
+				value.Release();
+			}
+		}
+
+		/// <summary>
+		/// Checks whether the value can have references
+		/// </summary>
+		/// <param name="value">The value</param>
+		/// <returns>Result of check (true - may have; false - may not have)</returns>
+		private static bool CanHaveReferences(JsValue value)
+		{
+			JsValueType valueType = value.ValueType;
+
+			switch (valueType)
+			{
+				case JsValueType.Null:
+				case JsValueType.Undefined:
+				case JsValueType.Boolean:
+					return false;
+				default:
+					return true;
+			}
 		}
 
 		private JsValue FromObject(object value)
@@ -951,11 +995,30 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						string.Format(CoreStrings.Runtime_FunctionNotExist, functionName));
 				}
 
-				var processedArgs = MapToScriptType(args);
-				var allProcessedArgs = new[] { globalObj }.Concat(processedArgs).ToArray();
-
+				JsValue resultValue;
 				JsValue functionValue = globalObj.GetProperty(functionId);
-				JsValue resultValue = functionValue.CallFunction(allProcessedArgs);
+
+				if (args.Length > 0)
+				{
+					JsValue[] processedArgs = MapToScriptType(args);
+
+					foreach (JsValue processedArg in processedArgs)
+					{
+						AddReferenceToValue(processedArg);
+					}
+
+					JsValue[] allProcessedArgs = new[] { globalObj }.Concat(processedArgs).ToArray();
+					resultValue = functionValue.CallFunction(allProcessedArgs);
+
+					foreach (JsValue processedArg in processedArgs)
+					{
+						RemoveReferenceToValue(processedArg);
+					}
+				}
+				else
+				{
+					resultValue = functionValue.CallFunction(globalObj);
+				}
 
 				return MapToHostType(resultValue);
 			});
