@@ -20,7 +20,8 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</description>
 		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore).</summary>
-		<releaseNotes>Attempt to prevent occurrence of the access violation exception in the `CallFunction` method.</releaseNotes>
+		<releaseNotes>1. Attempt to prevent occurrence of the access violation exception in the `CallFunction` method;
+2. Fixed a error “Out of stack space”.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore</tags>
@@ -35,6 +36,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
 				<dependency id="System.Diagnostics.Tools" version="4.0.1" />
 				<dependency id="System.Reflection.Extensions" version="4.0.1" />
 				<dependency id="System.Reflection.TypeExtensions" version="4.1.0" />
+				<dependency id="System.Threading.Thread" version="4.0.0" />
 				<dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.0.0" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
 			</group>

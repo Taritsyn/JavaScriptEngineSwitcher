@@ -40,15 +40,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Instance of JS context
 		/// </summary>
-		private readonly JsContext _jsContext;
+		private JsContext _jsContext;
 
 		/// <summary>
-		/// Synchronizer of code execution
-		/// </summary>
-		private readonly object _executionSynchronizer = new object();
-
-		/// <summary>
-		/// List of external objects
+		/// Set of external objects
 		/// </summary>
 		private readonly HashSet<object> _externalObjects = new HashSet<object>();
 
@@ -61,6 +56,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// List of native function callbacks
 		/// </summary>
 		private readonly HashSet<JsNativeFunction> _nativeFunctions = new HashSet<JsNativeFunction>();
+
+		/// <summary>
+		/// Script dispatcher
+		/// </summary>
+		private readonly ScriptDispatcher _dispatcher = new ScriptDispatcher();
 
 		/// <summary>
 		/// Gets a name of JS engine
@@ -108,7 +108,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for the ChakraCore JS engine
+		/// Constructs an instance of adapter for the ChakraCore JS engine
 		/// </summary>
 		/// <param name="settings">Settings of the ChakraCore JS engine</param>
 		public ChakraCoreJsEngine(ChakraCoreSettings settings)
@@ -135,21 +135,24 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
 
-			try
+			_dispatcher.Invoke(() =>
 			{
-				_jsRuntime = JsRuntime.Create(attributes, null);
-				_jsContext = _jsRuntime.CreateContext();
-			}
-			catch (Exception e)
-			{
-				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						EngineName, e.Message), EngineName, EngineVersion, e);
-			}
+				try
+				{
+					_jsRuntime = JsRuntime.Create(attributes, null);
+					_jsContext = _jsRuntime.CreateContext();
+				}
+				catch (Exception e)
+				{
+					throw new JsEngineLoadException(
+						string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
+							EngineName, e.Message), EngineName, EngineVersion, e);
+				}
+			});
 		}
 
 		/// <summary>
-		/// Destructs instance of adapter for the ChakraCore JS engine
+		/// Destructs an instance of adapter for the ChakraCore JS engine
 		/// </summary>
 		~ChakraCoreJsEngine()
 		{
@@ -159,62 +162,38 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		private void InvokeScript(Action action)
 		{
-			lock (_executionSynchronizer)
-			using (new JsScope(_jsContext))
+			_dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					action();
+					try
+					{
+						action();
+					}
+					catch (OriginalJsException e)
+					{
+						throw ConvertJsExceptionToJsRuntimeException(e);
+					}
 				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertJsExceptionToJsRuntimeException(e);
-				}
-			}
+			});
 		}
 
 		private T InvokeScript<T>(Func<T> func)
 		{
-			lock (_executionSynchronizer)
-			using (new JsScope(_jsContext))
+			return _dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					return func();
-				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertJsExceptionToJsRuntimeException(e);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Destroys object
-		/// </summary>
-		/// <param name="disposing">Flag, allowing destruction of
-		/// managed objects contained in fields of class</param>
-		private void Dispose(bool disposing)
-		{
-			if (_disposedFlag.Set())
-			{
-				lock (_executionSynchronizer)
-				{
-					_jsRuntime.Dispose();
-
-					if (_externalObjects != null)
+					try
 					{
-						_externalObjects.Clear();
+						return func();
 					}
-
-					if (_nativeFunctions != null)
+					catch (OriginalJsException e)
 					{
-						_nativeFunctions.Clear();
+						throw ConvertJsExceptionToJsRuntimeException(e);
 					}
-
-					_externalObjectFinalizeCallback = null;
 				}
-			}
+			});
 		}
 
 		#region Mapping
@@ -427,12 +406,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				return;
 			}
 
-			lock (_executionSynchronizer)
+			if (_externalObjects != null)
 			{
-				if (_externalObjects != null)
-				{
-					_externalObjects.Remove(obj);
-				}
+				_externalObjects.Remove(obj);
 			}
 		}
 
@@ -1115,10 +1091,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override void InnerCollectGarbage()
 		{
-			lock (_executionSynchronizer)
-			{
-				_jsRuntime.CollectGarbage();
-			}
+			_dispatcher.Invoke(() => _jsRuntime.CollectGarbage());
 		}
 
 		#endregion
@@ -1132,6 +1105,39 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			Dispose(true /* disposing */);
 			GC.SuppressFinalize(this);
+		}
+
+
+		/// <summary>
+		/// Destroys object
+		/// </summary>
+		/// <param name="disposing">Flag, allowing destruction of
+		/// managed objects contained in fields of class</param>
+		private void Dispose(bool disposing)
+		{
+			if (_disposedFlag.Set())
+			{
+				if (_dispatcher != null)
+				{
+					_dispatcher.Invoke(() => _jsRuntime.Dispose());
+					_dispatcher.Dispose();
+				}
+
+				if (disposing)
+				{
+					if (_externalObjects != null)
+					{
+						_externalObjects.Clear();
+					}
+
+					if (_nativeFunctions != null)
+					{
+						_nativeFunctions.Clear();
+					}
+
+					_externalObjectFinalizeCallback = null;
+				}
+			}
 		}
 
 		#endregion

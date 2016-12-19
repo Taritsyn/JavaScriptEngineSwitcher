@@ -30,8 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   Attempt to prevent occurrence of the access violation exception in the
-   `CallFunction` method.
+   1. Attempt to prevent occurrence of the access violation exception in the
+      `CallFunction` method;
+   2. Fixed a error “Out of stack space”.
 
    =============
    DOCUMENTATION

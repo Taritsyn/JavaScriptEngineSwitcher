@@ -187,6 +187,9 @@
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\Resources\Strings.ru-ru.Designer.cs">
       <Link>Resources\Strings.ru-ru.Designer.cs</Link>
     </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\ScriptDispatcher.cs">
+      <Link>ScriptDispatcher.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\JavaScriptEngineSwitcher.ChakraCore\Resources\Strings.resx">
