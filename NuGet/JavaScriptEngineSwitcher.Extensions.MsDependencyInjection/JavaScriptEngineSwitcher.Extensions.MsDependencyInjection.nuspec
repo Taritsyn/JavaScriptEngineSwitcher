@@ -12,11 +12,12 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</description>
 		<summary>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</summary>
+		<releaseNotes>Downgraded .NET Framework version from 4.5.1 to 4.5.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript DI</tags>
 		<dependencies>
-			<group targetFramework=".NETFramework4.5.1">
+			<group targetFramework=".NETFramework4.5">
 				<dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="1.0.0" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.0.0" />
 			</group>

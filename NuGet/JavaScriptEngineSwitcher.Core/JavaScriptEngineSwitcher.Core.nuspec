@@ -12,13 +12,14 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic, Jint and ChakraCore). This library allows you to quickly and easily switch to using of another JavaScript engine.</description>
 		<summary>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic, Jint and ChakraCore).</summary>
-		<releaseNotes>Fixed a error #23 “GetResourceAsString does not work as expected”.</releaseNotes>
+		<releaseNotes>1. Now when you call the overloaded version of the `ExecuteResource` method, that takes the type, need to pass the resource name without the namespace;
+2. Downgraded .NET Framework version from 4.5.1 to 4.5.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client" />
-			<group targetFramework=".NETFramework4.5.1" />
+			<group targetFramework=".NETFramework4.5" />
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="System.Collections" version="4.0.11" />
 				<dependency id="System.ComponentModel.TypeConverter" version="4.1.0" />

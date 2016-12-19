@@ -17,7 +17,7 @@
 
 	"frameworks": {
 		"netstandard1.3": {},
-		"net451": {
+		"net45": {
 			"frameworkAssemblies": {
 				"System.Runtime": "4.0.10.0"
 			}

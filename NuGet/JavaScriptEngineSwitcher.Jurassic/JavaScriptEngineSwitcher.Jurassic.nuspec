@@ -12,6 +12,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of October 27, 2016).</description>
 		<summary>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine version of October 27, 2016).</summary>
+		<releaseNotes>Downgraded .NET Framework version from 4.5.1 to 4.5.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript Jurassic</tags>
@@ -19,7 +20,7 @@
 			<group targetFramework=".NETFramework4.0-Client">
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
 			</group>
-			<group targetFramework=".NETFramework4.5.1">
+			<group targetFramework=".NETFramework4.5">
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
 			</group>
 		</dependencies>

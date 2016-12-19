@@ -19,7 +19,8 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 2.1.0.
+   1. Downgraded .NET Framework version from 4.5.1 to 4.5;
+   2. Added support of MSIE JavaScript Engine version 2.1.0.
 
    =============
    DOCUMENTATION

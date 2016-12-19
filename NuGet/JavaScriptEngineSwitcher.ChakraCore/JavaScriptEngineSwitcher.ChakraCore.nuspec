@@ -21,7 +21,8 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</description>
 		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore).</summary>
 		<releaseNotes>1. Attempt to prevent occurrence of the access violation exception in the `CallFunction` method;
-2. Fixed a error “Out of stack space”.</releaseNotes>
+2. Fixed a error “Out of stack space”;
+3. Downgraded .NET Framework version from 4.5.1 to 4.5.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore</tags>
@@ -29,7 +30,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
 			<group targetFramework=".NETFramework4.0-Client">
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
 			</group>
-			<group targetFramework=".NETFramework4.5.1">
+			<group targetFramework=".NETFramework4.5">
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
 			</group>
 			<group targetFramework=".NETStandard1.3">

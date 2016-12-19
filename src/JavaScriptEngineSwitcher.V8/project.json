@@ -16,7 +16,7 @@
 	},
 
 	"frameworks": {
-		"net451": {}
+		"net45": {}
 	},
 
 	"scripts": {

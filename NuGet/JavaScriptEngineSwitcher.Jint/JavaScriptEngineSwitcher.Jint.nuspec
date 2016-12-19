@@ -12,6 +12,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.10.2).</description>
 		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version 2.10.2).</summary>
+		<releaseNotes>Downgraded .NET Framework version from 4.5.1 to 4.5.</releaseNotes>
 		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript Jint</tags>
@@ -20,7 +21,7 @@
 				<dependency id="Jint" version="2.10.2" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
 			</group>
-			<group targetFramework=".NETFramework4.5.1">
+			<group targetFramework=".NETFramework4.5">
 				<dependency id="Jint" version="2.10.2" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
 			</group>

@@ -22,6 +22,11 @@
     * JavaScriptEngineSwitcher.V8.Native.win-x64
 
    =============
+   RELEASE NOTES
+   =============
+   Downgraded .NET Framework version from 4.5.1 to 4.5.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -

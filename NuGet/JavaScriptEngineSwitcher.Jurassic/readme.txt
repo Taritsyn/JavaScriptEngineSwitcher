@@ -16,6 +16,11 @@
    version of October 27, 2016).
 
    =============
+   RELEASE NOTES
+   =============
+   Downgraded .NET Framework version from 4.5.1 to 4.5.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -

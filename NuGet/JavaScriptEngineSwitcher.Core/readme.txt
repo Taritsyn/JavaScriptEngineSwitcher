@@ -19,7 +19,9 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #23 “GetResourceAsString does not work as expected”.
+   1. Now when you call the overloaded version of the `ExecuteResource` method,
+      that takes the type, need to pass the resource name without the namespace;
+   2. Downgraded .NET Framework version from 4.5.1 to 4.5.
 
    =============
    DOCUMENTATION

@@ -17,11 +17,11 @@ xcopy "%net4_project_bin_dir%\%project_name%.dll" lib\net40-client\
 xcopy "%net4_project_bin_dir%\ru-ru\%project_name%.resources.dll" lib\net40-client\ru-ru\
 xcopy "%lib_dir%\Jurassic.dll" lib\net40-client\
 
-%dotnet_cli% build "%dotnet_project_source_dir%" --framework net451 --configuration Release --no-dependencies --no-incremental
-xcopy "%dotnet_project_bin_dir%\net451\%project_name%.dll" lib\net451\
-xcopy "%dotnet_project_bin_dir%\net451\%project_name%.xml" lib\net451\
-xcopy "%dotnet_project_bin_dir%\net451\ru-ru\%project_name%.resources.dll" lib\net451\ru-ru\
-xcopy "%lib_dir%\Jurassic.dll" lib\net451\
+%dotnet_cli% build "%dotnet_project_source_dir%" --framework net45 --configuration Release --no-dependencies --no-incremental
+xcopy "%dotnet_project_bin_dir%\net45\%project_name%.dll" lib\net45\
+xcopy "%dotnet_project_bin_dir%\net45\%project_name%.xml" lib\net45\
+xcopy "%dotnet_project_bin_dir%\net45\ru-ru\%project_name%.resources.dll" lib\net45\ru-ru\
+xcopy "%lib_dir%\Jurassic.dll" lib\net45\
 
 copy "%licenses_dir%\jurassic-license.txt" jurassic-license.txt /Y
 

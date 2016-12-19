@@ -12,7 +12,7 @@
 				"System.Runtime.InteropServices": "4.1.0"
 			}
 		},
-		"net451": {}
+		"net45": {}
 	},
 
 	"scripts": {

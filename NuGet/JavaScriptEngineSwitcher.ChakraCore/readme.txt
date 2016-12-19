@@ -32,7 +32,8 @@
    =============
    1. Attempt to prevent occurrence of the access violation exception in the
       `CallFunction` method;
-   2. Fixed a error “Out of stack space”.
+   2. Fixed a error “Out of stack space”;
+   3. Downgraded .NET Framework version from 4.5.1 to 4.5.
 
    =============
    DOCUMENTATION

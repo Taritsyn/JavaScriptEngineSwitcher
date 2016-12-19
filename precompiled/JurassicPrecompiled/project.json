@@ -2,7 +2,7 @@
 	"version": "2016.10.27",
 
 	"frameworks": {
-		"net451": {
+		"net45": {
 			"bin": {
 				"assembly": "../../lib/Jurassic/Jurassic.dll"
 			}

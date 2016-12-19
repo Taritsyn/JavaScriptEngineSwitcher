@@ -2,7 +2,7 @@
 	"version": "5.4.8",
 
 	"frameworks": {
-		"net451": {
+		"net45": {
 			"bin": {
 				"assembly": "../../lib/ClearScript/ClearScript.dll"
 			}
