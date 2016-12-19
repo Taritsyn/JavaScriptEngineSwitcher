@@ -2,8 +2,8 @@
 	"version": "2.1.2",
 
 	"dependencies": {
-		"Microsoft.AspNetCore.Mvc.Core": "1.0.1",
-		"Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.1",
+		"Microsoft.AspNetCore.Mvc.Core": "1.0.2",
+		"Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.2",
 		"JavaScriptEngineSwitcher.Core": "2.1.2",
 		"JavaScriptEngineSwitcher.Sample.Resources": "2.0.0"
 	},

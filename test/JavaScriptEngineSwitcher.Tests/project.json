@@ -4,8 +4,8 @@
 	"dependencies": {
 		"dotnet-test-xunit": "2.2.0-preview2-build1029",
 		"Microsoft.Extensions.PlatformAbstractions": "1.0.0",
-		"Microsoft.NETCore.Platforms": "1.0.1",
-		"xunit": "2.2.0-beta3-build3402",
+		"Microsoft.NETCore.Platforms": "1.0.2",
+		"xunit": "2.2.0-beta4-build3444",
 		"JavaScriptEngineSwitcher.ChakraCore": "2.1.2",
 		"JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64": "2.1.0",
 		"JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64": "2.1.0",
@@ -36,7 +36,7 @@
 			],
 			"dependencies": {
 				"Microsoft.NETCore.App": {
-					"version": "1.0.1",
+					"version": "1.0.3",
 					"type": "platform"
 				}
 			},

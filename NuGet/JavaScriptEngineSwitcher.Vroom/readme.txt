@@ -22,7 +22,8 @@
    =============
    RELEASE NOTES
    =============
-   Downgraded .NET Framework version from 4.5.1 to 4.5.
+   1. Added support of .NET Core 1.0.3;
+   2. Downgraded .NET Framework version from 4.5.1 to 4.5.
 
    ====================
    POST-INSTALL ACTIONS
