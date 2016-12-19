@@ -102,6 +102,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						task = _taskQueue.Dequeue();
 						if (task == null)
 						{
+							_taskQueue.Clear();
 							return;
 						}
 					}
@@ -177,6 +178,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			VerifyNotDisposed();
 
+			if (func == null)
+			{
+				throw new ArgumentNullException("func");
+			}
+
 			return (T)InnnerInvoke(() => func());
 		}
 
@@ -188,6 +194,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		public void Invoke(Action action)
 		{
 			VerifyNotDisposed();
+
+			if (action == null)
+			{
+				throw new ArgumentNullException("action");
+			}
 
 			InnnerInvoke(() =>
 			{
@@ -217,25 +228,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			if (_disposedFlag.Set())
 			{
 				EnqueueTask(null);
-				_thread.Join();
+
+				if (_thread != null)
+				{
+					_thread.Join();
+					_thread = null;
+				}
 
 				if (_waitHandle != null)
 				{
 					_waitHandle.Dispose();
 					_waitHandle = null;
-				}
-
-				if (disposing)
-				{
-					lock (_taskQueueSynchronizer)
-					{
-						if (_taskQueue != null)
-						{
-							_taskQueue.Clear();
-						}
-					}
-
-					_thread = null;
 				}
 			}
 		}
