@@ -17,6 +17,11 @@
    Internet Explorer 9 and above on a server.
 
    =============
+   RELEASE NOTES
+   =============
+   Added support of MSIE JavaScript Engine version 2.1.0.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -
