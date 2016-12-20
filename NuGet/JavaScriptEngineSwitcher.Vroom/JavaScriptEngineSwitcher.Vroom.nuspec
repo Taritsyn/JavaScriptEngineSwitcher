@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Vroom</id>
-		<version>2.1.2</version>
+		<version>2.2.0</version>
 		<title>JS Engine Switcher: Vroom</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -22,15 +22,15 @@ For correct working of the VroomJs on Windows require assemblies `msvcr110.dll` 
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client">
 				<dependency id="VroomJs" version="1.2.3" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.2.0" />
 			</group>
 			<group targetFramework=".NETFramework4.5">
 				<dependency id="VroomJs" version="1.2.3" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.2.0" />
 			</group>
 			<group targetFramework=".NETStandard1.6">
 				<dependency id="VroomJs" version="1.2.3" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.1.2" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.2.0" />
 			</group>
 		</dependencies>
 		<references>

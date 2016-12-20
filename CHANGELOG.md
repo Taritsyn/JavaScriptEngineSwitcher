@@ -1,6 +1,17 @@
 Change log
 ==========
 
+## December 20, 2016 - v2.2.0
+ * Added support of .NET Core 1.0.3
+ * Downgraded .NET Framework version from 4.5.1 to 4.5
+ * Now when you call the overloaded version of the `ExecuteResource` method, that takes the type, need to pass the resource name without the namespace
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.1.0
+ * In JavaScriptEngineSwitcher.V8 now the Microsoft ClearScript.V8 requires `msvcp140.dll` assembly from the [Visual C++ Redistributable for Visual Studio 2015](http://www.microsoft.com/en-us/download/details.aspx?id=48145)
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of December 8, 2016
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * Attempt to prevent occurrence of the access violation exception in the `CallFunction` method
+   * Fixed a error “Out of stack space”
+
 ## November 8, 2016 - v2.1.2
  * Fixed a error #22 [“Make Exception serializable”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/22)
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.0.1
