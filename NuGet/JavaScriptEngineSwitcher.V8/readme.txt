@@ -24,7 +24,9 @@
    =============
    RELEASE NOTES
    =============
-   Downgraded .NET Framework version from 4.5.1 to 4.5.
+   1. Downgraded .NET Framework version from 4.5.1 to 4.5;
+   2. Now the Microsoft ClearScript.V8 requires `msvcp140.dll` assembly from the
+      Visual C++ Redistributable for Visual Studio 2015.
 
    =============
    DOCUMENTATION

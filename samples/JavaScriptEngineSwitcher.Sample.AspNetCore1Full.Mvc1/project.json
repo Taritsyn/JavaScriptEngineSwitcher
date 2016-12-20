@@ -29,8 +29,8 @@
 		"JavaScriptEngineSwitcher.Sample.Logic": "2.1.2",
 		"JavaScriptEngineSwitcher.Sample.Resources": "2.0.0",
 		"JavaScriptEngineSwitcher.V8": "2.1.2",
-		"JavaScriptEngineSwitcher.V8.Native.win-x64": "2.1.1",
-		"JavaScriptEngineSwitcher.V8.Native.win-x86": "2.1.1",
+		"JavaScriptEngineSwitcher.V8.Native.win-x64": "2.2.0",
+		"JavaScriptEngineSwitcher.V8.Native.win-x86": "2.2.0",
 		"JavaScriptEngineSwitcher.Vroom": "2.1.2"
 	},
 

@@ -50,8 +50,8 @@
 			"dependencies": {
 				"JavaScriptEngineSwitcher.Jurassic": "2.1.2",
 				"JavaScriptEngineSwitcher.V8": "2.1.2",
-				"JavaScriptEngineSwitcher.V8.Native.win-x64": "2.1.1",
-				"JavaScriptEngineSwitcher.V8.Native.win-x86": "2.1.1"
+				"JavaScriptEngineSwitcher.V8.Native.win-x64": "2.2.0",
+				"JavaScriptEngineSwitcher.V8.Native.win-x86": "2.2.0"
 			},
 			"frameworkAssemblies": {
 				"System.Drawing": "4.0.0.0"
