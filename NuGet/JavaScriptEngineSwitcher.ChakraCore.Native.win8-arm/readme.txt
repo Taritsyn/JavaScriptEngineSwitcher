@@ -15,7 +15,7 @@
    contains the native implementation of ChakraCore version of October 29, 2016 for
    Windows (ARM).
 
-   This package is only compatible with .NET Core and .NET Framework 4.5.1.
+   This package is only compatible with .NET Core and .NET Framework 4.5.
 
    =============
    DOCUMENTATION
