@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## January 16, 2017 - v2.3.0
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.10.3
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.4.0
+
 ## December 20, 2016 - v2.2.0
  * Added support of .NET Core 1.0.3
  * Downgraded .NET Framework version from 4.5.1 to 4.5

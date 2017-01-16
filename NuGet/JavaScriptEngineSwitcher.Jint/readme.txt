@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for JS Engine Switcher: Jint v2.2.0
+                    README file for JS Engine Switcher: Jint v2.3.0
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
