@@ -10,24 +10,23 @@
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.10.2).</description>
-		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version 2.10.2).</summary>
-		<releaseNotes>1. Added support of .NET Core 1.0.3;
-2. Downgraded .NET Framework version from 4.5.1 to 4.5.</releaseNotes>
-		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.10.3).</description>
+		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version 2.10.3).</summary>
+		<releaseNotes>Jint was updated to version 2.10.3.</releaseNotes>
+		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript Jint</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client">
-				<dependency id="Jint" version="2.10.2" />
+				<dependency id="Jint" version="2.10.3" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.2.0" />
 			</group>
 			<group targetFramework=".NETFramework4.5">
-				<dependency id="Jint" version="2.10.2" />
+				<dependency id="Jint" version="2.10.3" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.2.0" />
 			</group>
 			<group targetFramework=".NETStandard1.3">
-				<dependency id="Jint" version="2.10.2" />
+				<dependency id="Jint" version="2.10.3" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.2.0" />
 			</group>
 		</dependencies>

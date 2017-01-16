@@ -5,20 +5,19 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the
-   Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.10.2).
+   Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.10.3).
 
    =============
    RELEASE NOTES
    =============
-   1. Added support of .NET Core 1.0.3;
-   2. Downgraded .NET Framework version from 4.5.1 to 4.5.
+   Jint was updated to version 2.10.3.
 
    =============
    DOCUMENTATION
