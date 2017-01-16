@@ -15,6 +15,8 @@
 			{
 				switch (error)
 				{
+					#region Usage
+
 					case JsErrorCode.InvalidArgument:
 						throw new JsUsageException(error, "Invalid argument.");
 
@@ -45,9 +47,6 @@
 					case JsErrorCode.CannotDisableExecution:
 						throw new JsUsageException(error, "Cannot disable execution.");
 
-					case JsErrorCode.AlreadyDebuggingContext:
-						throw new JsUsageException(error, "Context is already in debug mode.");
-
 					case JsErrorCode.HeapEnumInProgress:
 						throw new JsUsageException(error, "Heap enumeration is in progress.");
 
@@ -63,14 +62,58 @@
 					case JsErrorCode.CannotSerializeDebugScript:
 						throw new JsUsageException(error, "Cannot serialize a debug script.");
 
+					case JsErrorCode.AlreadyDebuggingContext:
+						throw new JsUsageException(error, "Context is already in debug mode.");
+
 					case JsErrorCode.AlreadyProfilingContext:
 						throw new JsUsageException(error, "Already profiling this context.");
 
 					case JsErrorCode.IdleNotEnabled:
 						throw new JsUsageException(error, "Idle is not enabled.");
 
+					case JsErrorCode.CannotSetProjectionEnqueueCallback:
+						throw new JsUsageException(error, "Cannot set projection enqueue callback.");
+
+					case JsErrorCode.CannotStartProjection:
+						throw new JsUsageException(error, "Cannot start projection.");
+
+					case JsErrorCode.InObjectBeforeCollectCallback:
+						throw new JsUsageException(error, "In object before collect callback.");
+
+					case JsErrorCode.ObjectNotInspectable:
+						throw new JsUsageException(error, "Object not inspectable.");
+
+					case JsErrorCode.PropertyNotSymbol:
+						throw new JsUsageException(error, "Property not symbol.");
+
+					case JsErrorCode.PropertyNotString:
+						throw new JsUsageException(error, "Property not string.");
+
+					case JsErrorCode.InvalidContext:
+						throw new JsUsageException(error, "Invalid context.");
+
+					case JsErrorCode.InvalidModuleHostInfoKind:
+						throw new JsUsageException(error, "Invalid module host info kind.");
+
+					case JsErrorCode.ModuleParsed:
+						throw new JsUsageException(error, "Module parsed.");
+
+					case JsErrorCode.ModuleEvaluated:
+						throw new JsUsageException(error, "Module evaluated.");
+
+					#endregion
+
+					#region Engine
+
 					case JsErrorCode.OutOfMemory:
 						throw new JsEngineException(error, "Out of memory.");
+
+					case JsErrorCode.BadFPUState:
+						throw new JsEngineException(error, "Bad the Floating Point Unit state.");
+
+					#endregion
+
+					#region Script
 
 					case JsErrorCode.ScriptException:
 						{
@@ -104,8 +147,17 @@
 					case JsErrorCode.ScriptEvalDisabled:
 						throw new JsScriptException(error, JsValue.Invalid, "Eval of strings is disabled in this runtime.");
 
+					#endregion
+
+					#region Fatal
+
 					case JsErrorCode.Fatal:
-						throw new JsFatalException(error);
+						throw new JsFatalException(error, "Fatal error.");
+
+					case JsErrorCode.WrongRuntime:
+						throw new JsFatalException(error, "Wrong runtime.");
+
+					#endregion
 
 					default:
 						throw new JsFatalException(error);

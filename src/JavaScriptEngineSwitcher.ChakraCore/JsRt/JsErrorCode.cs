@@ -1,4 +1,6 @@
-﻿namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
 	/// <summary>
 	/// The error code returned from a Chakra hosting API
@@ -9,6 +11,8 @@
 		/// Success error code
 		/// </summary>
 		NoError = 0,
+
+		#region Usage
 
 		/// <summary>
 		/// Category of errors that relates to incorrect usage of the API itself
@@ -140,6 +144,30 @@
 		PropertyNotString,
 
 		/// <summary>
+		/// Module evaulation is called in wrong context
+		/// </summary>
+		InvalidContext,
+
+		/// <summary>
+		/// Module evaulation is called in wrong context
+		/// </summary>
+		InvalidModuleHostInfoKind,
+
+		/// <summary>
+		/// Module was parsed already when JsParseModuleSource is called
+		/// </summary>
+		ModuleParsed,
+
+		/// <summary>
+		/// Module was evaluated already when JsModuleEvaluation is called
+		/// </summary>
+		ModuleEvaluated,
+
+		#endregion
+
+		#region Engine
+
+		/// <summary>
 		/// Category of errors that relates to errors occurring within the engine itself
 		/// </summary>
 		CategoryEngine = 0x20000,
@@ -148,6 +176,15 @@
 		/// The Chakra engine has run out of memory
 		/// </summary>
 		OutOfMemory,
+
+		/// <summary>
+		/// The Chakra engine failed to set the Floating Point Unit state
+		/// </summary>
+		BadFPUState,
+
+		#endregion
+
+		#region Script
 
 		/// <summary>
 		/// Category of errors that relates to errors in a script
@@ -175,6 +212,10 @@
 		/// </summary>
 		ScriptEvalDisabled,
 
+		#endregion
+
+		#region Fatal
+
 		/// <summary>
 		/// Category of errors that are fatal and signify failure of the engine
 		/// </summary>
@@ -188,6 +229,47 @@
 		/// <summary>
 		/// A hosting API was called with object created on different javascript runtime
 		/// </summary>
-		WrongRuntime
+		WrongRuntime,
+
+		#endregion
+
+		#region Diagnostic
+
+		/// <summary>
+		/// Category of errors that are related to failures during diagnostic operations
+		/// </summary>
+		CategoryDiagError = 0x50000,
+
+		/// <summary>
+		/// The object for which the debugging API was called was not found
+		/// </summary>
+		DiagAlreadyInDebugMode,
+
+		/// <summary>
+		/// The debugging API can only be called when VM is in debug mode
+		/// </summary>
+		DiagNotInDebugMode,
+
+		/// <summary>
+		/// The debugging API can only be called when VM is at a break
+		/// </summary>
+		DiagNotAtBreak,
+
+		/// <summary>
+		/// Debugging API was called with an invalid handle.
+		/// </summary>
+		DiagInvalidHandle,
+
+		/// <summary>
+		/// The object for which the debugging API was called was not found
+		/// </summary>
+		DiagObjectNotFound,
+
+		/// <summary>
+		/// VM was unable to perfom the request action
+		/// </summary>
+		DiagUnableToPerformAction
+
+		#endregion
 	}
 }

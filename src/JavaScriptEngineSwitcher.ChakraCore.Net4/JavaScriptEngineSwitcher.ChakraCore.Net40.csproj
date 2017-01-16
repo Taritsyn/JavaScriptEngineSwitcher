@@ -127,6 +127,9 @@
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsObjectFinalizeCallback.cs">
       <Link>JsRt\JsObjectFinalizeCallback.cs</Link>
     </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsParseScriptAttributes.cs">
+      <Link>JsRt\JsParseScriptAttributes.cs</Link>
+    </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsPromiseContinuationCallback.cs">
       <Link>JsRt\JsPromiseContinuationCallback.cs</Link>
     </Compile>
@@ -147,6 +150,9 @@
     </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsScriptException.cs">
       <Link>JsRt\JsScriptException.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsSerializedLoadScriptCallback.cs">
+      <Link>JsRt\JsSerializedLoadScriptCallback.cs</Link>
     </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\JsRt\JsSerializedScriptLoadSourceCallback.cs">
       <Link>JsRt\JsSerializedScriptLoadSourceCallback.cs</Link>

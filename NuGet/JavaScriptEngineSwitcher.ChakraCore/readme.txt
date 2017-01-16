@@ -30,11 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of .NET Core 1.0.3;
-   2. Downgraded .NET Framework version from 4.5.1 to 4.5;
-   3. Attempt to prevent occurrence of the access violation exception in the
-      `CallFunction` method;
-   4. Fixed a error “Out of stack space”.
+   ChakraCore was updated to version 1.4.0.
 
    =============
    DOCUMENTATION

@@ -308,13 +308,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 			if (Utils.IsWindows())
 			{
-				int stringLength = value.Length;
-				errorCode = NativeMethods.JsPointerToString(value, new UIntPtr((uint)stringLength), out reference);
+				var stringLength = new UIntPtr((uint)value.Length);
+				errorCode = NativeMethods.JsPointerToString(value, stringLength, out reference);
 			}
 			else
 			{
-				int byteCount = Encoding.GetEncoding(0).GetByteCount(value);
-				errorCode = NativeMethods.JsPointerToStringUtf8(value, new UIntPtr((uint)byteCount), out reference);
+				var byteCount = new UIntPtr((uint)Encoding.GetEncoding(0).GetByteCount(value));
+				errorCode = NativeMethods.JsCreateStringUtf8(value, byteCount, out reference);
 			}
 
 			JsErrorHelpers.ThrowIfError(errorCode);
@@ -568,6 +568,27 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
+		/// Retrieves a <c>int</c> value of a <c>Number</c> value
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// This function retrieves the value of a Number value. It will fail with
+		/// <c>InvalidArgument</c> if the type of the value is not <c>Number</c>.
+		/// </para>
+		/// <para>
+		/// Requires an active script context.
+		/// </para>
+		/// </remarks>
+		/// <returns>The <c>int</c> value</returns>
+		public int ToInt32()
+		{
+			int value;
+			JsErrorHelpers.ThrowIfError(NativeMethods.JsNumberToInt(this, out value));
+
+			return value;
+		}
+
+		/// <summary>
 		/// Retrieves a string pointer of a <c>String</c> value
 		/// </summary>
 		/// <remarks>
@@ -582,13 +603,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <returns>The string</returns>
 		public new string ToString()
 		{
-			IntPtr ptr;
-			JsErrorCode errorCode;
 			string result;
+			JsErrorCode errorCode;
 
 			if (Utils.IsWindows())
 			{
+				IntPtr ptr;
 				UIntPtr stringLength;
+
 				errorCode = NativeMethods.JsStringToPointer(this, out ptr, out stringLength);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
@@ -596,11 +618,20 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 			else
 			{
-				UIntPtr byteCount;
-				errorCode = NativeMethods.JsStringToPointerUtf8Copy(this, out ptr, out byteCount);
+				byte[] buffer = null;
+				UIntPtr bufferSize = UIntPtr.Zero;
+				UIntPtr written;
+
+				errorCode = NativeMethods.JsCopyStringUtf8(this, buffer, bufferSize, out written);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				result = Marshal.PtrToStringAnsi(ptr, (int)byteCount);
+				buffer = new byte[(int)written];
+				bufferSize = new UIntPtr((uint)written);
+
+				errorCode = NativeMethods.JsCopyStringUtf8(this, buffer, bufferSize, out written);
+				JsErrorHelpers.ThrowIfError(errorCode);
+
+				result = Encoding.GetEncoding(0).GetString(buffer);
 			}
 
 			return result;

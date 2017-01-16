@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 using JavaScriptEngineSwitcher.Core.Utilities;
 
@@ -39,13 +40,30 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			get
 			{
 				string name;
-				JsErrorCode errorCode = Utils.IsWindows() ?
-					NativeMethods.JsGetPropertyNameFromId(this, out name)
-					:
-					NativeMethods.JsGetPropertyNameFromIdUtf8Copy(this, out name)
-					;
+				JsErrorCode errorCode;
 
-				JsErrorHelpers.ThrowIfError(errorCode);
+				if (Utils.IsWindows())
+				{
+					errorCode = NativeMethods.JsGetPropertyNameFromId(this, out name);
+					JsErrorHelpers.ThrowIfError(errorCode);
+				}
+				else
+				{
+					byte[] buffer = null;
+					UIntPtr bufferSize = UIntPtr.Zero;
+					UIntPtr length;
+
+					errorCode = NativeMethods.JsCopyPropertyIdUtf8(this, buffer, bufferSize, out length);
+					JsErrorHelpers.ThrowIfError(errorCode);
+
+					buffer = new byte[(int)length];
+					bufferSize = new UIntPtr((uint)length);
+
+					errorCode = NativeMethods.JsCopyPropertyIdUtf8(this, buffer, bufferSize, out length);
+					JsErrorHelpers.ThrowIfError(errorCode);
+
+					name = Encoding.GetEncoding(0).GetString(buffer);
+				}
 
 				return name;
 			}
@@ -79,11 +97,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsPropertyId FromString(string name)
 		{
 			JsPropertyId id;
-			JsErrorCode errorCode = Utils.IsWindows() ?
-				NativeMethods.JsGetPropertyIdFromName(name, out id)
-				:
-				NativeMethods.JsGetPropertyIdFromNameUtf8(name, out id)
-				;
+			JsErrorCode errorCode;
+
+			if (Utils.IsWindows())
+			{
+				errorCode = NativeMethods.JsGetPropertyIdFromName(name, out id);
+			}
+			else
+			{
+				var byteCount = new UIntPtr((uint)Encoding.GetEncoding(0).GetByteCount(name));
+				errorCode = NativeMethods.JsCreatePropertyIdUtf8(name, byteCount, out id);
+			}
 
 			JsErrorHelpers.ThrowIfError(errorCode);
 

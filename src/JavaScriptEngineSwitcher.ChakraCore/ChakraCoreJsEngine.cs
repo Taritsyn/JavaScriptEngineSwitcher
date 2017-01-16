@@ -30,7 +30,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "Oct 29, 2016";
+		private const string EngineVersion = "1.4.0";
 
 		/// <summary>
 		/// Instance of JS runtime
@@ -887,14 +887,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				if (errorValue.HasProperty(linePropertyId))
 				{
 					JsValue linePropertyValue = errorValue.GetProperty(linePropertyId);
-					lineNumber = (int)linePropertyValue.ConvertToNumber().ToDouble() + 1;
+					lineNumber = linePropertyValue.ConvertToNumber().ToInt32() + 1;
 				}
 
 				JsPropertyId columnPropertyId = JsPropertyId.FromString("column");
 				if (errorValue.HasProperty(columnPropertyId))
 				{
 					JsValue columnPropertyValue = errorValue.GetProperty(columnPropertyId);
-					columnNumber = (int)columnPropertyValue.ConvertToNumber().ToDouble() + 1;
+					columnNumber = columnPropertyValue.ConvertToNumber().ToInt32() + 1;
 				}
 
 				JsPropertyId sourcePropertyId = JsPropertyId.FromString("source");

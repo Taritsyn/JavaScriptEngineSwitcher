@@ -8,11 +8,11 @@
 		/// <summary>
 		/// String property
 		/// </summary>
-		JavaScriptPropertyIdTypeString,
+		String,
 
 		/// <summary>
 		/// Symbol property
 		/// </summary>
-		JavaScriptPropertyIdTypeSymbol
+		Symbol
 	}
 }

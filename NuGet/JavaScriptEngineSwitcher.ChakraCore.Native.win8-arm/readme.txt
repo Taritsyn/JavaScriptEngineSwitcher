@@ -1,21 +1,25 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: ChakraCore for Windows ARM v2.1.0
+         README file for JS Engine Switcher: ChakraCore for Windows ARM v2.3.0
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.ChakraCore package and
-   contains the native implementation of ChakraCore version of October 29, 2016 for
-   Windows (ARM).
+   contains the native implementation of ChakraCore version 1.4.0 for Windows (ARM).
 
    This package is only compatible with .NET Core and .NET Framework 4.5.
+
+   =============
+   RELEASE NOTES
+   =============
+   ChakraCore was updated to version 1.4.0.
 
    =============
    DOCUMENTATION
