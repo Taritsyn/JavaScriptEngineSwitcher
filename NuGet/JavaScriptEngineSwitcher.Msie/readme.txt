@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -19,9 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of .NET Core 1.0.3;
-   2. Downgraded .NET Framework version from 4.5.1 to 4.5;
-   3. Added support of MSIE JavaScript Engine version 2.1.0.
+   Added support of MSIE JavaScript Engine version 2.1.1.
 
    =============
    DOCUMENTATION
