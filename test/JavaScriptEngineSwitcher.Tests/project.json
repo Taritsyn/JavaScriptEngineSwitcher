@@ -1,12 +1,12 @@
 ﻿{
-	"version": "2.3.0",
+	"version": "2.3.1",
 
 	"dependencies": {
 		"dotnet-test-xunit": "2.2.0-preview2-build1029",
 		"Microsoft.Extensions.PlatformAbstractions": "1.0.0",
 		"Microsoft.NETCore.Platforms": "1.0.2",
 		"xunit": "2.2.0-beta4-build3444",
-		"JavaScriptEngineSwitcher.ChakraCore": "2.3.0",
+		"JavaScriptEngineSwitcher.ChakraCore": "2.3.1",
 		"JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64": "2.3.1",
 		"JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64": "2.3.1",
 		"JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm": "2.3.1",
@@ -14,7 +14,7 @@
 		"JavaScriptEngineSwitcher.ChakraCore.Native.win-x86": "2.3.1",
 		"JavaScriptEngineSwitcher.Core": "2.2.0",
 		"JavaScriptEngineSwitcher.Jint": "2.3.0",
-		"JavaScriptEngineSwitcher.Msie": "2.2.0",
+		"JavaScriptEngineSwitcher.Msie": "2.3.1",
 		"JavaScriptEngineSwitcher.Vroom": "2.2.0"
 	},
 
@@ -48,7 +48,7 @@
 		},
 		"net451": {
 			"dependencies": {
-				"JavaScriptEngineSwitcher.Jurassic": "2.2.0",
+				"JavaScriptEngineSwitcher.Jurassic": "2.3.1",
 				"JavaScriptEngineSwitcher.V8": "2.2.0",
 				"JavaScriptEngineSwitcher.V8.Native.win-x64": "2.2.0",
 				"JavaScriptEngineSwitcher.V8.Native.win-x86": "2.2.0"
