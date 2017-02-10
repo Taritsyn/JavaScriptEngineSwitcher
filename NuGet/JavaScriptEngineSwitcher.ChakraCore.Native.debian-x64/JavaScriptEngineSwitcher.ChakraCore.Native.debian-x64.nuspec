@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64</id>
-		<version>2.3.0</version>
+		<version>2.3.1</version>
 		<title>JS Engine Switcher: ChakraCore for Debian (x64)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -10,11 +10,11 @@
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.4.0 for Debian-based Linux (x64) (Debian, Ubuntu and Linux Mint).
+		<description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.4.1 for Debian-based Linux (x64) (Debian, Ubuntu and Linux Mint).
 
 This package is only compatible with .NET Core.</description>
-		<summary>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.4.0 for Debian-based Linux (x64) (Debian, Ubuntu and Linux Mint).</summary>
-		<releaseNotes>ChakraCore was updated to version 1.4.0.</releaseNotes>
+		<summary>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.4.1 for Debian-based Linux (x64) (Debian, Ubuntu and Linux Mint).</summary>
+		<releaseNotes>ChakraCore was updated to version 1.4.1.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore Debian Ubuntu LinuxMint x64</tags>
