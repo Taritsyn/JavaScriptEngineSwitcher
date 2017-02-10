@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -13,13 +13,12 @@
    ===========
    JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper
    for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic)
-   version of December 8, 2016).
+   version of February 8, 2017).
 
    =============
    RELEASE NOTES
    =============
-   1. Downgraded .NET Framework version from 4.5.1 to 4.5;
-   2. Jurassic was updated to version of December 8, 2016.
+   Jurassic was updated to version of February 8, 2017.
 
    =============
    DOCUMENTATION
