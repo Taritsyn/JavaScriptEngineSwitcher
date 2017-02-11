@@ -1117,14 +1117,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			if (_disposedFlag.Set())
 			{
-				if (_dispatcher != null)
-				{
-					_dispatcher.Invoke(() => _jsRuntime.Dispose());
-					_dispatcher.Dispose();
-				}
-
 				if (disposing)
 				{
+					if (_dispatcher != null)
+					{
+						_dispatcher.Invoke(() => _jsRuntime.Dispose());
+						_dispatcher.Dispose();
+					}
+
 					if (_externalObjects != null)
 					{
 						_externalObjects.Clear();
