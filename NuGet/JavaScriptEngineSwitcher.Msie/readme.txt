@@ -19,7 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 2.1.1.
+   Added support of MSIE JavaScript Engine version 2.1.2.
 
    =============
    DOCUMENTATION
