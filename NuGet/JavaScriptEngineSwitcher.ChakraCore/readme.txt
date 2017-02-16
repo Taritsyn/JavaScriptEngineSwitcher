@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error causing a crash during finalization.
+   Now script error contains a full stack trace.
 
    =============
    DOCUMENTATION

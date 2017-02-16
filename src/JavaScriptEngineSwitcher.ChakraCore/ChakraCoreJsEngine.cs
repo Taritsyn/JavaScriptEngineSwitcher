@@ -876,11 +876,20 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				category = "Script error";
 				JsValue errorValue = jsScriptException.Error;
 
-				JsValue messagePropertyValue = errorValue.GetProperty("message");
-				string scriptMessage = messagePropertyValue.ConvertToString().ToString();
-				if (!string.IsNullOrWhiteSpace(scriptMessage))
+				JsPropertyId stackPropertyId = JsPropertyId.FromString("stack");
+				if (errorValue.HasProperty(stackPropertyId))
 				{
-					message = string.Format("{0}: {1}", message.TrimEnd('.'), scriptMessage);
+					JsValue stackPropertyValue = errorValue.GetProperty(stackPropertyId);
+					message = stackPropertyValue.ConvertToString().ToString();
+				}
+				else
+				{
+					JsValue messagePropertyValue = errorValue.GetProperty("message");
+					string scriptMessage = messagePropertyValue.ConvertToString().ToString();
+					if (!string.IsNullOrWhiteSpace(scriptMessage))
+					{
+						message = string.Format("{0}: {1}", message.TrimEnd('.'), scriptMessage);
+					}
 				}
 
 				JsPropertyId linePropertyId = JsPropertyId.FromString("line");
