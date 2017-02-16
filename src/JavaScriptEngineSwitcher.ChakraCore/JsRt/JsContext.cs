@@ -208,7 +208,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// Requires an active script context.
 		/// </remarks>
 		/// <param name="script">The script to run</param>
-		/// <param name="sourceContext"> The cookie identifying the script that can be used
+		/// <param name="sourceContext">The cookie identifying the script that can be used
 		/// by script contexts that have debugging enabled</param>
 		/// <param name="sourceName">The location the script came from</param>
 		/// <returns>The result of the script, if any</returns>

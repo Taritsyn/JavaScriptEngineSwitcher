@@ -44,16 +44,40 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <summary>
 		/// Evaluates an expression
 		/// </summary>
+		/// <param name="expression">JS-expression</param>
+		/// <param name="documentName">Document name</param>
+		/// <returns>Result of the expression</returns>
+		object Evaluate(string expression, string documentName);
+
+		/// <summary>
+		/// Evaluates an expression
+		/// </summary>
 		/// <typeparam name="T">Type of result</typeparam>
 		/// <param name="expression">JS-expression</param>
 		/// <returns>Result of the expression</returns>
 		T Evaluate<T>(string expression);
 
 		/// <summary>
+		/// Evaluates an expression
+		/// </summary>
+		/// <typeparam name="T">Type of result</typeparam>
+		/// <param name="expression">JS-expression</param>
+		/// <param name="documentName">Document name</param>
+		/// <returns>Result of the expression</returns>
+		T Evaluate<T>(string expression, string documentName);
+
+		/// <summary>
 		/// Executes a code
 		/// </summary>
-		/// <param name="code">Code</param>
+		/// <param name="code">JS-code</param>
 		void Execute(string code);
+
+		/// <summary>
+		/// Executes a code
+		/// </summary>
+		/// <param name="code">JS-code</param>
+		/// <param name="documentName">Document name</param>
+		void Execute(string code, string documentName);
 
 		/// <summary>
 		/// Executes a code from JS-file

@@ -187,9 +187,35 @@ namespace JavaScriptEngineSwitcher.Vroom
 			return result;
 		}
 
+		protected override object InnerEvaluate(string expression, string documentName)
+		{
+			object result;
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					result = _jsContext.Execute(expression, documentName);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJsExceptionToJsRuntimeException(e);
+				}
+			}
+
+			return result;
+		}
+
 		protected override T InnerEvaluate<T>(string expression)
 		{
 			object result = InnerEvaluate(expression);
+
+			return TypeConverter.ConvertToType<T>(result);
+		}
+
+		protected override T InnerEvaluate<T>(string expression, string documentName)
+		{
+			object result = InnerEvaluate(expression, documentName);
 
 			return TypeConverter.ConvertToType<T>(result);
 		}
@@ -201,6 +227,21 @@ namespace JavaScriptEngineSwitcher.Vroom
 				try
 				{
 					_jsContext.Execute(code);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJsExceptionToJsRuntimeException(e);
+				}
+			}
+		}
+
+		protected override void InnerExecute(string code, string documentName)
+		{
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					_jsContext.Execute(code, documentName);
 				}
 				catch (OriginalJsException e)
 				{

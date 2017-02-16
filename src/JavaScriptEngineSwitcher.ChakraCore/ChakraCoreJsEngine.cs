@@ -43,6 +43,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private JsContext _jsContext;
 
 		/// <summary>
+		/// JS source context
+		/// </summary>
+		JsSourceContext _jsSourceContext = JsSourceContext.FromIntPtr(IntPtr.Zero);
+
+		/// <summary>
 		/// Set of external objects
 		/// </summary>
 		private readonly HashSet<object> _externalObjects = new HashSet<object>();
@@ -944,9 +949,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override object InnerEvaluate(string expression)
 		{
+			return InnerEvaluate(expression, string.Empty);
+		}
+
+		protected override object InnerEvaluate(string expression, string documentName)
+		{
 			object result = InvokeScript(() =>
 			{
-				JsValue resultValue = JsContext.RunScript(expression);
+				JsValue resultValue = JsContext.RunScript(expression, _jsSourceContext++, documentName);
 
 				return MapToHostType(resultValue);
 			});
@@ -956,14 +966,24 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override T InnerEvaluate<T>(string expression)
 		{
-			object result = InnerEvaluate(expression);
+			return InnerEvaluate<T>(expression, string.Empty);
+		}
+
+		protected override T InnerEvaluate<T>(string expression, string documentName)
+		{
+			object result = InnerEvaluate(expression, documentName);
 
 			return TypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerExecute(string code)
 		{
-			InvokeScript(() => JsContext.RunScript(code));
+			InnerExecute(code, string.Empty);
+		}
+
+		protected override void InnerExecute(string code, string documentName)
+		{
+			InvokeScript(() => JsContext.RunScript(code, _jsSourceContext++, documentName));
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)

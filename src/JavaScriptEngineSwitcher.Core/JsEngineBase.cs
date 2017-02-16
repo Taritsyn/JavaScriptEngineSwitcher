@@ -29,9 +29,24 @@ namespace JavaScriptEngineSwitcher.Core
 
 		protected abstract object InnerEvaluate(string expression);
 
+		protected virtual object InnerEvaluate(string expression, string documentName)
+		{
+			return InnerEvaluate(expression);
+		}
+
 		protected abstract T InnerEvaluate<T>(string expression);
 
+		protected virtual T InnerEvaluate<T>(string expression, string documentName)
+		{
+			return InnerEvaluate<T>(expression);
+		}
+
 		protected abstract void InnerExecute(string code);
+
+		protected virtual void InnerExecute(string code, string documentName)
+		{
+			InnerExecute(code);
+		}
 
 		protected abstract object InnerCallFunction(string functionName, params object[] args);
 
@@ -96,6 +111,19 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerEvaluate(expression);
 		}
 
+		public virtual object Evaluate(string expression, string documentName)
+		{
+			VerifyNotDisposed();
+
+			if (string.IsNullOrWhiteSpace(expression))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, "expression"), "expression");
+			}
+
+			return InnerEvaluate(expression, documentName);
+		}
+
 		public virtual T Evaluate<T>(string expression)
 		{
 			VerifyNotDisposed();
@@ -116,6 +144,26 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerEvaluate<T>(expression);
 		}
 
+		public virtual T Evaluate<T>(string expression, string documentName)
+		{
+			VerifyNotDisposed();
+
+			if (string.IsNullOrWhiteSpace(expression))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, "expression"), "expression");
+			}
+
+			Type returnValueType = typeof(T);
+			if (!ValidationHelpers.IsSupportedType(returnValueType))
+			{
+				throw new NotSupportedTypeException(
+					string.Format(Strings.Runtime_ReturnValueTypeNotSupported, returnValueType.FullName));
+			}
+
+			return InnerEvaluate<T>(expression, documentName);
+		}
+
 		public virtual void Execute(string code)
 		{
 			VerifyNotDisposed();
@@ -129,6 +177,19 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerExecute(code);
 		}
 
+		public virtual void Execute(string code, string documentName)
+		{
+			VerifyNotDisposed();
+
+			if (string.IsNullOrWhiteSpace(code))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, "code"), "code");
+			}
+
+			InnerExecute(code, documentName);
+		}
+
 		public virtual void ExecuteFile(string path, Encoding encoding = null)
 		{
 			VerifyNotDisposed();
@@ -140,7 +201,7 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 
 			string code = Utils.GetFileTextContent(path, encoding);
-			Execute(code);
+			Execute(code, path);
 		}
 
 		public virtual void ExecuteResource(string resourceName, Type type)
@@ -166,7 +227,7 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 
 			string code = Utils.GetResourceAsString(resourceName, type);
-			Execute(code);
+			Execute(code, resourceName);
 		}
 
 		public virtual void ExecuteResource(string resourceName, Assembly assembly)
@@ -192,7 +253,7 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 
 			string code = Utils.GetResourceAsString(resourceName, assembly);
-			Execute(code);
+			Execute(code, resourceName);
 		}
 
 		public virtual object CallFunction(string functionName, params object[] args)
