@@ -876,7 +876,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				category = "Script error";
 				JsValue errorValue = jsScriptException.Error;
 
-				JsValue messagePropertyValue = errorValue.GetProperty("message");
+				JsValue messagePropertyValue = errorValue.GetProperty("stack");
 				string scriptMessage = messagePropertyValue.ConvertToString().ToString();
 				if (!string.IsNullOrWhiteSpace(scriptMessage))
 				{
