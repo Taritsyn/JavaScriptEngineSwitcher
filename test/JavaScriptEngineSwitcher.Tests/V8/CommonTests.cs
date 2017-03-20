@@ -1,4 +1,5 @@
-﻿namespace JavaScriptEngineSwitcher.Tests.V8
+﻿#if !NETCOREAPP1_0
+namespace JavaScriptEngineSwitcher.Tests.V8
 {
 	public class CommonTests : CommonTestsBase
 	{
@@ -8,3 +9,4 @@
 		}
 	}
 }
+#endif

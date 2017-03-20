@@ -16,11 +16,6 @@
    version of February 8, 2017).
 
    =============
-   RELEASE NOTES
-   =============
-   Jurassic was updated to version of February 8, 2017.
-
-   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -

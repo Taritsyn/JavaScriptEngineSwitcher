@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1")]
 [assembly: AssemblyDescription("")]
@@ -9,9 +8,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © 2013-2017 Andrey Taritsyn")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
-[assembly: ComVisible(false)]
-[assembly: Guid("061add3e-535f-4d6d-8b6c-22a01bddc485")]
 
 [assembly: AssemblyVersion("2.3.2.0")]
 [assembly: AssemblyFileVersion("2.3.2.0")]

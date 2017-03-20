@@ -17,7 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version 2.10.3.
+   Added support of .NET Core 1.0.4.
 
    =============
    DOCUMENTATION

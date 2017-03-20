@@ -1,4 +1,5 @@
-﻿namespace JavaScriptEngineSwitcher.Tests.Jurassic
+﻿#if !NETCOREAPP1_0
+namespace JavaScriptEngineSwitcher.Tests.Jurassic
 {
 	public class InteropTests : InteropTestsBase
 	{
@@ -25,3 +26,4 @@
 		#endregion
 	}
 }
+#endif

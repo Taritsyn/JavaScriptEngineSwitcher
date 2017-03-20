@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿#if !NETCOREAPP1_0
+using Xunit;
 
 using JavaScriptEngineSwitcher.Core;
 
@@ -86,3 +87,4 @@ factorial(0);";
 		#endregion
 	}
 }
+#endif

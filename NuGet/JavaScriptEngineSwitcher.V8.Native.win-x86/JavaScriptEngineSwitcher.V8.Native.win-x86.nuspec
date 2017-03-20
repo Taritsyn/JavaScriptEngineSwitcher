@@ -14,8 +14,7 @@
 
 For correct working of the Microsoft ClearScript.V8 require `msvcp140.dll` assembly from the Visual C++ Redistributable for Visual Studio 2015.</description>
 		<summary>This package complements the JavaScriptEngineSwitcher.V8 package and contains the native implementation of V8 version 5.4.500.40 for Windows (x86).</summary>
-		<releaseNotes>Now the Microsoft ClearScript.V8 requires `msvcp140.dll` assembly from the Visual C++ Redistributable for Visual Studio 2015.</releaseNotes>
-		<copyright>Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript Windows x86</tags>
 	</metadata>

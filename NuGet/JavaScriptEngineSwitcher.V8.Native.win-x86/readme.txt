@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -16,12 +16,6 @@
 
    For correct working of the Microsoft ClearScript.V8 require `msvcp140.dll`
    assembly from the Visual C++ Redistributable for Visual Studio 2015.
-
-   =============
-   RELEASE NOTES
-   =============
-   Now the Microsoft ClearScript.V8 requires `msvcp140.dll` assembly from the
-   Visual C++ Redistributable for Visual Studio 2015.
 
    ====================
    POST-INSTALL ACTIONS

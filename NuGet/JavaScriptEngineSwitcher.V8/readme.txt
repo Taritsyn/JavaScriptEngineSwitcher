@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -20,13 +20,6 @@
 
     * JavaScriptEngineSwitcher.V8.Native.win-x86
     * JavaScriptEngineSwitcher.V8.Native.win-x64
-
-   =============
-   RELEASE NOTES
-   =============
-   1. Downgraded .NET Framework version from 4.5.1 to 4.5;
-   2. Now the Microsoft ClearScript.V8 requires `msvcp140.dll` assembly from the
-      Visual C++ Redistributable for Visual Studio 2015.
 
    =============
    DOCUMENTATION

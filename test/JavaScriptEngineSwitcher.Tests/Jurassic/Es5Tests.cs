@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿#if !NETCOREAPP1_0
+using Xunit;
 
 namespace JavaScriptEngineSwitcher.Tests.Jurassic
 {
@@ -57,3 +58,4 @@ myObj.foo = 1;
 		#endregion
 	}
 }
+#endif

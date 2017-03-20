@@ -20,7 +20,8 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</description>
 		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore).</summary>
-		<releaseNotes>Now script error contains a full stack trace.</releaseNotes>
+		<releaseNotes>1. Added support of .NET Core 1.0.4;
+2. Now script error contains a full stack trace.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore</tags>
@@ -32,11 +33,9 @@ This package does not contain the native implementations of ChakraCore. Therefor
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.2.0" />
 			</group>
 			<group targetFramework=".NETStandard1.3">
-				<dependency id="System.Diagnostics.Tools" version="4.0.1" />
-				<dependency id="System.Reflection.Extensions" version="4.0.1" />
+				<dependency id="NETStandard.Library" version="1.6.0" />
 				<dependency id="System.Reflection.TypeExtensions" version="4.1.0" />
 				<dependency id="System.Threading.Thread" version="4.0.0" />
-				<dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.0.0" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="2.2.0" />
 			</group>
 		</dependencies>

@@ -19,7 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 2.1.2.
+   Added support of .NET Core 1.0.4.
 
    =============
    DOCUMENTATION

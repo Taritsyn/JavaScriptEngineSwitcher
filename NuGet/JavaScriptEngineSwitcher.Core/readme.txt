@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2016 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -19,10 +19,10 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of .NET Core 1.0.3;
-   2. Downgraded .NET Framework version from 4.5.1 to 4.5;
-   3. Now when you call the overloaded version of the `ExecuteResource` method,
-      that takes the type, need to pass the resource name without the namespace.
+   1. Added support of .NET Core 1.0.4;
+   2. In `IJsEngine` interface was added overloaded versions of the `Evaluate`,
+      `Evaluate<T>` and `Execute` methods, which take the document name as second
+      parameter.
 
    =============
    DOCUMENTATION

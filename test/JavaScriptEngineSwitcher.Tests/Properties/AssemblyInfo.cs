@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
+#if !NETCOREAPP1_0
 using System.Runtime.InteropServices;
+#endif
 
 [assembly: AssemblyTitle("JavaScriptEngineSwitcher.Tests")]
 [assembly: AssemblyDescription("")]
@@ -10,8 +12,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
+#if !NETCOREAPP1_0
 [assembly: ComVisible(false)]
 [assembly: Guid("4cfa9f30-6718-4b7e-8329-7602278b8e31")]
+#endif
 
 [assembly: AssemblyVersion("2.3.2.0")]
 [assembly: AssemblyFileVersion("2.3.2.0")]
