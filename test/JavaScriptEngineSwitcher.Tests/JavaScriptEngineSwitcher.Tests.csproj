@@ -40,14 +40,14 @@
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
 		<Reference Include="System.Drawing" />
-		
+
 		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="2.2.0" />
 		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x86" Version="2.2.0" />
-		
+
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj" />
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\cube.js;Resources\power.js" />
 	</ItemGroup>

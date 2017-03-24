@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<VersionPrefix>2.3.2</VersionPrefix>
 		<TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
-		<OutputType>Library</OutputType>
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
+		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<AssemblyOriginatorKeyFile>../../tools/Key.snk</AssemblyOriginatorKeyFile>
 		<SignAssembly>true</SignAssembly>

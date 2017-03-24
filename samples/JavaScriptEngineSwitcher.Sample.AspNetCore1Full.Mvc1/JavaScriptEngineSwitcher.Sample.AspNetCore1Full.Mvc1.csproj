@@ -4,6 +4,7 @@
 		<VersionPrefix>2.3.2</VersionPrefix>
 		<TargetFramework>net451</TargetFramework>
 		<OutputType>Exe</OutputType>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<PreserveCompilationContext>true</PreserveCompilationContext>
 
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>

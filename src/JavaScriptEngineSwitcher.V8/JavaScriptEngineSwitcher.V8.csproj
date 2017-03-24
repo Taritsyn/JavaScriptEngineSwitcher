@@ -25,15 +25,9 @@
 		<Reference Include="ClearScript">
 			<HintPath>..\..\lib\ClearScript\ClearScript.dll</HintPath>
 		</Reference>
+		<Reference Include="Microsoft.CSharp" />
 
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-		<Reference Include="Microsoft.CSharp" />
 	</ItemGroup>
 
 	<Target Name="PrecompileScript" BeforeTargets="BeforeBuild">

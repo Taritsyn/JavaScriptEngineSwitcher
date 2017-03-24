@@ -5,6 +5,7 @@
 		<TargetFramework>netcoreapp1.0</TargetFramework>
 		<RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
 		<OutputType>Exe</OutputType>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<PreserveCompilationContext>true</PreserveCompilationContext>
 
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
