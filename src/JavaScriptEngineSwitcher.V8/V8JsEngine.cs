@@ -264,7 +264,7 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				try
 				{
-					result = _jsEngine.Evaluate(documentName, expression);
+					result = _jsEngine.Evaluate(documentName, false, expression);
 				}
 				catch (OriginalJsException e)
 				{
@@ -300,7 +300,7 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				try
 				{
-					_jsEngine.Execute(documentName, code);
+					_jsEngine.Execute(documentName, false, code);
 				}
 				catch (OriginalJsException e)
 				{

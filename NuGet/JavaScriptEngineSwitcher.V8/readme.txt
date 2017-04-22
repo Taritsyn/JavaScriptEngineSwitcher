@@ -22,6 +22,12 @@
     * JavaScriptEngineSwitcher.V8.Native.win-x64
 
    =============
+   RELEASE NOTES
+   =============
+   Now the `Evaluate` and `Execute` methods of `V8ScriptEngine` class are called
+   with the `discard` parameter equal to `false`.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -
