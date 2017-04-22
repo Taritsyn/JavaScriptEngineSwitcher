@@ -45,7 +45,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// JS source context
 		/// </summary>
-		JsSourceContext _jsSourceContext = JsSourceContext.FromIntPtr(IntPtr.Zero);
+		private JsSourceContext _jsSourceContext = JsSourceContext.FromIntPtr(IntPtr.Zero);
 
 		/// <summary>
 		/// Set of external objects

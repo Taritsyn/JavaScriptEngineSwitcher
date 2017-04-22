@@ -151,11 +151,16 @@ namespace JavaScriptEngineSwitcher.Msie
 
 		protected override object InnerEvaluate(string expression)
 		{
+			return InnerEvaluate(expression, null);
+		}
+
+		protected override object InnerEvaluate(string expression, string documentName)
+		{
 			object result;
 
 			try
 			{
-				result = _jsEngine.Evaluate(expression);
+				result = _jsEngine.Evaluate(expression, documentName);
 			}
 			catch (OriginalJsRuntimeException e)
 			{
@@ -169,16 +174,26 @@ namespace JavaScriptEngineSwitcher.Msie
 
 		protected override T InnerEvaluate<T>(string expression)
 		{
-			object result = InnerEvaluate(expression);
+			return InnerEvaluate<T>(expression, null);
+		}
+
+		protected override T InnerEvaluate<T>(string expression, string documentName)
+		{
+			object result = InnerEvaluate(expression, documentName);
 
 			return OriginalTypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerExecute(string code)
 		{
+			InnerExecute(code, null);
+		}
+
+		protected override void InnerExecute(string code, string documentName)
+		{
 			try
 			{
-				_jsEngine.Execute(code);
+				_jsEngine.Execute(code, documentName);
 			}
 			catch (OriginalJsRuntimeException e)
 			{
