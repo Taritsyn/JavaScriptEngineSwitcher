@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 using IOriginalCallable = Jint.Native.ICallable;
 using OriginalJsEngine = Jint.Engine;
@@ -6,6 +7,7 @@ using OriginalJsException = Jint.Runtime.JavaScriptException;
 using OriginalJsValue = Jint.Native.JsValue;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
 using OriginalParserException = Jint.Parser.ParserException;
+using OriginalParserOptions = Jint.Parser.ParserOptions;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
 using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
@@ -137,18 +139,23 @@ namespace JavaScriptEngineSwitcher.Jint
 		private JsRuntimeException ConvertParserExceptionToJsRuntimeException(
 			OriginalParserException jsParserException)
 		{
-			string message = jsParserException.Description;
-			if (string.IsNullOrWhiteSpace(message))
-			{
-				message = jsParserException.Message;
-			}
+			const string category = "ParserError";
+			string description = jsParserException.Description;
+			int lineNumber = jsParserException.LineNumber;
+			int columnNumber = jsParserException.Column;
+			string message = !string.IsNullOrWhiteSpace(description) ?
+				GenerateErorrMessageWithStackTrace(category, description, jsParserException.Source,
+					lineNumber, columnNumber)
+				:
+				jsParserException.Message
+				;
 
 			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
 				jsParserException)
 			{
-				Category = "ParserError",
-				LineNumber = jsParserException.LineNumber,
-				ColumnNumber = jsParserException.Column
+				Category = category,
+				LineNumber = lineNumber,
+				ColumnNumber = columnNumber
 			};
 
 			return jsRuntimeException;
@@ -158,6 +165,9 @@ namespace JavaScriptEngineSwitcher.Jint
 			OriginalJsException jsException)
 		{
 			string category = string.Empty;
+			int lineNumber = jsException.LineNumber;
+			int columnNumber = jsException.Column;
+			string message = jsException.Message;
 			OriginalJsValue errorValue = jsException.Error;
 
 			if (errorValue.IsObject())
@@ -169,17 +179,49 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					category = categoryPropertyValue.AsString();
 				}
+
+				message = GenerateErorrMessageWithStackTrace(category, message,
+					jsException.Location.Source, lineNumber, columnNumber);
 			}
 
-			var jsRuntimeException = new JsRuntimeException(jsException.Message, EngineName, EngineVersion,
+			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
 				jsException)
 			{
 				Category = category,
-				LineNumber = jsException.LineNumber,
-				ColumnNumber = jsException.Column
+				LineNumber = lineNumber,
+				ColumnNumber = columnNumber
 			};
 
 			return jsRuntimeException;
+		}
+
+		private static string GenerateErorrMessageWithStackTrace(string category, string message,
+			string documentName, int lineNumber, int columnNumber)
+		{
+			var messageBuilder = new StringBuilder();
+			if (!string.IsNullOrWhiteSpace(category))
+			{
+				messageBuilder.AppendFormat("{0}: ", category);
+			}
+			messageBuilder.Append(message);
+			if (!string.IsNullOrWhiteSpace(documentName))
+			{
+				messageBuilder.AppendLine();
+				messageBuilder.AppendFormat("    at {0}", documentName);
+				if (lineNumber > 0)
+				{
+					messageBuilder.AppendFormat(":{0}", lineNumber);
+					if (columnNumber > 0)
+					{
+						messageBuilder.AppendFormat(":{0}", columnNumber);
+					}
+				}
+			}
+
+			string errorMessage = messageBuilder.ToString();
+			messageBuilder.Clear();
+
+			return errorMessage;
 		}
 
 		private JsRuntimeException ConvertRecursionDepthOverflowExceptionToJsRuntimeException(
@@ -225,6 +267,11 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override object InnerEvaluate(string expression)
 		{
+			return InnerEvaluate(expression, null);
+		}
+
+		protected override object InnerEvaluate(string expression, string documentName)
+		{
 			object result;
 
 			lock (_executionSynchronizer)
@@ -233,7 +280,11 @@ namespace JavaScriptEngineSwitcher.Jint
 
 				try
 				{
-					resultValue = _jsEngine.Execute(expression).GetCompletionValue();
+					var parserOptions = new OriginalParserOptions
+					{
+						Source = documentName
+					};
+					resultValue = _jsEngine.Execute(expression, parserOptions).GetCompletionValue();
 				}
 				catch (OriginalParserException e)
 				{
@@ -264,18 +315,32 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override T InnerEvaluate<T>(string expression)
 		{
-			object result = InnerEvaluate(expression);
+			return InnerEvaluate<T>(expression, null);
+		}
+
+		protected override T InnerEvaluate<T>(string expression, string documentName)
+		{
+			object result = InnerEvaluate(expression, documentName);
 
 			return TypeConverter.ConvertToType<T>(result);
 		}
 
 		protected override void InnerExecute(string code)
 		{
+			InnerExecute(code, null);
+		}
+
+		protected override void InnerExecute(string code, string documentName)
+		{
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					_jsEngine.Execute(code);
+					var parserOptions = new OriginalParserOptions
+					{
+						Source = documentName
+					};
+					_jsEngine.Execute(code, parserOptions);
 				}
 				catch (OriginalParserException e)
 				{
