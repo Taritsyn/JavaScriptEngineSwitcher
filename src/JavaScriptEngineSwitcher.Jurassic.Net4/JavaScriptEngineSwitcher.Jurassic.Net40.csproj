@@ -71,6 +71,9 @@
     <Compile Include="..\JavaScriptEngineSwitcher.Jurassic\Properties\AssemblyInfo.cs">
       <Link>AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Jurassic\ResourceScriptSource.cs">
+      <Link>ResourceScriptSource.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

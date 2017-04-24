@@ -226,7 +226,11 @@ namespace JavaScriptEngineSwitcher.Core
 					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
 			}
 
-			string code = Utils.GetResourceAsString(resourceName, type);
+			Assembly assembly = type.GetTypeInfo().Assembly;
+			string nameSpace = type.Namespace;
+			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
+
+			string code = Utils.GetResourceAsString(resourceFullName, assembly);
 			Execute(code, resourceName);
 		}
 

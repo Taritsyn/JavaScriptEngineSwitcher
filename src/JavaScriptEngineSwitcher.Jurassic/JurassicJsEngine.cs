@@ -1,16 +1,21 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
 using OriginalConcatenatedString = Jurassic.ConcatenatedString;
+using OriginalErrorInstance = Jurassic.Library.ErrorInstance;
+using OriginalFileScriptSource = Jurassic.FileScriptSource;
 using OriginalJsEngine = Jurassic.ScriptEngine;
 using OriginalJsException = Jurassic.JavaScriptException;
 using OriginalNull = Jurassic.Null;
+using OriginalStringScriptSource = Jurassic.StringScriptSource;
 using OriginalTypeConverter = Jurassic.TypeConverter;
 using OriginalUndefined = Jurassic.Undefined;
 
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Utilities;
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 
 namespace JavaScriptEngineSwitcher.Jurassic
@@ -147,7 +152,14 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		private JsRuntimeException ConvertJavascriptExceptionToJsRuntimeException(
 			OriginalJsException jsException)
 		{
-			var jsRuntimeException = new JsRuntimeException(jsException.Message, EngineName, EngineVersion,
+			var jsError = jsException.ErrorObject as OriginalErrorInstance;
+			string message = jsException.Message;
+			if (jsError != null)
+			{
+				message = !string.IsNullOrEmpty(jsError.Stack) ? jsError.Stack : jsError.Message;
+			}
+
+			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
 				jsException)
 			{
 				Category = jsException.Name,
@@ -163,13 +175,19 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override object InnerEvaluate(string expression)
 		{
+			return InnerEvaluate(expression, null);
+		}
+
+		protected override object InnerEvaluate(string expression, string documentName)
+		{
 			object result;
 
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					result = _jsEngine.Evaluate(expression);
+					var source = new OriginalStringScriptSource(expression, documentName);
+					result = _jsEngine.Evaluate(source);
 				}
 				catch (OriginalJsException e)
 				{
@@ -188,18 +206,29 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override T InnerEvaluate<T>(string expression)
 		{
-			object result = InnerEvaluate(expression);
+			return InnerEvaluate<T>(expression, null);
+		}
+
+		protected override T InnerEvaluate<T>(string expression, string documentName)
+		{
+			object result = InnerEvaluate(expression, documentName);
 
 			return OriginalTypeConverter.ConvertTo<T>(_jsEngine, result);
 		}
 
 		protected override void InnerExecute(string code)
 		{
+			InnerExecute(code, null);
+		}
+
+		protected override void InnerExecute(string code, string documentName)
+		{
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					_jsEngine.Execute(code);
+					var source = new OriginalStringScriptSource(code, documentName);
+					_jsEngine.Execute(source);
 				}
 				catch (OriginalJsException e)
 				{
@@ -382,7 +411,84 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			{
 				try
 				{
-					_jsEngine.ExecuteFile(path, encoding);
+					var source = new OriginalFileScriptSource(path, encoding);
+					_jsEngine.Execute(source);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
+			}
+		}
+
+		public override void ExecuteResource(string resourceName, Type type)
+		{
+			VerifyNotDisposed();
+
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					"resourceName", string.Format(CoreStrings.Common_ArgumentIsNull, "resourceName"));
+			}
+
+			if (type == null)
+			{
+				throw new ArgumentNullException(
+					"type", string.Format(CoreStrings.Common_ArgumentIsNull, "type"));
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+			}
+
+			Assembly assembly = type.GetTypeInfo().Assembly;
+			string nameSpace = type.Namespace;
+			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					var source = new ResourceScriptSource(resourceFullName, assembly);
+					_jsEngine.Execute(source);
+				}
+				catch (OriginalJsException e)
+				{
+					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+				}
+			}
+		}
+
+		public override void ExecuteResource(string resourceName, Assembly assembly)
+		{
+			VerifyNotDisposed();
+
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					"resourceName", string.Format(CoreStrings.Common_ArgumentIsNull, "resourceName"));
+			}
+
+			if (assembly == null)
+			{
+				throw new ArgumentNullException(
+					"assembly", string.Format(CoreStrings.Common_ArgumentIsNull, "assembly"));
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+			}
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					var source = new ResourceScriptSource(resourceName, assembly);
+					_jsEngine.Execute(source);
 				}
 				catch (OriginalJsException e)
 				{

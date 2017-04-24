@@ -16,6 +16,11 @@
    version of February 8, 2017).
 
    =============
+   RELEASE NOTES
+   =============
+   Now script error contains a full stack trace.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -
