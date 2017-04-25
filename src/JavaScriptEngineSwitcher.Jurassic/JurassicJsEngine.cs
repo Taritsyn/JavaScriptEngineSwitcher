@@ -6,7 +6,6 @@ using System.Text;
 using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
 using OriginalConcatenatedString = Jurassic.ConcatenatedString;
 using OriginalErrorInstance = Jurassic.Library.ErrorInstance;
-using OriginalFileScriptSource = Jurassic.FileScriptSource;
 using OriginalJsEngine = Jurassic.ScriptEngine;
 using OriginalJsException = Jurassic.JavaScriptException;
 using OriginalNull = Jurassic.Null;
@@ -44,6 +43,12 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// Synchronizer of code execution
 		/// </summary>
 		private readonly object _executionSynchronizer = new object();
+
+		/// <summary>
+		/// Unique document name manager
+		/// </summary>
+		private readonly UniqueDocumentNameManager _documentNameManager =
+			new UniqueDocumentNameManager(DefaultDocumentName);
 
 		/// <summary>
 		/// Gets a name of JS engine
@@ -171,6 +176,22 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			return jsRuntimeException;
 		}
 
+		private string GetUniqueDocumentName(string documentName, bool isFile)
+		{
+			string uniqueDocumentName;
+
+			if (!_jsEngine.EnableDebugging)
+			{
+				uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+			}
+			else
+			{
+				uniqueDocumentName = isFile ? documentName : null;
+			}
+
+			return uniqueDocumentName;
+		}
+
 		#region JsEngineBase implementation
 
 		protected override object InnerEvaluate(string expression)
@@ -181,12 +202,13 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		protected override object InnerEvaluate(string expression, string documentName)
 		{
 			object result;
+			string uniqueDocumentName = GetUniqueDocumentName(documentName, false);
 
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					var source = new OriginalStringScriptSource(expression, documentName);
+					var source = new OriginalStringScriptSource(expression, uniqueDocumentName);
 					result = _jsEngine.Evaluate(source);
 				}
 				catch (OriginalJsException e)
@@ -223,11 +245,13 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override void InnerExecute(string code, string documentName)
 		{
+			string uniqueDocumentName = GetUniqueDocumentName(documentName, false);
+
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					var source = new OriginalStringScriptSource(code, documentName);
+					var source = new OriginalStringScriptSource(code, uniqueDocumentName);
 					_jsEngine.Execute(source);
 				}
 				catch (OriginalJsException e)
@@ -413,11 +437,13 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					string.Format(CoreStrings.Common_FileNotExist, path), path);
 			}
 
+			string uniqueDocumentName = GetUniqueDocumentName(path, true);
+
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					var source = new OriginalFileScriptSource(path, encoding);
+					var source = new FileScriptSource(uniqueDocumentName, path, encoding);
 					_jsEngine.Execute(source);
 				}
 				catch (OriginalJsException e)
@@ -452,12 +478,13 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			Assembly assembly = type.GetTypeInfo().Assembly;
 			string nameSpace = type.Namespace;
 			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
+			string uniqueDocumentName = GetUniqueDocumentName(resourceFullName, false);
 
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					var source = new ResourceScriptSource(resourceFullName, assembly);
+					var source = new ResourceScriptSource(uniqueDocumentName, resourceFullName, assembly);
 					_jsEngine.Execute(source);
 				}
 				catch (OriginalJsException e)
@@ -489,11 +516,13 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					string.Format(CoreStrings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
 			}
 
+			string uniqueDocumentName = GetUniqueDocumentName(resourceName, false);
+
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					var source = new ResourceScriptSource(resourceName, assembly);
+					var source = new ResourceScriptSource(uniqueDocumentName, resourceName, assembly);
 					_jsEngine.Execute(source);
 				}
 				catch (OriginalJsException e)

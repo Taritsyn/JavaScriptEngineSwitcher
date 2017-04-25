@@ -52,6 +52,12 @@ namespace JavaScriptEngineSwitcher.Vroom
 		private readonly Dictionary<string, object> _hostItems = new Dictionary<string, object>();
 
 		/// <summary>
+		/// Unique document name manager
+		/// </summary>
+		private readonly UniqueDocumentNameManager _documentNameManager =
+			new UniqueDocumentNameManager(DefaultDocumentName);
+
+		/// <summary>
 		/// Gets a name of JS engine
 		/// </summary>
 		public override string Name
@@ -170,32 +176,19 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		protected override object InnerEvaluate(string expression)
 		{
-			object result;
-
-			lock (_executionSynchronizer)
-			{
-				try
-				{
-					result = _jsContext.Execute(expression);
-				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertJsExceptionToJsRuntimeException(e);
-				}
-			}
-
-			return result;
+			return InnerEvaluate(expression, null);
 		}
 
 		protected override object InnerEvaluate(string expression, string documentName)
 		{
 			object result;
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					result = _jsContext.Execute(expression, documentName);
+					result = _jsContext.Execute(expression, uniqueDocumentName);
 				}
 				catch (OriginalJsException e)
 				{
@@ -208,9 +201,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		protected override T InnerEvaluate<T>(string expression)
 		{
-			object result = InnerEvaluate(expression);
-
-			return TypeConverter.ConvertToType<T>(result);
+			return InnerEvaluate<T>(expression, null);
 		}
 
 		protected override T InnerEvaluate<T>(string expression, string documentName)
@@ -222,26 +213,18 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		protected override void InnerExecute(string code)
 		{
-			lock (_executionSynchronizer)
-			{
-				try
-				{
-					_jsContext.Execute(code);
-				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertJsExceptionToJsRuntimeException(e);
-				}
-			}
+			InnerExecute(code, null);
 		}
 
 		protected override void InnerExecute(string code, string documentName)
 		{
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					_jsContext.Execute(code, documentName);
+					_jsContext.Execute(code, uniqueDocumentName);
 				}
 				catch (OriginalJsException e)
 				{

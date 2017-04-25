@@ -56,6 +56,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\JavaScriptEngineSwitcher.Jurassic\FileScriptSource.cs">
+      <Link>FileScriptSource.cs</Link>
+    </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Jurassic\JsEngineFactoryCollectionExtensions.cs">
       <Link>JsEngineFactoryCollectionExtensions.cs</Link>
     </Compile>

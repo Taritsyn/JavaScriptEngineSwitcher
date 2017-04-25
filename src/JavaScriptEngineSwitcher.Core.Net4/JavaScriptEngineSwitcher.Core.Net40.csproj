@@ -110,6 +110,9 @@
     <Compile Include="..\JavaScriptEngineSwitcher.Core\Utilities\TypeExtensions.cs">
       <Link>Utilities\TypeExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\Utilities\UniqueDocumentNameManager.cs">
+      <Link>Utilities\UniqueDocumentNameManager.cs</Link>
+    </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Core\Utilities\Utils.cs">
       <Link>Utilities\Utils.cs</Link>
     </Compile>

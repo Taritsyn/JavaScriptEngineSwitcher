@@ -14,6 +14,11 @@ namespace JavaScriptEngineSwitcher.Core
 	public abstract class JsEngineBase : IJsEngine
 	{
 		/// <summary>
+		/// Default document name
+		/// </summary>
+		protected const string DefaultDocumentName = "Script Document";
+
+		/// <summary>
 		/// Flag that object is destroyed
 		/// </summary>
 		protected InterlockedStatedFlag _disposedFlag = new InterlockedStatedFlag();

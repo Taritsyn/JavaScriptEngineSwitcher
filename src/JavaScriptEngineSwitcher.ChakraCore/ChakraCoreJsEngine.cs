@@ -68,6 +68,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private readonly ScriptDispatcher _dispatcher = new ScriptDispatcher();
 
 		/// <summary>
+		/// Unique document name manager
+		/// </summary>
+		private readonly UniqueDocumentNameManager _documentNameManager =
+			new UniqueDocumentNameManager(DefaultDocumentName);
+
+		/// <summary>
 		/// Gets a name of JS engine
 		/// </summary>
 		public override string Name
@@ -949,14 +955,16 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override object InnerEvaluate(string expression)
 		{
-			return InnerEvaluate(expression, string.Empty);
+			return InnerEvaluate(expression, null);
 		}
 
 		protected override object InnerEvaluate(string expression, string documentName)
 		{
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+
 			object result = InvokeScript(() =>
 			{
-				JsValue resultValue = JsContext.RunScript(expression, _jsSourceContext++, documentName);
+				JsValue resultValue = JsContext.RunScript(expression, _jsSourceContext++, uniqueDocumentName);
 
 				return MapToHostType(resultValue);
 			});
@@ -966,7 +974,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override T InnerEvaluate<T>(string expression)
 		{
-			return InnerEvaluate<T>(expression, string.Empty);
+			return InnerEvaluate<T>(expression, null);
 		}
 
 		protected override T InnerEvaluate<T>(string expression, string documentName)
@@ -978,12 +986,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override void InnerExecute(string code)
 		{
-			InnerExecute(code, string.Empty);
+			InnerExecute(code, null);
 		}
 
 		protected override void InnerExecute(string code, string documentName)
 		{
-			InvokeScript(() => JsContext.RunScript(code, _jsSourceContext++, documentName));
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+
+			InvokeScript(() => JsContext.RunScript(code, _jsSourceContext++, uniqueDocumentName));
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)

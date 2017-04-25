@@ -46,6 +46,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		private readonly object _executionSynchronizer = new object();
 
 		/// <summary>
+		/// Unique document name manager
+		/// </summary>
+		private readonly UniqueDocumentNameManager _documentNameManager =
+			new UniqueDocumentNameManager(DefaultDocumentName);
+
+		/// <summary>
 		/// Gets a name of JS engine
 		/// </summary>
 		public override string Name
@@ -273,6 +279,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		protected override object InnerEvaluate(string expression, string documentName)
 		{
 			object result;
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
 			lock (_executionSynchronizer)
 			{
@@ -282,7 +289,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					var parserOptions = new OriginalParserOptions
 					{
-						Source = documentName
+						Source = uniqueDocumentName
 					};
 					resultValue = _jsEngine.Execute(expression, parserOptions).GetCompletionValue();
 				}
@@ -332,13 +339,15 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override void InnerExecute(string code, string documentName)
 		{
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+
 			lock (_executionSynchronizer)
 			{
 				try
 				{
 					var parserOptions = new OriginalParserOptions
 					{
-						Source = documentName
+						Source = uniqueDocumentName
 					};
 					_jsEngine.Execute(code, parserOptions);
 				}
