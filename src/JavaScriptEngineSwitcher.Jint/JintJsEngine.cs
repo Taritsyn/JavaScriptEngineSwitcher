@@ -144,7 +144,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			int lineNumber = jsParserException.LineNumber;
 			int columnNumber = jsParserException.Column;
 			string message = !string.IsNullOrWhiteSpace(description) ?
-				GenerateErorrMessageWithStackTrace(category, description, jsParserException.Source,
+				GenerateErrorMessageWithLocation(category, description, jsParserException.Source,
 					lineNumber, columnNumber)
 				:
 				jsParserException.Message
@@ -180,7 +180,7 @@ namespace JavaScriptEngineSwitcher.Jint
 					category = categoryPropertyValue.AsString();
 				}
 
-				message = GenerateErorrMessageWithStackTrace(category, message,
+				message = GenerateErrorMessageWithLocation(category, message,
 					jsException.Location.Source, lineNumber, columnNumber);
 			}
 
@@ -195,7 +195,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			return jsRuntimeException;
 		}
 
-		private static string GenerateErorrMessageWithStackTrace(string category, string message,
+		private static string GenerateErrorMessageWithLocation(string category, string message,
 			string documentName, int lineNumber, int columnNumber)
 		{
 			var messageBuilder = new StringBuilder();

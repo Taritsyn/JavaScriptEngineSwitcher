@@ -7,7 +7,6 @@
 	{
 		/// <summary>
 		/// Gets or sets a flag for whether to enable script debugging features
-		/// (only works in the <code>ChakraIeJsRt</code> and <code>ChakraEdgeJsRt</code> modes)
 		/// </summary>
 		public bool EnableDebugging
 		{

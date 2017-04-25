@@ -13,7 +13,7 @@
 		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.10.3).</description>
 		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version 2.10.3).</summary>
 		<releaseNotes>1. Added support of .NET Core 1.0.4;
-2. Now script error contains a full stack trace.</releaseNotes>
+2. Now script error contains a error location.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript Jint</tags>
