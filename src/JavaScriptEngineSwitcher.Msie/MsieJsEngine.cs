@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
+using System.Text;
 
 using OriginalJsEngine = MsieJavaScriptEngine.MsieJsEngine;
 using OriginalJsEngineLoadException = MsieJavaScriptEngine.JsEngineLoadException;
@@ -332,6 +335,102 @@ namespace JavaScriptEngineSwitcher.Msie
 		protected override void InnerCollectGarbage()
 		{
 			_jsEngine.CollectGarbage();
+		}
+
+		public override void ExecuteFile(string path, Encoding encoding = null)
+		{
+			VerifyNotDisposed();
+
+			if (path == null)
+			{
+				throw new ArgumentNullException(
+					"path", string.Format(CoreStrings.Common_ArgumentIsNull, "path"));
+			}
+
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, "path"), "path");
+			}
+
+			if (!File.Exists(path))
+			{
+				throw new FileNotFoundException(
+					string.Format(CoreStrings.Common_FileNotExist, path), path);
+			}
+
+			try
+			{
+				_jsEngine.ExecuteFile(path, encoding);
+			}
+			catch (OriginalJsRuntimeException e)
+			{
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+			}
+		}
+
+		public override void ExecuteResource(string resourceName, Type type)
+		{
+			VerifyNotDisposed();
+
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					"resourceName", string.Format(CoreStrings.Common_ArgumentIsNull, "resourceName"));
+			}
+
+			if (type == null)
+			{
+				throw new ArgumentNullException(
+					"type", string.Format(CoreStrings.Common_ArgumentIsNull, "type"));
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+			}
+
+			try
+			{
+				_jsEngine.ExecuteResource(resourceName, type);
+			}
+			catch (OriginalJsRuntimeException e)
+			{
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+			}
+		}
+
+		public override void ExecuteResource(string resourceName, Assembly assembly)
+		{
+			VerifyNotDisposed();
+
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					"resourceName", string.Format(CoreStrings.Common_ArgumentIsNull, "resourceName"));
+			}
+
+			if (assembly == null)
+			{
+				throw new ArgumentNullException(
+					"assembly", string.Format(CoreStrings.Common_ArgumentIsNull, "assembly"));
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+			}
+
+			try
+			{
+				_jsEngine.ExecuteResource(resourceName, assembly);
+			}
+			catch (OriginalJsRuntimeException e)
+			{
+				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+			}
 		}
 
 		#endregion

@@ -395,6 +395,12 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			VerifyNotDisposed();
 
+			if (path == null)
+			{
+				throw new ArgumentNullException(
+					"path", string.Format(CoreStrings.Common_ArgumentIsNull, "path"));
+			}
+
 			if (string.IsNullOrWhiteSpace(path))
 			{
 				throw new ArgumentException(
