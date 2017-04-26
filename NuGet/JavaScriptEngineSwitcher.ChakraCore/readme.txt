@@ -31,7 +31,8 @@
    RELEASE NOTES
    =============
    1. Added support of .NET Core 1.0.4;
-   2. Now script error contains a full stack trace.
+   2. Now script error contains a full stack trace;
+   3. ChakraCore was updated to version 1.4.2.
 
    =============
    DOCUMENTATION
