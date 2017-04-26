@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 using OriginalJsException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsException;
 
@@ -31,6 +32,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// Version of original JS engine
 		/// </summary>
 		private const string EngineVersion = "1.4.1";
+
+		/// <summary>
+		/// Regular expression for working with the string representation of error
+		/// </summary>
+		private static readonly Regex _errorStringRegex =
+			new Regex(@"[ ]{3,5}at (?:[A-Za-z_\$][0-9A-Za-z_\$ ]* )?" +
+				@"\([^\s*?""<>|][^\t\n\r*?""<>|]*?:(?<lineNumber>\d+):(?<columnNumber>\d+)\)");
 
 		/// <summary>
 		/// Instance of JS runtime
@@ -915,6 +923,18 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				{
 					JsValue columnPropertyValue = errorValue.GetProperty(columnPropertyId);
 					columnNumber = columnPropertyValue.ConvertToNumber().ToInt32() + 1;
+				}
+
+				if (lineNumber <= 0 && columnNumber <= 0)
+				{
+					Match errorStringMatch = _errorStringRegex.Match(message);
+					if (errorStringMatch.Success)
+					{
+						GroupCollection errorStringGroups = errorStringMatch.Groups;
+
+						lineNumber = int.Parse(errorStringGroups["lineNumber"].Value);
+						columnNumber = int.Parse(errorStringGroups["columnNumber"].Value);
+					}
 				}
 
 				JsPropertyId sourcePropertyId = JsPropertyId.FromString("source");

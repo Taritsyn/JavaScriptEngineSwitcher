@@ -172,7 +172,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			string category = string.Empty;
 			int lineNumber = jsException.LineNumber;
-			int columnNumber = jsException.Column;
+			int columnNumber = jsException.Column + 1;
 			string message = jsException.Message;
 			OriginalJsValue errorValue = jsException.Error;
 

@@ -170,7 +170,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				Category = jsException.Name,
 				LineNumber = jsException.LineNumber,
 				ColumnNumber = 0,
-				SourceFragment = jsException.SourcePath
+				SourceFragment = string.Empty
 			};
 
 			return jsRuntimeException;

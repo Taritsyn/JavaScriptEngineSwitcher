@@ -48,8 +48,8 @@ namespace JavaScriptEngineSwitcher.V8
 		/// Regular expression for working with the string representation of error
 		/// </summary>
 		private static readonly Regex _errorStringRegex =
-			new Regex(@"at (?:[A-Za-z_\$][0-9A-Za-z_\$]* )?" +
-				@"\(?Script Document(?:\s*\[(temp|\d+)\])?:(?<lineNumber>\d+):(?<columnNumber>\d+)\)?");
+			new Regex(@"[ ]{3,5}at (?:[A-Za-z_\$][0-9A-Za-z_\$]* )?" +
+				@"\(?[^\s*?""<>|][^\t\n\r*?""<>|]*?:(?<lineNumber>\d+):(?<columnNumber>\d+)\)? -> ");
 
 		/// <summary>
 		/// Synchronizer of code execution
