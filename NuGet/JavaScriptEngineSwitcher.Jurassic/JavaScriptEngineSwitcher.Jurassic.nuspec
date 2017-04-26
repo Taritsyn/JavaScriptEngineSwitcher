@@ -10,9 +10,10 @@
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of February 8, 2017).</description>
-		<summary>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine version of February 8, 2017).</summary>
-		<releaseNotes>Now script error contains a full stack trace.</releaseNotes>
+		<description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of March 9, 2017).</description>
+		<summary>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine version of March 9, 2017).</summary>
+		<releaseNotes>1. Jurassic was updated to version of March 9, 2017;
+2. Now script error contains a full stack trace.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript Jurassic</tags>
