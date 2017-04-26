@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                 README file for JS Engine Switcher: ChakraCore v2.3.2
+                 README file for JS Engine Switcher: ChakraCore v2.4.0
 
    --------------------------------------------------------------------------------
 
@@ -31,8 +31,8 @@
    RELEASE NOTES
    =============
    1. Added support of .NET Core 1.0.4;
-   2. Now script error contains a full stack trace;
-   3. ChakraCore was updated to version 1.4.2.
+   2. ChakraCore was updated to version 1.4.2;
+   3. Now script error contains a full stack trace.
 
    =============
    DOCUMENTATION

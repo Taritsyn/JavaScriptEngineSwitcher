@@ -1,6 +1,18 @@
 Change log
 ==========
 
+## April 26, 2017 - v2.4.0
+ * Added support of .NET Core 1.0.4
+ * In `IJsEngine` interface was added overloaded versions of the `Evaluate`, `Evaluate<T>` and `Execute` methods, which take the document name as second parameter
+ * Now all JS engines provide extended information about the error location
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.1
+ * In JavaScriptEngineSwitcher.V8:
+   * Added support of Microsoft ClearScript.V8 version of April 19, 2017 (support of V8 version 5.5.372.40)
+   * Now the `Evaluate` and `Execute` methods of `V8ScriptEngine` class are called with the `discard` parameter equal to `false`
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of March 9, 2017
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.10.4
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.4.2
+
 ## February 12, 2017 - v2.3.2
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.1.2
  * In JavaScriptEngineSwitcher.ChakraCore fixed a error causing a crash during finalization

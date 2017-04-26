@@ -17,6 +17,7 @@ xcopy "%net4_project_bin_dir%\%project_name%.dll" lib\net40-client\
 xcopy "%net4_project_bin_dir%\ru-ru\%project_name%.resources.dll" lib\net40-client\ru-ru\
 xcopy "%lib_dir%\ClearScript.dll" lib\net40-client\
 
+%dotnet_cli% restore "%dotnet_project_source_dir%"
 %dotnet_cli% build "%dotnet_project_source_dir%" --framework net45 --configuration Release --no-dependencies --no-incremental
 xcopy "%dotnet_project_bin_dir%\net45\%project_name%.dll" lib\net45\
 xcopy "%dotnet_project_bin_dir%\net45\%project_name%.xml" lib\net45\
