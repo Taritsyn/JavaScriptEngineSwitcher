@@ -31,7 +31,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.4.2";
+		private const string EngineVersion = "1.4.3";
 
 		/// <summary>
 		/// Regular expression for working with the string representation of error
