@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## April 27, 2017 - v2.4.1
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.4.3
+
 ## April 26, 2017 - v2.4.0
  * Added support of .NET Core 1.0.4
  * In `IJsEngine` interface was added overloaded versions of the `Evaluate`, `Evaluate<T>` and `Execute` methods, which take the document name as second parameter
