@@ -1,7 +1,7 @@
 JavaScript Engine Switcher
 ==========================
 
-JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([MSIE JavaScript Engine for .Net](http://github.com/Taritsyn/MsieJavaScriptEngine), [Microsoft ClearScript.V8](http://clearscript.codeplex.com), [Jurassic](http://github.com/paulbartrum/jurassic), [Jint](http://github.com/sebastienros/jint), [ChakraCore](http://github.com/Microsoft/ChakraCore) and [VroomJs](http://github.com/pauldotknopf/vroomjs-core)).
+JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([MSIE JavaScript Engine for .Net](http://github.com/Taritsyn/MsieJavaScriptEngine), [Microsoft ClearScript.V8](http://github.com/Microsoft/ClearScript), [Jurassic](http://github.com/paulbartrum/jurassic), [Jint](http://github.com/sebastienros/jint), [ChakraCore](http://github.com/Microsoft/ChakraCore) and [VroomJs](http://github.com/pauldotknopf/vroomjs-core)).
 This library allows you to quickly and easily switch to using of another JavaScript engine.
 
 The supported .NET types are as follows:
