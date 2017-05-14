@@ -16,10 +16,20 @@
 
    This package is only compatible with .NET Core.
 
+   For correct working of the ChakraCore require the ICU4C library.
+
    =============
    RELEASE NOTES
    =============
    ChakraCore was updated to version 1.4.3.
+
+   ====================
+   POST-INSTALL ACTIONS
+   ====================
+   If in your system does not installed the ICU4C library, then simply run in your
+   terminal the following command:
+
+   brew install icu4c
 
    =============
    DOCUMENTATION
