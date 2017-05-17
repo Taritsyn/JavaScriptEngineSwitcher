@@ -14,7 +14,7 @@
    JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the
    MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)).
    For correct working of the MSIE JavaScript Engine it is recommended to install
-   Internet Explorer 9 and above on a server.
+   Internet Explorer 9+ or Microsoft Edge on the machine.
 
    =============
    RELEASE NOTES
