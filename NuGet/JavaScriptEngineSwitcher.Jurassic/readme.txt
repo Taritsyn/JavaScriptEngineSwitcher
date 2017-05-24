@@ -13,13 +13,12 @@
    ===========
    JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper
    for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic)
-   version of March 9, 2017).
+   version of May 24, 2017).
 
    =============
    RELEASE NOTES
    =============
-   1. Jurassic was updated to version of March 9, 2017;
-   2. Now script error contains a full stack trace.
+   Jurassic was updated to version of May 24, 2017.
 
    =============
    DOCUMENTATION
