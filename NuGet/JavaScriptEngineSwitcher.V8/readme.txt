@@ -13,7 +13,7 @@
    ===========
    JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the
    Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version of
-   April 19, 2017).
+   May 13, 2017).
 
    This package does not contain the native ClearScript and V8 assemblies.
    Therefore, you need to choose and install the most appropriate package(s) for
@@ -25,9 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Microsoft ClearScript.V8 was updated to version of April 19, 2017;
-   2. Now the `Evaluate` and `Execute` methods of `V8ScriptEngine` class are called
-      with the `discard` parameter equal to `false`.
+   Microsoft ClearScript.V8 was updated to version of May 13, 2017.
 
    =============
    DOCUMENTATION

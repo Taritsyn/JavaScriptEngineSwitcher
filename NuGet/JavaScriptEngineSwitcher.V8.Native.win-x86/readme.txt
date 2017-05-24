@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: V8 for Windows x86 v2.4.0
+             README file for JS Engine Switcher: V8 for Windows x86 v2.4.2
 
    --------------------------------------------------------------------------------
 
@@ -20,8 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version of April 19, 2017 (support of V8
-   version 5.5.372.40).
+   Microsoft ClearScript.V8 was updated to version of May 13, 2017.
 
    ====================
    POST-INSTALL ACTIONS
