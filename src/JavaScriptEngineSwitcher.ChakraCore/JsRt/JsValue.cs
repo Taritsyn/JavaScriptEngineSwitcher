@@ -314,7 +314,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			else
 			{
 				var byteCount = new UIntPtr((uint)Encoding.GetEncoding(0).GetByteCount(value));
-				errorCode = NativeMethods.JsCreateStringUtf8(value, byteCount, out reference);
+				errorCode = NativeMethods.JsCreateString(value, byteCount, out reference);
 			}
 
 			JsErrorHelpers.ThrowIfError(errorCode);
@@ -622,13 +622,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				UIntPtr bufferSize = UIntPtr.Zero;
 				UIntPtr written;
 
-				errorCode = NativeMethods.JsCopyStringUtf8(this, buffer, bufferSize, out written);
+				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out written);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
 				buffer = new byte[(int)written];
 				bufferSize = new UIntPtr((uint)written);
 
-				errorCode = NativeMethods.JsCopyStringUtf8(this, buffer, bufferSize, out written);
+				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out written);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
 				result = Encoding.GetEncoding(0).GetString(buffer);

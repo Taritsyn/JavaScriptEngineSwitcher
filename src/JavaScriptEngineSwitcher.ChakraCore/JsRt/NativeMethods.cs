@@ -322,10 +322,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		#region Hosting
 
 		[DllImport(DllName)]
-		internal static extern JsErrorCode JsCreateStringUtf8(string content, UIntPtr length, out JsValue value);
+		internal static extern JsErrorCode JsCreateString(string content, UIntPtr length, out JsValue value);
 
 		[DllImport(DllName)]
-		internal static extern JsErrorCode JsCopyStringUtf8(JsValue value, byte[] buffer, UIntPtr bufferSize,
+		internal static extern JsErrorCode JsCopyString(JsValue value, byte[] buffer, UIntPtr bufferSize,
 			out UIntPtr written);
 
 		[DllImport(DllName)]
@@ -337,11 +337,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsParseScriptAttributes parseAttributes, out JsValue result);
 
 		[DllImport(DllName)]
-		internal static extern JsErrorCode JsCreatePropertyIdUtf8(string name, UIntPtr length,
+		internal static extern JsErrorCode JsCreatePropertyId(string name, UIntPtr length,
 			out JsPropertyId propertyId);
 
 		[DllImport(DllName)]
-		internal static extern JsErrorCode JsCopyPropertyIdUtf8(JsPropertyId propertyId, byte[] buffer,
+		internal static extern JsErrorCode JsCopyPropertyId(JsPropertyId propertyId, byte[] buffer,
 			UIntPtr bufferSize, out UIntPtr length);
 
 		[DllImport(DllName)]
