@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.5.0.
+   An attempt was made to prevent occurrence of the access violation exception.
 
    =============
    DOCUMENTATION
