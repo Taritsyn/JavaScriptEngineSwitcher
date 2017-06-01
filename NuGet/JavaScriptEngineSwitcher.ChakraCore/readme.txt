@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   An attempt was made to prevent occurrence of the access violation exception.
+   Now for error processing are used the `JsGetAndClearExceptionWithMetadata`
+   method instead of the `JsGetAndClearException` method.
 
    =============
    DOCUMENTATION

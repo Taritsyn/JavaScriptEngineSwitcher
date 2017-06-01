@@ -14,19 +14,19 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 	internal sealed class JsScriptException : JsException
 	{
 		/// <summary>
-		/// The error
+		/// The error metadata
 		/// </summary>
 #if !NETSTANDARD1_3
 		[NonSerialized]
 #endif
-		private readonly JsValue _error;
+		private readonly JsValue _metadata;
 
 		/// <summary>
-		/// Gets a JavaScript object representing the script error
+		/// Gets a JavaScript object representing the error metadata
 		/// </summary>
-		public JsValue Error
+		public JsValue Metadata
 		{
-			get { return _error; }
+			get { return _metadata; }
 		}
 
 
@@ -34,9 +34,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// Initializes a new instance of the <see cref="JsScriptException"/> class
 		/// </summary>
 		/// <param name="errorCode">The error code returned</param>
-		/// <param name="error">The JavaScript error object</param>
-		public JsScriptException(JsErrorCode errorCode, JsValue error)
-			: this(errorCode, error, "JavaScript Exception")
+		/// <param name="metadata">The JavaScript error metadata</param>
+		public JsScriptException(JsErrorCode errorCode, JsValue metadata)
+			: this(errorCode, metadata, "JavaScript Exception")
 		{ }
 
 		/// <summary>
@@ -44,12 +44,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// with a specified error message
 		/// </summary>
 		/// <param name="errorCode">The error code returned</param>
-		/// <param name="error">The JavaScript error object</param>
+		/// <param name="metadata">The JavaScript error metadata</param>
 		/// <param name="message">The error message</param>
-		public JsScriptException(JsErrorCode errorCode, JsValue error, string message)
+		public JsScriptException(JsErrorCode errorCode, JsValue metadata, string message)
 			: base(errorCode, message)
 		{
-			_error = error;
+			_metadata = metadata;
 		}
 #if !NETSTANDARD1_3
 

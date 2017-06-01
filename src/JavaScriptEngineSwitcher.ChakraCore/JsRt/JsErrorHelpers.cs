@@ -117,28 +117,28 @@
 
 					case JsErrorCode.ScriptException:
 						{
-							JsValue errorObject;
-							JsErrorCode innerError = NativeMethods.JsGetAndClearException(out errorObject);
+							JsValue errorMetadata;
+							JsErrorCode innerError = NativeMethods.JsGetAndClearExceptionWithMetadata(out errorMetadata);
 
 							if (innerError != JsErrorCode.NoError)
 							{
 								throw new JsFatalException(innerError);
 							}
 
-							throw new JsScriptException(error, errorObject, "Script threw an exception.");
+							throw new JsScriptException(error, errorMetadata, "Script threw an exception.");
 						}
 
 					case JsErrorCode.ScriptCompile:
 						{
-							JsValue errorObject;
-							JsErrorCode innerError = NativeMethods.JsGetAndClearException(out errorObject);
+							JsValue errorMetadata;
+							JsErrorCode innerError = NativeMethods.JsGetAndClearExceptionWithMetadata(out errorMetadata);
 
 							if (innerError != JsErrorCode.NoError)
 							{
 								throw new JsFatalException(innerError);
 							}
 
-							throw new JsScriptException(error, errorObject, "Compile error.");
+							throw new JsScriptException(error, errorMetadata, "Compile error.");
 						}
 
 					case JsErrorCode.ScriptTerminated:

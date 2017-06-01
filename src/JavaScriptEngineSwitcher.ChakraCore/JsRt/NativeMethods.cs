@@ -304,6 +304,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		internal static extern JsErrorCode JsGetAndClearException(out JsValue exception);
 
 		[DllImport(DllName)]
+		internal static extern JsErrorCode JsGetAndClearExceptionWithMetadata(out JsValue metadata);
+
+		[DllImport(DllName)]
 		internal static extern JsErrorCode JsSetException(JsValue exception);
 
 		[DllImport(DllName)]

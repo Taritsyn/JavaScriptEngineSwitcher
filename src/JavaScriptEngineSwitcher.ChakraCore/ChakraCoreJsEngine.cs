@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
 
 using OriginalJsException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsException;
 
@@ -32,13 +31,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// Version of original JS engine
 		/// </summary>
 		private const string EngineVersion = "1.5.0";
-
-		/// <summary>
-		/// Regular expression for working with the string representation of error
-		/// </summary>
-		private static readonly Regex _errorStringRegex =
-			new Regex(@"[ ]{3,5}at (?:[A-Za-z_\$][0-9A-Za-z_\$ ]* )?" +
-				@"\([^\s*?""<>|][^\t\n\r*?""<>|]*?:(?<lineNumber>\d+):(?<columnNumber>\d+)\)");
 
 		/// <summary>
 		/// Instance of JS runtime
@@ -894,7 +886,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			if (jsScriptException != null)
 			{
 				category = "Script error";
-				JsValue errorValue = jsScriptException.Error;
+				JsValue metadataValue = jsScriptException.Metadata;
+				JsValue errorValue = metadataValue.GetProperty("exception");
 
 				JsPropertyId stackPropertyId = JsPropertyId.FromString("stack");
 				if (errorValue.HasProperty(stackPropertyId))
@@ -913,35 +906,23 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				}
 
 				JsPropertyId linePropertyId = JsPropertyId.FromString("line");
-				if (errorValue.HasProperty(linePropertyId))
+				if (metadataValue.HasProperty(linePropertyId))
 				{
-					JsValue linePropertyValue = errorValue.GetProperty(linePropertyId);
+					JsValue linePropertyValue = metadataValue.GetProperty(linePropertyId);
 					lineNumber = linePropertyValue.ConvertToNumber().ToInt32() + 1;
 				}
 
 				JsPropertyId columnPropertyId = JsPropertyId.FromString("column");
-				if (errorValue.HasProperty(columnPropertyId))
+				if (metadataValue.HasProperty(columnPropertyId))
 				{
-					JsValue columnPropertyValue = errorValue.GetProperty(columnPropertyId);
+					JsValue columnPropertyValue = metadataValue.GetProperty(columnPropertyId);
 					columnNumber = columnPropertyValue.ConvertToNumber().ToInt32() + 1;
 				}
 
-				if (lineNumber <= 0 && columnNumber <= 0)
-				{
-					Match errorStringMatch = _errorStringRegex.Match(message);
-					if (errorStringMatch.Success)
-					{
-						GroupCollection errorStringGroups = errorStringMatch.Groups;
-
-						lineNumber = int.Parse(errorStringGroups["lineNumber"].Value);
-						columnNumber = int.Parse(errorStringGroups["columnNumber"].Value);
-					}
-				}
-
 				JsPropertyId sourcePropertyId = JsPropertyId.FromString("source");
-				if (errorValue.HasProperty(sourcePropertyId))
+				if (metadataValue.HasProperty(sourcePropertyId))
 				{
-					JsValue sourcePropertyValue = errorValue.GetProperty(sourcePropertyId);
+					JsValue sourcePropertyValue = metadataValue.GetProperty(sourcePropertyId);
 					sourceFragment = sourcePropertyValue.ConvertToString().ToString();
 				}
 			}
