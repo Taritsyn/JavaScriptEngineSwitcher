@@ -30,8 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   Now for error processing are used the `JsGetAndClearExceptionWithMetadata`
-   method instead of the `JsGetAndClearException` method.
+   1. ChakraCore was updated to version 1.5.1;
+   2. Now for error processing are used the `JsGetAndClearExceptionWithMetadata`
+      method instead of the `JsGetAndClearException` method.
 
    =============
    DOCUMENTATION
