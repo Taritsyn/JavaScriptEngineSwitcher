@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## June 8, 2017 - v2.4.5
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.5.1
+
 ## May 31, 2017 - v2.4.4
  * In JavaScriptEngineSwitcher.ChakraCore an attempt was made to prevent occurrence of the access violation exception
 
