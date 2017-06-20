@@ -45,12 +45,12 @@ See the [changelog](CHANGELOG.md).
 ## Who's Using JavaScript Engine Switcher
 If you use the JavaScript Engine Switcher in some project, please send me a message so I can include it in this list:
 
- * [Bundle Transformer](http://bundletransformer.codeplex.com/) by Andrey Taritsyn
- * [Cruncher](http://github.com/JimBobSquarePants/Cruncher) by James South
- * [GFMParserSample.Net](http://github.com/mad4-red/GFMParserSample.Net)
+ * [Bundle Transformer](https://github.com/Taritsyn/BundleTransformer) by Andrey Taritsyn
+ * [Cruncher](https://github.com/JimBobSquarePants/Cruncher) by James South
+ * [GFMParserSample.Net](https://github.com/mad4-red/GFMParserSample.Net)
  * [JSPool](http://dan.cx/projects/jspool) by Daniel Lo Nigro
  * [ReactJS.NET](http://reactjs.net/) by Daniel Lo Nigro
- * [Sitecore JavaScript Presentation Module](http://github.com/asmagin/sitecore-js-presentation) by Alex Smagin
+ * [Sitecore JavaScript Presentation Module](https://github.com/asmagin/sitecore-js-presentation) by Alex Smagin
  * [T1.Scripts](http://nuget.org/packages/T1.Scripts)
  * [Wyam](http://wyam.io/)
- * [zxcvbn.net](http://github.com/darcythomas/zxcvbn.net) by Darcy Thomas
+ * [zxcvbn.net](https://github.com/darcythomas/zxcvbn.net) by Darcy Thomas
