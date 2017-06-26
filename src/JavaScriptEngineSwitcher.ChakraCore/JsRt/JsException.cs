@@ -12,7 +12,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 #if !NETSTANDARD1_3
 	[Serializable]
 #endif
-	internal class JsException : Exception
+	public class JsException : Exception
 	{
 		/// <summary>
 		/// The error code

@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.5.2.
+   Now the original exception is added to instance of the `JsRuntimeException`
+   class as an internal exception.
 
    =============
    DOCUMENTATION

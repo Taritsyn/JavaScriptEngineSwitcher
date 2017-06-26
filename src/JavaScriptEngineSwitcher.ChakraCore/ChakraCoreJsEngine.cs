@@ -887,43 +887,47 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			{
 				category = "Script error";
 				JsValue metadataValue = jsScriptException.Metadata;
-				JsValue errorValue = metadataValue.GetProperty("exception");
 
-				JsPropertyId stackPropertyId = JsPropertyId.FromString("stack");
-				if (errorValue.HasProperty(stackPropertyId))
+				if (metadataValue.IsValid)
 				{
-					JsValue stackPropertyValue = errorValue.GetProperty(stackPropertyId);
-					message = stackPropertyValue.ConvertToString().ToString();
-				}
-				else
-				{
-					JsValue messagePropertyValue = errorValue.GetProperty("message");
-					string scriptMessage = messagePropertyValue.ConvertToString().ToString();
-					if (!string.IsNullOrWhiteSpace(scriptMessage))
+					JsValue errorValue = metadataValue.GetProperty("exception");
+
+					JsPropertyId stackPropertyId = JsPropertyId.FromString("stack");
+					if (errorValue.HasProperty(stackPropertyId))
 					{
-						message = string.Format("{0}: {1}", message.TrimEnd('.'), scriptMessage);
+						JsValue stackPropertyValue = errorValue.GetProperty(stackPropertyId);
+						message = stackPropertyValue.ConvertToString().ToString();
 					}
-				}
+					else
+					{
+						JsValue messagePropertyValue = errorValue.GetProperty("message");
+						string scriptMessage = messagePropertyValue.ConvertToString().ToString();
+						if (!string.IsNullOrWhiteSpace(scriptMessage))
+						{
+							message = string.Format("{0}: {1}", message.TrimEnd('.'), scriptMessage);
+						}
+					}
 
-				JsPropertyId linePropertyId = JsPropertyId.FromString("line");
-				if (metadataValue.HasProperty(linePropertyId))
-				{
-					JsValue linePropertyValue = metadataValue.GetProperty(linePropertyId);
-					lineNumber = linePropertyValue.ConvertToNumber().ToInt32() + 1;
-				}
+					JsPropertyId linePropertyId = JsPropertyId.FromString("line");
+					if (metadataValue.HasProperty(linePropertyId))
+					{
+						JsValue linePropertyValue = metadataValue.GetProperty(linePropertyId);
+						lineNumber = linePropertyValue.ConvertToNumber().ToInt32() + 1;
+					}
 
-				JsPropertyId columnPropertyId = JsPropertyId.FromString("column");
-				if (metadataValue.HasProperty(columnPropertyId))
-				{
-					JsValue columnPropertyValue = metadataValue.GetProperty(columnPropertyId);
-					columnNumber = columnPropertyValue.ConvertToNumber().ToInt32() + 1;
-				}
+					JsPropertyId columnPropertyId = JsPropertyId.FromString("column");
+					if (metadataValue.HasProperty(columnPropertyId))
+					{
+						JsValue columnPropertyValue = metadataValue.GetProperty(columnPropertyId);
+						columnNumber = columnPropertyValue.ConvertToNumber().ToInt32() + 1;
+					}
 
-				JsPropertyId sourcePropertyId = JsPropertyId.FromString("source");
-				if (metadataValue.HasProperty(sourcePropertyId))
-				{
-					JsValue sourcePropertyValue = metadataValue.GetProperty(sourcePropertyId);
-					sourceFragment = sourcePropertyValue.ConvertToString().ToString();
+					JsPropertyId sourcePropertyId = JsPropertyId.FromString("source");
+					if (metadataValue.HasProperty(sourcePropertyId))
+					{
+						JsValue sourcePropertyValue = metadataValue.GetProperty(sourcePropertyId);
+						sourceFragment = sourcePropertyValue.ConvertToString().ToString();
+					}
 				}
 			}
 			else if (jsException is JsUsageException)
@@ -939,7 +943,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				category = "Fatal error";
 			}
 
-			var jsEngineException = new JsRuntimeException(message, EngineName, EngineVersion)
+			var jsEngineException = new JsRuntimeException(message, EngineName, EngineVersion, jsException)
 			{
 				ErrorCode = ((uint)jsException.ErrorCode).ToString(CultureInfo.InvariantCulture),
 				Category = category,

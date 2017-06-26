@@ -11,7 +11,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 #if !NETSTANDARD1_3
 	[Serializable]
 #endif
-	internal sealed class JsEngineException : JsException
+	public sealed class JsEngineException : JsException
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsEngineException"/> class
