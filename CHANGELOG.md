@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## June 27, 2017 - v2.4.8
+ * In JavaScriptEngineSwitcher.ChakraCore an attempt was made to prevent a blocking of finalizer's thread
+
 ## June 26, 2017 - v2.4.7
  * In JavaScriptEngineSwitcher.ChakraCore now the original exception is added to instance of the `JsRuntimeException` class as an inner exception
 
