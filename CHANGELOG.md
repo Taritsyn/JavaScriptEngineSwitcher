@@ -2,7 +2,7 @@ Change log
 ==========
 
 ## June 26, 2017 - v2.4.7
- * In JavaScriptEngineSwitcher.ChakraCore now the original exception is added to instance of the `JsRuntimeException` class as an internal exception
+ * In JavaScriptEngineSwitcher.ChakraCore now the original exception is added to instance of the `JsRuntimeException` class as an inner exception
 
 ## June 16, 2017 - v2.4.6
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.5.2

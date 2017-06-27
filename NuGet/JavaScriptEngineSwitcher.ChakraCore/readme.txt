@@ -30,8 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Now the original exception is added to instance of the `JsRuntimeException`
-   class as an internal exception.
+   An attempt was made to prevent a blocking of finalizer's thread.
 
    =============
    DOCUMENTATION
