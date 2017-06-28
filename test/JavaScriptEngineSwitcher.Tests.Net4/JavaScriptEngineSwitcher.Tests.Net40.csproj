@@ -192,6 +192,9 @@
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\V8\InteropTests.cs">
       <Link>V8\InteropTests.cs</Link>
     </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\ValidationTests.cs">
+      <Link>ValidationTests.cs</Link>
+    </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\Vroom\CommonTests.cs">
       <Link>Vroom\CommonTests.cs</Link>
     </Compile>

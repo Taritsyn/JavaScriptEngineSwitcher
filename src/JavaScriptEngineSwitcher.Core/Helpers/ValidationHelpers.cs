@@ -32,9 +32,10 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		};
 
 		/// <summary>
-		/// Regular expression for working with JS-names
+		/// Regular expression for working with JS names
 		/// </summary>
-		private static readonly Regex _jsNameRegex = new Regex(@"^[A-Za-z_\$][0-9A-Za-z_\$]*$");
+		private static readonly Regex _jsNameRegex = new Regex(@"^[$_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}]" +
+			@"[$_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\u200C\u200D\p{Mn}\p{Mc}\p{Nd}\p{Pc}]*$");
 
 
 		/// <summary>

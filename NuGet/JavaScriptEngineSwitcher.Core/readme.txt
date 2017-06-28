@@ -19,10 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of .NET Core 1.0.4;
-   2. In `IJsEngine` interface was added overloaded versions of the `Evaluate`,
-      `Evaluate<T>` and `Execute` methods, which take the document name as second
-      parameter.
+   Added support of identifier names compliant with ECMAScript 5.
 
    =============
    DOCUMENTATION

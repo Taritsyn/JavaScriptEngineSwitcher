@@ -847,6 +847,40 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
+		public virtual void SettingAndGettingVariableWithNameContainingUnicodeCharactersIsCorrect()
+		{
+			// Arrange
+			const string variableName = "слово";
+
+			const string input1 = "Hip-hip Hooray";
+			const string targetOutput1 = "Hip-hip Hooray!";
+
+			const string input2 = "Hip-hip Hurrah";
+
+			// Act
+			bool variableExists;
+			string output1;
+			string output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.SetVariableValue(variableName, input1);
+				variableExists = jsEngine.HasVariable(variableName);
+				jsEngine.Execute(string.Format("{0} += '!';", variableName));
+				output1 = jsEngine.GetVariableValue<string>(variableName);
+
+				jsEngine.SetVariableValue(variableName, input2);
+				output2 = jsEngine.GetVariableValue<string>(variableName);
+			}
+
+			// Assert
+			Assert.True(variableExists);
+			Assert.Equal(targetOutput1, output1);
+
+			Assert.Equal(input2, output2);
+		}
+
+		[Fact]
 		public virtual void RemovingVariableIsCorrect()
 		{
 			// Arrange
