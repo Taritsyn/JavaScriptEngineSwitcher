@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## June 28, 2017 - v2.4.9
+ * Added support of identifier names compliant with ECMAScript 5
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.2
+
 ## June 27, 2017 - v2.4.8
  * In JavaScriptEngineSwitcher.ChakraCore an attempt was made to prevent a blocking of finalizer's thread
 
