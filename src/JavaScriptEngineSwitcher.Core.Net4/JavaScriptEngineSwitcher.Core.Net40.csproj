@@ -117,6 +117,7 @@
       <Link>Utilities\Utils.cs</Link>
     </Compile>
     <Compile Include="Utilities\DelegateExtensions.cs" />
+    <Compile Include="Utilities\ExceptionExtensions.cs" />
     <Compile Include="Utilities\TypeInfo.cs" />
   </ItemGroup>
   <ItemGroup>

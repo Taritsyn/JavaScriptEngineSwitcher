@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Reflection;
+#if NET45
+using System.Runtime.ExceptionServices;
+#endif
 using System.Text.RegularExpressions;
 
 using Microsoft.ClearScript.V8;
@@ -40,7 +43,7 @@ namespace JavaScriptEngineSwitcher.V8
 		private static OriginalUndefined _originalUndefinedValue;
 
 		/// <summary>
-		/// Information about `InvokeMethod` method of `Microsoft.ClearScript.V8.V8ScriptItem` type
+		/// Information about <code>InvokeMethod</code> method of <see cref="V8ScriptItem"/> class
 		/// </summary>
 		private static MethodInfo _v8ScriptItemInvokeMethodInfo;
 
@@ -340,8 +343,16 @@ namespace JavaScriptEngineSwitcher.V8
 						{
 							throw ConvertScriptEngineExceptionToJsRuntimeException(scriptEngineException);
 						}
+#if NET45
 
+						ExceptionDispatchInfo.Capture(innerException).Throw();
+#elif NET40
+
+						innerException.PreserveStackTrace();
 						throw innerException;
+#else
+#error No implementation for this target
+#endif
 					}
 
 					throw;

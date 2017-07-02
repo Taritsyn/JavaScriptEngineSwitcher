@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+#if NETSTANDARD1_3 || NET45
+using System.Runtime.ExceptionServices;
+#endif
 using System.Threading;
 
 using JavaScriptEngineSwitcher.Core;
@@ -152,9 +155,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				waitHandle.WaitOne();
 			}
 
-			if (task.Exception != null)
+			Exception exception = task.Exception;
+			if (exception != null)
 			{
-				throw task.Exception;
+#if NETSTANDARD1_3 || NET45
+			ExceptionDispatchInfo.Capture(exception).Throw();
+#elif NET40
+			exception.PreserveStackTrace();
+			throw exception;
+#else
+#error No implementation for this target
+#endif
 			}
 
 			return task.Result;
@@ -202,7 +213,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			});
 		}
 
-		#region IDisposable implementation
+#region IDisposable implementation
 
 		/// <summary>
 		/// Destroys object
@@ -227,9 +238,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			}
 		}
 
-		#endregion
+#endregion
 
-		#region Internal types
+#region Internal types
 
 		/// <summary>
 		/// Represents a script task, that must be executed on separate thread
@@ -286,6 +297,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			}
 		}
 
-		#endregion
+#endregion
 	}
 }

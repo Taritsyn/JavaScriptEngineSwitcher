@@ -19,7 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support of identifier names compliant with ECMAScript 5.
+   Now during the rethrowing of exceptions are preserved the full call stack trace.
 
    =============
    DOCUMENTATION

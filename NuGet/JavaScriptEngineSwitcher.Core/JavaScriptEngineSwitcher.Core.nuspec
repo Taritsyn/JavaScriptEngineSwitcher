@@ -12,7 +12,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic, Jint and ChakraCore). This library allows you to quickly and easily switch to using of another JavaScript engine.</description>
 		<summary>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic, Jint and ChakraCore).</summary>
-		<releaseNotes>Added support of identifier names compliant with ECMAScript 5.</releaseNotes>
+		<releaseNotes>Now during the rethrowing of exceptions are preserved the full call stack trace.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript</tags>

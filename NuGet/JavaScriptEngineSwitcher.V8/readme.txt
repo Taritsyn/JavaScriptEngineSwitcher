@@ -25,7 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version of May 13, 2017.
+   Now during the rethrowing of exceptions are preserved the full call stack trace.
 
    =============
    DOCUMENTATION

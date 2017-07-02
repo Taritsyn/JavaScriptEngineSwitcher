@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   An attempt was made to prevent a blocking of finalizer's thread.
+   Now during the rethrowing of exceptions are preserved the full call stack trace.
 
    =============
    DOCUMENTATION
