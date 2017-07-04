@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## July 4, 2017 - v2.4.10
+ * Now during the rethrowing of exceptions are preserved the full call stack trace
+ * In JavaScriptEngineSwitcher.ChakraCore was reduced a number of delegate-wrappers
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.3
+
 ## June 28, 2017 - v2.4.9
  * Added support of identifier names compliant with ECMAScript 5
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.2
