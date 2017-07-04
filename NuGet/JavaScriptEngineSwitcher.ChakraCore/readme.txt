@@ -30,7 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   Now during the rethrowing of exceptions are preserved the full call stack trace.
+   1. Now during the rethrowing of exceptions are preserved the full call stack
+      trace;
+   2. Reduced a number of delegate-wrappers.
 
    =============
    DOCUMENTATION

@@ -20,7 +20,8 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</description>
 		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore).</summary>
-		<releaseNotes>Now during the rethrowing of exceptions are preserved the full call stack trace.</releaseNotes>
+		<releaseNotes>1. Now during the rethrowing of exceptions are preserved the full call stack trace;
+2. Reduced a number of delegate-wrappers.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore</tags>

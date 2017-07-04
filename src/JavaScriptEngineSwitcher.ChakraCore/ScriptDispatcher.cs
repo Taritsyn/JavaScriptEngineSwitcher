@@ -159,10 +159,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			if (exception != null)
 			{
 #if NETSTANDARD1_3 || NET45
-			ExceptionDispatchInfo.Capture(exception).Throw();
+				ExceptionDispatchInfo.Capture(exception).Throw();
 #elif NET40
-			exception.PreserveStackTrace();
-			throw exception;
+				exception.PreserveStackTrace();
+				throw exception;
 #else
 #error No implementation for this target
 #endif
@@ -213,7 +213,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			});
 		}
 
-#region IDisposable implementation
+		#region IDisposable implementation
 
 		/// <summary>
 		/// Destroys object
@@ -238,9 +238,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			}
 		}
 
-#endregion
+		#endregion
 
-#region Internal types
+		#region Internal types
 
 		/// <summary>
 		/// Represents a script task, that must be executed on separate thread
@@ -297,6 +297,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			}
 		}
 
-#endregion
+		#endregion
 	}
 }

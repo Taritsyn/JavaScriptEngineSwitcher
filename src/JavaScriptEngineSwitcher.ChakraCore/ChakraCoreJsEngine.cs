@@ -172,40 +172,57 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 
-		private void InvokeScript(Action action)
+		/// <summary>
+		/// Adds a reference to the value
+		/// </summary>
+		/// <param name="value">The value</param>
+		private static void AddReferenceToValue(JsValue value)
 		{
-			_dispatcher.Invoke(() =>
+			if (CanHaveReferences(value))
 			{
-				using (new JsScope(_jsContext))
-				{
-					try
-					{
-						action();
-					}
-					catch (OriginalJsException e)
-					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
-					}
-				}
-			});
+				value.AddRef();
+			}
 		}
 
-		private T InvokeScript<T>(Func<T> func)
+		/// <summary>
+		/// Removes a reference to the value
+		/// </summary>
+		/// <param name="value">The value</param>
+		private static void RemoveReferenceToValue(JsValue value)
 		{
-			return _dispatcher.Invoke(() =>
+			if (CanHaveReferences(value))
 			{
-				using (new JsScope(_jsContext))
-				{
-					try
-					{
-						return func();
-					}
-					catch (OriginalJsException e)
-					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
-					}
-				}
-			});
+				value.Release();
+			}
+		}
+
+		/// <summary>
+		/// Checks whether the value can have references
+		/// </summary>
+		/// <param name="value">The value</param>
+		/// <returns>Result of check (true - may have; false - may not have)</returns>
+		private static bool CanHaveReferences(JsValue value)
+		{
+			JsValueType valueType = value.ValueType;
+
+			switch (valueType)
+			{
+				case JsValueType.Null:
+				case JsValueType.Undefined:
+				case JsValueType.Boolean:
+					return false;
+				default:
+					return true;
+			}
+		}
+
+		/// <summary>
+		/// Creates a instance of JS scope
+		/// </summary>
+		/// <returns>Instance of JS scope</returns>
+		private JsScope CreateJsScope()
+		{
+			return new JsScope(_jsContext);
 		}
 
 		#region Mapping
@@ -324,50 +341,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private object[] MapToHostType(JsValue[] args)
 		{
 			return args.Select(MapToHostType).ToArray();
-		}
-
-		/// <summary>
-		/// Adds a reference to the value
-		/// </summary>
-		/// <param name="value">The value</param>
-		private static void AddReferenceToValue(JsValue value)
-		{
-			if (CanHaveReferences(value))
-			{
-				value.AddRef();
-			}
-		}
-
-		/// <summary>
-		/// Removes a reference to the value
-		/// </summary>
-		/// <param name="value">The value</param>
-		private static void RemoveReferenceToValue(JsValue value)
-		{
-			if (CanHaveReferences(value))
-			{
-				value.Release();
-			}
-		}
-
-		/// <summary>
-		/// Checks whether the value can have references
-		/// </summary>
-		/// <param name="value">The value</param>
-		/// <returns>Result of check (true - may have; false - may not have)</returns>
-		private static bool CanHaveReferences(JsValue value)
-		{
-			JsValueType valueType = value.ValueType;
-
-			switch (valueType)
-			{
-				case JsValueType.Null:
-				case JsValueType.Undefined:
-				case JsValueType.Boolean:
-					return false;
-				default:
-					return true;
-			}
 		}
 
 		private JsValue FromObject(object value)
@@ -968,11 +941,22 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
-			object result = InvokeScript(() =>
+			object result = _dispatcher.Invoke(() =>
 			{
-				JsValue resultValue = JsContext.RunScript(expression, _jsSourceContext++, uniqueDocumentName);
+				using (CreateJsScope())
+				{
+					try
+					{
+						JsValue resultValue = JsContext.RunScript(expression, _jsSourceContext++,
+							uniqueDocumentName);
 
-				return MapToHostType(resultValue);
+						return MapToHostType(resultValue);
+					}
+					catch (OriginalJsException e)
+					{
+						throw ConvertJsExceptionToJsRuntimeException(e);
+					}
+				}
 			});
 
 			return result;
@@ -999,49 +983,75 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
-			InvokeScript(() => JsContext.RunScript(code, _jsSourceContext++, uniqueDocumentName));
+			_dispatcher.Invoke(() =>
+			{
+				using (CreateJsScope())
+				{
+					try
+					{
+						JsContext.RunScript(code, _jsSourceContext++, uniqueDocumentName);
+					}
+					catch (OriginalJsException e)
+					{
+						throw ConvertJsExceptionToJsRuntimeException(e);
+					}
+				}
+			});
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
-			object result = InvokeScript(() =>
+			object result = _dispatcher.Invoke(() =>
 			{
-				JsValue globalObj = JsValue.GlobalObject;
-				JsPropertyId functionId = JsPropertyId.FromString(functionName);
-
-				bool functionExist = globalObj.HasProperty(functionId);
-				if (!functionExist)
+				using (CreateJsScope())
 				{
-					throw new JsRuntimeException(
-						string.Format(CoreStrings.Runtime_FunctionNotExist, functionName));
-				}
-
-				JsValue resultValue;
-				JsValue functionValue = globalObj.GetProperty(functionId);
-
-				if (args.Length > 0)
-				{
-					JsValue[] processedArgs = MapToScriptType(args);
-
-					foreach (JsValue processedArg in processedArgs)
+					try
 					{
-						AddReferenceToValue(processedArg);
+						JsValue globalObj = JsValue.GlobalObject;
+						JsPropertyId functionId = JsPropertyId.FromString(functionName);
+
+						bool functionExist = globalObj.HasProperty(functionId);
+						if (!functionExist)
+						{
+							throw new JsRuntimeException(
+								string.Format(CoreStrings.Runtime_FunctionNotExist, functionName));
+						}
+
+						JsValue resultValue;
+						JsValue functionValue = globalObj.GetProperty(functionId);
+
+						if (args.Length > 0)
+						{
+							JsValue[] processedArgs = MapToScriptType(args);
+
+							foreach (JsValue processedArg in processedArgs)
+							{
+								AddReferenceToValue(processedArg);
+							}
+
+							JsValue[] allProcessedArgs = new[] { globalObj }
+								.Concat(processedArgs)
+								.ToArray()
+								;
+							resultValue = functionValue.CallFunction(allProcessedArgs);
+
+							foreach (JsValue processedArg in processedArgs)
+							{
+								RemoveReferenceToValue(processedArg);
+							}
+						}
+						else
+						{
+							resultValue = functionValue.CallFunction(globalObj);
+						}
+
+						return MapToHostType(resultValue);
 					}
-
-					JsValue[] allProcessedArgs = new[] { globalObj }.Concat(processedArgs).ToArray();
-					resultValue = functionValue.CallFunction(allProcessedArgs);
-
-					foreach (JsValue processedArg in processedArgs)
+					catch (OriginalJsException e)
 					{
-						RemoveReferenceToValue(processedArg);
+						throw ConvertJsExceptionToJsRuntimeException(e);
 					}
 				}
-				else
-				{
-					resultValue = functionValue.CallFunction(globalObj);
-				}
-
-				return MapToHostType(resultValue);
 			});
 
 			return result;
@@ -1056,19 +1066,29 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override bool InnerHasVariable(string variableName)
 		{
-			bool result = InvokeScript(() =>
+			bool result = _dispatcher.Invoke(() =>
 			{
-				JsValue globalObj = JsValue.GlobalObject;
-				JsPropertyId variableId = JsPropertyId.FromString(variableName);
-				bool variableExist = globalObj.HasProperty(variableId);
-
-				if (variableExist)
+				using (CreateJsScope())
 				{
-					JsValue variableValue = globalObj.GetProperty(variableId);
-					variableExist = variableValue.ValueType != JsValueType.Undefined;
-				}
+					try
+					{
+						JsValue globalObj = JsValue.GlobalObject;
+						JsPropertyId variableId = JsPropertyId.FromString(variableName);
+						bool variableExist = globalObj.HasProperty(variableId);
 
-				return variableExist;
+						if (variableExist)
+						{
+							JsValue variableValue = globalObj.GetProperty(variableId);
+							variableExist = variableValue.ValueType != JsValueType.Undefined;
+						}
+
+						return variableExist;
+					}
+					catch (OriginalJsException e)
+					{
+						throw ConvertJsExceptionToJsRuntimeException(e);
+					}
+				}
 			});
 
 			return result;
@@ -1076,11 +1096,21 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override object InnerGetVariableValue(string variableName)
 		{
-			object result = InvokeScript(() =>
+			object result = _dispatcher.Invoke(() =>
 			{
-				JsValue variableValue = JsValue.GlobalObject.GetProperty(variableName);
+				using (CreateJsScope())
+				{
+					try
+					{
+						JsValue variableValue = JsValue.GlobalObject.GetProperty(variableName);
 
-				return MapToHostType(variableValue);
+						return MapToHostType(variableValue);
+					}
+					catch (OriginalJsException e)
+					{
+						throw ConvertJsExceptionToJsRuntimeException(e);
+					}
+				}
 			});
 
 			return result;
@@ -1095,42 +1125,82 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override void InnerSetVariableValue(string variableName, object value)
 		{
-			InvokeScript(() =>
+			_dispatcher.Invoke(() =>
 			{
-				JsValue inputValue = MapToScriptType(value);
-				JsValue.GlobalObject.SetProperty(variableName, inputValue, true);
+				using (CreateJsScope())
+				{
+					try
+					{
+						JsValue inputValue = MapToScriptType(value);
+						JsValue.GlobalObject.SetProperty(variableName, inputValue, true);
+					}
+					catch (OriginalJsException e)
+					{
+						throw ConvertJsExceptionToJsRuntimeException(e);
+					}
+				}
 			});
 		}
 
 		protected override void InnerRemoveVariable(string variableName)
 		{
-			InvokeScript(() =>
+			_dispatcher.Invoke(() =>
 			{
-				JsValue globalObj = JsValue.GlobalObject;
-				JsPropertyId variableId = JsPropertyId.FromString(variableName);
-
-				if (globalObj.HasProperty(variableId))
+				using (CreateJsScope())
 				{
-					globalObj.SetProperty(variableId, JsValue.Undefined, true);
+					try
+					{
+						JsValue globalObj = JsValue.GlobalObject;
+						JsPropertyId variableId = JsPropertyId.FromString(variableName);
+
+						if (globalObj.HasProperty(variableId))
+						{
+							globalObj.SetProperty(variableId, JsValue.Undefined, true);
+						}
+					}
+					catch (OriginalJsException e)
+					{
+						throw ConvertJsExceptionToJsRuntimeException(e);
+					}
 				}
 			});
 		}
 
 		protected override void InnerEmbedHostObject(string itemName, object value)
 		{
-			InvokeScript(() =>
+			_dispatcher.Invoke(() =>
 			{
-				JsValue processedValue = MapToScriptType(value);
-				JsValue.GlobalObject.SetProperty(itemName, processedValue, true);
+				using (CreateJsScope())
+				{
+					try
+					{
+						JsValue processedValue = MapToScriptType(value);
+						JsValue.GlobalObject.SetProperty(itemName, processedValue, true);
+					}
+					catch (OriginalJsException e)
+					{
+						throw ConvertJsExceptionToJsRuntimeException(e);
+					}
+				}
 			});
 		}
 
 		protected override void InnerEmbedHostType(string itemName, Type type)
 		{
-			InvokeScript(() =>
+			_dispatcher.Invoke(() =>
 			{
-				JsValue typeValue = CreateObjectFromType(type);
-				JsValue.GlobalObject.SetProperty(itemName, typeValue, true);
+				using (CreateJsScope())
+				{
+					try
+					{
+						JsValue typeValue = CreateObjectFromType(type);
+						JsValue.GlobalObject.SetProperty(itemName, typeValue, true);
+					}
+					catch (OriginalJsException e)
+					{
+						throw ConvertJsExceptionToJsRuntimeException(e);
+					}
+				}
 			});
 		}
 
