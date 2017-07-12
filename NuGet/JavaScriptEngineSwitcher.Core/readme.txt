@@ -19,7 +19,8 @@
    =============
    RELEASE NOTES
    =============
-   Now during the rethrowing of exceptions are preserved the full call stack trace.
+   In `IJsEngine` interface was added `SupportsScriptInterruption` property and
+   `Interrupt` method.
 
    =============
    DOCUMENTATION

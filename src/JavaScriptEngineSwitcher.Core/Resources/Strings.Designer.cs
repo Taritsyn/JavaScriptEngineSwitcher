@@ -284,6 +284,14 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "Script execution was interrupted."
+		/// </summary>
+		public static string Runtime_ScriptInterrupted
+		{
+			get { return GetString("Runtime_ScriptInterrupted"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "The variable '{0}' has a type `{1}`, which is not supported."
 		/// </summary>
 		public static string Runtime_VariableTypeNotSupported

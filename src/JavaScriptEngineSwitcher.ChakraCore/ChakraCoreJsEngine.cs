@@ -5,15 +5,18 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-using OriginalJsException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsException;
-
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Utilities;
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+using HostException = JavaScriptEngineSwitcher.Core.JsException;
+using HostExtendedException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
+using HostInterruptedException = JavaScriptEngineSwitcher.Core.JsScriptInterruptedException;
 
 using JavaScriptEngineSwitcher.ChakraCore.Helpers;
 using JavaScriptEngineSwitcher.ChakraCore.JsRt;
 using JavaScriptEngineSwitcher.ChakraCore.Resources;
+using ScriptException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsException;
+using ScriptExtendedException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsScriptException;
 
 namespace JavaScriptEngineSwitcher.ChakraCore
 {
@@ -73,32 +76,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public override string Name
-		{
-			get { return EngineName; }
-		}
-
-		/// <summary>
-		/// Gets a version of original JS engine
-		/// </summary>
-		public override string Version
-		{
-			get { return EngineVersion; }
-		}
-
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports garbage collection
-		/// </summary>
-		public override bool SupportsGarbageCollection
-		{
-			get { return true; }
-		}
-
-
 #if !NETSTANDARD1_3
+
 		/// <summary>
 		/// Static constructor
 		/// </summary>
@@ -126,7 +105,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			ChakraCoreSettings chakraCoreSettings = settings ?? new ChakraCoreSettings();
 
-			JsRuntimeAttributes attributes = JsRuntimeAttributes.None;
+			JsRuntimeAttributes attributes = JsRuntimeAttributes.AllowScriptInterrupt;
 			if (chakraCoreSettings.DisableBackgroundWork)
 			{
 				attributes |= JsRuntimeAttributes.DisableBackgroundWork;
@@ -222,6 +201,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <returns>Instance of JS scope</returns>
 		private JsScope CreateJsScope()
 		{
+			if (_jsRuntime.Disabled)
+			{
+				_jsRuntime.Disabled = false;
+			}
+
 			return new JsScope(_jsContext);
 		}
 
@@ -846,91 +830,102 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			}
 		}
 
-		private static JsRuntimeException ConvertJsExceptionToJsRuntimeException(
-			OriginalJsException jsException)
+		private static HostException ConvertScriptExceptionToHostException(ScriptException scriptException)
 		{
-			string message = jsException.Message;
+			HostException hostException;
+			string message = scriptException.Message;
 			string category = string.Empty;
-			int lineNumber = 0;
-			int columnNumber = 0;
-			string sourceFragment = string.Empty;
+			JsErrorCode errorCode = scriptException.ErrorCode;
 
-			var jsScriptException = jsException as JsScriptException;
-			if (jsScriptException != null)
+			if (errorCode == JsErrorCode.ScriptTerminated)
 			{
-				category = "Script error";
-				JsValue metadataValue = jsScriptException.Metadata;
+				hostException = new HostInterruptedException(CoreStrings.Runtime_ScriptInterrupted,
+					EngineName, EngineVersion, scriptException);
+			}
+			else
+			{
+				int lineNumber = 0;
+				int columnNumber = 0;
+				string sourceFragment = string.Empty;
 
-				if (metadataValue.IsValid)
+				var scriptExtendedException = scriptException as ScriptExtendedException;
+				if (scriptExtendedException != null)
 				{
-					JsValue errorValue = metadataValue.GetProperty("exception");
+					category = "Script error";
+					JsValue metadataValue = scriptExtendedException.Metadata;
 
-					JsPropertyId stackPropertyId = JsPropertyId.FromString("stack");
-					if (errorValue.HasProperty(stackPropertyId))
+					if (metadataValue.IsValid)
 					{
-						JsValue stackPropertyValue = errorValue.GetProperty(stackPropertyId);
-						message = stackPropertyValue.ConvertToString().ToString();
-					}
-					else
-					{
-						JsValue messagePropertyValue = errorValue.GetProperty("message");
-						string scriptMessage = messagePropertyValue.ConvertToString().ToString();
-						if (!string.IsNullOrWhiteSpace(scriptMessage))
+						JsValue errorValue = metadataValue.GetProperty("exception");
+
+						JsPropertyId stackPropertyId = JsPropertyId.FromString("stack");
+						if (errorValue.HasProperty(stackPropertyId))
 						{
-							message = string.Format("{0}: {1}", message.TrimEnd('.'), scriptMessage);
+							JsValue stackPropertyValue = errorValue.GetProperty(stackPropertyId);
+							message = stackPropertyValue.ConvertToString().ToString();
+						}
+						else
+						{
+							JsValue messagePropertyValue = errorValue.GetProperty("message");
+							string scriptMessage = messagePropertyValue.ConvertToString().ToString();
+							if (!string.IsNullOrWhiteSpace(scriptMessage))
+							{
+								message = string.Format("{0}: {1}", message.TrimEnd('.'), scriptMessage);
+							}
+						}
+
+						JsPropertyId linePropertyId = JsPropertyId.FromString("line");
+						if (metadataValue.HasProperty(linePropertyId))
+						{
+							JsValue linePropertyValue = metadataValue.GetProperty(linePropertyId);
+							lineNumber = linePropertyValue.ConvertToNumber().ToInt32() + 1;
+						}
+
+						JsPropertyId columnPropertyId = JsPropertyId.FromString("column");
+						if (metadataValue.HasProperty(columnPropertyId))
+						{
+							JsValue columnPropertyValue = metadataValue.GetProperty(columnPropertyId);
+							columnNumber = columnPropertyValue.ConvertToNumber().ToInt32() + 1;
+						}
+
+						JsPropertyId sourcePropertyId = JsPropertyId.FromString("source");
+						if (metadataValue.HasProperty(sourcePropertyId))
+						{
+							JsValue sourcePropertyValue = metadataValue.GetProperty(sourcePropertyId);
+							sourceFragment = sourcePropertyValue.ConvertToString().ToString();
 						}
 					}
-
-					JsPropertyId linePropertyId = JsPropertyId.FromString("line");
-					if (metadataValue.HasProperty(linePropertyId))
-					{
-						JsValue linePropertyValue = metadataValue.GetProperty(linePropertyId);
-						lineNumber = linePropertyValue.ConvertToNumber().ToInt32() + 1;
-					}
-
-					JsPropertyId columnPropertyId = JsPropertyId.FromString("column");
-					if (metadataValue.HasProperty(columnPropertyId))
-					{
-						JsValue columnPropertyValue = metadataValue.GetProperty(columnPropertyId);
-						columnNumber = columnPropertyValue.ConvertToNumber().ToInt32() + 1;
-					}
-
-					JsPropertyId sourcePropertyId = JsPropertyId.FromString("source");
-					if (metadataValue.HasProperty(sourcePropertyId))
-					{
-						JsValue sourcePropertyValue = metadataValue.GetProperty(sourcePropertyId);
-						sourceFragment = sourcePropertyValue.ConvertToString().ToString();
-					}
 				}
-			}
-			else if (jsException is JsUsageException)
-			{
-				category = "Usage error";
-			}
-			else if (jsException is JsEngineException)
-			{
-				category = "Engine error";
-			}
-			else if (jsException is JsFatalException)
-			{
-				category = "Fatal error";
+				else if (scriptException is JsUsageException)
+				{
+					category = "Usage error";
+				}
+				else if (scriptException is JsEngineException)
+				{
+					category = "Engine error";
+				}
+				else if (scriptException is JsFatalException)
+				{
+					category = "Fatal error";
+				}
+
+				hostException = new HostExtendedException(message, EngineName, EngineVersion,
+					scriptException)
+				{
+					ErrorCode = ((uint)errorCode).ToString(CultureInfo.InvariantCulture),
+					Category = category,
+					LineNumber = lineNumber,
+					ColumnNumber = columnNumber,
+					SourceFragment = sourceFragment
+				};
 			}
 
-			var jsEngineException = new JsRuntimeException(message, EngineName, EngineVersion, jsException)
-			{
-				ErrorCode = ((uint)jsException.ErrorCode).ToString(CultureInfo.InvariantCulture),
-				Category = category,
-				LineNumber = lineNumber,
-				ColumnNumber = columnNumber,
-				SourceFragment = sourceFragment
-			};
-
-			return jsEngineException;
+			return hostException;
 		}
 
 		#endregion
 
-		#region JsEngineBase implementation
+		#region JsEngineBase overrides
 
 		protected override object InnerEvaluate(string expression)
 		{
@@ -952,9 +947,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 						return MapToHostType(resultValue);
 					}
-					catch (OriginalJsException e)
+					catch (ScriptException e)
 					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
+						throw ConvertScriptExceptionToHostException(e);
 					}
 				}
 			});
@@ -991,9 +986,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					{
 						JsContext.RunScript(code, _jsSourceContext++, uniqueDocumentName);
 					}
-					catch (OriginalJsException e)
+					catch (ScriptException e)
 					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
+						throw ConvertScriptExceptionToHostException(e);
 					}
 				}
 			});
@@ -1047,9 +1042,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 						return MapToHostType(resultValue);
 					}
-					catch (OriginalJsException e)
+					catch (ScriptException e)
 					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
+						throw ConvertScriptExceptionToHostException(e);
 					}
 				}
 			});
@@ -1084,9 +1079,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 						return variableExist;
 					}
-					catch (OriginalJsException e)
+					catch (ScriptException e)
 					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
+						throw ConvertScriptExceptionToHostException(e);
 					}
 				}
 			});
@@ -1106,9 +1101,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 						return MapToHostType(variableValue);
 					}
-					catch (OriginalJsException e)
+					catch (ScriptException e)
 					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
+						throw ConvertScriptExceptionToHostException(e);
 					}
 				}
 			});
@@ -1134,9 +1129,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						JsValue inputValue = MapToScriptType(value);
 						JsValue.GlobalObject.SetProperty(variableName, inputValue, true);
 					}
-					catch (OriginalJsException e)
+					catch (ScriptException e)
 					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
+						throw ConvertScriptExceptionToHostException(e);
 					}
 				}
 			});
@@ -1158,9 +1153,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 							globalObj.SetProperty(variableId, JsValue.Undefined, true);
 						}
 					}
-					catch (OriginalJsException e)
+					catch (ScriptException e)
 					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
+						throw ConvertScriptExceptionToHostException(e);
 					}
 				}
 			});
@@ -1177,9 +1172,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						JsValue processedValue = MapToScriptType(value);
 						JsValue.GlobalObject.SetProperty(itemName, processedValue, true);
 					}
-					catch (OriginalJsException e)
+					catch (ScriptException e)
 					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
+						throw ConvertScriptExceptionToHostException(e);
 					}
 				}
 			});
@@ -1196,18 +1191,59 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						JsValue typeValue = CreateObjectFromType(type);
 						JsValue.GlobalObject.SetProperty(itemName, typeValue, true);
 					}
-					catch (OriginalJsException e)
+					catch (ScriptException e)
 					{
-						throw ConvertJsExceptionToJsRuntimeException(e);
+						throw ConvertScriptExceptionToHostException(e);
 					}
 				}
 			});
+		}
+
+		protected override void InnerInterrupt()
+		{
+			_jsRuntime.Disabled = true;
 		}
 
 		protected override void InnerCollectGarbage()
 		{
 			_dispatcher.Invoke(() => _jsRuntime.CollectGarbage());
 		}
+
+		#region IJsEngine implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public override string Name
+		{
+			get { return EngineName; }
+		}
+
+		/// <summary>
+		/// Gets a version of original JS engine
+		/// </summary>
+		public override string Version
+		{
+			get { return EngineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script interruption
+		/// </summary>
+		public override bool SupportsScriptInterruption
+		{
+			get { return true; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return true; }
+		}
+
+		#endregion
 
 		#endregion
 

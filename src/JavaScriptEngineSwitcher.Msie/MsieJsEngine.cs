@@ -37,30 +37,6 @@ namespace JavaScriptEngineSwitcher.Msie
 		/// </summary>
 		private OriginalJsEngine _jsEngine;
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public override string Name
-		{
-			get { return EngineName; }
-		}
-
-		/// <summary>
-		/// Gets a version of original JS engine
-		/// </summary>
-		public override string Version
-		{
-			get { return _engineVersion; }
-		}
-
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports garbage collection
-		/// </summary>
-		public override bool SupportsGarbageCollection
-		{
-			get { return true; }
-		}
-
 
 		/// <summary>
 		/// Constructs a instance of adapter for the MSIE JS engine
@@ -104,12 +80,14 @@ namespace JavaScriptEngineSwitcher.Msie
 		}
 
 
+		#region Mapping
+
 		/// <summary>
-		/// Executes a mapping from the host type to a MSIE type
+		/// Makes a mapping of value from the host type to a script type
 		/// </summary>
 		/// <param name="value">The source value</param>
 		/// <returns>The mapped value</returns>
-		private static object MapToMsieType(object value)
+		private static object MapToScriptType(object value)
 		{
 			if (value is Undefined)
 			{
@@ -120,7 +98,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		}
 
 		/// <summary>
-		/// Executes a mapping from the MSIE type to a host type
+		/// Makes a mapping of value from the script type to a host type
 		/// </summary>
 		/// <param name="value">The source value</param>
 		/// <returns>The mapped value</returns>
@@ -134,23 +112,25 @@ namespace JavaScriptEngineSwitcher.Msie
 			return value;
 		}
 
-		private JsRuntimeException ConvertMsieJsRuntimeExceptionToJsRuntimeException(
-			OriginalJsRuntimeException msieJsRuntimeException)
+		private JsRuntimeException ConvertScriptExceptionToHostException(
+			OriginalJsRuntimeException scriptException)
 		{
-			var jsRuntimeException = new JsRuntimeException(msieJsRuntimeException.Message,
-				EngineName, _engineVersion, msieJsRuntimeException)
+			var hostException = new JsRuntimeException(scriptException.Message,
+				EngineName, _engineVersion, scriptException)
 			{
-				ErrorCode = msieJsRuntimeException.ErrorCode,
-				Category = msieJsRuntimeException.Category,
-				LineNumber = msieJsRuntimeException.LineNumber,
-				ColumnNumber = msieJsRuntimeException.ColumnNumber,
-				SourceFragment = msieJsRuntimeException.SourceFragment
+				ErrorCode = scriptException.ErrorCode,
+				Category = scriptException.Category,
+				LineNumber = scriptException.LineNumber,
+				ColumnNumber = scriptException.ColumnNumber,
+				SourceFragment = scriptException.SourceFragment
 			};
 
-			return jsRuntimeException;
+			return hostException;
 		}
 
-		#region JsEngineBase implementation
+		#endregion
+
+		#region JsEngineBase overrides
 
 		protected override object InnerEvaluate(string expression)
 		{
@@ -167,7 +147,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 
 			result = MapToHostType(result);
@@ -200,7 +180,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 		}
 
@@ -214,7 +194,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
 				{
-					processedArgs[argumentIndex] = MapToMsieType(args[argumentIndex]);
+					processedArgs[argumentIndex] = MapToScriptType(args[argumentIndex]);
 				}
 			}
 
@@ -224,7 +204,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 
 			result = MapToHostType(result);
@@ -249,7 +229,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 
 			return result;
@@ -265,7 +245,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 
 			result = MapToHostType(result);
@@ -282,7 +262,7 @@ namespace JavaScriptEngineSwitcher.Msie
 
 		protected override void InnerSetVariableValue(string variableName, object value)
 		{
-			object processedValue = MapToMsieType(value);
+			object processedValue = MapToScriptType(value);
 
 			try
 			{
@@ -290,7 +270,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 		}
 
@@ -302,13 +282,13 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 		}
 
 		protected override void InnerEmbedHostObject(string itemName, object value)
 		{
-			object processedValue = MapToMsieType(value);
+			object processedValue = MapToScriptType(value);
 
 			try
 			{
@@ -316,7 +296,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 		}
 
@@ -328,14 +308,54 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
+		}
+
+		protected override void InnerInterrupt()
+		{
+			throw new NotImplementedException();
 		}
 
 		protected override void InnerCollectGarbage()
 		{
 			_jsEngine.CollectGarbage();
 		}
+
+		#region IJsEngine implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public override string Name
+		{
+			get { return EngineName; }
+		}
+
+		/// <summary>
+		/// Gets a version of original JS engine
+		/// </summary>
+		public override string Version
+		{
+			get { return _engineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script interruption
+		/// </summary>
+		public override bool SupportsScriptInterruption
+		{
+			get { return false; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return true; }
+		}
+
 
 		public override void ExecuteFile(string path, Encoding encoding = null)
 		{
@@ -365,7 +385,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 		}
 
@@ -397,7 +417,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 		}
 
@@ -429,9 +449,11 @@ namespace JavaScriptEngineSwitcher.Msie
 			}
 			catch (OriginalJsRuntimeException e)
 			{
-				throw ConvertMsieJsRuntimeExceptionToJsRuntimeException(e);
+				throw ConvertScriptExceptionToHostException(e);
 			}
 		}
+
+		#endregion
 
 		#endregion
 

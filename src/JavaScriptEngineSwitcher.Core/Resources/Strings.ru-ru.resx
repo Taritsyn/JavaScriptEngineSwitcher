@@ -204,6 +204,9 @@
   <data name="Runtime_ReturnValueTypeNotSupported" xml:space="preserve">
     <value>Тип возвращаемого значения `{0}` не поддерживается!</value>
   </data>
+  <data name="Runtime_ScriptInterrupted" xml:space="preserve">
+    <value>Выполнение скрипта было прервано!</value>
+  </data>
   <data name="Runtime_VariableTypeNotSupported" xml:space="preserve">
     <value>Переменная "{0}" имеет тип `{1}`, который не поддерживается!</value>
   </data>

@@ -50,30 +50,6 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public override string Name
-		{
-			get { return EngineName; }
-		}
-
-		/// <summary>
-		/// Gets a version of original JS engine
-		/// </summary>
-		public override string Version
-		{
-			get { return EngineVersion; }
-		}
-
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports garbage collection
-		/// </summary>
-		public override bool SupportsGarbageCollection
-		{
-			get { return false; }
-		}
-
 
 		/// <summary>
 		/// Constructs a instance of adapter for the Jurassic JS engine
@@ -109,12 +85,31 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			}
 		}
 
+
+		private string GetUniqueDocumentName(string documentName, bool isFile)
+		{
+			string uniqueDocumentName;
+
+			if (!_jsEngine.EnableDebugging)
+			{
+				uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+			}
+			else
+			{
+				uniqueDocumentName = isFile ? documentName : null;
+			}
+
+			return uniqueDocumentName;
+		}
+
+		#region Mapping
+
 		/// <summary>
-		/// Executes a mapping from the host type to a Jurassic type
+		/// Makes a mapping of value from the host type to a script type
 		/// </summary>
 		/// <param name="value">The source value</param>
 		/// <returns>The mapped value</returns>
-		private static object MapToJurassicType(object value)
+		private static object MapToScriptType(object value)
 		{
 			if (value == null)
 			{
@@ -130,7 +125,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		}
 
 		/// <summary>
-		/// Executes a mapping from the Jurassic type to a host type
+		/// Makes a mapping of value from the script type to a host type
 		/// </summary>
 		/// <param name="value">The source value</param>
 		/// <returns>The mapped value</returns>
@@ -154,45 +149,31 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			return value;
 		}
 
-		private JsRuntimeException ConvertJavascriptExceptionToJsRuntimeException(
-			OriginalJsException jsException)
+		private JsRuntimeException ConvertScriptExceptionToHostException(
+			OriginalJsException scriptException)
 		{
-			var jsError = jsException.ErrorObject as OriginalErrorInstance;
-			string message = jsException.Message;
-			if (jsError != null)
+			var errorValue = scriptException.ErrorObject as OriginalErrorInstance;
+			string message = scriptException.Message;
+			if (errorValue != null)
 			{
-				message = !string.IsNullOrEmpty(jsError.Stack) ? jsError.Stack : jsError.Message;
+				message = !string.IsNullOrEmpty(errorValue.Stack) ? errorValue.Stack : errorValue.Message;
 			}
 
-			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
-				jsException)
+			var hostException = new JsRuntimeException(message, EngineName, EngineVersion,
+				scriptException)
 			{
-				Category = jsException.Name,
-				LineNumber = jsException.LineNumber,
+				Category = scriptException.Name,
+				LineNumber = scriptException.LineNumber,
 				ColumnNumber = 0,
 				SourceFragment = string.Empty
 			};
 
-			return jsRuntimeException;
+			return hostException;
 		}
 
-		private string GetUniqueDocumentName(string documentName, bool isFile)
-		{
-			string uniqueDocumentName;
+		#endregion
 
-			if (!_jsEngine.EnableDebugging)
-			{
-				uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
-			}
-			else
-			{
-				uniqueDocumentName = isFile ? documentName : null;
-			}
-
-			return uniqueDocumentName;
-		}
-
-		#region JsEngineBase implementation
+		#region JsEngineBase overrides
 
 		protected override object InnerEvaluate(string expression)
 		{
@@ -213,7 +194,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 				catch (NotImplementedException e)
 				{
@@ -256,7 +237,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 				catch (NotImplementedException e)
 				{
@@ -274,7 +255,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			{
 				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
 				{
-					processedArgs[argumentIndex] = MapToJurassicType(args[argumentIndex]);
+					processedArgs[argumentIndex] = MapToScriptType(args[argumentIndex]);
 				}
 			}
 
@@ -288,7 +269,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 				catch (NotImplementedException e)
 				{
@@ -337,7 +318,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 
@@ -355,7 +336,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override void InnerSetVariableValue(string variableName, object value)
 		{
-			object processedValue = MapToJurassicType(value);
+			object processedValue = MapToScriptType(value);
 
 			lock (_executionSynchronizer)
 			{
@@ -365,7 +346,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 		}
@@ -377,7 +358,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override void InnerEmbedHostObject(string itemName, object value)
 		{
-			object processedValue = MapToJurassicType(value);
+			object processedValue = MapToScriptType(value);
 
 			lock (_executionSynchronizer)
 			{
@@ -395,7 +376,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 		}
@@ -410,10 +391,55 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 		}
+
+		protected override void InnerInterrupt()
+		{
+			throw new NotImplementedException();
+		}
+
+		protected override void InnerCollectGarbage()
+		{
+			throw new NotImplementedException();
+		}
+
+		#region IJsEngine implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public override string Name
+		{
+			get { return EngineName; }
+		}
+
+		/// <summary>
+		/// Gets a version of original JS engine
+		/// </summary>
+		public override string Version
+		{
+			get { return EngineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script interruption
+		/// </summary>
+		public override bool SupportsScriptInterruption
+		{
+			get { return false; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return false; }
+		}
+
 
 		public override void ExecuteFile(string path, Encoding encoding = null)
 		{
@@ -448,7 +474,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 		}
@@ -489,7 +515,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 		}
@@ -527,15 +553,12 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavascriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 		}
 
-		protected override void InnerCollectGarbage()
-		{
-			throw new NotImplementedException();
-		}
+		#endregion
 
 		#endregion
 

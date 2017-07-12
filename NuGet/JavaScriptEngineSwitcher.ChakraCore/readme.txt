@@ -30,9 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Now during the rethrowing of exceptions are preserved the full call stack
-      trace;
-   2. Reduced a number of delegate-wrappers.
+   Added a ability to interrupt execution of the script.
 
    =============
    DOCUMENTATION

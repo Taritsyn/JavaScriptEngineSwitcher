@@ -204,6 +204,9 @@ See more details:
   <data name="Runtime_ReturnValueTypeNotSupported" xml:space="preserve">
     <value>The type of return value `{0}` is not supported.</value>
   </data>
+  <data name="Runtime_ScriptInterrupted" xml:space="preserve">
+    <value>Script execution was interrupted.</value>
+  </data>
   <data name="Runtime_VariableTypeNotSupported" xml:space="preserve">
     <value>The variable '{0}' has a type `{1}`, which is not supported.</value>
   </data>

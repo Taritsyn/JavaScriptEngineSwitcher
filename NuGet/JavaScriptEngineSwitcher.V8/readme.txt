@@ -25,7 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   Now during the rethrowing of exceptions are preserved the full call stack trace.
+   Added a ability to interrupt execution of the script.
 
    =============
    DOCUMENTATION

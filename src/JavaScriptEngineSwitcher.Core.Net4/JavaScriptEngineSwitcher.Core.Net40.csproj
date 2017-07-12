@@ -83,6 +83,9 @@
     <Compile Include="..\JavaScriptEngineSwitcher.Core\JsRuntimeException.cs">
       <Link>JsRuntimeException.cs</Link>
     </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Core\JsScriptInterruptedException.cs">
+      <Link>JsScriptInterruptedException.cs</Link>
+    </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Core\NotSupportedTypeException.cs">
       <Link>NotSupportedTypeException.cs</Link>
     </Compile>

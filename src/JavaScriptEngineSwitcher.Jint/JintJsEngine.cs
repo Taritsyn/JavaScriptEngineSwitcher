@@ -51,30 +51,6 @@ namespace JavaScriptEngineSwitcher.Jint
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public override string Name
-		{
-			get { return EngineName; }
-		}
-
-		/// <summary>
-		/// Gets a version of original JS engine
-		/// </summary>
-		public override string Version
-		{
-			get { return EngineVersion; }
-		}
-
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports garbage collection
-		/// </summary>
-		public override bool SupportsGarbageCollection
-		{
-			get { return false; }
-		}
-
 
 		/// <summary>
 		/// Constructs a instance of adapter for the Jint JS engine
@@ -110,14 +86,15 @@ namespace JavaScriptEngineSwitcher.Jint
 			}
 		}
 
-		#region JsEngineBase implementation
+
+		#region Mapping
 
 		/// <summary>
-		/// Executes a mapping from the host type to a Jint type
+		/// Makes a mapping of value from the host type to a script type
 		/// </summary>
 		/// <param name="value">The source value</param>
 		/// <returns>The mapped value</returns>
-		private OriginalJsValue MapToJintType(object value)
+		private OriginalJsValue MapToScriptType(object value)
 		{
 			if (value is Undefined)
 			{
@@ -128,7 +105,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 		/// <summary>
-		/// Executes a mapping from the Jint type to a host type
+		/// Makes a mapping of value from the script type to a host type
 		/// </summary>
 		/// <param name="value">The source value</param>
 		/// <returns>The mapped value</returns>
@@ -142,39 +119,39 @@ namespace JavaScriptEngineSwitcher.Jint
 			return value.ToObject();
 		}
 
-		private JsRuntimeException ConvertParserExceptionToJsRuntimeException(
-			OriginalParserException jsParserException)
+		private JsRuntimeException ConvertScriptParserExceptionToHostException(
+			OriginalParserException scriptParserException)
 		{
 			const string category = "ParserError";
-			string description = jsParserException.Description;
-			int lineNumber = jsParserException.LineNumber;
-			int columnNumber = jsParserException.Column;
+			string description = scriptParserException.Description;
+			int lineNumber = scriptParserException.LineNumber;
+			int columnNumber = scriptParserException.Column;
 			string message = !string.IsNullOrWhiteSpace(description) ?
-				GenerateErrorMessageWithLocation(category, description, jsParserException.Source,
+				GenerateErrorMessageWithLocation(category, description, scriptParserException.Source,
 					lineNumber, columnNumber)
 				:
-				jsParserException.Message
+				scriptParserException.Message
 				;
 
-			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
-				jsParserException)
+			var hostException = new JsRuntimeException(message, EngineName, EngineVersion,
+				scriptParserException)
 			{
 				Category = category,
 				LineNumber = lineNumber,
 				ColumnNumber = columnNumber
 			};
 
-			return jsRuntimeException;
+			return hostException;
 		}
 
-		private JsRuntimeException ConvertJavaScriptExceptionToJsRuntimeException(
-			OriginalJsException jsException)
+		private JsRuntimeException ConvertScriptRuntimeExceptionToHostException(
+			OriginalJsException scriptRuntimeException)
 		{
 			string category = string.Empty;
-			int lineNumber = jsException.LineNumber;
-			int columnNumber = jsException.Column + 1;
-			string message = jsException.Message;
-			OriginalJsValue errorValue = jsException.Error;
+			int lineNumber = scriptRuntimeException.LineNumber;
+			int columnNumber = scriptRuntimeException.Column + 1;
+			string message = scriptRuntimeException.Message;
+			OriginalJsValue errorValue = scriptRuntimeException.Error;
 
 			if (errorValue.IsObject())
 			{
@@ -187,18 +164,18 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 
 				message = GenerateErrorMessageWithLocation(category, message,
-					jsException.Location.Source, lineNumber, columnNumber);
+					scriptRuntimeException.Location.Source, lineNumber, columnNumber);
 			}
 
-			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
-				jsException)
+			var hostException = new JsRuntimeException(message, EngineName, EngineVersion,
+				scriptRuntimeException)
 			{
 				Category = category,
 				LineNumber = lineNumber,
 				ColumnNumber = columnNumber
 			};
 
-			return jsRuntimeException;
+			return hostException;
 		}
 
 		private static string GenerateErrorMessageWithLocation(string category, string message,
@@ -230,46 +207,50 @@ namespace JavaScriptEngineSwitcher.Jint
 			return errorMessage;
 		}
 
-		private JsRuntimeException ConvertRecursionDepthOverflowExceptionToJsRuntimeException(
-			OriginalRecursionDepthOverflowException jsRecursionException)
+		private JsRuntimeException ConvertScriptRecursionDepthOverflowExceptionToHostException(
+			OriginalRecursionDepthOverflowException scriptRecursionException)
 		{
 			string message = string.Format(Strings.Runtime_RecursionDepthOverflow,
-				jsRecursionException.CallChain);
+				scriptRecursionException.CallChain);
 
-			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
-				jsRecursionException)
+			var hostException = new JsRuntimeException(message, EngineName, EngineVersion,
+				scriptRecursionException)
 			{
 				Category = "RecursionDepthOverflowError"
 			};
 
-			return jsRuntimeException;
+			return hostException;
 		}
 
-		private JsRuntimeException ConvertStatementsCountOverflowExceptionToJsRuntimeException(
-			OriginalStatementsCountOverflowException jsStatementsException)
+		private JsRuntimeException ConvertScriptStatementsCountOverflowExceptionToHostException(
+			OriginalStatementsCountOverflowException scriptStatementsException)
 		{
-			var jsRuntimeException = new JsRuntimeException(Strings.Runtime_StatementsCountOverflow,
-				EngineName, EngineVersion, jsStatementsException)
+			var hostException = new JsRuntimeException(Strings.Runtime_StatementsCountOverflow,
+				EngineName, EngineVersion, scriptStatementsException)
 			{
 				Category = "StatementsCountOverflowError"
 			};
 
-			return jsRuntimeException;
+			return hostException;
 		}
 
-		private JsRuntimeException ConvertTimeoutExceptionToJsRuntimeException(
-			TimeoutException jsTimeoutException)
+		private JsRuntimeException ConvertScriptTimeoutExceptionToHostException(
+			TimeoutException scriptTimeoutException)
 		{
-			var jsRuntimeException = new JsRuntimeException(Strings.Runtime_ExecutionTimeout,
+			var hostException = new JsRuntimeException(Strings.Runtime_ExecutionTimeout,
 				EngineName, EngineVersion)
 			{
 				Category = "TimeoutError",
-				Source = jsTimeoutException.Source,
-				HelpLink = jsTimeoutException.HelpLink
+				Source = scriptTimeoutException.Source,
+				HelpLink = scriptTimeoutException.HelpLink
 			};
 
-			return jsRuntimeException;
+			return hostException;
 		}
+
+		#endregion
+
+		#region JsEngineBase overrides
 
 		protected override object InnerEvaluate(string expression)
 		{
@@ -295,23 +276,23 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 				catch (OriginalParserException e)
 				{
-					throw ConvertParserExceptionToJsRuntimeException(e);
+					throw ConvertScriptParserExceptionToHostException(e);
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptRuntimeExceptionToHostException(e);
 				}
 				catch (OriginalRecursionDepthOverflowException e)
 				{
-					throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
+					throw ConvertScriptRecursionDepthOverflowExceptionToHostException(e);
 				}
 				catch (OriginalStatementsCountOverflowException e)
 				{
-					throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
+					throw ConvertScriptStatementsCountOverflowExceptionToHostException(e);
 				}
 				catch (TimeoutException e)
 				{
-					throw ConvertTimeoutExceptionToJsRuntimeException(e);
+					throw ConvertScriptTimeoutExceptionToHostException(e);
 				}
 
 				result = MapToHostType(resultValue);
@@ -353,23 +334,23 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 				catch (OriginalParserException e)
 				{
-					throw ConvertParserExceptionToJsRuntimeException(e);
+					throw ConvertScriptParserExceptionToHostException(e);
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptRuntimeExceptionToHostException(e);
 				}
 				catch (OriginalRecursionDepthOverflowException e)
 				{
-					throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
+					throw ConvertScriptRecursionDepthOverflowExceptionToHostException(e);
 				}
 				catch (OriginalStatementsCountOverflowException e)
 				{
-					throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
+					throw ConvertScriptStatementsCountOverflowExceptionToHostException(e);
 				}
 				catch (TimeoutException e)
 				{
-					throw ConvertTimeoutExceptionToJsRuntimeException(e);
+					throw ConvertScriptTimeoutExceptionToHostException(e);
 				}
 			}
 		}
@@ -388,7 +369,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptRuntimeExceptionToHostException(e);
 				}
 
 				var callable = functionValue.TryCast<IOriginalCallable>();
@@ -405,7 +386,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
 					{
-						processedArgs[argumentIndex] = MapToJintType(args[argumentIndex]);
+						processedArgs[argumentIndex] = MapToScriptType(args[argumentIndex]);
 					}
 				}
 
@@ -417,19 +398,19 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptRuntimeExceptionToHostException(e);
 				}
 				catch (OriginalRecursionDepthOverflowException e)
 				{
-					throw ConvertRecursionDepthOverflowExceptionToJsRuntimeException(e);
+					throw ConvertScriptRecursionDepthOverflowExceptionToHostException(e);
 				}
 				catch (OriginalStatementsCountOverflowException e)
 				{
-					throw ConvertStatementsCountOverflowExceptionToJsRuntimeException(e);
+					throw ConvertScriptStatementsCountOverflowExceptionToHostException(e);
 				}
 				catch (TimeoutException e)
 				{
-					throw ConvertTimeoutExceptionToJsRuntimeException(e);
+					throw ConvertScriptTimeoutExceptionToHostException(e);
 				}
 
 				result = MapToHostType(resultValue);
@@ -479,7 +460,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptRuntimeExceptionToHostException(e);
 				}
 
 				result = MapToHostType(variableValue);
@@ -499,7 +480,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			lock (_executionSynchronizer)
 			{
-				OriginalJsValue processedValue = MapToJintType(value);
+				OriginalJsValue processedValue = MapToScriptType(value);
 
 				try
 				{
@@ -507,7 +488,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptRuntimeExceptionToHostException(e);
 				}
 			}
 		}
@@ -521,7 +502,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			lock (_executionSynchronizer)
 			{
-				OriginalJsValue processedValue = MapToJintType(value);
+				OriginalJsValue processedValue = MapToScriptType(value);
 
 				try
 				{
@@ -529,7 +510,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptRuntimeExceptionToHostException(e);
 				}
 			}
 		}
@@ -546,15 +527,56 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJavaScriptExceptionToJsRuntimeException(e);
+					throw ConvertScriptRuntimeExceptionToHostException(e);
 				}
 			}
+		}
+
+		protected override void InnerInterrupt()
+		{
+			throw new NotImplementedException();
 		}
 
 		protected override void InnerCollectGarbage()
 		{
 			throw new NotImplementedException();
 		}
+
+		#region IJsEngine implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public override string Name
+		{
+			get { return EngineName; }
+		}
+
+		/// <summary>
+		/// Gets a version of original JS engine
+		/// </summary>
+		public override string Version
+		{
+			get { return EngineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script interruption
+		/// </summary>
+		public override bool SupportsScriptInterruption
+		{
+			get { return false; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return false; }
+		}
+
+		#endregion
 
 		#endregion
 

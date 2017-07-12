@@ -77,6 +77,11 @@ namespace JavaScriptEngineSwitcher.Core
 			throw new NotImplementedException();
 		}
 
+		protected virtual void InnerInterrupt()
+		{
+			throw new NotImplementedException();
+		}
+
 		protected virtual void InnerCollectGarbage()
 		{
 			throw new NotImplementedException();
@@ -92,6 +97,14 @@ namespace JavaScriptEngineSwitcher.Core
 		public abstract string Version
 		{
 			get;
+		}
+
+		public virtual bool SupportsScriptInterruption
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
 		}
 
 		public virtual bool SupportsGarbageCollection
@@ -539,6 +552,13 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 
 			InnerEmbedHostType(itemName, type);
+		}
+
+		public virtual void Interrupt()
+		{
+			VerifyNotDisposed();
+
+			InnerInterrupt();
 		}
 
 		public virtual void CollectGarbage()

@@ -26,6 +26,14 @@ namespace JavaScriptEngineSwitcher.Core
 		}
 
 		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script interruption
+		/// </summary>
+		bool SupportsScriptInterruption
+		{
+			get;
+		}
+
+		/// <summary>
 		/// Gets a value that indicates if the JS engine supports garbage collection
 		/// </summary>
 		bool SupportsGarbageCollection
@@ -171,6 +179,11 @@ namespace JavaScriptEngineSwitcher.Core
 		/// methods are bound to the type's static members.
 		/// </remarks>
 		void EmbedHostType(string itemName, Type type);
+
+		/// <summary>
+		/// Interrupts script execution and causes the JS engine to throw an exception
+		/// </summary>
+		void Interrupt();
 
 		/// <summary>
 		/// Performs a full garbage collection

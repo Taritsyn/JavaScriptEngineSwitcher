@@ -57,30 +57,6 @@ namespace JavaScriptEngineSwitcher.Vroom
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public override string Name
-		{
-			get { return EngineName; }
-		}
-
-		/// <summary>
-		/// Gets a version of original JS engine
-		/// </summary>
-		public override string Version
-		{
-			get { return EngineVersion; }
-		}
-
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports garbage collection
-		/// </summary>
-		public override bool SupportsGarbageCollection
-		{
-			get { return false; }
-		}
-
 
 		/// <summary>
 		/// Static constructor
@@ -125,12 +101,14 @@ namespace JavaScriptEngineSwitcher.Vroom
 		}
 
 
+		#region Mapping
+
 		/// <summary>
-		/// Makes a mapping from the host type to a Vroom type
+		/// Makes a mapping of value from the host type to a script type
 		/// </summary>
 		/// <param name="value">The source value</param>
 		/// <returns>The mapped value</returns>
-		private static object MapToVroomType(object value)
+		private static object MapToScriptType(object value)
 		{
 			if (value is Undefined)
 			{
@@ -140,28 +118,28 @@ namespace JavaScriptEngineSwitcher.Vroom
 			return value;
 		}
 
-		private static JsRuntimeException ConvertJsExceptionToJsRuntimeException(
-			OriginalJsException jsException)
+		private static JsException ConvertScriptExceptionToHostException(
+			OriginalJsException scriptException)
 		{
-			string message = jsException.Message;
+			string message = scriptException.Message;
 			string category;
 			int lineNumber = 0;
 			int columnNumber = 0;
 			string sourceFragment = string.Empty;
 
-			if (jsException is OriginalJsInteropException)
+			if (scriptException is OriginalJsInteropException)
 			{
 				category = "InteropError";
 			}
 			else
 			{
-				category = jsException.Type;
-				lineNumber = jsException.Line;
-				columnNumber = jsException.Column;
+				category = scriptException.Type;
+				lineNumber = scriptException.Line;
+				columnNumber = scriptException.Column;
 			}
 
-			var jsRuntimeException = new JsRuntimeException(message, EngineName, EngineVersion,
-				jsException)
+			var hostException = new JsRuntimeException(message, EngineName, EngineVersion,
+				scriptException)
 			{
 				Category = category,
 				LineNumber = lineNumber,
@@ -169,10 +147,12 @@ namespace JavaScriptEngineSwitcher.Vroom
 				SourceFragment = sourceFragment
 			};
 
-			return jsRuntimeException;
+			return hostException;
 		}
 
-		#region JsEngineBase implementation
+		#endregion
+
+		#region JsEngineBase overrides
 
 		protected override object InnerEvaluate(string expression)
 		{
@@ -192,7 +172,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJsExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 
@@ -228,7 +208,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJsExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 		}
@@ -294,7 +274,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJsExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 
@@ -310,7 +290,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		protected override void InnerSetVariableValue(string variableName, object value)
 		{
-			object processedValue = MapToVroomType(value);
+			object processedValue = MapToScriptType(value);
 
 			lock (_executionSynchronizer)
 			{
@@ -320,7 +300,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJsExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 		}
@@ -344,12 +324,23 @@ namespace JavaScriptEngineSwitcher.Vroom
 				}
 				catch (OriginalJsException e)
 				{
-					throw ConvertJsExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 		}
 
-		private void EmbedHostItem(string itemName, object value)
+		protected override void InnerEmbedHostObject(string itemName, object value)
+		{
+			object processedValue = MapToScriptType(value);
+			InnerEmbedHostItem(itemName, processedValue);
+		}
+
+		protected override void InnerEmbedHostType(string itemName, Type type)
+		{
+			InnerEmbedHostItem(itemName, type);
+		}
+
+		private void InnerEmbedHostItem(string itemName, object value)
 		{
 			lock (_executionSynchronizer)
 			{
@@ -383,26 +374,56 @@ namespace JavaScriptEngineSwitcher.Vroom
 						_hostItems.Remove(itemName);
 					}
 
-					throw ConvertJsExceptionToJsRuntimeException(e);
+					throw ConvertScriptExceptionToHostException(e);
 				}
 			}
 		}
 
-		protected override void InnerEmbedHostObject(string itemName, object value)
+		protected override void InnerInterrupt()
 		{
-			object processedValue = MapToVroomType(value);
-			EmbedHostItem(itemName, processedValue);
-		}
-
-		protected override void InnerEmbedHostType(string itemName, Type type)
-		{
-			EmbedHostItem(itemName, type);
+			throw new NotImplementedException();
 		}
 
 		protected override void InnerCollectGarbage()
 		{
 			throw new NotImplementedException();
 		}
+
+		#region IJsEngine implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public override string Name
+		{
+			get { return EngineName; }
+		}
+
+		/// <summary>
+		/// Gets a version of original JS engine
+		/// </summary>
+		public override string Version
+		{
+			get { return EngineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script interruption
+		/// </summary>
+		public override bool SupportsScriptInterruption
+		{
+			get { return false; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports garbage collection
+		/// </summary>
+		public override bool SupportsGarbageCollection
+		{
+			get { return false; }
+		}
+
+		#endregion
 
 		#endregion
 
