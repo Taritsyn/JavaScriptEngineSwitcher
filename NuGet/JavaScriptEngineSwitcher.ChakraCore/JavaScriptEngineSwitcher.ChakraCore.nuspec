@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore</id>
-		<version>2.4.10</version>
+		<version>3.0.0-alpha1</version>
 		<title>JS Engine Switcher: ChakraCore</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -26,16 +26,16 @@ This package does not contain the native implementations of ChakraCore. Therefor
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client">
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.10" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
 			</group>
 			<group targetFramework=".NETFramework4.5">
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.10" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
 			</group>
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="NETStandard.Library" version="1.6.0" />
 				<dependency id="System.Reflection.TypeExtensions" version="4.1.0" />
 				<dependency id="System.Threading.Thread" version="4.0.0" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.10" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
 			</group>
 		</dependencies>
 		<references>

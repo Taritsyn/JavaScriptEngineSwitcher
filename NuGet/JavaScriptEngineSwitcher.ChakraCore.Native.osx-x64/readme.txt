@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-          README file for JS Engine Switcher: ChakraCore for OS X x64 v2.4.6
+      README file for JS Engine Switcher: ChakraCore for OS X x64 v3.0.0 Alpha 1
 
    --------------------------------------------------------------------------------
 
@@ -17,11 +17,6 @@
    This package is only compatible with .NET Core.
 
    For correct working of the ChakraCore require the ICU4C library.
-
-   =============
-   RELEASE NOTES
-   =============
-   ChakraCore was updated to version 1.5.2.
 
    ====================
    POST-INSTALL ACTIONS

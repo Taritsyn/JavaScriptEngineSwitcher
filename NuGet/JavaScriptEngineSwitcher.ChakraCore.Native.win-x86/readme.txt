@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: ChakraCore for Windows x86 v2.4.6
+     README file for JS Engine Switcher: ChakraCore for Windows x86 v3.0.0 Alpha 1
 
    --------------------------------------------------------------------------------
 
@@ -16,11 +16,6 @@
 
    For correct working of the ChakraCore require `msvcp140.dll` assembly from the
    Visual C++ Redistributable for Visual Studio 2015.
-
-   =============
-   RELEASE NOTES
-   =============
-   ChakraCore was updated to version 1.5.2.
 
    ====================
    POST-INSTALL ACTIONS

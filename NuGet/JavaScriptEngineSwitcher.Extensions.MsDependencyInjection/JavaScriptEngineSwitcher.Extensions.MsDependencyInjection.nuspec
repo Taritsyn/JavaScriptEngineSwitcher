@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection</id>
-		<version>2.4.0</version>
+		<version>3.0.0-alpha1</version>
 		<title>JS Engine Switcher: MS Dependency Injection</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -12,19 +12,18 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</description>
 		<summary>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</summary>
-		<releaseNotes>Added support of .NET Core 1.0.4.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript DI</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.5">
 				<dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="1.0.2" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.0" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
 			</group>
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="NETStandard.Library" version="1.6.0" />
 				<dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="1.0.2" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.0" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
 			</group>
 		</dependencies>
 		<frameworkAssemblies>

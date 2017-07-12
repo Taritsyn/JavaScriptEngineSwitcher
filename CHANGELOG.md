@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.0.0 Alpha 1 - July 12, 2017
+ * In `IJsEngine` interface was added `SupportsScriptInterruption` property and `Interrupt` method
+ * In JavaScriptEngineSwitcher.V8 and JavaScriptEngineSwitcher.ChakraCore added a ability to interrupt execution of the script
+
 ## v2.4.10 - July 4, 2017
  * Now during the rethrowing of exceptions are preserved the full call stack trace
  * In JavaScriptEngineSwitcher.ChakraCore was reduced a number of delegate-wrappers

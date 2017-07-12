@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Jint</id>
-		<version>2.4.0</version>
+		<version>3.0.0-alpha1</version>
 		<title>JS Engine Switcher: Jint</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -12,25 +12,22 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.10.4).</description>
 		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version 2.10.4).</summary>
-		<releaseNotes>1. Added support of .NET Core 1.0.4;
-2. Jint was updated to version 2.10.4;
-3. Now script error contains a error location.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript Jint</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client">
 				<dependency id="Jint" version="2.10.4" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.0" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
 			</group>
 			<group targetFramework=".NETFramework4.5">
 				<dependency id="Jint" version="2.10.4" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.0" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
 			</group>
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="NETStandard.Library" version="1.6.0" />
 				<dependency id="Jint" version="2.10.4" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.0" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
 			</group>
 		</dependencies>
 		<references>

@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: ChakraCore for Debian x64 v2.4.6
+     README file for JS Engine Switcher: ChakraCore for Debian x64 v3.0.0 Alpha 1
 
    --------------------------------------------------------------------------------
 
@@ -16,11 +16,6 @@
    Linux (x64) (Debian, Ubuntu and Linux Mint).
 
    This package is only compatible with .NET Core.
-
-   =============
-   RELEASE NOTES
-   =============
-   ChakraCore was updated to version 1.5.2.
 
    =============
    DOCUMENTATION
