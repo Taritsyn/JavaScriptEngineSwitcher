@@ -7,20 +7,41 @@ namespace JavaScriptEngineSwitcher.Core
 	/// <summary>
 	/// JS engine switcher
 	/// </summary>
-	public sealed class JsEngineSwitcher
+	public sealed class JsEngineSwitcher : IJsEngineSwitcher
 	{
 		/// <summary>
-		/// Instance of JS engine switcher
+		/// Default instance of JS engine switcher
 		/// </summary>
-		private static readonly Lazy<JsEngineSwitcher> _instance =
-			new Lazy<JsEngineSwitcher>(() => new JsEngineSwitcher());
+		private static readonly Lazy<IJsEngineSwitcher> _default
+			= new Lazy<IJsEngineSwitcher>(() => new JsEngineSwitcher());
+
+		/// <summary>
+		/// Current instance of JS engine switcher
+		/// </summary>
+		private static IJsEngineSwitcher _current;
+
+		/// <summary>
+		/// Gets or sets a instance of JS engine switcher
+		/// </summary>
+		public static IJsEngineSwitcher Current
+		{
+			get
+			{
+				return _current ?? _default.Value;
+			}
+			set
+			{
+				_current = value;
+			}
+		}
 
 		/// <summary>
 		/// Gets a instance of JS engine switcher
 		/// </summary>
-		public static JsEngineSwitcher Instance
+		[Obsolete("Use a `Current` property")]
+		public static IJsEngineSwitcher Instance
 		{
-			get { return _instance.Value; }
+			get { return Current; }
 		}
 
 		/// <summary>
@@ -43,12 +64,26 @@ namespace JavaScriptEngineSwitcher.Core
 
 
 		/// <summary>
-		/// Private constructor for implementation Singleton pattern
+		/// Constructs an instance of JS engine switcher
 		/// </summary>
-		private JsEngineSwitcher()
+		public JsEngineSwitcher()
+			: this(new JsEngineFactoryCollection())
+		{ }
+
+		/// <summary>
+		/// Constructs an instance of JS engine switcher
+		/// </summary>
+		public JsEngineSwitcher(JsEngineFactoryCollection engineFactories)
+			: this(engineFactories, string.Empty)
+		{ }
+
+		/// <summary>
+		/// Constructs an instance of JS engine switcher
+		/// </summary>
+		public JsEngineSwitcher(JsEngineFactoryCollection engineFactories, string defaultEngineName)
 		{
-			DefaultEngineName = string.Empty;
-			EngineFactories = new JsEngineFactoryCollection();
+			EngineFactories = engineFactories;
+			DefaultEngineName = defaultEngineName;
 		}
 
 

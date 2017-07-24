@@ -18,7 +18,7 @@ namespace JavaScriptEngineSwitcher.Sample.Logic.Services
 	{
 		private static readonly Dictionary<string, string> _engineDisplayNameMappings;
 
-		private readonly JsEngineSwitcher _engineSwitcher;
+		private readonly IJsEngineSwitcher _engineSwitcher;
 
 
 		static JsEvaluationService()
@@ -35,11 +35,11 @@ namespace JavaScriptEngineSwitcher.Sample.Logic.Services
 
 #if NET40
 		public JsEvaluationService()
-			: this(JsEngineSwitcher.Instance)
+			: this(JsEngineSwitcher.Current)
 		{ }
 
 #endif
-		public JsEvaluationService(JsEngineSwitcher engineSwitcher)
+		public JsEvaluationService(IJsEngineSwitcher engineSwitcher)
 		{
 			_engineSwitcher = engineSwitcher;
 		}

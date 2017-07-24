@@ -19,7 +19,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		{
 			if (_initializedFlag.Set())
 			{
-				JsEngineSwitcher.Instance.EngineFactories
+				JsEngineSwitcher.Current.EngineFactories
 					.AddChakraCore()
 					.AddJint()
 					.AddMsie(new MsieSettings

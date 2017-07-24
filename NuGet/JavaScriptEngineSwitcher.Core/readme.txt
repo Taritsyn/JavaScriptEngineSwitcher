@@ -19,8 +19,8 @@
    =============
    RELEASE NOTES
    =============
-   In `IJsEngine` interface was added `SupportsScriptInterruption` property and
-   `Interrupt` method.
+   1. `Instance` property was renamed to the `Current` property;
+   2. Now you can implement your own version of the `JsEngineSwitcher` class.
 
    =============
    DOCUMENTATION

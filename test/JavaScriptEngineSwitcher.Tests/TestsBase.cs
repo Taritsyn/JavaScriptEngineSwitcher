@@ -18,7 +18,7 @@ namespace JavaScriptEngineSwitcher.Tests
 
 		public IJsEngine CreateJsEngine()
 		{
-			var jsEngine = JsEngineSwitcher.Instance.CreateEngine(EngineName);
+			var jsEngine = JsEngineSwitcher.Current.CreateEngine(EngineName);
 
 			return jsEngine;
 		}
