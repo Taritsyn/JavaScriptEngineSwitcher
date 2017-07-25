@@ -22,7 +22,7 @@
    ====================
    If in your system does not `msvcp140.dll` assembly, then download and install
    the Visual C++ Redistributable for Visual Studio 2015
-   (https://www.microsoft.com/en-us/download/details.aspx?id=52685).
+   (https://www.microsoft.com/en-us/download/details.aspx?id=53840).
 
    =============
    DOCUMENTATION

@@ -98,9 +98,6 @@
 					case JsErrorCode.ModuleParsed:
 						throw new JsUsageException(error, "Module parsed.");
 
-					case JsErrorCode.ModuleEvaluated:
-						throw new JsUsageException(error, "Module evaluated.");
-
 					#endregion
 
 					#region Engine

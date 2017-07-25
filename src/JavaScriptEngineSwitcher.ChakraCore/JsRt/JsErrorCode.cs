@@ -156,11 +156,6 @@
 		/// </summary>
 		ModuleParsed,
 
-		/// <summary>
-		/// Module was evaluated already when JsModuleEvaluation is called
-		/// </summary>
-		ModuleEvaluated,
-
 		#endregion
 
 		#region Engine

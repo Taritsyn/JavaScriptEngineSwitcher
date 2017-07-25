@@ -40,6 +40,23 @@
 		}
 
 		/// <summary>
+		/// Determines whether an object has a non-inherited property
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		/// <param name="source">The JavaScript value</param>
+		/// <param name="propertyName">The name of the property</param>
+		/// <returns>Whether the object has the non-inherited property</returns>
+		public static bool HasOwnProperty(this JsValue source, string propertyName)
+		{
+			JsPropertyId propertyId = JsPropertyId.FromString(propertyName);
+			bool result = source.HasOwnProperty(propertyId);
+
+			return result;
+		}
+
+		/// <summary>
 		/// Gets an object's property
 		/// </summary>
 		/// <remarks>

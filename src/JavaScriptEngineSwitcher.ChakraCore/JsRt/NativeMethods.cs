@@ -184,6 +184,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		internal static extern JsErrorCode JsHasProperty(JsValue obj, JsPropertyId propertyId, out bool hasProperty);
 
 		[DllImport(DllName)]
+		internal static extern JsErrorCode JsHasOwnProperty(JsValue obj, JsPropertyId propertyId, out bool hasOwnProperty);
+
+		[DllImport(DllName)]
 		internal static extern JsErrorCode JsDeleteProperty(JsValue obj, JsPropertyId propertyId, bool useStrictRules,
 			out JsValue result);
 

@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Added a ability to interrupt execution of the script.
+   ChakraCore was updated to version 1.7.0.
 
    =============
    DOCUMENTATION

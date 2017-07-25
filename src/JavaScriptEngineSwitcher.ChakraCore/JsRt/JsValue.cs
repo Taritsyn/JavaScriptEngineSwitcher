@@ -756,6 +756,22 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
+		/// Determines whether an object has a non-inherited property
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		/// <param name="propertyId">The ID of the property</param>
+		/// <returns>Whether the object has the non-inherited property</returns>
+		public bool HasOwnProperty(JsPropertyId propertyId)
+		{
+			bool hasOwnProperty;
+			JsErrorHelpers.ThrowIfError(NativeMethods.JsHasOwnProperty(this, propertyId, out hasOwnProperty));
+
+			return hasOwnProperty;
+		}
+
+		/// <summary>
 		/// Gets an object's property
 		/// </summary>
 		/// <remarks>
