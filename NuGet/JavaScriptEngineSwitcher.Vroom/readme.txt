@@ -19,6 +19,11 @@
    from the Visual C++ Redistributable for Visual Studio 2012 and `msvcp140.dll`
    from the Microsoft Visual C++ 2015 Redistributable.
 
+   =============
+   RELEASE NOTES
+   =============
+   Added a ability to interrupt execution of the script.
+
    ====================
    POST-INSTALL ACTIONS
    ====================

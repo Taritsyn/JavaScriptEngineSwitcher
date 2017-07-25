@@ -238,11 +238,9 @@ namespace JavaScriptEngineSwitcher.Jint
 			TimeoutException scriptTimeoutException)
 		{
 			var hostException = new JsRuntimeException(Strings.Runtime_ExecutionTimeout,
-				EngineName, EngineVersion)
+				EngineName, EngineVersion, scriptTimeoutException)
 			{
-				Category = "TimeoutError",
-				Source = scriptTimeoutException.Source,
-				HelpLink = scriptTimeoutException.HelpLink
+				Category = "TimeoutError"
 			};
 
 			return hostException;

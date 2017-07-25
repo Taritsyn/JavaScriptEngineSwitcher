@@ -121,6 +121,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 		private static JsException ConvertScriptExceptionToHostException(
 			OriginalJsException scriptException)
 		{
+			JsException hostException;
 			string message = scriptException.Message;
 			string category;
 			int lineNumber = 0;
@@ -138,14 +139,22 @@ namespace JavaScriptEngineSwitcher.Vroom
 				columnNumber = scriptException.Column;
 			}
 
-			var hostException = new JsRuntimeException(message, EngineName, EngineVersion,
-				scriptException)
+			if (category == null)
 			{
-				Category = category,
-				LineNumber = lineNumber,
-				ColumnNumber = columnNumber,
-				SourceFragment = sourceFragment
-			};
+				hostException = new JsScriptInterruptedException(CoreStrings.Runtime_ScriptInterrupted,
+					EngineName, EngineVersion, scriptException);
+			}
+			else
+			{
+				hostException = new JsRuntimeException(message, EngineName, EngineVersion,
+					scriptException)
+				{
+					Category = category,
+					LineNumber = lineNumber,
+					ColumnNumber = columnNumber,
+					SourceFragment = sourceFragment
+				};
+			}
 
 			return hostException;
 		}
@@ -381,7 +390,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		protected override void InnerInterrupt()
 		{
-			throw new NotImplementedException();
+			_jsEngine.TerminateExecution();
 		}
 
 		protected override void InnerCollectGarbage()
@@ -412,7 +421,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 		/// </summary>
 		public override bool SupportsScriptInterruption
 		{
-			get { return false; }
+			get { return true; }
 		}
 
 		/// <summary>
