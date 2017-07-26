@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                 README file for JS Engine Switcher: V8 v3.0.0 Alpha 1
+                 README file for JS Engine Switcher: V8 v3.0.0 Alpha 2
 
    --------------------------------------------------------------------------------
 
@@ -21,11 +21,6 @@
 
     * JavaScriptEngineSwitcher.V8.Native.win-x86
     * JavaScriptEngineSwitcher.V8.Native.win-x64
-
-   =============
-   RELEASE NOTES
-   =============
-   Added a ability to interrupt execution of the script.
 
    =============
    DOCUMENTATION

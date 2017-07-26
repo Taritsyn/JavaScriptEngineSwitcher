@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.0.0 Alpha 2 - July 26, 2017
+ * In `JsEngineSwitcher` class `Instance` property was renamed to the `Current` property
+ * Now you can implement your own version of the `JsEngineSwitcher` class
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of July 13, 2017
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.7.0
+
 ## v3.0.0 Alpha 1 - July 12, 2017
  * In `IJsEngine` interface was added `SupportsScriptInterruption` property and `Interrupt` method
  * In JavaScriptEngineSwitcher.V8 and JavaScriptEngineSwitcher.ChakraCore added a ability to interrupt execution of the script

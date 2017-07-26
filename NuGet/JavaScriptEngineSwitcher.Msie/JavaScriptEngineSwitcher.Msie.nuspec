@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Msie</id>
-		<version>3.0.0-alpha1</version>
+		<version>3.0.0-alpha2</version>
 		<title>JS Engine Switcher: MSIE</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -18,16 +18,16 @@
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client">
 				<dependency id="MsieJavaScriptEngine" version="2.2.3" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
 			</group>
 			<group targetFramework=".NETFramework4.5">
 				<dependency id="MsieJavaScriptEngine" version="2.2.3" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
 			</group>
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="NETStandard.Library" version="1.6.0" />
 				<dependency id="MsieJavaScriptEngine" version="2.2.3" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha1" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
 			</group>
 		</dependencies>
 		<references>

@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: Core v3.0.0 Alpha 1
+                README file for JS Engine Switcher: Core v3.0.0 Alpha 2
 
    --------------------------------------------------------------------------------
 
@@ -19,7 +19,8 @@
    =============
    RELEASE NOTES
    =============
-   1. `Instance` property was renamed to the `Current` property;
+   1. In `JsEngineSwitcher` class `Instance` property was renamed to the `Current`
+      property;
    2. Now you can implement your own version of the `JsEngineSwitcher` class.
 
    =============
