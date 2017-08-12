@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.7.0.
+   Compilation error messages now contains a information about the error location.
 
    =============
    DOCUMENTATION
