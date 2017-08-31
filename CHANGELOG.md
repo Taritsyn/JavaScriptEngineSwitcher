@@ -76,7 +76,7 @@ Change log
  * Downgraded .NET Framework version from 4.5.1 to 4.5
  * Now when you call the overloaded version of the `ExecuteResource` method, that takes the type, need to pass the resource name without the namespace
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.1.0
- * In JavaScriptEngineSwitcher.V8 now the Microsoft ClearScript.V8 requires `msvcp140.dll` assembly from the [Visual C++ Redistributable for Visual Studio 2015](http://www.microsoft.com/en-us/download/details.aspx?id=48145)
+ * In JavaScriptEngineSwitcher.V8 now the Microsoft ClearScript.V8 requires `msvcp140.dll` assembly from the [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=53840)
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of December 8, 2016
  * In JavaScriptEngineSwitcher.ChakraCore:
    * Attempt to prevent occurrence of the access violation exception in the `CallFunction` method
@@ -100,7 +100,7 @@ Change log
    * Native assemblies for Windows have been moved to separate packages: JavaScriptEngineSwitcher.ChakraCore.Native.win-x86 and JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
    * Added a packages, that contains a native assemblies for Windows (ARM), Debian-based Linux (x64) and OS X (x64)
    * ChakraCore was updated to version of October 29, 2016
-   * New version of the ChakraCore for Windows requires `msvcp140.dll` assembly from the [Visual C++ Redistributable for Visual Studio 2015](http://www.microsoft.com/en-us/download/details.aspx?id=48145)
+   * New version of the ChakraCore for Windows requires `msvcp140.dll` assembly from the [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=53840)
 
 ## v2.1.0 Beta 2 - October 31, 2016
  * In JavaScriptEngineSwitcher.ChakraCore added experimental support of Windows (ARM)
@@ -113,7 +113,7 @@ Change log
    * Fixed a errors, that occurred during marshaling of Unicode strings in Unix-based operating systems
    * Native assemblies have been moved to separate packages: JavaScriptEngineSwitcher.ChakraCore.Native.win-x86 and JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
    * ChakraCore was updated to version of October 29, 2016
-   * New version of the ChakraCore for Windows requires `msvcp140.dll` assembly from the [Visual C++ Redistributable for Visual Studio 2015](http://www.microsoft.com/en-us/download/details.aspx?id=48145)
+   * New version of the ChakraCore for Windows requires `msvcp140.dll` assembly from the [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=53840)
    * Added the JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64 and JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64 packages
 
 ## v2.0.3 - October 17, 2016
