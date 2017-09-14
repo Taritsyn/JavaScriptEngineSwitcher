@@ -24,7 +24,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MsieJavaScriptEngine" Version="2.2.3" />
+		<PackageReference Include="MsieJavaScriptEngine" Version="3.0.0-alpha1" />
 
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
 	</ItemGroup>

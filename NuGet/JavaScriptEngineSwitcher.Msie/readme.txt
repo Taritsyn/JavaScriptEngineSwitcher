@@ -17,6 +17,11 @@
    Internet Explorer 9+ or Microsoft Edge on the machine.
 
    =============
+   RELEASE NOTES
+   =============
+   Added support of MSIE JavaScript Engine version 3.0.0 Alpha 1.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -
