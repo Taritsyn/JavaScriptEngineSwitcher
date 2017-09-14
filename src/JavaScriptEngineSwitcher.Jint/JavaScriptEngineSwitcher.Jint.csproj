@@ -24,7 +24,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Jint" Version="2.10.4" />
+		<PackageReference Include="Jint" Version="2.11.23" />
 
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
 	</ItemGroup>
