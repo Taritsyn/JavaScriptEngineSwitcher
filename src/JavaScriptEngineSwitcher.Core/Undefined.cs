@@ -10,8 +10,10 @@
 		/// </summary>
 		public static readonly Undefined Value = new Undefined();
 
+
 		private Undefined()
 		{ }
+
 
 		/// <summary>
 		/// Returns a string that represents the current object

@@ -73,14 +73,14 @@ namespace JavaScriptEngineSwitcher.V8
 		}
 
 		/// <summary>
-		/// Constructs a instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
+		/// Constructs an instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
 		/// </summary>
 		public V8JsEngine()
 			: this(new V8Settings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
+		/// Constructs an instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
 		/// </summary>
 		/// <param name="settings">Settings of the V8 JS engine</param>
 		public V8JsEngine(V8Settings settings)
@@ -536,8 +536,6 @@ namespace JavaScriptEngineSwitcher.V8
 
 		#endregion
 
-		#endregion
-
 		#region IDisposable implementation
 
 		public override void Dispose()
@@ -551,6 +549,8 @@ namespace JavaScriptEngineSwitcher.V8
 				}
 			}
 		}
+
+		#endregion
 
 		#endregion
 	}

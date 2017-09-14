@@ -92,7 +92,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 #endif
 
 		/// <summary>
-		/// Constructs a instance of adapter for the ChakraCore JS engine
+		/// Constructs an instance of adapter for the ChakraCore JS engine
 		/// </summary>
 		public ChakraCoreJsEngine()
 			: this(new ChakraCoreSettings())
@@ -1290,8 +1290,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		#endregion
 
-		#endregion
-
 		#region IDisposable implementation
 
 		/// <summary>
@@ -1339,6 +1337,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				}
 			}
 		}
+
+		#endregion
 
 		#endregion
 	}

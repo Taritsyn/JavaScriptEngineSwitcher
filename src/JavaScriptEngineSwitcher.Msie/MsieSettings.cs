@@ -43,7 +43,7 @@
 
 
 		/// <summary>
-		/// Constructs instance of the MSIE settings
+		/// Constructs an instance of the MSIE settings
 		/// </summary>
 		public MsieSettings()
 		{

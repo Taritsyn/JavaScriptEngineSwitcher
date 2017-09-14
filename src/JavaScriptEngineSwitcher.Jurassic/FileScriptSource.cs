@@ -28,17 +28,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// </summary>
 		private readonly Encoding _encoding;
 
-		/// <summary>
-		/// Gets a document name
-		/// </summary>
-		public override string Path
-		{
-			get { return _documentName; }
-		}
-
 
 		/// <summary>
-		/// Constructs a instance of <see cref="FileScriptSource"/>
+		/// Constructs an instance of <see cref="FileScriptSource"/>
 		/// </summary>
 		/// <param name="documentName">The document name</param>
 		/// <param name="path">The path to the JS-file</param>
@@ -75,6 +67,17 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		}
 
 
+		#region Jurassic.ScriptSource overrides
+
+		/// <summary>
+		/// Gets a document name
+		/// </summary>
+		public override string Path
+		{
+			get { return _documentName; }
+		}
+
+
 		/// <summary>
 		/// Gets a reader that can be used to read the source code from JS-file
 		/// </summary>
@@ -84,5 +87,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			return new StreamReader(_path, _encoding, true);
 		}
+
+		#endregion
 	}
 }

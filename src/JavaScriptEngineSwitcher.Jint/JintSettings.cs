@@ -64,7 +64,7 @@
 
 
 		/// <summary>
-		/// Constructs instance of the Jint settings
+		/// Constructs an instance of the Jint settings
 		/// </summary>
 		public JintSettings()
 		{

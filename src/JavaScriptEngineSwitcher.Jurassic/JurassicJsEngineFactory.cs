@@ -12,14 +12,6 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// </summary>
 		private readonly JurassicSettings _settings;
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public string EngineName
-		{
-			get { return JurassicJsEngine.EngineName; }
-		}
-
 
 		/// <summary>
 		/// Constructs an instance of the Jurassic JS engine factory
@@ -38,6 +30,17 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		}
 
 
+		#region IJsEngineFactory implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public string EngineName
+		{
+			get { return JurassicJsEngine.EngineName; }
+		}
+
+
 		/// <summary>
 		/// Creates a instance of the Jurassic JS engine
 		/// </summary>
@@ -46,5 +49,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			return new JurassicJsEngine(_settings);
 		}
+
+		#endregion
 	}
 }

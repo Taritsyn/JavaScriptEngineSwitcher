@@ -12,14 +12,6 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// </summary>
 		private readonly JintSettings _settings;
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public string EngineName
-		{
-			get { return JintJsEngine.EngineName; }
-		}
-
 
 		/// <summary>
 		/// Constructs an instance of the Jint JS engine factory
@@ -38,6 +30,17 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 
+		#region IJsEngineFactory implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public string EngineName
+		{
+			get { return JintJsEngine.EngineName; }
+		}
+
+
 		/// <summary>
 		/// Creates a instance of the Jint JS engine
 		/// </summary>
@@ -46,5 +49,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			return new JintJsEngine(_settings);
 		}
+
+		#endregion
 	}
 }

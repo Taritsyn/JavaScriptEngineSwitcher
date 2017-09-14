@@ -44,24 +44,6 @@ namespace JavaScriptEngineSwitcher.Core
 			get { return Current; }
 		}
 
-		/// <summary>
-		/// Gets or sets a name of default JS engine
-		/// </summary>
-		public string DefaultEngineName
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets a collection of JS engine factories
-		/// </summary>
-		public JsEngineFactoryCollection EngineFactories
-		{
-			get;
-			private set;
-		}
-
 
 		/// <summary>
 		/// Constructs an instance of JS engine switcher
@@ -84,6 +66,27 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			EngineFactories = engineFactories;
 			DefaultEngineName = defaultEngineName;
+		}
+
+
+		#region IJsEngineSwitcher implementation
+
+		/// <summary>
+		/// Gets or sets a name of default JS engine
+		/// </summary>
+		public string DefaultEngineName
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets a collection of JS engine factories
+		/// </summary>
+		public JsEngineFactoryCollection EngineFactories
+		{
+			get;
+			private set;
 		}
 
 
@@ -126,5 +129,7 @@ namespace JavaScriptEngineSwitcher.Core
 
 			return jsEngine;
 		}
+
+		#endregion
 	}
 }

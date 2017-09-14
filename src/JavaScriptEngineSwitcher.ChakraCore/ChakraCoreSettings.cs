@@ -44,7 +44,7 @@
 
 
 		/// <summary>
-		/// Constructs instance of the ChakraCore settings
+		/// Constructs an instance of the ChakraCore settings
 		/// </summary>
 		public ChakraCoreSettings()
 		{

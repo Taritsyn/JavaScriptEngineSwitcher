@@ -53,14 +53,14 @@ namespace JavaScriptEngineSwitcher.Jint
 
 
 		/// <summary>
-		/// Constructs a instance of adapter for the Jint JS engine
+		/// Constructs an instance of adapter for the Jint JS engine
 		/// </summary>
 		public JintJsEngine()
 			: this(new JintSettings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for the Jint JS engine
+		/// Constructs an instance of adapter for the Jint JS engine
 		/// </summary>
 		/// <param name="settings">Settings of the Jint JS engine</param>
 		public JintJsEngine(JintSettings settings)
@@ -576,8 +576,6 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		#endregion
 
-		#endregion
-
 		#region IDisposable implementation
 
 		public override void Dispose()
@@ -590,6 +588,8 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 			}
 		}
+
+		#endregion
 
 		#endregion
 	}

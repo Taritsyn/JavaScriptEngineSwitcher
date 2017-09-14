@@ -12,14 +12,6 @@ namespace JavaScriptEngineSwitcher.V8
 		/// </summary>
 		private readonly V8Settings _settings;
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public string EngineName
-		{
-			get { return V8JsEngine.EngineName; }
-		}
-
 
 		/// <summary>
 		/// Constructs an instance of the V8 JS engine factory
@@ -38,6 +30,17 @@ namespace JavaScriptEngineSwitcher.V8
 		}
 
 
+		#region IJsEngineFactory implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public string EngineName
+		{
+			get { return V8JsEngine.EngineName; }
+		}
+
+
 		/// <summary>
 		/// Creates a instance of the V8 JS engine
 		/// </summary>
@@ -46,5 +49,7 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			return new V8JsEngine(_settings);
 		}
+
+		#endregion
 	}
 }

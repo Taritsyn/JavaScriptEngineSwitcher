@@ -12,14 +12,6 @@ namespace JavaScriptEngineSwitcher.Msie
 		/// </summary>
 		private readonly MsieSettings _settings;
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public string EngineName
-		{
-			get { return MsieJsEngine.EngineName; }
-		}
-
 
 		/// <summary>
 		/// Constructs an instance of the MSIE JS engine factory
@@ -38,6 +30,17 @@ namespace JavaScriptEngineSwitcher.Msie
 		}
 
 
+		#region IJsEngineFactory implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public string EngineName
+		{
+			get { return MsieJsEngine.EngineName; }
+		}
+
+
 		/// <summary>
 		/// Creates a instance of the MSIE JS engine
 		/// </summary>
@@ -46,5 +49,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		{
 			return new MsieJsEngine(_settings);
 		}
+
+		#endregion
 	}
 }

@@ -434,8 +434,6 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		#endregion
 
-		#endregion
-
 		#region IDisposable implementation
 
 		public override void Dispose()
@@ -463,6 +461,8 @@ namespace JavaScriptEngineSwitcher.Vroom
 				}
 			}
 		}
+
+		#endregion
 
 		#endregion
 	}

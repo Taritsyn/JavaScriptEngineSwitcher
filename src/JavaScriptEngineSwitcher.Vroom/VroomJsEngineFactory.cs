@@ -12,14 +12,6 @@ namespace JavaScriptEngineSwitcher.Vroom
 		/// </summary>
 		private readonly VroomSettings _settings;
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public string EngineName
-		{
-			get { return VroomJsEngine.EngineName; }
-		}
-
 
 		/// <summary>
 		/// Constructs an instance of the Vroom JS engine factory
@@ -38,6 +30,17 @@ namespace JavaScriptEngineSwitcher.Vroom
 		}
 
 
+		#region IJsEngineFactory implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public string EngineName
+		{
+			get { return VroomJsEngine.EngineName; }
+		}
+
+
 		/// <summary>
 		/// Creates a instance of the Vroom JS engine
 		/// </summary>
@@ -46,5 +49,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 		{
 			return new VroomJsEngine(_settings);
 		}
+
+		#endregion
 	}
 }

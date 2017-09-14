@@ -52,14 +52,14 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 
 		/// <summary>
-		/// Constructs a instance of adapter for the Jurassic JS engine
+		/// Constructs an instance of adapter for the Jurassic JS engine
 		/// </summary>
 		public JurassicJsEngine()
 			: this(new JurassicSettings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for the Jurassic JS engine
+		/// Constructs an instance of adapter for the Jurassic JS engine
 		/// </summary>
 		/// <param name="settings">Settings of the Jurassic JS engine</param>
 		public JurassicJsEngine(JurassicSettings settings)
@@ -560,8 +560,6 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		#endregion
 
-		#endregion
-
 		#region IDisposable implementation
 
 		public override void Dispose()
@@ -574,6 +572,8 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 			}
 		}
+
+		#endregion
 
 		#endregion
 	}

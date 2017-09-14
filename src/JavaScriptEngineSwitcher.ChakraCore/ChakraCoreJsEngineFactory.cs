@@ -12,14 +12,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		private readonly ChakraCoreSettings _settings;
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
-		public string EngineName
-		{
-			get { return ChakraCoreJsEngine.EngineName; }
-		}
-
 
 		/// <summary>
 		/// Constructs an instance of the ChakraCore JS engine factory
@@ -38,6 +30,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 
+		#region IJsEngineFactory implementation
+
+		/// <summary>
+		/// Gets a name of JS engine
+		/// </summary>
+		public string EngineName
+		{
+			get { return ChakraCoreJsEngine.EngineName; }
+		}
+
+
 		/// <summary>
 		/// Creates a instance of the ChakraCore JS engine
 		/// </summary>
@@ -46,5 +49,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			return new ChakraCoreJsEngine(_settings);
 		}
+
+		#endregion
 	}
 }
