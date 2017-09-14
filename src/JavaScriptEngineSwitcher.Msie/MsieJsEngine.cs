@@ -6,7 +6,9 @@ using System.Text;
 using OriginalJsEngine = MsieJavaScriptEngine.MsieJsEngine;
 using OriginalJsEngineLoadException = MsieJavaScriptEngine.JsEngineLoadException;
 using OriginalJsEngineMode = MsieJavaScriptEngine.JsEngineMode;
+using OriginalJsException = MsieJavaScriptEngine.JsException;
 using OriginalJsRuntimeException = MsieJavaScriptEngine.JsRuntimeException;
+using OriginalJsScriptInterruptedException = MsieJavaScriptEngine.JsScriptInterruptedException;
 using OriginalJsEngineSettings = MsieJavaScriptEngine.JsEngineSettings;
 using OriginalTypeConverter = MsieJavaScriptEngine.Utilities.TypeConverter;
 using OriginalUndefined = MsieJavaScriptEngine.Undefined;
@@ -112,18 +114,35 @@ namespace JavaScriptEngineSwitcher.Msie
 			return value;
 		}
 
-		private JsRuntimeException ConvertScriptExceptionToHostException(
-			OriginalJsRuntimeException scriptException)
+		private JsException ConvertScriptExceptionToHostException(
+			OriginalJsException scriptException)
 		{
-			var hostException = new JsRuntimeException(scriptException.Message,
-				EngineName, _engineVersion, scriptException)
+			JsException hostException;
+
+			if (scriptException is OriginalJsRuntimeException)
 			{
-				ErrorCode = scriptException.ErrorCode,
-				Category = scriptException.Category,
-				LineNumber = scriptException.LineNumber,
-				ColumnNumber = scriptException.ColumnNumber,
-				SourceFragment = scriptException.SourceFragment
-			};
+				var scriptRuntimeException = (OriginalJsRuntimeException)scriptException;
+				hostException = new JsRuntimeException(scriptRuntimeException.Message,
+					EngineName, _engineVersion, scriptRuntimeException)
+				{
+					ErrorCode = scriptRuntimeException.ErrorCode,
+					Category = scriptRuntimeException.Category,
+					LineNumber = scriptRuntimeException.LineNumber,
+					ColumnNumber = scriptRuntimeException.ColumnNumber,
+					SourceFragment = scriptRuntimeException.SourceFragment
+				};
+			}
+			else if (scriptException is OriginalJsScriptInterruptedException)
+			{
+				var scriptInterruptedException = (OriginalJsScriptInterruptedException)scriptException;
+				hostException = new JsScriptInterruptedException(CoreStrings.Runtime_ScriptInterrupted,
+					EngineName, _engineVersion, scriptInterruptedException);
+			}
+			else
+			{
+				hostException = new JsException(scriptException.Message,
+					EngineName, _engineVersion, scriptException);
+			}
 
 			return hostException;
 		}
@@ -145,7 +164,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				result = _jsEngine.Evaluate(expression, documentName);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertScriptExceptionToHostException(e);
 			}
@@ -178,7 +197,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine.Execute(code, documentName);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertScriptExceptionToHostException(e);
 			}
@@ -202,7 +221,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				result = _jsEngine.CallFunction(functionName, processedArgs);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertScriptExceptionToHostException(e);
 			}
@@ -227,7 +246,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				result = _jsEngine.HasVariable(variableName);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertScriptExceptionToHostException(e);
 			}
@@ -243,7 +262,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				result = _jsEngine.GetVariableValue(variableName);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertScriptExceptionToHostException(e);
 			}
@@ -268,7 +287,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine.SetVariableValue(variableName, processedValue);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertScriptExceptionToHostException(e);
 			}
@@ -280,7 +299,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine.RemoveVariable(variableName);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertScriptExceptionToHostException(e);
 			}
@@ -294,7 +313,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine.EmbedHostObject(itemName, processedValue);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertScriptExceptionToHostException(e);
 			}
@@ -306,7 +325,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine.EmbedHostType(itemName, type);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalJsException e)
 			{
 				throw ConvertScriptExceptionToHostException(e);
 			}
@@ -314,7 +333,7 @@ namespace JavaScriptEngineSwitcher.Msie
 
 		protected override void InnerInterrupt()
 		{
-			throw new NotImplementedException();
+			_jsEngine.Interrupt();
 		}
 
 		protected override void InnerCollectGarbage()
@@ -345,7 +364,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		/// </summary>
 		public override bool SupportsScriptInterruption
 		{
-			get { return false; }
+			get { return true; }
 		}
 
 		/// <summary>
