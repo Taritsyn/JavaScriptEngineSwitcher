@@ -1,6 +1,15 @@
 Change log
 ==========
 
+## v3.0.0 Alpha 3 - September 15, 2017
+ * In JavaScriptEngineSwitcher.Msie:
+   * Added support of MSIE JavaScript Engine version 3.0.0 Alpha 1
+   * Added a ability to interrupt execution of the script
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.11.23
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * Added support of ChakraCore version 1.7.2
+   * Compilation error messages now contains a information about the error location
+
 ## v3.0.0 Alpha 2 - July 26, 2017
  * In `JsEngineSwitcher` class `Instance` property was renamed to the `Current` property
  * Now you can implement your own version of the `JsEngineSwitcher` class
