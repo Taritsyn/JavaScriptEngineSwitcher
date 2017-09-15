@@ -332,7 +332,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsCopyString(JsValue value, byte[] buffer, UIntPtr bufferSize,
-			out UIntPtr written);
+			out UIntPtr length);
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsParse(JsValue script, JsSourceContext sourceContext, JsValue sourceUrl,

@@ -620,15 +620,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			{
 				byte[] buffer = null;
 				UIntPtr bufferSize = UIntPtr.Zero;
-				UIntPtr written;
+				UIntPtr length;
 
-				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out written);
+				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				buffer = new byte[(int)written];
-				bufferSize = new UIntPtr((uint)written);
+				buffer = new byte[(int)length];
+				bufferSize = new UIntPtr((uint)length);
 
-				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out written);
+				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
 				result = Encoding.GetEncoding(0).GetString(buffer);
