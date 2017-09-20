@@ -99,6 +99,9 @@
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\ChakraCore\CommonTests.cs">
       <Link>ChakraCore\CommonTests.cs</Link>
     </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\ChakraCore\Es2015Tests.cs">
+      <Link>ChakraCore\Es2015Tests.cs</Link>
+    </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\ChakraCore\Es5Tests.cs">
       <Link>ChakraCore\Es5Tests.cs</Link>
     </Compile>
@@ -107,6 +110,9 @@
     </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\CommonTestsBase.cs">
       <Link>CommonTestsBase.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Es2015TestsBase.cs">
+      <Link>Es2015TestsBase.cs</Link>
     </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\Es5TestsBase.cs">
       <Link>Es5TestsBase.cs</Link>
@@ -185,6 +191,9 @@
     </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\V8\CommonTests.cs">
       <Link>V8\CommonTests.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\V8\Es2015Tests.cs">
+      <Link>V8\Es2015Tests.cs</Link>
     </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\V8\Es5Tests.cs">
       <Link>V8\Es5Tests.cs</Link>

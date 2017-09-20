@@ -30,9 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version 1.7.2;
-   2. Compilation error messages now contains a information about the error
-      location.
+   An attempt was made to fix a error #40 “Support For Native Promises”.
 
    =============
    DOCUMENTATION

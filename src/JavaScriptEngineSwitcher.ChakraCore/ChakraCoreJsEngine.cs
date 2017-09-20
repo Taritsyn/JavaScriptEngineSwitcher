@@ -207,7 +207,23 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				_jsRuntime.Disabled = false;
 			}
 
-			return new JsScope(_jsContext);
+			var jsScope = new JsScope(_jsContext);
+
+			JsRuntime.SetPromiseContinuationCallback(PromiseContinuationCallback, IntPtr.Zero);
+
+			return jsScope;
+		}
+
+		/// <summary>
+		/// The promise continuation callback
+		/// </summary>
+		/// <param name="task">The task, represented as a JavaScript function</param>
+		/// <param name="callbackState">The data argument to be passed to the callback</param>
+		private static void PromiseContinuationCallback(JsValue task, IntPtr callbackState)
+		{
+			task.AddRef();
+			task.CallFunction(JsValue.GlobalObject);
+			task.Release();
 		}
 
 		#region Mapping
