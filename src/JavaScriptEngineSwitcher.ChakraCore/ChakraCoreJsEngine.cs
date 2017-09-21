@@ -62,6 +62,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private JsObjectFinalizeCallback _externalObjectFinalizeCallback;
 
 		/// <summary>
+		/// Callback for continuation of promise
+		/// </summary>
+		private JsPromiseContinuationCallback _promiseContinuationCallback;
+
+		/// <summary>
 		/// List of native function callbacks
 		/// </summary>
 		private readonly HashSet<JsNativeFunction> _nativeFunctions = new HashSet<JsNativeFunction>();
@@ -125,6 +130,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			}
 
 			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
+			_promiseContinuationCallback = PromiseContinuationCallback;
 
 			_dispatcher.Invoke(() =>
 			{
@@ -209,7 +215,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			var jsScope = new JsScope(_jsContext);
 
-			JsRuntime.SetPromiseContinuationCallback(PromiseContinuationCallback, IntPtr.Zero);
+			JsRuntime.SetPromiseContinuationCallback(_promiseContinuationCallback, IntPtr.Zero);
 
 			return jsScope;
 		}
@@ -1349,6 +1355,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						_nativeFunctions.Clear();
 					}
 
+					_promiseContinuationCallback = null;
 					_externalObjectFinalizeCallback = null;
 				}
 			}

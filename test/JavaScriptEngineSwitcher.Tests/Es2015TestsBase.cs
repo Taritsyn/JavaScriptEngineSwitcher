@@ -12,34 +12,43 @@ namespace JavaScriptEngineSwitcher.Tests
 		public virtual void ExecutionOfPromisesIsCorrect()
 		{
 			// Arrange
-			var sb = new StringBuilder();
+			var stringBuilder = new StringBuilder();
 			const string input = @"var successfulWork = new Promise(function(resolve, reject) {
-	resolve(""Resolved promise from JavaScript"");
+	resolve(""Success!"");
 });
 
 var unsuccessfulWork = new Promise(function (resolve, reject) {
-	reject(""Rejected promise from JavaScript"");
+	reject(""Fail!"");
 });
 
 function resolveCallback(result) {
-	console.AppendLine('Resolved: ' + result);
+	stringBuilder.AppendLine('Resolved: ' + result);
 }
 
 function rejectCallback(reason) {
-	console.AppendLine('Rejected: ' + reason);
+	stringBuilder.AppendLine('Rejected: ' + reason);
 }
 
 successfulWork.then(resolveCallback, rejectCallback);
 unsuccessfulWork.then(resolveCallback, rejectCallback);";
+			const string targetOutput = @"Resolved: Success!
+Rejected: Fail!
+";
 
 			// Act
+			string output;
+
 			using (var jsEngine = CreateJsEngine())
 			{
-				jsEngine.EmbedHostObject("sb", sb);
+				jsEngine.EmbedHostObject("stringBuilder", stringBuilder);
 				jsEngine.Execute(input);
+
+				output = stringBuilder.ToString();
+				stringBuilder.Clear();
 			}
 
 			// Assert
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
