@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 using Xunit;
 
@@ -31,9 +32,9 @@ function rejectCallback(reason) {
 
 successfulWork.then(resolveCallback, rejectCallback);
 unsuccessfulWork.then(resolveCallback, rejectCallback);";
-			const string targetOutput = @"Resolved: Success!
-Rejected: Fail!
-";
+			string targetOutput = "Resolved: Success!" + Environment.NewLine +
+				"Rejected: Fail!" + Environment.NewLine
+				;
 
 			// Act
 			string output;
