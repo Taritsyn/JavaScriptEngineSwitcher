@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: ChakraCore v3.0.0 Alpha 3
+             README file for JS Engine Switcher: ChakraCore v3.0.0 Alpha 4
 
    --------------------------------------------------------------------------------
 
@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   An attempt was made to fix a error #40 “Support For Native Promises”.
+   Prevented an occurrence of the “Host may not have set any promise continuation
+   callback. Promises may not be executed.” error.
 
    =============
    DOCUMENTATION

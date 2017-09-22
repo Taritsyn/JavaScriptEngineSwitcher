@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.0.0 Alpha 4 - September 22, 2017
+ * In JavaScriptEngineSwitcher.ChakraCore prevented an occurrence of the “Host may not have set any promise continuation callback. Promises may not be executed.” error
+
 ## v3.0.0 Alpha 3 - September 15, 2017
  * In JavaScriptEngineSwitcher.Msie:
    * Added support of MSIE JavaScript Engine version 3.0.0 Alpha 1
