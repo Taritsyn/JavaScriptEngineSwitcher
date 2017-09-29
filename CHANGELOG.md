@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.0.0 Alpha 5 - September 29, 2017
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.10
+
 ## v3.0.0 Alpha 4 - September 22, 2017
  * In JavaScriptEngineSwitcher.ChakraCore prevented an occurrence of the “Host may not have set any promise continuation callback. Promises may not be executed.” error
 
