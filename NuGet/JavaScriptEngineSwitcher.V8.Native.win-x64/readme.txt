@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: V8 for Windows x64 v3.0.0 Alpha 2
+         README file for JS Engine Switcher: V8 for Windows x64 v3.0.0 Alpha 5
 
    --------------------------------------------------------------------------------
 
@@ -16,6 +16,11 @@
 
    For correct working of the Microsoft ClearScript.V8 require `msvcp140.dll`
    assembly from the Visual C++ Redistributable for Visual Studio 2015.
+
+   =============
+   RELEASE NOTES
+   =============
+   Microsoft ClearScript.V8 was updated to version 5.4.10.
 
    ====================
    POST-INSTALL ACTIONS
