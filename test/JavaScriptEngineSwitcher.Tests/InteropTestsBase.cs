@@ -298,7 +298,7 @@ namespace JavaScriptEngineSwitcher.Tests
 			}
 
 			// Assert
-			Assert.True(targetOutput.Contains(output));
+			Assert.Contains(output, targetOutput);
 		}
 
 		[Fact]
@@ -761,7 +761,7 @@ namespace JavaScriptEngineSwitcher.Tests
 			}
 
 			// Assert
-			Assert.True(targetOutput.Contains(output));
+			Assert.Contains(output, targetOutput);
 		}
 
 		[Fact]

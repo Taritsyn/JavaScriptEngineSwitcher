@@ -504,7 +504,7 @@ namespace JavaScriptEngineSwitcher.Tests
 			}
 
 			// Assert
-			Assert.Equal(false, output);
+			Assert.False(output);
 		}
 
 		[Fact]

@@ -15,7 +15,6 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 
 		#region Mapping errors
 
-		[Fact]
 		public override void MappingRuntimeErrorDuringEvaluationOfExpressionIsCorrect()
 		{
 			// Arrange
