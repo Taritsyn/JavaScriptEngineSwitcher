@@ -53,36 +53,6 @@
 
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj" />
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj" />
-
-		<None Include="..\..\lib\ChakraCore\win-x86\ChakraCore.dll">
-			<Link>x86\ChakraCore.dll</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Include="..\..\lib\ChakraCore\win-x64\ChakraCore.dll">
-			<Link>x64\ChakraCore.dll</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Include="..\..\lib\ChakraCore\win8-arm\ChakraCore.dll">
-			<Link>arm\ChakraCore.dll</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-
-		<None Include="..\..\lib\ClearScript\win-x86\ClearScriptV8-32.dll">
-			<Link>x86\ClearScriptV8-32.dll</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Include="..\..\lib\ClearScript\win-x86\v8-ia32.dll">
-			<Link>x86\v8-ia32.dll</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Include="..\..\lib\ClearScript\win-x64\ClearScriptV8-64.dll">
-			<Link>x64\ClearScriptV8-64.dll</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Include="..\..\lib\ClearScript\win-x64\v8-x64.dll">
-			<Link>x64\v8-x64.dll</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
 	</ItemGroup>
 
 	<ItemGroup>

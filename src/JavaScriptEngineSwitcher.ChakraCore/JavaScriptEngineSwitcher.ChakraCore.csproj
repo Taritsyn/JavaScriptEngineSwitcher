@@ -36,6 +36,18 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+		<None Include="..\..\lib\ChakraCore\runtimes\win-x86\native\ChakraCore.dll">
+			<Link>x86\ChakraCore.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\lib\ChakraCore\runtimes\win-x64\native\ChakraCore.dll">
+			<Link>x64\ChakraCore.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\lib\ChakraCore\runtimes\win8-arm\native\ChakraCore.dll">
+			<Link>arm\ChakraCore.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 	<Target Name="PrecompileScript" BeforeTargets="BeforeBuild" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">

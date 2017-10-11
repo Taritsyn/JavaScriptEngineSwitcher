@@ -24,7 +24,7 @@
 
 	<ItemGroup>
 		<Reference Include="Jurassic">
-			<HintPath>..\..\lib\Jurassic\Jurassic.dll</HintPath>
+			<HintPath>..\..\lib\Jurassic\lib\net40-client\Jurassic.dll</HintPath>
 		</Reference>
 
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
