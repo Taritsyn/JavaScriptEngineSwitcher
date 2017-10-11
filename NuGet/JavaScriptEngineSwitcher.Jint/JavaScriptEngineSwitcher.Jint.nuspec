@@ -12,7 +12,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.11.23).</description>
 		<summary>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine version 2.11.23).</summary>
-		<releaseNotes>Jint was updated to version 2.11.23.</releaseNotes>
+		<releaseNotes>Added support of .NET Standard 2.0.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript Jint</tags>
@@ -26,7 +26,11 @@
 				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
 			</group>
 			<group targetFramework=".NETStandard1.3">
-				<dependency id="NETStandard.Library" version="1.6.0" />
+				<dependency id="NETStandard.Library" version="1.6.1" />
+				<dependency id="Jint" version="2.11.23" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
+			</group>
+			<group targetFramework=".NETStandard2.0">
 				<dependency id="Jint" version="2.11.23" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
 			</group>

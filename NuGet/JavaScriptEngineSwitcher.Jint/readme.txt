@@ -17,7 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version 2.11.23.
+   Added support of .NET Standard 2.0.
 
    =============
    DOCUMENTATION

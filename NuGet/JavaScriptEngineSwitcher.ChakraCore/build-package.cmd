@@ -29,6 +29,11 @@ xcopy "%dotnet_project_bin_dir%\netstandard1.3\%project_name%.dll" lib\netstanda
 xcopy "%dotnet_project_bin_dir%\netstandard1.3\%project_name%.xml" lib\netstandard1.3\
 xcopy "%dotnet_project_bin_dir%\netstandard1.3\ru-ru\%project_name%.resources.dll" lib\netstandard1.3\ru-ru\
 
+%dotnet_cli% build "%dotnet_project_source_dir%" --framework netstandard2.0 --configuration Release --no-dependencies --no-incremental
+xcopy "%dotnet_project_bin_dir%\netstandard2.0\%project_name%.dll" lib\netstandard2.0\
+xcopy "%dotnet_project_bin_dir%\netstandard2.0\%project_name%.xml" lib\netstandard2.0\
+xcopy "%dotnet_project_bin_dir%\netstandard2.0\ru-ru\%project_name%.resources.dll" lib\netstandard2.0\ru-ru\
+
 copy "%licenses_dir%\chakra-samples-license.txt" chakra-samples-license.txt /Y
 copy "%licenses_dir%\jsrt-dotnet-license.txt" jsrt-dotnet-license.txt /Y
 

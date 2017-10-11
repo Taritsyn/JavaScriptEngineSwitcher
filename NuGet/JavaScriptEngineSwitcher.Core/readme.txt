@@ -19,9 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   1. In `JsEngineSwitcher` class `Instance` property was renamed to the `Current`
-      property;
-   2. Now you can implement your own version of the `JsEngineSwitcher` class.
+   Added support of .NET Standard 2.0.
 
    =============
    DOCUMENTATION

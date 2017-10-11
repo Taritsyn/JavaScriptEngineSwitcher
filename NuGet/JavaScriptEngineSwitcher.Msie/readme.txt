@@ -19,8 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of MSIE JavaScript Engine version 3.0.0 Alpha 1;
-   2. Added a ability to interrupt execution of the script.
+   Added support of .NET Standard 2.0.
 
    =============
    DOCUMENTATION

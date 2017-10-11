@@ -14,7 +14,7 @@
 
 For correct working of the VroomJs on Windows require assemblies `msvcr110.dll` from the Visual C++ Redistributable for Visual Studio 2012 and `msvcp140.dll` from the Microsoft Visual C++ 2015 Redistributable.</description>
 		<summary>JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the VroomJs version 1.2.3 with support of V8 version 3.17.16.2).</summary>
-		<releaseNotes>Added a ability to interrupt execution of the script.</releaseNotes>
+		<releaseNotes>Added support of .NET Standard 2.0.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript VroomJs V8</tags>
@@ -29,6 +29,10 @@ For correct working of the VroomJs on Windows require assemblies `msvcr110.dll` 
 			</group>
 			<group targetFramework=".NETStandard1.6">
 				<dependency id="NETStandard.Library" version="1.6.0" />
+				<dependency id="VroomJs" version="1.2.3" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
+			</group>
+			<group targetFramework=".NETStandard2.0">
 				<dependency id="VroomJs" version="1.2.3" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
 			</group>

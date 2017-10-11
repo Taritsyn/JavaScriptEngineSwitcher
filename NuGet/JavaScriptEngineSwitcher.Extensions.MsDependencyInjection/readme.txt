@@ -15,6 +15,11 @@
    methods for adding the JS engine switcher in an `IServiceCollection`.
 
    =============
+   RELEASE NOTES
+   =============
+   Added support of .NET Standard 2.0.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -

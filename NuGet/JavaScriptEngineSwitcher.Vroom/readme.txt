@@ -22,7 +22,7 @@
    =============
    RELEASE NOTES
    =============
-   Added a ability to interrupt execution of the script.
+   Added support of .NET Standard 2.0.
 
    ====================
    POST-INSTALL ACTIONS

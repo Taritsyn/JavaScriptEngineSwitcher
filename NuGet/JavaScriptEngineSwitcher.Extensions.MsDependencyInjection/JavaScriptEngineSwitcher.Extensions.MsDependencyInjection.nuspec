@@ -12,6 +12,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</description>
 		<summary>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</summary>
+		<releaseNotes>Added support of .NET Standard 2.0.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript DI</tags>
@@ -23,6 +24,10 @@
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="NETStandard.Library" version="1.6.0" />
 				<dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="1.0.2" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
+			</group>
+			<group targetFramework=".NETStandard2.0">
+				<dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="2.0.0" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
 			</group>
 		</dependencies>

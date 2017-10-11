@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
-#if NETSTANDARD1_3 || NET45
+#if NETSTANDARD1_3 || NETSTANDARD2_0 || NET45
 using System.Reflection;
 #endif
 using OriginalTypeConverter = System.ComponentModel.TypeConverter;

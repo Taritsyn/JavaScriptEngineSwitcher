@@ -30,8 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Prevented an occurrence of the “Host may not have set any promise continuation
-   callback. Promises may not be executed.” error.
+   Added support of .NET Standard 2.0.
 
    =============
    DOCUMENTATION

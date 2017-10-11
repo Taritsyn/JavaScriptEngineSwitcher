@@ -12,8 +12,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge on the machine.</description>
 		<summary>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net).</summary>
-		<releaseNotes>1. Added support of MSIE JavaScript Engine version 3.0.0 Alpha 1;
-2. Added a ability to interrupt execution of the script.</releaseNotes>
+		<releaseNotes>Added support of .NET Standard 2.0.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript MSIE IE Chakra</tags>
@@ -28,6 +27,10 @@
 			</group>
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="NETStandard.Library" version="1.6.0" />
+				<dependency id="MsieJavaScriptEngine" version="3.0.0-alpha1" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
+			</group>
+			<group targetFramework=".NETStandard2.0">
 				<dependency id="MsieJavaScriptEngine" version="3.0.0-alpha1" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
 			</group>

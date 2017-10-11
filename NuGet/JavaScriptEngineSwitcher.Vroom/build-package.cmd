@@ -29,6 +29,11 @@ xcopy "%dotnet_project_bin_dir%\netstandard1.6\%project_name%.dll" lib\netstanda
 xcopy "%dotnet_project_bin_dir%\netstandard1.6\%project_name%.xml" lib\netstandard1.6\
 xcopy "%dotnet_project_bin_dir%\netstandard1.6\ru-ru\%project_name%.resources.dll" lib\netstandard1.6\ru-ru\
 
+%dotnet_cli% build "%dotnet_project_source_dir%" --framework netstandard2.0 --configuration Release --no-dependencies --no-incremental
+xcopy "%dotnet_project_bin_dir%\netstandard2.0\%project_name%.dll" lib\netstandard2.0\
+xcopy "%dotnet_project_bin_dir%\netstandard2.0\%project_name%.xml" lib\netstandard2.0\
+xcopy "%dotnet_project_bin_dir%\netstandard2.0\ru-ru\%project_name%.resources.dll" lib\netstandard2.0\ru-ru\
+
 copy "%licenses_dir%\vroomjs-core-license.txt" vroomjs-core-license.txt /Y
 copy "%licenses_dir%\v8-license.txt" v8-license.txt /Y
 
