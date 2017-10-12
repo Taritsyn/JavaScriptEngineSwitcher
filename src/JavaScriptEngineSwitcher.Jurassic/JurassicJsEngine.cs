@@ -32,7 +32,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "Jul 13, 2017";
+		private const string EngineVersion = "Sep 1, 2017";
 
 		/// <summary>
 		/// Jurassic JS engine
@@ -70,7 +70,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			{
 				_jsEngine = new OriginalJsEngine
 				{
+#if !NETSTANDARD2_0
 					EnableDebugging = jurassicSettings.EnableDebugging,
+#endif
 					CompatibilityMode = OriginalCompatibilityMode.Latest,
 					EnableExposedClrTypes = true,
 					EnableILAnalysis = jurassicSettings.EnableIlAnalysis,
@@ -90,14 +92,18 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			string uniqueDocumentName;
 
-			if (!_jsEngine.EnableDebugging)
-			{
-				uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
-			}
-			else
+#if !NETSTANDARD2_0
+			if (_jsEngine.EnableDebugging)
 			{
 				uniqueDocumentName = isFile ? documentName : null;
 			}
+			else
+			{
+#endif
+				uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+#if !NETSTANDARD2_0
+			}
+#endif
 
 			return uniqueDocumentName;
 		}

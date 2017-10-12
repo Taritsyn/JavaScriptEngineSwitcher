@@ -5,6 +5,7 @@
 	/// </summary>
 	public sealed class JurassicSettings
 	{
+#if !NETSTANDARD2_0
 		/// <summary>
 		/// Gets or sets a flag for whether to enable script debugging features
 		/// (allows a generation of debug information)
@@ -15,6 +16,7 @@
 			set;
 		}
 
+#endif
 		/// <summary>
 		/// Gets or sets a flag for whether to disassemble any generated IL
 		/// and store it in the associated function
@@ -40,7 +42,9 @@
 		/// </summary>
 		public JurassicSettings()
 		{
+#if !NETSTANDARD2_0
 			EnableDebugging = false;
+#endif
 			EnableIlAnalysis = false;
 			StrictMode = false;
 		}
