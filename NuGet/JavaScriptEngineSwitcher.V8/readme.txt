@@ -25,7 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 5.4.10.
+   Improved implementation of the `CallFunction` method.
 
    =============
    DOCUMENTATION
