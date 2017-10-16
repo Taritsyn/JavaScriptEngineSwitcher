@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore.Native.win-x86</id>
-		<version>3.0.0-alpha3</version>
+		<version>3.0.0-alpha6</version>
 		<title>JS Engine Switcher: ChakraCore for Windows (x86)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -10,11 +10,11 @@
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.7.2 for Windows (x86).
+		<description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.7.3 for Windows (x86).
 
 For correct working of the ChakraCore require `msvcp140.dll` assembly from the Visual C++ Redistributable for Visual Studio 2015.</description>
-		<summary>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.7.2 for Windows (x86).</summary>
-		<releaseNotes>ChakraCore was updated to version 1.7.2.</releaseNotes>
+		<summary>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.7.3 for Windows (x86).</summary>
+		<releaseNotes>ChakraCore was updated to version 1.7.3.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore Windows x86</tags>

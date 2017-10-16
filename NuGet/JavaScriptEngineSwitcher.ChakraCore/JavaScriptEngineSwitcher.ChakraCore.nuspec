@@ -17,10 +17,12 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.win-x86
  * JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
  * JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm
- * JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64
+ * JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</description>
 		<summary>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore).</summary>
-		<releaseNotes>Added support of .NET Standard 2.0.</releaseNotes>
+		<releaseNotes>1. Added support of .NET Standard 2.0;
+2. ChakraCore was updated to version 1.7.3;
+3. JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64 package has been replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64 package.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore</tags>
