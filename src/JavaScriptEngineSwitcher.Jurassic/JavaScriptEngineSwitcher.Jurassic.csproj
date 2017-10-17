@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>alpha2</VersionSuffix>
+		<VersionSuffix>alpha6</VersionSuffix>
 		<TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -23,21 +23,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Jurassic.Unofficial" Version="2017.9.1" />
+
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0" />
-
-		<Reference Include="Jurassic">
-			<HintPath>..\..\lib\Jurassic\lib\netstandard2.0\Jurassic.dll</HintPath>
-		</Reference>
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-		<Reference Include="Jurassic">
-			<HintPath>..\..\lib\Jurassic\lib\net40-client\Jurassic.dll</HintPath>
-		</Reference>
 	</ItemGroup>
 
 </Project>

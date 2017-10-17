@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.Jint</id>
-		<version>3.0.0-alpha3</version>
+		<version>3.0.0-alpha6</version>
 		<title>JS Engine Switcher: Jint</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -19,20 +19,20 @@
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client">
 				<dependency id="Jint" version="2.11.23" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha6" />
 			</group>
 			<group targetFramework=".NETFramework4.5">
 				<dependency id="Jint" version="2.11.23" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha6" />
 			</group>
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="NETStandard.Library" version="1.6.1" />
 				<dependency id="Jint" version="2.11.23" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha6" />
 			</group>
 			<group targetFramework=".NETStandard2.0">
 				<dependency id="Jint" version="2.11.23" />
-				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha2" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha6" />
 			</group>
 		</dependencies>
 		<references>

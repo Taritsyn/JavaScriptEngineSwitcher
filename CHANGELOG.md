@@ -1,6 +1,15 @@
 Change log
 ==========
 
+## v3.0.0 Alpha 6 - October 17, 2017
+ * In all modules, except the JavaScriptEngineSwitcher.V8 module, added support of .NET Standard 2.0
+ * In JavaScriptEngineSwitcher.V8 improved implementation of the `CallFunction` method
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of September 1, 2017
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.7.3
+   * JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64 package has been replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64 package
+   * ICU-57 library was embedded into the `libChakraCore.so` and `libChakraCore.dylib` assemblies
+
 ## v3.0.0 Alpha 5 - September 29, 2017
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.4.10
 

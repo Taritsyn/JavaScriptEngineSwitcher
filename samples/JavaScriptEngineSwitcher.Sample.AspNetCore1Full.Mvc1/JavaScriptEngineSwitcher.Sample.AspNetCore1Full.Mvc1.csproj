@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>alpha5</VersionSuffix>
+		<VersionSuffix>alpha6</VersionSuffix>
 		<TargetFramework>net451</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
