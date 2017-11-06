@@ -12,6 +12,9 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>3c7b660d</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,7 +37,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\..\tools\Key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\build\Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\JavaScriptEngineSwitcher.Core.Net4\JavaScriptEngineSwitcher.Core.Net40.csproj">
@@ -56,6 +59,7 @@
       <Link>x64\ClearScriptV8-64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\lib\ClearScript\runtimes\win-x64\native\v8-x64.dll">
@@ -76,7 +80,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\tools\Key.snk">
+    <None Include="..\..\build\Key.snk">
       <Link>Key.snk</Link>
     </None>
   </ItemGroup>
@@ -118,21 +122,19 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent>SET VS_PROJECT_DIR=$(ProjectDir)..\JavaScriptEngineSwitcher.V8
-
-cd "$(ProjectDir)..\..\"
-build resx</PreBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\..\packages\ResxToCs.MSBuild.1.0.0-alpha2\build\ResxToCs.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ResxToCs.MSBuild.1.0.0-alpha2\build\ResxToCs.MSBuild.targets'))" />
   </Target>
-  <Target Name="AfterBuild">
+  <Import Project="..\..\packages\ResxToCs.MSBuild.1.0.0-alpha2\build\ResxToCs.MSBuild.targets" Condition="Exists('..\..\packages\ResxToCs.MSBuild.1.0.0-alpha2\build\ResxToCs.MSBuild.targets')" />
+  <Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile" Condition=" '$(ResxToCsConversionWasRun)' != 'true' ">
+    <ResxToCsTask ResourceDirectory="..\JavaScriptEngineSwitcher.V8\Resources\" />
+    <PropertyGroup>
+      <ResxToCsConversionWasRun>true</ResxToCsConversionWasRun>
+    </PropertyGroup>
   </Target>
-  -->
 </Project>
