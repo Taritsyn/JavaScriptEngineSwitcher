@@ -1,4 +1,4 @@
-JavaScript Engine Switcher
+JavaScript Engine Switcher [![NuGet version](http://img.shields.io/nuget/v/JavaScriptEngineSwitcher.Core.svg)](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Core/)  [![Download count](https://img.shields.io/nuget/dt/JavaScriptEngineSwitcher.Core.svg)](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Core/)
 ==========================
 
 JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([MSIE JavaScript Engine for .Net](http://github.com/Taritsyn/MsieJavaScriptEngine), [Microsoft ClearScript.V8](http://github.com/Microsoft/ClearScript), [Jurassic](http://github.com/paulbartrum/jurassic), [Jint](http://github.com/sebastienros/jint), [ChakraCore](http://github.com/Microsoft/ChakraCore) and [VroomJs](http://github.com/pauldotknopf/vroomjs-core)).
