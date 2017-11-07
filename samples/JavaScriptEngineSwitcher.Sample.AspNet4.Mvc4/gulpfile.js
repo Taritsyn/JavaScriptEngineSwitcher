@@ -12,8 +12,8 @@ var autoprefixer = require('gulp-autoprefixer');
 var cleanCss = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 
-var webRootPath = "wwwroot";
-var bowerDirPath = webRootPath + "/lib";
+var webRootPath = ".";
+var bowerDirPath = "lib";
 var styleDirPath = webRootPath + '/styles';
 var scriptDirPath = webRootPath + '/scripts';
 

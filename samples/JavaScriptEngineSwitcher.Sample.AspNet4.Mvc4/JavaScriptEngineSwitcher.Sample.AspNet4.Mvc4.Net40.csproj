@@ -76,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Gruntfile.js" />
+    <Content Include="gulpfile.js" />
     <Content Include="images\0.gif" />
     <Content Include="images\clear-text.png" />
     <Content Include="images\icons\32x32\social-media-icons-32.png" />
@@ -87,7 +87,6 @@
     <Content Include="bower.json" />
     <Content Include="scripts\common.js" />
     <Content Include="scripts\evaluation-form.js" />
-    <Content Include="scripts\lib\jquery.validate.unobtrusive.js" />
     <None Include="scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -170,6 +169,15 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <Target Name="GulpClean" AfterTargets="Clean">
+    <Exec Command="gulp clean-builded-assets" />
+  </Target>
+  <Target Name="GulpBuild" AfterTargets="AfterBuild">
+    <Exec Command="gulp build-assets" />
+  </Target>
+  <Target Name="GulpRebuild" AfterTargets="AfterRebuild">
+    <Exec Command="gulp" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>
