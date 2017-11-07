@@ -23,7 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Jurassic.Unofficial" Version="2017.9.1" />
+		<PackageReference Include="Jurassic.Unofficial" Version="2017.11.2" />
 
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
 	</ItemGroup>
