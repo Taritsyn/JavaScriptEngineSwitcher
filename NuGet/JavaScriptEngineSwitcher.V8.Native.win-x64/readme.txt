@@ -17,6 +17,11 @@
    For correct working of the Microsoft ClearScript.V8 require `msvcp140.dll`
    assembly from the Visual C++ Redistributable for Visual Studio 2015.
 
+   =============
+   RELEASE NOTES
+   =============
+   Fixed a error “When using PackageReference DLL is not copied”.
+
    ====================
    POST-INSTALL ACTIONS
    ====================

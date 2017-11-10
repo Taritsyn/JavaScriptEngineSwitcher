@@ -20,7 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.7.3.
+   Fixed a error “When using PackageReference DLL is not copied”.
 
    ====================
    POST-INSTALL ACTIONS

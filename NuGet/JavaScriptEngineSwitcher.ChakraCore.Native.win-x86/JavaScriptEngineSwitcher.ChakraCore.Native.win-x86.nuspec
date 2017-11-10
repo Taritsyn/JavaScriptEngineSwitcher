@@ -14,7 +14,7 @@
 
 For correct working of the ChakraCore require `msvcp140.dll` assembly from the Visual C++ Redistributable for Visual Studio 2015.</description>
 		<summary>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.7.3 for Windows (x86).</summary>
-		<releaseNotes>ChakraCore was updated to version 1.7.3.</releaseNotes>
+		<releaseNotes>Fixed a error “When using PackageReference DLL is not copied”.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore Windows x86</tags>
