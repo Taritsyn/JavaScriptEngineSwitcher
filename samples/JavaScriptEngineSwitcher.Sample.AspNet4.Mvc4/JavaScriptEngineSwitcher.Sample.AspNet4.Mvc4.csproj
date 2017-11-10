@@ -22,6 +22,8 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -105,41 +107,41 @@
     <Content Include="Views\Shared\_JsEvaluationErrorList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.ChakraCore.Net4\JavaScriptEngineSwitcher.ChakraCore.Net40.csproj">
-      <Project>{698a1aff-b84d-4fb1-b514-d18ffab5066d}</Project>
-      <Name>JavaScriptEngineSwitcher.ChakraCore.Net40</Name>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.ChakraCore\JavaScriptEngineSwitcher.ChakraCore.csproj">
+      <Project>{2efffc6b-e642-477f-b537-4241ebd93410}</Project>
+      <Name>JavaScriptEngineSwitcher.ChakraCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core.Net4\JavaScriptEngineSwitcher.Core.Net40.csproj">
-      <Project>{5c903eef-bad1-43b8-bfe2-e4ee4d204410}</Project>
-      <Name>JavaScriptEngineSwitcher.Core.Net40</Name>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj">
+      <Project>{13559975-f99d-4b93-bf46-227c0b6e0dfb}</Project>
+      <Name>JavaScriptEngineSwitcher.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jint.Net4\JavaScriptEngineSwitcher.Jint.Net40.csproj">
-      <Project>{26ece52e-991f-4e12-bb88-467201038eff}</Project>
-      <Name>JavaScriptEngineSwitcher.Jint.Net40</Name>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.csproj">
+      <Project>{22d73c6e-5f35-497b-a93b-f9eaaae4ddaa}</Project>
+      <Name>JavaScriptEngineSwitcher.Jint</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jurassic.Net4\JavaScriptEngineSwitcher.Jurassic.Net40.csproj">
-      <Project>{2e667689-f072-401f-a9a5-09f1a2ed025c}</Project>
-      <Name>JavaScriptEngineSwitcher.Jurassic.Net40</Name>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj">
+      <Project>{d31b5a77-8018-4d76-b372-325564385b2d}</Project>
+      <Name>JavaScriptEngineSwitcher.Jurassic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Msie.Net4\JavaScriptEngineSwitcher.Msie.Net40.csproj">
-      <Project>{50ad3b1c-a295-42ac-979a-cd244429983c}</Project>
-      <Name>JavaScriptEngineSwitcher.Msie.Net40</Name>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj">
+      <Project>{b3c4aa95-2227-47dd-b58c-22fa589cb28d}</Project>
+      <Name>JavaScriptEngineSwitcher.Msie</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.V8.Net4\JavaScriptEngineSwitcher.V8.Net40.csproj">
-      <Project>{1baec601-b244-48d3-be27-351e133eef73}</Project>
-      <Name>JavaScriptEngineSwitcher.V8.Net40</Name>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj">
+      <Project>{c24e1f3c-5680-463a-8703-b9f40bcdac77}</Project>
+      <Name>JavaScriptEngineSwitcher.V8</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Vroom.Net4\JavaScriptEngineSwitcher.Vroom.Net40.csproj">
-      <Project>{64a84c47-c557-4181-8f68-bd945fd052e3}</Project>
-      <Name>JavaScriptEngineSwitcher.Vroom.Net40</Name>
+    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Vroom\JavaScriptEngineSwitcher.Vroom.csproj">
+      <Project>{238d7e69-7052-4dfc-83ef-79d3d124c12b}</Project>
+      <Name>JavaScriptEngineSwitcher.Vroom</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Logic.Net4\JavaScriptEngineSwitcher.Sample.Logic.Net40.csproj">
-      <Project>{4e8dc7d0-8121-4fb3-9df5-788b755852a2}</Project>
-      <Name>JavaScriptEngineSwitcher.Sample.Logic.Net40</Name>
+    <ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Logic\JavaScriptEngineSwitcher.Sample.Logic.csproj">
+      <Project>{c434e1b5-0463-4e58-8336-87f822d07b41}</Project>
+      <Name>JavaScriptEngineSwitcher.Sample.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Resources.Net4\JavaScriptEngineSwitcher.Sample.Resources.Net40.csproj">
-      <Project>{6860b000-aa2e-4607-bbe0-a406d901dfde}</Project>
-      <Name>JavaScriptEngineSwitcher.Sample.Resources.Net40</Name>
+    <ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Resources\JavaScriptEngineSwitcher.Sample.Resources.csproj">
+      <Project>{62f0c0ad-15bc-42ce-9bd2-49f506feaa54}</Project>
+      <Name>JavaScriptEngineSwitcher.Sample.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{19575E10-6B8E-4CF0-B7D2-898FFF47E157}"
 EndProject
@@ -47,11 +47,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.Logic", "samples\JavaScriptEngineSwitcher.Sample.Logic\JavaScriptEngineSwitcher.Sample.Logic.csproj", "{C434E1B5-0463-4E58-8336-87F822D07B41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4", "samples\JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4\JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4.csproj", "{8124DF18-4A0B-4648-8B90-4A6D3E4EF2F3}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1\JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1.csproj", "{C790AD7F-55C6-4106-8D8C-8F901B7FF245}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1\JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1.csproj", "{5CA92021-B75A-40AF-B5AA-500BAF76B4D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2\JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2.csproj", "{0342791E-6390-4F97-9163-5CE02E4CFF07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2\JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2.csproj", "{0342791E-6390-4F97-9163-5CE02E4CFF07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +117,10 @@ Global
 		{0342791E-6390-4F97-9163-5CE02E4CFF07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0342791E-6390-4F97-9163-5CE02E4CFF07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0342791E-6390-4F97-9163-5CE02E4CFF07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8124DF18-4A0B-4648-8B90-4A6D3E4EF2F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8124DF18-4A0B-4648-8B90-4A6D3E4EF2F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8124DF18-4A0B-4648-8B90-4A6D3E4EF2F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8124DF18-4A0B-4648-8B90-4A6D3E4EF2F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +143,7 @@ Global
 		{C790AD7F-55C6-4106-8D8C-8F901B7FF245} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{5CA92021-B75A-40AF-B5AA-500BAF76B4D6} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{0342791E-6390-4F97-9163-5CE02E4CFF07} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
+		{8124DF18-4A0B-4648-8B90-4A6D3E4EF2F3} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8184BE59-ACBC-4CD1-9419-D59A0FAC6131}
