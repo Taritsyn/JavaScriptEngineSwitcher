@@ -1,6 +1,14 @@
 Change log
 ==========
 
+## v3.0.0 Alpha 7 - November 12, 2017
+ * In JavaScriptEngineSwitcher.V8.Native.win-* and JavaScriptEngineSwitcher.ChakraCore.Native.win* packages fixed a error “When using PackageReference DLL is not copied”
+ * In JavaScriptEngineSwitcher.V8:
+   * Added support of Microsoft ClearScript.V8 version 5.5.0 (support of V8 version 6.2.414.40)
+   * Now requires .NET Framework 4.5 or greater
+   * In configuration settings of the V8 JS engine became obsolete the `MaxExecutableSize` property and was added 4 new properties: `EnableRemoteDebugging` (default `false`), `HeapSizeSampleInterval` (default `TimeSpan.Zero`), `MaxHeapSize` (default `0`) and `MaxStackUsage` (default `0`)
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of November 2, 2017
+
 ## v3.0.0 Alpha 6 - October 17, 2017
  * In all modules, except the JavaScriptEngineSwitcher.V8 module, added support of .NET Standard 2.0
  * In JavaScriptEngineSwitcher.V8 improved implementation of the `CallFunction` method

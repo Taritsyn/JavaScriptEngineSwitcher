@@ -15,7 +15,7 @@ del clearscript-license.txt /Q/S
 xcopy "%project_bin_dir%\net45\%project_name%.dll" lib\net45\
 xcopy "%project_bin_dir%\net45\%project_name%.xml" lib\net45\
 xcopy "%project_bin_dir%\net45\ru-ru\%project_name%.resources.dll" lib\net45\ru-ru\
-xcopy "%lib_dir%\lib\net40-client\ClearScript.dll" lib\net45\
+xcopy "%lib_dir%\lib\net45\ClearScript.dll" lib\net45\
 
 copy "%licenses_dir%\clearscript-license.txt" clearscript-license.txt /Y
 
