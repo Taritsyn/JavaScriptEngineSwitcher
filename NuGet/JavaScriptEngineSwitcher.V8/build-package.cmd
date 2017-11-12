@@ -11,13 +11,6 @@ rmdir lib /Q/S
 del clearscript-license.txt /Q/S
 
 %dotnet_cli% restore "%project_source_dir%"
-
-%dotnet_cli% build "%project_source_dir%" --framework net40-client --configuration Release --no-dependencies --no-incremental
-xcopy "%project_bin_dir%\net40-client\%project_name%.dll" lib\net40-client\
-xcopy "%project_bin_dir%\net40-client\%project_name%.xml" lib\net40-client\
-xcopy "%project_bin_dir%\net40-client\ru-ru\%project_name%.resources.dll" lib\net40-client\ru-ru\
-xcopy "%lib_dir%\lib\net40-client\ClearScript.dll" lib\net40-client\
-
 %dotnet_cli% build "%project_source_dir%" --framework net45 --configuration Release --no-dependencies --no-incremental
 xcopy "%project_bin_dir%\net45\%project_name%.dll" lib\net45\
 xcopy "%project_bin_dir%\net45\%project_name%.xml" lib\net45\

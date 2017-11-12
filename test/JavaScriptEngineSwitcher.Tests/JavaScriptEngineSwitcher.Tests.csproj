@@ -22,12 +22,20 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
 		<PackageReference Include="xunit" Version="2.3.0" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm" Version="3.0.0-alpha7" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.0-alpha7" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.0.0-alpha7" />
 
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.ChakraCore\JavaScriptEngineSwitcher.ChakraCore.csproj" />
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.csproj" />
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj" />
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Vroom\JavaScriptEngineSwitcher.Vroom.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' Or '$(TargetFramework)' == 'netcoreapp2.0' ">
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.0.0-alpha6" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.0.0-alpha6" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
@@ -40,18 +48,12 @@
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' Or '$(TargetFramework)' == 'netcoreapp2.0' ">
-		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.0.0-alpha6" />
-		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.0.0-alpha6" />
-		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm" Version="3.0.0-alpha6" />
-		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.0-alpha6" />
-		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.0.0-alpha6" />
-	</ItemGroup>
-
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
 		<Reference Include="System.Drawing" />
 
 		<PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.0.0" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.0.0-alpha7" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x86" Version="3.0.0-alpha7" />
 
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj" />
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.V8\JavaScriptEngineSwitcher.V8.csproj" />

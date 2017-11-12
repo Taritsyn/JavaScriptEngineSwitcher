@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 
 using Microsoft.ClearScript.V8;
-using IOriginalScriptEngineException = Microsoft.ClearScript.IScriptEngineException;
 using OriginalScriptEngineException = Microsoft.ClearScript.ScriptEngineException;
 using OriginalScriptInterruptedException = Microsoft.ClearScript.ScriptInterruptedException;
 using OriginalUndefined = Microsoft.ClearScript.Undefined;
@@ -29,7 +28,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "5.5.372.40";
+		private const string EngineVersion = "6.2.414.40";
 
 		/// <summary>
 		/// V8 JS engine
@@ -47,11 +46,6 @@ namespace JavaScriptEngineSwitcher.V8
 		private static readonly Regex _errorStringRegex =
 			new Regex(@"[ ]{3,5}at (?:[A-Za-z_\$][0-9A-Za-z_\$]* )?" +
 				@"\(?[^\s*?""<>|][^\t\n\r*?""<>|]*?:(?<lineNumber>\d+):(?<columnNumber>\d+)\)? -> ");
-
-		/// <summary>
-		/// Synchronizer of code execution
-		/// </summary>
-		private readonly object _executionSynchronizer = new object();
 
 
 		/// <summary>
@@ -82,13 +76,16 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				MaxNewSpaceSize = v8Settings.MaxNewSpaceSize,
 				MaxOldSpaceSize = v8Settings.MaxOldSpaceSize,
-				MaxExecutableSize = v8Settings.MaxExecutableSize
 			};
 
 			V8ScriptEngineFlags flags = V8ScriptEngineFlags.None;
 			if (v8Settings.EnableDebugging)
 			{
 				flags |= V8ScriptEngineFlags.EnableDebugging;
+			}
+			if (v8Settings.EnableRemoteDebugging)
+			{
+				flags |= V8ScriptEngineFlags.EnableRemoteDebugging;
 			}
 			if (v8Settings.DisableGlobalMembers)
 			{
@@ -100,6 +97,9 @@ namespace JavaScriptEngineSwitcher.V8
 			try
 			{
 				_jsEngine = new V8ScriptEngine(constraints, flags, debugPort);
+				_jsEngine.MaxRuntimeHeapSize = new UIntPtr(v8Settings.MaxHeapSize);
+				_jsEngine.RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval;
+				_jsEngine.MaxRuntimeStackUsage = new UIntPtr(v8Settings.MaxStackUsage);
 			}
 			catch (Exception e)
 			{
@@ -215,20 +215,17 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			object result;
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					result = _jsEngine.Evaluate(documentName, false, expression);
-				}
-				catch (OriginalScriptEngineException e)
-				{
-					throw ConvertScriptEngineExceptionToHostException(e);
-				}
-				catch (OriginalScriptInterruptedException e)
-				{
-					throw ConvertScriptInterruptedExceptionToHostException(e);
-				}
+				result = _jsEngine.Evaluate(documentName, false, expression);
+			}
+			catch (OriginalScriptEngineException e)
+			{
+				throw ConvertScriptEngineExceptionToHostException(e);
+			}
+			catch (OriginalScriptInterruptedException e)
+			{
+				throw ConvertScriptInterruptedExceptionToHostException(e);
 			}
 
 			result = MapToHostType(result);
@@ -255,20 +252,17 @@ namespace JavaScriptEngineSwitcher.V8
 
 		protected override void InnerExecute(string code, string documentName)
 		{
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					_jsEngine.Execute(documentName, false, code);
-				}
-				catch (OriginalScriptEngineException e)
-				{
-					throw ConvertScriptEngineExceptionToHostException(e);
-				}
-				catch (OriginalScriptInterruptedException e)
-				{
-					throw ConvertScriptInterruptedExceptionToHostException(e);
-				}
+				_jsEngine.Execute(documentName, false, code);
+			}
+			catch (OriginalScriptEngineException e)
+			{
+				throw ConvertScriptEngineExceptionToHostException(e);
+			}
+			catch (OriginalScriptInterruptedException e)
+			{
+				throw ConvertScriptInterruptedExceptionToHostException(e);
 			}
 		}
 
@@ -286,20 +280,17 @@ namespace JavaScriptEngineSwitcher.V8
 				}
 			}
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					result = _jsEngine.Invoke(functionName, processedArgs);
-				}
-				catch (OriginalScriptEngineException e)
-				{
-					throw ConvertScriptEngineExceptionToHostException(e);
-				}
-				catch (OriginalScriptInterruptedException e)
-				{
-					throw ConvertScriptInterruptedExceptionToHostException(e);
-				}
+				result = _jsEngine.Invoke(functionName, processedArgs);
+			}
+			catch (OriginalScriptEngineException e)
+			{
+				throw ConvertScriptEngineExceptionToHostException(e);
+			}
+			catch (OriginalScriptInterruptedException e)
+			{
+				throw ConvertScriptInterruptedExceptionToHostException(e);
 			}
 
 			result = MapToHostType(result);
@@ -326,20 +317,17 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			object result;
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					result = _jsEngine.Script[variableName];
-				}
-				catch (OriginalScriptEngineException e)
-				{
-					throw ConvertScriptEngineExceptionToHostException(e);
-				}
-				catch (OriginalScriptInterruptedException e)
-				{
-					throw ConvertScriptInterruptedExceptionToHostException(e);
-				}
+				result = _jsEngine.Script[variableName];
+			}
+			catch (OriginalScriptEngineException e)
+			{
+				throw ConvertScriptEngineExceptionToHostException(e);
+			}
+			catch (OriginalScriptInterruptedException e)
+			{
+				throw ConvertScriptInterruptedExceptionToHostException(e);
 			}
 
 			result = MapToHostType(result);
@@ -358,20 +346,17 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			object processedValue = MapToScriptType(value);
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					_jsEngine.Script[variableName] = processedValue;
-				}
-				catch (OriginalScriptEngineException e)
-				{
-					throw ConvertScriptEngineExceptionToHostException(e);
-				}
-				catch (OriginalScriptInterruptedException e)
-				{
-					throw ConvertScriptInterruptedExceptionToHostException(e);
-				}
+				_jsEngine.Script[variableName] = processedValue;
+			}
+			catch (OriginalScriptEngineException e)
+			{
+				throw ConvertScriptEngineExceptionToHostException(e);
+			}
+			catch (OriginalScriptInterruptedException e)
+			{
+				throw ConvertScriptInterruptedExceptionToHostException(e);
 			}
 		}
 
@@ -384,39 +369,33 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			object processedValue = MapToScriptType(value);
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					_jsEngine.AddHostObject(itemName, processedValue);
-				}
-				catch (OriginalScriptEngineException e)
-				{
-					throw ConvertScriptEngineExceptionToHostException(e);
-				}
-				catch (OriginalScriptInterruptedException e)
-				{
-					throw ConvertScriptInterruptedExceptionToHostException(e);
-				}
+				_jsEngine.AddHostObject(itemName, processedValue);
+			}
+			catch (OriginalScriptEngineException e)
+			{
+				throw ConvertScriptEngineExceptionToHostException(e);
+			}
+			catch (OriginalScriptInterruptedException e)
+			{
+				throw ConvertScriptInterruptedExceptionToHostException(e);
 			}
 		}
 
 		protected override void InnerEmbedHostType(string itemName, Type type)
 		{
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					_jsEngine.AddHostType(itemName, type);
-				}
-				catch (OriginalScriptEngineException e)
-				{
-					throw ConvertScriptEngineExceptionToHostException(e);
-				}
-				catch (OriginalScriptInterruptedException e)
-				{
-					throw ConvertScriptInterruptedExceptionToHostException(e);
-				}
+				_jsEngine.AddHostType(itemName, type);
+			}
+			catch (OriginalScriptEngineException e)
+			{
+				throw ConvertScriptEngineExceptionToHostException(e);
+			}
+			catch (OriginalScriptInterruptedException e)
+			{
+				throw ConvertScriptInterruptedExceptionToHostException(e);
 			}
 		}
 
@@ -427,10 +406,7 @@ namespace JavaScriptEngineSwitcher.V8
 
 		protected override void InnerCollectGarbage()
 		{
-			lock (_executionSynchronizer)
-			{
 				_jsEngine.CollectGarbage(true);
-			}
 		}
 
 		#region IJsEngine implementation

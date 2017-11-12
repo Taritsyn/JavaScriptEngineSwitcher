@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore.Native.win-x64</id>
-		<version>3.0.0-alpha6</version>
+		<version>3.0.0-alpha7</version>
 		<title>JS Engine Switcher: ChakraCore for Windows (x64)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>

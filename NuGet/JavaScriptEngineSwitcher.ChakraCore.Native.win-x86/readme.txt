@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-     README file for JS Engine Switcher: ChakraCore for Windows x86 v3.0.0 Alpha 6
+     README file for JS Engine Switcher: ChakraCore for Windows x86 v3.0.0 Alpha 7
 
    --------------------------------------------------------------------------------
 
