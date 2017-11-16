@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -84,9 +85,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 		public static MethodBase GetBestFitMethod(MethodBase[] methods, object[] argValues)
 		{
-			int argCount = argValues.Length;
-			var methodCandidates = methods
-				.Select(m => new
+			MethodWithMetadata[] methodCandidates = methods
+				.Select(m => new MethodWithMetadata
 				{
 					Method = m,
 					ParameterTypes = m.GetParameters()
@@ -95,12 +95,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				})
 				.ToArray()
 				;
-
-			var methodsWithSameArity = methodCandidates
+			int argCount = argValues.Length;
+			MethodWithMetadata[] sameArityMethods = methodCandidates
 				.Where(m => m.ParameterTypes.Length == argCount)
 				.ToArray()
 				;
-			if (methodsWithSameArity.Length == 0)
+
+			int sameArityMethodCount = sameArityMethods.Length;
+			if (sameArityMethodCount == 0)
 			{
 				return null;
 			}
@@ -109,40 +111,46 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				.Select(a => a.GetType())
 				.ToArray()
 				;
-			var weaklyCompatibleMethods = methodsWithSameArity
-				.Where(m => CompareParameterTypes(argValues, argTypes, m.ParameterTypes, false))
-				.ToArray()
-				;
+			var compatibleMethods = new List<MethodWithMetadata>();
 
-			int weaklyCompatibleMethodCount = weaklyCompatibleMethods.Length;
-			if (weaklyCompatibleMethodCount > 0)
+			for (int methodIndex = 0; methodIndex < sameArityMethodCount; methodIndex++)
 			{
-				if (weaklyCompatibleMethodCount == 1)
+				MethodWithMetadata method = sameArityMethods[methodIndex];
+				ushort compatibilityScore;
+
+				if (CompareParameterTypes(argValues, argTypes, method.ParameterTypes, out compatibilityScore))
 				{
-					return weaklyCompatibleMethods[0].Method;
+					method.CompatibilityScore = compatibilityScore;
+					compatibleMethods.Add(method);
+				}
+			}
+
+			int compatibleMethodCount = compatibleMethods.Count;
+			if (compatibleMethodCount > 0)
+			{
+				if (compatibleMethodCount == 1)
+				{
+					return compatibleMethods[0].Method;
 				}
 
-				var strictlyCompatibleMethods = weaklyCompatibleMethods
-					.Where(m => CompareParameterTypes(argValues, argTypes, m.ParameterTypes, true))
-					.ToArray()
+				MethodWithMetadata bestFitMethod = compatibleMethods
+					.OrderByDescending(m => m.CompatibilityScore)
+					.First()
 					;
-				if (strictlyCompatibleMethods.Length > 0)
-				{
-					return strictlyCompatibleMethods[0].Method;
-				}
 
-				return weaklyCompatibleMethods[0].Method;
+				return bestFitMethod.Method;
 			}
 
 			return null;
 		}
 
 		private static bool CompareParameterTypes(object[] argValues, Type[] argTypes, Type[] parameterTypes,
-			bool strictСompliance)
+			out ushort compatibilityScore)
 		{
 			int argValueCount = argValues.Length;
 			int argTypeCount = argTypes.Length;
 			int parameterCount = parameterTypes.Length;
+			compatibilityScore = 0;
 
 			if (argValueCount != argTypeCount || argTypeCount != parameterCount)
 			{
@@ -155,19 +163,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				Type argType = argTypes[argIndex];
 				Type parameterType = parameterTypes[argIndex];
 
-				if (argType != parameterType)
+				if (argType == parameterType)
 				{
-					if (!strictСompliance
-						&& NumericHelpers.IsNumericType(argType) && NumericHelpers.IsNumericType(parameterType))
+					compatibilityScore++;
+				}
+				else
+				{
+					if (NumericHelpers.IsNumericType(argType) && NumericHelpers.IsNumericType(parameterType))
 					{
 						object convertedArgValue;
 
 						if (!TypeConverter.TryConvertToType(argValue, parameterType, out convertedArgValue))
-						{
-							return false;
-						}
-
-						if (argValue != convertedArgValue)
 						{
 							return false;
 						}
@@ -180,6 +186,28 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			}
 
 			return true;
+		}
+
+
+		private sealed class MethodWithMetadata
+		{
+			public MethodBase Method
+			{
+				get;
+				set;
+			}
+
+			public Type[] ParameterTypes
+			{
+				get;
+				set;
+			}
+
+			public ushort CompatibilityScore
+			{
+				get;
+				set;
+			}
 		}
 	}
 }

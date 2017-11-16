@@ -30,10 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of .NET Standard 2.0;
-   2. ChakraCore was updated to version 1.7.3;
-   3. JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64 package has been
-      replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64 package.
+   Fixed a error, that occurred during finding a suitable method overload, that
+   receives numeric parameters, of the host object.
 
    =============
    DOCUMENTATION
