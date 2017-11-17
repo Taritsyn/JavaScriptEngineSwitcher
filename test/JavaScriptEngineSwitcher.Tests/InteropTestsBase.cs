@@ -9,6 +9,7 @@ using System.Linq;
 using Xunit;
 
 using JavaScriptEngineSwitcher.Tests.Interop;
+using JavaScriptEngineSwitcher.Tests.Interop.Animals;
 #if NETCOREAPP1_0
 using JavaScriptEngineSwitcher.Tests.Interop.Drawing;
 #endif
@@ -351,6 +352,38 @@ smileDay.GetDayOfYear();";
 
 			// Assert
 			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public virtual void CallingOfMethodOfCustomReferenceTypeWithInterfaceParameterIsCorrect()
+		{
+			// Arrange
+			var animalTrainer = new AnimalTrainer();
+			var cat = new Cat();
+			var dog = new Dog();
+
+			const string input1 = "animalTrainer.ExecuteVoiceCommand(cat)";
+			const string targetOutput1 = "Meow!";
+
+			const string input2 = "animalTrainer.ExecuteVoiceCommand(dog)";
+			const string targetOutput2 = "Woof!";
+
+			// Act
+			string output1;
+			string output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("animalTrainer", animalTrainer);
+				jsEngine.EmbedHostObject("cat", cat);
+				jsEngine.EmbedHostObject("dog", dog);
+				output1 = jsEngine.Evaluate<string>(input1);
+				output2 = jsEngine.Evaluate<string>(input2);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
 		#endregion

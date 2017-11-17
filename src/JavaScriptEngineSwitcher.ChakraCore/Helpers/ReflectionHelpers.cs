@@ -169,19 +169,16 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				}
 				else
 				{
-					if (NumericHelpers.IsNumericType(argType) && NumericHelpers.IsNumericType(parameterType))
+					// TODO: It is necessary to calculate the compatibility score based on length
+					// of inheritance and interface implementation chains.
+					object convertedArgValue;
+
+					if (!TypeConverter.TryConvertToType(argValue, parameterType, out convertedArgValue))
 					{
-						object convertedArgValue;
-
-						if (!TypeConverter.TryConvertToType(argValue, parameterType, out convertedArgValue))
-						{
-							return false;
-						}
-
-						continue;
+						return false;
 					}
 
-					return false;
+					continue;
 				}
 			}
 
@@ -203,6 +200,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				set;
 			}
 
+			/// TODO: In future will need to change type to <code>double</code>
 			public ushort CompatibilityScore
 			{
 				get;

@@ -30,8 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error, that occurred during finding a suitable method overload, that
-   receives numeric parameters, of the host object.
+   Fixed a error, that occurred during finding the suitable method overload, that
+   receives numeric values and interfaces as parameters, of the host object.
 
    =============
    DOCUMENTATION
