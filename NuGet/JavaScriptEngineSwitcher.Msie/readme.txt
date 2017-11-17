@@ -19,7 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support of .NET Standard 2.0.
+   Added support of MSIE JavaScript Engine version 3.0.0 Alpha 2.
 
    =============
    DOCUMENTATION
