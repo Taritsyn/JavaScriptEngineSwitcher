@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.0.0 Alpha 8 - November 17, 2017
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Alpha 2
+ * In JavaScriptEngineSwitcher.ChakraCore fixed a error, that occurred during finding the suitable method overload, that receives numeric values and interfaces as parameters, of the host object
+
 ## v3.0.0 Alpha 7 - November 12, 2017
  * In JavaScriptEngineSwitcher.V8.Native.win-* and JavaScriptEngineSwitcher.ChakraCore.Native.win* packages fixed a error “When using PackageReference DLL is not copied”
  * In JavaScriptEngineSwitcher.V8:

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>alpha7</VersionSuffix>
+		<VersionSuffix>alpha8</VersionSuffix>
 		<TargetFramework>netcoreapp2.0</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
