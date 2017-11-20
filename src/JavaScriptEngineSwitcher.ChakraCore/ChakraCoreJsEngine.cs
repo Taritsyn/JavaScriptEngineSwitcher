@@ -137,6 +137,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				try
 				{
 					_jsRuntime = JsRuntime.Create(attributes, null);
+					_jsRuntime.MemoryLimit = settings.MemoryLimit;
+
 					_jsContext = _jsRuntime.CreateContext();
 					_jsContext.AddRef();
 				}

@@ -30,8 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error, that occurred during finding the suitable method overload, that
-   receives numeric values and interfaces as parameters, of the host object.
+   In configuration settings of the ChakraCore JS engine was added one new
+   property - `MemoryLimit`.
 
    =============
    DOCUMENTATION
