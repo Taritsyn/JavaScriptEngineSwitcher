@@ -92,7 +92,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// an exception.
 		/// </para>
 		/// </remarks>
-		public ulong MaxHeapSize
+		public UIntPtr MaxHeapSize
 		{
 			get;
 			set;
@@ -131,7 +131,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// Monitoring is resumed when control returns to the runtime.
 		/// </para>
 		/// </remarks>
-		public ulong MaxStackUsage
+		public UIntPtr MaxStackUsage
 		{
 			get;
 			set;
@@ -148,10 +148,10 @@ namespace JavaScriptEngineSwitcher.V8
 			DebugPort = 9222;
 			DisableGlobalMembers = false;
 			HeapSizeSampleInterval = TimeSpan.Zero;
-			MaxHeapSize = 0;
+			MaxHeapSize = UIntPtr.Zero;
 			MaxNewSpaceSize = 0;
 			MaxOldSpaceSize = 0;
-			MaxStackUsage = 0;
+			MaxStackUsage = UIntPtr.Zero;
 		}
 	}
 }

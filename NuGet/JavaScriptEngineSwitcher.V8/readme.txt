@@ -25,14 +25,8 @@
    =============
    RELEASE NOTES
    =============
-   1. Microsoft ClearScript.V8 was updated to version 5.5.0 (support of V8 version
-      6.2.414.40);
-   2. Now requires .NET Framework 4.5 or greater;
-   3. In configuration settings of the V8 JS engine became obsolete the
-      `MaxExecutableSize` property and was added 4 new properties:
-      `EnableRemoteDebugging` (default `false`), `HeapSizeSampleInterval` (default
-      `TimeSpan.Zero`), `MaxHeapSize` (default `0`) and `MaxStackUsage` (default
-      `0`).
+   In configuration settings of the V8 JS engine was changed types of `MaxHeapSize`
+   and `MaxStackUsage` properties from `ulong` to `UIntPtr`.
 
    =============
    DOCUMENTATION

@@ -97,9 +97,9 @@ namespace JavaScriptEngineSwitcher.V8
 			try
 			{
 				_jsEngine = new V8ScriptEngine(constraints, flags, debugPort);
-				_jsEngine.MaxRuntimeHeapSize = new UIntPtr(v8Settings.MaxHeapSize);
+				_jsEngine.MaxRuntimeHeapSize = v8Settings.MaxHeapSize;
 				_jsEngine.RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval;
-				_jsEngine.MaxRuntimeStackUsage = new UIntPtr(v8Settings.MaxStackUsage);
+				_jsEngine.MaxRuntimeStackUsage = v8Settings.MaxStackUsage;
 			}
 			catch (Exception e)
 			{

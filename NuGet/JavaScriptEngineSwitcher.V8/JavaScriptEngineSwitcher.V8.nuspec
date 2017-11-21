@@ -17,9 +17,7 @@ This package does not contain the native ClearScript and V8 assemblies. Therefor
  * JavaScriptEngineSwitcher.V8.Native.win-x86
  * JavaScriptEngineSwitcher.V8.Native.win-x64</description>
 		<summary>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 version 5.5.0).</summary>
-		<releaseNotes>1. Microsoft ClearScript.V8 was updated to version 5.5.0 (support of V8 version 6.2.414.40);
-2. Now requires .NET Framework 4.5 or greater;
-3. In configuration settings of the V8 JS engine became obsolete the `MaxExecutableSize` property and was added 4 new properties: `EnableRemoteDebugging` (default `false`), `HeapSizeSampleInterval` (default `TimeSpan.Zero`), `MaxHeapSize` (default `0`) and `MaxStackUsage` (default `0`).</releaseNotes>
+		<releaseNotes>In configuration settings of the V8 JS engine was changed types of `MaxHeapSize` and `MaxStackUsage` properties from `ulong` to `UIntPtr`.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript</tags>
