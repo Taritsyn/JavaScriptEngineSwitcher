@@ -12,6 +12,7 @@
 		<PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 		<NoWarn>$(NoWarn);CS1591</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
 
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
@@ -25,6 +26,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="All" />
+		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha5" PrivateAssets="All" />
 		<PackageReference Include="Jint" Version="2.11.23" />
 
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
@@ -42,15 +44,11 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
 	</ItemGroup>
 
-	<ItemGroup>
-		<DotNetCliToolReference Include="dotnet-resx2cs" Version="1.0.0-alpha2" />
-	</ItemGroup>
-
-	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile" Condition=" '$(ResxToCsConversionWasRun)' != 'true' ">
-		<Exec Command="dotnet resx2cs ./Resources/" />
-		<PropertyGroup>
-			<ResxToCsConversionWasRun>true</ResxToCsConversionWasRun>
-		</PropertyGroup>
+	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
+		<ResxToCsTask
+			InputDirectory="./Resources/"
+			Namespace="$(RootNamespace).Resources"
+			InternalAccessModifier="true" />
 	</Target>
 
 	<Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />

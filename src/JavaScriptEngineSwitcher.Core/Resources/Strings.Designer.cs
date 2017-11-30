@@ -297,11 +297,11 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 			get { return GetString("Runtime_VariableTypeNotSupported"); }
 		}
 
-			private static string GetString(string name)
-			{
-				string value = ResourceManager.GetString(name, _resourceCulture);
+		private static string GetString(string name)
+		{
+			string value = ResourceManager.GetString(name, _resourceCulture);
 
-				return value;
-			}
+			return value;
 		}
 	}
+}

@@ -105,11 +105,11 @@ namespace JavaScriptEngineSwitcher.Sample.Resources
 			get { return GetString("ErrorMessage_FormFieldValueTooLong"); }
 		}
 
-			private static string GetString(string name)
-			{
-				string value = ResourceManager.GetString(name, _resourceCulture);
+		private static string GetString(string name)
+		{
+			string value = ResourceManager.GetString(name, _resourceCulture);
 
-				return value;
-			}
+			return value;
 		}
 	}
+}

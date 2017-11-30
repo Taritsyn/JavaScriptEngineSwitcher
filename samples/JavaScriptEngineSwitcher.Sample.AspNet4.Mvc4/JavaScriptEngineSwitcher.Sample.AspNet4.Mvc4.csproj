@@ -179,9 +179,6 @@
   <Target Name="GulpBuild" AfterTargets="AfterBuild">
     <Exec Command="gulp build-assets" />
   </Target>
-  <Target Name="GulpRebuild" AfterTargets="AfterRebuild">
-    <Exec Command="gulp" />
-  </Target>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
@@ -210,10 +207,4 @@
     <Error Condition="!Exists('..\..\packages\JavaScriptEngineSwitcher.ChakraCore.Native.win-x86.3.0.0-alpha7\build\JavaScriptEngineSwitcher.ChakraCore.Native.win-x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\JavaScriptEngineSwitcher.ChakraCore.Native.win-x86.3.0.0-alpha7\build\JavaScriptEngineSwitcher.ChakraCore.Native.win-x86.props'))" />
     <Error Condition="!Exists('..\..\packages\JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm.3.0.0-alpha7\build\JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm.3.0.0-alpha7\build\JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target> -->
 </Project>

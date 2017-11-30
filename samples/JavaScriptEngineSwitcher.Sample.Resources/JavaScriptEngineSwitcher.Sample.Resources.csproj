@@ -7,6 +7,7 @@
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
 
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
@@ -20,6 +21,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="All" />
+		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha5" PrivateAssets="All" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
@@ -34,15 +36,8 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
 	</ItemGroup>
 
-	<ItemGroup>
-		<DotNetCliToolReference Include="dotnet-resx2cs" Version="1.0.0-alpha2" />
-	</ItemGroup>
-
-	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile" Condition=" '$(ResxToCsConversionWasRun)' != 'true' ">
-		<Exec Command="dotnet resx2cs" />
-		<PropertyGroup>
-			<ResxToCsConversionWasRun>true</ResxToCsConversionWasRun>
-		</PropertyGroup>
+	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
+		<ResxToCsTask Namespace="$(RootNamespace)" />
 	</Target>
 
 	<Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />

@@ -16,7 +16,7 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 	/// <summary>
 	/// A strongly-typed resource class, for looking up localized strings, etc.
 	/// </summary>
-	public class Strings
+	internal class Strings
 	{
 		private static Lazy<ResourceManager> _resourceManager =
 			new Lazy<ResourceManager>(() => new ResourceManager(
@@ -33,7 +33,7 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		/// <summary>
 		/// Returns a cached ResourceManager instance used by this class
 		/// </summary>
-		public static ResourceManager ResourceManager
+		internal static ResourceManager ResourceManager
 		{
 			get
 			{
@@ -45,7 +45,7 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		/// Overrides a current thread's CurrentUICulture property for all
 		/// resource lookups using this strongly typed resource class
 		/// </summary>
-		public static CultureInfo Culture
+		internal static CultureInfo Culture
 		{
 			get
 			{
@@ -60,7 +60,7 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		/// <summary>
 		/// Looks up a localized string similar to "Failed to load the ClearScript `undefined` value."
 		/// </summary>
-		public static string Engines_ClearScriptUndefinedValueNotLoaded
+		internal static string Engines_ClearScriptUndefinedValueNotLoaded
 		{
 			get { return GetString("Engines_ClearScriptUndefinedValueNotLoaded"); }
 		}
@@ -68,7 +68,7 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		/// <summary>
 		/// Looks up a localized string similar to "Failed to load the ClearScriptV8 assembly, because the '{0}' file does not exist. It is possible,..."
 		/// </summary>
-		public static string Engines_ClearScriptV8AssemblyFileNotFound
+		internal static string Engines_ClearScriptV8AssemblyFileNotFound
 		{
 			get { return GetString("Engines_ClearScriptV8AssemblyFileNotFound"); }
 		}
@@ -76,16 +76,16 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		/// <summary>
 		/// Looks up a localized string similar to "Failed to load information about the `{1}` method of type `{0}`."
 		/// </summary>
-		public static string Runtime_MethodInfoNotLoaded
+		internal static string Runtime_MethodInfoNotLoaded
 		{
 			get { return GetString("Runtime_MethodInfoNotLoaded"); }
 		}
 
-			private static string GetString(string name)
-			{
-				string value = ResourceManager.GetString(name, _resourceCulture);
+		private static string GetString(string name)
+		{
+			string value = ResourceManager.GetString(name, _resourceCulture);
 
-				return value;
-			}
+			return value;
 		}
 	}
+}

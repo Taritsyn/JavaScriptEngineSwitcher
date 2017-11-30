@@ -11,6 +11,7 @@
 		<PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 		<NoWarn>$(NoWarn);CS1591</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
 
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
@@ -28,18 +29,16 @@
 			<HintPath>..\..\lib\ClearScript\lib\net45\ClearScript.dll</HintPath>
 		</Reference>
 
+		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha5" PrivateAssets="All" />
+
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<DotNetCliToolReference Include="dotnet-resx2cs" Version="1.0.0-alpha2" />
-	</ItemGroup>
-
-	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile" Condition=" '$(ResxToCsConversionWasRun)' != 'true' ">
-		<Exec Command="dotnet resx2cs ./Resources/" />
-		<PropertyGroup>
-			<ResxToCsConversionWasRun>true</ResxToCsConversionWasRun>
-		</PropertyGroup>
+	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
+		<ResxToCsTask
+			InputDirectory="./Resources/"
+			Namespace="$(RootNamespace).Resources"
+			InternalAccessModifier="true" />
 	</Target>
 
 </Project>
