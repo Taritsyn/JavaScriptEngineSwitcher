@@ -103,8 +103,8 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 
 			return typeCode;
 		}
-
 #if NET40
+
 		/// <summary>
 		/// Returns the <see cref="TypeInfo"/> representation of the specified type
 		/// </summary>

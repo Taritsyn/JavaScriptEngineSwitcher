@@ -539,6 +539,37 @@ smileDay.GetDayOfYear();";
 
 		#endregion
 
+		#region Removal
+
+		[Fact]
+		public virtual void RemovingOfEmbeddedInstanceOfCustomReferenceTypeIsCorrect()
+		{
+			// Arrange
+			var person = new Person("Vasya", "Pupkin");
+
+			// Act
+			Exception currentException = null;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("person", person);
+
+				try
+				{
+					jsEngine.RemoveVariable("person");
+				}
+				catch (Exception e)
+				{
+					currentException = e;
+				}
+			}
+
+			// Assert
+			Assert.Null(currentException);
+		}
+
+		#endregion
+
 		#endregion
 
 
@@ -1022,6 +1053,37 @@ smileDay.GetDayOfYear();";
 
 			// Assert
 			Assert.Equal(targetOutput, output);
+		}
+
+		#endregion
+
+		#region Removal
+
+		[Fact]
+		public virtual void RemovingOfEmbeddedCustomReferenceTypeIsCorrect()
+		{
+			// Arrange
+			Type personType = typeof(Person);
+
+			// Act
+			Exception currentException = null;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostType("Person", personType);
+
+				try
+				{
+					jsEngine.RemoveVariable("Person");
+				}
+				catch (Exception e)
+				{
+					currentException = e;
+				}
+			}
+
+			// Assert
+			Assert.Null(currentException);
 		}
 
 		#endregion

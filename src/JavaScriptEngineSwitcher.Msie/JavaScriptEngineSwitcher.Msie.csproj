@@ -25,7 +25,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="All" />
-		<PackageReference Include="MsieJavaScriptEngine" Version="3.0.0-alpha2" />
+		<PackageReference Include="MsieJavaScriptEngine" Version="3.0.0-alpha3" />
 
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
 	</ItemGroup>

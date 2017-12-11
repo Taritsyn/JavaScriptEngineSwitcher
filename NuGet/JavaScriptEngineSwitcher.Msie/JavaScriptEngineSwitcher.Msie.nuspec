@@ -12,26 +12,26 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge on the machine.</description>
 		<summary>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net).</summary>
-		<releaseNotes>Added support of MSIE JavaScript Engine version 3.0.0 Alpha 2.</releaseNotes>
+		<releaseNotes>Added support of MSIE JavaScript Engine version 3.0.0 Alpha 3.</releaseNotes>
 		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript MSIE IE Chakra</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client">
-				<dependency id="MsieJavaScriptEngine" version="3.0.0-alpha2" />
+				<dependency id="MsieJavaScriptEngine" version="3.0.0-alpha3" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha6" />
 			</group>
 			<group targetFramework=".NETFramework4.5">
-				<dependency id="MsieJavaScriptEngine" version="3.0.0-alpha2" />
+				<dependency id="MsieJavaScriptEngine" version="3.0.0-alpha3" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha6" />
 			</group>
 			<group targetFramework=".NETStandard1.3">
 				<dependency id="NETStandard.Library" version="1.6.0" />
-				<dependency id="MsieJavaScriptEngine" version="3.0.0-alpha2" />
+				<dependency id="MsieJavaScriptEngine" version="3.0.0-alpha3" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha6" />
 			</group>
 			<group targetFramework=".NETStandard2.0">
-				<dependency id="MsieJavaScriptEngine" version="3.0.0-alpha2" />
+				<dependency id="MsieJavaScriptEngine" version="3.0.0-alpha3" />
 				<dependency id="JavaScriptEngineSwitcher.Core" version="3.0.0-alpha6" />
 			</group>
 		</dependencies>
