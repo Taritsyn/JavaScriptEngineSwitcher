@@ -30,8 +30,10 @@
    =============
    RELEASE NOTES
    =============
-   In configuration settings of the ChakraCore JS engine was added one new
-   property - `MemoryLimit`.
+   1. In configuration settings of the ChakraCore JS engine was added one new
+      property - `MemoryLimit`;
+   2. Now during calling of the `CollectGarbage` method is no longer performed
+      blocking.
 
    =============
    DOCUMENTATION

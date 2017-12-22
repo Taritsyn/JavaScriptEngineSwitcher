@@ -1275,7 +1275,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override void InnerCollectGarbage()
 		{
-			_dispatcher.Invoke(() => _jsRuntime.CollectGarbage());
+			_jsRuntime.CollectGarbage();
 		}
 
 		#region IJsEngine implementation
