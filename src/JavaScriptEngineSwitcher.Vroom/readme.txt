@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-               README file for JS Engine Switcher: Vroom v3.0.0 Alpha 6
+               README file for JS Engine Switcher: Vroom v3.0.0 Alpha 9
 
    --------------------------------------------------------------------------------
 
@@ -18,11 +18,6 @@
    For correct working of the VroomJs on Windows require assemblies `msvcr110.dll`
    from the Visual C++ Redistributable for Visual Studio 2012 and `msvcp140.dll`
    from the Microsoft Visual C++ 2015 Redistributable.
-
-   =============
-   RELEASE NOTES
-   =============
-   Added support of .NET Standard 2.0.
 
    ====================
    POST-INSTALL ACTIONS

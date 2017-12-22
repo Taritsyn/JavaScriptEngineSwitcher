@@ -1,6 +1,15 @@
 Change log
 ==========
 
+## v3.0.0 Alpha 9 - December 22, 2017
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Alpha 3
+ * In JavaScriptEngineSwitcher.V8 in configuration settings of the V8 JS engine was changed types of `MaxHeapSize` and `MaxStackUsage` properties from `ulong` to `UIntPtr`
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.11.58
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.7.5
+   * In configuration settings of the ChakraCore JS engine was added two new properties - `MemoryLimit` and `DisableFatalOnOOM` (default `false`)
+   * Now during calling of the `CollectGarbage` method is no longer performed blocking
+
 ## v3.0.0 Alpha 8 - November 17, 2017
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Alpha 2
  * In JavaScriptEngineSwitcher.ChakraCore fixed a error, that occurred during finding the suitable method overload, that receives numeric values and interfaces as parameters, of the host object

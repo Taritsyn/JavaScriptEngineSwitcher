@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Product>JS Engine Switcher: V8</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>alpha7</VersionSuffix>
+		<VersionSuffix>alpha9</VersionSuffix>
 		<TargetFramework>net45</TargetFramework>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>

@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: Core v3.0.0 Alpha 6
+                README file for JS Engine Switcher: Core v3.0.0 Alpha 9
 
    --------------------------------------------------------------------------------
 
@@ -15,11 +15,6 @@
    features of popular JavaScript engines (MSIE JavaScript Engine for .Net,
    Microsoft ClearScript.V8, Jurassic, Jint and ChakraCore). This library allows
    you to quickly and easily switch to using of another JavaScript engine.
-
-   =============
-   RELEASE NOTES
-   =============
-   Added support of .NET Standard 2.0.
 
    =============
    DOCUMENTATION

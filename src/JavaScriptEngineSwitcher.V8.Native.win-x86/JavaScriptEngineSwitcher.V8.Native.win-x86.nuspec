@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.V8.Native.win-x86</id>
-		<version>3.0.0-alpha7</version>
+		<version>3.0.0-alpha9</version>
 		<title>JS Engine Switcher: V8 for Windows (x86)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -14,8 +14,6 @@
 		<description>This package complements the JavaScriptEngineSwitcher.V8 package and contains the native implementation of V8 version 6.2.414.40 for Windows (x86).
 
 For correct working of the Microsoft ClearScript.V8 require `msvcp140.dll` assembly from the Visual C++ Redistributable for Visual Studio 2015.</description>
-		<releaseNotes>1. Microsoft ClearScript.V8 was updated to version 5.5.0 (support of V8 version 6.2.414.40);
-2. Fixed a error “When using PackageReference DLL is not copied”.</releaseNotes>
 		<copyright>Copyright © 2013-2017 Andrey Taritsyn</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript Windows x86</tags>

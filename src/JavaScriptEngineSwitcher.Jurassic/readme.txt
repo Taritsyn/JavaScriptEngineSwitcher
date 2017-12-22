@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-              README file for JS Engine Switcher: Jurassic v3.0.0 Alpha 7
+              README file for JS Engine Switcher: Jurassic v3.0.0 Alpha 9
 
    --------------------------------------------------------------------------------
 
@@ -14,11 +14,6 @@
    JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper
    for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic)
    version of November 2, 2017).
-
-   =============
-   RELEASE NOTES
-   =============
-   Jurassic was updated to version of November 2, 2017.
 
    =============
    DOCUMENTATION

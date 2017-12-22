@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Product>JS Engine Switcher: Core</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>alpha6</VersionSuffix>
+		<VersionSuffix>alpha9</VersionSuffix>
 		<TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
@@ -14,7 +14,6 @@
 		<Description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic, Jint and ChakraCore). This library allows you to quickly and easily switch to using of another JavaScript engine.</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Core_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript</PackageTags>
-		<PackageReleaseNotes>Added support of .NET Standard 2.0.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
