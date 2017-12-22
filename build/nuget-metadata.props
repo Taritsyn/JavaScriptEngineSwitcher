@@ -1,0 +1,14 @@
+<Project>
+	<PropertyGroup>
+		<Title>$(Product)</Title>
+		<Authors>Andrey Taritsyn</Authors>
+		<PackageLicenseUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageProjectUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<NeutralLanguage>en-US</NeutralLanguage>
+	</PropertyGroup>
+
+	<Import Project="nuget-common.props" />
+</Project>

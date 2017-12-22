@@ -82,7 +82,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
 
-#if !NETSTANDARD1_3 && !NETSTANDARD2_0
+#if !NETSTANDARD
 
 		/// <summary>
 		/// Static constructor

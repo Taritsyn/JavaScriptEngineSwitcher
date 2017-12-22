@@ -1,4 +1,4 @@
-﻿#if !NETSTANDARD1_3 && !NETSTANDARD2_0
+﻿#if !NETSTANDARD
 using System;
 using System.IO;
 using System.Reflection;

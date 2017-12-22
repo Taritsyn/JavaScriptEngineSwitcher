@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JavaScript Engine Switcher for .Net: Sample ASP.NET MVC 4 Site")]
+[assembly: AssemblyProduct("JS Engine Switcher: Sample ASP.NET MVC 4 Site")]
 [assembly: AssemblyCopyright("Copyright © 2013-2017 Andrey Taritsyn")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

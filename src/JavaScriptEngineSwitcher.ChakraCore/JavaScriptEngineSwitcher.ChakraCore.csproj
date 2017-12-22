@@ -1,34 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>JS Engine Switcher: ChakraCore</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
 		<VersionSuffix>alpha8</VersionSuffix>
-		<TargetFrameworks>netstandard1.3;netstandard2.0;net40-client;net45</TargetFrameworks>
+		<TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<AssemblyOriginatorKeyFile>../../build/Key.snk</AssemblyOriginatorKeyFile>
-		<SignAssembly>true</SignAssembly>
-		<PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 		<NoWarn>$(NoWarn);CS1591</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
+		<Description>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore (http://github.com/Microsoft/ChakraCore)). Project was based on the code of Chakra-Samples (http://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet (http://github.com/robpaveza/jsrt-dotnet).
 
-		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+This package does not contain the native implementations of ChakraCore. Therefore, you need to choose and install the most appropriate package(s) for your platform. The following packages are available:
+
+ * JavaScriptEngineSwitcher.ChakraCore.Native.win-x86
+ * JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
+ * JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm
+ * JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64
+ * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
+		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconUrl>
+		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;ChakraCore</PackageTags>
+		<PackageReleaseNotes>In configuration settings of the ChakraCore JS engine was added one new property - `MemoryLimit`.</PackageReleaseNotes>
 	</PropertyGroup>
+
+	<Import Project="../../build/common.props" />
+	<Import Project="../../build/strong-name-signing.props" />
+	<Import Project="../../build/nuget-metadata.props" />
 
 	<ItemGroup>
 		<PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="All" />
 		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha5" PrivateAssets="All" />
 
-		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
+		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
@@ -36,7 +41,21 @@
 		<PackageReference Include="System.Threading.Thread" Version="4.0.0" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+	<ItemGroup>
+		<Content Include="readme.txt">
+			<PackagePath>readme.txt</PackagePath>
+			<Pack>true</Pack>
+		</Content>
+		<Content Include="../../Licenses/chakra-samples-license.txt">
+			<PackagePath>chakra-samples-license.txt</PackagePath>
+			<Pack>true</Pack>
+			<Visible>false</Visible>
+		</Content>
+		<Content Include="../../Licenses/jsrt-dotnet-license.txt">
+			<PackagePath>jsrt-dotnet-license.txt</PackagePath>
+			<Pack>true</Pack>
+			<Visible>false</Visible>
+		</Content>
 	</ItemGroup>
 
 	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">

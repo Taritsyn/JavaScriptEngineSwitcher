@@ -1,47 +1,51 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>JS Engine Switcher: Vroom</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
 		<VersionSuffix>alpha6</VersionSuffix>
-		<TargetFrameworks>netstandard1.6;netstandard2.0;net40-client;net45</TargetFrameworks>
+		<TargetFrameworks>net40-client;net45;netstandard1.6;netstandard2.0</TargetFrameworks>
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<AssemblyOriginatorKeyFile>../../build/Key.snk</AssemblyOriginatorKeyFile>
-		<SignAssembly>true</SignAssembly>
-		<PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 		<NoWarn>$(NoWarn);CS1591</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
+		<Description>JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the VroomJs (http://github.com/pauldotknopf/vroomjs-core) version 1.2.3 with support of V8 version 3.17.16.2).
 
-		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+For correct working of the VroomJs on Windows require assemblies `msvcr110.dll` from the Visual C++ Redistributable for Visual Studio 2012 and `msvcp140.dll` from the Microsoft Visual C++ 2015 Redistributable.</Description>
+		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconUrl>
+		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;VroomJs;V8</PackageTags>
+		<PackageReleaseNotes>Added support of .NET Standard 2.0.</PackageReleaseNotes>
 	</PropertyGroup>
+
+	<Import Project="../../build/common.props" />
+	<Import Project="../../build/strong-name-signing.props" />
+	<Import Project="../../build/nuget-metadata.props" />
 
 	<ItemGroup>
 		<PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="All" />
 		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha5" PrivateAssets="All" />
 		<PackageReference Include="VroomJs" Version="1.2.3" />
 
-		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
+		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+	<ItemGroup>
+		<Content Include="readme.txt">
+			<PackagePath>readme.txt</PackagePath>
+			<Pack>true</Pack>
+		</Content>
+		<Content Include="../../Licenses/vroomjs-core-license.txt">
+			<PackagePath>vroomjs-core-license.txt</PackagePath>
+			<Pack>true</Pack>
+			<Visible>false</Visible>
+		</Content>
+		<Content Include="../../Licenses/v8-license.txt">
+			<PackagePath>v8-license.txt</PackagePath>
+			<Pack>true</Pack>
+			<Visible>false</Visible>
+		</Content>
 	</ItemGroup>
 
 	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">

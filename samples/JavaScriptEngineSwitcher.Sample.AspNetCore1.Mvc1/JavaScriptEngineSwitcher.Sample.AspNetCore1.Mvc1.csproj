@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
+		<Product>JS Engine Switcher: Sample ASP.NET Core 1.0 MVC 1 Site</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
 		<VersionSuffix>alpha8</VersionSuffix>
 		<TargetFramework>netcoreapp1.0</TargetFramework>
@@ -8,16 +9,10 @@
 		<OutputType>Exe</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<PreserveCompilationContext>true</PreserveCompilationContext>
-
-		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
+
+	<Import Project="../../build/common.props" />
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.0.5" />
@@ -38,16 +33,16 @@
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.0-alpha7" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.0.0-alpha7" />
 
-		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.ChakraCore\JavaScriptEngineSwitcher.ChakraCore.csproj" />
-		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Extensions.MsDependencyInjection\JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
-		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.csproj" />
-		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj" />
-		<ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Logic\JavaScriptEngineSwitcher.Sample.Logic.csproj" />
-		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Vroom\JavaScriptEngineSwitcher.Vroom.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jint/JavaScriptEngineSwitcher.Jint.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Msie/JavaScriptEngineSwitcher.Msie.csproj" />
+		<ProjectReference Include="../JavaScriptEngineSwitcher.Sample.Logic/JavaScriptEngineSwitcher.Sample.Logic.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="wwwroot\**\*;Views\**\*">
+		<None Update="wwwroot/**/*;Views/**/*">
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</None>
 	</ItemGroup>

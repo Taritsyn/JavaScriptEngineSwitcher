@@ -6,7 +6,7 @@ using JavaScriptEngineSwitcher.Vroom;
 #if !NETCOREAPP1_0
 using JavaScriptEngineSwitcher.Jurassic;
 #endif
-#if !NETCOREAPP1_0 && !NETCOREAPP2_0
+#if !NETCOREAPP
 using JavaScriptEngineSwitcher.V8;
 #endif
 
@@ -32,7 +32,7 @@ namespace JavaScriptEngineSwitcher.Tests
 #if !NETCOREAPP1_0
 					.AddJurassic()
 #endif
-#if !NETCOREAPP1_0 && !NETCOREAPP2_0
+#if !NETCOREAPP
 					.AddV8()
 #endif
 					;

@@ -1,26 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>JS Engine Switcher: Logic for Samples</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
 		<VersionSuffix>alpha7</VersionSuffix>
-		<TargetFrameworks>netstandard1.6;netstandard2.0;net40;net451</TargetFrameworks>
+		<TargetFrameworks>net40;net451;netstandard1.6;netstandard2.0</TargetFrameworks>
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-
-		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
+	<Import Project="../../build/common.props" />
+
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
-		<ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Resources\JavaScriptEngineSwitcher.Sample.Resources.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
+		<ProjectReference Include="../JavaScriptEngineSwitcher.Sample.Resources/JavaScriptEngineSwitcher.Sample.Resources.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<Reference Include="System.Web" />
+
+		<PackageReference Include="Microsoft.AspNet.Mvc" Version="4.0.30506.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' Or '$(TargetFramework)' == 'net451' ">
@@ -31,13 +33,6 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.0.1" />
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
-		<Reference Include="System.ComponentModel.DataAnnotations" />
-		<Reference Include="System.Web" />
-
-		<PackageReference Include="Microsoft.AspNet.Mvc" Version="4.0.30506.0" />
 	</ItemGroup>
 
 </Project>

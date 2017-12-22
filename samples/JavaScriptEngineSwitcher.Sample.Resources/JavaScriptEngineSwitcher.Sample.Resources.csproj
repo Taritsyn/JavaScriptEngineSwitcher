@@ -1,39 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>JS Engine Switcher: Resources for Samples</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
 		<VersionSuffix>alpha7</VersionSuffix>
-		<TargetFrameworks>netstandard1.3;netstandard2.0;net40-client;net45</TargetFrameworks>
+		<TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-
-		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
+
+	<Import Project="../../build/common.props" />
 
 	<ItemGroup>
 		<PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="All" />
 		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha5" PrivateAssets="All" />
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
 	</ItemGroup>
 
 	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
 using System.Linq;
 #endif
 using System.Reflection;
 using System.Runtime.CompilerServices;
-#if NETSTANDARD1_3 || NETSTANDARD2_0
+#if NETSTANDARD
 using System.Runtime.InteropServices;
 #endif
 using System.Text;
@@ -42,7 +42,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 
 		private static bool InnerIsWindows()
 		{
-#if NETSTANDARD1_3 || NETSTANDARD2_0
+#if NETSTANDARD
 			bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 #else
 			PlatformID[] windowsPlatformIDs =
