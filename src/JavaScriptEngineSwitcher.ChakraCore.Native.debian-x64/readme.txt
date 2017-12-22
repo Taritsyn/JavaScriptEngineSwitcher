@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-     README file for JS Engine Switcher: ChakraCore for Debian x64 v3.0.0 Alpha 6
+     README file for JS Engine Switcher: ChakraCore for Debian x64 v3.0.0 Alpha 9
 
    --------------------------------------------------------------------------------
 
@@ -13,6 +13,11 @@
    ===========
    This package is deprecated. Instead, it is recommended to use a
    'JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64' package.
+
+   =============
+   RELEASE NOTES
+   =============
+   ChakraCore was updated to version 1.7.5.
 
    =============
    DOCUMENTATION

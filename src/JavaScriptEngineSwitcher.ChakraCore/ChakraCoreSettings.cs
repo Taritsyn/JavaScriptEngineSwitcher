@@ -20,6 +20,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
+		/// Gets or sets a flag for whether to disable calls of <code>eval</code> function
+		/// </summary>
+		public bool DisableEval
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to disable native code generation
 		/// </summary>
 		public bool DisableNativeCodeGeneration
@@ -29,9 +38,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
-		/// Gets or sets a flag for whether to disable calls of <code>eval</code> function
+		/// Gets or sets a flag for whether to disable Failfast fatal error on OOM
 		/// </summary>
-		public bool DisableEval
+		public bool DisableFatalOnOOM
 		{
 			get;
 			set;
@@ -62,8 +71,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		public ChakraCoreSettings()
 		{
 			DisableBackgroundWork = false;
-			DisableNativeCodeGeneration = false;
 			DisableEval = false;
+			DisableNativeCodeGeneration = false;
+			DisableFatalOnOOM = false;
 			EnableExperimentalFeatures = false;
 			MemoryLimit = Utils.Is64BitProcess() ?
 				new UIntPtr(ulong.MaxValue) : new UIntPtr(uint.MaxValue);

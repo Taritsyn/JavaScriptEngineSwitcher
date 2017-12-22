@@ -34,7 +34,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.7.3";
+		private const string EngineVersion = "1.7.5";
 
 		/// <summary>
 		/// Instance of JS runtime
@@ -116,13 +116,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			{
 				attributes |= JsRuntimeAttributes.DisableBackgroundWork;
 			}
+			if (chakraCoreSettings.DisableEval)
+			{
+				attributes |= JsRuntimeAttributes.DisableEval;
+			}
 			if (chakraCoreSettings.DisableNativeCodeGeneration)
 			{
 				attributes |= JsRuntimeAttributes.DisableNativeCodeGeneration;
 			}
-			if (chakraCoreSettings.DisableEval)
+			if (chakraCoreSettings.DisableFatalOnOOM)
 			{
-				attributes |= JsRuntimeAttributes.DisableEval;
+				attributes |= JsRuntimeAttributes.DisableFatalOnOOM;
 			}
 			if (chakraCoreSettings.EnableExperimentalFeatures)
 			{
