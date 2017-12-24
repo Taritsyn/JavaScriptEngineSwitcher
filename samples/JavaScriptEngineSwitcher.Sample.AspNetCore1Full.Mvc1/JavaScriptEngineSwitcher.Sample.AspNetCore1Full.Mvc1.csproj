@@ -54,11 +54,16 @@
 		</None>
 	</ItemGroup>
 
+	<Target Name="GulpClean" AfterTargets="Clean">
+		<Exec Command="gulp clean-builded-assets" />
+	</Target>
+	<Target Name="GulpBuild" AfterTargets="AfterBuild">
+		<Exec Command="gulp build-assets" />
+	</Target>
 	<Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
 		<Exec Command="npm install" />
 		<Exec Command="bower install" />
-		<Exec Command="gulp copy-libraries" />
-		<Exec Command="gulp build-assets" />
+		<Exec Command="gulp" />
 	</Target>
 
 </Project>
