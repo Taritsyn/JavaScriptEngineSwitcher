@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v2.4.11 - December 24, 2017
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.5
+ * In JavaScriptEngineSwitcher.ChakraCore fixed a error, that occurred during finding the suitable method overload, that receives numeric values and interfaces as parameters, of the host object
+
 ## v2.4.10 - July 4, 2017
  * Now during the rethrowing of exceptions are preserved the full call stack trace
  * In JavaScriptEngineSwitcher.ChakraCore was reduced a number of delegate-wrappers
