@@ -8,6 +8,17 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 			get { return "JurassicJsEngine"; }
 		}
 
+		#region Embedding of objects
+
+		#region Objects with properties
+
+		public override void EmbeddingOfInstanceOfAnonymousTypeWithPropertiesIsCorrect()
+		{ }
+
+		#endregion
+
+		#endregion
+
 		#region Embedding of types
 
 		#region Types with constants

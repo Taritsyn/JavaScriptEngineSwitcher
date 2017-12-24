@@ -240,6 +240,70 @@ namespace JavaScriptEngineSwitcher.Tests
 			Assert.Equal(targetOutput2, output2);
 		}
 
+		[Fact]
+		public virtual void EmbeddingOfInstanceOfAnonymousTypeWithPropertiesIsCorrect()
+		{
+			// Arrange
+			var person = new
+			{
+				FirstName = "John",
+				LastName = "Doe",
+				Address = new
+				{
+					StreetAddress = "103 Elm Street",
+					City = "Atlanta",
+					State = "GA",
+					PostalCode = 30339
+				}
+			};
+
+			const string input1 = "person.FirstName";
+			const string targetOutput1 = "John";
+
+			const string input2 = "person.LastName";
+			const string targetOutput2 = "Doe";
+
+			const string input3 = "person.Address.StreetAddress";
+			const string targetOutput3 = "103 Elm Street";
+
+			const string input4 = "person.Address.City";
+			const string targetOutput4 = "Atlanta";
+
+			const string input5 = "person.Address.State";
+			const string targetOutput5 = "GA";
+
+			const string input6 = "person.Address.PostalCode";
+			const int targetOutput6 = 30339;
+
+			// Act
+			string output1;
+			string output2;
+			string output3;
+			string output4;
+			string output5;
+			int output6;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("person", person);
+
+				output1 = jsEngine.Evaluate<string>(input1);
+				output2 = jsEngine.Evaluate<string>(input2);
+				output3 = jsEngine.Evaluate<string>(input3);
+				output4 = jsEngine.Evaluate<string>(input4);
+				output5 = jsEngine.Evaluate<string>(input5);
+				output6 = jsEngine.Evaluate<int>(input6);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+			Assert.Equal(targetOutput3, output3);
+			Assert.Equal(targetOutput4, output4);
+			Assert.Equal(targetOutput5, output5);
+			Assert.Equal(targetOutput6, output6);
+		}
+
 		#endregion
 
 		#region Objects with methods
