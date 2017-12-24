@@ -54,7 +54,7 @@
 
 		#region Types with methods
 
-		public override void EmbeddingOfBuiltinReferenceTypeWithMethodIsCorrect()
+		public override void EmbeddingOfBuiltinReferenceTypeWithMethodsIsCorrect()
 		{ }
 
 		#endregion

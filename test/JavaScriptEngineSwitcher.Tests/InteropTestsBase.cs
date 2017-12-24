@@ -9,6 +9,7 @@ using System.Linq;
 using Xunit;
 
 using JavaScriptEngineSwitcher.Tests.Interop;
+using JavaScriptEngineSwitcher.Tests.Interop.Animals;
 #if NETCOREAPP1_0
 using JavaScriptEngineSwitcher.Tests.Interop.Drawing;
 #endif
@@ -362,29 +363,36 @@ namespace JavaScriptEngineSwitcher.Tests
 			}
 
 			// Assert
-			Assert.True(targetOutput.Contains(output));
+			Assert.Contains(output, targetOutput);
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithMethodIsCorrect()
+		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithMethodsIsCorrect()
 		{
 			// Arrange
 			var programmerDayDate = new Date(2015, 9, 13);
 
-			const string input = "programmerDay.GetDayOfYear()";
-			const int targetOutput = 256;
+			const string input1 = "programmerDay.GetDayOfYear()";
+			const int targetOutput1 = 256;
+
+			const string input2 = @"var smileDay = programmerDay.AddDays(6);
+smileDay.GetDayOfYear();";
+			const int targetOutput2 = 262;
 
 			// Act
-			int output;
+			int output1;
+			int output2;
 
 			using (var jsEngine = CreateJsEngine())
 			{
 				jsEngine.EmbedHostObject("programmerDay", programmerDayDate);
-				output = jsEngine.Evaluate<int>(input);
+				output1 = jsEngine.Evaluate<int>(input1);
+				output2 = jsEngine.Evaluate<int>(input2);
 			}
 
 			// Assert
-			Assert.Equal(targetOutput, output);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
 		[Fact]
@@ -408,6 +416,38 @@ namespace JavaScriptEngineSwitcher.Tests
 
 			// Assert
 			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public virtual void CallingOfMethodOfCustomReferenceTypeWithInterfaceParameterIsCorrect()
+		{
+			// Arrange
+			var animalTrainer = new AnimalTrainer();
+			var cat = new Cat();
+			var dog = new Dog();
+
+			const string input1 = "animalTrainer.ExecuteVoiceCommand(cat)";
+			const string targetOutput1 = "Meow!";
+
+			const string input2 = "animalTrainer.ExecuteVoiceCommand(dog)";
+			const string targetOutput2 = "Woof!";
+
+			// Act
+			string output1;
+			string output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("animalTrainer", animalTrainer);
+				jsEngine.EmbedHostObject("cat", cat);
+				jsEngine.EmbedHostObject("dog", dog);
+				output1 = jsEngine.Evaluate<string>(input1);
+				output2 = jsEngine.Evaluate<string>(input2);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
 		#endregion
@@ -856,7 +896,7 @@ namespace JavaScriptEngineSwitcher.Tests
 			}
 
 			// Assert
-			Assert.True(targetOutput.Contains(output));
+			Assert.Contains(output, targetOutput);
 		}
 
 		[Fact]
@@ -944,25 +984,31 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfBuiltinReferenceTypeWithMethodIsCorrect()
+		public virtual void EmbeddingOfBuiltinReferenceTypeWithMethodsIsCorrect()
 		{
 			// Arrange
 			Type mathType = typeof(Math);
 
-			const string input = "Math2.Max(5.37, 5.56)";
-			const double targetOutput = 5.56;
+			const string input1 = "Math2.Max(5.37, 5.56)";
+			const double targetOutput1 = 5.56;
+
+			const string input2 = "Math2.Log10(23)";
+			const double targetOutput2 = 1.36172783601759;
 
 			// Act
-			double output;
+			double output1;
+			double output2;
 
 			using (var jsEngine = CreateJsEngine())
 			{
 				jsEngine.EmbedHostType("Math2", mathType);
-				output = jsEngine.Evaluate<double>(input);
+				output1 = jsEngine.Evaluate<double>(input1);
+				output2 = Math.Round(jsEngine.Evaluate<double>(input2), 14);
 			}
 
 			// Assert
-			Assert.Equal(targetOutput, output);
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
 		[Fact]

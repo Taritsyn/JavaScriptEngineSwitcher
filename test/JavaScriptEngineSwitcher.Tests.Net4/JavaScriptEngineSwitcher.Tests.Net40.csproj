@@ -117,6 +117,18 @@
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\InteropTestsBase.cs">
       <Link>InteropTestsBase.cs</Link>
     </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Animals\AnimalTrainer.cs">
+      <Link>Interop\Animals\AnimalTrainer.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Animals\Cat.cs">
+      <Link>Interop\Animals\Cat.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Animals\Dog.cs">
+      <Link>Interop\Animals\Dog.cs</Link>
+    </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Animals\IAnimal.cs">
+      <Link>Interop\Animals\IAnimal.cs</Link>
+    </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.Tests\Interop\Base64Encoder.cs">
       <Link>Interop\Base64Encoder.cs</Link>
     </Compile>

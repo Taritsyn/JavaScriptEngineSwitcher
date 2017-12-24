@@ -30,9 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   1. Now during the rethrowing of exceptions are preserved the full call stack
-      trace;
-   2. Reduced a number of delegate-wrappers.
+   Fixed a error, that occurred during finding the suitable method overload, that
+   receives numeric values and interfaces as parameters, of the host object.
 
    =============
    DOCUMENTATION

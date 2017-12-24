@@ -16,7 +16,7 @@ namespace JavaScriptEngineSwitcher.Tests.Interop
 			get
 			{
 				DateTime currentDateTime = DateTime.Today;
-				Date currentDate = new Date(currentDateTime.Year, currentDateTime.Month, currentDateTime.Day);
+				var currentDate = new Date(currentDateTime.Year, currentDateTime.Month, currentDateTime.Day);
 
 				return currentDate;
 			}
@@ -42,6 +42,14 @@ namespace JavaScriptEngineSwitcher.Tests.Interop
 				Day +
 				(Month > 2 && IsLeapYear(Year) ? 1 : 0)
 				;
+		}
+
+		public Date AddDays(double value)
+		{
+			var dateTime = new DateTime(Year, Month, Day);
+			DateTime newDateTime = dateTime.AddDays(value);
+
+			return new Date(newDateTime.Year, newDateTime.Month, newDateTime.Day);
 		}
 	}
 }
