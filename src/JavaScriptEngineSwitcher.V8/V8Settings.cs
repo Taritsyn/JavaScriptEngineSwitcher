@@ -8,6 +8,17 @@ namespace JavaScriptEngineSwitcher.V8
 	public sealed class V8Settings
 	{
 		/// <summary>
+		/// Gets or sets a flag for whether to the script engine is to wait for a debugger connection
+		/// and schedule a pause before executing the first line of application script code.
+		/// This property is ignored if value of the <see cref="EnableDebugging"/> property is false.
+		/// </summary>
+		public bool AwaitDebuggerAndPauseOnStart
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to enable script debugging features
 		/// (allows a TCP-based debugging)
 		/// </summary>
@@ -143,6 +154,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// </summary>
 		public V8Settings()
 		{
+			AwaitDebuggerAndPauseOnStart = false;
 			EnableDebugging = false;
 			EnableRemoteDebugging = false;
 			DebugPort = 9222;

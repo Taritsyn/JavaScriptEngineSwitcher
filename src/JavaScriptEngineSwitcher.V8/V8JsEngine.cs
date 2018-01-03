@@ -28,7 +28,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "6.2.414.40";
+		private const string EngineVersion = "6.3.292.48";
 
 		/// <summary>
 		/// V8 JS engine
@@ -79,6 +79,10 @@ namespace JavaScriptEngineSwitcher.V8
 			};
 
 			V8ScriptEngineFlags flags = V8ScriptEngineFlags.None;
+			if (v8Settings.AwaitDebuggerAndPauseOnStart)
+			{
+				flags |= V8ScriptEngineFlags.AwaitDebuggerAndPauseOnStart;
+			}
 			if (v8Settings.EnableDebugging)
 			{
 				flags |= V8ScriptEngineFlags.EnableDebugging;
