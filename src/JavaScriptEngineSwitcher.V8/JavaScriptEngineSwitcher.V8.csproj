@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Product>JS Engine Switcher: V8</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>alpha9</VersionSuffix>
+		<VersionSuffix>alpha10</VersionSuffix>
 		<TargetFramework>net45</TargetFramework>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -55,10 +55,7 @@ This package does not contain the native ClearScript and V8 assemblies. Therefor
 	</ItemGroup>
 
 	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
-		<ResxToCsTask
-			InputDirectory="./Resources/"
-			Namespace="$(RootNamespace).Resources"
-			InternalAccessModifier="true" />
+		<ResxToCsTask InputDirectory="./Resources/" Namespace="$(RootNamespace).Resources" InternalAccessModifier="true" />
 	</Target>
 	<Target Name="AddAdditionalAssembliesToPackage" BeforeTargets="GenerateNuspec">
 		<ItemGroup>

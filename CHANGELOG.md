@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.0.0 Alpha 10 - January 3, 2018
+ * In JavaScriptEngineSwitcher.V8:
+   * Added support of Microsoft ClearScript.V8 version 5.5.1.1 (support of V8 version 6.3.292.48)
+   * In configuration settings of the V8 JS engine was added one new property - `AwaitDebuggerAndPauseOnStart` (default `false`)
+
 ## v3.0.0 Alpha 9 - December 22, 2017
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Alpha 3
  * In JavaScriptEngineSwitcher.V8 in configuration settings of the V8 JS engine was changed types of `MaxHeapSize` and `MaxStackUsage` properties from `ulong` to `UIntPtr`
