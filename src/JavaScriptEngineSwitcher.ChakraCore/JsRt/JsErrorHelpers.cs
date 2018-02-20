@@ -116,18 +116,6 @@
 					#region Script
 
 					case JsErrorCode.ScriptException:
-						{
-							JsValue errorMetadata;
-							JsErrorCode innerError = NativeMethods.JsGetAndClearExceptionWithMetadata(out errorMetadata);
-
-							if (innerError != JsErrorCode.NoError)
-							{
-								throw new JsFatalException(innerError);
-							}
-
-							throw new JsScriptException(error, errorMetadata, "Script threw an exception.");
-						}
-
 					case JsErrorCode.ScriptCompile:
 						{
 							JsValue errorMetadata;
@@ -138,7 +126,10 @@
 								throw new JsFatalException(innerError);
 							}
 
-							throw new JsScriptException(error, errorMetadata, "Compile error.");
+							string message = error == JsErrorCode.ScriptCompile ?
+								"Compile error." : "Script threw an exception.";
+
+							throw new JsScriptException(error, errorMetadata, message);
 						}
 
 					case JsErrorCode.ScriptTerminated:

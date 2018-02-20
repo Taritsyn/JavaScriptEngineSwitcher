@@ -361,7 +361,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </para>
 		/// </remarks>
 		/// <returns>The exception metadata for the runtime of the current context</returns>
-		public static JsValue JsGetAndClearExceptionWithMetadata()
+		public static JsValue GetAndClearExceptionWithMetadata()
 		{
 			JsValue metadata;
 			JsErrorHelpers.ThrowIfError(NativeMethods.JsGetAndClearExceptionWithMetadata(out metadata));

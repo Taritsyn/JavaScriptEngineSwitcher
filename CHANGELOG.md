@@ -1,6 +1,15 @@
 Change log
 ==========
 
+## v2.4.12 - February 20, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.8.1
+   * JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64 package has been replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64 package
+   * ICU-57 library was embedded into the `libChakraCore.so` and `libChakraCore.dylib` assemblies
+   * Prevented an occurrence of the “Host may not have set any promise continuation callback. Promises may not be executed.” error
+   * In configuration settings of the ChakraCore JS engine was added two new properties - `MemoryLimit` and `DisableFatalOnOOM` (default `false`)
+   * Now during calling of the `CollectGarbage` method is no longer performed blocking
+
 ## v2.4.11 - December 24, 2017
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.5
  * In JavaScriptEngineSwitcher.ChakraCore fixed a error, that occurred during finding the suitable method overload, that receives numeric values and interfaces as parameters, of the host object
