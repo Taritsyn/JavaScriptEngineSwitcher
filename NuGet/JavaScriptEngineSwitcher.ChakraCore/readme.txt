@@ -34,7 +34,9 @@
    2. JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64 package has been
       replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64 package;
    3. Prevented an occurrence of the “Host may not have set any promise
-      continuation callback. Promises may not be executed.” error.
+      continuation callback. Promises may not be executed.” error;
+   4. In configuration settings of the ChakraCore JS engine was added two new
+      properties - `MemoryLimit` and `DisableFatalOnOOM` (default `false`).
 
    =============
    DOCUMENTATION

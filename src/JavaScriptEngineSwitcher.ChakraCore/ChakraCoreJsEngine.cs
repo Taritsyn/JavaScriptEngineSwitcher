@@ -136,13 +136,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			{
 				attributes |= JsRuntimeAttributes.DisableBackgroundWork;
 			}
+			if (chakraCoreSettings.DisableEval)
+			{
+				attributes |= JsRuntimeAttributes.DisableEval;
+			}
 			if (chakraCoreSettings.DisableNativeCodeGeneration)
 			{
 				attributes |= JsRuntimeAttributes.DisableNativeCodeGeneration;
 			}
-			if (chakraCoreSettings.DisableEval)
+			if (chakraCoreSettings.DisableFatalOnOOM)
 			{
-				attributes |= JsRuntimeAttributes.DisableEval;
+				attributes |= JsRuntimeAttributes.DisableFatalOnOOM;
 			}
 			if (chakraCoreSettings.EnableExperimentalFeatures)
 			{
@@ -157,6 +161,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				try
 				{
 					_jsRuntime = JsRuntime.Create(attributes, null);
+					_jsRuntime.MemoryLimit = settings.MemoryLimit;
+
 					_jsContext = _jsRuntime.CreateContext();
 					_jsContext.AddRef();
 				}
