@@ -36,7 +36,9 @@
    3. Prevented an occurrence of the “Host may not have set any promise
       continuation callback. Promises may not be executed.” error;
    4. In configuration settings of the ChakraCore JS engine was added two new
-      properties - `MemoryLimit` and `DisableFatalOnOOM` (default `false`).
+      properties - `MemoryLimit` and `DisableFatalOnOOM` (default `false`);
+   5. Now during calling of the `CollectGarbage` method is no longer performed
+      blocking.
 
    =============
    DOCUMENTATION
