@@ -32,7 +32,9 @@
    =============
    1. ChakraCore was updated to version 1.8.1;
    2. JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64 package has been
-      replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64 package.
+      replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64 package;
+   3. Prevented an occurrence of the “Host may not have set any promise
+      continuation callback. Promises may not be executed.” error.
 
    =============
    DOCUMENTATION

@@ -58,6 +58,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private JsObjectFinalizeCallback _externalObjectFinalizeCallback;
 
 		/// <summary>
+		/// Callback for continuation of promise
+		/// </summary>
+		private JsPromiseContinuationCallback _promiseContinuationCallback;
+
+		/// <summary>
 		/// List of native function callbacks
 		/// </summary>
 		private readonly HashSet<JsNativeFunction> _nativeFunctions = new HashSet<JsNativeFunction>();
@@ -112,7 +117,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 #endif
 
 		/// <summary>
-		/// Constructs a instance of adapter for the ChakraCore JS engine
+		/// Constructs an instance of adapter for the ChakraCore JS engine
 		/// </summary>
 		public ChakraCoreJsEngine()
 			: this(new ChakraCoreSettings())
@@ -145,6 +150,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			}
 
 			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
+			_promiseContinuationCallback = PromiseContinuationCallback;
 
 			_dispatcher.Invoke(() =>
 			{
@@ -222,7 +228,23 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <returns>Instance of JS scope</returns>
 		private JsScope CreateJsScope()
 		{
-			return new JsScope(_jsContext);
+			var jsScope = new JsScope(_jsContext);
+
+			JsRuntime.SetPromiseContinuationCallback(_promiseContinuationCallback, IntPtr.Zero);
+
+			return jsScope;
+		}
+
+		/// <summary>
+		/// The promise continuation callback
+		/// </summary>
+		/// <param name="task">The task, represented as a JavaScript function</param>
+		/// <param name="callbackState">The data argument to be passed to the callback</param>
+		private static void PromiseContinuationCallback(JsValue task, IntPtr callbackState)
+		{
+			task.AddRef();
+			task.CallFunction(JsValue.GlobalObject);
+			task.Release();
 		}
 
 		#region Mapping
@@ -1254,6 +1276,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						_nativeFunctions.Clear();
 					}
 
+					_promiseContinuationCallback = null;
 					_externalObjectFinalizeCallback = null;
 				}
 			}
