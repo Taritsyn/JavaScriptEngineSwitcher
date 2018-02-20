@@ -10,8 +10,8 @@ rmdir runtimes /Q/S
 del clearscript-license.txt /Q/S
 del v8-license.txt /Q/S
 
-xcopy "%lib_dir%\win-x86\ClearScriptV8-32.dll" runtimes\win7-x86\native\
-xcopy "%lib_dir%\win-x86\v8-ia32.dll" runtimes\win7-x86\native\
+xcopy "%lib_dir%\runtimes\win-x86\native\ClearScriptV8-32.dll" runtimes\win7-x86\native\
+xcopy "%lib_dir%\runtimes\win-x86\native\v8-ia32.dll" runtimes\win7-x86\native\
 
 copy "%licenses_dir%\clearscript-license.txt" clearscript-license.txt /Y
 copy "%licenses_dir%\v8-license.txt" v8-license.txt /Y

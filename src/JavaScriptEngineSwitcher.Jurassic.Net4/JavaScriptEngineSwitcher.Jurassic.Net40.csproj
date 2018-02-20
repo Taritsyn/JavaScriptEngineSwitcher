@@ -45,7 +45,7 @@
   <ItemGroup>
     <Reference Include="Jurassic, Version=3.0.0.0, Culture=neutral, PublicKeyToken=42f272f6dd312a2c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Jurassic\Jurassic.dll</HintPath>
+      <HintPath>..\..\lib\Jurassic\lib\net40-client\Jurassic.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

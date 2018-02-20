@@ -47,15 +47,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\lib\ChakraCore\win8-arm\ChakraCore.dll">
+    <None Include="..\..\lib\ChakraCore\runtimes\win8-arm\native\ChakraCore.dll">
       <Link>arm\ChakraCore.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\lib\ChakraCore\win-x64\ChakraCore.dll">
+    <None Include="..\..\lib\ChakraCore\runtimes\win-x64\native\ChakraCore.dll">
       <Link>x64\ChakraCore.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\lib\ChakraCore\win-x86\ChakraCore.dll">
+    <None Include="..\..\lib\ChakraCore\runtimes\win-x86\native\ChakraCore.dll">
       <Link>x86\ChakraCore.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

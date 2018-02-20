@@ -45,32 +45,32 @@
   <ItemGroup>
     <Reference Include="ClearScript, Version=5.4.9.0, Culture=neutral, PublicKeyToken=935d0c957da47c73, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ClearScript\ClearScript.dll</HintPath>
+      <HintPath>..\..\lib\ClearScript\lib\net40-client\ClearScript.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\lib\ClearScript\win-x64\ClearScriptV8-64.dll">
+    <None Include="..\..\lib\ClearScript\runtimes\win-x64\native\ClearScriptV8-64.dll">
       <Link>x64\ClearScriptV8-64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\lib\ClearScript\win-x64\v8-x64.dll">
+    <None Include="..\..\lib\ClearScript\runtimes\win-x64\native\v8-x64.dll">
       <Link>x64\v8-x64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\lib\ClearScript\win-x86\ClearScriptV8-32.dll">
+    <None Include="..\..\lib\ClearScript\runtimes\win-x86\native\ClearScriptV8-32.dll">
       <Link>x86\ClearScriptV8-32.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\lib\ClearScript\win-x86\v8-ia32.dll">
+    <None Include="..\..\lib\ClearScript\runtimes\win-x86\native\v8-ia32.dll">
       <Link>x86\v8-ia32.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
