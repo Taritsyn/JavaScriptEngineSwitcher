@@ -98,8 +98,8 @@
 					case JsErrorCode.ModuleParsed:
 						throw new JsUsageException(error, "Module parsed.");
 
-					case JsErrorCode.ModuleEvaluated:
-						throw new JsUsageException(error, "Module evaluated.");
+					case JsErrorCode.NoWeakRefRequired:
+						throw new JsUsageException(error, "No weak reference is required, the value will never be collected.");
 
 					#endregion
 

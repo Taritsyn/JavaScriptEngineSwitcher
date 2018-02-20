@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2018 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -24,14 +24,15 @@
     * JavaScriptEngineSwitcher.ChakraCore.Native.win-x86
     * JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
     * JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm
-    * JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64
+    * JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64
     * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64
 
    =============
    RELEASE NOTES
    =============
-   Fixed a error, that occurred during finding the suitable method overload, that
-   receives numeric values and interfaces as parameters, of the host object.
+   1. ChakraCore was updated to version 1.8.1;
+   2. JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64 package has been
+      replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64 package.
 
    =============
    DOCUMENTATION

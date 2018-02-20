@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("JavaScript Engine Switcher: ChakraCore")]
-[assembly: AssemblyCopyright("Copyright © 2013-2017 Andrey Taritsyn")]
+[assembly: AssemblyCopyright("Copyright © 2013-2018 Andrey Taritsyn")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

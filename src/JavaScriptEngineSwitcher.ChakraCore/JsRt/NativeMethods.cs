@@ -184,6 +184,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		internal static extern JsErrorCode JsHasProperty(JsValue obj, JsPropertyId propertyId, out bool hasProperty);
 
 		[DllImport(DllName)]
+		internal static extern JsErrorCode JsHasOwnProperty(JsValue obj, JsPropertyId propertyId, out bool hasOwnProperty);
+
+		[DllImport(DllName)]
 		internal static extern JsErrorCode JsDeleteProperty(JsValue obj, JsPropertyId propertyId, bool useStrictRules,
 			out JsValue result);
 
@@ -329,7 +332,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsCopyString(JsValue value, byte[] buffer, UIntPtr bufferSize,
-			out UIntPtr written);
+			out UIntPtr length);
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsParse(JsValue script, JsSourceContext sourceContext, JsValue sourceUrl,

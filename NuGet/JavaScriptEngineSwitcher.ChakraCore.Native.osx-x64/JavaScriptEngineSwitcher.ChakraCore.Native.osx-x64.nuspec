@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</id>
-		<version>2.4.6</version>
+		<version>2.4.12</version>
 		<title>JS Engine Switcher: ChakraCore for OS X (x64)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -10,14 +10,13 @@
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.5.2 for OS X (x64).
+		<description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.8.1 for OS X (x64).
 
-This package is only compatible with .NET Core.
-
-For correct working of the ChakraCore require the ICU4C library.</description>
-		<summary>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.5.2 for OS X (x64).</summary>
-		<releaseNotes>ChakraCore was updated to version 1.5.2.</releaseNotes>
-		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+This package is only compatible with .NET Core.</description>
+		<summary>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.8.1 for OS X (x64).</summary>
+		<releaseNotes>1. ChakraCore was updated to version 1.8.1;
+2. ICU-57 library was embedded into the `libChakraCore.dylib` assembly.</releaseNotes>
+		<copyright>Copyright (c) 2013-2018 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore macOS OSX x64</tags>
 	</metadata>

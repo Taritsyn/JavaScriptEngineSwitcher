@@ -40,11 +40,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				baseDirectoryPath = currentDomain.BaseDirectory;
 			}
 
-			if (!PathHelpers.ContainsDirectory(baseDirectoryPath, "bin"))
-			{
-				return;
-			}
-
 			string platform;
 			if (IsArmProcessorArchitecture())
 			{

@@ -620,15 +620,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			{
 				byte[] buffer = null;
 				UIntPtr bufferSize = UIntPtr.Zero;
-				UIntPtr written;
+				UIntPtr length;
 
-				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out written);
+				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				buffer = new byte[(int)written];
-				bufferSize = new UIntPtr((uint)written);
+				buffer = new byte[(int)length];
+				bufferSize = new UIntPtr((uint)length);
 
-				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out written);
+				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
 				result = Encoding.GetEncoding(0).GetString(buffer);
@@ -753,6 +753,22 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsErrorHelpers.ThrowIfError(NativeMethods.JsHasProperty(this, propertyId, out hasProperty));
 
 			return hasProperty;
+		}
+
+		/// <summary>
+		/// Determines whether an object has a non-inherited property
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		/// <param name="propertyId">The ID of the property</param>
+		/// <returns>Whether the object has the non-inherited property</returns>
+		public bool HasOwnProperty(JsPropertyId propertyId)
+		{
+			bool hasOwnProperty;
+			JsErrorHelpers.ThrowIfError(NativeMethods.JsHasOwnProperty(this, propertyId, out hasOwnProperty));
+
+			return hasOwnProperty;
 		}
 
 		/// <summary>
