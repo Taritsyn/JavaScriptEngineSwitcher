@@ -15,9 +15,9 @@
    VroomJs (http://github.com/pauldotknopf/vroomjs-core) version 1.2.3 with support
    of V8 version 3.17.16.2).
 
-   For correct working of the VroomJs on Windows require assemblies `msvcr110.dll`
-   from the Visual C++ Redistributable for Visual Studio 2012 and `msvcp140.dll`
-   from the Microsoft Visual C++ 2015 Redistributable.
+   For correct working of the VroomJs on Windows require the Visual C++
+   Redistributable for Visual Studio 2012 and the Microsoft Visual C++ 2015
+   Redistributable.
 
    =============
    RELEASE NOTES
@@ -29,8 +29,8 @@
    ====================
    If in your system does not assemblies `msvcr110.dll` and `msvcp140.dll`, then
    download and install the Visual C++ Redistributable Packages for Visual Studio
-   2012 (http://www.microsoft.com/en-us/download/details.aspx?id=30679) and 2015
-   (http://www.microsoft.com/en-us/download/details.aspx?id=53840).
+   2012 (https://www.microsoft.com/en-us/download/details.aspx?id=30679) and 2015
+   (https://www.microsoft.com/en-us/download/details.aspx?id=53840).
 
    =============
    DOCUMENTATION

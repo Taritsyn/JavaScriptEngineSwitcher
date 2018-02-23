@@ -25,7 +25,7 @@
 
 
 		/// <summary>
-		/// Constructs instance of the Vroom settings
+		/// Constructs an instance of the Vroom settings
 		/// </summary>
 		public VroomSettings()
 		{
