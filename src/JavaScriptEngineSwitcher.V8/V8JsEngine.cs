@@ -47,11 +47,6 @@ namespace JavaScriptEngineSwitcher.V8
 				@"\(?[^\s*?""<>|][^\t\n\r*?""<>|]*?:(?<lineNumber>\d+):(?<columnNumber>\d+)\)? -> ");
 
 		/// <summary>
-		/// Synchronizer of code execution
-		/// </summary>
-		private readonly object _executionSynchronizer = new object();
-
-		/// <summary>
 		/// Gets a name of JS engine
 		/// </summary>
 		public override string Name
@@ -224,16 +219,13 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			object result;
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					result = _jsEngine.Evaluate(documentName, false, expression);
-				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
-				}
+				result = _jsEngine.Evaluate(documentName, false, expression);
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 			}
 
 			result = MapToHostType(result);
@@ -260,16 +252,13 @@ namespace JavaScriptEngineSwitcher.V8
 
 		protected override void InnerExecute(string code, string documentName)
 		{
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					_jsEngine.Execute(documentName, false, code);
-				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
-				}
+				_jsEngine.Execute(documentName, false, code);
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 			}
 		}
 
@@ -287,16 +276,13 @@ namespace JavaScriptEngineSwitcher.V8
 				}
 			}
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					result = _jsEngine.Invoke(functionName, processedArgs);
-				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
-				}
+				result = _jsEngine.Invoke(functionName, processedArgs);
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 			}
 
 			result = MapToHostType(result);
@@ -323,16 +309,13 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			object result;
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					result = _jsEngine.Script[variableName];
-				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
-				}
+				result = _jsEngine.Script[variableName];
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 			}
 
 			result = MapToHostType(result);
@@ -351,16 +334,13 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			object processedValue = MapToClearScriptType(value);
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					_jsEngine.Script[variableName] = processedValue;
-				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
-				}
+				_jsEngine.Script[variableName] = processedValue;
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 			}
 		}
 
@@ -373,40 +353,31 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			object processedValue = MapToClearScriptType(value);
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					_jsEngine.AddHostObject(itemName, processedValue);
-				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
-				}
+				_jsEngine.AddHostObject(itemName, processedValue);
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 			}
 		}
 
 		protected override void InnerEmbedHostType(string itemName, Type type)
 		{
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					_jsEngine.AddHostType(itemName, type);
-				}
-				catch (OriginalJsException e)
-				{
-					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
-				}
+				_jsEngine.AddHostType(itemName, type);
+			}
+			catch (OriginalJsException e)
+			{
+				throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 			}
 		}
 
 		protected override void InnerCollectGarbage()
 		{
-			lock (_executionSynchronizer)
-			{
-				_jsEngine.CollectGarbage(true);
-			}
+			_jsEngine.CollectGarbage(true);
 		}
 
 		#endregion
