@@ -38,7 +38,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 
 		/// <summary>
-		/// Constructs a instance of <see cref="FileScriptSource"/>
+		/// Constructs an instance of <see cref="FileScriptSource"/>
 		/// </summary>
 		/// <param name="documentName">The document name</param>
 		/// <param name="path">The path to the JS-file</param>

@@ -38,7 +38,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 
 		/// <summary>
-		/// Constructs a instance of <see cref="ResourceScriptSource"/>
+		/// Constructs an instance of <see cref="ResourceScriptSource"/>
 		/// </summary>
 		/// <param name="documentName">The document name</param>
 		/// <param name="resourceName">The case-sensitive resource name</param>

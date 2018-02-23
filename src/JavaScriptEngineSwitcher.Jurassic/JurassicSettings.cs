@@ -36,7 +36,7 @@
 
 
 		/// <summary>
-		/// Constructs instance of the Jurassic settings
+		/// Constructs an instance of the Jurassic settings
 		/// </summary>
 		public JurassicSettings()
 		{

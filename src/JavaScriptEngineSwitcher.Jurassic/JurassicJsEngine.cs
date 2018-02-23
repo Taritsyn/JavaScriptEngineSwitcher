@@ -32,7 +32,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "May 24, 2017";
+		private const string EngineVersion = "Dec 12, 2017";
 
 		/// <summary>
 		/// Jurassic JS engine
@@ -76,14 +76,14 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 
 		/// <summary>
-		/// Constructs a instance of adapter for the Jurassic JS engine
+		/// Constructs an instance of adapter for the Jurassic JS engine
 		/// </summary>
 		public JurassicJsEngine()
 			: this(new JurassicSettings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for the Jurassic JS engine
+		/// Constructs an instance of adapter for the Jurassic JS engine
 		/// </summary>
 		/// <param name="settings">Settings of the Jurassic JS engine</param>
 		public JurassicJsEngine(JurassicSettings settings)

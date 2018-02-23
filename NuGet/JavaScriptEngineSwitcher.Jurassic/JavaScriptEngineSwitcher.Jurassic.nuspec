@@ -10,23 +10,24 @@
 		<projectUrl>http://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of May 24, 2017).</description>
-		<summary>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine version of May 24, 2017).</summary>
-		<releaseNotes>Jurassic was updated to version of May 24, 2017.</releaseNotes>
-		<copyright>Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
+		<description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of December 12, 2017).</description>
+		<summary>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine version of December 12, 2017).</summary>
+		<releaseNotes>Jurassic was updated to version of December 12, 2017.</releaseNotes>
+		<copyright>Copyright (c) 2013-2018 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript Jurassic</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0-Client">
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.0" />
+				<dependency id="Jurassic.Unofficial" version="2017.12.12" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.10" />
 			</group>
 			<group targetFramework=".NETFramework4.5">
-				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.0" />
+				<dependency id="Jurassic.Unofficial" version="2017.12.12" />
+				<dependency id="JavaScriptEngineSwitcher.Core" version="2.4.10" />
 			</group>
 		</dependencies>
 		<references>
 			<reference file="JavaScriptEngineSwitcher.Jurassic.dll" />
-			<reference file="Jurassic.dll" />
 		</references>
 	</metadata>
 	<files>
