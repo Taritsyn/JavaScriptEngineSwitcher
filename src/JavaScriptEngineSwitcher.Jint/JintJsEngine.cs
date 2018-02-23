@@ -33,7 +33,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "2.10.4";
+		private const string EngineVersion = "2.11.58";
 
 		/// <summary>
 		/// Jint JS engine
@@ -77,14 +77,14 @@ namespace JavaScriptEngineSwitcher.Jint
 
 
 		/// <summary>
-		/// Constructs a instance of adapter for the Jint JS engine
+		/// Constructs an instance of adapter for the Jint JS engine
 		/// </summary>
 		public JintJsEngine()
 			: this(new JintSettings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for the Jint JS engine
+		/// Constructs an instance of adapter for the Jint JS engine
 		/// </summary>
 		/// <param name="settings">Settings of the Jint JS engine</param>
 		public JintJsEngine(JintSettings settings)
