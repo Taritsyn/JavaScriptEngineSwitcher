@@ -6,7 +6,7 @@ KOREBUILD_DOTNET_VERSION=1.1.7
 repoFolder="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $repoFolder
 
-koreBuildZip="https://github.com/aspnet/KoreBuild/archive/02bd945d32558d24c1e5c6b74e37d44585ad9691.zip"
+koreBuildZip="https://codeload.github.com/aspnet/KoreBuild/zip/02bd945d32558d24c1e5c6b74e37d44585ad9691"
 if [ ! -z $KOREBUILD_ZIP ]; then
     koreBuildZip=$KOREBUILD_ZIP
 fi

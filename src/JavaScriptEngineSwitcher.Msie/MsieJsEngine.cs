@@ -63,14 +63,14 @@ namespace JavaScriptEngineSwitcher.Msie
 
 
 		/// <summary>
-		/// Constructs a instance of adapter for the MSIE JS engine
+		/// Constructs an instance of adapter for the MSIE JS engine
 		/// </summary>
 		public MsieJsEngine()
 			: this(new MsieSettings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for the MSIE JS engine
+		/// Constructs an instance of adapter for the MSIE JS engine
 		/// </summary>
 		/// <param name="settings">Settings of the MSIE JS engine</param>
 		public MsieJsEngine(MsieSettings settings)
