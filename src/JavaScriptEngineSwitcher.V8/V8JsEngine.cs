@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Reflection;
-#if NET45
-using System.Runtime.ExceptionServices;
-#endif
 using System.Text.RegularExpressions;
 
 using Microsoft.ClearScript.V8;
@@ -41,11 +38,6 @@ namespace JavaScriptEngineSwitcher.V8
 		/// ClearScript <code>undefined</code> value
 		/// </summary>
 		private static OriginalUndefined _originalUndefinedValue;
-
-		/// <summary>
-		/// Information about <code>InvokeMethod</code> method of <see cref="V8ScriptItem"/> class
-		/// </summary>
-		private static MethodInfo _v8ScriptItemInvokeMethodInfo;
 
 		/// <summary>
 		/// Regular expression for working with the string representation of error
@@ -91,18 +83,17 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			AssemblyResolver.Initialize();
 			LoadUndefinedValue();
-			LoadWinScriptItemInvokeMethodInfo();
 		}
 
 		/// <summary>
-		/// Constructs a instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
+		/// Constructs an instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
 		/// </summary>
 		public V8JsEngine()
 			: this(new V8Settings())
 		{ }
 
 		/// <summary>
-		/// Constructs a instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
+		/// Constructs an instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
 		/// </summary>
 		/// <param name="settings">Settings of the V8 JS engine</param>
 		public V8JsEngine(V8Settings settings)
@@ -163,36 +154,6 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				throw new JsEngineLoadException(Strings.Engines_ClearScriptUndefinedValueNotLoaded,
 					EngineName, EngineVersion);
-			}
-		}
-
-		/// <summary>
-		/// Loads a `InvokeMethod` method information of `Microsoft.ClearScript.V8.V8ScriptItem` type
-		/// </summary>
-		private static void LoadWinScriptItemInvokeMethodInfo()
-		{
-			const string typeName = "Microsoft.ClearScript.V8.V8ScriptItem";
-			const string methodName = "InvokeMethod";
-
-			Assembly clearScriptAssembly = typeof(V8ScriptEngine).Assembly;
-			Type v8ScriptItemType = clearScriptAssembly.GetType(typeName);
-			MethodInfo v8ScriptItemInvokeMethodInfo = null;
-
-			if (v8ScriptItemType != null)
-			{
-				v8ScriptItemInvokeMethodInfo = v8ScriptItemType.GetMethod(methodName,
-					BindingFlags.Instance | BindingFlags.Public);
-			}
-
-			if (v8ScriptItemInvokeMethodInfo != null)
-			{
-				_v8ScriptItemInvokeMethodInfo = v8ScriptItemInvokeMethodInfo;
-			}
-			else
-			{
-				throw new JsEngineLoadException(
-					string.Format(Strings.Runtime_MethodInfoNotLoaded, typeName, methodName),
-						EngineName, EngineVersion);
 			}
 		}
 
@@ -330,32 +291,11 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				try
 				{
-					object obj = _jsEngine.Script;
-					result = _v8ScriptItemInvokeMethodInfo.Invoke(obj, new object[] { functionName, processedArgs });
+					result = _jsEngine.Invoke(functionName, processedArgs);
 				}
-				catch (TargetInvocationException e)
+				catch (OriginalJsException e)
 				{
-					Exception innerException = e.InnerException;
-					if (innerException != null)
-					{
-						var scriptEngineException = e.InnerException as OriginalJsException;
-						if (scriptEngineException != null)
-						{
-							throw ConvertScriptEngineExceptionToJsRuntimeException(scriptEngineException);
-						}
-#if NET45
-
-						ExceptionDispatchInfo.Capture(innerException).Throw();
-#elif NET40
-
-						innerException.PreserveStackTrace();
-						throw innerException;
-#else
-#error No implementation for this target
-#endif
-					}
-
-					throw;
+					throw ConvertScriptEngineExceptionToJsRuntimeException(e);
 				}
 			}
 

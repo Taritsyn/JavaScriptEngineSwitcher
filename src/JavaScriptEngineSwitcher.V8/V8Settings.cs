@@ -62,7 +62,7 @@
 
 
 		/// <summary>
-		/// Constructs instance of the V8 settings
+		/// Constructs an instance of the V8 settings
 		/// </summary>
 		public V8Settings()
 		{

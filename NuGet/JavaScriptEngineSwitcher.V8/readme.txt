@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2018 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -25,7 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   Now during the rethrowing of exceptions are preserved the full call stack trace.
+   Improved implementation of the `CallFunction` method.
 
    =============
    DOCUMENTATION
