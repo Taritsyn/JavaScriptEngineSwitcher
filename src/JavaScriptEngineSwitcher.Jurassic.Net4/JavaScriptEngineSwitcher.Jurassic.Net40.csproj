@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Jurassic, Version=3.0.0.0, Culture=neutral, PublicKeyToken=42f272f6dd312a2c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Jurassic.Unofficial.2017.12.12\lib\net40-client\Jurassic.dll</HintPath>
+      <HintPath>..\..\packages\Jurassic.Unofficial.2018.2.24\lib\net40-client\Jurassic.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
