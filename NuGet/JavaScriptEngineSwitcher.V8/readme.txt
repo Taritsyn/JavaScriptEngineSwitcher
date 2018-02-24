@@ -25,7 +25,11 @@
    =============
    RELEASE NOTES
    =============
-   Improved implementation of the `CallFunction` method.
+   1. Improved implementation of the `CallFunction` method;
+   2. Removed unnecessary locks from the `V8JsEngine` class;
+   3. In configuration settings of the V8 JS engine was added 3 new properties:
+      `HeapSizeSampleInterval` (default `TimeSpan.Zero`), `MaxHeapSize` (default
+      `UIntPtr.Zero`) and `MaxStackUsage` (default `UIntPtr.Zero`).
 
    =============
    DOCUMENTATION
