@@ -18,6 +18,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="2.4.13" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x86" Version="2.4.13" />
 		<PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.0.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
 		<PackageReference Include="xunit" Version="2.2.0" />
