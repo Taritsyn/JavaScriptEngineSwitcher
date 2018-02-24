@@ -1,6 +1,16 @@
 Change log
 ==========
 
+## v2.4.13 - February 24, 2018
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.6
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 5.4.10
+   * Improved implementation of the `CallFunction` method
+   * Removed unnecessary locks from the `V8JsEngine` class
+   * In configuration settings of the V8 JS engine was added 3 new properties: `HeapSizeSampleInterval` (default `TimeSpan.Zero`), `MaxHeapSize` (default `UIntPtr.Zero`) and `MaxStackUsage` (default `UIntPtr.Zero`)
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of February 24, 2018
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.11.58
+
 ## v2.4.12 - February 20, 2018
  * In JavaScriptEngineSwitcher.ChakraCore:
    * ChakraCore was updated to version 1.8.1
