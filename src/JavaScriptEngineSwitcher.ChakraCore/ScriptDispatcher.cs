@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 #if NET45 || NETSTANDARD
 using System.Runtime.ExceptionServices;
 #endif
 using System.Threading;
 
-using JavaScriptEngineSwitcher.Core;
+#if NET40
+using JavaScriptEngineSwitcher.Core.Extensions;
+#endif
 using JavaScriptEngineSwitcher.Core.Utilities;
 
 namespace JavaScriptEngineSwitcher.ChakraCore
@@ -72,6 +75,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
 		private void VerifyNotDisposed()
 		{
 			if (_disposedFlag.IsSet())
@@ -186,7 +190,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			if (func == null)
 			{
-				throw new ArgumentNullException("func");
+				throw new ArgumentNullException(nameof(func));
 			}
 
 			return (T)InnnerInvoke(() => func());
@@ -203,7 +207,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			if (action == null)
 			{
-				throw new ArgumentNullException("action");
+				throw new ArgumentNullException(nameof(action));
 			}
 
 			InnnerInvoke(() =>

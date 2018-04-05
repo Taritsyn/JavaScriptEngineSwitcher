@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Text;
 
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Utilities;
 
 using JavaScriptEngineSwitcher.Vroom.Resources;
 
@@ -98,7 +99,7 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 				{
 					if (sb == null)
 					{
-						sb = new StringBuilder(value.Length + 5);
+						sb = StringBuilderPool.GetBuilder();
 					}
 
 					if (count > 0)
@@ -153,7 +154,10 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 				sb.Append(value, startIndex, count);
 			}
 
-			return sb.ToString();
+			string encodedValue = sb.ToString();
+			StringBuilderPool.ReleaseBuilder(sb);
+
+			return encodedValue;
 		}
 
 		private static bool CharRequiresJsEncoding(char charValue)

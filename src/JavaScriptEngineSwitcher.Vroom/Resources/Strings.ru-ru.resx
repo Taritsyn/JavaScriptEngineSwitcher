@@ -120,4 +120,10 @@
   <data name="Common_CannotSerializeType" xml:space="preserve">
     <value>Сериализация типа `{0}` не поддерживается!</value>
   </data>
+  <data name="Engine_BuildNativeAssembly" xml:space="preserve">
+    <value>Вы можете собрать "{0}", используя следующие инструкции из официального репозитория - {1}.</value>
+  </data>
+  <data name="Engine_VcRedist2012And2015InstallationRequired" xml:space="preserve">
+    <value>Попробуйте установить следующие распространяемые пакеты: Visual C++ для Visual Studio 2012 (https://www.microsoft.com/ru-ru/download/details.aspx?id=30679) и Microsoft Visual C++ 2015 (https://www.microsoft.com/ru-ru/download/details.aspx?id=53840).</value>
+  </data>
 </root>

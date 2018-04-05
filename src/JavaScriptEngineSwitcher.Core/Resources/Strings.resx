@@ -132,6 +132,12 @@
   <data name="Common_FileNotExist" xml:space="preserve">
     <value>File '{0}' not exist.</value>
   </data>
+  <data name="Common_ResourceIsNull" xml:space="preserve">
+    <value>Resource with name '{0}' is null.</value>
+  </data>
+  <data name="Common_SeeOriginalErrorMessage" xml:space="preserve">
+    <value>See the original error message: “{0}”.</value>
+  </data>
   <data name="Common_ValueIsEmpty" xml:space="preserve">
     <value>Value cannot be empty.</value>
   </data>
@@ -147,11 +153,38 @@
   <data name="Configuration_JsEngineFactoryNotFound" xml:space="preserve">
     <value>Could not find a factory, that creates an instance of the JavaScript engine with name `{0}`.</value>
   </data>
+  <data name="Engine_AssemblyNotFound" xml:space="preserve">
+    <value>Most likely it happened, because the '{0}' assembly or one of its dependencies was not found.</value>
+  </data>
+  <data name="Engine_JsEngineNotLoaded" xml:space="preserve">
+    <value>Failed to create instance of the {0}.</value>
+  </data>
+  <data name="Engine_NoNuGetPackageForProcessorArchitecture" xml:space="preserve">
+    <value>There is no {0} package for the {1} processor architecture.</value>
+  </data>
+  <data name="Engine_NuGetPackageInstallationRequired" xml:space="preserve">
+    <value>Try to install the {0} package via NuGet.</value>
+  </data>
+  <data name="Engine_OperatingSystemNotSupported" xml:space="preserve">
+    <value>Your operating system is not supported by the engine.</value>
+  </data>
+  <data name="Engine_ProcessorArchitectureNotSupported" xml:space="preserve">
+    <value>{0} processor architecture is not supported by the engine.</value>
+  </data>
+  <data name="ErrorDetails_CallStack" xml:space="preserve">
+    <value>Call stack</value>
+  </data>
   <data name="ErrorDetails_Category" xml:space="preserve">
     <value>Category</value>
   </data>
   <data name="ErrorDetails_ColumnNumber" xml:space="preserve">
     <value>Column number</value>
+  </data>
+  <data name="ErrorDetails_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ErrorDetails_DocumentName" xml:space="preserve">
+    <value>Document name</value>
   </data>
   <data name="ErrorDetails_EngineName" xml:space="preserve">
     <value>Engine name</value>
@@ -171,43 +204,58 @@
   <data name="ErrorDetails_SourceFragment" xml:space="preserve">
     <value>Source fragment</value>
   </data>
-  <data name="Resources_ResourceIsNull" xml:space="preserve">
-    <value>Resource with name '{0}' is null.</value>
-  </data>
-  <data name="Runtime_EmbeddedHostObjectTypeNotSupported" xml:space="preserve">
-    <value>The embedded host object '{0}' has a type `{1}`, which is not supported.</value>
-  </data>
-  <data name="Runtime_EmbeddedHostTypeNotSupported" xml:space="preserve">
-    <value>The embedded host type `{0}` is not supported.</value>
+  <data name="ErrorDetails_Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="Runtime_FunctionNotExist" xml:space="preserve">
     <value>The function with the name '{0}' does not exist.</value>
   </data>
-  <data name="Runtime_FunctionParameterTypeNotSupported" xml:space="preserve">
-    <value>One of the function parameters '{0}' has a type `{1}`, which is not supported.</value>
-  </data>
-  <data name="Runtime_InvalidFunctionNameFormat" xml:space="preserve">
-    <value>The function name '{0}' has incorrect format.</value>
-  </data>
-  <data name="Runtime_InvalidScriptItemNameFormat" xml:space="preserve">
-    <value>The script item name '{0}' has incorrect format.</value>
-  </data>
-  <data name="Runtime_InvalidVariableNameFormat" xml:space="preserve">
-    <value>The variable name '{0}' has incorrect format.</value>
-  </data>
-  <data name="Runtime_JsEngineNotLoaded" xml:space="preserve">
-    <value>During loading of {0} error has occurred.	
-See more details:
-
-{1}</value>
-  </data>
-  <data name="Runtime_ReturnValueTypeNotSupported" xml:space="preserve">
-    <value>The type of return value `{0}` is not supported.</value>
+  <data name="Runtime_InvalidErrorLocationLineFormat" xml:space="preserve">
+    <value>The '{0}' line of the script error location has an incorrect format.</value>
   </data>
   <data name="Runtime_ScriptInterrupted" xml:space="preserve">
     <value>Script execution was interrupted.</value>
   </data>
-  <data name="Runtime_VariableTypeNotSupported" xml:space="preserve">
+  <data name="Runtime_ScriptTimeoutExceeded" xml:space="preserve">
+    <value>Script execution exceeded timeout.</value>
+  </data>
+  <data name="Usage_CannotExecuteEmptyFile" xml:space="preserve">
+    <value>Сannot execute a '{0}' file, because it is empty.</value>
+  </data>
+  <data name="Usage_CannotExecuteEmptyResource" xml:space="preserve">
+    <value>Сannot execute a '{0}' resource, because it is empty.</value>
+  </data>
+  <data name="Usage_EmbeddedHostObjectTypeNotSupported" xml:space="preserve">
+    <value>The embedded host object '{0}' has a type `{1}`, which is not supported.</value>
+  </data>
+  <data name="Usage_EmbeddedHostTypeNotSupported" xml:space="preserve">
+    <value>The embedded host type `{0}` is not supported.</value>
+  </data>
+  <data name="Usage_FunctionParameterTypeNotSupported" xml:space="preserve">
+    <value>One of the function parameters '{0}' has a type `{1}`, which is not supported.</value>
+  </data>
+  <data name="Usage_InvalidDocumentNameFormat" xml:space="preserve">
+    <value>The document name '{0}' has incorrect format.</value>
+  </data>
+  <data name="Usage_InvalidFileNameFormat" xml:space="preserve">
+    <value>The file name '{0}' has incorrect format.</value>
+  </data>
+  <data name="Usage_InvalidFunctionNameFormat" xml:space="preserve">
+    <value>The function name '{0}' has incorrect format.</value>
+  </data>
+  <data name="Usage_InvalidResourceNameFormat" xml:space="preserve">
+    <value>The resource name '{0}' has incorrect format.</value>
+  </data>
+  <data name="Usage_InvalidScriptItemNameFormat" xml:space="preserve">
+    <value>The script item name '{0}' has incorrect format.</value>
+  </data>
+  <data name="Usage_InvalidVariableNameFormat" xml:space="preserve">
+    <value>The variable name '{0}' has incorrect format.</value>
+  </data>
+  <data name="Usage_ReturnValueTypeNotSupported" xml:space="preserve">
+    <value>The type of return value `{0}` is not supported.</value>
+  </data>
+  <data name="Usage_VariableTypeNotSupported" xml:space="preserve">
     <value>The variable '{0}' has a type `{1}`, which is not supported.</value>
   </data>
 </root>

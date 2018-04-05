@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace JavaScriptEngineSwitcher.Core
+namespace JavaScriptEngineSwitcher.Core.Utilities
 {
 	public struct InterlockedStatedFlag
 	{

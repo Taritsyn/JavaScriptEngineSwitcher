@@ -22,7 +22,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="All" />
-		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha5" PrivateAssets="All" />
 		<PackageReference Include="Jint" Version="2.11.58" />
 
 		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
@@ -39,13 +38,6 @@
 			<Visible>false</Visible>
 		</Content>
 	</ItemGroup>
-
-	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
-		<ResxToCsTask
-			InputDirectory="./Resources/"
-			Namespace="$(RootNamespace).Resources"
-			InternalAccessModifier="true" />
-	</Target>
 
 	<Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 

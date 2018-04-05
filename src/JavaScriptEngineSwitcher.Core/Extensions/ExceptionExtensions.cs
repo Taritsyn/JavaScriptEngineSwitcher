@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace JavaScriptEngineSwitcher.Core.Utilities
+namespace JavaScriptEngineSwitcher.Core.Extensions
 {
 	/// <summary>
 	/// Exception extensions
@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			MethodInfo preserveStackTraceMethodInfo = typeof(Exception).GetMethod("InternalPreserveStackTrace",

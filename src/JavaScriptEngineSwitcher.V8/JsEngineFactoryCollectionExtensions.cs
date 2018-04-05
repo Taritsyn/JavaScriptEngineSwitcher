@@ -19,7 +19,7 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			return source.AddV8(new V8Settings());
@@ -37,12 +37,12 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			if (configure == null)
 			{
-				throw new ArgumentNullException("configure");
+				throw new ArgumentNullException(nameof(configure));
 			}
 
 			var settings = new V8Settings();
@@ -63,12 +63,12 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			if (settings == null)
 			{
-				throw new ArgumentNullException("settings");
+				throw new ArgumentNullException(nameof(settings));
 			}
 
 			source.Add(new V8JsEngineFactory(settings));

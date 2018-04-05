@@ -120,9 +120,6 @@
   <data name="Engines_AddingDirectoryToDllSearchPathFailed" xml:space="preserve">
     <value>Failed to add the '{0}' directory to the search path used to locate DLLs for the application.</value>
   </data>
-  <data name="Engines_ChakraCoreAssemblyDirectoryNotFound" xml:space="preserve">
-    <value>The '{0}' directory, that should contain `ChakraCore.dll` assembly, does not exist.</value>
-  </data>
   <data name="Runtime_HostDelegateInvocationFailed" xml:space="preserve">
     <value>During invocation of the host delegate an error has occurred - “{0}”.</value>
   </data>
@@ -176,5 +173,14 @@
   </data>
   <data name="Runtime_SuitableMethodOfHostObjectNotFound" xml:space="preserve">
     <value>Could not find suitable method or not enough arguments to invoke of '{0}' method of the host object.</value>
+  </data>
+  <data name="Engine_ManualInstallationUnderMonoRequired" xml:space="preserve">
+    <value>{0} packages do not support installation under Mono, but you can to install the native assemblies manually ({1}).</value>
+  </data>
+  <data name="Engine_BuildNativeAssemblyForCurrentProcessorArchitecture" xml:space="preserve">
+    <value>You can build the '{0}' assembly for the current processor architecture by using following instructions from official repository - {1}.</value>
+  </data>
+  <data name="Engine_VcRedist2015InstallationRequired" xml:space="preserve">
+    <value>In addition, you still need to install the Microsoft Visual C++ 2015 Redistributable (https://www.microsoft.com/en-us/download/details.aspx?id=53840).</value>
   </data>
 </root>

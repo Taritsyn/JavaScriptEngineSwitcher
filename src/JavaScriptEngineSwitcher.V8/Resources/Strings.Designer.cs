@@ -66,19 +66,11 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Failed to load the ClearScriptV8 assembly, because the '{0}' file does not exist. It is possible,..."
+		/// Looks up a localized string similar to "In addition, you still need to install the Microsoft Visual C++ 2015 Redistributable..."
 		/// </summary>
-		internal static string Engines_ClearScriptV8AssemblyFileNotFound
+		internal static string Engine_VcRedist2015InstallationRequired
 		{
-			get { return GetString("Engines_ClearScriptV8AssemblyFileNotFound"); }
-		}
-
-		/// <summary>
-		/// Looks up a localized string similar to "Failed to load information about the `{1}` method of type `{0}`."
-		/// </summary>
-		internal static string Runtime_MethodInfoNotLoaded
-		{
-			get { return GetString("Runtime_MethodInfoNotLoaded"); }
+			get { return GetString("Engine_VcRedist2015InstallationRequired"); }
 		}
 
 		private static string GetString(string name)

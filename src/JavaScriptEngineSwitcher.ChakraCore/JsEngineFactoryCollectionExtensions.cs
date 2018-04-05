@@ -19,7 +19,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			return source.AddChakraCore(new ChakraCoreSettings());
@@ -37,12 +37,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			if (configure == null)
 			{
-				throw new ArgumentNullException("configure");
+				throw new ArgumentNullException(nameof(configure));
 			}
 
 			var settings = new ChakraCoreSettings();
@@ -62,12 +62,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			if (settings == null)
 			{
-				throw new ArgumentNullException("settings");
+				throw new ArgumentNullException(nameof(settings));
 			}
 
 			source.Add(new ChakraCoreJsEngineFactory(settings));

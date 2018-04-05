@@ -1,17 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+#if NET45 || NETSTANDARD
+using System.Runtime.ExceptionServices;
+using System.Runtime.InteropServices;
+#endif
 using System.Text;
+using System.Text.RegularExpressions;
 
 using OriginalAssemblyLoader = VroomJs.AssemblyLoader;
-using OriginalJsContext = VroomJs.JsContext;
-using OriginalJsEngine = VroomJs.JsEngine;
-using OriginalJsException = VroomJs.JsException;
-using OriginalJsInteropException = VroomJs.JsInteropException;
+using OriginalContext = VroomJs.JsContext;
+using OriginalEngine = VroomJs.JsEngine;
+using OriginalException = VroomJs.JsException;
+using OriginalInteropException = VroomJs.JsInteropException;
 
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Constants;
+using JavaScriptEngineSwitcher.Core.Extensions;
+using JavaScriptEngineSwitcher.Core.Helpers;
+#if NET40
+using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
+#endif
 using JavaScriptEngineSwitcher.Core.Utilities;
-using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
+using WrapperEngineLoadException = JavaScriptEngineSwitcher.Core.JsEngineLoadException;
+using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
+using WrapperInterruptedException = JavaScriptEngineSwitcher.Core.JsInterruptedException;
+using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
+using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
+
+using JavaScriptEngineSwitcher.Vroom.Constants;
+using JavaScriptEngineSwitcher.Vroom.Resources;
 using JavaScriptEngineSwitcher.Vroom.Utilities;
 
 namespace JavaScriptEngineSwitcher.Vroom
@@ -32,14 +52,24 @@ namespace JavaScriptEngineSwitcher.Vroom
 		private const string EngineVersion = "3.17.16.2";
 
 		/// <summary>
+		/// Regular expression for working with the script error message
+		/// </summary>
+		private static readonly Regex _scriptErrorMessageRegex =
+			new Regex(@"^" + CommonRegExps.DocumentNamePattern + ": " +
+				@"Uncaught " +
+				@"(?:" + CommonRegExps.JsFullNamePattern + @": )?" +
+				@"(?<description>[\s\S]+?) " +
+				@"at line: \d+ column: \d+\.$");
+
+		/// <summary>
 		/// Vroom JS engine
 		/// </summary>
-		private OriginalJsEngine _jsEngine;
+		private OriginalEngine _jsEngine;
 
 		/// <summary>
 		/// JS context
 		/// </summary>
-		private OriginalJsContext _jsContext;
+		private OriginalContext _jsContext;
 
 		/// <summary>
 		/// Synchronizer of code execution
@@ -52,22 +82,22 @@ namespace JavaScriptEngineSwitcher.Vroom
 		private readonly Dictionary<string, object> _hostItems = new Dictionary<string, object>();
 
 		/// <summary>
+		/// Synchronizer of JS engine initialization
+		/// </summary>
+		private static readonly object _initializationSynchronizer = new object();
+
+		/// <summary>
+		/// Flag indicating whether the JS engine is initialized
+		/// </summary>
+		private static bool _initialized;
+
+
+		/// <summary>
 		/// Unique document name manager
 		/// </summary>
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
 
-
-		/// <summary>
-		/// Static constructor
-		/// </summary>
-		static VroomJsEngine()
-		{
-			if (Utils.IsWindows())
-			{
-				OriginalAssemblyLoader.EnsureLoaded();
-			}
-		}
 
 		/// <summary>
 		/// Constructs an instance of adapter for the Vroom JS engine
@@ -84,22 +114,80 @@ namespace JavaScriptEngineSwitcher.Vroom
 		/// <param name="settings">Settings of the Vroom JS engine</param>
 		public VroomJsEngine(VroomSettings settings)
 		{
+			Initialize();
+
 			VroomSettings vroomSettings = settings ?? new VroomSettings();
 
 			try
 			{
-				_jsEngine = new OriginalJsEngine(vroomSettings.MaxYoungSpaceSize,
-					vroomSettings.MaxOldSpaceSize);
+				_jsEngine = new OriginalEngine(vroomSettings.MaxYoungSpaceSize, vroomSettings.MaxOldSpaceSize);
 				_jsContext = _jsEngine.CreateContext();
+			}
+			catch (TypeInitializationException e)
+			{
+				Exception innerException = e.InnerException;
+				if (innerException != null)
+				{
+					var typeLoadException = innerException as TypeLoadException;
+					if (typeLoadException != null)
+					{
+						throw WrapTypeLoadException(typeLoadException);
+					}
+					else
+					{
+						throw JsErrorHelpers.WrapUnknownEngineLoadException(innerException,
+							EngineName, EngineVersion);
+					}
+				}
+
+				throw JsErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
 			}
 			catch (Exception e)
 			{
-				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						EngineName, e.Message), EngineName, EngineVersion, e);
+				throw JsErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
+			}
+			finally
+			{
+				if (_jsContext == null)
+				{
+					Dispose();
+				}
 			}
 		}
 
+
+		/// <summary>
+		/// Initializes a JS engine
+		/// </summary>
+		private static void Initialize()
+		{
+			if (_initialized)
+			{
+				return;
+			}
+
+			lock (_initializationSynchronizer)
+			{
+				if (_initialized)
+				{
+					return;
+				}
+
+				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+				{
+					try
+					{
+						OriginalAssemblyLoader.EnsureLoaded();
+					}
+					catch (Exception e)
+					{
+						throw WrapAssemblyLoaderException(e);
+					}
+				}
+
+				_initialized = true;
+			}
+		}
 
 		#region Mapping
 
@@ -118,45 +206,142 @@ namespace JavaScriptEngineSwitcher.Vroom
 			return value;
 		}
 
-		private static JsException ConvertScriptExceptionToHostException(
-			OriginalJsException scriptException)
+		private static WrapperException WrapJsException(OriginalException originalException)
 		{
-			JsException hostException;
-			string message = scriptException.Message;
-			string category;
-			int lineNumber = 0;
-			int columnNumber = 0;
-			string sourceFragment = string.Empty;
+			WrapperException wrapperException;
+			string message = originalException.Message;
+			string description = message;
+			string type = originalException.Type;
+			string documentName = originalException.Resource;
+			int lineNumber = originalException.Line;
+			int columnNumber = originalException.Column;
 
-			if (scriptException is OriginalJsInteropException)
+			if (originalException is OriginalInteropException)
 			{
-				category = "InteropError";
+				wrapperException = new WrapperException(message, EngineName, EngineVersion, originalException);
+			}
+			else if (type == null && message.Equals(":  at line: 0 column: 1.", StringComparison.Ordinal))
+			{
+				wrapperException = new WrapperInterruptedException(CoreStrings.Runtime_ScriptInterrupted,
+					EngineName, EngineVersion, originalException);
 			}
 			else
 			{
-				category = scriptException.Type;
-				lineNumber = scriptException.Line;
-				columnNumber = scriptException.Column;
-			}
-
-			if (category == null)
-			{
-				hostException = new JsScriptInterruptedException(CoreStrings.Runtime_ScriptInterrupted,
-					EngineName, EngineVersion, scriptException);
-			}
-			else
-			{
-				hostException = new JsRuntimeException(message, EngineName, EngineVersion,
-					scriptException)
+				Match scriptErrorMessageMatch = _scriptErrorMessageRegex.Match(message);
+				if (scriptErrorMessageMatch.Success)
 				{
-					Category = category,
-					LineNumber = lineNumber,
-					ColumnNumber = columnNumber,
-					SourceFragment = sourceFragment
-				};
+					WrapperScriptException wrapperScriptException;
+					description = scriptErrorMessageMatch.Groups["description"].Value;
+					message = JsErrorHelpers.GenerateErrorMessage(type, description, documentName,
+						lineNumber, columnNumber);
+
+					if (type == JsErrorType.Syntax)
+					{
+						wrapperScriptException = new WrapperCompilationException(message,
+							EngineName, EngineVersion, originalException);
+					}
+					else
+					{
+						wrapperScriptException = new WrapperRuntimeException(message,
+							EngineName, EngineVersion, originalException);
+					}
+					wrapperScriptException.Type = type;
+					wrapperScriptException.DocumentName = documentName;
+					wrapperScriptException.LineNumber = lineNumber;
+					wrapperScriptException.ColumnNumber = columnNumber;
+
+					wrapperException = wrapperScriptException;
+
+				}
+				else
+				{
+					wrapperException = new WrapperException(message, EngineName, EngineVersion,
+						originalException);
+				}
 			}
 
-			return hostException;
+			wrapperException.Description = description;
+
+			return wrapperException;
+		}
+
+		private static WrapperEngineLoadException WrapAssemblyLoaderException(
+			Exception originalAssemblyLoaderException)
+		{
+			string originalMessage = originalAssemblyLoaderException.Message;
+			string jsEngineNotLoadedPart = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName);
+			string message;
+			Architecture osArchitecture = RuntimeInformation.OSArchitecture;
+
+			if ((osArchitecture == Architecture.X64 || osArchitecture == Architecture.X86)
+				&& originalMessage.StartsWith("Couldn't load native assembly at "))
+			{
+				message = jsEngineNotLoadedPart + " " + Strings.Engine_VcRedist2012And2015InstallationRequired;
+			}
+			else
+			{
+				message = jsEngineNotLoadedPart + " " +
+					string.Format(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+			}
+
+			return new WrapperEngineLoadException(message, EngineName, EngineVersion, originalAssemblyLoaderException);
+		}
+
+		private static WrapperEngineLoadException WrapTypeLoadException(
+			TypeLoadException originalTypeLoadException)
+		{
+			string originalMessage = originalTypeLoadException.Message;
+			string jsEngineNotLoadedPart = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName);
+			string message;
+			bool isMonoRuntime = Utils.IsMonoRuntime();
+
+			if (originalTypeLoadException is DllNotFoundException
+				&& ((isMonoRuntime && originalMessage == DllName.Universal)
+					|| originalMessage.ContainsQuotedValue(DllName.Universal)))
+			{
+				const string buildInstructionsUrl = "https://github.com/pauldotknopf/vroomjs-core#maclinux";
+
+				StringBuilder messageBuilder = StringBuilderPool.GetBuilder();
+				messageBuilder.Append(jsEngineNotLoadedPart);
+				messageBuilder.Append(" ");
+
+				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+				{
+					Architecture osArchitecture = RuntimeInformation.OSArchitecture;
+
+					if (osArchitecture == Architecture.X64 || osArchitecture == Architecture.X86)
+					{
+						messageBuilder.AppendFormat(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+					}
+					else
+					{
+						messageBuilder.AppendFormat(CoreStrings.Engine_ProcessorArchitectureNotSupported,
+							osArchitecture.ToString().ToLowerInvariant());
+					}
+				}
+				else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
+					|| RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+				{
+					messageBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForUnix);
+					messageBuilder.Append(" ");
+					messageBuilder.AppendFormat(Strings.Engine_BuildNativeAssembly, DllName.ForUnix,
+						buildInstructionsUrl);
+				}
+				else
+				{
+					messageBuilder.Append(CoreStrings.Engine_OperatingSystemNotSupported);
+				}
+
+				message = messageBuilder.ToString();
+				StringBuilderPool.ReleaseBuilder(messageBuilder);
+			}
+			else
+			{
+				message = jsEngineNotLoadedPart + " " +
+					string.Format(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+			}
+
+			return new WrapperEngineLoadException(message, EngineName, EngineVersion, originalTypeLoadException);
 		}
 
 		#endregion
@@ -179,9 +364,9 @@ namespace JavaScriptEngineSwitcher.Vroom
 				{
 					result = _jsContext.Execute(expression, uniqueDocumentName);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJsException(e);
 				}
 			}
 
@@ -215,26 +400,23 @@ namespace JavaScriptEngineSwitcher.Vroom
 				{
 					_jsContext.Execute(code, uniqueDocumentName);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJsException(e);
 				}
 			}
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
-			string serializedArguments = string.Empty;
+			string functionCallExpression;
 			int argumentCount = args.Length;
 
-			if (argumentCount == 1)
+			if (argumentCount > 0)
 			{
-				object value = args[0];
-				serializedArguments = SimplisticJsSerializer.Serialize(value);
-			}
-			else if (argumentCount > 1)
-			{
-				var serializedArgumentsBuilder = new StringBuilder();
+				var functionCallBuilder = StringBuilderPool.GetBuilder();
+				functionCallBuilder.Append(functionName);
+				functionCallBuilder.Append("(");
 
 				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
 				{
@@ -243,15 +425,22 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 					if (argumentIndex > 0)
 					{
-						serializedArgumentsBuilder.Append(", ");
+						functionCallBuilder.Append(", ");
 					}
-					serializedArgumentsBuilder.Append(serializedValue);
+					functionCallBuilder.Append(serializedValue);
 				}
 
-				serializedArguments = serializedArgumentsBuilder.ToString();
+				functionCallBuilder.Append(");");
+
+				functionCallExpression = functionCallBuilder.ToString();
+				StringBuilderPool.ReleaseBuilder(functionCallBuilder);
+			}
+			else
+			{
+				functionCallExpression = string.Format("{0}();", functionName);
 			}
 
-			object result = Evaluate(string.Format("{0}({1});", functionName, serializedArguments));
+			object result = Evaluate(functionCallExpression);
 
 			return result;
 		}
@@ -281,9 +470,9 @@ namespace JavaScriptEngineSwitcher.Vroom
 				{
 					result = _jsContext.GetVariable(variableName);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJsException(e);
 				}
 			}
 
@@ -307,9 +496,9 @@ namespace JavaScriptEngineSwitcher.Vroom
 				{
 					_jsContext.SetVariable(variableName, processedValue);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJsException(e);
 				}
 			}
 		}
@@ -331,9 +520,9 @@ namespace JavaScriptEngineSwitcher.Vroom
 						_hostItems.Remove(variableName);
 					}
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJsException(e);
 				}
 			}
 		}
@@ -372,7 +561,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 						_jsContext.SetVariable(itemName, value);
 					}
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
 					if (oldValue != null)
 					{
@@ -383,7 +572,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 						_hostItems.Remove(itemName);
 					}
 
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJsException(e);
 				}
 			}
 		}
@@ -454,10 +643,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 						_jsEngine = null;
 					}
 
-					if (_hostItems != null)
-					{
-						_hostItems.Clear();
-					}
+					_hostItems?.Clear();
 				}
 			}
 		}

@@ -73,18 +73,18 @@ namespace JavaScriptEngineSwitcher.Sample.Logic.Services
 				engine = _engineSwitcher.CreateEngine(model.EngineName);
 				result.Value = engine.Evaluate<string>(model.Expression);
 			}
-			catch (JsEngineLoadException e)
-			{
-				var error = GetJsEvaluationErrorFromException(e);
-				result.Errors.Add(error);
-			}
-			catch (JsRuntimeException e)
+			catch (JsScriptException e)
 			{
 				var error = GetJsEvaluationErrorFromException(e);
 				error.LineNumber = e.LineNumber;
 				error.ColumnNumber = e.ColumnNumber;
 				error.SourceFragment = e.SourceFragment;
 
+				result.Errors.Add(error);
+			}
+			catch (JsException e)
+			{
+				var error = GetJsEvaluationErrorFromException(e);
 				result.Errors.Add(error);
 			}
 			finally

@@ -20,7 +20,7 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 		{
 			if (services == null)
 			{
-				throw new ArgumentNullException("services");
+				throw new ArgumentNullException(nameof(services));
 			}
 
 			IJsEngineSwitcher engineSwitcher = JsEngineSwitcher.Current;
@@ -40,12 +40,12 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 		{
 			if (services == null)
 			{
-				throw new ArgumentNullException("services");
+				throw new ArgumentNullException(nameof(services));
 			}
 
 			if (configure == null)
 			{
-				throw new ArgumentNullException("configure");
+				throw new ArgumentNullException(nameof(configure));
 			}
 
 			IJsEngineSwitcher engineSwitcher = JsEngineSwitcher.Current;

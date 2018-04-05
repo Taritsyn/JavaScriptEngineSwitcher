@@ -2,8 +2,12 @@
 #if NETSTANDARD1_3
 using System.Reflection;
 #endif
+#if NET40
 
-namespace JavaScriptEngineSwitcher.Core.Utilities
+using JavaScriptEngineSwitcher.Core.Polyfills.System.Reflection;
+#endif
+
+namespace JavaScriptEngineSwitcher.Core.Extensions
 {
 	/// <summary>
 	/// Type extensions
@@ -17,11 +21,6 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <returns>The code of the underlying type</returns>
 		public static TypeCode GetTypeCode(this Type source)
 		{
-			if (source == null)
-			{
-				throw new ArgumentNullException("source");
-			}
-
 			TypeCode typeCode;
 
 #if NETSTANDARD1_3
@@ -103,22 +102,5 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 
 			return typeCode;
 		}
-#if NET40
-
-		/// <summary>
-		/// Returns the <see cref="TypeInfo"/> representation of the specified type
-		/// </summary>
-		/// <param name="source">The type to convert</param>
-		/// <returns>The converted object</returns>
-		public static TypeInfo GetTypeInfo(this Type source)
-		{
-			if (source == null)
-			{
-				throw new ArgumentNullException("source");
-			}
-
-			return new TypeInfo(source);
-		}
-#endif
 	}
 }

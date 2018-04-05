@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Text;
 #if !NETSTANDARD1_3
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 #endif
+
+using JavaScriptEngineSwitcher.Core.Constants;
+using JavaScriptEngineSwitcher.Core.Helpers;
+using JavaScriptEngineSwitcher.Core.Utilities;
 
 namespace JavaScriptEngineSwitcher.Core
 {
@@ -25,6 +30,16 @@ namespace JavaScriptEngineSwitcher.Core
 		private readonly string _engineVersion = string.Empty;
 
 		/// <summary>
+		/// Error category
+		/// </summary>
+		private string _category = JsErrorCategory.Unknown;
+
+		/// <summary>
+		/// Description of error
+		/// </summary>
+		private string _description = string.Empty;
+
+		/// <summary>
 		/// Gets a name of JS engine
 		/// </summary>
 		public string EngineName
@@ -38,6 +53,24 @@ namespace JavaScriptEngineSwitcher.Core
 		public string EngineVersion
 		{
 			get { return _engineVersion; }
+		}
+
+		/// <summary>
+		/// Gets or sets a error category
+		/// </summary>
+		public string Category
+		{
+			get { return _category; }
+			set { _category = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets a description of error
+		/// </summary>
+		public string Description
+		{
+			get { return _description; }
+			set { _description = value; }
 		}
 
 
@@ -98,6 +131,8 @@ namespace JavaScriptEngineSwitcher.Core
 			{
 				_engineName = info.GetString("EngineName");
 				_engineVersion = info.GetString("EngineVersion");
+				_category = info.GetString("Category");
+				_description = info.GetString("Description");
 			}
 		}
 
@@ -114,15 +149,58 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			if (info == null)
 			{
-				throw new ArgumentNullException("info");
+				throw new ArgumentNullException(nameof(info));
 			}
 
 			base.GetObjectData(info, context);
 			info.AddValue("EngineName", _engineName);
 			info.AddValue("EngineVersion", _engineVersion);
+			info.AddValue("Category", _category);
+			info.AddValue("Description", _description);
 		}
 
 		#endregion
 #endif
+
+		#region Object overrides
+
+		/// <summary>
+		/// Returns a string that represents the current exception
+		/// </summary>
+		/// <returns>A string that represents the current exception</returns>
+		public override string ToString()
+		{
+			StringBuilder resultBuilder = StringBuilderPool.GetBuilder();
+			resultBuilder.Append(this.GetType().FullName);
+			resultBuilder.Append(": ");
+			resultBuilder.Append(this.Message);
+
+			string errorDetails = JsErrorHelpers.GenerateErrorDetails(this, true);
+			if (errorDetails.Length > 0)
+			{
+				resultBuilder.AppendLine();
+				resultBuilder.AppendLine();
+				resultBuilder.Append(errorDetails);
+			}
+
+			if (this.InnerException != null)
+			{
+				resultBuilder.Append(" ---> ");
+				resultBuilder.Append(this.InnerException.ToString());
+			}
+
+			if (this.StackTrace != null)
+			{
+				resultBuilder.AppendLine();
+				resultBuilder.AppendLine(this.StackTrace);
+			}
+
+			string result = resultBuilder.ToString();
+			StringBuilderPool.ReleaseBuilder(resultBuilder);
+
+			return result;
+		}
+
+		#endregion
 	}
 }

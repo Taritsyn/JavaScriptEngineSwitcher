@@ -13,9 +13,9 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.7.5 for Windows (x86).
 
-For correct working of the ChakraCore require `msvcp140.dll` assembly from the Visual C++ Redistributable for Visual Studio 2015.</description>
+For correct working of the ChakraCore require the Microsoft Visual C++ 2015 Redistributable.</description>
 		<releaseNotes>ChakraCore was updated to version 1.7.5.</releaseNotes>
-		<copyright>Copyright © 2013-2017 Andrey Taritsyn</copyright>
+		<copyright>Copyright © 2013-2018 Andrey Taritsyn</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore Windows x86</tags>
 	</metadata>

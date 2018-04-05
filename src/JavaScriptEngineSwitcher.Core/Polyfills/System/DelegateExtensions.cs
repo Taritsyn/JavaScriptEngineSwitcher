@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace JavaScriptEngineSwitcher.Core.Utilities
+namespace JavaScriptEngineSwitcher.Core.Polyfills.System
 {
 	/// <summary>
 	/// Delegate extensions
@@ -18,7 +18,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			return source.Method;

@@ -6,6 +6,12 @@ using System.Reflection;
 #endif
 using OriginalTypeConverter = System.ComponentModel.TypeConverter;
 
+#if NET40
+using JavaScriptEngineSwitcher.Core.Polyfills.System;
+#endif
+#if NET40 || NETSTANDARD1_3
+using JavaScriptEngineSwitcher.Core.Polyfills.System.Reflection;
+#endif
 using JavaScriptEngineSwitcher.Core.Resources;
 
 namespace JavaScriptEngineSwitcher.Core.Utilities

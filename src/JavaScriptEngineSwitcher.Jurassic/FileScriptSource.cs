@@ -9,7 +9,7 @@ using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 namespace JavaScriptEngineSwitcher.Jurassic
 {
 	/// <summary>
-	/// Represents a JS-file
+	/// Represents a JS file
 	/// </summary>
 	internal sealed class FileScriptSource : OriginalScriptSource
 	{
@@ -19,7 +19,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		private readonly string _documentName;
 
 		/// <summary>
-		/// The path to the JS-file
+		/// The path to the JS file
 		/// </summary>
 		private readonly string _path;
 
@@ -33,32 +33,40 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// Constructs an instance of <see cref="FileScriptSource"/>
 		/// </summary>
 		/// <param name="documentName">The document name</param>
-		/// <param name="path">The path to the JS-file</param>
+		/// <param name="path">The path to the JS file</param>
 		/// <param name="encoding">The text encoding</param>
 		public FileScriptSource(string documentName, string path, Encoding encoding = null)
 		{
 			if (documentName == null)
 			{
 				throw new ArgumentNullException(
-					"documentName", string.Format(CoreStrings.Common_ArgumentIsNull, "documentName"));
+					nameof(documentName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(documentName))
+				);
 			}
 
 			if (path == null)
 			{
 				throw new ArgumentNullException(
-					"path", string.Format(CoreStrings.Common_ArgumentIsNull, "path"));
+					nameof(path),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(path))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(documentName))
 			{
 				throw new ArgumentException(
-					string.Format(CoreStrings.Common_ArgumentIsEmpty, "documentName"), "documentName");
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(documentName)),
+					nameof(documentName)
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(path))
 			{
 				throw new ArgumentException(
-					string.Format(CoreStrings.Common_ArgumentIsEmpty, "path"), "path");
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(path)),
+					nameof(path)
+				);
 			}
 
 			_documentName = documentName;
@@ -79,9 +87,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 
 		/// <summary>
-		/// Gets a reader that can be used to read the source code from JS-file
+		/// Gets a reader that can be used to read the source code from JS file
 		/// </summary>
-		/// <returns>A reader that can be used to read the source code from JS-file,
+		/// <returns>A reader that can be used to read the source code from JS file,
 		/// positioned at the start of the source code</returns>
 		public override TextReader GetReader()
 		{

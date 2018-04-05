@@ -5,17 +5,29 @@ using System.Text;
 
 using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
 using OriginalConcatenatedString = Jurassic.ConcatenatedString;
+using OriginalEngine = Jurassic.ScriptEngine;
 using OriginalErrorInstance = Jurassic.Library.ErrorInstance;
-using OriginalJsEngine = Jurassic.ScriptEngine;
-using OriginalJsException = Jurassic.JavaScriptException;
+using OriginalException = Jurassic.JavaScriptException;
 using OriginalNull = Jurassic.Null;
 using OriginalStringScriptSource = Jurassic.StringScriptSource;
 using OriginalTypeConverter = Jurassic.TypeConverter;
 using OriginalUndefined = Jurassic.Undefined;
 
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Constants;
+using JavaScriptEngineSwitcher.Core.Extensions;
+using JavaScriptEngineSwitcher.Core.Helpers;
+#if NET40
+using JavaScriptEngineSwitcher.Core.Polyfills.System;
+#endif
 using JavaScriptEngineSwitcher.Core.Utilities;
+
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
+using WrapperEngineLoadException = JavaScriptEngineSwitcher.Core.JsEngineLoadException;
+using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
+using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
+using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
 
 namespace JavaScriptEngineSwitcher.Jurassic
 {
@@ -37,7 +49,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Jurassic JS engine
 		/// </summary>
-		private OriginalJsEngine _jsEngine;
+		private OriginalEngine _jsEngine;
 
 		/// <summary>
 		/// Synchronizer of code execution
@@ -68,7 +80,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 			try
 			{
-				_jsEngine = new OriginalJsEngine
+				_jsEngine = new OriginalEngine
 				{
 #if !NETSTANDARD2_0
 					EnableDebugging = jurassicSettings.EnableDebugging,
@@ -81,9 +93,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			}
 			catch (Exception e)
 			{
-				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						EngineName, e.Message), EngineName, EngineVersion, e);
+				throw JsErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
 			}
 		}
 
@@ -155,26 +165,99 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			return value;
 		}
 
-		private JsRuntimeException ConvertScriptExceptionToHostException(
-			OriginalJsException scriptException)
+		private static WrapperException WrapJavaScriptException(OriginalException originalException)
 		{
-			var errorValue = scriptException.ErrorObject as OriginalErrorInstance;
-			string message = scriptException.Message;
+			WrapperException wrapperException;
+			string message = originalException.Message;
+			string messageWithCallStack = string.Empty;
+			string description = message;
+			string type = originalException.Name;
+			string documentName = originalException.SourcePath;
+			int lineNumber = originalException.LineNumber;
+			string callStack = string.Empty;
+
+			var errorValue = originalException.ErrorObject as OriginalErrorInstance;
 			if (errorValue != null)
 			{
-				message = !string.IsNullOrEmpty(errorValue.Stack) ? errorValue.Stack : errorValue.Message;
+				messageWithCallStack = errorValue.Stack;
+				description = !string.IsNullOrEmpty(errorValue.Message) ?
+					errorValue.Message : description;
 			}
 
-			var hostException = new JsRuntimeException(message, EngineName, EngineVersion,
-				scriptException)
+			if (!string.IsNullOrEmpty(type))
 			{
-				Category = scriptException.Name,
-				LineNumber = scriptException.LineNumber,
-				ColumnNumber = 0,
-				SourceFragment = string.Empty
-			};
+				WrapperScriptException wrapperScriptException;
+				if (type == JsErrorType.Syntax)
+				{
+					message = JsErrorHelpers.GenerateErrorMessage(type, description, documentName,
+						lineNumber, 0);
 
-			return hostException;
+					wrapperScriptException = new WrapperCompilationException(message, EngineName, EngineVersion,
+						originalException);
+				}
+				else
+				{
+					if (message.Length < messageWithCallStack.Length)
+					{
+						string rawCallStack = messageWithCallStack
+							.TrimStart(message)
+							.TrimStart(new char[] { '\n', '\r' })
+							;
+						ErrorLocationItem[] callStackItems = JsErrorHelpers.ParseErrorLocation(rawCallStack);
+
+						if (callStackItems.Length > 0)
+						{
+							FixCallStackItems(callStackItems);
+							callStack = JsErrorHelpers.StringifyErrorLocationItems(callStackItems);
+						}
+					}
+
+					message = JsErrorHelpers.GenerateErrorMessage(type, description, callStack);
+
+					wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+						originalException)
+					{
+						CallStack = callStack
+					};
+				}
+				wrapperScriptException.Type = type;
+				wrapperScriptException.DocumentName = documentName;
+				wrapperScriptException.LineNumber = lineNumber;
+
+				wrapperException = wrapperScriptException;
+			}
+			else
+			{
+				wrapperException = new WrapperException(message, EngineName, EngineVersion,
+					originalException);
+			}
+
+			wrapperException.Description = description;
+
+			return wrapperException;
+		}
+
+		/// <summary>
+		/// Fixes a function name in call stack items
+		/// </summary>
+		/// <param name="callStackItems">An array of <see cref="ErrorLocationItem"/> instances</param>
+		private static void FixCallStackItems(ErrorLocationItem[] callStackItems)
+		{
+			foreach (ErrorLocationItem callStackItem in callStackItems)
+			{
+				string functionName = callStackItem.FunctionName;
+				if (functionName.Length > 0)
+				{
+					if (functionName == "anonymous")
+					{
+						callStackItem.FunctionName = "Anonymous function";
+					}
+				}
+				else
+				{
+					callStackItem.FunctionName = "Global code";
+				}
+			}
 		}
 
 		#endregion
@@ -198,13 +281,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					var source = new OriginalStringScriptSource(expression, uniqueDocumentName);
 					result = _jsEngine.Evaluate(source);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
-				}
-				catch (NotImplementedException e)
-				{
-					throw new JsRuntimeException(e.Message, e);
+					throw WrapJavaScriptException(e);
 				}
 			}
 
@@ -241,13 +320,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					var source = new OriginalStringScriptSource(code, uniqueDocumentName);
 					_jsEngine.Execute(source);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
-				}
-				catch (NotImplementedException e)
-				{
-					throw new JsRuntimeException(e.Message, e);
+					throw WrapJavaScriptException(e);
 				}
 			}
 		}
@@ -273,13 +348,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					result = _jsEngine.CallGlobalFunction(functionName, processedArgs);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
-				}
-				catch (NotImplementedException e)
-				{
-					throw new JsRuntimeException(e.Message, e);
+					throw WrapJavaScriptException(e);
 				}
 			}
 
@@ -322,9 +393,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					result = _jsEngine.GetGlobalValue(variableName);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJavaScriptException(e);
 				}
 			}
 
@@ -350,9 +421,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					_jsEngine.SetGlobalValue(variableName, processedValue);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJavaScriptException(e);
 				}
 			}
 		}
@@ -380,9 +451,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 						_jsEngine.SetGlobalValue(itemName, processedValue);
 					}
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJavaScriptException(e);
 				}
 			}
 		}
@@ -395,9 +466,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					_jsEngine.SetGlobalValue(itemName, type);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJavaScriptException(e);
 				}
 			}
 		}
@@ -454,19 +525,25 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			if (path == null)
 			{
 				throw new ArgumentNullException(
-					"path", string.Format(CoreStrings.Common_ArgumentIsNull, "path"));
+					nameof(path),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(path))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(path))
 			{
 				throw new ArgumentException(
-					string.Format(CoreStrings.Common_ArgumentIsEmpty, "path"), "path");
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(path)),
+					nameof(path)
+				);
 			}
 
-			if (!File.Exists(path))
+			if (!ValidationHelpers.CheckDocumentNameFormat(path))
 			{
-				throw new FileNotFoundException(
-					string.Format(CoreStrings.Common_FileNotExist, path), path);
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidFileNameFormat, path),
+					nameof(path)
+				);
 			}
 
 			string uniqueDocumentName = GetUniqueDocumentName(path, true);
@@ -478,9 +555,13 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					var source = new FileScriptSource(uniqueDocumentName, path, encoding);
 					_jsEngine.Execute(source);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJavaScriptException(e);
+				}
+				catch (FileNotFoundException)
+				{
+					throw;
 				}
 			}
 		}
@@ -492,19 +573,33 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			if (resourceName == null)
 			{
 				throw new ArgumentNullException(
-					"resourceName", string.Format(CoreStrings.Common_ArgumentIsNull, "resourceName"));
+					nameof(resourceName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(resourceName))
+				);
 			}
 
 			if (type == null)
 			{
 				throw new ArgumentNullException(
-					"type", string.Format(CoreStrings.Common_ArgumentIsNull, "type"));
+					nameof(type),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(type))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
-					string.Format(CoreStrings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
 			}
 
 			Assembly assembly = type.GetTypeInfo().Assembly;
@@ -519,9 +614,13 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					var source = new ResourceScriptSource(uniqueDocumentName, resourceFullName, assembly);
 					_jsEngine.Execute(source);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJavaScriptException(e);
+				}
+				catch (NullReferenceException)
+				{
+					throw;
 				}
 			}
 		}
@@ -533,19 +632,33 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			if (resourceName == null)
 			{
 				throw new ArgumentNullException(
-					"resourceName", string.Format(CoreStrings.Common_ArgumentIsNull, "resourceName"));
+					nameof(resourceName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(resourceName))
+				);
 			}
 
 			if (assembly == null)
 			{
 				throw new ArgumentNullException(
-					"assembly", string.Format(CoreStrings.Common_ArgumentIsNull, "assembly"));
+					nameof(assembly),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(assembly))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
-					string.Format(CoreStrings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
 			}
 
 			string uniqueDocumentName = GetUniqueDocumentName(resourceName, false);
@@ -557,9 +670,13 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					var source = new ResourceScriptSource(uniqueDocumentName, resourceName, assembly);
 					_jsEngine.Execute(source);
 				}
-				catch (OriginalJsException e)
+				catch (OriginalException e)
 				{
-					throw ConvertScriptExceptionToHostException(e);
+					throw WrapJavaScriptException(e);
+				}
+				catch (NullReferenceException)
+				{
+					throw;
 				}
 			}
 		}

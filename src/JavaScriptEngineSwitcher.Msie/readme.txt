@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2018 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -19,7 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 3.0.0 Alpha 3.
+   Added support of MSIE JavaScript Engine version 3.0.0 Beta 1.
 
    =============
    DOCUMENTATION

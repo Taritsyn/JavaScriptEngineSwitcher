@@ -66,14 +66,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "The '{0}' directory, that should contain `ChakraCore.dll` assembly, does not exist."
-		/// </summary>
-		internal static string Engines_ChakraCoreAssemblyDirectoryNotFound
-		{
-			get { return GetString("Engines_ChakraCoreAssemblyDirectoryNotFound"); }
-		}
-
-		/// <summary>
 		/// Looks up a localized string similar to "During invocation of the host delegate an error has occurred - “{0}”."
 		/// </summary>
 		internal static string Runtime_HostDelegateInvocationFailed
@@ -215,6 +207,30 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources
 		internal static string Runtime_SuitableMethodOfHostObjectNotFound
 		{
 			get { return GetString("Runtime_SuitableMethodOfHostObjectNotFound"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "{0} packages do not support installation under Mono, but you can to install the native assemblies..."
+		/// </summary>
+		internal static string Engine_ManualInstallationUnderMonoRequired
+		{
+			get { return GetString("Engine_ManualInstallationUnderMonoRequired"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "You can build the '{0}' assembly for the current processor architecture by using following..."
+		/// </summary>
+		internal static string Engine_BuildNativeAssemblyForCurrentProcessorArchitecture
+		{
+			get { return GetString("Engine_BuildNativeAssemblyForCurrentProcessorArchitecture"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "In addition, you still need to install the Microsoft Visual C++ 2015 Redistributable..."
+		/// </summary>
+		internal static string Engine_VcRedist2015InstallationRequired
+		{
+			get { return GetString("Engine_VcRedist2015InstallationRequired"); }
 		}
 
 		private static string GetString(string name)

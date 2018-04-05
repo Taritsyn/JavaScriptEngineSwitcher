@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace JavaScriptEngineSwitcher.Core.Utilities
+namespace JavaScriptEngineSwitcher.Core.Polyfills.System.Reflection
 {
 	/// <summary>
 	/// Represents type declarations for class types, interface types, array types, value types,

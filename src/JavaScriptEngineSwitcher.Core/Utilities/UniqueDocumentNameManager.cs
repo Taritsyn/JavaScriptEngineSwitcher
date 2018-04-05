@@ -36,13 +36,17 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 			if (defaultName == null)
 			{
 				throw new ArgumentNullException(
-					"defaultName", string.Format(Strings.Common_ArgumentIsNull, "defaultName"));
+					nameof(defaultName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(defaultName))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(defaultName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "defaultName"), "defaultName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(defaultName)),
+					nameof(defaultName)
+				);
 			}
 
 			_defaultName = defaultName;

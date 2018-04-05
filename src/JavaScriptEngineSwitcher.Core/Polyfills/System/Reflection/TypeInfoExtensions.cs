@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace JavaScriptEngineSwitcher.Core.Utilities
+namespace JavaScriptEngineSwitcher.Core.Polyfills.System.Reflection
 {
 	public static class TypeInfoExtensions
 	{
@@ -10,7 +10,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			if (o == null)

@@ -3,6 +3,8 @@
 using System.Runtime.Serialization;
 #endif
 
+using JavaScriptEngineSwitcher.Core.Constants;
+
 namespace JavaScriptEngineSwitcher.Core
 {
 	/// <summary>
@@ -11,7 +13,7 @@ namespace JavaScriptEngineSwitcher.Core
 #if !NETSTANDARD1_3
 	[Serializable]
 #endif
-	public sealed class JsEngineLoadException : JsException
+	public sealed class JsEngineLoadException : JsEngineException
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsEngineLoadException"/> class
@@ -20,7 +22,9 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <param name="message">The message that describes the error</param>
 		public JsEngineLoadException(string message)
 			: base(message)
-		{ }
+		{
+			Category = JsErrorCategory.EngineLoad;
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsEngineLoadException"/> class
@@ -31,7 +35,9 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <param name="innerException">The exception that is the cause of the current exception</param>
 		public JsEngineLoadException(string message, Exception innerException)
 			: base(message, innerException)
-		{ }
+		{
+			Category = JsErrorCategory.EngineLoad;
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsEngineLoadException"/> class
@@ -41,7 +47,9 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <param name="engineVersion">Version of original JS engine</param>
 		public JsEngineLoadException(string message, string engineName, string engineVersion)
 			: base(message, engineName, engineVersion)
-		{ }
+		{
+			Category = JsErrorCategory.EngineLoad;
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsEngineLoadException"/> class
@@ -53,7 +61,9 @@ namespace JavaScriptEngineSwitcher.Core
 		public JsEngineLoadException(string message, string engineName, string engineVersion,
 			Exception innerException)
 			: base(message, engineName, engineVersion, innerException)
-		{ }
+		{
+			Category = JsErrorCategory.EngineLoad;
+		}
 #if !NETSTANDARD1_3
 
 		/// <summary>

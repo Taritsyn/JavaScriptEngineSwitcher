@@ -1,15 +1,15 @@
 ﻿using System;
-using System.IO;
-#if !NETSTANDARD
-using System.Linq;
+#if NET40
+using System.Diagnostics;
 #endif
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-#if NETSTANDARD
-using System.Runtime.InteropServices;
-#endif
 using System.Text;
 
+#if NET40
+using JavaScriptEngineSwitcher.Core.Polyfills.System;
+#endif
 using JavaScriptEngineSwitcher.Core.Resources;
 
 namespace JavaScriptEngineSwitcher.Core.Utilities
@@ -17,9 +17,9 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 	public static class Utils
 	{
 		/// <summary>
-		/// Flag indicating whether the current operating system is Windows
+		/// Flag indicating whether the current runtime is Mono
 		/// </summary>
-		private static readonly bool _isWindows;
+		private static readonly bool _isMonoRuntime;
 
 
 		/// <summary>
@@ -27,35 +27,17 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// </summary>
 		static Utils()
 		{
-			_isWindows = InnerIsWindows();
+			_isMonoRuntime = Type.GetType("Mono.Runtime") != null;
 		}
 
 
 		/// <summary>
-		/// Determines whether the current operating system is Windows
+		/// Determines whether the current runtime is Mono
 		/// </summary>
-		/// <returns>true if the operating system is Windows; otherwise, false</returns>
-		public static bool IsWindows()
+		/// <returns>true if the runtime is Mono; otherwise, false</returns>
+		public static bool IsMonoRuntime()
 		{
-			return _isWindows;
-		}
-
-		private static bool InnerIsWindows()
-		{
-#if NETSTANDARD
-			bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-#else
-			PlatformID[] windowsPlatformIDs =
-			{
-				PlatformID.Win32NT,
-				PlatformID.Win32S,
-				PlatformID.Win32Windows,
-				PlatformID.WinCE
-			};
-			bool isWindows = windowsPlatformIDs.Contains(Environment.OSVersion.Platform);
-#endif
-
-			return isWindows;
+			return _isMonoRuntime;
 		}
 
 		/// <summary>
@@ -86,19 +68,25 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 			if (resourceName == null)
 			{
 				throw new ArgumentNullException(
-					"resourceName", string.Format(Strings.Common_ArgumentIsNull, "resourceName"));
+					nameof(resourceName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(resourceName))
+				);
 			}
 
 			if (type == null)
 			{
 				throw new ArgumentNullException(
-					"type", string.Format(Strings.Common_ArgumentIsNull, "type"));
+					nameof(type),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(type))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
 			}
 
 			Assembly assembly = type.GetTypeInfo().Assembly;
@@ -119,19 +107,25 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 			if (resourceName == null)
 			{
 				throw new ArgumentNullException(
-					"resourceName", string.Format(Strings.Common_ArgumentIsNull, "resourceName"));
+					nameof(resourceName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(resourceName))
+				);
 			}
 
 			if (assembly == null)
 			{
 				throw new ArgumentNullException(
-					"assembly", string.Format(Strings.Common_ArgumentIsNull, "assembly"));
+					nameof(assembly),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(assembly))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
 			}
 
 			return InnerGetResourceAsString(resourceName, assembly);
@@ -144,7 +138,8 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 				if (stream == null)
 				{
 					throw new NullReferenceException(
-						string.Format(Strings.Resources_ResourceIsNull, resourceName));
+						string.Format(Strings.Common_ResourceIsNull, resourceName)
+					);
 				}
 
 				using (var reader = new StreamReader(stream))
@@ -165,7 +160,9 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 			if (!File.Exists(path))
 			{
 				throw new FileNotFoundException(
-					string.Format(Strings.Common_FileNotExist, path), path);
+					string.Format(Strings.Common_FileNotExist, path),
+					path
+				);
 			}
 
 			string content;
@@ -204,5 +201,48 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 					name, typeof(TSource), typeof(TDest))
 			);
 		}
+#if NET40
+
+		internal static string ReadProcessOutput(string fileName)
+		{
+			return ReadProcessOutput(fileName, string.Empty);
+		}
+
+		internal static string ReadProcessOutput(string fileName, string args)
+		{
+			if (fileName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(fileName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(fileName))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(fileName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(fileName)),
+					nameof(fileName)
+				);
+			}
+
+			string output;
+			var processInfo = new ProcessStartInfo
+			{
+				FileName = fileName,
+				Arguments = args ?? string.Empty,
+				UseShellExecute = false,
+				RedirectStandardOutput = true
+			};
+
+			using (Process process = Process.Start(processInfo))
+			{
+				output = process.StandardOutput.ReadToEnd();
+				process.WaitForExit();
+			}
+
+			return output;
+		}
+#endif
 	}
 }

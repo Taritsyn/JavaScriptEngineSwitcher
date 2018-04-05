@@ -19,7 +19,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			return source.AddVroom(new VroomSettings());
@@ -37,12 +37,12 @@ namespace JavaScriptEngineSwitcher.Vroom
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			if (configure == null)
 			{
-				throw new ArgumentNullException("configure");
+				throw new ArgumentNullException(nameof(configure));
 			}
 
 			var settings = new VroomSettings();
@@ -63,12 +63,12 @@ namespace JavaScriptEngineSwitcher.Vroom
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			if (settings == null)
 			{
-				throw new ArgumentNullException("settings");
+				throw new ArgumentNullException(nameof(settings));
 			}
 
 			source.Add(new VroomJsEngineFactory(settings));

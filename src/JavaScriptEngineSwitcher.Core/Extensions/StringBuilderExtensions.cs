@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace JavaScriptEngineSwitcher.Core.Utilities
+namespace JavaScriptEngineSwitcher.Core.Extensions
 {
 	/// <summary>
 	/// Extensions for StringBuilder
@@ -24,7 +24,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			return source.AppendLine();
@@ -44,7 +44,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			if (_formatPlaceholderRegExp.IsMatch(format))
@@ -53,6 +53,43 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 			}
 
 			return source.AppendLine(format.Replace("{{", "{").Replace("}}", "}"));
+		}
+
+		/// <summary>
+		/// Removes the all trailing white-space characters from the current <see cref="StringBuilder"/> instance
+		/// </summary>
+		/// <param name="source">Instance of <see cref="StringBuilder"/></param>
+		/// <returns>Instance of <see cref="StringBuilder"/> without trailing white-space characters</returns>
+		public static StringBuilder TrimEnd(this StringBuilder source)
+		{
+			if (source == null)
+			{
+				throw new ArgumentNullException(nameof(source));
+			}
+
+			int charCount = source.Length;
+			if (charCount == 0)
+			{
+				return source;
+			}
+
+			int charIndex = charCount - 1;
+
+			for (; charIndex >= 0; charIndex--)
+			{
+				char charValue = source[charIndex];
+				if (!char.IsWhiteSpace(charValue))
+				{
+					break;
+				}
+			}
+
+			if (charIndex < source.Length - 1)
+			{
+				source.Length = charIndex + 1;
+			}
+
+			return source;
 		}
 	}
 }

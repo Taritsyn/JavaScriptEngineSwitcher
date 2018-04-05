@@ -39,7 +39,7 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			if (factory == null)
 			{
-				throw new ArgumentNullException("factory");
+				throw new ArgumentNullException(nameof(factory));
 			}
 
 			string engineName = factory.EngineName;
@@ -62,7 +62,7 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			if (engineName == null)
 			{
-				throw new ArgumentNullException("engineName");
+				throw new ArgumentNullException(nameof(engineName));
 			}
 
 			return _factories.Remove(engineName);
@@ -77,7 +77,7 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			if (factory == null)
 			{
-				throw new ArgumentNullException("factory");
+				throw new ArgumentNullException(nameof(factory));
 			}
 
 			return _factories.Remove(factory.EngineName);

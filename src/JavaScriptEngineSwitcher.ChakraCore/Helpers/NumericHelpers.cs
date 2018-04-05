@@ -1,6 +1,6 @@
 ﻿using System;
 
-using JavaScriptEngineSwitcher.Core.Utilities;
+using JavaScriptEngineSwitcher.Core.Extensions;
 
 namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 {

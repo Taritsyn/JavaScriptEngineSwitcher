@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Text;
+#if NET40
 
-using JavaScriptEngineSwitcher.Core.Utilities;
+using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
+#endif
 
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
@@ -306,7 +308,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsValue reference;
 			JsErrorCode errorCode;
 
-			if (Utils.IsWindows())
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
 				var stringLength = new UIntPtr((uint)value.Length);
 				errorCode = NativeMethods.JsPointerToString(value, stringLength, out reference);
@@ -606,7 +608,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			string result;
 			JsErrorCode errorCode;
 
-			if (Utils.IsWindows())
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
 				IntPtr ptr;
 				UIntPtr stringLength;
@@ -948,7 +950,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 			if (arguments.Length > ushort.MaxValue)
 			{
-				throw new ArgumentOutOfRangeException("arguments");
+				throw new ArgumentOutOfRangeException(nameof(arguments));
 			}
 
 			JsErrorHelpers.ThrowIfError(NativeMethods.JsCallFunction(this, arguments, (ushort)arguments.Length, out returnReference));
@@ -970,7 +972,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 			if (arguments.Length > ushort.MaxValue)
 			{
-				throw new ArgumentOutOfRangeException("arguments");
+				throw new ArgumentOutOfRangeException(nameof(arguments));
 			}
 
 			JsErrorHelpers.ThrowIfError(NativeMethods.JsConstructObject(this, arguments, (ushort)arguments.Length, out returnReference));

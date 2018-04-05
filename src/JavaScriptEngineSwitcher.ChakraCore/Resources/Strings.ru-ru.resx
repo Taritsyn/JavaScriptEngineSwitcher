@@ -120,9 +120,6 @@
   <data name="Engines_AddingDirectoryToDllSearchPathFailed" xml:space="preserve">
     <value>Не удалось добавить "{0}" директорию к пути поиска, используемому для определения местонахождения DLL!</value>
   </data>
-  <data name="Engines_ChakraCoreAssemblyDirectoryNotFound" xml:space="preserve">
-    <value>Директория "{0}", в которой должна находится сборка `ChakraCore.dll`, не существует!</value>
-  </data>
   <data name="Runtime_HostDelegateInvocationFailed" xml:space="preserve">
     <value>Во время вызова делегата хоста произошла ошибка - «{0}»!</value>
   </data>
@@ -176,5 +173,14 @@
   </data>
   <data name="Runtime_SuitableMethodOfHostObjectNotFound" xml:space="preserve">
     <value>Не получается найти подходящий метод или не хватает аргументов для вызова метода "{0}" объекта хоста!</value>
+  </data>
+  <data name="Engine_ManualInstallationUnderMonoRequired" xml:space="preserve">
+    <value>{0} пакеты не поддерживают установку под Mono, но можно установить нативные сборки вручную ({1}).</value>
+  </data>
+  <data name="Engine_BuildNativeAssemblyForCurrentProcessorArchitecture" xml:space="preserve">
+    <value>Вы можете собрать "{0}" для текущей архитектуры процессора, используя следующие инструкции из официального репозитория - {1}.</value>
+  </data>
+  <data name="Engine_VcRedist2015InstallationRequired" xml:space="preserve">
+    <value>Кроме того, еще требуется установка распространяемого компонента Microsoft Visual C++ 2015 (https://www.microsoft.com/ru-ru/download/details.aspx?id=53840).</value>
   </data>
 </root>

@@ -2,7 +2,9 @@
 using System.IO;
 using System.Reflection;
 
-using JavaScriptEngineSwitcher.V8.Resources;
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+
+using JavaScriptEngineSwitcher.V8.Constants;
 
 namespace JavaScriptEngineSwitcher.V8
 {
@@ -11,12 +13,6 @@ namespace JavaScriptEngineSwitcher.V8
 	/// </summary>
 	internal static class AssemblyResolver
 	{
-		/// <summary>
-		/// Name of the ClearScriptV8 assembly
-		/// </summary>
-		private const string ASSEMBLY_NAME = "ClearScriptV8";
-
-
 		/// <summary>
 		/// Initialize a assembly resolver
 		/// </summary>
@@ -27,7 +23,7 @@ namespace JavaScriptEngineSwitcher.V8
 
 		private static Assembly AssemblyResolveHandler(object sender, ResolveEventArgs args)
 		{
-			if (args.Name.StartsWith(ASSEMBLY_NAME, StringComparison.OrdinalIgnoreCase))
+			if (args.Name == DllName.ClearScriptV8Universal)
 			{
 				var currentDomain = (AppDomain)sender;
 				string baseDirectoryPath = currentDomain.SetupInformation.PrivateBinPath;
@@ -52,15 +48,13 @@ namespace JavaScriptEngineSwitcher.V8
 				}
 
 				string assemblyDirectoryPath = Path.Combine(baseDirectoryPath, platformName);
-				string assemblyFileName = string.Format("{0}-{1}.dll", ASSEMBLY_NAME, platformBitness);
+				string assemblyFileName = DllName.ClearScriptV8Universal + "-" + platformBitness + ".dll";
 				string assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
 				bool assemblyFileExists = File.Exists(assemblyFilePath);
 
 				if (!assemblyFileExists)
 				{
-					throw new FileNotFoundException(
-						string.Format(Strings.Engines_ClearScriptV8AssemblyFileNotFound,
-							assemblyFileName, platformName));
+					return null;
 				}
 
 				return Assembly.LoadFile(assemblyFilePath);

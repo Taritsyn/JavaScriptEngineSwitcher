@@ -1,23 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Extensions;
+#if NET40
+using JavaScriptEngineSwitcher.Core.Polyfills.System;
+using JavaScriptEngineSwitcher.Core.Polyfills.System.Reflection;
+using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
+#endif
 using JavaScriptEngineSwitcher.Core.Utilities;
-using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
-using HostException = JavaScriptEngineSwitcher.Core.JsException;
-using HostExtendedException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
-using HostInterruptedException = JavaScriptEngineSwitcher.Core.JsScriptInterruptedException;
 
+using ErrorLocationItem = JavaScriptEngineSwitcher.Core.Helpers.ErrorLocationItem;
+using CoreErrorHelpers = JavaScriptEngineSwitcher.Core.Helpers.JsErrorHelpers;
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
+using WrapperEngineException = JavaScriptEngineSwitcher.Core.JsEngineException;
+using WrapperEngineLoadException = JavaScriptEngineSwitcher.Core.JsEngineLoadException;
+using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
+using WrapperFatalException = JavaScriptEngineSwitcher.Core.JsFatalException;
+using WrapperInterruptedException = JavaScriptEngineSwitcher.Core.JsInterruptedException;
+using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
+using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
+using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
+
+using JavaScriptEngineSwitcher.ChakraCore.Constants;
 using JavaScriptEngineSwitcher.ChakraCore.Helpers;
 using JavaScriptEngineSwitcher.ChakraCore.JsRt;
 using JavaScriptEngineSwitcher.ChakraCore.Resources;
-using ScriptException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsException;
-using ScriptExtendedException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsScriptException;
+
+using OriginalEngineException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsEngineException;
+using OriginalException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsException;
+using OriginalFatalException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsFatalException;
+using OriginalScriptException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsScriptException;
+using OriginalUsageException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsUsageException;
 
 namespace JavaScriptEngineSwitcher.ChakraCore
 {
@@ -81,20 +100,19 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
-
 #if !NETSTANDARD
 
 		/// <summary>
-		/// Static constructor
+		/// Synchronizer of JS engine initialization
 		/// </summary>
-		static ChakraCoreJsEngine()
-		{
-			if (Utils.IsWindows())
-			{
-				AssemblyResolver.Initialize();
-			}
-		}
+		private static readonly object _initializationSynchronizer = new object();
+
+		/// <summary>
+		/// Flag indicating whether the JS engine is initialized
+		/// </summary>
+		private static bool _initialized;
 #endif
+
 
 		/// <summary>
 		/// Constructs an instance of adapter for the ChakraCore JS engine
@@ -109,6 +127,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <param name="settings">Settings of the ChakraCore JS engine</param>
 		public ChakraCoreJsEngine(ChakraCoreSettings settings)
 		{
+#if !NETSTANDARD
+			Initialize();
+
+#endif
 			ChakraCoreSettings chakraCoreSettings = settings ?? new ChakraCoreSettings();
 
 			JsRuntimeAttributes attributes = JsRuntimeAttributes.AllowScriptInterrupt;
@@ -120,13 +142,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			{
 				attributes |= JsRuntimeAttributes.DisableEval;
 			}
-			if (chakraCoreSettings.DisableNativeCodeGeneration)
-			{
-				attributes |= JsRuntimeAttributes.DisableNativeCodeGeneration;
-			}
 			if (chakraCoreSettings.DisableFatalOnOOM)
 			{
 				attributes |= JsRuntimeAttributes.DisableFatalOnOOM;
+			}
+			if (chakraCoreSettings.DisableNativeCodeGeneration)
+			{
+				attributes |= JsRuntimeAttributes.DisableNativeCodeGeneration;
 			}
 			if (chakraCoreSettings.EnableExperimentalFeatures)
 			{
@@ -136,23 +158,47 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
 			_promiseContinuationCallback = PromiseContinuationCallback;
 
-			_dispatcher.Invoke(() =>
+			try
 			{
-				try
+				_dispatcher.Invoke(() =>
 				{
 					_jsRuntime = JsRuntime.Create(attributes, null);
 					_jsRuntime.MemoryLimit = settings.MemoryLimit;
 
 					_jsContext = _jsRuntime.CreateContext();
-					_jsContext.AddRef();
-				}
-				catch (Exception e)
+					if (_jsContext.IsValid)
+					{
+						_jsContext.AddRef();
+					}
+				});
+			}
+			catch (DllNotFoundException e)
+			{
+				throw WrapTypeLoadException(e);
+			}
+#if NETSTANDARD1_3
+			catch (TypeLoadException e)
+#else
+			catch (EntryPointNotFoundException e)
+#endif
+			{
+				throw WrapTypeLoadException(e);
+			}
+			catch (OriginalException e)
+			{
+				throw WrapJsException(e);
+			}
+			catch (Exception e)
+			{
+				throw CoreErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
+			}
+			finally
+			{
+				if (!_jsContext.IsValid)
 				{
-					throw new JsEngineLoadException(
-						string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-							EngineName, e.Message), EngineName, EngineVersion, e);
+					Dispose();
 				}
-			});
+			}
 		}
 
 		/// <summary>
@@ -163,6 +209,44 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			Dispose(false);
 		}
 
+#if !NETSTANDARD
+
+		/// <summary>
+		/// Initializes a JS engine
+		/// </summary>
+		private static void Initialize()
+		{
+			if (_initialized)
+			{
+				return;
+			}
+
+			lock (_initializationSynchronizer)
+			{
+				if (_initialized)
+				{
+					return;
+				}
+
+				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+				{
+					try
+					{
+						AssemblyResolver.Initialize();
+					}
+					catch (InvalidOperationException e)
+					{
+						string message = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName) + " " +
+							e.Message;
+
+						throw new WrapperEngineLoadException(message, EngineName, EngineVersion, e);
+					}
+				}
+
+				_initialized = true;
+			}
+		}
+#endif
 
 		/// <summary>
 		/// Adds a reference to the value
@@ -234,8 +318,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private static void PromiseContinuationCallback(JsValue task, IntPtr callbackState)
 		{
 			task.AddRef();
-			task.CallFunction(JsValue.GlobalObject);
-			task.Release();
+
+			try
+			{
+				task.CallFunction(JsValue.GlobalObject);
+			}
+			finally
+			{
+				task.Release();
+			}
 		}
 
 		#region Mapping
@@ -859,34 +950,38 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			}
 		}
 
-		private static HostException ConvertScriptExceptionToHostException(ScriptException scriptException)
+		private static WrapperException WrapJsException(OriginalException originalException)
 		{
-			HostException hostException;
-			string message = scriptException.Message;
-			string category = string.Empty;
-			JsErrorCode errorCode = scriptException.ErrorCode;
+			WrapperException wrapperException;
+			JsErrorCode errorCode = originalException.ErrorCode;
+			string description = originalException.Message;
+			string message = description;
+			string type = string.Empty;
+			string documentName = string.Empty;
+			int lineNumber = 0;
+			int columnNumber = 0;
+			string callStack = string.Empty;
+			string sourceFragment = string.Empty;
 
-			if (errorCode == JsErrorCode.ScriptTerminated)
+			var originalScriptException = originalException as OriginalScriptException;
+			if (originalScriptException != null)
 			{
-				hostException = new HostInterruptedException(CoreStrings.Runtime_ScriptInterrupted,
-					EngineName, EngineVersion, scriptException);
-			}
-			else
-			{
-				string documentName = string.Empty;
-				int lineNumber = 0;
-				int columnNumber = 0;
-				string sourceFragment = string.Empty;
+				JsValue metadataValue = originalScriptException.Metadata;
 
-				var scriptExtendedException = scriptException as ScriptExtendedException;
-				if (scriptExtendedException != null)
+				if (metadataValue.IsValid)
 				{
-					category = "Script error";
-					JsValue metadataValue = scriptExtendedException.Metadata;
+					JsValue errorValue = metadataValue.GetProperty("exception");
+					JsValueType errorValueType = errorValue.ValueType;
 
-					if (metadataValue.IsValid)
+					if (errorValueType == JsValueType.Error
+						|| errorValueType == JsValueType.Object)
 					{
-						JsValue errorValue = metadataValue.GetProperty("exception");
+						JsValue messagePropertyValue = errorValue.GetProperty("message");
+						description = messagePropertyValue.ConvertToString().ToString();
+
+						JsValue namePropertyValue = errorValue.GetProperty("name");
+						type = namePropertyValue.ValueType == JsValueType.String ?
+							namePropertyValue.ConvertToString().ToString() : string.Empty;
 
 						JsPropertyId urlPropertyId = JsPropertyId.FromString("url");
 						if (metadataValue.HasProperty(urlPropertyId))
@@ -909,91 +1004,268 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 							columnNumber = columnPropertyValue.ConvertToNumber().ToInt32() + 1;
 						}
 
+						string sourceLine = string.Empty;
 						JsPropertyId sourcePropertyId = JsPropertyId.FromString("source");
 						if (metadataValue.HasProperty(sourcePropertyId))
 						{
 							JsValue sourcePropertyValue = metadataValue.GetProperty(sourcePropertyId);
-							sourceFragment = sourcePropertyValue.ConvertToString().ToString();
+							sourceLine = sourcePropertyValue.ConvertToString().ToString();
+							sourceFragment = CoreErrorHelpers.GetSourceFragment(sourceLine, columnNumber);
 						}
 
 						JsPropertyId stackPropertyId = JsPropertyId.FromString("stack");
 						if (errorValue.HasProperty(stackPropertyId))
 						{
+							JsPropertyId descriptionPropertyId = JsPropertyId.FromString("description");
+							if (errorValue.HasProperty(descriptionPropertyId))
+							{
+								JsValue descriptionPropertyValue = errorValue.GetProperty(descriptionPropertyId);
+								if (descriptionPropertyValue.ValueType == JsValueType.String
+									|| descriptionPropertyValue.StringLength > 0)
+								{
+									description = descriptionPropertyValue.ConvertToString().ToString();
+								}
+							}
+
 							JsValue stackPropertyValue = errorValue.GetProperty(stackPropertyId);
-							message = stackPropertyValue.ConvertToString().ToString();
+							string messageWithTypeAndCallStack = stackPropertyValue.ValueType == JsValueType.String ?
+								stackPropertyValue.ConvertToString().ToString() : string.Empty;
+							string messageWithType = errorValue.ConvertToString().ToString();
+							string rawCallStack = messageWithTypeAndCallStack
+								.TrimStart(messageWithType)
+								.TrimStart("Error")
+								.TrimStart(new char[] { '\n', '\r' })
+								;
+							string callStackWithSourceFragment = string.Empty;
+
+							ErrorLocationItem[] callStackItems = CoreErrorHelpers.ParseErrorLocation(rawCallStack);
+							if (callStackItems.Length > 0)
+							{
+								ErrorLocationItem firstCallStackItem = callStackItems[0];
+								firstCallStackItem.SourceFragment = sourceFragment;
+
+								documentName = firstCallStackItem.DocumentName;
+								lineNumber = firstCallStackItem.LineNumber;
+								columnNumber = firstCallStackItem.ColumnNumber;
+								callStack = CoreErrorHelpers.StringifyErrorLocationItems(callStackItems, true);
+								callStackWithSourceFragment = CoreErrorHelpers.StringifyErrorLocationItems(callStackItems);
+							}
+
+							message = CoreErrorHelpers.GenerateErrorMessage(type, description,
+								callStackWithSourceFragment);
 						}
 						else
 						{
-							JsValue messagePropertyValue = errorValue.GetProperty("message");
-							string scriptMessage = messagePropertyValue.ConvertToString().ToString();
-							message = GenerateErrorMessageWithLocation(message.TrimEnd('.'), scriptMessage,
-								documentName, lineNumber, columnNumber);
+							message = CoreErrorHelpers.GenerateErrorMessage(type, description, documentName,
+								lineNumber, columnNumber, sourceFragment);
+						}
+					}
+					else
+					{
+						message = errorValue.ConvertToString().ToString();
+						description = message;
+					}
+				}
+
+				WrapperScriptException wrapperScriptException;
+				if (errorCode == JsErrorCode.ScriptCompile)
+				{
+					wrapperScriptException = new WrapperCompilationException(message, EngineName, EngineVersion,
+						originalScriptException);
+				}
+				else if (errorCode == JsErrorCode.ScriptTerminated)
+				{
+					message = CoreStrings.Runtime_ScriptInterrupted;
+					description = message;
+
+					wrapperScriptException = new WrapperInterruptedException(message,
+						EngineName, EngineVersion, originalScriptException)
+					{
+						CallStack = callStack
+					};
+				}
+				else
+				{
+					wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+						originalScriptException)
+					{
+						CallStack = callStack
+					};
+				}
+				wrapperScriptException.Type = type;
+				wrapperScriptException.DocumentName = documentName;
+				wrapperScriptException.LineNumber = lineNumber;
+				wrapperScriptException.ColumnNumber = columnNumber;
+				wrapperScriptException.SourceFragment = sourceFragment;
+
+				wrapperException = wrapperScriptException;
+			}
+			else
+			{
+				if (originalException is OriginalUsageException)
+				{
+					wrapperException = new WrapperUsageException(message, EngineName, EngineVersion,
+						originalException);
+				}
+				else if (originalException is OriginalEngineException)
+				{
+					wrapperException = new WrapperEngineException(message, EngineName, EngineVersion,
+						originalException);
+				}
+				else if (originalException is OriginalFatalException)
+				{
+					wrapperException = new WrapperFatalException(message, EngineName, EngineVersion,
+						originalException);
+				}
+				else
+				{
+					wrapperException = new WrapperException(message, EngineName, EngineVersion,
+						originalException);
+				}
+			}
+
+			wrapperException.Description = description;
+
+			return wrapperException;
+		}
+
+		private static WrapperEngineLoadException WrapTypeLoadException(
+			TypeLoadException originalTypeLoadException)
+		{
+			string originalMessage = originalTypeLoadException.Message;
+			string jsEngineNotLoadedPart = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName);
+			string message;
+			bool isMonoRuntime = Utils.IsMonoRuntime();
+
+			if (originalTypeLoadException is DllNotFoundException
+				&& ((isMonoRuntime && originalMessage == DllName.Universal)
+					|| originalMessage.ContainsQuotedValue(DllName.Universal)))
+			{
+				const string buildInstructionsUrl =
+					"https://github.com/Microsoft/ChakraCore/wiki/Building-ChakraCore#{0}";
+				const string monoInstallationInstructionsUrl =
+					"https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/JS-Engine-Switcher:-ChakraCore#{0}";
+				Architecture osArchitecture = RuntimeInformation.OSArchitecture;
+
+				StringBuilder messageBuilder = StringBuilderPool.GetBuilder();
+				messageBuilder.Append(jsEngineNotLoadedPart);
+				messageBuilder.Append(" ");
+
+				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+				{
+					messageBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForWindows);
+					messageBuilder.Append(" ");
+
+					if (osArchitecture == Architecture.X64 || osArchitecture == Architecture.X86)
+					{
+						messageBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+							Utils.Is64BitProcess() ?
+								"JavaScriptEngineSwitcher.ChakraCore.Native.win-x64"
+								:
+								"JavaScriptEngineSwitcher.ChakraCore.Native.win-x86"
+						);
+						messageBuilder.Append(" ");
+						messageBuilder.Append(Strings.Engine_VcRedist2015InstallationRequired);
+					}
+					else if (osArchitecture == Architecture.Arm)
+					{
+						messageBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+							"JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm");
+					}
+					else
+					{
+						messageBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
+							"JavaScriptEngineSwitcher.ChakraCore.Native.win*",
+							osArchitecture.ToString().ToLowerInvariant()
+						);
+						messageBuilder.Append(" ");
+						messageBuilder.AppendFormat(Strings.Engine_BuildNativeAssemblyForCurrentProcessorArchitecture,
+							DllName.ForWindows,
+							string.Format(buildInstructionsUrl, "windows")
+						);
+					}
+				}
+				else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+				{
+					messageBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForLinux);
+					messageBuilder.Append(" ");
+
+					if (isMonoRuntime)
+					{
+						messageBuilder.AppendFormat(Strings.Engine_ManualInstallationUnderMonoRequired,
+							"JavaScriptEngineSwitcher.ChakraCore.Native.linux-*",
+							string.Format(monoInstallationInstructionsUrl, "linux")
+						);
+					}
+					else
+					{
+						if (osArchitecture == Architecture.X64)
+						{
+							messageBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+								"JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64");
+						}
+						else
+						{
+							messageBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
+								"JavaScriptEngineSwitcher.ChakraCore.Native.linux-*",
+								osArchitecture.ToString().ToLowerInvariant()
+							);
+							messageBuilder.Append(" ");
+							messageBuilder.AppendFormat(Strings.Engine_BuildNativeAssemblyForCurrentProcessorArchitecture,
+								DllName.ForLinux,
+								string.Format(buildInstructionsUrl, "linux")
+							);
 						}
 					}
 				}
-				else if (scriptException is JsUsageException)
+				else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
 				{
-					category = "Usage error";
-				}
-				else if (scriptException is JsEngineException)
-				{
-					category = "Engine error";
-				}
-				else if (scriptException is JsFatalException)
-				{
-					category = "Fatal error";
-				}
+					messageBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForOsx);
+					messageBuilder.Append(" ");
 
-				hostException = new HostExtendedException(message, EngineName, EngineVersion,
-					scriptException)
-				{
-					ErrorCode = ((uint)errorCode).ToString(CultureInfo.InvariantCulture),
-					Category = category,
-					LineNumber = lineNumber,
-					ColumnNumber = columnNumber,
-					SourceFragment = sourceFragment
-				};
-			}
-
-			return hostException;
-		}
-
-		/// <summary>
-		/// Generates a error message with location
-		/// </summary>
-		/// <param name="category">Error category</param>
-		/// <param name="message">Error message</param>
-		/// <param name="documentName">Document name</param>
-		/// <param name="lineNumber">Line number</param>
-		/// <param name="columnNumber">Column number</param>
-		/// <returns>Error message with location</returns>
-		private static string GenerateErrorMessageWithLocation(string category, string message,
-			string documentName, int lineNumber, int columnNumber)
-		{
-			var messageBuilder = new StringBuilder();
-			if (!string.IsNullOrWhiteSpace(category))
-			{
-				messageBuilder.AppendFormat("{0}: ", category);
-			}
-			messageBuilder.Append(message);
-			if (!string.IsNullOrWhiteSpace(documentName))
-			{
-				messageBuilder.AppendLine();
-				messageBuilder.AppendFormat("   at {0}", documentName);
-				if (lineNumber > 0)
-				{
-					messageBuilder.AppendFormat(":{0}", lineNumber);
-					if (columnNumber > 0)
+					if (isMonoRuntime)
 					{
-						messageBuilder.AppendFormat(":{0}", columnNumber);
+						messageBuilder.AppendFormat(Strings.Engine_ManualInstallationUnderMonoRequired,
+							"JavaScriptEngineSwitcher.ChakraCore.Native.osx-*",
+							string.Format(monoInstallationInstructionsUrl, "os-x")
+						);
+					}
+					else
+					{
+						if (osArchitecture == Architecture.X64)
+						{
+							messageBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+								"JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64");
+						}
+						else
+						{
+							messageBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
+								"JavaScriptEngineSwitcher.ChakraCore.Native.osx-*",
+								osArchitecture.ToString().ToLowerInvariant()
+							);
+							messageBuilder.Append(" ");
+							messageBuilder.AppendFormat(Strings.Engine_BuildNativeAssemblyForCurrentProcessorArchitecture,
+								DllName.ForOsx,
+								string.Format(buildInstructionsUrl, "os-x")
+							);
+						}
 					}
 				}
+				else
+				{
+					messageBuilder.Append(CoreStrings.Engine_OperatingSystemNotSupported);
+				}
+
+				message = messageBuilder.ToString();
+				StringBuilderPool.ReleaseBuilder(messageBuilder);
+			}
+			else
+			{
+				message = jsEngineNotLoadedPart + " " +
+					string.Format(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
 			}
 
-			string errorMessage = messageBuilder.ToString();
-			messageBuilder.Clear();
-
-			return errorMessage;
+			return new WrapperEngineLoadException(message, EngineName, EngineVersion, originalTypeLoadException);
 		}
 
 		#endregion
@@ -1020,9 +1292,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 						return MapToHostType(resultValue);
 					}
-					catch (ScriptException e)
+					catch (OriginalException e)
 					{
-						throw ConvertScriptExceptionToHostException(e);
+						throw WrapJsException(e);
 					}
 				}
 			});
@@ -1059,9 +1331,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					{
 						JsContext.RunScript(code, _jsSourceContext++, uniqueDocumentName);
 					}
-					catch (ScriptException e)
+					catch (OriginalException e)
 					{
-						throw ConvertScriptExceptionToHostException(e);
+						throw WrapJsException(e);
 					}
 				}
 			});
@@ -1081,8 +1353,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						bool functionExist = globalObj.HasProperty(functionId);
 						if (!functionExist)
 						{
-							throw new JsRuntimeException(
-								string.Format(CoreStrings.Runtime_FunctionNotExist, functionName));
+							throw new WrapperRuntimeException(
+								string.Format(CoreStrings.Runtime_FunctionNotExist, functionName),
+								EngineName, EngineVersion
+							);
 						}
 
 						JsValue resultValue;
@@ -1101,11 +1375,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 								.Concat(processedArgs)
 								.ToArray()
 								;
-							resultValue = functionValue.CallFunction(allProcessedArgs);
 
-							foreach (JsValue processedArg in processedArgs)
+							try
 							{
-								RemoveReferenceToValue(processedArg);
+								resultValue = functionValue.CallFunction(allProcessedArgs);
+							}
+							finally
+							{
+								foreach (JsValue processedArg in processedArgs)
+								{
+									RemoveReferenceToValue(processedArg);
+								}
 							}
 						}
 						else
@@ -1115,9 +1395,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 						return MapToHostType(resultValue);
 					}
-					catch (ScriptException e)
+					catch (OriginalException e)
 					{
-						throw ConvertScriptExceptionToHostException(e);
+						throw WrapJsException(e);
 					}
 				}
 			});
@@ -1152,9 +1432,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 						return variableExist;
 					}
-					catch (ScriptException e)
+					catch (OriginalException e)
 					{
-						throw ConvertScriptExceptionToHostException(e);
+						throw WrapJsException(e);
 					}
 				}
 			});
@@ -1174,9 +1454,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 						return MapToHostType(variableValue);
 					}
-					catch (ScriptException e)
+					catch (OriginalException e)
 					{
-						throw ConvertScriptExceptionToHostException(e);
+						throw WrapJsException(e);
 					}
 				}
 			});
@@ -1200,11 +1480,20 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					try
 					{
 						JsValue inputValue = MapToScriptType(value);
-						JsValue.GlobalObject.SetProperty(variableName, inputValue, true);
+						AddReferenceToValue(inputValue);
+
+						try
+						{
+							JsValue.GlobalObject.SetProperty(variableName, inputValue, true);
+						}
+						finally
+						{
+							RemoveReferenceToValue(inputValue);
+						}
 					}
-					catch (ScriptException e)
+					catch (OriginalException e)
 					{
-						throw ConvertScriptExceptionToHostException(e);
+						throw WrapJsException(e);
 					}
 				}
 			});
@@ -1226,9 +1515,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 							globalObj.SetProperty(variableId, JsValue.Undefined, true);
 						}
 					}
-					catch (ScriptException e)
+					catch (OriginalException e)
 					{
-						throw ConvertScriptExceptionToHostException(e);
+						throw WrapJsException(e);
 					}
 				}
 			});
@@ -1245,9 +1534,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						JsValue processedValue = MapToScriptType(value);
 						JsValue.GlobalObject.SetProperty(itemName, processedValue, true);
 					}
-					catch (ScriptException e)
+					catch (OriginalException e)
 					{
-						throw ConvertScriptExceptionToHostException(e);
+						throw WrapJsException(e);
 					}
 				}
 			});
@@ -1264,9 +1553,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						JsValue typeValue = CreateObjectFromType(type);
 						JsValue.GlobalObject.SetProperty(itemName, typeValue, true);
 					}
-					catch (ScriptException e)
+					catch (OriginalException e)
 					{
-						throw ConvertScriptExceptionToHostException(e);
+						throw WrapJsException(e);
 					}
 				}
 			});
@@ -1343,7 +1632,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				{
 					_dispatcher.Invoke(() =>
 					{
-						_jsContext.Release();
+						if (_jsContext.IsValid)
+						{
+							_jsContext.Release();
+						}
 						_jsRuntime.Dispose();
 					});
 					_dispatcher.Dispose();
@@ -1351,15 +1643,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 				if (disposing)
 				{
-					if (_externalObjects != null)
-					{
-						_externalObjects.Clear();
-					}
-
-					if (_nativeFunctions != null)
-					{
-						_nativeFunctions.Clear();
-					}
+					_externalObjects?.Clear();
+					_nativeFunctions?.Clear();
 
 					_promiseContinuationCallback = null;
 					_externalObjectFinalizeCallback = null;

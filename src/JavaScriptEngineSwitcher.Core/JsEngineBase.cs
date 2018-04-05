@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 using JavaScriptEngineSwitcher.Core.Helpers;
+#if NET40
+using JavaScriptEngineSwitcher.Core.Polyfills.System;
+#endif
 using JavaScriptEngineSwitcher.Core.Resources;
 using JavaScriptEngineSwitcher.Core.Utilities;
 
@@ -24,6 +28,7 @@ namespace JavaScriptEngineSwitcher.Core
 		protected InterlockedStatedFlag _disposedFlag = new InterlockedStatedFlag();
 
 
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
 		protected void VerifyNotDisposed()
 		{
 			if (_disposedFlag.IsSet())
@@ -34,24 +39,15 @@ namespace JavaScriptEngineSwitcher.Core
 
 		protected abstract object InnerEvaluate(string expression);
 
-		protected virtual object InnerEvaluate(string expression, string documentName)
-		{
-			return InnerEvaluate(expression);
-		}
+		protected abstract object InnerEvaluate(string expression, string documentName);
 
 		protected abstract T InnerEvaluate<T>(string expression);
 
-		protected virtual T InnerEvaluate<T>(string expression, string documentName)
-		{
-			return InnerEvaluate<T>(expression);
-		}
+		protected abstract T InnerEvaluate<T>(string expression, string documentName);
 
 		protected abstract void InnerExecute(string code);
 
-		protected virtual void InnerExecute(string code, string documentName)
-		{
-			InnerExecute(code);
-		}
+		protected abstract void InnerExecute(string code, string documentName);
 
 		protected abstract object InnerCallFunction(string functionName, params object[] args);
 
@@ -120,10 +116,20 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (expression == null)
+			{
+				throw new ArgumentNullException(
+					nameof(expression),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(expression))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(expression))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "expression"), "expression");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(expression)),
+					nameof(expression)
+				);
 			}
 
 			return InnerEvaluate(expression);
@@ -133,10 +139,29 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (expression == null)
+			{
+				throw new ArgumentNullException(
+					nameof(expression),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(expression))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(expression))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "expression"), "expression");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(expression)),
+					nameof(expression)
+				);
+			}
+
+			if (!string.IsNullOrWhiteSpace(documentName)
+				&& !ValidationHelpers.CheckDocumentNameFormat(documentName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidDocumentNameFormat, documentName),
+					nameof(documentName)
+				);
 			}
 
 			return InnerEvaluate(expression, documentName);
@@ -146,17 +171,29 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (expression == null)
+			{
+				throw new ArgumentNullException(
+					nameof(expression),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(expression))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(expression))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "expression"), "expression");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(expression)),
+					nameof(expression)
+				);
 			}
 
 			Type returnValueType = typeof(T);
 			if (!ValidationHelpers.IsSupportedType(returnValueType))
 			{
-				throw new NotSupportedTypeException(
-					string.Format(Strings.Runtime_ReturnValueTypeNotSupported, returnValueType.FullName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_ReturnValueTypeNotSupported, returnValueType.FullName),
+					nameof(T)
+				);
 			}
 
 			return InnerEvaluate<T>(expression);
@@ -166,17 +203,38 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (expression == null)
+			{
+				throw new ArgumentNullException(
+					nameof(expression),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(expression))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(expression))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "expression"), "expression");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(expression)),
+					nameof(expression)
+				);
+			}
+
+			if (!string.IsNullOrWhiteSpace(documentName)
+				&& !ValidationHelpers.CheckDocumentNameFormat(documentName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidDocumentNameFormat, documentName),
+					nameof(documentName)
+				);
 			}
 
 			Type returnValueType = typeof(T);
 			if (!ValidationHelpers.IsSupportedType(returnValueType))
 			{
-				throw new NotSupportedTypeException(
-					string.Format(Strings.Runtime_ReturnValueTypeNotSupported, returnValueType.FullName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_ReturnValueTypeNotSupported, returnValueType.FullName),
+					nameof(T)
+				);
 			}
 
 			return InnerEvaluate<T>(expression, documentName);
@@ -186,10 +244,20 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (code == null)
+			{
+				throw new ArgumentNullException(
+					nameof(code),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(code))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(code))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "code"), "code");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(code)),
+					nameof(code)
+				);
 			}
 
 			InnerExecute(code);
@@ -199,10 +267,29 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (code == null)
+			{
+				throw new ArgumentNullException(
+					nameof(code),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(code))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(code))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "code"), "code");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(code)),
+					nameof(code)
+				);
+			}
+
+			if (!string.IsNullOrWhiteSpace(documentName)
+				&& !ValidationHelpers.CheckDocumentNameFormat(documentName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidDocumentNameFormat, documentName),
+					nameof(documentName)
+				);
 			}
 
 			InnerExecute(code, documentName);
@@ -215,17 +302,37 @@ namespace JavaScriptEngineSwitcher.Core
 			if (path == null)
 			{
 				throw new ArgumentNullException(
-					"path", string.Format(Strings.Common_ArgumentIsNull, "path"));
+					nameof(path),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(path))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(path))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "path"), "path");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(path)),
+					nameof(path)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(path))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidFileNameFormat, path),
+					nameof(path)
+				);
 			}
 
 			string code = Utils.GetFileTextContent(path, encoding);
-			Execute(code, path);
+			if (string.IsNullOrWhiteSpace(code))
+			{
+				throw new JsUsageException(
+					string.Format(Strings.Usage_CannotExecuteEmptyFile, path),
+					Name, Version
+				);
+			}
+
+			InnerExecute(code, path);
 		}
 
 		public virtual void ExecuteResource(string resourceName, Type type)
@@ -235,19 +342,33 @@ namespace JavaScriptEngineSwitcher.Core
 			if (resourceName == null)
 			{
 				throw new ArgumentNullException(
-					"resourceName", string.Format(Strings.Common_ArgumentIsNull, "resourceName"));
+					nameof(resourceName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(resourceName))
+				);
 			}
 
 			if (type == null)
 			{
 				throw new ArgumentNullException(
-					"type", string.Format(Strings.Common_ArgumentIsNull, "type"));
+					nameof(type),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(type))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
 			}
 
 			Assembly assembly = type.GetTypeInfo().Assembly;
@@ -255,7 +376,15 @@ namespace JavaScriptEngineSwitcher.Core
 			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
 
 			string code = Utils.GetResourceAsString(resourceFullName, assembly);
-			Execute(code, resourceName);
+			if (string.IsNullOrWhiteSpace(code))
+			{
+				throw new JsUsageException(
+					string.Format(Strings.Usage_CannotExecuteEmptyResource, resourceFullName),
+					Name, Version
+				);
+			}
+
+			InnerExecute(code, resourceName);
 		}
 
 		public virtual void ExecuteResource(string resourceName, Assembly assembly)
@@ -265,39 +394,73 @@ namespace JavaScriptEngineSwitcher.Core
 			if (resourceName == null)
 			{
 				throw new ArgumentNullException(
-					"resourceName", string.Format(Strings.Common_ArgumentIsNull, "resourceName"));
+					nameof(resourceName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(resourceName))
+				);
 			}
 
 			if (assembly == null)
 			{
 				throw new ArgumentNullException(
-					"assembly", string.Format(Strings.Common_ArgumentIsNull, "assembly"));
+					nameof(assembly),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(assembly))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
 			}
 
 			string code = Utils.GetResourceAsString(resourceName, assembly);
-			Execute(code, resourceName);
+			if (string.IsNullOrWhiteSpace(code))
+			{
+				throw new JsUsageException(
+					string.Format(Strings.Usage_CannotExecuteEmptyResource, resourceName),
+					Name, Version
+				);
+			}
+
+			InnerExecute(code, resourceName);
 		}
 
 		public virtual object CallFunction(string functionName, params object[] args)
 		{
 			VerifyNotDisposed();
 
+			if (functionName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(functionName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(functionName))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(functionName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "functionName"), "functionName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(functionName)),
+					nameof(functionName)
+				);
 			}
 
 			if (!ValidationHelpers.CheckNameFormat(functionName))
 			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_InvalidFunctionNameFormat, functionName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidFunctionNameFormat, nameof(functionName)),
+					nameof(functionName)
+				);
 			}
 
 			int argumentCount = args.Length;
@@ -313,9 +476,11 @@ namespace JavaScriptEngineSwitcher.Core
 
 						if (!ValidationHelpers.IsSupportedType(argType))
 						{
-							throw new NotSupportedTypeException(
-								string.Format(Strings.Runtime_FunctionParameterTypeNotSupported,
-											functionName, argType.FullName));
+							throw new ArgumentException(
+								string.Format(Strings.Usage_FunctionParameterTypeNotSupported,
+									functionName, argType.FullName),
+								nameof(args)
+							);
 						}
 					}
 				}
@@ -328,23 +493,28 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (functionName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(functionName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(functionName))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(functionName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "functionName"), "functionName");
-			}
-
-			Type returnValueType = typeof(T);
-			if (!ValidationHelpers.IsSupportedType(returnValueType))
-			{
-				throw new NotSupportedTypeException(
-					string.Format(Strings.Runtime_ReturnValueTypeNotSupported, returnValueType.FullName));
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(functionName)),
+					nameof(functionName)
+				);
 			}
 
 			if (!ValidationHelpers.CheckNameFormat(functionName))
 			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_InvalidFunctionNameFormat, functionName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidFunctionNameFormat, functionName),
+					nameof(functionName)
+				);
 			}
 
 			int argumentCount = args.Length;
@@ -360,12 +530,23 @@ namespace JavaScriptEngineSwitcher.Core
 
 						if (!ValidationHelpers.IsSupportedType(argType))
 						{
-							throw new NotSupportedTypeException(
-								string.Format(Strings.Runtime_FunctionParameterTypeNotSupported,
-											functionName, argType.FullName));
+							throw new ArgumentException(
+								string.Format(Strings.Usage_FunctionParameterTypeNotSupported,
+									functionName, argType.FullName),
+								nameof(args)
+							);
 						}
 					}
 				}
+			}
+
+			Type returnValueType = typeof(T);
+			if (!ValidationHelpers.IsSupportedType(returnValueType))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_ReturnValueTypeNotSupported, returnValueType.FullName),
+					nameof(T)
+				);
 			}
 
 			return InnerCallFunction<T>(functionName, args);
@@ -375,16 +556,28 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (variableName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(variableName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(variableName))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(variableName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "variableName"), "variableName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(variableName)),
+					nameof(variableName)
+				);
 			}
 
 			if (!ValidationHelpers.CheckNameFormat(variableName))
 			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_InvalidVariableNameFormat, variableName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidVariableNameFormat, variableName),
+					nameof(variableName)
+				);
 			}
 
 			return InnerHasVariable(variableName);
@@ -394,16 +587,28 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (variableName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(variableName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(variableName))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(variableName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "variableName"), "variableName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(variableName)),
+					nameof(variableName)
+				);
 			}
 
 			if (!ValidationHelpers.CheckNameFormat(variableName))
 			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_InvalidVariableNameFormat, variableName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidVariableNameFormat, variableName),
+					nameof(variableName)
+				);
 			}
 
 			return InnerGetVariableValue(variableName);
@@ -413,23 +618,37 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (variableName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(variableName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(variableName))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(variableName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "variableName"), "variableName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(variableName)),
+					nameof(variableName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckNameFormat(variableName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidVariableNameFormat, variableName),
+					nameof(variableName)
+				);
 			}
 
 			Type returnValueType = typeof(T);
 			if (!ValidationHelpers.IsSupportedType(returnValueType))
 			{
-				throw new NotSupportedTypeException(
-					string.Format(Strings.Runtime_ReturnValueTypeNotSupported, returnValueType.FullName));
-			}
-
-			if (!ValidationHelpers.CheckNameFormat(variableName))
-			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_InvalidVariableNameFormat, variableName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_ReturnValueTypeNotSupported, returnValueType.FullName),
+					nameof(T)
+				);
 			}
 
 			return InnerGetVariableValue<T>(variableName);
@@ -439,16 +658,28 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (variableName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(variableName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(variableName))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(variableName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "variableName"), "variableName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(variableName)),
+					nameof(variableName)
+				);
 			}
 
 			if (!ValidationHelpers.CheckNameFormat(variableName))
 			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_InvalidVariableNameFormat, variableName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidVariableNameFormat, variableName),
+					nameof(variableName)
+				);
 			}
 
 			if (value != null)
@@ -457,9 +688,11 @@ namespace JavaScriptEngineSwitcher.Core
 
 				if (!ValidationHelpers.IsSupportedType(variableType))
 				{
-					throw new NotSupportedTypeException(
-						string.Format(Strings.Runtime_VariableTypeNotSupported,
-									variableName, variableType.FullName));
+					throw new ArgumentException(
+						string.Format(Strings.Usage_VariableTypeNotSupported,
+							variableName, variableType.FullName),
+						nameof(value)
+					);
 				}
 			}
 
@@ -470,16 +703,28 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (variableName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(variableName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(variableName))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(variableName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "variableName"), "variableName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(variableName)),
+					nameof(variableName)
+				);
 			}
 
 			if (!ValidationHelpers.CheckNameFormat(variableName))
 			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_InvalidVariableNameFormat, variableName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidVariableNameFormat, variableName),
+					nameof(variableName)
+				);
 			}
 
 			InnerRemoveVariable(variableName);
@@ -489,33 +734,48 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (itemName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(itemName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(itemName))
+				);
+			}
+
+			if (value == null)
+			{
+				throw new ArgumentNullException(
+					nameof(value),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(value))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(itemName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "itemName"), "itemName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(itemName)),
+					nameof(itemName)
+				);
 			}
 
 			if (!ValidationHelpers.CheckNameFormat(itemName))
 			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_InvalidScriptItemNameFormat, itemName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidScriptItemNameFormat, itemName),
+					nameof(itemName)
+				);
 			}
 
-			if (value != null)
-			{
-				Type itemType = value.GetType();
+			Type itemType = value.GetType();
 
-				if (ValidationHelpers.IsPrimitiveType(itemType)
-					|| itemType == typeof(Undefined)
-					|| itemType == typeof(DateTime))
-				{
-					throw new NotSupportedTypeException(
-						string.Format(Strings.Runtime_EmbeddedHostObjectTypeNotSupported, itemName, itemType.FullName));
-				}
-			}
-			else
+			if (ValidationHelpers.IsPrimitiveType(itemType)
+				|| itemType == typeof(Undefined)
+				|| itemType == typeof(DateTime))
 			{
-				throw new ArgumentNullException("value", string.Format(Strings.Common_ArgumentIsNull, "value"));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_EmbeddedHostObjectTypeNotSupported, itemName, itemType.FullName),
+					nameof(value)
+				);
 			}
 
 			InnerEmbedHostObject(itemName, value);
@@ -525,30 +785,44 @@ namespace JavaScriptEngineSwitcher.Core
 		{
 			VerifyNotDisposed();
 
+			if (itemName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(itemName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(itemName))
+				);
+			}
+
+			if (type == null)
+			{
+				throw new ArgumentNullException(
+					nameof(type),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(type))
+				);
+			}
+
 			if (string.IsNullOrWhiteSpace(itemName))
 			{
 				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, "itemName"), "itemName");
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(itemName)),
+					nameof(itemName)
+				);
 			}
 
 			if (!ValidationHelpers.CheckNameFormat(itemName))
 			{
-				throw new FormatException(
-					string.Format(Strings.Runtime_InvalidScriptItemNameFormat, itemName));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidScriptItemNameFormat, itemName),
+					nameof(itemName)
+				);
 			}
 
-			if (type != null)
+			if (ValidationHelpers.IsPrimitiveType(type) || type == typeof(Undefined))
 			{
-				if (ValidationHelpers.IsPrimitiveType(type)
-					|| type == typeof(Undefined))
-				{
-					throw new NotSupportedTypeException(
-						string.Format(Strings.Runtime_EmbeddedHostTypeNotSupported, type.FullName));
-				}
-			}
-			else
-			{
-				throw new ArgumentNullException("type", string.Format(Strings.Common_ArgumentIsNull, "type"));
+				throw new ArgumentException(
+					string.Format(Strings.Usage_EmbeddedHostTypeNotSupported, type.FullName),
+					nameof(type)
+				);
 			}
 
 			InnerEmbedHostType(itemName, type);

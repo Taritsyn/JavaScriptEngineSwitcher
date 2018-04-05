@@ -15,7 +15,7 @@
 
 This package is only compatible with .NET Core and .NET Framework 4.5.</description>
 		<releaseNotes>ChakraCore was updated to version 1.7.5.</releaseNotes>
-		<copyright>Copyright © 2013-2017 Andrey Taritsyn</copyright>
+		<copyright>Copyright © 2013-2018 Andrey Taritsyn</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore Windows ARM</tags>
 	</metadata>

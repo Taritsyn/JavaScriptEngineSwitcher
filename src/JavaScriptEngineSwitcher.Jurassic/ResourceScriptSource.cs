@@ -9,7 +9,7 @@ using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 namespace JavaScriptEngineSwitcher.Jurassic
 {
 	/// <summary>
-	/// Represents a embedded JS-resource
+	/// Represents a embedded JS resource
 	/// </summary>
 	internal sealed class ResourceScriptSource : OriginalScriptSource
 	{
@@ -40,31 +40,41 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			if (documentName == null)
 			{
 				throw new ArgumentNullException(
-					"documentName", string.Format(CoreStrings.Common_ArgumentIsNull, "documentName"));
+					nameof(documentName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(documentName))
+				);
 			}
 
 			if (resourceName == null)
 			{
 				throw new ArgumentNullException(
-					"resourceName", string.Format(CoreStrings.Common_ArgumentIsNull, "resourceName"));
+					nameof(resourceName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(resourceName))
+				);
 			}
 
 			if (assembly == null)
 			{
 				throw new ArgumentNullException(
-					"assembly", string.Format(CoreStrings.Common_ArgumentIsNull, "assembly"));
+					nameof(assembly),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(assembly))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(documentName))
 			{
 				throw new ArgumentException(
-					string.Format(CoreStrings.Common_ArgumentIsEmpty, "documentName"), "documentName");
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(documentName)),
+					nameof(documentName)
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
-					string.Format(CoreStrings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
 			}
 
 			_documentName = documentName;
@@ -85,10 +95,10 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 
 		/// <summary>
-		/// Gets a reader that can be used to read the source code from the embedded JS-resource
+		/// Gets a reader that can be used to read the source code from the embedded JS resource
 		/// </summary>
 		/// <returns>The reader that can be used to read the source code from the embedded
-		/// JS-resource, positioned at the start of the source code</returns>
+		/// JS resource, positioned at the start of the source code</returns>
 		public override TextReader GetReader()
 		{
 			Stream stream = _assembly.GetManifestResourceStream(_resourceName);
@@ -96,7 +106,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			if (stream == null)
 			{
 				throw new NullReferenceException(
-					string.Format(CoreStrings.Resources_ResourceIsNull, _resourceName));
+					string.Format(CoreStrings.Common_ResourceIsNull, _resourceName));
 			}
 
 			return new StreamReader(stream);

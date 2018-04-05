@@ -1,5 +1,6 @@
 ﻿using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Utilities;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.Vroom;

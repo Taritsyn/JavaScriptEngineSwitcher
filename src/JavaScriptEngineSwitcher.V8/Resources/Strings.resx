@@ -120,10 +120,7 @@
   <data name="Engines_ClearScriptUndefinedValueNotLoaded" xml:space="preserve">
     <value>Failed to load the ClearScript `undefined` value.</value>
   </data>
-  <data name="Engines_ClearScriptV8AssemblyFileNotFound" xml:space="preserve">
-    <value>Failed to load the ClearScriptV8 assembly, because the '{0}' file does not exist. It is possible, that you have not installed the JavaScriptEngineSwitcher.V8.Native.win-{1} package.</value>
-  </data>
-  <data name="Runtime_MethodInfoNotLoaded" xml:space="preserve">
-    <value>Failed to load information about the `{1}` method of type `{0}`.</value>
+  <data name="Engine_VcRedist2015InstallationRequired" xml:space="preserve">
+    <value>In addition, you still need to install the Microsoft Visual C++ 2015 Redistributable (https://www.microsoft.com/en-us/download/details.aspx?id=53840).</value>
   </data>
 </root>

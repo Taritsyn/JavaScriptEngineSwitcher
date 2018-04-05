@@ -1,7 +1,12 @@
 ﻿using System;
+#if NET45 || NETSTANDARD
+using System.Runtime.InteropServices;
+#endif
 using System.Text;
+#if NET40
 
-using JavaScriptEngineSwitcher.Core.Utilities;
+using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
+#endif
 
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
@@ -42,7 +47,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				string name;
 				JsErrorCode errorCode;
 
-				if (Utils.IsWindows())
+				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 				{
 					errorCode = NativeMethods.JsGetPropertyNameFromId(this, out name);
 					JsErrorHelpers.ThrowIfError(errorCode);
@@ -99,7 +104,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsPropertyId id;
 			JsErrorCode errorCode;
 
-			if (Utils.IsWindows())
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
 				errorCode = NativeMethods.JsGetPropertyIdFromName(name, out id);
 			}

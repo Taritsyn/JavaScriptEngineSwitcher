@@ -1,6 +1,11 @@
 ﻿using System;
+#if NET45 || NETSTANDARD
+using System.Runtime.InteropServices;
+#endif
+#if NET40
 
-using JavaScriptEngineSwitcher.Core.Utilities;
+using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
+#endif
 
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
@@ -159,7 +164,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsValue result;
 			JsErrorCode errorCode;
 
-			if (Utils.IsWindows())
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
 				errorCode = NativeMethods.JsParseScript(script, sourceContext, sourceName, out result);
 				JsErrorHelpers.ThrowIfError(errorCode);
@@ -217,7 +222,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsValue result;
 			JsErrorCode errorCode;
 
-			if (Utils.IsWindows())
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
 				errorCode = NativeMethods.JsRunScript(script, sourceContext, sourceName, out result);
 				JsErrorHelpers.ThrowIfError(errorCode);
@@ -280,7 +285,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			var bufferSize = (ulong)buffer.Length;
 			JsErrorCode errorCode;
 
-			if (Utils.IsWindows())
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
 				errorCode = NativeMethods.JsSerializeScript(script, buffer, ref bufferSize);
 				JsErrorHelpers.ThrowIfError(errorCode);
@@ -361,7 +366,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </para>
 		/// </remarks>
 		/// <returns>The exception metadata for the runtime of the current context</returns>
-		public static JsValue JsGetAndClearExceptionWithMetadata()
+		public static JsValue GetAndClearExceptionWithMetadata()
 		{
 			JsValue metadata;
 			JsErrorHelpers.ThrowIfError(NativeMethods.JsGetAndClearExceptionWithMetadata(out metadata));

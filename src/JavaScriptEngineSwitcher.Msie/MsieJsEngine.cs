@@ -3,19 +3,35 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
-using OriginalJsEngine = MsieJavaScriptEngine.MsieJsEngine;
-using OriginalJsEngineLoadException = MsieJavaScriptEngine.JsEngineLoadException;
-using OriginalJsEngineMode = MsieJavaScriptEngine.JsEngineMode;
-using OriginalJsException = MsieJavaScriptEngine.JsException;
-using OriginalJsRuntimeException = MsieJavaScriptEngine.JsRuntimeException;
-using OriginalJsScriptInterruptedException = MsieJavaScriptEngine.JsScriptInterruptedException;
-using OriginalJsEngineSettings = MsieJavaScriptEngine.JsEngineSettings;
+using OriginalCompilationException = MsieJavaScriptEngine.JsCompilationException;
+using OriginalEngine = MsieJavaScriptEngine.MsieJsEngine;
+using OriginalEngineException = MsieJavaScriptEngine.JsEngineException;
+using OriginalEngineLoadException = MsieJavaScriptEngine.JsEngineLoadException;
+using OriginalEngineMode = MsieJavaScriptEngine.JsEngineMode;
+using OriginalEngineSettings = MsieJavaScriptEngine.JsEngineSettings;
+using OriginalException = MsieJavaScriptEngine.JsException;
+using OriginalFatalException = MsieJavaScriptEngine.JsFatalException;
+using OriginalInterruptedException = MsieJavaScriptEngine.JsInterruptedException;
+using OriginalRuntimeException = MsieJavaScriptEngine.JsRuntimeException;
+using OriginalScriptException = MsieJavaScriptEngine.JsScriptException;
 using OriginalTypeConverter = MsieJavaScriptEngine.Utilities.TypeConverter;
 using OriginalUndefined = MsieJavaScriptEngine.Undefined;
+using OriginalUsageException = MsieJavaScriptEngine.JsUsageException;
 
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Helpers;
 using JavaScriptEngineSwitcher.Core.Utilities;
+
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
+using WrapperEngineException = JavaScriptEngineSwitcher.Core.JsEngineException;
+using WrapperEngineLoadException = JavaScriptEngineSwitcher.Core.JsEngineLoadException;
+using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
+using WrapperFatalException = JavaScriptEngineSwitcher.Core.JsFatalException;
+using WrapperInterruptedException = JavaScriptEngineSwitcher.Core.JsInterruptedException;
+using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
+using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
+using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
 
 namespace JavaScriptEngineSwitcher.Msie
 {
@@ -37,7 +53,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		/// <summary>
 		/// MSIE JS engine
 		/// </summary>
-		private OriginalJsEngine _jsEngine;
+		private OriginalEngine _jsEngine;
 
 
 		/// <summary>
@@ -57,27 +73,19 @@ namespace JavaScriptEngineSwitcher.Msie
 
 			try
 			{
-				_jsEngine = new OriginalJsEngine(new OriginalJsEngineSettings
+				_jsEngine = new OriginalEngine(new OriginalEngineSettings
 				{
 					EnableDebugging = msieSettings.EnableDebugging,
-					EngineMode = Utils.GetEnumFromOtherEnum<JsEngineMode, OriginalJsEngineMode>(
+					EngineMode = Utils.GetEnumFromOtherEnum<JsEngineMode, OriginalEngineMode>(
 						msieSettings.EngineMode),
 					UseEcmaScript5Polyfill = msieSettings.UseEcmaScript5Polyfill,
 					UseJson2Library = msieSettings.UseJson2Library
 				});
 				_engineVersion = _jsEngine.Mode;
 			}
-			catch (OriginalJsEngineLoadException e)
+			catch (OriginalException e)
 			{
-				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						EngineName, e.Message), EngineName, e.EngineMode, e);
-			}
-			catch (Exception e)
-			{
-				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						EngineName, e.Message), EngineName, _engineVersion, e);
+				throw WrapJsException(e);
 			}
 		}
 
@@ -114,37 +122,87 @@ namespace JavaScriptEngineSwitcher.Msie
 			return value;
 		}
 
-		private JsException ConvertScriptExceptionToHostException(
-			OriginalJsException scriptException)
+		private WrapperException WrapJsException(OriginalException originalException)
 		{
-			JsException hostException;
+			WrapperException wrapperException;
 
-			if (scriptException is OriginalJsRuntimeException)
+			var originalScriptException = originalException as OriginalScriptException;
+			if (originalScriptException != null)
 			{
-				var scriptRuntimeException = (OriginalJsRuntimeException)scriptException;
-				hostException = new JsRuntimeException(scriptRuntimeException.Message,
-					EngineName, _engineVersion, scriptRuntimeException)
+				WrapperScriptException wrapperScriptException;
+
+				var originalRuntimeException = originalScriptException as OriginalRuntimeException;
+				if (originalRuntimeException != null)
 				{
-					ErrorCode = scriptRuntimeException.ErrorCode,
-					Category = scriptRuntimeException.Category,
-					LineNumber = scriptRuntimeException.LineNumber,
-					ColumnNumber = scriptRuntimeException.ColumnNumber,
-					SourceFragment = scriptRuntimeException.SourceFragment
-				};
-			}
-			else if (scriptException is OriginalJsScriptInterruptedException)
-			{
-				var scriptInterruptedException = (OriginalJsScriptInterruptedException)scriptException;
-				hostException = new JsScriptInterruptedException(CoreStrings.Runtime_ScriptInterrupted,
-					EngineName, _engineVersion, scriptInterruptedException);
+					WrapperRuntimeException wrapperRuntimeException;
+					if (originalRuntimeException is OriginalInterruptedException)
+					{
+						wrapperRuntimeException = new WrapperInterruptedException(originalScriptException.Message,
+							EngineName, _engineVersion, originalRuntimeException);
+					}
+					else
+					{
+						wrapperRuntimeException = new WrapperRuntimeException(originalScriptException.Message,
+							EngineName, _engineVersion, originalRuntimeException);
+					}
+					wrapperRuntimeException.CallStack = originalRuntimeException.CallStack;
+
+					wrapperScriptException = wrapperRuntimeException;
+				}
+				else if (originalScriptException is OriginalCompilationException)
+				{
+					wrapperScriptException = new WrapperCompilationException(originalScriptException.Message,
+						EngineName, _engineVersion, originalScriptException);
+				}
+				else
+				{
+					wrapperScriptException = new WrapperScriptException(originalScriptException.Message,
+						EngineName, _engineVersion, originalScriptException);
+				}
+
+				wrapperScriptException.Type = originalScriptException.Type;
+				wrapperScriptException.DocumentName = originalScriptException.DocumentName;
+				wrapperScriptException.LineNumber = originalScriptException.LineNumber;
+				wrapperScriptException.ColumnNumber = originalScriptException.ColumnNumber;
+				wrapperScriptException.SourceFragment = originalScriptException.SourceFragment;
+
+				wrapperException = wrapperScriptException;
 			}
 			else
 			{
-				hostException = new JsException(scriptException.Message,
-					EngineName, _engineVersion, scriptException);
+				if (originalException is OriginalUsageException)
+				{
+					wrapperException = new WrapperUsageException(originalException.Message,
+						EngineName, _engineVersion, originalException);
+				}
+				else if (originalException is OriginalEngineException)
+				{
+					if (originalException is OriginalEngineLoadException)
+					{
+						wrapperException = new WrapperEngineLoadException(originalException.Message,
+							EngineName, _engineVersion, originalException);
+					}
+					else
+					{
+						wrapperException = new WrapperEngineException(originalException.Message,
+							EngineName, _engineVersion, originalException);
+					}
+				}
+				else if (originalException is OriginalFatalException)
+				{
+					wrapperException = new WrapperFatalException(originalException.Message,
+						EngineName, _engineVersion, originalException);
+				}
+				else
+				{
+					wrapperException = new WrapperException(originalException.Message,
+						EngineName, _engineVersion, originalException);
+				}
 			}
 
-			return hostException;
+			wrapperException.Description = originalException.Description;
+
+			return wrapperException;
 		}
 
 		#endregion
@@ -164,9 +222,9 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				result = _jsEngine.Evaluate(expression, documentName);
 			}
-			catch (OriginalJsException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
 			}
 
 			result = MapToHostType(result);
@@ -197,9 +255,9 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine.Execute(code, documentName);
 			}
-			catch (OriginalJsException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
 			}
 		}
 
@@ -221,9 +279,9 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				result = _jsEngine.CallFunction(functionName, processedArgs);
 			}
-			catch (OriginalJsException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
 			}
 
 			result = MapToHostType(result);
@@ -246,9 +304,9 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				result = _jsEngine.HasVariable(variableName);
 			}
-			catch (OriginalJsException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
 			}
 
 			return result;
@@ -262,9 +320,9 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				result = _jsEngine.GetVariableValue(variableName);
 			}
-			catch (OriginalJsException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
 			}
 
 			result = MapToHostType(result);
@@ -287,9 +345,9 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine.SetVariableValue(variableName, processedValue);
 			}
-			catch (OriginalJsException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
 			}
 		}
 
@@ -299,9 +357,9 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine.RemoveVariable(variableName);
 			}
-			catch (OriginalJsException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
 			}
 		}
 
@@ -313,9 +371,9 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine.EmbedHostObject(itemName, processedValue);
 			}
-			catch (OriginalJsException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
 			}
 		}
 
@@ -325,9 +383,9 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine.EmbedHostType(itemName, type);
 			}
-			catch (OriginalJsException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
 			}
 		}
 
@@ -383,28 +441,38 @@ namespace JavaScriptEngineSwitcher.Msie
 			if (path == null)
 			{
 				throw new ArgumentNullException(
-					"path", string.Format(CoreStrings.Common_ArgumentIsNull, "path"));
+					nameof(path),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(path))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(path))
 			{
 				throw new ArgumentException(
-					string.Format(CoreStrings.Common_ArgumentIsEmpty, "path"), "path");
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(path)),
+					nameof(path)
+				);
 			}
 
-			if (!File.Exists(path))
+			if (!ValidationHelpers.CheckDocumentNameFormat(path))
 			{
-				throw new FileNotFoundException(
-					string.Format(CoreStrings.Common_FileNotExist, path), path);
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidFileNameFormat, path),
+					nameof(path)
+				);
 			}
 
 			try
 			{
 				_jsEngine.ExecuteFile(path, encoding);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
+			}
+			catch (FileNotFoundException)
+			{
+				throw;
 			}
 		}
 
@@ -415,28 +483,46 @@ namespace JavaScriptEngineSwitcher.Msie
 			if (resourceName == null)
 			{
 				throw new ArgumentNullException(
-					"resourceName", string.Format(CoreStrings.Common_ArgumentIsNull, "resourceName"));
+					nameof(resourceName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(resourceName))
+				);
 			}
 
 			if (type == null)
 			{
 				throw new ArgumentNullException(
-					"type", string.Format(CoreStrings.Common_ArgumentIsNull, "type"));
+					nameof(type),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(type))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
-					string.Format(CoreStrings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
 			}
 
 			try
 			{
 				_jsEngine.ExecuteResource(resourceName, type);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
+			}
+			catch (NullReferenceException)
+			{
+				throw;
 			}
 		}
 
@@ -447,28 +533,46 @@ namespace JavaScriptEngineSwitcher.Msie
 			if (resourceName == null)
 			{
 				throw new ArgumentNullException(
-					"resourceName", string.Format(CoreStrings.Common_ArgumentIsNull, "resourceName"));
+					nameof(resourceName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(resourceName))
+				);
 			}
 
 			if (assembly == null)
 			{
 				throw new ArgumentNullException(
-					"assembly", string.Format(CoreStrings.Common_ArgumentIsNull, "assembly"));
+					nameof(assembly),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(assembly))
+				);
 			}
 
 			if (string.IsNullOrWhiteSpace(resourceName))
 			{
 				throw new ArgumentException(
-					string.Format(CoreStrings.Common_ArgumentIsEmpty, "resourceName"), "resourceName");
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
 			}
 
 			try
 			{
 				_jsEngine.ExecuteResource(resourceName, assembly);
 			}
-			catch (OriginalJsRuntimeException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptExceptionToHostException(e);
+				throw WrapJsException(e);
+			}
+			catch (NullReferenceException)
+			{
+				throw;
 			}
 		}
 

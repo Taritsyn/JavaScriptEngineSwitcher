@@ -65,6 +65,22 @@ namespace JavaScriptEngineSwitcher.Vroom.Resources
 			get { return GetString("Common_CannotSerializeType"); }
 		}
 
+		/// <summary>
+		/// Looks up a localized string similar to "You can build the '{0}' assembly by using following instructions from official repository - {1}."
+		/// </summary>
+		internal static string Engine_BuildNativeAssembly
+		{
+			get { return GetString("Engine_BuildNativeAssembly"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Try to install the Visual C++ Redistributable for Visual Studio 2012..."
+		/// </summary>
+		internal static string Engine_VcRedist2012And2015InstallationRequired
+		{
+			get { return GetString("Engine_VcRedist2012And2015InstallationRequired"); }
+		}
+
 		private static string GetString(string name)
 		{
 			string value = ResourceManager.GetString(name, _resourceCulture);

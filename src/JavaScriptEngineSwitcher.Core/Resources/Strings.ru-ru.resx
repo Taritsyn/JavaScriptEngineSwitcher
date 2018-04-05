@@ -132,6 +132,12 @@
   <data name="Common_FileNotExist" xml:space="preserve">
     <value>Файл "{0}" не существует!</value>
   </data>
+  <data name="Common_ResourceIsNull" xml:space="preserve">
+    <value>Ресурс с именем "{0}" содержит значение равное null!</value>
+  </data>
+  <data name="Common_SeeOriginalErrorMessage" xml:space="preserve">
+    <value>Смотри оригинальное сообщение об ошибке: «{0}».</value>
+  </data>
   <data name="Common_ValueIsEmpty" xml:space="preserve">
     <value>Значение не должно быть пустым!</value>
   </data>
@@ -147,11 +153,38 @@
   <data name="Configuration_JsEngineFactoryNotFound" xml:space="preserve">
     <value>Не удалось найти фабрику, создающую экземпляр JavaScript-движка с именем `{0}`!</value>
   </data>
+  <data name="Engine_AssemblyNotFound" xml:space="preserve">
+    <value>Скорее всего, это произошло, потому что не найдена сборка "{0}" или одна из ее зависимостей.</value>
+  </data>
+  <data name="Engine_JsEngineNotLoaded" xml:space="preserve">
+    <value>Не удалось создать экземпляр {0}.</value>
+  </data>
+  <data name="Engine_NoNuGetPackageForProcessorArchitecture" xml:space="preserve">
+    <value>Для процессорной архитектуры {1} не существует пакета {0}.</value>
+  </data>
+  <data name="Engine_NuGetPackageInstallationRequired" xml:space="preserve">
+    <value>Попробуйте установить через NuGet пакет {0}.</value>
+  </data>
+  <data name="Engine_OperatingSystemNotSupported" xml:space="preserve">
+    <value>Ваша операционная система не поддерживается движком.</value>
+  </data>
+  <data name="Engine_ProcessorArchitectureNotSupported" xml:space="preserve">
+    <value>Процессорная архитектура {0} не поддерживается движком.</value>
+  </data>
+  <data name="ErrorDetails_CallStack" xml:space="preserve">
+    <value>Стек вызовов</value>
+  </data>
   <data name="ErrorDetails_Category" xml:space="preserve">
     <value>Категория</value>
   </data>
   <data name="ErrorDetails_ColumnNumber" xml:space="preserve">
     <value>Номер столбца</value>
+  </data>
+  <data name="ErrorDetails_Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="ErrorDetails_DocumentName" xml:space="preserve">
+    <value>Имя документа</value>
   </data>
   <data name="ErrorDetails_EngineName" xml:space="preserve">
     <value>Название движка</value>
@@ -171,43 +204,58 @@
   <data name="ErrorDetails_SourceFragment" xml:space="preserve">
     <value>Фрагмент исходного кода</value>
   </data>
-  <data name="Resources_ResourceIsNull" xml:space="preserve">
-    <value>Ресурс с именем "{0}" содержит значение равное null!</value>
-  </data>
-  <data name="Runtime_EmbeddedHostObjectTypeNotSupported" xml:space="preserve">
-    <value>Встраиваемый объекта хоста "{0}" имеет тип `{1}`, который не поддерживается!</value>
-  </data>
-  <data name="Runtime_EmbeddedHostTypeNotSupported" xml:space="preserve">
-    <value>Встраиваемый тип хоста `{0}` не поддерживается!</value>
+  <data name="ErrorDetails_Type" xml:space="preserve">
+    <value>Тип</value>
   </data>
   <data name="Runtime_FunctionNotExist" xml:space="preserve">
     <value>Функция с именем "{0}" не существует!</value>
   </data>
-  <data name="Runtime_FunctionParameterTypeNotSupported" xml:space="preserve">
-    <value>Один из параметров функции "{0}" имеет тип `{1}`, который не поддерживается!</value>
-  </data>
-  <data name="Runtime_InvalidFunctionNameFormat" xml:space="preserve">
-    <value>Имя функции "{0}" имеет некорректный формат!</value>
-  </data>
-  <data name="Runtime_InvalidScriptItemNameFormat" xml:space="preserve">
-    <value>Имя скриптового элемента "{0}" имеет некорректный формат!</value>
-  </data>
-  <data name="Runtime_InvalidVariableNameFormat" xml:space="preserve">
-    <value>Имя переменной "{0}" имеет некорректный формат!</value>
-  </data>
-  <data name="Runtime_JsEngineNotLoaded" xml:space="preserve">
-    <value>Во время загрузки {0} произошла ошибка!	
-Смотрите более подробную информацию об ошибке:
-
-{1}</value>
-  </data>
-  <data name="Runtime_ReturnValueTypeNotSupported" xml:space="preserve">
-    <value>Тип возвращаемого значения `{0}` не поддерживается!</value>
+  <data name="Runtime_InvalidErrorLocationLineFormat" xml:space="preserve">
+    <value>Строка местоположения ошибки "{0}" имеет некорректный формат!</value>
   </data>
   <data name="Runtime_ScriptInterrupted" xml:space="preserve">
     <value>Выполнение скрипта было прервано!</value>
   </data>
-  <data name="Runtime_VariableTypeNotSupported" xml:space="preserve">
+  <data name="Runtime_ScriptTimeoutExceeded" xml:space="preserve">
+    <value>Превышено время ожидания выполнения скрипта!</value>
+  </data>
+  <data name="Usage_CannotExecuteEmptyFile" xml:space="preserve">
+    <value>Нельзя выполнить файл "{0}", потому что он пустой!</value>
+  </data>
+  <data name="Usage_CannotExecuteEmptyResource" xml:space="preserve">
+    <value>Нельзя выполнить ресурс "{0}", потому что он пустой!</value>
+  </data>
+  <data name="Usage_EmbeddedHostObjectTypeNotSupported" xml:space="preserve">
+    <value>Встраиваемый объекта хоста "{0}" имеет тип `{1}`, который не поддерживается!</value>
+  </data>
+  <data name="Usage_EmbeddedHostTypeNotSupported" xml:space="preserve">
+    <value>Встраиваемый тип хоста `{0}` не поддерживается!</value>
+  </data>
+  <data name="Usage_FunctionParameterTypeNotSupported" xml:space="preserve">
+    <value>Один из параметров функции "{0}" имеет тип `{1}`, который не поддерживается!</value>
+  </data>
+  <data name="Usage_InvalidDocumentNameFormat" xml:space="preserve">
+    <value>Имя документа "{0}" имеет некорректный формат!</value>
+  </data>
+  <data name="Usage_InvalidFileNameFormat" xml:space="preserve">
+    <value>Имя файла "{0}" имеет некорректный формат!</value>
+  </data>
+  <data name="Usage_InvalidFunctionNameFormat" xml:space="preserve">
+    <value>Имя функции "{0}" имеет некорректный формат!</value>
+  </data>
+  <data name="Usage_InvalidResourceNameFormat" xml:space="preserve">
+    <value>Имя ресурса "{0}" имеет некорректный формат!</value>
+  </data>
+  <data name="Usage_InvalidScriptItemNameFormat" xml:space="preserve">
+    <value>Имя скриптового элемента "{0}" имеет некорректный формат!</value>
+  </data>
+  <data name="Usage_InvalidVariableNameFormat" xml:space="preserve">
+    <value>Имя переменной "{0}" имеет некорректный формат!</value>
+  </data>
+  <data name="Usage_ReturnValueTypeNotSupported" xml:space="preserve">
+    <value>Тип возвращаемого значения `{0}` не поддерживается!</value>
+  </data>
+  <data name="Usage_VariableTypeNotSupported" xml:space="preserve">
     <value>Переменная "{0}" имеет тип `{1}`, который не поддерживается!</value>
   </data>
 </root>

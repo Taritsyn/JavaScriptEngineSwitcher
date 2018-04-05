@@ -1,16 +1,30 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using Microsoft.ClearScript.V8;
-using OriginalScriptEngineException = Microsoft.ClearScript.ScriptEngineException;
-using OriginalScriptInterruptedException = Microsoft.ClearScript.ScriptInterruptedException;
+using OriginalException = Microsoft.ClearScript.ScriptEngineException;
+using OriginalInterruptedException = Microsoft.ClearScript.ScriptInterruptedException;
 using OriginalUndefined = Microsoft.ClearScript.Undefined;
 
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Constants;
+using JavaScriptEngineSwitcher.Core.Extensions;
+using JavaScriptEngineSwitcher.Core.Helpers;
 using JavaScriptEngineSwitcher.Core.Utilities;
-using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
+using WrapperEngineLoadException = JavaScriptEngineSwitcher.Core.JsEngineLoadException;
+using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
+using WrapperFatalException = JavaScriptEngineSwitcher.Core.JsFatalException;
+using WrapperInterruptedException = JavaScriptEngineSwitcher.Core.JsInterruptedException;
+using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
+using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
+
+using JavaScriptEngineSwitcher.V8.Constants;
 using JavaScriptEngineSwitcher.V8.Resources;
 
 namespace JavaScriptEngineSwitcher.V8
@@ -41,21 +55,28 @@ namespace JavaScriptEngineSwitcher.V8
 		private static OriginalUndefined _originalUndefinedValue;
 
 		/// <summary>
-		/// Regular expression for working with the string representation of error
+		/// Regular expression for working with the error message with type
 		/// </summary>
-		private static readonly Regex _errorStringRegex =
-			new Regex(@"[ ]{3,5}at (?:[A-Za-z_\$][0-9A-Za-z_\$]* )?" +
-				@"\(?[^\s*?""<>|][^\t\n\r*?""<>|]*?:(?<lineNumber>\d+):(?<columnNumber>\d+)\)? -> ");
-
+		private static readonly Regex _errorMessageWithTypeRegex =
+			new Regex(@"^(?<type>" + CommonRegExps.JsFullNamePattern + @"):\s+(?<description>[\s\S]+?)$");
 
 		/// <summary>
-		/// Static constructor
+		/// Regular expression for working with the interface assembly load error message
 		/// </summary>
-		static V8JsEngine()
-		{
-			AssemblyResolver.Initialize();
-			LoadUndefinedValue();
-		}
+		private static readonly Regex _interfaceAssemblyLoadErrorMessage =
+			new Regex(@"^Cannot load V8 interface assembly. " +
+				"Load failure information for (?<assemblyFileName>" + CommonRegExps.DocumentNamePattern + "):");
+
+		/// <summary>
+		/// Synchronizer of JS engine initialization
+		/// </summary>
+		private static readonly object _initializationSynchronizer = new object();
+
+		/// <summary>
+		/// Flag indicating whether the JS engine is initialized
+		/// </summary>
+		private static bool _initialized;
+
 
 		/// <summary>
 		/// Constructs an instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
@@ -70,6 +91,8 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <param name="settings">Settings of the V8 JS engine</param>
 		public V8JsEngine(V8Settings settings)
 		{
+			Initialize();
+
 			V8Settings v8Settings = settings ?? new V8Settings();
 
 			var constraints = new V8RuntimeConstraints
@@ -101,18 +124,56 @@ namespace JavaScriptEngineSwitcher.V8
 			try
 			{
 				_jsEngine = new V8ScriptEngine(constraints, flags, debugPort);
-				_jsEngine.MaxRuntimeHeapSize = v8Settings.MaxHeapSize;
-				_jsEngine.RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval;
-				_jsEngine.MaxRuntimeStackUsage = v8Settings.MaxStackUsage;
+			}
+			catch (TypeLoadException e)
+			{
+				throw WrapTypeLoadException(e);
 			}
 			catch (Exception e)
 			{
-				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						EngineName, e.Message), EngineName, EngineVersion, e);
+				throw JsErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
 			}
+
+			_jsEngine.MaxRuntimeHeapSize = v8Settings.MaxHeapSize;
+			_jsEngine.RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval;
+			_jsEngine.MaxRuntimeStackUsage = v8Settings.MaxStackUsage;
 		}
 
+
+		/// <summary>
+		/// Initializes a JS engine
+		/// </summary>
+		private static void Initialize()
+		{
+			if (_initialized)
+			{
+				return;
+			}
+
+			lock (_initializationSynchronizer)
+			{
+				if (_initialized)
+				{
+					return;
+				}
+
+				AssemblyResolver.Initialize();
+
+				try
+				{
+					LoadUndefinedValue();
+				}
+				catch (InvalidOperationException e)
+				{
+					string message = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName) + " " +
+						e.Message;
+
+					throw new WrapperEngineLoadException(message, EngineName, EngineVersion, e);
+				}
+
+				_initialized = true;
+			}
+		}
 
 		/// <summary>
 		/// Loads a ClearScript <code>undefined</code> value
@@ -134,8 +195,7 @@ namespace JavaScriptEngineSwitcher.V8
 			}
 			else
 			{
-				throw new JsEngineLoadException(Strings.Engines_ClearScriptUndefinedValueNotLoaded,
-					EngineName, EngineVersion);
+				throw new InvalidOperationException(Strings.Engines_ClearScriptUndefinedValueNotLoaded);
 			}
 		}
 
@@ -171,39 +231,169 @@ namespace JavaScriptEngineSwitcher.V8
 			return value;
 		}
 
-		private JsRuntimeException ConvertScriptEngineExceptionToHostException(
-			OriginalScriptEngineException scriptEngineException)
+		private static WrapperException WrapScriptEngineException(OriginalException originalException)
 		{
-			string errorDetails = scriptEngineException.ErrorDetails;
+			WrapperException wrapperException;
+			string message = originalException.Message;
+			string messageWithErrorLocation = originalException.ErrorDetails;
+			string description = message;
+			string type = string.Empty;
+			string documentName = string.Empty;
 			int lineNumber = 0;
 			int columnNumber = 0;
+			string callStack = string.Empty;
+			string sourceFragment = string.Empty;
 
-			Match errorStringMatch = _errorStringRegex.Match(errorDetails);
-			if (errorStringMatch.Success)
+			if (originalException.IsFatal)
 			{
-				GroupCollection errorStringGroups = errorStringMatch.Groups;
+				if (message == "The V8 runtime has exceeded its memory limit")
+				{
+					wrapperException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+						originalException);
+				}
+				else
+				{
+					wrapperException = new WrapperFatalException(message, EngineName, EngineVersion,
+						originalException);
+				}
+			}
+			else
+			{
+				Match messageWithTypeMatch = _errorMessageWithTypeRegex.Match(message);
+				if (messageWithTypeMatch.Success)
+				{
+					GroupCollection messageWithTypeGroups = messageWithTypeMatch.Groups;
+					type = messageWithTypeGroups["type"].Value;
+					description = messageWithTypeGroups["description"].Value;
+					var errorLocationItems = new ErrorLocationItem[0];
 
-				lineNumber = int.Parse(errorStringGroups["lineNumber"].Value);
-				columnNumber = int.Parse(errorStringGroups["columnNumber"].Value);
+					if (message.Length < messageWithErrorLocation.Length)
+					{
+						string errorLocation = messageWithErrorLocation
+							.TrimStart(message)
+							.TrimStart(new char[] { '\n', '\r' })
+							;
+
+						errorLocationItems = JsErrorHelpers.ParseErrorLocation(errorLocation);
+						if (errorLocationItems.Length > 0)
+						{
+							ErrorLocationItem firstErrorLocationItem = errorLocationItems[0];
+
+							documentName = firstErrorLocationItem.DocumentName;
+							lineNumber = firstErrorLocationItem.LineNumber;
+							columnNumber = firstErrorLocationItem.ColumnNumber;
+							string sourceLine = firstErrorLocationItem.SourceFragment;
+							sourceFragment = JsErrorHelpers.GetSourceFragment(sourceLine, columnNumber);
+
+							firstErrorLocationItem.SourceFragment = sourceFragment;
+						}
+					}
+
+					WrapperScriptException wrapperScriptException;
+					if (type == JsErrorType.Syntax)
+					{
+						message = JsErrorHelpers.GenerateErrorMessage(type, description, documentName,
+							lineNumber, columnNumber, sourceFragment);
+
+						wrapperScriptException = new WrapperCompilationException(message, EngineName, EngineVersion,
+							originalException);
+					}
+					else
+					{
+						callStack = JsErrorHelpers.StringifyErrorLocationItems(errorLocationItems, true);
+						string callStackWithSourceFragment = JsErrorHelpers.StringifyErrorLocationItems(
+							errorLocationItems);
+						message = JsErrorHelpers.GenerateErrorMessage(type, description,
+							callStackWithSourceFragment);
+
+						wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+							originalException)
+						{
+							CallStack = callStack
+						};
+					}
+
+					wrapperScriptException.Type = type;
+					wrapperScriptException.DocumentName = documentName;
+					wrapperScriptException.LineNumber = lineNumber;
+					wrapperScriptException.ColumnNumber = columnNumber;
+					wrapperScriptException.SourceFragment = sourceFragment;
+
+					wrapperException = wrapperScriptException;
+				}
+				else
+				{
+					wrapperException = new WrapperException(message, EngineName, EngineVersion,
+						originalException);
+				}
 			}
 
-			var hostException = new JsRuntimeException(errorDetails, EngineName, EngineVersion,
-				scriptEngineException)
-			{
-				LineNumber = lineNumber,
-				ColumnNumber = columnNumber
-			};
+			wrapperException.Description = description;
 
-			return hostException;
+			return wrapperException;
 		}
 
-		private JsScriptInterruptedException ConvertScriptInterruptedExceptionToHostException(
-			OriginalScriptInterruptedException scriptInterruptedException)
+		private static WrapperInterruptedException WrapScriptInterruptedException(
+			OriginalInterruptedException originalInterruptedException)
 		{
-			var hostException = new JsScriptInterruptedException(CoreStrings.Runtime_ScriptInterrupted,
-				EngineName, EngineVersion, scriptInterruptedException);
+			string message = CoreStrings.Runtime_ScriptInterrupted;
+			string description = message;
 
-			return hostException;
+			var wrapperInterruptedException = new WrapperInterruptedException(message, EngineName, EngineVersion,
+				originalInterruptedException)
+			{
+				Description = description
+			}
+			;
+
+			return wrapperInterruptedException;
+		}
+
+		private static WrapperEngineLoadException WrapTypeLoadException(
+			TypeLoadException originalTypeLoadException)
+		{
+			string originalMessage = originalTypeLoadException.Message;
+			string jsEngineNotLoadedPart = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName);
+			string message;
+
+			Match errorMessageMatch = _interfaceAssemblyLoadErrorMessage.Match(originalMessage);
+			if (errorMessageMatch.Success)
+			{
+				string assemblyFileName = errorMessageMatch.Groups["assemblyFileName"].Value;
+
+				StringBuilder messageBuilder = StringBuilderPool.GetBuilder();
+				messageBuilder.Append(jsEngineNotLoadedPart);
+				messageBuilder.Append(" ");
+
+				messageBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, assemblyFileName);
+				messageBuilder.Append(" ");
+
+				if (assemblyFileName == DllName.V8Base64Bit || assemblyFileName == DllName.V8Base32Bit)
+				{
+					messageBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+						assemblyFileName == DllName.V8Base64Bit ?
+							"JavaScriptEngineSwitcher.V8.Native.win-x64"
+							:
+							"JavaScriptEngineSwitcher.V8.Native.win-x86"
+						);
+					messageBuilder.Append(" ");
+					messageBuilder.Append(Strings.Engine_VcRedist2015InstallationRequired);
+				}
+				else
+				{
+					messageBuilder.AppendFormat(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+				}
+
+				message = messageBuilder.ToString();
+				StringBuilderPool.ReleaseBuilder(messageBuilder);
+			}
+			else
+			{
+				message = jsEngineNotLoadedPart + " " +
+					string.Format(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+			}
+
+			return new WrapperEngineLoadException(message, EngineName, EngineVersion, originalTypeLoadException);
 		}
 
 		#endregion
@@ -223,13 +413,13 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				result = _jsEngine.Evaluate(documentName, false, expression);
 			}
-			catch (OriginalScriptEngineException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptEngineExceptionToHostException(e);
+				throw WrapScriptEngineException(e);
 			}
-			catch (OriginalScriptInterruptedException e)
+			catch (OriginalInterruptedException e)
 			{
-				throw ConvertScriptInterruptedExceptionToHostException(e);
+				throw WrapScriptInterruptedException(e);
 			}
 
 			result = MapToHostType(result);
@@ -260,13 +450,13 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				_jsEngine.Execute(documentName, false, code);
 			}
-			catch (OriginalScriptEngineException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptEngineExceptionToHostException(e);
+				throw WrapScriptEngineException(e);
 			}
-			catch (OriginalScriptInterruptedException e)
+			catch (OriginalInterruptedException e)
 			{
-				throw ConvertScriptInterruptedExceptionToHostException(e);
+				throw WrapScriptInterruptedException(e);
 			}
 		}
 
@@ -288,13 +478,13 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				result = _jsEngine.Invoke(functionName, processedArgs);
 			}
-			catch (OriginalScriptEngineException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptEngineExceptionToHostException(e);
+				throw WrapScriptEngineException(e);
 			}
-			catch (OriginalScriptInterruptedException e)
+			catch (OriginalInterruptedException e)
 			{
-				throw ConvertScriptInterruptedExceptionToHostException(e);
+				throw WrapScriptInterruptedException(e);
 			}
 
 			result = MapToHostType(result);
@@ -325,13 +515,13 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				result = _jsEngine.Script[variableName];
 			}
-			catch (OriginalScriptEngineException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptEngineExceptionToHostException(e);
+				throw WrapScriptEngineException(e);
 			}
-			catch (OriginalScriptInterruptedException e)
+			catch (OriginalInterruptedException e)
 			{
-				throw ConvertScriptInterruptedExceptionToHostException(e);
+				throw WrapScriptInterruptedException(e);
 			}
 
 			result = MapToHostType(result);
@@ -354,13 +544,13 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				_jsEngine.Script[variableName] = processedValue;
 			}
-			catch (OriginalScriptEngineException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptEngineExceptionToHostException(e);
+				throw WrapScriptEngineException(e);
 			}
-			catch (OriginalScriptInterruptedException e)
+			catch (OriginalInterruptedException e)
 			{
-				throw ConvertScriptInterruptedExceptionToHostException(e);
+				throw WrapScriptInterruptedException(e);
 			}
 		}
 
@@ -377,13 +567,13 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				_jsEngine.AddHostObject(itemName, processedValue);
 			}
-			catch (OriginalScriptEngineException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptEngineExceptionToHostException(e);
+				throw WrapScriptEngineException(e);
 			}
-			catch (OriginalScriptInterruptedException e)
+			catch (OriginalInterruptedException e)
 			{
-				throw ConvertScriptInterruptedExceptionToHostException(e);
+				throw WrapScriptInterruptedException(e);
 			}
 		}
 
@@ -393,13 +583,13 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				_jsEngine.AddHostType(itemName, type);
 			}
-			catch (OriginalScriptEngineException e)
+			catch (OriginalException e)
 			{
-				throw ConvertScriptEngineExceptionToHostException(e);
+				throw WrapScriptEngineException(e);
 			}
-			catch (OriginalScriptInterruptedException e)
+			catch (OriginalInterruptedException e)
 			{
-				throw ConvertScriptInterruptedExceptionToHostException(e);
+				throw WrapScriptInterruptedException(e);
 			}
 		}
 
@@ -410,7 +600,7 @@ namespace JavaScriptEngineSwitcher.V8
 
 		protected override void InnerCollectGarbage()
 		{
-				_jsEngine.CollectGarbage(true);
+			_jsEngine.CollectGarbage(true);
 		}
 
 		#region IJsEngine implementation

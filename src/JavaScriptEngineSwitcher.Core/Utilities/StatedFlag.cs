@@ -1,4 +1,4 @@
-﻿namespace JavaScriptEngineSwitcher.Core
+﻿namespace JavaScriptEngineSwitcher.Core.Utilities
 {
 	public struct StatedFlag
 	{

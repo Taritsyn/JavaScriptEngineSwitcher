@@ -1,8 +1,8 @@
 #if !NETSTANDARD1_3
 using System;
 using System.Runtime.Serialization;
-#endif
 
+#endif
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
 	/// <summary>

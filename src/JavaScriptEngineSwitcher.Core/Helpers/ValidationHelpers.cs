@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-using JavaScriptEngineSwitcher.Core.Utilities;
+using JavaScriptEngineSwitcher.Core.Extensions;
 
 namespace JavaScriptEngineSwitcher.Core.Helpers
 {
@@ -34,8 +34,12 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// <summary>
 		/// Regular expression for working with JS names
 		/// </summary>
-		private static readonly Regex _jsNameRegex = new Regex(@"^[$_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}]" +
-			@"[$_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\u200C\u200D\p{Mn}\p{Mc}\p{Nd}\p{Pc}]*$");
+		private static readonly Regex _jsNameRegex = new Regex("^" + CommonRegExps.JsNamePattern + "$");
+
+		/// <summary>
+		/// Regular expression for working with document names
+		/// </summary>
+		private static readonly Regex _documentNameRegex = new Regex("^" + CommonRegExps.DocumentNamePattern + "$");
 
 
 		/// <summary>
@@ -71,6 +75,16 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		public static bool CheckNameFormat(string name)
 		{
 			return _jsNameRegex.IsMatch(name);
+		}
+
+		/// <summary>
+		/// Checks a format of the document name
+		/// </summary>
+		/// <param name="name">The document name</param>
+		/// <returns>Result of check (true - correct format; false - wrong format)</returns>
+		public static bool CheckDocumentNameFormat(string name)
+		{
+			return _documentNameRegex.IsMatch(name);
 		}
 	}
 }

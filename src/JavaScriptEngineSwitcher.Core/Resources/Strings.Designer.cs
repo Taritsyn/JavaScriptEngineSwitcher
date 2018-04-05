@@ -98,6 +98,22 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "Resource with name '{0}' is null."
+		/// </summary>
+		public static string Common_ResourceIsNull
+		{
+			get { return GetString("Common_ResourceIsNull"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "See the original error message: “{0}”."
+		/// </summary>
+		public static string Common_SeeOriginalErrorMessage
+		{
+			get { return GetString("Common_SeeOriginalErrorMessage"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "Value cannot be empty."
 		/// </summary>
 		public static string Common_ValueIsEmpty
@@ -138,6 +154,62 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "Most likely it happened, because the '{0}' assembly or one of its dependencies was not found."
+		/// </summary>
+		public static string Engine_AssemblyNotFound
+		{
+			get { return GetString("Engine_AssemblyNotFound"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Failed to create instance of the {0}."
+		/// </summary>
+		public static string Engine_JsEngineNotLoaded
+		{
+			get { return GetString("Engine_JsEngineNotLoaded"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "There is no {0} package for the {1} processor architecture."
+		/// </summary>
+		public static string Engine_NoNuGetPackageForProcessorArchitecture
+		{
+			get { return GetString("Engine_NoNuGetPackageForProcessorArchitecture"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Try to install the {0} package via NuGet."
+		/// </summary>
+		public static string Engine_NuGetPackageInstallationRequired
+		{
+			get { return GetString("Engine_NuGetPackageInstallationRequired"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Your operating system is not supported by the engine."
+		/// </summary>
+		public static string Engine_OperatingSystemNotSupported
+		{
+			get { return GetString("Engine_OperatingSystemNotSupported"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "{0} processor architecture is not supported by the engine."
+		/// </summary>
+		public static string Engine_ProcessorArchitectureNotSupported
+		{
+			get { return GetString("Engine_ProcessorArchitectureNotSupported"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Call stack"
+		/// </summary>
+		public static string ErrorDetails_CallStack
+		{
+			get { return GetString("ErrorDetails_CallStack"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "Category"
 		/// </summary>
 		public static string ErrorDetails_Category
@@ -151,6 +223,22 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		public static string ErrorDetails_ColumnNumber
 		{
 			get { return GetString("ErrorDetails_ColumnNumber"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Description"
+		/// </summary>
+		public static string ErrorDetails_Description
+		{
+			get { return GetString("ErrorDetails_Description"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Document name"
+		/// </summary>
+		public static string ErrorDetails_DocumentName
+		{
+			get { return GetString("ErrorDetails_DocumentName"); }
 		}
 
 		/// <summary>
@@ -202,27 +290,11 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Resource with name '{0}' is null."
+		/// Looks up a localized string similar to "Type"
 		/// </summary>
-		public static string Resources_ResourceIsNull
+		public static string ErrorDetails_Type
 		{
-			get { return GetString("Resources_ResourceIsNull"); }
-		}
-
-		/// <summary>
-		/// Looks up a localized string similar to "The embedded host object '{0}' has a type `{1}`, which is not supported."
-		/// </summary>
-		public static string Runtime_EmbeddedHostObjectTypeNotSupported
-		{
-			get { return GetString("Runtime_EmbeddedHostObjectTypeNotSupported"); }
-		}
-
-		/// <summary>
-		/// Looks up a localized string similar to "The embedded host type `{0}` is not supported."
-		/// </summary>
-		public static string Runtime_EmbeddedHostTypeNotSupported
-		{
-			get { return GetString("Runtime_EmbeddedHostTypeNotSupported"); }
+			get { return GetString("ErrorDetails_Type"); }
 		}
 
 		/// <summary>
@@ -234,51 +306,11 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "One of the function parameters '{0}' has a type `{1}`, which is not supported."
+		/// Looks up a localized string similar to "The '{0}' line of the script error location has an incorrect format."
 		/// </summary>
-		public static string Runtime_FunctionParameterTypeNotSupported
+		public static string Runtime_InvalidErrorLocationLineFormat
 		{
-			get { return GetString("Runtime_FunctionParameterTypeNotSupported"); }
-		}
-
-		/// <summary>
-		/// Looks up a localized string similar to "The function name '{0}' has incorrect format."
-		/// </summary>
-		public static string Runtime_InvalidFunctionNameFormat
-		{
-			get { return GetString("Runtime_InvalidFunctionNameFormat"); }
-		}
-
-		/// <summary>
-		/// Looks up a localized string similar to "The script item name '{0}' has incorrect format."
-		/// </summary>
-		public static string Runtime_InvalidScriptItemNameFormat
-		{
-			get { return GetString("Runtime_InvalidScriptItemNameFormat"); }
-		}
-
-		/// <summary>
-		/// Looks up a localized string similar to "The variable name '{0}' has incorrect format."
-		/// </summary>
-		public static string Runtime_InvalidVariableNameFormat
-		{
-			get { return GetString("Runtime_InvalidVariableNameFormat"); }
-		}
-
-		/// <summary>
-		/// Looks up a localized string similar to "During loading of {0} error has occurred. See more details: {1}"
-		/// </summary>
-		public static string Runtime_JsEngineNotLoaded
-		{
-			get { return GetString("Runtime_JsEngineNotLoaded"); }
-		}
-
-		/// <summary>
-		/// Looks up a localized string similar to "The type of return value `{0}` is not supported."
-		/// </summary>
-		public static string Runtime_ReturnValueTypeNotSupported
-		{
-			get { return GetString("Runtime_ReturnValueTypeNotSupported"); }
+			get { return GetString("Runtime_InvalidErrorLocationLineFormat"); }
 		}
 
 		/// <summary>
@@ -290,11 +322,115 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "Script execution exceeded timeout."
+		/// </summary>
+		public static string Runtime_ScriptTimeoutExceeded
+		{
+			get { return GetString("Runtime_ScriptTimeoutExceeded"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Сannot execute a '{0}' file, because it is empty."
+		/// </summary>
+		public static string Usage_CannotExecuteEmptyFile
+		{
+			get { return GetString("Usage_CannotExecuteEmptyFile"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Сannot execute a '{0}' resource, because it is empty."
+		/// </summary>
+		public static string Usage_CannotExecuteEmptyResource
+		{
+			get { return GetString("Usage_CannotExecuteEmptyResource"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "The embedded host object '{0}' has a type `{1}`, which is not supported."
+		/// </summary>
+		public static string Usage_EmbeddedHostObjectTypeNotSupported
+		{
+			get { return GetString("Usage_EmbeddedHostObjectTypeNotSupported"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "The embedded host type `{0}` is not supported."
+		/// </summary>
+		public static string Usage_EmbeddedHostTypeNotSupported
+		{
+			get { return GetString("Usage_EmbeddedHostTypeNotSupported"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "One of the function parameters '{0}' has a type `{1}`, which is not supported."
+		/// </summary>
+		public static string Usage_FunctionParameterTypeNotSupported
+		{
+			get { return GetString("Usage_FunctionParameterTypeNotSupported"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "The document name '{0}' has incorrect format."
+		/// </summary>
+		public static string Usage_InvalidDocumentNameFormat
+		{
+			get { return GetString("Usage_InvalidDocumentNameFormat"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "The file name '{0}' has incorrect format."
+		/// </summary>
+		public static string Usage_InvalidFileNameFormat
+		{
+			get { return GetString("Usage_InvalidFileNameFormat"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "The function name '{0}' has incorrect format."
+		/// </summary>
+		public static string Usage_InvalidFunctionNameFormat
+		{
+			get { return GetString("Usage_InvalidFunctionNameFormat"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "The resource name '{0}' has incorrect format."
+		/// </summary>
+		public static string Usage_InvalidResourceNameFormat
+		{
+			get { return GetString("Usage_InvalidResourceNameFormat"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "The script item name '{0}' has incorrect format."
+		/// </summary>
+		public static string Usage_InvalidScriptItemNameFormat
+		{
+			get { return GetString("Usage_InvalidScriptItemNameFormat"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "The variable name '{0}' has incorrect format."
+		/// </summary>
+		public static string Usage_InvalidVariableNameFormat
+		{
+			get { return GetString("Usage_InvalidVariableNameFormat"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "The type of return value `{0}` is not supported."
+		/// </summary>
+		public static string Usage_ReturnValueTypeNotSupported
+		{
+			get { return GetString("Usage_ReturnValueTypeNotSupported"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "The variable '{0}' has a type `{1}`, which is not supported."
 		/// </summary>
-		public static string Runtime_VariableTypeNotSupported
+		public static string Usage_VariableTypeNotSupported
 		{
-			get { return GetString("Runtime_VariableTypeNotSupported"); }
+			get { return GetString("Usage_VariableTypeNotSupported"); }
 		}
 
 		private static string GetString(string name)
