@@ -93,7 +93,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			}
 			catch (Exception e)
 			{
-				throw JsErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
+				throw JsErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion, true);
 			}
 		}
 
@@ -189,7 +189,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				WrapperScriptException wrapperScriptException;
 				if (type == JsErrorType.Syntax)
 				{
-					message = JsErrorHelpers.GenerateErrorMessage(type, description, documentName,
+					message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName,
 						lineNumber, 0);
 
 					wrapperScriptException = new WrapperCompilationException(message, EngineName, EngineVersion,
@@ -212,7 +212,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 						}
 					}
 
-					message = JsErrorHelpers.GenerateErrorMessage(type, description, callStack);
+					message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, callStack);
 
 					wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
 						originalException)

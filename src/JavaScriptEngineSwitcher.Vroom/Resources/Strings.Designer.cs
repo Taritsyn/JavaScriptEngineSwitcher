@@ -66,11 +66,11 @@ namespace JavaScriptEngineSwitcher.Vroom.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "You can build the '{0}' assembly by using following instructions from official repository - {1}."
+		/// Looks up a localized string similar to "You can build the '{0}' and '{1}' assemblies by using following instructions from official..."
 		/// </summary>
-		internal static string Engine_BuildNativeAssembly
+		internal static string Engine_BuildNativeAssemblies
 		{
-			get { return GetString("Engine_BuildNativeAssembly"); }
+			get { return GetString("Engine_BuildNativeAssemblies"); }
 		}
 
 		/// <summary>

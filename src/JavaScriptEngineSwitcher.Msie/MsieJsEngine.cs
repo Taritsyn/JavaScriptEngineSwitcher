@@ -83,6 +83,10 @@ namespace JavaScriptEngineSwitcher.Msie
 				});
 				_engineVersion = _jsEngine.Mode;
 			}
+			catch (OriginalUsageException e)
+			{
+				throw JsErrorHelpers.WrapEngineLoadException(e, EngineName, _engineVersion);
+			}
 			catch (OriginalException e)
 			{
 				throw WrapJsException(e);

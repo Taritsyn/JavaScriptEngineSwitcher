@@ -120,8 +120,8 @@
   <data name="Common_CannotSerializeType" xml:space="preserve">
     <value>Serialization of type `{0}` is not supported.</value>
   </data>
-  <data name="Engine_BuildNativeAssembly" xml:space="preserve">
-    <value>You can build the '{0}' assembly by using following instructions from official repository - {1}.</value>
+  <data name="Engine_BuildNativeAssemblies" xml:space="preserve">
+    <value>You can build the '{0}' and '{1}' assemblies by using following instructions from official repository - {2}.</value>
   </data>
   <data name="Engine_VcRedist2012And2015InstallationRequired" xml:space="preserve">
     <value>Try to install the Visual C++ Redistributable for Visual Studio 2012 (https://www.microsoft.com/en-us/download/details.aspx?id=30679) and the Microsoft Visual C++ 2015 Redistributable (https://www.microsoft.com/en-us/download/details.aspx?id=53840).</value>

@@ -174,23 +174,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			}
 			catch (DllNotFoundException e)
 			{
-				throw WrapTypeLoadException(e);
-			}
-#if NETSTANDARD1_3
-			catch (TypeLoadException e)
-#else
-			catch (EntryPointNotFoundException e)
-#endif
-			{
-				throw WrapTypeLoadException(e);
-			}
-			catch (OriginalException e)
-			{
-				throw WrapJsException(e);
+				throw WrapDllNotFoundException(e);
 			}
 			catch (Exception e)
 			{
-				throw CoreErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
+				throw CoreErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion, true);
 			}
 			finally
 			{
@@ -236,10 +224,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					}
 					catch (InvalidOperationException e)
 					{
-						string message = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName) + " " +
-							e.Message;
-
-						throw new WrapperEngineLoadException(message, EngineName, EngineVersion, e);
+						throw CoreErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion);
 					}
 				}
 
@@ -1051,12 +1036,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 								callStackWithSourceFragment = CoreErrorHelpers.StringifyErrorLocationItems(callStackItems);
 							}
 
-							message = CoreErrorHelpers.GenerateErrorMessage(type, description,
+							message = CoreErrorHelpers.GenerateScriptErrorMessage(type, description,
 								callStackWithSourceFragment);
 						}
 						else
 						{
-							message = CoreErrorHelpers.GenerateErrorMessage(type, description, documentName,
+							message = CoreErrorHelpers.GenerateScriptErrorMessage(type, description, documentName,
 								lineNumber, columnNumber, sourceFragment);
 						}
 					}
@@ -1129,57 +1114,52 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			return wrapperException;
 		}
 
-		private static WrapperEngineLoadException WrapTypeLoadException(
-			TypeLoadException originalTypeLoadException)
+		private static WrapperEngineLoadException WrapDllNotFoundException(
+			DllNotFoundException originalDllNotFoundException)
 		{
-			string originalMessage = originalTypeLoadException.Message;
-			string jsEngineNotLoadedPart = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName);
+			string originalMessage = originalDllNotFoundException.Message;
+			string description;
 			string message;
 			bool isMonoRuntime = Utils.IsMonoRuntime();
 
-			if (originalTypeLoadException is DllNotFoundException
-				&& ((isMonoRuntime && originalMessage == DllName.Universal)
-					|| originalMessage.ContainsQuotedValue(DllName.Universal)))
+			if ((isMonoRuntime && originalMessage == DllName.Universal)
+				|| originalMessage.ContainsQuotedValue(DllName.Universal))
 			{
 				const string buildInstructionsUrl =
 					"https://github.com/Microsoft/ChakraCore/wiki/Building-ChakraCore#{0}";
-				const string monoInstallationInstructionsUrl =
+				const string manualInstallationInstructionsUrl =
 					"https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/JS-Engine-Switcher:-ChakraCore#{0}";
 				Architecture osArchitecture = RuntimeInformation.OSArchitecture;
 
-				StringBuilder messageBuilder = StringBuilderPool.GetBuilder();
-				messageBuilder.Append(jsEngineNotLoadedPart);
-				messageBuilder.Append(" ");
-
+				StringBuilder descriptionBuilder = StringBuilderPool.GetBuilder();
 				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 				{
-					messageBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForWindows);
-					messageBuilder.Append(" ");
-
+					descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForWindows);
+					descriptionBuilder.Append(" ");
 					if (osArchitecture == Architecture.X64 || osArchitecture == Architecture.X86)
 					{
-						messageBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+						descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
 							Utils.Is64BitProcess() ?
 								"JavaScriptEngineSwitcher.ChakraCore.Native.win-x64"
 								:
 								"JavaScriptEngineSwitcher.ChakraCore.Native.win-x86"
 						);
-						messageBuilder.Append(" ");
-						messageBuilder.Append(Strings.Engine_VcRedist2015InstallationRequired);
+						descriptionBuilder.Append(" ");
+						descriptionBuilder.Append(Strings.Engine_VcRedist2015InstallationRequired);
 					}
 					else if (osArchitecture == Architecture.Arm)
 					{
-						messageBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+						descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
 							"JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm");
 					}
 					else
 					{
-						messageBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
+						descriptionBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
 							"JavaScriptEngineSwitcher.ChakraCore.Native.win*",
 							osArchitecture.ToString().ToLowerInvariant()
 						);
-						messageBuilder.Append(" ");
-						messageBuilder.AppendFormat(Strings.Engine_BuildNativeAssemblyForCurrentProcessorArchitecture,
+						descriptionBuilder.Append(" ");
+						descriptionBuilder.AppendFormat(Strings.Engine_BuildNativeAssemblyForCurrentProcessorArchitecture,
 							DllName.ForWindows,
 							string.Format(buildInstructionsUrl, "windows")
 						);
@@ -1187,31 +1167,30 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				}
 				else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
 				{
-					messageBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForLinux);
-					messageBuilder.Append(" ");
-
+					descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForLinux);
+					descriptionBuilder.Append(" ");
 					if (isMonoRuntime)
 					{
-						messageBuilder.AppendFormat(Strings.Engine_ManualInstallationUnderMonoRequired,
+						descriptionBuilder.AppendFormat(Strings.Engine_ManualInstallationUnderMonoRequired,
 							"JavaScriptEngineSwitcher.ChakraCore.Native.linux-*",
-							string.Format(monoInstallationInstructionsUrl, "linux")
+							string.Format(manualInstallationInstructionsUrl, "linux")
 						);
 					}
 					else
 					{
 						if (osArchitecture == Architecture.X64)
 						{
-							messageBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+							descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
 								"JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64");
 						}
 						else
 						{
-							messageBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
+							descriptionBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
 								"JavaScriptEngineSwitcher.ChakraCore.Native.linux-*",
 								osArchitecture.ToString().ToLowerInvariant()
 							);
-							messageBuilder.Append(" ");
-							messageBuilder.AppendFormat(Strings.Engine_BuildNativeAssemblyForCurrentProcessorArchitecture,
+							descriptionBuilder.Append(" ");
+							descriptionBuilder.AppendFormat(Strings.Engine_BuildNativeAssemblyForCurrentProcessorArchitecture,
 								DllName.ForLinux,
 								string.Format(buildInstructionsUrl, "linux")
 							);
@@ -1220,31 +1199,30 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				}
 				else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
 				{
-					messageBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForOsx);
-					messageBuilder.Append(" ");
-
+					descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForOsx);
+					descriptionBuilder.Append(" ");
 					if (isMonoRuntime)
 					{
-						messageBuilder.AppendFormat(Strings.Engine_ManualInstallationUnderMonoRequired,
+						descriptionBuilder.AppendFormat(Strings.Engine_ManualInstallationUnderMonoRequired,
 							"JavaScriptEngineSwitcher.ChakraCore.Native.osx-*",
-							string.Format(monoInstallationInstructionsUrl, "os-x")
+							string.Format(manualInstallationInstructionsUrl, "os-x")
 						);
 					}
 					else
 					{
 						if (osArchitecture == Architecture.X64)
 						{
-							messageBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+							descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
 								"JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64");
 						}
 						else
 						{
-							messageBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
+							descriptionBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
 								"JavaScriptEngineSwitcher.ChakraCore.Native.osx-*",
 								osArchitecture.ToString().ToLowerInvariant()
 							);
-							messageBuilder.Append(" ");
-							messageBuilder.AppendFormat(Strings.Engine_BuildNativeAssemblyForCurrentProcessorArchitecture,
+							descriptionBuilder.Append(" ");
+							descriptionBuilder.AppendFormat(Strings.Engine_BuildNativeAssemblyForCurrentProcessorArchitecture,
 								DllName.ForOsx,
 								string.Format(buildInstructionsUrl, "os-x")
 							);
@@ -1253,19 +1231,27 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				}
 				else
 				{
-					messageBuilder.Append(CoreStrings.Engine_OperatingSystemNotSupported);
+					descriptionBuilder.Append(CoreStrings.Engine_OperatingSystemNotSupported);
 				}
 
-				message = messageBuilder.ToString();
-				StringBuilderPool.ReleaseBuilder(messageBuilder);
+				description = descriptionBuilder.ToString();
+				StringBuilderPool.ReleaseBuilder(descriptionBuilder);
+
+				message = CoreErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName);
 			}
 			else
 			{
-				message = jsEngineNotLoadedPart + " " +
-					string.Format(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+				description = originalMessage;
+				message = CoreErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName, true);
 			}
 
-			return new WrapperEngineLoadException(message, EngineName, EngineVersion, originalTypeLoadException);
+			var wrapperEngineLoadException = new WrapperEngineLoadException(message, EngineName, EngineVersion,
+				originalDllNotFoundException)
+			{
+				Description = description
+			};
+
+			return wrapperEngineLoadException;
 		}
 
 		#endregion

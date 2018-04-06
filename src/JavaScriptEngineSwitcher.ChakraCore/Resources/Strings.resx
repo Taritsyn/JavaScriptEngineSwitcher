@@ -175,7 +175,7 @@
     <value>Could not find suitable method or not enough arguments to invoke of '{0}' method of the host object.</value>
   </data>
   <data name="Engine_ManualInstallationUnderMonoRequired" xml:space="preserve">
-    <value>{0} packages do not support installation under Mono, but you can to install the native assemblies manually ({1}).</value>
+    <value>{0} packages do not support installation under Mono, but you can to install the native assembly manually ({1}).</value>
   </data>
   <data name="Engine_BuildNativeAssemblyForCurrentProcessorArchitecture" xml:space="preserve">
     <value>You can build the '{0}' assembly for the current processor architecture by using following instructions from official repository - {1}.</value>

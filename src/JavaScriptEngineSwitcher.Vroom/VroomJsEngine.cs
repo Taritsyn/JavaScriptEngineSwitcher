@@ -128,23 +128,23 @@ namespace JavaScriptEngineSwitcher.Vroom
 				Exception innerException = e.InnerException;
 				if (innerException != null)
 				{
-					var typeLoadException = innerException as TypeLoadException;
-					if (typeLoadException != null)
+					var dllNotFoundException = innerException as DllNotFoundException;
+					if (dllNotFoundException != null)
 					{
-						throw WrapTypeLoadException(typeLoadException);
+						throw WrapDllNotFoundException(dllNotFoundException);
 					}
 					else
 					{
-						throw JsErrorHelpers.WrapUnknownEngineLoadException(innerException,
-							EngineName, EngineVersion);
+						throw JsErrorHelpers.WrapEngineLoadException(innerException, EngineName, EngineVersion,
+							true);
 					}
 				}
 
-				throw JsErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
+				throw JsErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion, true);
 			}
 			catch (Exception e)
 			{
-				throw JsErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
+				throw JsErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion, true);
 			}
 			finally
 			{
@@ -232,7 +232,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 				{
 					WrapperScriptException wrapperScriptException;
 					description = scriptErrorMessageMatch.Groups["description"].Value;
-					message = JsErrorHelpers.GenerateErrorMessage(type, description, documentName,
+					message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName,
 						lineNumber, columnNumber);
 
 					if (type == JsErrorType.Syntax)
@@ -269,79 +269,92 @@ namespace JavaScriptEngineSwitcher.Vroom
 			Exception originalAssemblyLoaderException)
 		{
 			string originalMessage = originalAssemblyLoaderException.Message;
-			string jsEngineNotLoadedPart = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName);
+			string description;
 			string message;
 			Architecture osArchitecture = RuntimeInformation.OSArchitecture;
 
 			if ((osArchitecture == Architecture.X64 || osArchitecture == Architecture.X86)
 				&& originalMessage.StartsWith("Couldn't load native assembly at "))
 			{
-				message = jsEngineNotLoadedPart + " " + Strings.Engine_VcRedist2012And2015InstallationRequired;
+				description = Strings.Engine_VcRedist2012And2015InstallationRequired;
+				message = JsErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName);
 			}
 			else
 			{
-				message = jsEngineNotLoadedPart + " " +
-					string.Format(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+				description = originalMessage;
+				message = JsErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName, true);
 			}
 
-			return new WrapperEngineLoadException(message, EngineName, EngineVersion, originalAssemblyLoaderException);
+			var wrapperEngineLoadException = new WrapperEngineLoadException(message, EngineName, EngineVersion,
+				originalAssemblyLoaderException)
+			{
+				Description = description
+			};
+
+			return wrapperEngineLoadException;
 		}
 
-		private static WrapperEngineLoadException WrapTypeLoadException(
-			TypeLoadException originalTypeLoadException)
+		private static WrapperEngineLoadException WrapDllNotFoundException(
+			DllNotFoundException originalDllNotFoundException)
 		{
-			string originalMessage = originalTypeLoadException.Message;
-			string jsEngineNotLoadedPart = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName);
+			string originalMessage = originalDllNotFoundException.Message;
+			string description;
 			string message;
 			bool isMonoRuntime = Utils.IsMonoRuntime();
 
-			if (originalTypeLoadException is DllNotFoundException
-				&& ((isMonoRuntime && originalMessage == DllName.Universal)
-					|| originalMessage.ContainsQuotedValue(DllName.Universal)))
+			if ((isMonoRuntime && originalMessage == DllName.Universal)
+				|| originalMessage.ContainsQuotedValue(DllName.Universal))
 			{
 				const string buildInstructionsUrl = "https://github.com/pauldotknopf/vroomjs-core#maclinux";
+				bool quoteDescription = false;
 
-				StringBuilder messageBuilder = StringBuilderPool.GetBuilder();
-				messageBuilder.Append(jsEngineNotLoadedPart);
-				messageBuilder.Append(" ");
-
+				StringBuilder descriptionBuilder = StringBuilderPool.GetBuilder();
 				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 				{
 					Architecture osArchitecture = RuntimeInformation.OSArchitecture;
-
 					if (osArchitecture == Architecture.X64 || osArchitecture == Architecture.X86)
 					{
-						messageBuilder.AppendFormat(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+						descriptionBuilder.Append(originalMessage);
+						quoteDescription = true;
 					}
 					else
 					{
-						messageBuilder.AppendFormat(CoreStrings.Engine_ProcessorArchitectureNotSupported,
+						descriptionBuilder.AppendFormat(CoreStrings.Engine_ProcessorArchitectureNotSupported,
 							osArchitecture.ToString().ToLowerInvariant());
 					}
 				}
 				else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
 					|| RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
 				{
-					messageBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForUnix);
-					messageBuilder.Append(" ");
-					messageBuilder.AppendFormat(Strings.Engine_BuildNativeAssembly, DllName.ForUnix,
-						buildInstructionsUrl);
+					descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForUnix);
+					descriptionBuilder.Append(" ");
+					descriptionBuilder.AppendFormat(Strings.Engine_BuildNativeAssemblies, DllName.ForUnix,
+						"libv8.so." + EngineVersion, buildInstructionsUrl);
 				}
 				else
 				{
-					messageBuilder.Append(CoreStrings.Engine_OperatingSystemNotSupported);
+					descriptionBuilder.Append(CoreStrings.Engine_OperatingSystemNotSupported);
 				}
 
-				message = messageBuilder.ToString();
-				StringBuilderPool.ReleaseBuilder(messageBuilder);
+				description = descriptionBuilder.ToString();
+				StringBuilderPool.ReleaseBuilder(descriptionBuilder);
+
+				message = JsErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName,
+					quoteDescription);
 			}
 			else
 			{
-				message = jsEngineNotLoadedPart + " " +
-					string.Format(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+				description = originalMessage;
+				message = JsErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName, true);
 			}
 
-			return new WrapperEngineLoadException(message, EngineName, EngineVersion, originalTypeLoadException);
+			var wrapperEngineLoadException = new WrapperEngineLoadException(message, EngineName, EngineVersion,
+				originalDllNotFoundException)
+			{
+				Description = description
+			};
+
+			return wrapperEngineLoadException;
 		}
 
 		#endregion

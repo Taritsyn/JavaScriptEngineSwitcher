@@ -86,7 +86,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			}
 			catch (Exception e)
 			{
-				throw JsErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
+				throw JsErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion, true);
 			}
 		}
 
@@ -130,7 +130,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			string documentName = originalParserException.Source;
 			int lineNumber = originalParserException.LineNumber;
 			int columnNumber = originalParserException.Column;
-			string message = JsErrorHelpers.GenerateErrorMessage(type, description, documentName, lineNumber,
+			string message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName, lineNumber,
 				columnNumber);
 
 			var wrapperCompilationException = new WrapperCompilationException(message, EngineName, EngineVersion,
@@ -171,7 +171,7 @@ namespace JavaScriptEngineSwitcher.Jint
 
 			if (!string.IsNullOrEmpty(type))
 			{
-				message = JsErrorHelpers.GenerateErrorMessage(type, description, documentName, lineNumber,
+				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName, lineNumber,
 					columnNumber);
 
 				var wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
@@ -229,7 +229,7 @@ namespace JavaScriptEngineSwitcher.Jint
 
 			string description = originalRecursionException.Message;
 			string type = JsErrorType.Range;
-			string message = JsErrorHelpers.GenerateErrorMessage(type, description, callStack);
+			string message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, callStack);
 
 			var wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
 				originalRecursionException)
@@ -247,7 +247,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			string description = originalStatementsException.Message;
 			string type = JsErrorType.Range;
-			string message = JsErrorHelpers.GenerateErrorMessage(type, description, string.Empty);
+			string message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty);
 
 			var wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
 				originalStatementsException)

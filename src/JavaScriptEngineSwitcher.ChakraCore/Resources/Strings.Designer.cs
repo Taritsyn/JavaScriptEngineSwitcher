@@ -210,7 +210,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "{0} packages do not support installation under Mono, but you can to install the native assemblies..."
+		/// Looks up a localized string similar to "{0} packages do not support installation under Mono, but you can to install the native assembly..."
 		/// </summary>
 		internal static string Engine_ManualInstallationUnderMonoRequired
 		{

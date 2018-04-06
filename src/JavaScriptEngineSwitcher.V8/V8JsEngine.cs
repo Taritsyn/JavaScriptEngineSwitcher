@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -131,7 +130,7 @@ namespace JavaScriptEngineSwitcher.V8
 			}
 			catch (Exception e)
 			{
-				throw JsErrorHelpers.WrapUnknownEngineLoadException(e, EngineName, EngineVersion);
+				throw JsErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion, true);
 			}
 
 			_jsEngine.MaxRuntimeHeapSize = v8Settings.MaxHeapSize;
@@ -165,10 +164,7 @@ namespace JavaScriptEngineSwitcher.V8
 				}
 				catch (InvalidOperationException e)
 				{
-					string message = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName) + " " +
-						e.Message;
-
-					throw new WrapperEngineLoadException(message, EngineName, EngineVersion, e);
+					throw JsErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion);
 				}
 
 				_initialized = true;
@@ -292,7 +288,7 @@ namespace JavaScriptEngineSwitcher.V8
 					WrapperScriptException wrapperScriptException;
 					if (type == JsErrorType.Syntax)
 					{
-						message = JsErrorHelpers.GenerateErrorMessage(type, description, documentName,
+						message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName,
 							lineNumber, columnNumber, sourceFragment);
 
 						wrapperScriptException = new WrapperCompilationException(message, EngineName, EngineVersion,
@@ -303,7 +299,7 @@ namespace JavaScriptEngineSwitcher.V8
 						callStack = JsErrorHelpers.StringifyErrorLocationItems(errorLocationItems, true);
 						string callStackWithSourceFragment = JsErrorHelpers.StringifyErrorLocationItems(
 							errorLocationItems);
-						message = JsErrorHelpers.GenerateErrorMessage(type, description,
+						message = JsErrorHelpers.GenerateScriptErrorMessage(type, description,
 							callStackWithSourceFragment);
 
 						wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
@@ -353,7 +349,7 @@ namespace JavaScriptEngineSwitcher.V8
 			TypeLoadException originalTypeLoadException)
 		{
 			string originalMessage = originalTypeLoadException.Message;
-			string jsEngineNotLoadedPart = string.Format(CoreStrings.Engine_JsEngineNotLoaded, EngineName);
+			string description;
 			string message;
 
 			Match errorMessageMatch = _interfaceAssemblyLoadErrorMessage.Match(originalMessage);
@@ -361,39 +357,43 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				string assemblyFileName = errorMessageMatch.Groups["assemblyFileName"].Value;
 
-				StringBuilder messageBuilder = StringBuilderPool.GetBuilder();
-				messageBuilder.Append(jsEngineNotLoadedPart);
-				messageBuilder.Append(" ");
-
-				messageBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, assemblyFileName);
-				messageBuilder.Append(" ");
-
+				StringBuilder descriptionBuilder = StringBuilderPool.GetBuilder();
+				descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, assemblyFileName);
+				descriptionBuilder.Append(" ");
 				if (assemblyFileName == DllName.V8Base64Bit || assemblyFileName == DllName.V8Base32Bit)
 				{
-					messageBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+					descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
 						assemblyFileName == DllName.V8Base64Bit ?
 							"JavaScriptEngineSwitcher.V8.Native.win-x64"
 							:
 							"JavaScriptEngineSwitcher.V8.Native.win-x86"
 						);
-					messageBuilder.Append(" ");
-					messageBuilder.Append(Strings.Engine_VcRedist2015InstallationRequired);
+					descriptionBuilder.Append(" ");
+					descriptionBuilder.Append(Strings.Engine_VcRedist2015InstallationRequired);
 				}
 				else
 				{
-					messageBuilder.AppendFormat(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+					descriptionBuilder.AppendFormat(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
 				}
 
-				message = messageBuilder.ToString();
-				StringBuilderPool.ReleaseBuilder(messageBuilder);
+				description = descriptionBuilder.ToString();
+				StringBuilderPool.ReleaseBuilder(descriptionBuilder);
+
+				message = JsErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName);
 			}
 			else
 			{
-				message = jsEngineNotLoadedPart + " " +
-					string.Format(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+				description = originalMessage;
+				message = JsErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName, true);
 			}
 
-			return new WrapperEngineLoadException(message, EngineName, EngineVersion, originalTypeLoadException);
+			var wrapperEngineLoadException = new WrapperEngineLoadException(message, EngineName, EngineVersion,
+				originalTypeLoadException)
+			{
+				Description = description
+			};
+
+			return wrapperEngineLoadException;
 		}
 
 		#endregion

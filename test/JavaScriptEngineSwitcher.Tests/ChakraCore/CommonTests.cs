@@ -222,11 +222,11 @@ for (var i = 0; i < 10000; i++) {
 		}
 
 		[Fact]
-		public void MappingEngineErrorDuringOutOfMemoryIsCorrect()
+		public void MappingEngineLoadErrorDuringOutOfMemoryIsCorrect()
 		{
 			// Arrange
 			IJsEngine jsEngine = null;
-			JsEngineException exception = null;
+			JsEngineLoadException exception = null;
 
 			// Act
 			try
@@ -239,7 +239,7 @@ for (var i = 0; i < 10000; i++) {
 					}
 				);
 			}
-			catch (JsEngineException e)
+			catch (JsEngineLoadException e)
 			{
 				exception = e;
 			}
@@ -250,7 +250,7 @@ for (var i = 0; i < 10000; i++) {
 
 			// Assert
 			Assert.NotNull(exception);
-			Assert.Equal("Engine error", exception.Category);
+			Assert.Equal("Engine load error", exception.Category);
 			Assert.Equal("Out of memory.", exception.Description);
 		}
 

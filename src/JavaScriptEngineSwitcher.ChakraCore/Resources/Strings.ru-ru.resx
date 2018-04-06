@@ -175,7 +175,7 @@
     <value>Не получается найти подходящий метод или не хватает аргументов для вызова метода "{0}" объекта хоста!</value>
   </data>
   <data name="Engine_ManualInstallationUnderMonoRequired" xml:space="preserve">
-    <value>{0} пакеты не поддерживают установку под Mono, но можно установить нативные сборки вручную ({1}).</value>
+    <value>{0} пакеты не поддерживают установку под Mono, но можно установить нативную сборку вручную ({1}).</value>
   </data>
   <data name="Engine_BuildNativeAssemblyForCurrentProcessorArchitecture" xml:space="preserve">
     <value>Вы можете собрать "{0}" для текущей архитектуры процессора, используя следующие инструкции из официального репозитория - {1}.</value>

@@ -191,7 +191,58 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		#region Generation of error messages
 
 		/// <summary>
-		/// Generates a error message
+		/// Generates a engine load error message
+		/// </summary>
+		/// <param name="description">Description of error</param>
+		/// <param name="engineName">Name of JS engine</param>
+		/// <param name="quoteDescription">Makes a quote from the description</param>
+		/// <returns>Engine load error message</returns>
+		public static string GenerateEngineLoadErrorMessage(string description, string engineName,
+			bool quoteDescription = false)
+		{
+			if (engineName == null)
+			{
+				throw new ArgumentNullException(nameof(engineName));
+			}
+
+			if (string.IsNullOrWhiteSpace(engineName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(engineName)),
+					nameof(engineName)
+				);
+			}
+
+			string jsEngineNotLoadedPart = string.Format(Strings.Engine_JsEngineNotLoaded, engineName);
+			string message;
+
+			if (!string.IsNullOrWhiteSpace(description))
+			{
+				StringBuilder messageBuilder = StringBuilderPool.GetBuilder();
+				messageBuilder.Append(jsEngineNotLoadedPart);
+				messageBuilder.Append(" ");
+				if (quoteDescription)
+				{
+					messageBuilder.AppendFormat(Strings.Common_SeeOriginalErrorMessage, description);
+				}
+				else
+				{
+					messageBuilder.Append(description);
+				}
+
+				message = messageBuilder.ToString();
+				StringBuilderPool.ReleaseBuilder(messageBuilder);
+			}
+			else
+			{
+				message = jsEngineNotLoadedPart;
+			}
+
+			return message;
+		}
+
+		/// <summary>
+		/// Generates a script error message
 		/// </summary>
 		/// <param name="type">Type of the script error</param>
 		/// <param name="description">Description of error</param>
@@ -199,28 +250,28 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// <param name="lineNumber">Line number</param>
 		/// <param name="columnNumber">Column number</param>
 		/// <param name="sourceFragment">Source fragment</param>
-		/// <returns>Error message</returns>
-		public static string GenerateErrorMessage(string type, string description,
+		/// <returns>Script error message</returns>
+		public static string GenerateScriptErrorMessage(string type, string description,
 			string documentName, int lineNumber, int columnNumber, string sourceFragment = "")
 		{
-			return GenerateErrorMessage(type, description, documentName, lineNumber, columnNumber,
+			return GenerateScriptErrorMessage(type, description, documentName, lineNumber, columnNumber,
 				sourceFragment, string.Empty);
 		}
 
 		/// <summary>
-		/// Generates a error message
+		/// Generates a script error message
 		/// </summary>
 		/// <param name="type">Type of the script error</param>
 		/// <param name="description">Description of error</param>
 		/// <param name="callStack">String representation of the script call stack</param>
-		/// <returns>Error message</returns>
-		public static string GenerateErrorMessage(string type, string description, string callStack)
+		/// <returns>Script error message</returns>
+		public static string GenerateScriptErrorMessage(string type, string description, string callStack)
 		{
-			return GenerateErrorMessage(type, description, string.Empty, 0, 0, string.Empty, callStack);
+			return GenerateScriptErrorMessage(type, description, string.Empty, 0, 0, string.Empty, callStack);
 		}
 
 		/// <summary>
-		/// Generates a error message
+		/// Generates a script error message
 		/// </summary>
 		/// <param name="type">Type of the script error</param>
 		/// <param name="description">Description of error</param>
@@ -229,8 +280,8 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// <param name="columnNumber">Column number</param>
 		/// <param name="sourceFragment">Source fragment</param>
 		/// <param name="callStack">String representation of the script call stack</param>
-		/// <returns>Error message</returns>
-		private static string GenerateErrorMessage(string type, string description, string documentName,
+		/// <returns>Script error message</returns>
+		private static string GenerateScriptErrorMessage(string type, string description, string documentName,
 			int lineNumber, int columnNumber, string sourceFragment, string callStack)
 		{
 			if (description == null)
@@ -465,13 +516,19 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 
 		#region Exception wrapping
 
-		public static JsEngineLoadException WrapUnknownEngineLoadException(Exception originalException,
-			string engineName, string engineVersion)
+		public static JsEngineLoadException WrapEngineLoadException(Exception exception,
+			string engineName, string engineVersion, bool quoteDescription = false)
 		{
-			string message = string.Format(Strings.Engine_JsEngineNotLoaded, engineName) + " " +
-				string.Format(Strings.Common_SeeOriginalErrorMessage, originalException.Message);
+			string description = exception.Message;
+			string message = GenerateEngineLoadErrorMessage(description, engineName, quoteDescription);
 
-			return new JsEngineLoadException(message, engineName, engineVersion, originalException);
+			var jsEngineLoadException = new JsEngineLoadException(message, engineName, engineVersion,
+				exception)
+			{
+				Description = description
+			};
+
+			return jsEngineLoadException;
 		}
 
 		#endregion
