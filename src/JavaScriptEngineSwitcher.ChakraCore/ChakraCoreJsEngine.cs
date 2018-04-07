@@ -93,7 +93,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Script dispatcher
 		/// </summary>
-		private readonly ScriptDispatcher _dispatcher = new ScriptDispatcher();
+		private readonly ScriptDispatcher _dispatcher;
 
 		/// <summary>
 		/// Unique document name manager
@@ -155,6 +155,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				attributes |= JsRuntimeAttributes.EnableExperimentalFeatures;
 			}
 
+			_dispatcher = new ScriptDispatcher(chakraCoreSettings.MaxStackSize);
 			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
 			_promiseContinuationCallback = PromiseContinuationCallback;
 

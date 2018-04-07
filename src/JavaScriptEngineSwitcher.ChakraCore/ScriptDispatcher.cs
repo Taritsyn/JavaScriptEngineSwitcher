@@ -14,24 +14,12 @@ using JavaScriptEngineSwitcher.Core.Utilities;
 namespace JavaScriptEngineSwitcher.ChakraCore
 {
 	/// <summary>
-	/// Provides services for managing the queue of script tasks on the thread with increased stack size
+	/// Provides services for managing the queue of script tasks on the thread with modified stack size
 	/// </summary>
 	internal sealed class ScriptDispatcher : IDisposable
 	{
-#if !NETSTANDARD1_3
 		/// <summary>
-		/// The stack size is sufficient to run the code of modern JavaScript libraries in 32-bit process
-		/// </summary>
-		const int STACK_SIZE_32 = 492 * 1024; // like 32-bit Node.js
-
-		/// <summary>
-		/// The stack size is sufficient to run the code of modern JavaScript libraries in 64-bit process
-		/// </summary>
-		const int STACK_SIZE_64 = 984 * 1024; // like 64-bit Node.js
-
-#endif
-		/// <summary>
-		/// The thread with increased stack size
+		/// The thread with modified stack size
 		/// </summary>
 		private Thread _thread;
 
@@ -59,14 +47,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Constructs an instance of script dispatcher
 		/// </summary>
-		public ScriptDispatcher()
+		/// <param name="maxStackSize">The maximum stack size, in bytes, to be used by the thread,
+		/// or 0 to use the default maximum stack size specified in the header for the executable.</param>
+		public ScriptDispatcher(int maxStackSize)
 		{
 #if NETSTANDARD1_3
 			_thread = new Thread(StartThread)
 #else
-			int sufficientStackSize = Utils.Is64BitProcess() ? STACK_SIZE_64 : STACK_SIZE_32;
-
-			_thread = new Thread(StartThread, sufficientStackSize)
+			_thread = new Thread(StartThread, maxStackSize)
 #endif
 			{
 				IsBackground = true
@@ -85,7 +73,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
-		/// Starts a thread with increased stack size.
+		/// Starts a thread with modified stack size.
 		/// Loops forever, processing script tasks from the queue.
 		/// </summary>
 		private void StartThread()
@@ -141,7 +129,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
-		/// Runs a specified delegate on the thread with increased stack size,
+		/// Runs a specified delegate on the thread with modified stack size,
 		/// and returns its result as an <see cref="System.Object"/>.
 		/// Blocks until the invocation of delegate is completed.
 		/// </summary>
@@ -176,7 +164,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
-		/// Runs a specified delegate on the thread with increased stack size,
+		/// Runs a specified delegate on the thread with modified stack size,
 		/// and returns its result as an <typeparamref name="T" />.
 		/// Blocks until the invocation of delegate is completed.
 		/// </summary>
@@ -197,7 +185,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
-		/// Runs a specified delegate on the thread with increased stack size.
+		/// Runs a specified delegate on the thread with modified stack size.
 		/// Blocks until the invocation of delegate is completed.
 		/// </summary>
 		/// <param name="action">Delegate to invocation</param>

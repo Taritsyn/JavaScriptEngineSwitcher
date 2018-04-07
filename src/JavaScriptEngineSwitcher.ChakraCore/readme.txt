@@ -30,11 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version 1.7.5;
-   2. In configuration settings of the ChakraCore JS engine was added two new
-      properties - `MemoryLimit` and `DisableFatalOnOOM` (default `false`);
-   3. Now during calling of the `CollectGarbage` method is no longer performed
-      blocking.
+   In configuration settings of the ChakraCore JS engine was added one new
+   property - `MaxStackSize` (default `492` or `984` KB).
 
    =============
    DOCUMENTATION

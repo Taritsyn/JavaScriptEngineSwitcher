@@ -233,6 +233,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources
 			get { return GetString("Engine_VcRedist2015InstallationRequired"); }
 		}
 
+		/// <summary>
+		/// Looks up a localized string similar to "Maximum stack size must be non-negative."
+		/// </summary>
+		internal static string Engine_MaxStackSizeMustBeNonNegative
+		{
+			get { return GetString("Engine_MaxStackSizeMustBeNonNegative"); }
+		}
+
 		private static string GetString(string name)
 		{
 			string value = ResourceManager.GetString(name, _resourceCulture);

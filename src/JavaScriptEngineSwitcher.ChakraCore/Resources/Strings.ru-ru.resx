@@ -183,4 +183,7 @@
   <data name="Engine_VcRedist2015InstallationRequired" xml:space="preserve">
     <value>Кроме того, еще требуется установка распространяемого компонента Microsoft Visual C++ 2015 (https://www.microsoft.com/ru-ru/download/details.aspx?id=53840).</value>
   </data>
+  <data name="Engine_MaxStackSizeMustBeNonNegative" xml:space="preserve">
+    <value>Максимальный размер стека должен быть неотрицательным!</value>
+  </data>
 </root>

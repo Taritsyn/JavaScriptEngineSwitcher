@@ -2,6 +2,8 @@
 
 using JavaScriptEngineSwitcher.Core.Utilities;
 
+using JavaScriptEngineSwitcher.ChakraCore.Resources;
+
 namespace JavaScriptEngineSwitcher.ChakraCore
 {
 	/// <summary>
@@ -9,6 +11,21 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 	/// </summary>
 	public sealed class ChakraCoreSettings
 	{
+		/// <summary>
+		/// The stack size is sufficient to run the code of modern JavaScript libraries in 32-bit process
+		/// </summary>
+		const int STACK_SIZE_32 = 492 * 1024; // like 32-bit Node.js
+
+		/// <summary>
+		/// The stack size is sufficient to run the code of modern JavaScript libraries in 64-bit process
+		/// </summary>
+		const int STACK_SIZE_64 = 984 * 1024; // like 64-bit Node.js
+
+		/// <summary>
+		/// The maximum stack size in bytes
+		/// </summary>
+		private int _maxStackSize;
+
 		/// <summary>
 		/// Gets or sets a flag for whether to disable any background work (such as garbage collection)
 		/// on background threads
@@ -56,6 +73,31 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
+		/// Gets or sets a maximum stack size in bytes
+		/// </summary>
+		/// <remarks>
+		/// <para>Set a <code>0</code> to use the default maximum stack size specified in the header
+		/// for the executable.
+		/// </para>
+		/// </remarks>
+		public int MaxStackSize
+		{
+			get { return _maxStackSize; }
+			set
+			{
+				if (value < 0)
+				{
+					throw new ArgumentOutOfRangeException(
+						nameof(value),
+						Strings.Engine_MaxStackSizeMustBeNonNegative
+					);
+				}
+
+				_maxStackSize = value;
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets a current memory limit for a runtime in bytes
 		/// </summary>
 		public UIntPtr MemoryLimit
@@ -70,13 +112,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public ChakraCoreSettings()
 		{
+			bool is64BitProcess = Utils.Is64BitProcess();
+
 			DisableBackgroundWork = false;
 			DisableEval = false;
 			DisableFatalOnOOM = false;
 			DisableNativeCodeGeneration = false;
 			EnableExperimentalFeatures = false;
-			MemoryLimit = Utils.Is64BitProcess() ?
-				new UIntPtr(ulong.MaxValue) : new UIntPtr(uint.MaxValue);
+			MaxStackSize = is64BitProcess ? STACK_SIZE_64 : STACK_SIZE_32;
+			MemoryLimit = is64BitProcess ? new UIntPtr(ulong.MaxValue) : new UIntPtr(uint.MaxValue);
 		}
 	}
 }
