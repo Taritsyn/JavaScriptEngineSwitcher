@@ -289,7 +289,7 @@ factorial(0);";
 			using (var jsEngine = new JintJsEngine(
 				new JintSettings
 				{
-					Timeout = 30
+					TimeoutInterval = TimeSpan.FromMilliseconds(30)
 				}
 			))
 			{

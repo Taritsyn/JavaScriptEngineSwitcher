@@ -1,4 +1,6 @@
-﻿namespace JavaScriptEngineSwitcher.Jint
+﻿using System;
+
+namespace JavaScriptEngineSwitcher.Jint
 {
 	/// <summary>
 	/// Settings of the Jint JS engine
@@ -56,7 +58,17 @@
 		/// <summary>
 		/// Gets or sets a number of milliseconds to wait before the script execution times out
 		/// </summary>
+		[Obsolete("Use a `TimeoutInterval` property")]
 		public int Timeout
+		{
+			get { return TimeoutInterval.Milliseconds; }
+			set { TimeoutInterval = TimeSpan.FromMilliseconds(value); }
+		}
+
+		/// <summary>
+		/// Gets or sets a interval to wait before the script execution times out
+		/// </summary>
+		public TimeSpan TimeoutInterval
 		{
 			get;
 			set;
@@ -73,7 +85,7 @@
 			MaxRecursionDepth = -1;
 			MaxStatements = 0;
 			StrictMode = false;
-			Timeout = 0;
+			TimeoutInterval = TimeSpan.Zero;
 		}
 	}
 }

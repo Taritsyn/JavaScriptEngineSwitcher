@@ -81,7 +81,7 @@ namespace JavaScriptEngineSwitcher.Jint
 					.LimitRecursion(jintSettings.MaxRecursionDepth)
 					.MaxStatements(jintSettings.MaxStatements)
 					.Strict(jintSettings.StrictMode)
-					.TimeoutInterval(TimeSpan.FromMilliseconds(jintSettings.Timeout))
+					.TimeoutInterval(jintSettings.TimeoutInterval)
 				);
 			}
 			catch (Exception e)

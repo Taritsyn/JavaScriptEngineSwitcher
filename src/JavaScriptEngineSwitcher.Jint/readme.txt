@@ -17,7 +17,8 @@
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version 2.11.58.
+   In configuration settings of the Jint JS engine a `Timeout` property has been
+   replaced by the `TimeoutInterval` property (default `TimeSpan.Zero`).
 
    =============
    DOCUMENTATION
