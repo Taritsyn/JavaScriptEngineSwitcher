@@ -180,8 +180,8 @@
   <data name="Engine_BuildNativeAssemblyForCurrentProcessorArchitecture" xml:space="preserve">
     <value>Вы можете собрать "{0}" для текущей архитектуры процессора, используя следующие инструкции из официального репозитория - {1}.</value>
   </data>
-  <data name="Engine_VcRedist2015InstallationRequired" xml:space="preserve">
-    <value>Кроме того, еще требуется установка распространяемого компонента Microsoft Visual C++ 2015 (https://www.microsoft.com/ru-ru/download/details.aspx?id=53840).</value>
+  <data name="Engine_VcRedist2017InstallationRequired" xml:space="preserve">
+    <value>Кроме того, еще требуется установка распространяемого компонента Microsoft Visual C++ для Visual Studio 2017 (https://www.visualstudio.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2017).</value>
   </data>
   <data name="Engine_MaxStackSizeMustBeNonNegative" xml:space="preserve">
     <value>Максимальный размер стека должен быть неотрицательным!</value>

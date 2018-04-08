@@ -53,7 +53,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.7.5";
+		private const string EngineVersion = "1.8.2";
 
 		/// <summary>
 		/// Instance of JS runtime
@@ -1146,7 +1146,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 								"JavaScriptEngineSwitcher.ChakraCore.Native.win-x86"
 						);
 						descriptionBuilder.Append(" ");
-						descriptionBuilder.Append(Strings.Engine_VcRedist2015InstallationRequired);
+						descriptionBuilder.Append(Strings.Engine_VcRedist2017InstallationRequired);
 					}
 					else if (osArchitecture == Architecture.Arm)
 					{
