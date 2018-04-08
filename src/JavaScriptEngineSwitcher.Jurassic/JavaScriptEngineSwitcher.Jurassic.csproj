@@ -9,9 +9,10 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<NoWarn>$(NoWarn);CS1591</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<Description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of November 2, 2017).</Description>
+		<Description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of February 24, 2018).</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Jurassic</PackageTags>
+		<PackageReleaseNotes>Jurassic was updated to version of February 24, 2018.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
@@ -20,7 +21,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="All" />
-		<PackageReference Include="Jurassic.Unofficial" Version="2017.11.2" />
+		<PackageReference Include="Jurassic.Unofficial" Version="2018.2.24" />
 
 		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
 	</ItemGroup>
