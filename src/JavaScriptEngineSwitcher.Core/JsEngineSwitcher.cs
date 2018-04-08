@@ -122,7 +122,7 @@ namespace JavaScriptEngineSwitcher.Core
 			string defaultJsEngineName = DefaultEngineName;
 			if (string.IsNullOrWhiteSpace(defaultJsEngineName))
 			{
-				throw new EmptyValueException(Strings.Configuration_DefaultJsEngineNameNotSpecified);
+				throw new InvalidOperationException(Strings.Configuration_DefaultJsEngineNameNotSpecified);
 			}
 
 			IJsEngine jsEngine = CreateEngine(defaultJsEngineName);

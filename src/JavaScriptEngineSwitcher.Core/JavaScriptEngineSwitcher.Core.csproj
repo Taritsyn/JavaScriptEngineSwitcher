@@ -21,7 +21,8 @@
 5. In the `JsRuntimeException` class was added three new properties: `Type`, `DocumentName` and `CallStack`;
 6. `JsScriptInterruptedException` class was renamed to the `JsInterruptedException` class and now is inherited from the `JsRuntimeException` class;
 7. `JsEngineLoadException` class now is inherited from the `JsEngineException` class;
-8. `Format` method of the `JsErrorHelpers` class was renamed to the `GenerateErrorDetails`.</PackageReleaseNotes>
+8. Removed a `EmptyValueException` class;
+9. `Format` method of the `JsErrorHelpers` class was renamed to the `GenerateErrorDetails`.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />

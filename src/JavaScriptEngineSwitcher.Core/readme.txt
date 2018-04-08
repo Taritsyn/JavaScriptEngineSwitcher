@@ -34,7 +34,8 @@
       `JsRuntimeException` class;
    7. `JsEngineLoadException` class now is inherited from the `JsEngineException`
       class;
-   8. `Format` method of the `JsErrorHelpers` class was renamed to the
+   8. Removed a `EmptyValueException` class;
+   9. `Format` method of the `JsErrorHelpers` class was renamed to the
       `GenerateErrorDetails`.
 
    =============
