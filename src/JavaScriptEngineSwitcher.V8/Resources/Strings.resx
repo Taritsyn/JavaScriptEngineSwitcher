@@ -120,7 +120,7 @@
   <data name="Engines_ClearScriptUndefinedValueNotLoaded" xml:space="preserve">
     <value>Failed to load the ClearScript `undefined` value.</value>
   </data>
-  <data name="Engine_VcRedist2015InstallationRequired" xml:space="preserve">
-    <value>In addition, you still need to install the Microsoft Visual C++ 2015 Redistributable (https://www.microsoft.com/en-us/download/details.aspx?id=53840).</value>
+  <data name="Engine_VcRedist2017InstallationRequired" xml:space="preserve">
+    <value>In addition, you still need to install the Microsoft Visual C++ Redistributable for Visual Studio 2017 (https://www.visualstudio.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2017).</value>
   </data>
 </root>

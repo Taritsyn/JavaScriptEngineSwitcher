@@ -368,7 +368,7 @@ namespace JavaScriptEngineSwitcher.V8
 							"JavaScriptEngineSwitcher.V8.Native.win-x86"
 						);
 					descriptionBuilder.Append(" ");
-					descriptionBuilder.Append(Strings.Engine_VcRedist2015InstallationRequired);
+					descriptionBuilder.Append(Strings.Engine_VcRedist2017InstallationRequired);
 				}
 				else
 				{
