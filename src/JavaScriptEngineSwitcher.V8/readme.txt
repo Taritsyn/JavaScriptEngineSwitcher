@@ -13,7 +13,7 @@
    ===========
    JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the
    Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version
-   5.5.1.1).
+   5.5.2).
 
    This package does not contain the native ClearScript and V8 assemblies.
    Therefore, you need to choose and install the most appropriate package(s) for
@@ -25,9 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Microsoft ClearScript.V8 was updated to version 5.5.1.1;
-   2. In configuration settings of the V8 JS engine was added one new property -
-      `AwaitDebuggerAndPauseOnStart` (default `false`).
+   Microsoft ClearScript.V8 was updated to version 5.5.2.
 
    =============
    DOCUMENTATION

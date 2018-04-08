@@ -41,7 +41,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "6.3.292.48";
+		private const string EngineVersion = "6.5.254.41";
 
 		/// <summary>
 		/// V8 JS engine
@@ -123,6 +123,9 @@ namespace JavaScriptEngineSwitcher.V8
 			try
 			{
 				_jsEngine = new V8ScriptEngine(constraints, flags, debugPort);
+				_jsEngine.MaxRuntimeHeapSize = v8Settings.MaxHeapSize;
+				_jsEngine.RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval;
+				_jsEngine.MaxRuntimeStackUsage = v8Settings.MaxStackUsage;
 			}
 			catch (TypeLoadException e)
 			{
@@ -132,10 +135,6 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				throw JsErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion, true);
 			}
-
-			_jsEngine.MaxRuntimeHeapSize = v8Settings.MaxHeapSize;
-			_jsEngine.RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval;
-			_jsEngine.MaxRuntimeStackUsage = v8Settings.MaxStackUsage;
 		}
 
 
