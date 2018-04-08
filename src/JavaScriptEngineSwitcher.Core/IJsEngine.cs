@@ -52,6 +52,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
 		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
@@ -67,6 +68,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
 		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
@@ -82,6 +84,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
 		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
@@ -98,6 +101,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
 		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
@@ -111,6 +115,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
 		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
@@ -125,6 +130,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
 		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
@@ -141,6 +147,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="FileNotFoundException"/>
 		/// <exception cref="JsUsageException"/>
 		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
@@ -158,6 +165,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="NullReferenceException"/>
 		/// <exception cref="JsUsageException"/>
 		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
@@ -174,6 +182,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="NullReferenceException"/>
 		/// <exception cref="JsUsageException"/>
 		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
@@ -188,6 +197,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="ObjectDisposedException"/>
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
@@ -203,6 +213,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="ObjectDisposedException"/>
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
+		/// <exception cref="JsTimeoutException"/>
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>

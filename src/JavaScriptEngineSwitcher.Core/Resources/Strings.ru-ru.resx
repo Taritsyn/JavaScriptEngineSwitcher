@@ -192,9 +192,6 @@
   <data name="ErrorDetails_EngineVersion" xml:space="preserve">
     <value>Версия движка</value>
   </data>
-  <data name="ErrorDetails_ErrorCode" xml:space="preserve">
-    <value>Код ошибки</value>
-  </data>
   <data name="ErrorDetails_LineNumber" xml:space="preserve">
     <value>Номер строки</value>
   </data>

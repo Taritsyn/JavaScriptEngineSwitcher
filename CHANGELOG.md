@@ -1,6 +1,27 @@
 Change log
 ==========
 
+## v3.0.0 Beta 1 - April 8, 2018
+ * Format of the error messages was unified
+ * Created a new exception classes: `JsCompilationException`, `JsEngineException`, `JsFatalException`, `JsTimeoutException` and `JsUsageException`. These exceptions are responsible for handling errors, some of which were previously handled by the `JsRuntimeException` class.
+ * In the `JsException` class was added two new properties: `Category` and `Description`
+ * From the `JsRuntimeException` class was removed one property - `ErrorCode`
+ * In the `JsRuntimeException` class was added three new properties: `Type`, `DocumentName` and `CallStack`
+ * `JsScriptInterruptedException` class was renamed to the `JsInterruptedException` class and now is inherited from the `JsRuntimeException` class
+ * `JsEngineLoadException` class now is inherited from the `JsEngineException` class
+ * Removed a `EmptyValueException` class
+ * `Format` method of the `JsErrorHelpers` class was renamed to the `GenerateErrorDetails`
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Beta 1
+ * In JavaScriptEngineSwitcher.V8:
+   * Added support of Microsoft ClearScript.V8 version 5.5.2 (support of V8 version 6.5.254.41)
+   * Now the Microsoft ClearScript.V8 requires the [Microsoft Visual C++ Redistributable for Visual Studio 2017](https://www.visualstudio.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2017)
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of February 24, 2018
+ * In JavaScriptEngineSwitcher.Jint in configuration settings of the Jint JS engine a `Timeout` property has been replaced by the `TimeoutInterval` property (default `TimeSpan.Zero`)
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.8.2
+   * Now the ChakraCore for Windows requires the [Microsoft Visual C++ Redistributable for Visual Studio 2017](https://www.visualstudio.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2017)
+   * In configuration settings of the ChakraCore JS engine was added one new property - `MaxStackSize` (default `492` or `984` KB)
+
 ## v3.0.0 Alpha 10 - January 3, 2018
  * In JavaScriptEngineSwitcher.V8:
    * Added support of Microsoft ClearScript.V8 version 5.5.1.1 (support of V8 version 6.3.292.48)

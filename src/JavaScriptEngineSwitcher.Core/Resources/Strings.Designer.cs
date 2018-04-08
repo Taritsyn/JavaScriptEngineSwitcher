@@ -258,14 +258,6 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Error code"
-		/// </summary>
-		public static string ErrorDetails_ErrorCode
-		{
-			get { return GetString("ErrorDetails_ErrorCode"); }
-		}
-
-		/// <summary>
 		/// Looks up a localized string similar to "Line number"
 		/// </summary>
 		public static string ErrorDetails_LineNumber
