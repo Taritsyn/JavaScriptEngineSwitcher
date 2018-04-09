@@ -234,7 +234,7 @@ for (var i = 0; i < 10000; i++) {
 				jsEngine = new ChakraCoreJsEngine(
 					new ChakraCoreSettings
 					{
-						MemoryLimit = new UIntPtr(640 * 1024),
+						MemoryLimit = new UIntPtr(8 * 1024),
 						DisableFatalOnOOM = true
 					}
 				);
