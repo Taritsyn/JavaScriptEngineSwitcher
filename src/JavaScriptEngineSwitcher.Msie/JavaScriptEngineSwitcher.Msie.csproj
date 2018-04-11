@@ -23,7 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MsieJavaScriptEngine" Version="2.2.6" />
+		<PackageReference Include="MsieJavaScriptEngine" Version="2.2.7" />
 
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
 	</ItemGroup>
