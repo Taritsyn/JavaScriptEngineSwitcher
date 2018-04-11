@@ -156,23 +156,33 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
 			_promiseContinuationCallback = PromiseContinuationCallback;
 
-			_dispatcher.Invoke(() =>
+			try
 			{
-				try
+				_dispatcher.Invoke(() =>
 				{
 					_jsRuntime = JsRuntime.Create(attributes, null);
 					_jsRuntime.MemoryLimit = settings.MemoryLimit;
 
 					_jsContext = _jsRuntime.CreateContext();
-					_jsContext.AddRef();
-				}
-				catch (Exception e)
+					if (_jsContext.IsValid)
+					{
+						_jsContext.AddRef();
+					}
+				});
+			}
+			catch (Exception e)
+			{
+				throw new JsEngineLoadException(
+					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
+						EngineName, e.Message), EngineName, EngineVersion, e);
+			}
+			finally
+			{
+				if (!_jsContext.IsValid)
 				{
-					throw new JsEngineLoadException(
-						string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-							EngineName, e.Message), EngineName, EngineVersion, e);
+					Dispose();
 				}
-			});
+			}
 		}
 
 		/// <summary>
@@ -249,8 +259,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private static void PromiseContinuationCallback(JsValue task, IntPtr callbackState)
 		{
 			task.AddRef();
-			task.CallFunction(JsValue.GlobalObject);
-			task.Release();
+
+			try
+			{
+				task.CallFunction(JsValue.GlobalObject);
+			}
+			finally
+			{
+				task.Release();
+			}
 		}
 
 		#region Mapping
@@ -1061,11 +1078,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 								.Concat(processedArgs)
 								.ToArray()
 								;
-							resultValue = functionValue.CallFunction(allProcessedArgs);
 
-							foreach (JsValue processedArg in processedArgs)
+							try
 							{
-								RemoveReferenceToValue(processedArg);
+								resultValue = functionValue.CallFunction(allProcessedArgs);
+							}
+							finally
+							{
+								foreach (JsValue processedArg in processedArgs)
+								{
+									RemoveReferenceToValue(processedArg);
+								}
 							}
 						}
 						else
@@ -1160,7 +1183,16 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					try
 					{
 						JsValue inputValue = MapToScriptType(value);
-						JsValue.GlobalObject.SetProperty(variableName, inputValue, true);
+						AddReferenceToValue(inputValue);
+
+						try
+						{
+							JsValue.GlobalObject.SetProperty(variableName, inputValue, true);
+						}
+						finally
+						{
+							RemoveReferenceToValue(inputValue);
+						}
 					}
 					catch (OriginalJsException e)
 					{
@@ -1264,7 +1296,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				{
 					_dispatcher.Invoke(() =>
 					{
-						_jsContext.Release();
+						if (_jsContext.IsValid)
+						{
+							_jsContext.Release();
+						}
 						_jsRuntime.Dispose();
 					});
 					_dispatcher.Dispose();
