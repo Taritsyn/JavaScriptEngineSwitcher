@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2017 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2018 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -22,7 +22,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support of .NET Core 1.0.4.
+   Fixed a minor errors.
 
    ====================
    POST-INSTALL ACTIONS

@@ -52,6 +52,16 @@ namespace JavaScriptEngineSwitcher.Vroom
 		private readonly Dictionary<string, object> _hostItems = new Dictionary<string, object>();
 
 		/// <summary>
+		/// Synchronizer of JS engine initialization
+		/// </summary>
+		private static readonly object _initializationSynchronizer = new object();
+
+		/// <summary>
+		/// Flag indicating whether the JS engine is initialized
+		/// </summary>
+		private static bool _initialized;
+
+		/// <summary>
 		/// Unique document name manager
 		/// </summary>
 		private readonly UniqueDocumentNameManager _documentNameManager =
@@ -83,17 +93,6 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 
 		/// <summary>
-		/// Static constructor
-		/// </summary>
-		static VroomJsEngine()
-		{
-			if (Utils.IsWindows())
-			{
-				OriginalAssemblyLoader.EnsureLoaded();
-			}
-		}
-
-		/// <summary>
 		/// Constructs an instance of adapter for the Vroom JS engine
 		/// (cross-platform bridge to the V8 JS engine)
 		/// </summary>
@@ -108,22 +107,65 @@ namespace JavaScriptEngineSwitcher.Vroom
 		/// <param name="settings">Settings of the Vroom JS engine</param>
 		public VroomJsEngine(VroomSettings settings)
 		{
+			Initialize();
+
 			VroomSettings vroomSettings = settings ?? new VroomSettings();
 
 			try
 			{
-				_jsEngine = new OriginalJsEngine(vroomSettings.MaxYoungSpaceSize,
-					vroomSettings.MaxOldSpaceSize);
+				_jsEngine = new OriginalJsEngine(vroomSettings.MaxYoungSpaceSize, vroomSettings.MaxOldSpaceSize);
 				_jsContext = _jsEngine.CreateContext();
 			}
 			catch (Exception e)
 			{
 				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						EngineName, e.Message), EngineName, EngineVersion, e);
+					string.Format(CoreStrings.Runtime_JsEngineNotLoaded, EngineName, e.Message),
+					EngineName, EngineVersion, e);
+			}
+			finally
+			{
+				if (_jsContext == null)
+				{
+					Dispose();
+				}
 			}
 		}
 
+
+		/// <summary>
+		/// Initializes a JS engine
+		/// </summary>
+		private static void Initialize()
+		{
+			if (_initialized)
+			{
+				return;
+			}
+
+			lock (_initializationSynchronizer)
+			{
+				if (_initialized)
+				{
+					return;
+				}
+
+				if (Utils.IsWindows())
+				{
+					try
+					{
+						OriginalAssemblyLoader.EnsureLoaded();
+					}
+					catch (Exception e)
+					{
+						throw new JsEngineLoadException(
+							string.Format(CoreStrings.Runtime_JsEngineNotLoaded, EngineName, e.Message),
+							EngineName, EngineVersion, e);
+					}
+				}
+
+				_initialized = true;
+			}
+		}
 
 		/// <summary>
 		/// Makes a mapping from the host type to a Vroom type
@@ -235,17 +277,14 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
-			string serializedArguments = string.Empty;
+			string functionCallExpression;
 			int argumentCount = args.Length;
 
-			if (argumentCount == 1)
+			if (argumentCount > 0)
 			{
-				object value = args[0];
-				serializedArguments = SimplisticJsSerializer.Serialize(value);
-			}
-			else if (argumentCount > 1)
-			{
-				var serializedArgumentsBuilder = new StringBuilder();
+				var functionCallBuilder = new StringBuilder();
+				functionCallBuilder.Append(functionName);
+				functionCallBuilder.Append("(");
 
 				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
 				{
@@ -254,15 +293,22 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 					if (argumentIndex > 0)
 					{
-						serializedArgumentsBuilder.Append(", ");
+						functionCallBuilder.Append(", ");
 					}
-					serializedArgumentsBuilder.Append(serializedValue);
+					functionCallBuilder.Append(serializedValue);
 				}
 
-				serializedArguments = serializedArgumentsBuilder.ToString();
+				functionCallBuilder.Append(");");
+
+				functionCallExpression = functionCallBuilder.ToString();
+				functionCallBuilder.Clear();
+			}
+			else
+			{
+				functionCallExpression = string.Format("{0}();", functionName);
 			}
 
-			object result = Evaluate(string.Format("{0}({1});", functionName, serializedArguments));
+			object result = Evaluate(functionCallExpression);
 
 			return result;
 		}

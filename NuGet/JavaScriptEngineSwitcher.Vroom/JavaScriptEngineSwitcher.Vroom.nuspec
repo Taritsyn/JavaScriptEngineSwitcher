@@ -14,6 +14,7 @@
 
 For correct working of the VroomJs on Windows require the Visual C++ Redistributable for Visual Studio 2012 and Microsoft Visual C++ 2015 Redistributable.</description>
 		<summary>JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the VroomJs version 1.2.3 with support of V8 version 3.17.16.2).</summary>
+		<releaseNotes>Fixed a minor errors.</releaseNotes>
 		<copyright>Copyright (c) 2013-2018 Andrey Taritsyn - http://www.taritsyn.ru</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript VroomJs V8</tags>
