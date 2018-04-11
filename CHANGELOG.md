@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v2.4.15 - April 11, 2018
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.7
+ * In JavaScriptEngineSwitcher.ChakraCore and JavaScriptEngineSwitcher.Vroom fixed a minor errors
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.3
+
 ## v2.4.14 - March 14, 2018
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.2
 
