@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a minor errors.
+   1. ChakraCore was updated to version 1.8.3;
+   2. Fixed a minor errors.
 
    =============
    DOCUMENTATION

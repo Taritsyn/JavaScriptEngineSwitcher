@@ -30,7 +30,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.8.2";
+		private const string EngineVersion = "1.8.3";
 
 		/// <summary>
 		/// Instance of JS runtime
@@ -77,6 +77,18 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
+#if !NETSTANDARD1_3
+
+		/// <summary>
+		/// Synchronizer of JS engine initialization
+		/// </summary>
+		private static readonly object _initializationSynchronizer = new object();
+
+		/// <summary>
+		/// Flag indicating whether the JS engine is initialized
+		/// </summary>
+		private static bool _initialized;
+#endif
 
 		/// <summary>
 		/// Gets a name of JS engine
@@ -103,19 +115,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 
-#if !NETSTANDARD1_3
-		/// <summary>
-		/// Static constructor
-		/// </summary>
-		static ChakraCoreJsEngine()
-		{
-			if (Utils.IsWindows())
-			{
-				AssemblyResolver.Initialize();
-			}
-		}
-#endif
-
 		/// <summary>
 		/// Constructs an instance of adapter for the ChakraCore JS engine
 		/// </summary>
@@ -129,6 +128,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <param name="settings">Settings of the ChakraCore JS engine</param>
 		public ChakraCoreJsEngine(ChakraCoreSettings settings)
 		{
+#if !NETSTANDARD1_3
+			Initialize();
+
+#endif
 			ChakraCoreSettings chakraCoreSettings = settings ?? new ChakraCoreSettings();
 
 			JsRuntimeAttributes attributes = JsRuntimeAttributes.None;
@@ -173,8 +176,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			catch (Exception e)
 			{
 				throw new JsEngineLoadException(
-					string.Format(CoreStrings.Runtime_JsEngineNotLoaded,
-						EngineName, e.Message), EngineName, EngineVersion, e);
+					string.Format(CoreStrings.Runtime_JsEngineNotLoaded, EngineName, e.Message),
+					EngineName, EngineVersion, e);
 			}
 			finally
 			{
@@ -193,6 +196,43 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			Dispose(false);
 		}
 
+#if !NETSTANDARD1_3
+
+		/// <summary>
+		/// Initializes a JS engine
+		/// </summary>
+		private static void Initialize()
+		{
+			if (_initialized)
+			{
+				return;
+			}
+
+			lock (_initializationSynchronizer)
+			{
+				if (_initialized)
+				{
+					return;
+				}
+
+				if (Utils.IsWindows())
+				{
+					try
+					{
+						AssemblyResolver.Initialize();
+					}
+					catch (InvalidOperationException e)
+					{
+						throw new JsEngineLoadException(
+							string.Format(CoreStrings.Runtime_JsEngineNotLoaded, EngineName, e.Message),
+							EngineName, EngineVersion, e);
+					}
+				}
+
+				_initialized = true;
+			}
+		}
+#endif
 
 		/// <summary>
 		/// Adds a reference to the value
