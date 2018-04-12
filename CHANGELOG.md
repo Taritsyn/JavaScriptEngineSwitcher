@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.0.0 Beta 2 - April 12, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.3
+
 ## v3.0.0 Beta 1 - April 8, 2018
  * Format of the error messages was unified
  * Created a new exception classes: `JsCompilationException`, `JsEngineException`, `JsFatalException`, `JsTimeoutException` and `JsUsageException`. These exceptions are responsible for handling errors, some of which were previously handled by the `JsRuntimeException` class.
