@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v2.4.16 - April 13, 2018
+ * In JavaScriptEngineSwitcher.V8.Native.win-* and JavaScriptEngineSwitcher.ChakraCore.Native.win-* packages the directories with `win7-*` RIDs was renamed to `win-*`
+
 ## v2.4.15 - April 11, 2018
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.7
  * In JavaScriptEngineSwitcher.ChakraCore and JavaScriptEngineSwitcher.Vroom fixed a minor errors
