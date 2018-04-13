@@ -31,7 +31,7 @@ This library can be installed through NuGet:
    * [OS X (x64)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64)
  * [JS Engine Switcher: Vroom](http://nuget.org/packages/JavaScriptEngineSwitcher.Vroom) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Standard 1.6 and .NET Standard 2.0)
 
-If you have used the JavaScript Engine Switcher version 1.X, then I recommend to first read [“How to upgrade applications to version 2.X”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/How-to-upgrade-applications-to-version-2.X) section of the documentation.
+If you have used the JavaScript Engine Switcher version 2.X, then I recommend to first read [“How to upgrade applications to version 3.X”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/How-to-upgrade-applications-to-version-3.X) section of the documentation.
 
 ## Documentation
 Documentation is located on the [wiki](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki) of this Repo.
