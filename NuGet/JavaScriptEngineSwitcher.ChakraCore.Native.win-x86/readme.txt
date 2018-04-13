@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: ChakraCore for Windows x86 v2.4.15
+         README file for JS Engine Switcher: ChakraCore for Windows x86 v2.4.16
 
    --------------------------------------------------------------------------------
 
@@ -20,7 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.8.3.
+   The directory with `win7-x86` RID was renamed to `win-x86`.
 
    ====================
    POST-INSTALL ACTIONS

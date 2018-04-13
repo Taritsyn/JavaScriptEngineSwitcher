@@ -11,6 +11,6 @@ if ($project.Type -eq "Web Site") {
 		New-Item -ItemType Directory -Force -Path $assembly32DestDirectoryPath
 	}
 
-	$assembly32SourceFilePath = Join-Path $runtimesDirectoryPath ("win7-x86/native/" + $assemblyFileName)
+	$assembly32SourceFilePath = Join-Path $runtimesDirectoryPath ("win-x86/native/" + $assemblyFileName)
 	Copy-Item $assembly32SourceFilePath $assembly32DestDirectoryPath -Force
 }
