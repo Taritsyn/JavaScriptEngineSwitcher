@@ -25,6 +25,7 @@
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jint/JavaScriptEngineSwitcher.Jint.csproj" />
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Msie/JavaScriptEngineSwitcher.Msie.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.NiL/JavaScriptEngineSwitcher.NiL.csproj" />
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
 	</ItemGroup>
 

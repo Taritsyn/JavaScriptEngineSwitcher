@@ -3,6 +3,7 @@ using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
+using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.Vroom;
 
 namespace JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4
@@ -17,10 +18,9 @@ namespace JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4
 				.AddJurassic()
 				.AddMsie(new MsieSettings
 				{
-					EngineMode = JsEngineMode.ChakraIeJsRt,
-					UseEcmaScript5Polyfill = true,
-					UseJson2Library = true
+					EngineMode = JsEngineMode.ChakraIeJsRt
 				})
+				.AddNiL()
 				.AddVroom()
 				;
 			engineSwitcher.DefaultEngineName = ChakraCoreJsEngine.EngineName;

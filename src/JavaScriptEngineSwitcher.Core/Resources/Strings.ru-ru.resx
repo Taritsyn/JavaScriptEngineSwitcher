@@ -216,6 +216,9 @@
   <data name="Runtime_ScriptTimeoutExceeded" xml:space="preserve">
     <value>Превышено время ожидания выполнения скрипта!</value>
   </data>
+  <data name="Runtime_VariableNotExist" xml:space="preserve">
+    <value>Переменная с именем "{0}" не существует!</value>
+  </data>
   <data name="Usage_CannotExecuteEmptyFile" xml:space="preserve">
     <value>Нельзя выполнить файл "{0}", потому что он пустой!</value>
   </data>

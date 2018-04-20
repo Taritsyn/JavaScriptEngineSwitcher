@@ -216,6 +216,9 @@
   <data name="Runtime_ScriptTimeoutExceeded" xml:space="preserve">
     <value>Script execution exceeded timeout.</value>
   </data>
+  <data name="Runtime_VariableNotExist" xml:space="preserve">
+    <value>The variable with the name '{0}' does not exist.</value>
+  </data>
   <data name="Usage_CannotExecuteEmptyFile" xml:space="preserve">
     <value>Сannot execute a '{0}' file, because it is empty.</value>
   </data>

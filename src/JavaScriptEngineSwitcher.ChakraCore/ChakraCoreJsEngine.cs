@@ -996,7 +996,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						{
 							JsValue sourcePropertyValue = metadataValue.GetProperty(sourcePropertyId);
 							sourceLine = sourcePropertyValue.ConvertToString().ToString();
-							sourceFragment = CoreErrorHelpers.GetSourceFragment(sourceLine, columnNumber);
+							sourceFragment = CoreErrorHelpers.GetSourceFragmentFromLine(sourceLine, columnNumber);
 						}
 
 						JsPropertyId stackPropertyId = JsPropertyId.FromString("stack");

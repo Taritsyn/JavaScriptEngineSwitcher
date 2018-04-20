@@ -2,14 +2,15 @@
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Utilities;
 using JavaScriptEngineSwitcher.Jint;
-using JavaScriptEngineSwitcher.Msie;
-using JavaScriptEngineSwitcher.Vroom;
 #if !NETCOREAPP1_0
 using JavaScriptEngineSwitcher.Jurassic;
 #endif
+using JavaScriptEngineSwitcher.Msie;
+using JavaScriptEngineSwitcher.NiL;
 #if !NETCOREAPP
 using JavaScriptEngineSwitcher.V8;
 #endif
+using JavaScriptEngineSwitcher.Vroom;
 
 namespace JavaScriptEngineSwitcher.Tests
 {
@@ -25,17 +26,18 @@ namespace JavaScriptEngineSwitcher.Tests
 				JsEngineSwitcher.Current.EngineFactories
 					.AddChakraCore()
 					.AddJint()
+#if !NETCOREAPP1_0
+					.AddJurassic()
+#endif
 					.AddMsie(new MsieSettings
 					{
 						EngineMode = JsEngineMode.ChakraIeJsRt
 					})
-					.AddVroom()
-#if !NETCOREAPP1_0
-					.AddJurassic()
-#endif
+					.AddNiL()
 #if !NETCOREAPP
 					.AddV8()
 #endif
+					.AddVroom()
 					;
 			}
 		}

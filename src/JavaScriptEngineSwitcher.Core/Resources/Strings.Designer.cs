@@ -322,6 +322,14 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "The variable with the name '{0}' does not exist."
+		/// </summary>
+		public static string Runtime_VariableNotExist
+		{
+			get { return GetString("Runtime_VariableNotExist"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "Сannot execute a '{0}' file, because it is empty."
 		/// </summary>
 		public static string Usage_CannotExecuteEmptyFile

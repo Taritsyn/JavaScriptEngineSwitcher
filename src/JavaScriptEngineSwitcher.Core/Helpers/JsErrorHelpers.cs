@@ -39,6 +39,11 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				@"(?: -> (?<sourceFragment>[^\n\r]+))?$");
 
 		/// <summary>
+		/// Regular expression for working with a line break
+		/// </summary>
+		private static readonly Regex _lineBreakRegex = new Regex("\r\n|\n|\r");
+
+		/// <summary>
 		/// Parses a string representation of the script error location to produce an array of
 		/// <see cref="ErrorLocationItem"/> instances
 		/// </summary>
@@ -535,23 +540,63 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		#region Misc
 
 		/// <summary>
+		/// Gets a fragment from the source code
+		/// </summary>
+		/// <param name="sourceCode">Source code</param>
+		/// <param name="lineNumber">Line number</param>
+		/// <param name="columnNumber">Column number</param>
+		/// <param name="maxFragmentLength">Maximum length of the source fragment</param>
+		public static string GetSourceFragmentFromCode(string sourceCode, int lineNumber, int columnNumber,
+			int maxFragmentLength = 100)
+		{
+			if (lineNumber <= 0 || string.IsNullOrEmpty(sourceCode))
+			{
+				return string.Empty;
+			}
+
+			int lineStartPosition;
+			int lineLength;
+			GetPositionOfLine(sourceCode, lineNumber, out lineStartPosition, out lineLength);
+
+			string fragment = GetSourceFragment(sourceCode, lineStartPosition, lineLength, columnNumber,
+				maxFragmentLength);
+
+			return fragment;
+		}
+
+		/// <summary>
 		/// Gets a fragment from the source line
 		/// </summary>
 		/// <param name="sourceLine">Content of the source line</param>
 		/// <param name="columnNumber">Column number</param>
 		/// <param name="maxFragmentLength">Maximum length of the source fragment</param>
-		public static string GetSourceFragment(string sourceLine, int columnNumber,
+		public static string GetSourceFragmentFromLine(string sourceLine, int columnNumber,
 			int maxFragmentLength = 100)
 		{
-			if (string.IsNullOrWhiteSpace(sourceLine))
+			if (string.IsNullOrEmpty(sourceLine))
+			{
+				return string.Empty;
+			}
+
+			int lineStartPosition = 0;
+			int lineLength = sourceLine.Length;
+			string fragment = GetSourceFragment(sourceLine, lineStartPosition, lineLength,
+				columnNumber, maxFragmentLength);
+
+			return fragment;
+		}
+
+		private static string GetSourceFragment(string source, int position, int length,
+			int columnNumber, int maxFragmentLength)
+		{
+			if (length == 0)
 			{
 				return string.Empty;
 			}
 
 			string fragment;
-			int lineLength = sourceLine.Length;
 
-			if (lineLength > maxFragmentLength)
+			if (length > maxFragmentLength)
 			{
 				const string ellipsisSymbol = "…";
 				string startPart = string.Empty;
@@ -559,18 +604,18 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 
 				var leftOffset = (int)Math.Floor((double)maxFragmentLength / 2);
 				int fragmentStartPosition = columnNumber - leftOffset - 1;
-				if (fragmentStartPosition < 0)
+				if (fragmentStartPosition < position)
 				{
-					fragmentStartPosition = 0;
+					fragmentStartPosition = position;
 				}
 				int fragmentLength = maxFragmentLength;
 
-				if (fragmentStartPosition > 0)
+				if (fragmentStartPosition > position)
 				{
 					startPart = ellipsisSymbol;
 					fragmentLength--;
 				}
-				if (fragmentStartPosition + maxFragmentLength < lineLength)
+				if (fragmentStartPosition + maxFragmentLength < length)
 				{
 					endPart = ellipsisSymbol;
 					fragmentLength--;
@@ -581,7 +626,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				{
 					fragmentBuilder.Append(startPart);
 				}
-				fragmentBuilder.Append(sourceLine.Substring(fragmentStartPosition, fragmentLength));
+				fragmentBuilder.Append(source.Substring(fragmentStartPosition, fragmentLength));
 				if (endPart.Length > 0)
 				{
 					fragmentBuilder.Append(endPart);
@@ -592,10 +637,93 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 			}
 			else
 			{
-				fragment = sourceLine;
+				fragment = position > 0 || length < source.Length ?
+					source.Substring(position, length) : source;
 			}
 
 			return fragment;
+		}
+
+		private static void GetPositionOfLine(string sourceCode, int lineNumber, out int position, out int length)
+		{
+			int currentLineNumber = 0;
+			position = 0;
+			length = 0;
+
+			int sourceCodeLength = sourceCode.Length;
+			if (sourceCodeLength > 0)
+			{
+				int currentPosition;
+				int currentLength;
+				int sourceCodeEndPosition = sourceCodeLength - 1;
+				int lineBreakPosition = int.MinValue;
+				int lineBreakLength = 0;
+
+				do
+				{
+					currentLineNumber++;
+					currentPosition = lineBreakPosition == int.MinValue ? 0 : lineBreakPosition + lineBreakLength;
+					currentLength = sourceCodeEndPosition - currentPosition + 1;
+
+					FindLineBreak(sourceCode, currentPosition, currentLength,
+						out lineBreakPosition, out lineBreakLength);
+
+					if (currentLineNumber == lineNumber)
+					{
+						if (lineBreakPosition != 0)
+						{
+							position = currentPosition;
+							int endPosition = lineBreakPosition != -1 ?
+								lineBreakPosition - 1 : sourceCodeEndPosition;
+							length = endPosition - position + 1;
+						}
+						break;
+					}
+				}
+				while (lineBreakPosition != -1 && lineBreakPosition <= sourceCodeEndPosition);
+			}
+		}
+
+		/// <summary>
+		/// Finds a line break
+		/// </summary>
+		/// <param name="sourceCode">Source code</param>
+		/// <param name="startPosition">Position in the input string that defines the leftmost
+		/// position to be searched</param>
+		/// <param name="lineBreakPosition">Position of line break</param>
+		/// <param name="lineBreakLength">Length of line break</param>
+		private static void FindLineBreak(string sourceCode, int startPosition,
+			out int lineBreakPosition, out int lineBreakLength)
+		{
+			int length = sourceCode.Length - startPosition;
+
+			FindLineBreak(sourceCode, startPosition, length,
+				out lineBreakPosition, out lineBreakLength);
+		}
+
+		/// <summary>
+		/// Finds a line break
+		/// </summary>
+		/// <param name="sourceCode">Source code</param>
+		/// <param name="startPosition">Position in the input string that defines the leftmost
+		/// position to be searched</param>
+		/// <param name="length">Number of characters in the substring to include in the search</param>
+		/// <param name="lineBreakPosition">Position of line break</param>
+		/// <param name="lineBreakLength">Length of line break</param>
+		private static void FindLineBreak(string sourceCode, int startPosition, int length,
+			out int lineBreakPosition, out int lineBreakLength)
+		{
+			Match lineBreakMatch = _lineBreakRegex.Match(sourceCode, startPosition, length);
+			if (lineBreakMatch.Success)
+			{
+				lineBreakPosition = lineBreakMatch.Index;
+				lineBreakLength = lineBreakMatch.Length;
+			}
+			else
+			{
+				lineBreakPosition = -1;
+				lineBreakLength = 0;
+			}
 		}
 
 		#endregion

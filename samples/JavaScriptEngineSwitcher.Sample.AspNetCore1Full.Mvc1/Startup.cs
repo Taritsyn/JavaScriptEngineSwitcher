@@ -10,6 +10,7 @@ using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
+using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Vroom;
@@ -61,9 +62,8 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1
 				.AddMsie(options =>
 				{
 					options.EngineMode = JsEngineMode.ChakraIeJsRt;
-					options.UseEcmaScript5Polyfill = true;
-					options.UseJson2Library = true;
 				})
+				.AddNiL()
 				.AddV8()
 				.AddVroom()
 				;
