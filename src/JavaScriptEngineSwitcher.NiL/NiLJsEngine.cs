@@ -39,7 +39,7 @@ namespace JavaScriptEngineSwitcher.NiL
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "2.5.1241";
+		private const string EngineVersion = "2.5.1243";
 
 		/// <summary>
 		/// Regular expression for working with the syntax error message
@@ -426,11 +426,15 @@ namespace JavaScriptEngineSwitcher.NiL
 			{
 				lock (_synchronizer)
 				{
+#if NETSTANDARD
 					OriginalValue variableValue = _jsContext.GetVariable(variableName);
 					if (variableValue.ValueType != OriginalValueType.NotExists)
 					{
 						variableValue.Assign(OriginalValue.NotExists);
 					}
+#else
+					_jsContext.DeleteVariable(variableName);
+#endif
 				}
 			}
 			catch (OriginalException e)

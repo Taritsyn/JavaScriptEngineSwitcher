@@ -9,8 +9,8 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<NoWarn>$(NoWarn);CS1591</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1241).</Description>
-		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconUrl>
+		<Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1243).</Description>
+		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/3.X/Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;NiL</PackageTags>
 	</PropertyGroup>
 
@@ -25,11 +25,11 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' Or '$(TargetFramework)' == 'net45' ">
-		<PackageReference Include="NiL.JS" Version="2.5.1241" />
+		<PackageReference Include="NiL.JS" Version="2.5.1243" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' Or '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="NiL.JS.NetCore" Version="2.5.1241" />
+		<PackageReference Include="NiL.JS.NetCore" Version="2.5.1243" />
 	</ItemGroup>
 
 	<ItemGroup>
