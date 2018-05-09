@@ -30,8 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version 1.8.3;
-   2. Fixed a minor errors.
+   1. ChakraCore was updated to version 1.8.4;
+   2. JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm package has been replaced
+      by the JavaScriptEngineSwitcher.ChakraCore.Native.win-arm package.
 
    =============
    DOCUMENTATION
