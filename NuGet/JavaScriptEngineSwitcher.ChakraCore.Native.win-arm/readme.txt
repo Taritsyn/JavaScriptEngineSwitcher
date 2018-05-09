@@ -11,8 +11,10 @@
    ===========
    DESCRIPTION
    ===========
-   This package is deprecated. Instead, it is recommended to use a
-   'JavaScriptEngineSwitcher.ChakraCore.Native.win-arm' package.
+   This package complements the JavaScriptEngineSwitcher.ChakraCore package and
+   contains the native implementation of ChakraCore version 1.8.3 for Windows (ARM).
+
+   This package is only compatible with .NET Core and .NET Framework 4.5.
 
    =============
    RELEASE NOTES

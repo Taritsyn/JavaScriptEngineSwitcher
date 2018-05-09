@@ -23,7 +23,7 @@
 
     * JavaScriptEngineSwitcher.ChakraCore.Native.win-x86
     * JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
-    * JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm
+    * JavaScriptEngineSwitcher.ChakraCore.Native.win-arm
     * JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64
     * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64
 
