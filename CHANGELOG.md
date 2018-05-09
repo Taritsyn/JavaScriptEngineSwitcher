@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v2.4.17 - May 9, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.8.4
+   * JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm package has been replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.win-arm package
+
 ## v2.4.16 - April 13, 2018
  * In JavaScriptEngineSwitcher.V8.Native.win-* and JavaScriptEngineSwitcher.ChakraCore.Native.win-* packages the directories with `win7-*` RIDs was renamed to `win-*`
 
