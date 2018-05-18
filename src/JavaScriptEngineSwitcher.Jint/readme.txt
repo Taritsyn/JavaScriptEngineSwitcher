@@ -17,8 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   In configuration settings of the Jint JS engine a `Timeout` property has been
-   replaced by the `TimeoutInterval` property (default `TimeSpan.Zero`).
+   Added a ability to pre-compile scripts.
 
    =============
    DOCUMENTATION

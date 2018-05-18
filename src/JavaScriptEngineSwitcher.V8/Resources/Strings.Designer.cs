@@ -73,6 +73,14 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 			get { return GetString("Engine_VcRedist2017InstallationRequired"); }
 		}
 
+		/// <summary>
+		/// Looks up a localized string similar to "Pre-compiled script is not accepted. To be accepted, the pre-compiled script must have been created..."
+		/// </summary>
+		internal static string Usage_PrecompiledScriptNotAccepted
+		{
+			get { return GetString("Usage_PrecompiledScriptNotAccepted"); }
+		}
+
 		private static string GetString(string name)
 		{
 			string value = ResourceManager.GetString(name, _resourceCulture);

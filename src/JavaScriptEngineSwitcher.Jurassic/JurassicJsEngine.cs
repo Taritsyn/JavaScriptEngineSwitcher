@@ -4,12 +4,14 @@ using System.Reflection;
 using System.Text;
 
 using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
+using OriginalCompiledScript = Jurassic.CompiledScript;
 using OriginalConcatenatedString = Jurassic.ConcatenatedString;
 using OriginalEngine = Jurassic.ScriptEngine;
 using OriginalErrorInstance = Jurassic.Library.ErrorInstance;
-using OriginalException = Jurassic.JavaScriptException;
+using OriginalJavaScriptException = Jurassic.JavaScriptException;
 using OriginalNull = Jurassic.Null;
 using OriginalStringScriptSource = Jurassic.StringScriptSource;
+using OriginalSyntaxException = Jurassic.Compiler.SyntaxErrorException;
 using OriginalTypeConverter = Jurassic.TypeConverter;
 using OriginalUndefined = Jurassic.Undefined;
 
@@ -24,10 +26,10 @@ using JavaScriptEngineSwitcher.Core.Utilities;
 
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
-using WrapperEngineLoadException = JavaScriptEngineSwitcher.Core.JsEngineLoadException;
 using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
 using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
 using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
+using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
 
 namespace JavaScriptEngineSwitcher.Jurassic
 {
@@ -165,18 +167,41 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			return value;
 		}
 
-		private static WrapperException WrapJavaScriptException(OriginalException originalException)
+		private static WrapperCompilationException WrapSyntaxException(
+			OriginalSyntaxException originalSyntaxException)
+		{
+			string description = originalSyntaxException.Message;
+			string type = JsErrorType.Syntax;
+			string documentName = originalSyntaxException.SourcePath;
+			int lineNumber = originalSyntaxException.LineNumber;
+			string message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName,
+				lineNumber, 0);
+
+			var wrapperCompilationException = new WrapperCompilationException(message, EngineName, EngineVersion,
+				originalSyntaxException)
+			{
+				Description = description,
+				Type = type,
+				DocumentName = documentName,
+				LineNumber = lineNumber
+			};
+
+			return wrapperCompilationException;
+		}
+
+		private static WrapperException WrapJavaScriptException(
+			OriginalJavaScriptException originalJavaScriptException)
 		{
 			WrapperException wrapperException;
-			string message = originalException.Message;
+			string message = originalJavaScriptException.Message;
 			string messageWithCallStack = string.Empty;
 			string description = message;
-			string type = originalException.Name;
-			string documentName = originalException.SourcePath;
-			int lineNumber = originalException.LineNumber;
+			string type = originalJavaScriptException.Name;
+			string documentName = originalJavaScriptException.SourcePath;
+			int lineNumber = originalJavaScriptException.LineNumber;
 			string callStack = string.Empty;
 
-			var errorValue = originalException.ErrorObject as OriginalErrorInstance;
+			var errorValue = originalJavaScriptException.ErrorObject as OriginalErrorInstance;
 			if (errorValue != null)
 			{
 				messageWithCallStack = errorValue.Stack;
@@ -193,7 +218,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 						lineNumber, 0);
 
 					wrapperScriptException = new WrapperCompilationException(message, EngineName, EngineVersion,
-						originalException);
+						originalJavaScriptException);
 				}
 				else
 				{
@@ -215,7 +240,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, callStack);
 
 					wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
-						originalException)
+						originalJavaScriptException)
 					{
 						CallStack = callStack
 					};
@@ -229,7 +254,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			else
 			{
 				wrapperException = new WrapperException(message, EngineName, EngineVersion,
-					originalException);
+					originalJavaScriptException);
 			}
 
 			wrapperException.Description = description;
@@ -264,6 +289,32 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		#region JsEngineBase overrides
 
+		protected override IPrecompiledScript InnerPrecompile(string code)
+		{
+			return InnerPrecompile(code, null);
+		}
+
+		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
+		{
+			OriginalCompiledScript compiledScript;
+			string uniqueDocumentName = GetUniqueDocumentName(documentName, false);
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					var source = new OriginalStringScriptSource(code, uniqueDocumentName);
+					compiledScript = _jsEngine.Compile(source);
+				}
+				catch (OriginalSyntaxException e)
+				{
+					throw WrapSyntaxException(e);
+				}
+			}
+
+			return new JurassicPrecompiledScript(compiledScript);
+		}
+
 		protected override object InnerEvaluate(string expression)
 		{
 			return InnerEvaluate(expression, null);
@@ -281,7 +332,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					var source = new OriginalStringScriptSource(expression, uniqueDocumentName);
 					result = _jsEngine.Evaluate(source);
 				}
-				catch (OriginalException e)
+				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
 				}
@@ -320,7 +371,32 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					var source = new OriginalStringScriptSource(code, uniqueDocumentName);
 					_jsEngine.Execute(source);
 				}
-				catch (OriginalException e)
+				catch (OriginalJavaScriptException e)
+				{
+					throw WrapJavaScriptException(e);
+				}
+			}
+		}
+
+		protected override void InnerExecute(IPrecompiledScript precompiledScript)
+		{
+			var jurassicPrecompiledScript = precompiledScript as JurassicPrecompiledScript;
+			if (jurassicPrecompiledScript == null)
+			{
+				throw new WrapperUsageException(
+					string.Format(CoreStrings.Usage_CannotConvertPrecompiledScriptToInternalType,
+						typeof(JurassicPrecompiledScript).FullName),
+					Name, Version
+				);
+			}
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					jurassicPrecompiledScript.CompiledScript.Execute(_jsEngine);
+				}
+				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
 				}
@@ -348,7 +424,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					result = _jsEngine.CallGlobalFunction(functionName, processedArgs);
 				}
-				catch (OriginalException e)
+				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
 				}
@@ -393,7 +469,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					result = _jsEngine.GetGlobalValue(variableName);
 				}
-				catch (OriginalException e)
+				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
 				}
@@ -421,7 +497,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					_jsEngine.SetGlobalValue(variableName, processedValue);
 				}
-				catch (OriginalException e)
+				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
 				}
@@ -451,7 +527,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 						_jsEngine.SetGlobalValue(itemName, processedValue);
 					}
 				}
-				catch (OriginalException e)
+				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
 				}
@@ -466,7 +542,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					_jsEngine.SetGlobalValue(itemName, type);
 				}
-				catch (OriginalException e)
+				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
 				}
@@ -475,12 +551,12 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override void InnerInterrupt()
 		{
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 
 		protected override void InnerCollectGarbage()
 		{
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 
 		#region IJsEngine implementation
@@ -502,6 +578,14 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		}
 
 		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script pre-compilation
+		/// </summary>
+		public override bool SupportsScriptPrecompilation
+		{
+			get { return true; }
+		}
+
+		/// <summary>
 		/// Gets a value that indicates if the JS engine supports script interruption
 		/// </summary>
 		public override bool SupportsScriptInterruption
@@ -517,6 +601,179 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			get { return false; }
 		}
 
+
+		public override IPrecompiledScript PrecompileFile(string path, Encoding encoding = null)
+		{
+			VerifyNotDisposed();
+
+			if (path == null)
+			{
+				throw new ArgumentNullException(
+					nameof(path),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(path))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(path)),
+					nameof(path)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(path))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidFileNameFormat, path),
+					nameof(path)
+				);
+			}
+
+			OriginalCompiledScript compiledScript;
+			string uniqueDocumentName = GetUniqueDocumentName(path, true);
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					var source = new FileScriptSource(uniqueDocumentName, path, encoding);
+					compiledScript = _jsEngine.Compile(source);
+				}
+				catch (OriginalSyntaxException e)
+				{
+					throw WrapSyntaxException(e);
+				}
+				catch (FileNotFoundException)
+				{
+					throw;
+				}
+			}
+
+			return new JurassicPrecompiledScript(compiledScript);
+		}
+
+		public override IPrecompiledScript PrecompileResource(string resourceName, Type type)
+		{
+			VerifyNotDisposed();
+
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(resourceName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(resourceName))
+				);
+			}
+
+			if (type == null)
+			{
+				throw new ArgumentNullException(
+					nameof(type),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(type))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
+			}
+
+			Assembly assembly = type.GetTypeInfo().Assembly;
+			string nameSpace = type.Namespace;
+			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
+
+			OriginalCompiledScript compiledScript;
+			string uniqueDocumentName = GetUniqueDocumentName(resourceFullName, false);
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					var source = new ResourceScriptSource(uniqueDocumentName, resourceFullName, assembly);
+					compiledScript = _jsEngine.Compile(source);
+				}
+				catch (OriginalSyntaxException e)
+				{
+					throw WrapSyntaxException(e);
+				}
+				catch (NullReferenceException)
+				{
+					throw;
+				}
+			}
+
+			return new JurassicPrecompiledScript(compiledScript);
+		}
+
+		public override IPrecompiledScript PrecompileResource(string resourceName, Assembly assembly)
+		{
+			VerifyNotDisposed();
+
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(resourceName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(resourceName))
+				);
+			}
+
+			if (assembly == null)
+			{
+				throw new ArgumentNullException(
+					nameof(assembly),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(assembly))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
+			}
+
+			OriginalCompiledScript compiledScript;
+			string uniqueDocumentName = GetUniqueDocumentName(resourceName, false);
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					var source = new ResourceScriptSource(uniqueDocumentName, resourceName, assembly);
+					compiledScript = _jsEngine.Compile(source);
+				}
+				catch (OriginalSyntaxException e)
+				{
+					throw WrapSyntaxException(e);
+				}
+				catch (NullReferenceException)
+				{
+					throw;
+				}
+			}
+
+			return new JurassicPrecompiledScript(compiledScript);
+		}
 
 		public override void ExecuteFile(string path, Encoding encoding = null)
 		{
@@ -555,7 +812,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					var source = new FileScriptSource(uniqueDocumentName, path, encoding);
 					_jsEngine.Execute(source);
 				}
-				catch (OriginalException e)
+				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
 				}
@@ -614,7 +871,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					var source = new ResourceScriptSource(uniqueDocumentName, resourceFullName, assembly);
 					_jsEngine.Execute(source);
 				}
-				catch (OriginalException e)
+				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
 				}
@@ -670,7 +927,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 					var source = new ResourceScriptSource(uniqueDocumentName, resourceName, assembly);
 					_jsEngine.Execute(source);
 				}
-				catch (OriginalException e)
+				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
 				}

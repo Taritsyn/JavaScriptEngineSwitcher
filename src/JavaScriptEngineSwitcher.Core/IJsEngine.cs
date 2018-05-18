@@ -27,6 +27,14 @@ namespace JavaScriptEngineSwitcher.Core
 		}
 
 		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script pre-compilation
+		/// </summary>
+		bool SupportsScriptPrecompilation
+		{
+			get;
+		}
+
+		/// <summary>
 		/// Gets a value that indicates if the JS engine supports script interruption
 		/// </summary>
 		bool SupportsScriptInterruption
@@ -42,6 +50,74 @@ namespace JavaScriptEngineSwitcher.Core
 			get;
 		}
 
+
+		/// <summary>
+		/// Creates a pre-compiled script from JS code
+		/// </summary>
+		/// <param name="code">JS code</param>
+		/// <returns>A pre-compiled script that can be executed by different instances of JS engine</returns>
+		/// <exception cref="ObjectDisposedException"/>
+		/// <exception cref="ArgumentNullException"/>
+		/// <exception cref="ArgumentException"/>
+		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsException"/>
+		IPrecompiledScript Precompile(string code);
+
+		/// <summary>
+		/// Creates a pre-compiled script from JS code
+		/// </summary>
+		/// <param name="code">JS code</param>
+		/// <param name="documentName">Document name</param>
+		/// <returns>A pre-compiled script that can be executed by different instances of JS engine</returns>
+		/// <exception cref="ObjectDisposedException"/>
+		/// <exception cref="ArgumentNullException"/>
+		/// <exception cref="ArgumentException"/>
+		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsException"/>
+		IPrecompiledScript Precompile(string code, string documentName);
+
+		/// <summary>
+		/// Creates a pre-compiled script from JS file
+		/// </summary>
+		/// <param name="path">Path to the JS file</param>
+		/// <param name="encoding">Text encoding</param>
+		/// <exception cref="ObjectDisposedException"/>
+		/// <exception cref="ArgumentNullException"/>
+		/// <exception cref="ArgumentException"/>
+		/// <exception cref="FileNotFoundException"/>
+		/// <exception cref="JsUsageException"/>
+		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsException"/>
+		IPrecompiledScript PrecompileFile(string path, Encoding encoding = null);
+
+		/// <summary>
+		/// Creates a pre-compiled script from embedded JS resource
+		/// </summary>
+		/// <param name="resourceName">The case-sensitive resource name without the namespace of the specified type</param>
+		/// <param name="type">The type, that determines the assembly and whose namespace is used to scope
+		/// the resource name</param>
+		/// <exception cref="ObjectDisposedException"/>
+		/// <exception cref="ArgumentNullException"/>
+		/// <exception cref="ArgumentException"/>
+		/// <exception cref="NullReferenceException"/>
+		/// <exception cref="JsUsageException"/>
+		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsException"/>
+		IPrecompiledScript PrecompileResource(string resourceName, Type type);
+
+		/// <summary>
+		/// Creates a pre-compiled script from embedded JS resource
+		/// </summary>
+		/// <param name="resourceName">The case-sensitive resource name</param>
+		/// <param name="assembly">The assembly, which contains the embedded resource</param>
+		/// <exception cref="ObjectDisposedException"/>
+		/// <exception cref="ArgumentNullException"/>
+		/// <exception cref="ArgumentException"/>
+		/// <exception cref="NullReferenceException"/>
+		/// <exception cref="JsUsageException"/>
+		/// <exception cref="JsCompilationException"/>
+		/// <exception cref="JsException"/>
+		IPrecompiledScript PrecompileResource(string resourceName, Assembly assembly);
 
 		/// <summary>
 		/// Evaluates an expression
@@ -135,6 +211,19 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
 		void Execute(string code, string documentName);
+
+		/// <summary>
+		/// Executes a pre-compiled script
+		/// </summary>
+		/// <exception cref="ObjectDisposedException"/>
+		/// <exception cref="ArgumentNullException"/>
+		/// <exception cref="ArgumentException"/>
+		/// <exception cref="JsUsageException"/>
+		/// <exception cref="JsTimeoutException"/>
+		/// <exception cref="JsInterruptedException"/>
+		/// <exception cref="JsRuntimeException"/>
+		/// <exception cref="JsException"/>
+		void Execute(IPrecompiledScript precompiledScript);
 
 		/// <summary>
 		/// Executes a code from JS file

@@ -13,7 +13,7 @@
 		<Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.11.58).</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Jint</PackageTags>
-		<PackageReleaseNotes>In configuration settings of the Jint JS engine a `Timeout` property has been replaced by the `TimeoutInterval` property (default `TimeSpan.Zero`).</PackageReleaseNotes>
+		<PackageReleaseNotes>Added a ability to pre-compile scripts.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />

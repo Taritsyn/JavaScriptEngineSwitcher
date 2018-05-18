@@ -936,14 +936,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			}
 		}
 
-		private static WrapperException WrapJsException(OriginalException originalException)
+		private static WrapperException WrapJsException(OriginalException originalException,
+			string defaultDocumentName = null)
 		{
 			WrapperException wrapperException;
 			JsErrorCode errorCode = originalException.ErrorCode;
 			string description = originalException.Message;
 			string message = description;
 			string type = string.Empty;
-			string documentName = string.Empty;
+			string documentName = defaultDocumentName ?? string.Empty;
 			int lineNumber = 0;
 			int columnNumber = 0;
 			string callStack = string.Empty;
@@ -973,7 +974,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						if (metadataValue.HasProperty(urlPropertyId))
 						{
 							JsValue urlPropertyValue = metadataValue.GetProperty(urlPropertyId);
-							documentName = urlPropertyValue.ConvertToString().ToString();
+							string url = urlPropertyValue.ConvertToString().ToString();
+							if (url != "undefined")
+							{
+								documentName = url;
+							}
 						}
 
 						JsPropertyId linePropertyId = JsPropertyId.FromString("line");
@@ -1259,6 +1264,35 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		#region JsEngineBase overrides
 
+		protected override IPrecompiledScript InnerPrecompile(string code)
+		{
+			return InnerPrecompile(code, null);
+		}
+
+		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
+		{
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+
+			IPrecompiledScript precompiledScript = _dispatcher.Invoke(() =>
+			{
+				using (CreateJsScope())
+				{
+					try
+					{
+						byte[] cachedBytes = JsContext.SerializeScript(code);
+
+						return new ChakraCorePrecompiledScript(code, cachedBytes, uniqueDocumentName);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e, uniqueDocumentName);
+					}
+				}
+			});
+
+			return precompiledScript;
+		}
+
 		protected override object InnerEvaluate(string expression)
 		{
 			return InnerEvaluate(expression, null);
@@ -1317,6 +1351,36 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					try
 					{
 						JsContext.RunScript(code, _jsSourceContext++, uniqueDocumentName);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
+				}
+			});
+		}
+
+		protected override void InnerExecute(IPrecompiledScript precompiledScript)
+		{
+			var chakraCorePrecompiledScript = precompiledScript as ChakraCorePrecompiledScript;
+			if (chakraCorePrecompiledScript == null)
+			{
+				throw new WrapperUsageException(
+					string.Format(CoreStrings.Usage_CannotConvertPrecompiledScriptToInternalType,
+						typeof(ChakraCorePrecompiledScript).FullName),
+					Name, Version
+				);
+			}
+
+			_dispatcher.Invoke(() =>
+			{
+				using (CreateJsScope())
+				{
+					try
+					{
+						JsContext.RunSerializedScript(chakraCorePrecompiledScript.Code,
+							chakraCorePrecompiledScript.CachedBytes, _jsSourceContext++,
+							chakraCorePrecompiledScript.DocumentName);
 					}
 					catch (OriginalException e)
 					{
@@ -1574,6 +1638,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		public override string Version
 		{
 			get { return EngineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script pre-compilation
+		/// </summary>
+		public override bool SupportsScriptPrecompilation
+		{
+			get { return true; }
 		}
 
 		/// <summary>

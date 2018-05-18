@@ -219,11 +219,23 @@
   <data name="Runtime_VariableNotExist" xml:space="preserve">
     <value>Переменная с именем "{0}" не существует!</value>
   </data>
+  <data name="Usage_CannotConvertPrecompiledScriptToInternalType" xml:space="preserve">
+    <value>Невозможно преобразовать предварительно скомпилированный сценарий во внутренний тип `{0}`!</value>
+  </data>
   <data name="Usage_CannotExecuteEmptyFile" xml:space="preserve">
     <value>Нельзя выполнить файл "{0}", потому что он пустой!</value>
   </data>
   <data name="Usage_CannotExecuteEmptyResource" xml:space="preserve">
     <value>Нельзя выполнить ресурс "{0}", потому что он пустой!</value>
+  </data>
+  <data name="Usage_CannotExecutePrecompiledScriptForAnotherJsEngine" xml:space="preserve">
+    <value>Нельзя выполнить предварительно скомпилированный сценарий, потому что он был создан для другого JS-движка с именем `{0}`!</value>
+  </data>
+  <data name="Usage_CannotPrecompileEmptyFile" xml:space="preserve">
+    <value>Нельзя произвести предварительную компиляцию файла "{0}", потому что он пустой!</value>
+  </data>
+  <data name="Usage_CannotPrecompileEmptyResource" xml:space="preserve">
+    <value>Нельзя произвести предварительную компиляцию ресурса "{0}", потому что он пустой!</value>
   </data>
   <data name="Usage_EmbeddedHostObjectTypeNotSupported" xml:space="preserve">
     <value>Встраиваемый объекта хоста "{0}" имеет тип `{1}`, который не поддерживается!</value>

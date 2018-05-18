@@ -56,7 +56,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Resources/cube.js;Resources/power.js" />
+		<EmbeddedResource Include="Resources/cube.js;Resources/declinationOfDays.js;Resources/declinationOfHours.js;Resources/power.js" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -5,8 +5,10 @@ using IOriginalCallable = Jint.Native.ICallable;
 using OriginalEngine = Jint.Engine;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
+using OriginalParser = Jint.Parser.JavaScriptParser;
 using OriginalParserException = Jint.Parser.ParserException;
 using OriginalParserOptions = Jint.Parser.ParserOptions;
+using OriginalProgram = Jint.Parser.Ast.Program;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
 using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
@@ -19,10 +21,10 @@ using JavaScriptEngineSwitcher.Core.Utilities;
 
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
-using WrapperEngineLoadException = JavaScriptEngineSwitcher.Core.JsEngineLoadException;
 using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
 using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
 using WrapperTimeoutException = JavaScriptEngineSwitcher.Core.JsTimeoutException;
+using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
 
 namespace JavaScriptEngineSwitcher.Jint
 {
@@ -276,6 +278,36 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		#region JsEngineBase overrides
 
+		protected override IPrecompiledScript InnerPrecompile(string code)
+		{
+			return InnerPrecompile(code, null);
+		}
+
+		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
+		{
+			OriginalProgram program;
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					var parserOptions = new OriginalParserOptions
+					{
+						Source = uniqueDocumentName
+					};
+					var parser = new OriginalParser();
+					program = parser.Parse(code, parserOptions);
+				}
+				catch (OriginalParserException e)
+				{
+					throw WrapParserException(e);
+				}
+			}
+
+			return new JintPrecompiledScript(program);
+		}
+
 		protected override object InnerEvaluate(string expression)
 		{
 			return InnerEvaluate(expression, null);
@@ -359,6 +391,43 @@ namespace JavaScriptEngineSwitcher.Jint
 				catch (OriginalParserException e)
 				{
 					throw WrapParserException(e);
+				}
+				catch (OriginalJavaScriptException e)
+				{
+					throw WrapJavaScriptException(e);
+				}
+				catch (OriginalRecursionDepthOverflowException e)
+				{
+					throw WrapRecursionDepthOverflowException(e);
+				}
+				catch (OriginalStatementsCountOverflowException e)
+				{
+					throw WrapStatementsCountOverflowException(e);
+				}
+				catch (TimeoutException e)
+				{
+					throw WrapTimeoutException(e);
+				}
+			}
+		}
+
+		protected override void InnerExecute(IPrecompiledScript precompiledScript)
+		{
+			var jintPrecompiledScript = precompiledScript as JintPrecompiledScript;
+			if (jintPrecompiledScript == null)
+			{
+				throw new WrapperUsageException(
+					string.Format(CoreStrings.Usage_CannotConvertPrecompiledScriptToInternalType,
+						typeof(JintPrecompiledScript).FullName),
+					Name, Version
+				);
+			}
+
+			lock (_executionSynchronizer)
+			{
+				try
+				{
+					_jsEngine.Execute(jintPrecompiledScript.Program);
 				}
 				catch (OriginalJavaScriptException e)
 				{
@@ -558,12 +627,12 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override void InnerInterrupt()
 		{
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 
 		protected override void InnerCollectGarbage()
 		{
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 
 		#region IJsEngine implementation
@@ -582,6 +651,14 @@ namespace JavaScriptEngineSwitcher.Jint
 		public override string Version
 		{
 			get { return EngineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script pre-compilation
+		/// </summary>
+		public override bool SupportsScriptPrecompilation
+		{
+			get { return true; }
 		}
 
 		/// <summary>

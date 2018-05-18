@@ -18,7 +18,7 @@
    =============
    RELEASE NOTES
    =============
-   Jurassic was updated to version of February 24, 2018.
+   Added a ability to pre-compile scripts.
 
    =============
    DOCUMENTATION

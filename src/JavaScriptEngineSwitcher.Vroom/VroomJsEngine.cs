@@ -361,6 +361,16 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		#region JsEngineBase overrides
 
+		protected override IPrecompiledScript InnerPrecompile(string code)
+		{
+			throw new NotSupportedException();
+		}
+
+		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
+		{
+			throw new NotSupportedException();
+		}
+
 		protected override object InnerEvaluate(string expression)
 		{
 			return InnerEvaluate(expression, null);
@@ -418,6 +428,11 @@ namespace JavaScriptEngineSwitcher.Vroom
 					throw WrapJsException(e);
 				}
 			}
+		}
+
+		protected override void InnerExecute(IPrecompiledScript precompiledScript)
+		{
+			throw new NotSupportedException();
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
@@ -597,7 +612,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		protected override void InnerCollectGarbage()
 		{
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 
 		#region IJsEngine implementation
@@ -616,6 +631,14 @@ namespace JavaScriptEngineSwitcher.Vroom
 		public override string Version
 		{
 			get { return EngineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script pre-сompilation
+		/// </summary>
+		public override bool SupportsScriptPrecompilation
+		{
+			get { return false; }
 		}
 
 		/// <summary>

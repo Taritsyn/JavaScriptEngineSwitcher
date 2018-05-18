@@ -4,8 +4,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 using Microsoft.ClearScript.V8;
+using OriginalCacheKind = Microsoft.ClearScript.V8.V8CacheKind;
 using OriginalException = Microsoft.ClearScript.ScriptEngineException;
 using OriginalInterruptedException = Microsoft.ClearScript.ScriptInterruptedException;
+using OriginalScript = Microsoft.ClearScript.V8.V8Script;
 using OriginalUndefined = Microsoft.ClearScript.Undefined;
 
 using JavaScriptEngineSwitcher.Core;
@@ -22,6 +24,7 @@ using WrapperFatalException = JavaScriptEngineSwitcher.Core.JsFatalException;
 using WrapperInterruptedException = JavaScriptEngineSwitcher.Core.JsInterruptedException;
 using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
 using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
+using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
 
 using JavaScriptEngineSwitcher.V8.Constants;
 using JavaScriptEngineSwitcher.V8.Resources;
@@ -399,6 +402,30 @@ namespace JavaScriptEngineSwitcher.V8
 
 		#region JsEngineBase overrides
 
+		protected override IPrecompiledScript InnerPrecompile(string code)
+		{
+			return Precompile(code, null);
+		}
+
+		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
+		{
+			var cacheKind = OriginalCacheKind.Code;
+			byte[] cachedBytes;
+
+			try
+			{
+				using (OriginalScript generalScript = _jsEngine.Compile(documentName, code, cacheKind,
+					out cachedBytes))
+				{ }
+			}
+			catch (OriginalException e)
+			{
+				throw WrapScriptEngineException(e);
+			}
+
+			return new V8PrecompiledScript(code, cacheKind, cachedBytes, documentName);
+		}
+
 		protected override object InnerEvaluate(string expression)
 		{
 			return InnerEvaluate(expression, null);
@@ -448,6 +475,44 @@ namespace JavaScriptEngineSwitcher.V8
 			try
 			{
 				_jsEngine.Execute(documentName, false, code);
+			}
+			catch (OriginalException e)
+			{
+				throw WrapScriptEngineException(e);
+			}
+			catch (OriginalInterruptedException e)
+			{
+				throw WrapScriptInterruptedException(e);
+			}
+		}
+
+		protected override void InnerExecute(IPrecompiledScript precompiledScript)
+		{
+			var v8PrecompiledScript = precompiledScript as V8PrecompiledScript;
+			if (v8PrecompiledScript == null)
+			{
+				throw new WrapperUsageException(
+					string.Format(CoreStrings.Usage_CannotConvertPrecompiledScriptToInternalType,
+						typeof(V8PrecompiledScript).FullName),
+					Name, Version
+				);
+			}
+
+			bool cacheAccepted;
+
+			try
+			{
+				using (OriginalScript script = _jsEngine.Compile(v8PrecompiledScript.DocumentName,
+					v8PrecompiledScript.Code, v8PrecompiledScript.CacheKind, v8PrecompiledScript.CachedBytes,
+					out cacheAccepted))
+				{
+					if (!cacheAccepted)
+					{
+						throw new WrapperUsageException(Strings.Usage_PrecompiledScriptNotAccepted, Name, Version);
+					}
+
+					_jsEngine.Execute(script);
+				}
 			}
 			catch (OriginalException e)
 			{
@@ -618,6 +683,14 @@ namespace JavaScriptEngineSwitcher.V8
 		public override string Version
 		{
 			get { return EngineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script pre-compilation
+		/// </summary>
+		public override bool SupportsScriptPrecompilation
+		{
+			get { return true; }
 		}
 
 		/// <summary>

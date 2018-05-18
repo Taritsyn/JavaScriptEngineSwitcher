@@ -25,7 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 5.5.2.
+   Added a ability to pre-compile scripts.
 
    =============
    DOCUMENTATION

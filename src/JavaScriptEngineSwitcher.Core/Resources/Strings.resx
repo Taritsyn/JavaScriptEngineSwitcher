@@ -219,11 +219,23 @@
   <data name="Runtime_VariableNotExist" xml:space="preserve">
     <value>The variable with the name '{0}' does not exist.</value>
   </data>
+  <data name="Usage_CannotConvertPrecompiledScriptToInternalType" xml:space="preserve">
+    <value>Cannot convert a pre-compiled script to internal type `{0}`.</value>
+  </data>
   <data name="Usage_CannotExecuteEmptyFile" xml:space="preserve">
     <value>Сannot execute a '{0}' file, because it is empty.</value>
   </data>
   <data name="Usage_CannotExecuteEmptyResource" xml:space="preserve">
     <value>Сannot execute a '{0}' resource, because it is empty.</value>
+  </data>
+  <data name="Usage_CannotExecutePrecompiledScriptForAnotherJsEngine" xml:space="preserve">
+    <value>Сannot execute a pre-compiled script, because it was created for another JS engine with name `{0}`.</value>
+  </data>
+  <data name="Usage_CannotPrecompileEmptyFile" xml:space="preserve">
+    <value>Сannot pre-compile a '{0}' file, because it is empty.</value>
+  </data>
+  <data name="Usage_CannotPrecompileEmptyResource" xml:space="preserve">
+    <value>Сannot pre-compile a '{0}' resource, because it is empty.</value>
   </data>
   <data name="Usage_EmbeddedHostObjectTypeNotSupported" xml:space="preserve">
     <value>The embedded host object '{0}' has a type `{1}`, which is not supported.</value>

@@ -330,6 +330,14 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "Cannot convert a pre-compiled script to internal type `{0}`."
+		/// </summary>
+		public static string Usage_CannotConvertPrecompiledScriptToInternalType
+		{
+			get { return GetString("Usage_CannotConvertPrecompiledScriptToInternalType"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "Сannot execute a '{0}' file, because it is empty."
 		/// </summary>
 		public static string Usage_CannotExecuteEmptyFile
@@ -343,6 +351,30 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		public static string Usage_CannotExecuteEmptyResource
 		{
 			get { return GetString("Usage_CannotExecuteEmptyResource"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Сannot execute a pre-compiled script, because it was created for another JS engine with name `{0}`."
+		/// </summary>
+		public static string Usage_CannotExecutePrecompiledScriptForAnotherJsEngine
+		{
+			get { return GetString("Usage_CannotExecutePrecompiledScriptForAnotherJsEngine"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Сannot pre-compile a '{0}' file, because it is empty."
+		/// </summary>
+		public static string Usage_CannotPrecompileEmptyFile
+		{
+			get { return GetString("Usage_CannotPrecompileEmptyFile"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Сannot pre-compile a '{0}' resource, because it is empty."
+		/// </summary>
+		public static string Usage_CannotPrecompileEmptyResource
+		{
+			get { return GetString("Usage_CannotPrecompileEmptyResource"); }
 		}
 
 		/// <summary>

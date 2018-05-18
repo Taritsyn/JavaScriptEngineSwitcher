@@ -213,6 +213,16 @@ namespace JavaScriptEngineSwitcher.Msie
 
 		#region JsEngineBase overrides
 
+		protected override IPrecompiledScript InnerPrecompile(string code)
+		{
+			throw new NotSupportedException();
+		}
+
+		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
+		{
+			throw new NotSupportedException();
+		}
+
 		protected override object InnerEvaluate(string expression)
 		{
 			return InnerEvaluate(expression, null);
@@ -263,6 +273,11 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				throw WrapJsException(e);
 			}
+		}
+
+		protected override void InnerExecute(IPrecompiledScript precompiledScript)
+		{
+			throw new NotSupportedException();
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
@@ -419,6 +434,14 @@ namespace JavaScriptEngineSwitcher.Msie
 		public override string Version
 		{
 			get { return _engineVersion; }
+		}
+
+		/// <summary>
+		/// Gets a value that indicates if the JS engine supports script pre-сompilation
+		/// </summary>
+		public override bool SupportsScriptPrecompilation
+		{
+			get { return false; }
 		}
 
 		/// <summary>

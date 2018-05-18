@@ -37,6 +37,16 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 		}
 
+		protected virtual IPrecompiledScript InnerPrecompile(string code)
+		{
+			throw new NotImplementedException();
+		}
+
+		protected virtual IPrecompiledScript InnerPrecompile(string code, string documentName)
+		{
+			throw new NotImplementedException();
+		}
+
 		protected abstract object InnerEvaluate(string expression);
 
 		protected abstract object InnerEvaluate(string expression, string documentName);
@@ -48,6 +58,11 @@ namespace JavaScriptEngineSwitcher.Core
 		protected abstract void InnerExecute(string code);
 
 		protected abstract void InnerExecute(string code, string documentName);
+
+		protected virtual void InnerExecute(IPrecompiledScript precompiledScript)
+		{
+			throw new NotImplementedException();
+		}
 
 		protected abstract object InnerCallFunction(string functionName, params object[] args);
 
@@ -95,6 +110,14 @@ namespace JavaScriptEngineSwitcher.Core
 			get;
 		}
 
+		public virtual bool SupportsScriptPrecompilation
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+		}
+
 		public virtual bool SupportsScriptInterruption
 		{
 			get
@@ -111,6 +134,201 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 		}
 
+
+		public virtual IPrecompiledScript Precompile(string code)
+		{
+			VerifyNotDisposed();
+
+			if (code == null)
+			{
+				throw new ArgumentNullException(
+					nameof(code),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(code))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(code))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(code)),
+					nameof(code)
+				);
+			}
+
+			return InnerPrecompile(code);
+		}
+
+		public virtual IPrecompiledScript Precompile(string code, string documentName)
+		{
+			VerifyNotDisposed();
+
+			if (code == null)
+			{
+				throw new ArgumentNullException(
+					nameof(code),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(code))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(code))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(code)),
+					nameof(code)
+				);
+			}
+
+			if (!string.IsNullOrWhiteSpace(documentName)
+				&& !ValidationHelpers.CheckDocumentNameFormat(documentName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidDocumentNameFormat, documentName),
+					nameof(documentName)
+				);
+			}
+
+			return InnerPrecompile(code, documentName);
+		}
+
+		public virtual IPrecompiledScript PrecompileFile(string path, Encoding encoding = null)
+		{
+			VerifyNotDisposed();
+
+			if (path == null)
+			{
+				throw new ArgumentNullException(
+					nameof(path),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(path))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(path)),
+					nameof(path)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(path))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidFileNameFormat, path),
+					nameof(path)
+				);
+			}
+
+			string code = Utils.GetFileTextContent(path, encoding);
+			if (string.IsNullOrWhiteSpace(code))
+			{
+				throw new JsUsageException(
+					string.Format(Strings.Usage_CannotPrecompileEmptyFile, path),
+					Name, Version
+				);
+			}
+
+			return InnerPrecompile(code, path);
+		}
+
+		public virtual IPrecompiledScript PrecompileResource(string resourceName, Type type)
+		{
+			VerifyNotDisposed();
+
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(resourceName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(resourceName))
+				);
+			}
+
+			if (type == null)
+			{
+				throw new ArgumentNullException(
+					nameof(type),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(type))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
+			}
+
+			Assembly assembly = type.GetTypeInfo().Assembly;
+			string nameSpace = type.Namespace;
+			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
+
+			string code = Utils.GetResourceAsString(resourceFullName, assembly);
+			if (string.IsNullOrWhiteSpace(code))
+			{
+				throw new JsUsageException(
+					string.Format(Strings.Usage_CannotPrecompileEmptyResource, resourceFullName),
+					Name, Version
+				);
+			}
+
+			return InnerPrecompile(code, resourceName);
+		}
+
+		public virtual IPrecompiledScript PrecompileResource(string resourceName, Assembly assembly)
+		{
+			VerifyNotDisposed();
+
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(resourceName),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(resourceName))
+				);
+			}
+
+			if (assembly == null)
+			{
+				throw new ArgumentNullException(
+					nameof(assembly),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(assembly))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
+			}
+
+			string code = Utils.GetResourceAsString(resourceName, assembly);
+			if (string.IsNullOrWhiteSpace(code))
+			{
+				throw new JsUsageException(
+					string.Format(Strings.Usage_CannotPrecompileEmptyResource, resourceName),
+					Name, Version
+				);
+			}
+
+			return InnerPrecompile(code, resourceName);
+		}
 
 		public virtual object Evaluate(string expression)
 		{
@@ -293,6 +511,30 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 
 			InnerExecute(code, documentName);
+		}
+
+		public virtual void Execute(IPrecompiledScript precompiledScript)
+		{
+			VerifyNotDisposed();
+
+			if (precompiledScript == null)
+			{
+				throw new ArgumentNullException(
+					nameof(precompiledScript),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(precompiledScript))
+				);
+			}
+
+			if (precompiledScript.EngineName != Name)
+			{
+				throw new JsUsageException(
+					string.Format(Strings.Usage_CannotExecutePrecompiledScriptForAnotherJsEngine,
+						precompiledScript.EngineName),
+					Name, Version
+				);
+			}
+
+			InnerExecute(precompiledScript);
 		}
 
 		public virtual void ExecuteFile(string path, Encoding encoding = null)

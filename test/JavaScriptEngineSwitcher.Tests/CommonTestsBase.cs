@@ -11,7 +11,7 @@ namespace JavaScriptEngineSwitcher.Tests
 {
 	public abstract class CommonTestsBase : FileSystemTestsBase
 	{
-		#region Evaluation of code
+		#region Evaluation of scripts
 
 		[Fact]
 		public virtual void EvaluationOfExpressionWithUndefinedResultIsCorrect()
@@ -154,7 +154,7 @@ namespace JavaScriptEngineSwitcher.Tests
 
 		#endregion
 
-		#region Execution of code
+		#region Execution of scripts
 
 		[Fact]
 		public virtual void ExecutionOfCodeIsCorrect()
@@ -981,9 +981,9 @@ sleep(5000);";
 			// Act
 			using (var jsEngine = CreateJsEngine())
 			{
-				jsEngine.Execute(input);
 				if (jsEngine.SupportsGarbageCollection)
 				{
+					jsEngine.Execute(input);
 					jsEngine.CollectGarbage();
 				}
 			}
