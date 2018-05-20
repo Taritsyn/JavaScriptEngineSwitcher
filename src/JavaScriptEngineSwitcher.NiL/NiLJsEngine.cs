@@ -482,7 +482,24 @@ namespace JavaScriptEngineSwitcher.NiL
 
 		protected override void InnerEmbedHostType(string itemName, Type type)
 		{
-			throw new NotSupportedException();
+			try
+			{
+				lock (_synchronizer)
+				{
+					OriginalValue processedValue = _jsContext.GlobalContext.GetConstructor(type);
+
+					OriginalValue variableValue = _jsContext.GetVariable(itemName);
+					if (variableValue.ValueType == OriginalValueType.NotExists)
+					{
+						variableValue = _jsContext.DefineVariable(itemName, true);
+					}
+					variableValue.Assign(processedValue);
+				}
+			}
+			catch (OriginalException e)
+			{
+				throw WrapJsException(e);
+			}
 		}
 
 		protected override void InnerInterrupt()

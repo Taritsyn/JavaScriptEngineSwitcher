@@ -1,4 +1,6 @@
-﻿using Xunit;
+﻿using System;
+
+using Xunit;
 
 namespace JavaScriptEngineSwitcher.Tests.NiL
 {
@@ -12,107 +14,35 @@ namespace JavaScriptEngineSwitcher.Tests.NiL
 
 		#region Embedding of types
 
-		#region Creating of instances
-
-		[Fact]
-		public override void CreatingAnInstanceOfEmbeddedBuiltinValueTypeIsCorrect()
-		{ }
-
-		[Fact]
-		public override void CreatingAnInstanceOfEmbeddedBuiltinReferenceTypeIsCorrect()
-		{ }
-
-		[Fact]
-		public override void CreatingAnInstanceOfEmbeddedCustomValueTypeIsCorrect()
-		{ }
-
-		[Fact]
-		public override void CreatingAnInstanceOfEmbeddedCustomReferenceTypeIsCorrect()
-		{ }
-
-		#endregion
-
-		#region Types with constants
-
-		[Fact]
-		public override void EmbeddingOfBuiltinReferenceTypeWithConstantsIsCorrect()
-		{ }
-
-		[Fact]
-		public override void EmbeddingOfCustomValueTypeWithConstantsIsCorrect()
-		{ }
-
-		[Fact]
-		public override void EmbeddingOfCustomReferenceTypeWithConstantIsCorrect()
-		{ }
-
-		#endregion
-
-		#region Types with fields
-
-		[Fact]
-		public override void EmbeddingOfBuiltinValueTypeWithFieldIsCorrect()
-		{ }
-
-		[Fact]
-		public override void EmbeddingOfBuiltinReferenceTypeWithFieldIsCorrect()
-		{ }
-
-		[Fact]
-		public override void EmbeddingOfCustomValueTypeWithFieldIsCorrect()
-		{ }
-
-		[Fact]
-		public override void EmbeddingOfCustomReferenceTypeWithFieldIsCorrect()
-		{ }
-
-		#endregion
-
-		#region Types with properties
-
-		[Fact]
-		public override void EmbeddingOfBuiltinValueTypeWithPropertyIsCorrect()
-		{ }
-
-		[Fact]
-		public override void EmbeddingOfBuiltinReferenceTypeWithPropertyIsCorrect()
-		{ }
-
-		[Fact]
-		public override void EmbeddingOfCustomValueTypeWithPropertyIsCorrect()
-		{ }
-
-		[Fact]
-		public override void EmbeddingOfCustomReferenceTypeWithPropertyIsCorrect()
-		{ }
-
-		#endregion
-
 		#region Types with methods
 
 		[Fact]
-		public override void EmbeddingOfBuiltinValueTypeWithMethodIsCorrect()
-		{ }
-
-		[Fact]
 		public override void EmbeddingOfBuiltinReferenceTypeWithMethodsIsCorrect()
-		{ }
+		{
+			// Arrange
+			Type mathType = typeof(Math);
 
-		[Fact]
-		public override void EmbeddingOfCustomValueTypeWithMethodIsCorrect()
-		{ }
+			const string input1 = "Math2.Max(5.37, 5.56)";
+			const double targetOutput1 = 5.56;
 
-		[Fact]
-		public override void EmbeddingOfCustomReferenceTypeWithMethodIsCorrect()
-		{ }
+			const string input2 = "Math2.Log10(23)";
+			const double targetOutput2 = 1.36172783601759;
 
-		#endregion
+			// Act
+			double output1;
+			double output2;
 
-		#region Removal
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostType("Math2", mathType);
+				output1 = Math.Round(jsEngine.Evaluate<double>(input1), 2);
+				output2 = Math.Round(jsEngine.Evaluate<double>(input2), 14);
+			}
 
-		[Fact]
-		public override void RemovingOfEmbeddedCustomReferenceTypeIsCorrect()
-		{ }
+			// Assert
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+		}
 
 		#endregion
 
