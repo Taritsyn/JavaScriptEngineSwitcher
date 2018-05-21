@@ -81,6 +81,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// </summary>
 		/// <param name="path">Path to the JS file</param>
 		/// <param name="encoding">Text encoding</param>
+		/// <returns>A pre-compiled script that can be executed by different instances of JS engine</returns>
 		/// <exception cref="ObjectDisposedException"/>
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
@@ -96,6 +97,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <param name="resourceName">The case-sensitive resource name without the namespace of the specified type</param>
 		/// <param name="type">The type, that determines the assembly and whose namespace is used to scope
 		/// the resource name</param>
+		/// <returns>A pre-compiled script that can be executed by different instances of JS engine</returns>
 		/// <exception cref="ObjectDisposedException"/>
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
@@ -110,6 +112,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// </summary>
 		/// <param name="resourceName">The case-sensitive resource name</param>
 		/// <param name="assembly">The assembly, which contains the embedded resource</param>
+		/// <returns>A pre-compiled script that can be executed by different instances of JS engine</returns>
 		/// <exception cref="ObjectDisposedException"/>
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
@@ -215,6 +218,8 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <summary>
 		/// Executes a pre-compiled script
 		/// </summary>
+		/// <param name="precompiledScript">A pre-compiled script that can be executed by different
+		/// instances of JS engine</param>
 		/// <exception cref="ObjectDisposedException"/>
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>

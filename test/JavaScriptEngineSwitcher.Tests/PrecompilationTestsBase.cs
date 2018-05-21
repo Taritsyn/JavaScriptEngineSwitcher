@@ -208,7 +208,7 @@ function declinationOfSeconds(number) {
 				supportsScriptPrecompilation = jsEngine.SupportsScriptPrecompilation;
 				if (supportsScriptPrecompilation)
 				{
-					precompiledResource = jsEngine.PrecompileResource(resourceName, typeof(CommonTestsBase));
+					precompiledResource = jsEngine.PrecompileResource(resourceName, typeof(PrecompilationTestsBase));
 
 					jsEngine.Execute(precompiledResource);
 					output0 = jsEngine.CallFunction<string>(functionName, input0);
@@ -280,7 +280,7 @@ function declinationOfSeconds(number) {
 				if (supportsScriptPrecompilation)
 				{
 					precompiledResource = jsEngine.PrecompileResource(resourceName,
-						typeof(CommonTestsBase).GetTypeInfo().Assembly);
+						typeof(PrecompilationTestsBase).GetTypeInfo().Assembly);
 
 					jsEngine.Execute(precompiledResource);
 					output0 = jsEngine.CallFunction<string>(functionName, input0);
