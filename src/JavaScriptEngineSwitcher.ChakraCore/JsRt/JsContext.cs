@@ -438,7 +438,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
 				buffer = null;
-				ulong bufferSize = 0;
+				uint bufferSize = 0;
 
 				errorCode = NativeMethods.JsSerializeScript(script, buffer, ref bufferSize);
 				JsErrorHelpers.ThrowIfError(errorCode);

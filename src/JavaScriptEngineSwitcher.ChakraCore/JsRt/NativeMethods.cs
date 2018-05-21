@@ -375,7 +375,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			string sourceUrl, out JsValue result);
 
 		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsSerializeScript(string script, byte[] buffer, ref ulong bufferSize);
+		internal static extern JsErrorCode JsSerializeScript(string script, byte[] buffer, ref uint bufferSize);
 
 		[DllImport(DllName.Universal)]
 		internal static extern JsErrorCode JsParseSerializedScriptWithCallback(
