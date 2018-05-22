@@ -19,8 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   This package is deprecated. Instead, it is recommended to use a
-   'JavaScriptEngineSwitcher.ChakraCore.Native.win-arm' package.
+   ChakraCore was updated to version 1.8.3.
 
    =============
    DOCUMENTATION
