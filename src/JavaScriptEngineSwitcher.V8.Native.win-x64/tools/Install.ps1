@@ -12,7 +12,7 @@ if ($project.Type -eq "Web Site") {
 	}
 
 	foreach ($assembly64FileName in $assembly64FileNames) {
-		$assembly64SourceFilePath = Join-Path $runtimesDirectoryPath ("win7-x64/native/" + $assembly64FileName)
+		$assembly64SourceFilePath = Join-Path $runtimesDirectoryPath ("win-x64/native/" + $assembly64FileName)
 		Copy-Item $assembly64SourceFilePath $assembly64DestDirectoryPath -Force
 	}
 }

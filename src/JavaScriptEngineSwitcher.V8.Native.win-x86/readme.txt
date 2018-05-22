@@ -20,10 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Microsoft ClearScript.V8 was updated to version 5.5.2 (support of V8 version
-      6.5.254.41);
-   2. Now the Microsoft ClearScript.V8 requires the Microsoft Visual C++
-      Redistributable for Visual Studio 2017.
+   The directory with `win7-x86` RID was renamed to `win-x86`.
 
    ====================
    POST-INSTALL ACTIONS

@@ -20,7 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.8.3.
+   The directory with `win7-x64` RID was renamed to `win-x64`.
 
    ====================
    POST-INSTALL ACTIONS
