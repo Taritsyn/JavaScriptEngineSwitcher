@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: V8 for Windows x86 v3.0.0 Beta 1
+         README file for JS Engine Switcher: V8 for Windows x86 v3.0.0 Beta 3
 
    --------------------------------------------------------------------------------
 

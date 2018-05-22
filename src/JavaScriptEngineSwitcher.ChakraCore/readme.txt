@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   Added a ability to pre-compile scripts.
+   1. ChakraCore was updated to version 1.8.4;
+   2. Added a ability to pre-compile scripts.
 
    =============
    DOCUMENTATION

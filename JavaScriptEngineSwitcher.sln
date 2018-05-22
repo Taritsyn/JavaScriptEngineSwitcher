@@ -75,6 +75,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Ch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.ChakraCore.Native.win-x64", "src\JavaScriptEngineSwitcher.ChakraCore.Native.win-x64\JavaScriptEngineSwitcher.ChakraCore.Native.win-x64.csproj", "{D2B4F490-E7A6-40A8-808E-6D7A30D3EBF5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.ChakraCore.Native.win-arm", "src\JavaScriptEngineSwitcher.ChakraCore.Native.win-arm\JavaScriptEngineSwitcher.ChakraCore.Native.win-arm.csproj", "{BB7BE2DF-C68C-4F82-8BAB-79A16D9AB812}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm", "src\JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm\JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm.csproj", "{A7363E31-A913-41B7-B1C0-06D12755DC8D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64", "src\JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64\JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64.csproj", "{FF77615B-4182-4BE7-AE2B-0F9F75198490}"
@@ -203,6 +205,10 @@ Global
 		{0342791E-6390-4F97-9163-5CE02E4CFF07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0342791E-6390-4F97-9163-5CE02E4CFF07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0342791E-6390-4F97-9163-5CE02E4CFF07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB7BE2DF-C68C-4F82-8BAB-79A16D9AB812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB7BE2DF-C68C-4F82-8BAB-79A16D9AB812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB7BE2DF-C68C-4F82-8BAB-79A16D9AB812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB7BE2DF-C68C-4F82-8BAB-79A16D9AB812}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -235,6 +241,7 @@ Global
 		{C790AD7F-55C6-4106-8D8C-8F901B7FF245} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{5CA92021-B75A-40AF-B5AA-500BAF76B4D6} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{0342791E-6390-4F97-9163-5CE02E4CFF07} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
+		{BB7BE2DF-C68C-4F82-8BAB-79A16D9AB812} = {0C281F46-F1D2-4A1C-8560-375EDA65D680}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8184BE59-ACBC-4CD1-9419-D59A0FAC6131}

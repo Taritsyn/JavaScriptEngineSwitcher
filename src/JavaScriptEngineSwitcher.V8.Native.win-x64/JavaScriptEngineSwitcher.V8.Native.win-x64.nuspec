@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.V8.Native.win-x64</id>
-		<version>3.0.0-beta1</version>
+		<version>3.0.0-beta3</version>
 		<title>JS Engine Switcher: V8 for Windows (x64)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
