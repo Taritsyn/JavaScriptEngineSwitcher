@@ -12,6 +12,7 @@ using OriginalEngineSettings = MsieJavaScriptEngine.JsEngineSettings;
 using OriginalException = MsieJavaScriptEngine.JsException;
 using OriginalFatalException = MsieJavaScriptEngine.JsFatalException;
 using OriginalInterruptedException = MsieJavaScriptEngine.JsInterruptedException;
+using OriginalPrecompiledScript = MsieJavaScriptEngine.PrecompiledScript;
 using OriginalRuntimeException = MsieJavaScriptEngine.JsRuntimeException;
 using OriginalScriptException = MsieJavaScriptEngine.JsScriptException;
 using OriginalTypeConverter = MsieJavaScriptEngine.Utilities.TypeConverter;
@@ -215,12 +216,23 @@ namespace JavaScriptEngineSwitcher.Msie
 
 		protected override IPrecompiledScript InnerPrecompile(string code)
 		{
-			throw new NotSupportedException();
+			return InnerPrecompile(code, null);
 		}
 
 		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
 		{
-			throw new NotSupportedException();
+			OriginalPrecompiledScript precompiledScript;
+
+			try
+			{
+				precompiledScript = _jsEngine.Precompile(code, documentName);
+			}
+			catch (OriginalException e)
+			{
+				throw WrapJsException(e);
+			}
+
+			return new MsiePrecompiledScript(precompiledScript);
 		}
 
 		protected override object InnerEvaluate(string expression)
@@ -277,7 +289,24 @@ namespace JavaScriptEngineSwitcher.Msie
 
 		protected override void InnerExecute(IPrecompiledScript precompiledScript)
 		{
-			throw new NotSupportedException();
+			var msiePrecompiledScript = precompiledScript as MsiePrecompiledScript;
+			if (msiePrecompiledScript == null)
+			{
+				throw new WrapperUsageException(
+					string.Format(CoreStrings.Usage_CannotConvertPrecompiledScriptToInternalType,
+						typeof(MsiePrecompiledScript).FullName),
+					Name, Version
+				);
+			}
+
+			try
+			{
+				_jsEngine.Execute(msiePrecompiledScript.PrecompiledScript);
+			}
+			catch (OriginalException e)
+			{
+				throw WrapJsException(e);
+			}
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
@@ -441,7 +470,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		/// </summary>
 		public override bool SupportsScriptPrecompilation
 		{
-			get { return false; }
+			get { return _jsEngine.SupportsScriptPrecompilation; }
 		}
 
 		/// <summary>
@@ -460,6 +489,160 @@ namespace JavaScriptEngineSwitcher.Msie
 			get { return true; }
 		}
 
+
+		public override IPrecompiledScript PrecompileFile(string path, Encoding encoding = null)
+		{
+			VerifyNotDisposed();
+
+			if (path == null)
+			{
+				throw new ArgumentNullException(
+					nameof(path),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(path))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(path)),
+					nameof(path)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(path))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidFileNameFormat, path),
+					nameof(path)
+				);
+			}
+
+			OriginalPrecompiledScript precompiledScript;
+
+			try
+			{
+				precompiledScript = _jsEngine.PrecompileFile(path, encoding);
+			}
+			catch (OriginalException e)
+			{
+				throw WrapJsException(e);
+			}
+			catch (FileNotFoundException)
+			{
+				throw;
+			}
+
+			return new MsiePrecompiledScript(precompiledScript);
+		}
+
+		public override IPrecompiledScript PrecompileResource(string resourceName, Type type)
+		{
+			VerifyNotDisposed();
+
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(resourceName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(resourceName))
+				);
+			}
+
+			if (type == null)
+			{
+				throw new ArgumentNullException(
+					nameof(type),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(type))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
+			}
+
+			OriginalPrecompiledScript precompiledScript;
+
+			try
+			{
+				precompiledScript = _jsEngine.PrecompileResource(resourceName, type);
+			}
+			catch (OriginalException e)
+			{
+				throw WrapJsException(e);
+			}
+			catch (NullReferenceException)
+			{
+				throw;
+			}
+
+			return new MsiePrecompiledScript(precompiledScript);
+		}
+
+		public override IPrecompiledScript PrecompileResource(string resourceName, Assembly assembly)
+		{
+			VerifyNotDisposed();
+
+			if (resourceName == null)
+			{
+				throw new ArgumentNullException(
+					nameof(resourceName),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(resourceName))
+				);
+			}
+
+			if (assembly == null)
+			{
+				throw new ArgumentNullException(
+					nameof(assembly),
+					string.Format(CoreStrings.Common_ArgumentIsNull, nameof(assembly))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Common_ArgumentIsEmpty, nameof(resourceName)),
+					nameof(resourceName)
+				);
+			}
+
+			if (!ValidationHelpers.CheckDocumentNameFormat(resourceName))
+			{
+				throw new ArgumentException(
+					string.Format(CoreStrings.Usage_InvalidResourceNameFormat, resourceName),
+					nameof(resourceName)
+				);
+			}
+
+			OriginalPrecompiledScript precompiledScript;
+
+			try
+			{
+				precompiledScript = _jsEngine.PrecompileResource(resourceName, assembly);
+			}
+			catch (OriginalException e)
+			{
+				throw WrapJsException(e);
+			}
+			catch (NullReferenceException)
+			{
+				throw;
+			}
+
+			return new MsiePrecompiledScript(precompiledScript);
+		}
 
 		public override void ExecuteFile(string path, Encoding encoding = null)
 		{

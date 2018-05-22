@@ -19,7 +19,8 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 3.0.0 Beta 1.
+   1. Added support of MSIE JavaScript Engine version 3.0.0 Beta 2;
+   2. Added a ability to pre-compile scripts.
 
    =============
    DOCUMENTATION
