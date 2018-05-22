@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Product>JS Engine Switcher: Core</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>beta1</VersionSuffix>
+		<VersionSuffix>beta3</VersionSuffix>
 		<TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
@@ -11,7 +11,7 @@
 		<NoWarn>$(NoWarn);CS1591</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-		<Description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .Net, Microsoft ClearScript.V8, Jurassic, Jint and ChakraCore). This library allows you to quickly and easily switch to using of another JavaScript engine.</Description>
+		<Description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .NET, Microsoft ClearScript.V8, Jurassic, Jint, ChakraCore, VroomJs and NiL.JS). This library allows you to quickly and easily switch to using of another JavaScript engine.</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Core_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript</PackageTags>
 		<PackageReleaseNotes>In `IJsEngine` interface was added `SupportsScriptPrecompilation` property and three new methods: `Precompile`, `PrecompileFile` and `PrecompileResource`.</PackageReleaseNotes>

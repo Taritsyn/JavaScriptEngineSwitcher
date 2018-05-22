@@ -1,6 +1,16 @@
 Change log
 ==========
 
+## v3.0.0 Beta 3 - May 22, 2018
+ * In `IJsEngine` interface was added `SupportsScriptPrecompilation` property and three new methods: `Precompile`, `PrecompileFile` and `PrecompileResource`
+ * In JavaScriptEngineSwitcher.Msie, JavaScriptEngineSwitcher.V8, JavaScriptEngineSwitcher.Jurassic, JavaScriptEngineSwitcher.Jint and JavaScriptEngineSwitcher.ChakraCore added a ability to pre-compile scripts
+ * Added a module based on the NiL.JS
+ * In JavaScriptEngineSwitcher.V8.Native.win-* and JavaScriptEngineSwitcher.ChakraCore.Native.win-* packages the directories with `win7-*` RIDs was renamed to `win-*`
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Beta 2
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.8.4
+   * JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm package has been replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.win-arm package
+
 ## v3.0.0 Beta 2 - April 12, 2018
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.3
 

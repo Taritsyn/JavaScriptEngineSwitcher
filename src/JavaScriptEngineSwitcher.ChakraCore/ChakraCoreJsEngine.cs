@@ -1156,7 +1156,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					else if (osArchitecture == Architecture.Arm)
 					{
 						descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
-							"JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm");
+							"JavaScriptEngineSwitcher.ChakraCore.Native.win-arm");
 					}
 					else
 					{

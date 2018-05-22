@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: Core v3.0.0 Beta 1
+                README file for JS Engine Switcher: Core v3.0.0 Beta 3
 
    --------------------------------------------------------------------------------
 
@@ -12,9 +12,10 @@
    DESCRIPTION
    ===========
    JavaScript Engine Switcher determines unified interface for access to the basic
-   features of popular JavaScript engines (MSIE JavaScript Engine for .Net,
-   Microsoft ClearScript.V8, Jurassic, Jint and ChakraCore). This library allows
-   you to quickly and easily switch to using of another JavaScript engine.
+   features of popular JavaScript engines (MSIE JavaScript Engine for .NET,
+   Microsoft ClearScript.V8, Jurassic, Jint, ChakraCore, VroomJs and NiL.JS). This
+   library allows you to quickly and easily switch to using of another JavaScript
+   engine.
 
    =============
    RELEASE NOTES
