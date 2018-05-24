@@ -30,9 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version 1.8.4;
-   2. JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm package has been replaced
-      by the JavaScriptEngineSwitcher.ChakraCore.Native.win-arm package.
+   Fixed a error #34 “Finalazier thread is blocked because of
+   JavaScriptEngineSwitcher.ChakraCore.ChakraCoreJsEngine”.
 
    =============
    DOCUMENTATION
