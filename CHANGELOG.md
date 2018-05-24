@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v2.4.18 - May 24, 2018
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.8
+ * In JavaScriptEngineSwitcher.ChakraCore fixed a [error #34](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/34) “Finalazier thread is blocked because of JavaScriptEngineSwitcher.ChakraCore.ChakraCoreJsEngine”
+
 ## v2.4.17 - May 9, 2018
  * In JavaScriptEngineSwitcher.ChakraCore:
    * ChakraCore was updated to version 1.8.4
