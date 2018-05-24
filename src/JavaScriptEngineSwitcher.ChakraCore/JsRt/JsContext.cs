@@ -257,7 +257,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsSerializedLoadScriptCallback scriptLoadCallback = (JsSourceContext context,
 					out JsValue value, out JsParseScriptAttributes parseAttributes) =>
 				{
-					value = JsValue.FromString(script);
+					byte[] bytes = Encoding.GetEncoding(0).GetBytes(script);
+					value = JsValue.CreateExternalArrayBuffer(bytes);
 					parseAttributes = JsParseScriptAttributes.None;
 
 					return true;
@@ -390,7 +391,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsSerializedLoadScriptCallback scriptLoadCallback = (JsSourceContext context,
 					out JsValue value, out JsParseScriptAttributes parseAttributes) =>
 				{
-					value = JsValue.FromString(script);
+					byte[] bytes = Encoding.GetEncoding(0).GetBytes(script);
+					value = JsValue.CreateExternalArrayBuffer(bytes);
 					parseAttributes = JsParseScriptAttributes.None;
 
 					return true;

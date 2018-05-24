@@ -30,8 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version 1.8.4;
-   2. Added a ability to pre-compile scripts.
+   Fixed a implementation of the `JsSerializedLoadScriptCallback` delegate.
 
    =============
    DOCUMENTATION
