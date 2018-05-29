@@ -2,8 +2,6 @@
 using System.IO;
 using System.Reflection;
 
-using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
-
 using JavaScriptEngineSwitcher.V8.Constants;
 
 namespace JavaScriptEngineSwitcher.V8

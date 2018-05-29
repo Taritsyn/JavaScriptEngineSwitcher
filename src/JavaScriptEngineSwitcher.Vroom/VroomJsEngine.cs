@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-#if NET45 || NETSTANDARD
-using System.Runtime.ExceptionServices;
+#if NET45 || NET471 || NETSTANDARD
 using System.Runtime.InteropServices;
 #endif
 using System.Text;

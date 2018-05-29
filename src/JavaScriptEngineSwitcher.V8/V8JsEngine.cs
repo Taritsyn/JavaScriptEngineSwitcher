@@ -3,10 +3,12 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using Microsoft.ClearScript.V8;
 using OriginalCacheKind = Microsoft.ClearScript.V8.V8CacheKind;
+using OriginalEngine = Microsoft.ClearScript.V8.V8ScriptEngine;
+using OriginalEngineFlags = Microsoft.ClearScript.V8.V8ScriptEngineFlags;
 using OriginalException = Microsoft.ClearScript.ScriptEngineException;
 using OriginalInterruptedException = Microsoft.ClearScript.ScriptInterruptedException;
+using OriginalRuntimeConstraints = Microsoft.ClearScript.V8.V8RuntimeConstraints;
 using OriginalScript = Microsoft.ClearScript.V8.V8Script;
 using OriginalUndefined = Microsoft.ClearScript.Undefined;
 
@@ -49,7 +51,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// V8 JS engine
 		/// </summary>
-		private V8ScriptEngine _jsEngine;
+		private OriginalEngine _jsEngine;
 
 		/// <summary>
 		/// ClearScript <code>undefined</code> value
@@ -97,35 +99,35 @@ namespace JavaScriptEngineSwitcher.V8
 
 			V8Settings v8Settings = settings ?? new V8Settings();
 
-			var constraints = new V8RuntimeConstraints
+			var constraints = new OriginalRuntimeConstraints
 			{
 				MaxNewSpaceSize = v8Settings.MaxNewSpaceSize,
 				MaxOldSpaceSize = v8Settings.MaxOldSpaceSize,
 			};
 
-			V8ScriptEngineFlags flags = V8ScriptEngineFlags.None;
+			OriginalEngineFlags flags = OriginalEngineFlags.None;
 			if (v8Settings.AwaitDebuggerAndPauseOnStart)
 			{
-				flags |= V8ScriptEngineFlags.AwaitDebuggerAndPauseOnStart;
+				flags |= OriginalEngineFlags.AwaitDebuggerAndPauseOnStart;
 			}
 			if (v8Settings.EnableDebugging)
 			{
-				flags |= V8ScriptEngineFlags.EnableDebugging;
+				flags |= OriginalEngineFlags.EnableDebugging;
 			}
 			if (v8Settings.EnableRemoteDebugging)
 			{
-				flags |= V8ScriptEngineFlags.EnableRemoteDebugging;
+				flags |= OriginalEngineFlags.EnableRemoteDebugging;
 			}
 			if (v8Settings.DisableGlobalMembers)
 			{
-				flags |= V8ScriptEngineFlags.DisableGlobalMembers;
+				flags |= OriginalEngineFlags.DisableGlobalMembers;
 			}
 
 			int debugPort = v8Settings.DebugPort;
 
 			try
 			{
-				_jsEngine = new V8ScriptEngine(constraints, flags, debugPort);
+				_jsEngine = new OriginalEngine(constraints, flags, debugPort);
 				_jsEngine.MaxRuntimeHeapSize = v8Settings.MaxHeapSize;
 				_jsEngine.RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval;
 				_jsEngine.MaxRuntimeStackUsage = v8Settings.MaxStackUsage;

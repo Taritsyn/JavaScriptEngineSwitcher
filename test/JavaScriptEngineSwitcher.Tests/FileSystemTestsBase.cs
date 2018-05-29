@@ -1,4 +1,4 @@
-﻿#if NET452 || NETCOREAPP
+﻿#if NET452 || NET471 || NETCOREAPP
 using Microsoft.Extensions.PlatformAbstractions;
 #elif NET40
 using System;
@@ -16,7 +16,7 @@ namespace JavaScriptEngineSwitcher.Tests
 
 		protected FileSystemTestsBase()
 		{
-#if NET452 || NETCOREAPP
+#if NET452 || NET471 || NETCOREAPP
 			var appEnv = PlatformServices.Default.Application;
 			_baseDirectoryPath = Path.Combine(appEnv.ApplicationBasePath, "../../../");
 #elif NET40

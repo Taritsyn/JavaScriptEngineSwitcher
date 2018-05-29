@@ -17,7 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   Added a ability to pre-compile scripts.
+   Added support of .NET Framework 4.7.1.
 
    =============
    DOCUMENTATION

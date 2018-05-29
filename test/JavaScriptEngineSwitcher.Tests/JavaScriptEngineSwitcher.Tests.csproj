@@ -4,7 +4,7 @@
 		<Product>JS Engine Switcher: Tests</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
 		<VersionSuffix>beta3</VersionSuffix>
-		<TargetFrameworks>net452;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net452;net471;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
 		<RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">1.0.9</RuntimeFrameworkVersion>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -29,7 +29,7 @@
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net452' Or '$(TargetFramework)' == 'net471' ">
 		<Reference Include="System.Drawing" />
 
 		<PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.0.0" />

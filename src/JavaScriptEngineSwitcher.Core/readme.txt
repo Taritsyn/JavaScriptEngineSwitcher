@@ -20,8 +20,8 @@
    =============
    RELEASE NOTES
    =============
-   In `IJsEngine` interface was added `SupportsScriptPrecompilation` property and
-   three new methods: `Precompile`, `PrecompileFile` and `PrecompileResource`.
+   Fixed a error #54 “System.Runtime.InteropServices.RuntimeInformation not
+   required for .NET Framework 4.7.1”. Special thanks to David Gardiner.
 
    =============
    DOCUMENTATION

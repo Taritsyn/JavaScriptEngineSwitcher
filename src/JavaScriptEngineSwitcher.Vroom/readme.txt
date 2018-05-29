@@ -19,6 +19,11 @@
    Redistributable for Visual Studio 2012 and the Microsoft Visual C++ 2015
    Redistributable.
 
+   =============
+   RELEASE NOTES
+   =============
+   Added support of .NET Framework 4.7.1.
+
    ====================
    POST-INSTALL ACTIONS
    ====================

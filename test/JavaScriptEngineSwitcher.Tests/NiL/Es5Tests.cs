@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-namespace JavaScriptEngineSwitcher.Tests.NiL
+﻿namespace JavaScriptEngineSwitcher.Tests.NiL
 {
 	public class Es5Tests : Es5TestsBase
 	{

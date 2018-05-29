@@ -4,7 +4,7 @@
 		<Product>JS Engine Switcher: Vroom</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
 		<VersionSuffix>beta3</VersionSuffix>
-		<TargetFrameworks>net40-client;net45;netstandard1.6;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net40-client;net45;net471;netstandard1.6;netstandard2.0</TargetFrameworks>
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -16,6 +16,7 @@
 For correct working of the VroomJs on Windows require the Visual C++ Redistributable for Visual Studio 2012 and Microsoft Visual C++ 2015 Redistributable.</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;VroomJs;V8</PackageTags>
+		<PackageReleaseNotes>Added support of .NET Framework 4.7.1.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />

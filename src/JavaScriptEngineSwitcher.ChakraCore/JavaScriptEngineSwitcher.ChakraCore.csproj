@@ -4,7 +4,7 @@
 		<Product>JS Engine Switcher: ChakraCore</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
 		<VersionSuffix>beta3</VersionSuffix>
-		<TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0</TargetFrameworks>
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -22,7 +22,8 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;ChakraCore</PackageTags>
-		<PackageReleaseNotes>Fixed a implementation of the `JsSerializedLoadScriptCallback` delegate.</PackageReleaseNotes>
+		<PackageReleaseNotes>1. Added support of .NET Framework 4.7.1;
+2. Fixed a implementation of the `JsSerializedLoadScriptCallback` delegate.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
