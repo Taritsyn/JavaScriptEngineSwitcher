@@ -31,7 +31,9 @@
    RELEASE NOTES
    =============
    1. Added support of .NET Framework 4.7.1;
-   2. Fixed a implementation of the `JsSerializedLoadScriptCallback` delegate.
+   2. Fixed a implementation of the `JsSerializedLoadScriptCallback` delegate;
+   3. Fixed a error #34 “Finalazier thread is blocked because of
+      JavaScriptEngineSwitcher.ChakraCore.ChakraCoreJsEngine”.
 
    =============
    DOCUMENTATION

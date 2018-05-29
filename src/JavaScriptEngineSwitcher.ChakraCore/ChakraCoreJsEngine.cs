@@ -93,7 +93,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Script dispatcher
 		/// </summary>
-		private readonly ScriptDispatcher _dispatcher;
+		private ScriptDispatcher _dispatcher;
 
 		/// <summary>
 		/// Unique document name manager
@@ -1689,16 +1689,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			{
 				if (_dispatcher != null)
 				{
-					_dispatcher.Invoke(() =>
-					{
-						if (_jsContext.IsValid)
-						{
-							_jsContext.Release();
-						}
-						_jsRuntime.Dispose();
-					});
 					_dispatcher.Dispose();
+					_dispatcher = null;
 				}
+
+				if (_jsContext.IsValid)
+				{
+					_jsContext.Release();
+				}
+				_jsRuntime.Dispose();
 
 				if (disposing)
 				{
