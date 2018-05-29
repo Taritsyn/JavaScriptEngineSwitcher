@@ -1,6 +1,14 @@
 Change log
 ==========
 
+## v3.0.0 Beta 4 - May 29, 2018
+ * Fixed a [error #54](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/54) “System.Runtime.InteropServices.RuntimeInformation not required for .NET Framework 4.7.1”. Special thanks to [David Gardiner](https://github.com/flcdrg).
+ * Now all modules are support of .NET Framework 4.7.1
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Beta 3
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * Fixed a implementation of the `JsSerializedLoadScriptCallback` delegate
+   * Fixed a [error #34](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/34) “Finalazier thread is blocked because of JavaScriptEngineSwitcher.ChakraCore.ChakraCoreJsEngine”
+
 ## v3.0.0 Beta 3 - May 22, 2018
  * In `IJsEngine` interface was added `SupportsScriptPrecompilation` property and three new methods: `Precompile`, `PrecompileFile` and `PrecompileResource`
  * In JavaScriptEngineSwitcher.Msie, JavaScriptEngineSwitcher.V8, JavaScriptEngineSwitcher.Jurassic, JavaScriptEngineSwitcher.Jint and JavaScriptEngineSwitcher.ChakraCore added a ability to pre-compile scripts
