@@ -457,7 +457,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				bufferPtr = Marshal.AllocHGlobal(bufferLength);
 				Marshal.Copy(buffer, 0, bufferPtr, bufferLength);
 
-				finalizeCallback = Marshal.FreeHGlobal;
+				finalizeCallback = DefaultExternalBufferFinalizeCallback.Instance;
 			}
 			else
 			{

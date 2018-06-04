@@ -1,4 +1,9 @@
-﻿using JavaScriptEngineSwitcher.Core;
+﻿using System.Text;
+
+using JavaScriptEngineSwitcher.Core;
+
+using JavaScriptEngineSwitcher.ChakraCore.JsRt;
+using OriginalException = JavaScriptEngineSwitcher.ChakraCore.JsRt.JsException;
 
 namespace JavaScriptEngineSwitcher.ChakraCore
 {
@@ -34,6 +39,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			private set;
 		}
 
+		/// <summary>
+		/// Gets a callback to load the source code of the serialized script
+		/// </summary>
+		public JsSerializedLoadScriptCallback LoadScriptSourceCodeCallback
+		{
+			get;
+			private set;
+		}
+
 
 		/// <summary>
 		/// Constructs an instance of pre-compiled script
@@ -46,8 +60,38 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			Code = code;
 			CachedBytes = cachedBytes;
 			DocumentName = documentName;
+			LoadScriptSourceCodeCallback = LoadScriptSourceCode;
 		}
 
+
+		/// <summary>
+		/// Loads a source code of the serialized script
+		/// </summary>
+		/// <param name="sourceContext">A cookie identifying the script that can be used
+		/// by debuggable script contexts</param>
+		/// <param name="value">The script returned</param>
+		/// <param name="parseAttributes">Attribute mask for parsing the script</param>
+		/// <returns>true if the operation succeeded, false otherwise</returns>
+		private bool LoadScriptSourceCode(JsSourceContext sourceContext,
+			out JsValue value, out JsParseScriptAttributes parseAttributes)
+		{
+			bool result;
+			parseAttributes = JsParseScriptAttributes.None;
+			byte[] bytes = Encoding.GetEncoding(0).GetBytes(Code);
+
+			try
+			{
+				value = JsValue.CreateExternalArrayBuffer(bytes);
+				result = true;
+			}
+			catch (OriginalException)
+			{
+				value = JsValue.Invalid;
+				result = false;
+			}
+
+			return result;
+		}
 
 		#region IPrecompiledScript implementation
 

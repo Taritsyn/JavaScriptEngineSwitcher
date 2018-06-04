@@ -73,7 +73,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Set of external objects
 		/// </summary>
-		private readonly HashSet<object> _externalObjects = new HashSet<object>();
+		private HashSet<object> _externalObjects = new HashSet<object>();
 
 		/// <summary>
 		/// Callback for finalization of external object
@@ -88,7 +88,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// List of native function callbacks
 		/// </summary>
-		private readonly HashSet<JsNativeFunction> _nativeFunctions = new HashSet<JsNativeFunction>();
+		private HashSet<JsNativeFunction> _nativeFunctions = new HashSet<JsNativeFunction>();
 
 		/// <summary>
 		/// Script dispatcher
@@ -476,15 +476,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			GCHandle handle = GCHandle.FromIntPtr(data);
 			object obj = handle.Target;
 
-			if (obj == null)
-			{
-				return;
-			}
-
-			if (_externalObjects != null)
+			if (obj != null && _externalObjects != null)
 			{
 				_externalObjects.Remove(obj);
 			}
+
+			handle.Free();
 		}
 
 		private JsValue CreateObjectFromType(Type type)
@@ -1379,7 +1376,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					try
 					{
 						JsContext.RunSerializedScript(chakraCorePrecompiledScript.Code,
-							chakraCorePrecompiledScript.CachedBytes, _jsSourceContext++,
+							chakraCorePrecompiledScript.CachedBytes,
+							chakraCorePrecompiledScript.LoadScriptSourceCodeCallback, _jsSourceContext++,
 							chakraCorePrecompiledScript.DocumentName);
 					}
 					catch (OriginalException e)
@@ -1388,6 +1386,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					}
 				}
 			});
+
+			GC.KeepAlive(chakraCorePrecompiledScript);
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
@@ -1687,27 +1687,45 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			if (_disposedFlag.Set())
 			{
-				if (_dispatcher != null)
-				{
-					_dispatcher.Dispose();
-					_dispatcher = null;
-				}
-
-				if (_jsContext.IsValid)
-				{
-					_jsContext.Release();
-				}
-				_jsRuntime.Dispose();
-
 				if (disposing)
 				{
-					_externalObjects?.Clear();
-					_nativeFunctions?.Clear();
+					if (_dispatcher != null)
+					{
+						_dispatcher.Invoke(DisposeUnmanagedResources);
+
+						_dispatcher.Dispose();
+						_dispatcher = null;
+					}
+
+					if (_externalObjects != null)
+					{
+						_externalObjects.Clear();
+						_externalObjects = null;
+					}
+
+					if (_nativeFunctions != null)
+					{
+						_nativeFunctions.Clear();
+						_nativeFunctions = null;
+					}
 
 					_promiseContinuationCallback = null;
 					_externalObjectFinalizeCallback = null;
 				}
+				else
+				{
+					DisposeUnmanagedResources();
+				}
 			}
+		}
+
+		private void DisposeUnmanagedResources()
+		{
+			if (_jsContext.IsValid)
+			{
+				_jsContext.Release();
+			}
+			_jsRuntime.Dispose();
 		}
 
 		#endregion

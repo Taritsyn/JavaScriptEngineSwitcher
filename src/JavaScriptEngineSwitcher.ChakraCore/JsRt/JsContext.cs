@@ -156,19 +156,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// Requires an active script context.
 		/// </remarks>
 		/// <param name="script">The script to parse</param>
-		/// <returns>A function representing the script code</returns>
-		public static JsValue ParseScript(string script)
-		{
-			return ParseScript(script, JsSourceContext.None, string.Empty);
-		}
-
-		/// <summary>
-		/// Parses a script and returns a function representing the script
-		/// </summary>
-		/// <remarks>
-		/// Requires an active script context.
-		/// </remarks>
-		/// <param name="script">The script to parse</param>
 		/// <param name="sourceContext">A cookie identifying the script that can be used
 		/// by debuggable script contexts</param>
 		/// <param name="sourceUrl">The location the script came from</param>
@@ -218,28 +205,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </remarks>
 		/// <param name="script">The script to parse</param>
 		/// <param name="buffer">The serialized script</param>
-		/// <returns>A function representing the script code</returns>
-		public static JsValue ParseSerializedScript(string script, byte[] buffer)
-		{
-			return ParseSerializedScript(script, buffer, JsSourceContext.None, string.Empty);
-		}
-
-		/// <summary>
-		/// Parses a serialized script and returns a function representing the script
-		/// </summary>
-		/// <remarks>
-		/// <para>Requires an active script context.</para>
-		/// <para>The runtime will hold on to the buffer until all instances of any functions created from
-		/// the buffer are garbage collected.</para>
-		/// </remarks>
-		/// <param name="script">The script to parse</param>
-		/// <param name="buffer">The serialized script</param>
+		/// <param name="scriptLoadCallback">Callback to load the source code of the serialized script</param>
 		/// <param name="sourceContext">A cookie identifying the script that can be used
 		/// by debuggable script contexts</param>
 		/// <param name="sourceUrl">The location the script came from</param>
 		/// <returns>A function representing the script code</returns>
-		public static JsValue ParseSerializedScript(string script, byte[] buffer, JsSourceContext sourceContext,
-			string sourceUrl)
+		public static JsValue ParseSerializedScript(string script, byte[] buffer,
+			JsSerializedLoadScriptCallback scriptLoadCallback, JsSourceContext sourceContext, string sourceUrl)
 		{
 			JsValue result;
 			JsErrorCode errorCode;
@@ -253,16 +225,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			{
 				JsValue bufferValue = JsValue.CreateExternalArrayBuffer(buffer);
 				bufferValue.AddRef();
-
-				JsSerializedLoadScriptCallback scriptLoadCallback = (JsSourceContext context,
-					out JsValue value, out JsParseScriptAttributes parseAttributes) =>
-				{
-					byte[] bytes = Encoding.GetEncoding(0).GetBytes(script);
-					value = JsValue.CreateExternalArrayBuffer(bytes);
-					parseAttributes = JsParseScriptAttributes.None;
-
-					return true;
-				};
 
 				JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
 				sourceUrlValue.AddRef();
@@ -281,19 +243,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 
 			return result;
-		}
-
-		/// <summary>
-		/// Executes a script
-		/// </summary>
-		/// <remarks>
-		/// Requires an active script context
-		/// </remarks>
-		/// <param name="script">The script to run</param>
-		/// <returns>The result of the script, if any</returns>
-		public static JsValue RunScript(string script)
-		{
-			return RunScript(script, JsSourceContext.None, string.Empty);
 		}
 
 		/// <summary>
@@ -352,28 +301,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </remarks>
 		/// <param name="script">The source code of the serialized script</param>
 		/// <param name="buffer">The serialized script</param>
-		/// <returns>The result of running the script, if any</returns>
-		public static JsValue RunSerializedScript(string script, byte[] buffer)
-		{
-			return RunSerializedScript(script, buffer, JsSourceContext.None, string.Empty);
-		}
-
-		/// <summary>
-		/// Runs a serialized script
-		/// </summary>
-		/// <remarks>
-		/// <para>Requires an active script context.</para>
-		/// <para>The runtime will hold on to the buffer until all instances of any functions created from
-		/// the buffer are garbage collected.</para>
-		/// </remarks>
-		/// <param name="script">The source code of the serialized script</param>
-		/// <param name="buffer">The serialized script</param>
+		/// <param name="scriptLoadCallback">Callback to load the source code of the serialized script</param>
 		/// <param name="sourceContext">A cookie identifying the script that can be used
 		/// by debuggable script contexts</param>
 		/// <param name="sourceUrl">The location the script came from</param>
 		/// <returns>The result of running the script, if any</returns>
-		public static JsValue RunSerializedScript(string script, byte[] buffer, JsSourceContext sourceContext,
-			string sourceUrl)
+		public static JsValue RunSerializedScript(string script, byte[] buffer,
+			JsSerializedLoadScriptCallback scriptLoadCallback, JsSourceContext sourceContext, string sourceUrl)
 		{
 			JsValue result;
 			JsErrorCode errorCode;
@@ -387,16 +321,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			{
 				JsValue bufferValue = JsValue.CreateExternalArrayBuffer(buffer);
 				bufferValue.AddRef();
-
-				JsSerializedLoadScriptCallback scriptLoadCallback = (JsSourceContext context,
-					out JsValue value, out JsParseScriptAttributes parseAttributes) =>
-				{
-					byte[] bytes = Encoding.GetEncoding(0).GetBytes(script);
-					value = JsValue.CreateExternalArrayBuffer(bytes);
-					parseAttributes = JsParseScriptAttributes.None;
-
-					return true;
-				};
 
 				JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
 				sourceUrlValue.AddRef();
