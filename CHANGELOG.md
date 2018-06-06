@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## v3.0.0 Beta 5 - June 6, 2018
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Beta 4
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * Changed a implementation of the `Dispose` method
+   * Prevented a early destruction of delegates, which have been passed to the native methods
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1275
+
 ## v3.0.0 Beta 4 - May 29, 2018
  * Fixed a [error #54](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/54) “System.Runtime.InteropServices.RuntimeInformation not required for .NET Framework 4.7.1”. Special thanks to [David Gardiner](https://github.com/flcdrg).
  * Now all modules are support of .NET Framework 4.7.1
