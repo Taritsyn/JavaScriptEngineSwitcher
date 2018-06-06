@@ -19,8 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of .NET Framework 4.7.1;
-   2. Added support of MSIE JavaScript Engine version 3.0.0 Beta 3.
+   Added support of MSIE JavaScript Engine version 3.0.0 Beta 4.
 
    =============
    DOCUMENTATION
