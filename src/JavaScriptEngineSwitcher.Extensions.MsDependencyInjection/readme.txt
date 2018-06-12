@@ -17,7 +17,8 @@
    =============
    RELEASE NOTES
    =============
-   Added support of .NET Framework 4.7.1.
+   Added a overloaded versions of the `AddJsEngineSwitcher` extension method, which
+   takes an instance of JS engine switcher.
 
    =============
    DOCUMENTATION
