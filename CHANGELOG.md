@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v2.4.19 - June 12, 2018
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.9
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of June 7, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore changed a implementation of the `Dispose` method
+
 ## v2.4.18 - May 24, 2018
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.8
  * In JavaScriptEngineSwitcher.ChakraCore fixed a [error #34](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/34) “Finalazier thread is blocked because of JavaScriptEngineSwitcher.ChakraCore.ChakraCoreJsEngine”
