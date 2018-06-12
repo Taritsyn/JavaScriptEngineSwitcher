@@ -30,8 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #34 “Finalazier thread is blocked because of
-   JavaScriptEngineSwitcher.ChakraCore.ChakraCoreJsEngine”.
+   Changed a implementation of the `Dispose` method.
 
    =============
    DOCUMENTATION
