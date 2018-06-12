@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.0.0 Beta 6 - June 12, 2018
+ * In JavaScriptEngineSwitcher.Extensions.MsDependencyInjection added a overloaded versions of the `AddJsEngineSwitcher` extension method, which takes an instance of JS engine switcher
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of June 7, 2018
+
 ## v3.0.0 Beta 5 - June 6, 2018
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Beta 4
  * In JavaScriptEngineSwitcher.ChakraCore:

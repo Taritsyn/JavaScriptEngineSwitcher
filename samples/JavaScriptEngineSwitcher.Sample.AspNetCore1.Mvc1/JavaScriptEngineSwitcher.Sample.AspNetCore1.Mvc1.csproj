@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Product>JS Engine Switcher: Sample ASP.NET Core 1.0 MVC 1 Site</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>beta5</VersionSuffix>
+		<VersionSuffix>beta6</VersionSuffix>
 		<TargetFramework>netcoreapp1.0</TargetFramework>
 		<RuntimeFrameworkVersion>1.0.9</RuntimeFrameworkVersion>
 		<OutputType>Exe</OutputType>
