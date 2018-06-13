@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Changed a implementation of the `Dispose` method.
+   ChakraCore was updated to version 1.8.5.
 
    =============
    DOCUMENTATION
