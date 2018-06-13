@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v2.4.20 - June 13, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.5
+
 ## v2.4.19 - June 12, 2018
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.9
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of June 7, 2018
