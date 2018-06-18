@@ -30,9 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Changed a implementation of the `Dispose` method;
-   2. Prevented a early destruction of delegates, which have been passed to the
-      native methods.
+   ChakraCore was updated to version 1.8.5.
 
    =============
    DOCUMENTATION
