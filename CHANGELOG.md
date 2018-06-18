@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.0.0 Beta 7 - June 18, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.5
+
 ## v3.0.0 Beta 6 - June 12, 2018
  * In JavaScriptEngineSwitcher.Extensions.MsDependencyInjection added a overloaded versions of the `AddJsEngineSwitcher` extension method, which takes an instance of JS engine switcher
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of June 7, 2018
