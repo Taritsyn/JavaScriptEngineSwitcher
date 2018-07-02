@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v2.4.21 - July 2, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.10.0
+   * In configuration settings of the ChakraCore JS engine was added one new property - `DisableExecutablePageAllocation` (default `false`)
+
 ## v2.4.20 - June 13, 2018
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.5
 
