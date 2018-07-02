@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: ChakraCore for Debian x64 v2.4.20
+         README file for JS Engine Switcher: ChakraCore for Debian x64 v2.4.21
 
    --------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.8.5.
+   ChakraCore was updated to version 1.10.0.
 
    =============
    DOCUMENTATION
