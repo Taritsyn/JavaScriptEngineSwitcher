@@ -101,6 +101,12 @@
 					case JsErrorCode.NoWeakRefRequired:
 						throw new JsUsageException(error, "No weak reference is required, the value will never be collected.");
 
+					case JsErrorCode.PromisePending:
+						throw new JsUsageException(error, "The `Promise` object is still in the pending state.");
+
+					case JsErrorCode.ModuleNotEvaluated:
+						throw new JsUsageException(error, "Module was not yet evaluated when `JsGetModuleNamespace` was called.");
+
 					#endregion
 
 					#region Engine

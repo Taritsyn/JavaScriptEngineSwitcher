@@ -53,7 +53,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.8.5";
+		private const string EngineVersion = "1.10.0";
 
 		/// <summary>
 		/// Instance of JS runtime
@@ -141,6 +141,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			if (chakraCoreSettings.DisableEval)
 			{
 				attributes |= JsRuntimeAttributes.DisableEval;
+			}
+			if (chakraCoreSettings.DisableExecutablePageAllocation)
+			{
+				attributes |= JsRuntimeAttributes.DisableExecutablePageAllocation;
 			}
 			if (chakraCoreSettings.DisableFatalOnOOM)
 			{

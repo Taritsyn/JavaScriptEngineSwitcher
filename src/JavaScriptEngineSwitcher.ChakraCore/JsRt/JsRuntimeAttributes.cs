@@ -57,6 +57,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <summary>
 		/// Disable Failfast fatal error on OOM
 		/// </summary>
-		DisableFatalOnOOM = 0x00000080
+		DisableFatalOnOOM = 0x00000080,
+
+		/// <summary>
+		/// Runtime will not allocate executable code pages.
+		/// This also implies that Native Code generation will be turned off.
+		/// Note that this will break JavaScript stack decoding in tools like WPA since they
+		/// rely on allocation of unique thunks to interpret each function and allocation of
+		/// those thunks will be disabled as well.
+		/// </summary>
+		DisableExecutablePageAllocation = 0x00000100
 	}
 }

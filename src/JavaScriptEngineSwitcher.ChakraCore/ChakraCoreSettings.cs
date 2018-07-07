@@ -46,6 +46,25 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
+		/// Gets or sets a flag for whether to disable executable page allocation
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// This also implies that Native Code generation will be turned off.
+		/// </para>
+		/// <para>
+		/// Note that this will break JavaScript stack decoding in tools like WPA since they
+		/// rely on allocation of unique thunks to interpret each function and allocation of
+		/// those thunks will be disabled as well.
+		/// </para>
+		/// </remarks>
+		public bool DisableExecutablePageAllocation
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to disable Failfast fatal error on OOM
 		/// </summary>
 		public bool DisableFatalOnOOM
@@ -116,6 +135,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			DisableBackgroundWork = false;
 			DisableEval = false;
+			DisableExecutablePageAllocation = false;
 			DisableFatalOnOOM = false;
 			DisableNativeCodeGeneration = false;
 			EnableExperimentalFeatures = false;

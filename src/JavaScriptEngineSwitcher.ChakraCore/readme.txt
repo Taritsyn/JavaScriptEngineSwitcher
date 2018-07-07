@@ -30,7 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.8.5.
+   1. ChakraCore was updated to version 1.10.0;
+   2. In configuration settings of the ChakraCore JS engine was added one new
+      property - `DisableExecutablePageAllocation` (default `false`).
 
    =============
    DOCUMENTATION

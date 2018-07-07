@@ -162,6 +162,16 @@
 		/// </summary>
 		NoWeakRefRequired,
 
+		/// <summary>
+		/// The <c>Promise</c> object is still in the pending state
+		/// </summary>
+		PromisePending,
+
+		/// <summary>
+		/// Module was not yet evaluated when <c>JsGetModuleNamespace</c> was called
+		/// </summary>
+		ModuleNotEvaluated,
+
 		#endregion
 
 		#region Engine
