@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<VersionPrefix>2.4.21</VersionPrefix>
+		<VersionPrefix>2.4.22</VersionPrefix>
 		<TargetFramework>net451</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>

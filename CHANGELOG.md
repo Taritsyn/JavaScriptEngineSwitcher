@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v2.4.22 - July 11, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.10.1
+
 ## v2.4.21 - July 2, 2018
  * In JavaScriptEngineSwitcher.ChakraCore:
    * ChakraCore was updated to version 1.10.0
