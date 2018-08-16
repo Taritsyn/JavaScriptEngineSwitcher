@@ -17,7 +17,8 @@
    =============
    RELEASE NOTES
    =============
-   NiL.JS was updated to version 2.5.1278.
+   1. NiL.JS was updated to version 2.5.1278;
+   2. Fixed a error #57 “Nil - can't locate function name”.
 
    =============
    DOCUMENTATION

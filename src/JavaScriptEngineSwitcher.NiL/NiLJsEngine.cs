@@ -256,7 +256,7 @@ namespace JavaScriptEngineSwitcher.NiL
 			{
 				lock (_synchronizer)
 				{
-					resultValue = _jsContext.Eval(expression);
+					resultValue = _jsContext.Eval(expression, true);
 				}
 			}
 			catch (OriginalException e)
@@ -292,7 +292,7 @@ namespace JavaScriptEngineSwitcher.NiL
 			{
 				lock (_synchronizer)
 				{
-					_jsContext.Eval(code);
+					_jsContext.Eval(code, true);
 				}
 			}
 			catch (OriginalException e)
