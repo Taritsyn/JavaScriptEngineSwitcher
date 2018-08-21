@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-              README file for JS Engine Switcher: Jurassic v3.0.0 Beta 6
+              README file for JS Engine Switcher: Jurassic v3.0.0 Beta 9
 
    --------------------------------------------------------------------------------
 

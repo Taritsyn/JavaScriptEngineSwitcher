@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: ChakraCore v3.0.0 Beta 7
+             README file for JS Engine Switcher: ChakraCore v3.0.0 Beta 9
 
    --------------------------------------------------------------------------------
 

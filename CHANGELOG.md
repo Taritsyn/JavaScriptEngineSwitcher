@@ -1,6 +1,14 @@
 Change log
 ==========
 
+## v3.0.0 Beta 9 - August 21, 2018
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.5.3 (support of V8 version 6.8.275.28)
+ * In JavaScriptEngineSwitcher.Jurassic the original library was rolled back to version of February 24, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.10.2
+ * In JavaScriptEngineSwitcher.NiL:
+   * Added support of NiL.JS version 2.5.1278
+   * Fixed a [error #57](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/57) “Nil - can't locate function name”
+
 ## v3.0.0 Beta 8 - July 7, 2018
  * ChakraCore was updated to version 1.10.0
  * In configuration settings of the ChakraCore JS engine was added one new property - `DisableExecutablePageAllocation` (default `false`)
