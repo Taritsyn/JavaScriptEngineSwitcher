@@ -296,8 +296,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </summary>
 		/// <remarks>
 		/// <para>Requires an active script context.</para>
-		/// <para>The runtime will hold on to the buffer until all instances of any functions created from
-		/// the buffer are garbage collected.</para>
+		/// <para>The runtime will detach the data from the buffer and hold on to it until all
+		/// instances of any functions created from the buffer are garbage collected.</para>
 		/// </remarks>
 		/// <param name="script">The source code of the serialized script</param>
 		/// <param name="buffer">The serialized script</param>
