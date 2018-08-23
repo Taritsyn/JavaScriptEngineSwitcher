@@ -604,7 +604,14 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 
 				var leftOffset = (int)Math.Floor((double)maxFragmentLength / 2);
 				int fragmentStartPosition = columnNumber - leftOffset - 1;
-				if (fragmentStartPosition < position)
+				if (fragmentStartPosition > position)
+				{
+					if (length - fragmentStartPosition < maxFragmentLength)
+					{
+						fragmentStartPosition = length - maxFragmentLength;
+					}
+				}
+				else
 				{
 					fragmentStartPosition = position;
 				}
@@ -613,12 +620,10 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				if (fragmentStartPosition > position)
 				{
 					startPart = ellipsisSymbol;
-					fragmentLength--;
 				}
-				if (fragmentStartPosition + maxFragmentLength < length)
+				if (fragmentStartPosition + fragmentLength < length)
 				{
 					endPart = ellipsisSymbol;
-					fragmentLength--;
 				}
 
 				StringBuilder fragmentBuilder = StringBuilderPool.GetBuilder();

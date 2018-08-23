@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: Core v3.0.0 Beta 4
+                README file for JS Engine Switcher: Core v3.0.0 Beta 9
 
    --------------------------------------------------------------------------------
 
@@ -20,8 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #54 “System.Runtime.InteropServices.RuntimeInformation not
-   required for .NET Framework 4.7.1”. Special thanks to David Gardiner.
+   Fixed a error #59 “Unhandled exception when JS exception is thrown”.
 
    =============
    DOCUMENTATION
