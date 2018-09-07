@@ -74,6 +74,15 @@ namespace JavaScriptEngineSwitcher.Jint
 			set;
 		}
 
+		/// <summary>
+		/// Gets or sets the local timezone for the dates in the script
+		/// </summary>
+		public TimeZoneInfo LocalTimeZone
+		{
+			get;
+			set;
+		}
+
 
 		/// <summary>
 		/// Constructs an instance of the Jint settings
@@ -86,6 +95,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			MaxStatements = 0;
 			StrictMode = false;
 			TimeoutInterval = TimeSpan.Zero;
+			LocalTimeZone = TimeZoneInfo.Local;
 		}
 	}
 }
