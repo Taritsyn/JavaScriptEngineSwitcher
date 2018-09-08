@@ -84,6 +84,7 @@ namespace JavaScriptEngineSwitcher.Jint
 					.MaxStatements(jintSettings.MaxStatements)
 					.Strict(jintSettings.StrictMode)
 					.TimeoutInterval(jintSettings.TimeoutInterval)
+					.LocalTimeZone(jintSettings.LocalTimeZone ?? TimeZoneInfo.Local)
 				);
 			}
 			catch (Exception e)
