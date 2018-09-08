@@ -240,7 +240,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsCreateExternalArrayBuffer(IntPtr data, uint byteLength,
-			JsObjectFinalizeCallback finalizeCallback, IntPtr callbackState, out bool result);
+			JsObjectFinalizeCallback finalizeCallback, IntPtr callbackState, out JsValue result);
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsCreateTypedArray(JsTypedArrayType arrayType, JsValue arrayBuffer,
@@ -255,7 +255,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			out JsValue arrayBuffer, out uint byteOffset, out uint byteLength);
 
 		[DllImport(DllName)]
-		internal static extern JsErrorCode JsGetArrayBufferStorage(JsValue arrayBuffer, out byte[] buffer,
+		internal static extern JsErrorCode JsGetArrayBufferStorage(JsValue arrayBuffer, out IntPtr buffer,
 			out uint bufferLength);
 
 		[DllImport(DllName)]
@@ -375,7 +375,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			string sourceUrl, out JsValue result);
 
 		[DllImport(DllName, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsSerializeScript(string script, byte[] buffer, ref ulong bufferSize);
+		internal static extern JsErrorCode JsSerializeScript(string script, byte[] buffer, ref uint bufferSize);
 
 		[DllImport(DllName)]
 		internal static extern JsErrorCode JsParseSerializedScriptWithCallback(

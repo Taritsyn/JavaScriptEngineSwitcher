@@ -234,6 +234,39 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 		}
 
+		/// <summary>
+		/// Gets a bytes from an <c>ArrayBuffer</c>
+		/// </summary>
+		/// <remarks>
+		/// Requires an active script context.
+		/// </remarks>
+		public byte[] ArrayBufferBytes
+		{
+			get
+			{
+				IntPtr bufferPtr;
+				uint bufferLength;
+
+				JsErrorCode errorCode = NativeMethods.JsGetArrayBufferStorage(this, out bufferPtr, out bufferLength);
+				JsErrorHelpers.ThrowIfError(errorCode);
+
+				if (bufferPtr == IntPtr.Zero)
+				{
+					return null;
+				}
+
+				if (bufferLength == 0)
+				{
+					return new byte[0];
+				}
+
+				byte[] buffer = new byte[bufferLength];
+				Marshal.Copy(bufferPtr, buffer, 0, (int)bufferLength);
+
+				return buffer;
+			}
+		}
+
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsValue"/> struct
@@ -399,6 +432,42 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		{
 			JsValue reference;
 			JsErrorHelpers.ThrowIfError(NativeMethods.JsCreateArray(length, out reference));
+
+			return reference;
+		}
+
+		/// <summary>
+		/// Creates a Javascript <c>ArrayBuffer</c> object to access external memory
+		/// </summary>
+		/// <remarks>Requires an active script context.</remarks>
+		/// <param name="buffer">Buffer for an external memory</param>
+		/// <returns>The new <c>ArrayBuffer</c> object</returns>
+		public static JsValue CreateExternalArrayBuffer(byte[] buffer)
+		{
+			IntPtr bufferPtr;
+			int bufferLength;
+			JsObjectFinalizeCallback finalizeCallback;
+
+			if (buffer != null)
+			{
+				bufferLength = buffer.Length;
+
+				bufferPtr = Marshal.AllocHGlobal(bufferLength);
+				Marshal.Copy(buffer, 0, bufferPtr, bufferLength);
+
+				finalizeCallback = DefaultExternalBufferFinalizeCallback.Instance;
+			}
+			else
+			{
+				bufferLength = 0;
+				bufferPtr = IntPtr.Zero;
+				finalizeCallback = null;
+			}
+
+			JsValue reference;
+			JsErrorCode errorCode = NativeMethods.JsCreateExternalArrayBuffer(bufferPtr, (uint)bufferLength,
+				finalizeCallback, bufferPtr, out reference);
+			JsErrorHelpers.ThrowIfError(errorCode);
 
 			return reference;
 		}

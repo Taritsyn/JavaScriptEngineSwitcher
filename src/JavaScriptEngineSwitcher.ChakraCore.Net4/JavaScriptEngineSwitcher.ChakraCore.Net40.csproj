@@ -79,6 +79,9 @@
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\ChakraCoreSettings.cs">
       <Link>ChakraCoreSettings.cs</Link>
     </Compile>
+    <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\DefaultExternalBufferFinalizeCallback.cs">
+      <Link>JsRt\DefaultExternalBufferFinalizeCallback.cs</Link>
+    </Compile>
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\Helpers\NumericHelpers.cs">
       <Link>Helpers\NumericHelpers.cs</Link>
     </Compile>
