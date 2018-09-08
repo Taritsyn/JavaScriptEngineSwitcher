@@ -19,7 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 3.0.0 Beta 4.
+   Added support of MSIE JavaScript Engine version 3.0.0 Beta 5.
 
    =============
    DOCUMENTATION
