@@ -1,4 +1,6 @@
-﻿namespace JavaScriptEngineSwitcher.Jint
+﻿using System;
+
+namespace JavaScriptEngineSwitcher.Jint
 {
 	/// <summary>
 	/// Settings of the Jint JS engine
@@ -25,8 +27,17 @@
 		}
 
 		/// <summary>
+		/// Gets or sets a local time zone for the <code>Date</code> objects in the script
+		/// </summary>
+		public TimeZoneInfo LocalTimeZone
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a maximum allowed depth of recursion:
-		///	   -1 - recursion without limits;
+		///    -1 - recursion without limits;
 		///     N - one scope function can be called no more than N times.
 		/// </summary>
 		public int MaxRecursionDepth
@@ -70,6 +81,7 @@
 		{
 			AllowDebuggerStatement = false;
 			EnableDebugging = false;
+			LocalTimeZone = TimeZoneInfo.Local;
 			MaxRecursionDepth = -1;
 			MaxStatements = 0;
 			StrictMode = false;

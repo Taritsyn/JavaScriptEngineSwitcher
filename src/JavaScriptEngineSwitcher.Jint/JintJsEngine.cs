@@ -97,6 +97,7 @@ namespace JavaScriptEngineSwitcher.Jint
 					.AllowDebuggerStatement(jintSettings.AllowDebuggerStatement)
 					.DebugMode(jintSettings.EnableDebugging)
 					.LimitRecursion(jintSettings.MaxRecursionDepth)
+					.LocalTimeZone(jintSettings.LocalTimeZone ?? TimeZoneInfo.Local)
 					.MaxStatements(jintSettings.MaxStatements)
 					.Strict(jintSettings.StrictMode)
 					.TimeoutInterval(TimeSpan.FromMilliseconds(jintSettings.Timeout))
