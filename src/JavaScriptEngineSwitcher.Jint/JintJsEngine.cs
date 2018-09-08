@@ -81,10 +81,10 @@ namespace JavaScriptEngineSwitcher.Jint
 					.AllowDebuggerStatement(jintSettings.AllowDebuggerStatement)
 					.DebugMode(jintSettings.EnableDebugging)
 					.LimitRecursion(jintSettings.MaxRecursionDepth)
+					.LocalTimeZone(jintSettings.LocalTimeZone ?? TimeZoneInfo.Local)
 					.MaxStatements(jintSettings.MaxStatements)
 					.Strict(jintSettings.StrictMode)
 					.TimeoutInterval(jintSettings.TimeoutInterval)
-					.LocalTimeZone(jintSettings.LocalTimeZone ?? TimeZoneInfo.Local)
 				);
 			}
 			catch (Exception e)

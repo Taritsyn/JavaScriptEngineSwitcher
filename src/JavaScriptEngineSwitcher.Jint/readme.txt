@@ -17,7 +17,8 @@
    =============
    RELEASE NOTES
    =============
-   Added support of .NET Framework 4.7.1.
+   In configuration settings of the Jint JS engine was added one new property -
+   `LocalTimeZone` (default `TimeZoneInfo.Local`).
 
    =============
    DOCUMENTATION

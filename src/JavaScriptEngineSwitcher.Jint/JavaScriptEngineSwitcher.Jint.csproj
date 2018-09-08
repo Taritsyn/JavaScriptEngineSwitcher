@@ -13,7 +13,7 @@
 		<Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.11.58).</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Jint</PackageTags>
-		<PackageReleaseNotes>Added support of .NET Framework 4.7.1.</PackageReleaseNotes>
+		<PackageReleaseNotes>In configuration settings of the Jint JS engine was added one new property - `LocalTimeZone` (default `TimeZoneInfo.Local`).</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
