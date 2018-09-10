@@ -16,11 +16,11 @@
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
+	<Import Project="../../build/net40-client-target.props" />
 	<Import Project="../../build/strong-name-signing.props" />
 	<Import Project="../../build/nuget-metadata.props" />
 
 	<ItemGroup>
-		<PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="All" />
 		<PackageReference Include="Jurassic.Unofficial" Version="2018.2.24" />
 
 		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
@@ -37,7 +37,5 @@
 			<Visible>false</Visible>
 		</Content>
 	</ItemGroup>
-
-	<Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
 </Project>

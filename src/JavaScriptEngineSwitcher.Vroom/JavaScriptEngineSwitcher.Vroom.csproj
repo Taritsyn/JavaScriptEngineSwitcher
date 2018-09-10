@@ -20,11 +20,11 @@ For correct working of the VroomJs on Windows require the Visual C++ Redistribut
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
+	<Import Project="../../build/net40-client-target.props" />
 	<Import Project="../../build/strong-name-signing.props" />
 	<Import Project="../../build/nuget-metadata.props" />
 
 	<ItemGroup>
-		<PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="All" />
 		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha5" PrivateAssets="All" />
 		<PackageReference Include="VroomJs" Version="1.2.3" />
 
@@ -51,7 +51,5 @@ For correct working of the VroomJs on Windows require the Visual C++ Redistribut
 	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
 		<ResxToCsTask InputDirectory="./Resources/" Namespace="$(RootNamespace).Resources" InternalAccessModifier="true" />
 	</Target>
-
-	<Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
 </Project>
