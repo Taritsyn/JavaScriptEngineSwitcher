@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v2.4.26 - September 13, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.1
+
 ## v2.4.25 - September 8, 2018
  * In JavaScriptEngineSwitcher.Jint in configuration settings was added one new property - `LocalTimeZone` (default `TimeZoneInfo.Local`)
  * In JavaScriptEngineSwitcher.ChakraCore improved a performance in version for Unix
