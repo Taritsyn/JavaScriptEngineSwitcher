@@ -1280,9 +1280,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				{
 					try
 					{
-						byte[] cachedBytes = JsContext.SerializeScript(code);
+						JsParseScriptAttributes parseAttributes = JsParseScriptAttributes.None;
+						byte[] cachedBytes = JsContext.SerializeScript(code, ref parseAttributes);
 
-						return new ChakraCorePrecompiledScript(code, cachedBytes, uniqueDocumentName);
+						return new ChakraCorePrecompiledScript(code, parseAttributes, cachedBytes, uniqueDocumentName);
 					}
 					catch (OriginalException e)
 					{
@@ -1309,8 +1310,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				{
 					try
 					{
+						JsParseScriptAttributes parseAttributes = JsParseScriptAttributes.None;
 						JsValue resultValue = JsContext.RunScript(expression, _jsSourceContext++,
-							uniqueDocumentName);
+							uniqueDocumentName, ref parseAttributes);
 
 						return MapToHostType(resultValue);
 					}
@@ -1351,7 +1353,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				{
 					try
 					{
-						JsContext.RunScript(code, _jsSourceContext++, uniqueDocumentName);
+						JsParseScriptAttributes parseAttributes = JsParseScriptAttributes.None;
+						JsContext.RunScript(code, _jsSourceContext++, uniqueDocumentName, ref parseAttributes);
 					}
 					catch (OriginalException e)
 					{

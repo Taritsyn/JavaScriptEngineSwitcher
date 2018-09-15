@@ -46,10 +46,12 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="4.0.1" />
 		<PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.0.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="4.4.0" />
 		<PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
 
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jurassic/JavaScriptEngineSwitcher.Jurassic.csproj" />

@@ -330,9 +330,16 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		[DllImport(DllName.Universal)]
 		internal static extern JsErrorCode JsCreateString(string content, UIntPtr length, out JsValue value);
 
+		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
+		internal static extern JsErrorCode JsCreateStringUtf16(string content, UIntPtr length, out JsValue value);
+
 		[DllImport(DllName.Universal)]
 		internal static extern JsErrorCode JsCopyString(JsValue value, byte[] buffer, UIntPtr bufferSize,
 			out UIntPtr length);
+
+		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
+		internal static extern JsErrorCode JsCopyStringUtf16(JsValue value, int start, int length,
+			char[] buffer, out UIntPtr written);
 
 		[DllImport(DllName.Universal)]
 		internal static extern JsErrorCode JsParse(JsValue script, JsSourceContext sourceContext, JsValue sourceUrl,
@@ -363,55 +370,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		internal static extern JsErrorCode JsRunSerialized(JsValue buffer,
 			JsSerializedLoadScriptCallback scriptLoadCallback, JsSourceContext sourceContext,
 			JsValue sourceUrl, out JsValue result);
-
-		#region Windows only
-
-		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsParseScript(string script, JsSourceContext sourceContext,
-			string sourceUrl, out JsValue result);
-
-		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsRunScript(string script, JsSourceContext sourceContext,
-			string sourceUrl, out JsValue result);
-
-		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsSerializeScript(string script, byte[] buffer, ref uint bufferSize);
-
-		[DllImport(DllName.Universal)]
-		internal static extern JsErrorCode JsParseSerializedScriptWithCallback(
-			JsSerializedScriptLoadSourceCallback scriptLoadCallback,
-			JsSerializedScriptUnloadCallback scriptUnloadCallback, byte[] buffer,
-			JsSourceContext sourceContext, string sourceUrl, out JsValue result);
-
-		[DllImport(DllName.Universal)]
-		internal static extern JsErrorCode JsRunSerializedScriptWithCallback(
-			JsSerializedScriptLoadSourceCallback scriptLoadCallback,
-			JsSerializedScriptUnloadCallback scriptUnloadCallback, byte[] buffer,
-			JsSourceContext sourceContext, string sourceUrl, out JsValue result);
-
-		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsParseSerializedScript(string script, byte[] buffer,
-			JsSourceContext sourceContext, string sourceUrl, out JsValue result);
-
-		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsRunSerializedScript(string script, byte[] buffer,
-			JsSourceContext sourceContext, string sourceUrl, out JsValue result);
-
-		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsGetPropertyIdFromName(string name, out JsPropertyId propertyId);
-
-		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsGetPropertyNameFromId(JsPropertyId propertyId, out string name);
-
-		[DllImport(DllName.Universal, CharSet = CharSet.Unicode)]
-		internal static extern JsErrorCode JsPointerToString(string value, UIntPtr stringLength,
-			out JsValue stringValue);
-
-		[DllImport(DllName.Universal)]
-		internal static extern JsErrorCode JsStringToPointer(JsValue value, out IntPtr stringValue,
-			out UIntPtr stringLength);
-
-		#endregion
 
 		#endregion
 	}

@@ -44,31 +44,20 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		{
 			get
 			{
-				string name;
-				JsErrorCode errorCode;
+				byte[] buffer = null;
+				UIntPtr bufferSize = UIntPtr.Zero;
+				UIntPtr length;
 
-				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-				{
-					errorCode = NativeMethods.JsGetPropertyNameFromId(this, out name);
-					JsErrorHelpers.ThrowIfError(errorCode);
-				}
-				else
-				{
-					byte[] buffer = null;
-					UIntPtr bufferSize = UIntPtr.Zero;
-					UIntPtr length;
+				JsErrorCode errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
+				JsErrorHelpers.ThrowIfError(errorCode);
 
-					errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
-					JsErrorHelpers.ThrowIfError(errorCode);
+				buffer = new byte[(int)length];
+				bufferSize = length;
 
-					buffer = new byte[(int)length];
-					bufferSize = new UIntPtr((uint)length);
+				errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
+				JsErrorHelpers.ThrowIfError(errorCode);
 
-					errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
-					JsErrorHelpers.ThrowIfError(errorCode);
-
-					name = Encoding.GetEncoding(0).GetString(buffer);
-				}
+				string name = Encoding.UTF8.GetString(buffer);
 
 				return name;
 			}
@@ -101,19 +90,25 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <returns>The property ID in this runtime for the given name</returns>
 		public static JsPropertyId FromString(string name)
 		{
-			JsPropertyId id;
-			JsErrorCode errorCode;
+			string processedName;
+			int byteCount;
 
-			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && !string.IsNullOrEmpty(name))
 			{
-				errorCode = NativeMethods.JsGetPropertyIdFromName(name, out id);
+				byte[] bytes = Encoding.UTF8.GetBytes(name);
+				processedName = Encoding.GetEncoding(0).GetString(bytes);
+				byteCount = bytes.Length;
 			}
 			else
 			{
-				var byteCount = new UIntPtr((uint)Encoding.GetEncoding(0).GetByteCount(name));
-				errorCode = NativeMethods.JsCreatePropertyId(name, byteCount, out id);
+				processedName = name;
+				byteCount = Encoding.UTF8.GetByteCount(name);
 			}
 
+			JsPropertyId id;
+			UIntPtr length = new UIntPtr((uint)byteCount);
+
+			JsErrorCode errorCode = NativeMethods.JsCreatePropertyId(processedName, length, out id);
 			JsErrorHelpers.ThrowIfError(errorCode);
 
 			return id;

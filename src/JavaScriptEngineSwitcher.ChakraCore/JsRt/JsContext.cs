@@ -159,37 +159,29 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <param name="sourceContext">A cookie identifying the script that can be used
 		/// by debuggable script contexts</param>
 		/// <param name="sourceUrl">The location the script came from</param>
+		/// <param name="parseAttributes">Attribute mask for parsing the script</param>
 		/// <returns>A function representing the script code</returns>
-		public static JsValue ParseScript(string script, JsSourceContext sourceContext, string sourceUrl)
+		public static JsValue ParseScript(string script, JsSourceContext sourceContext, string sourceUrl,
+			ref JsParseScriptAttributes parseAttributes)
 		{
-			JsValue result;
-			JsErrorCode errorCode;
+			JsValue scriptValue = CreateExternalArrayBufferFromScriptCode(script, ref parseAttributes);
+			scriptValue.AddRef();
 
-			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+			JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
+			sourceUrlValue.AddRef();
+
+			JsValue result;
+
+			try
 			{
-				errorCode = NativeMethods.JsParseScript(script, sourceContext, sourceUrl, out result);
+				JsErrorCode errorCode = NativeMethods.JsParse(scriptValue, sourceContext, sourceUrlValue,
+					parseAttributes, out result);
 				JsErrorHelpers.ThrowIfError(errorCode);
 			}
-			else
+			finally
 			{
-				byte[] scriptBytes = Encoding.GetEncoding(0).GetBytes(script);
-				JsValue scriptValue = JsValue.CreateExternalArrayBuffer(scriptBytes);
-				scriptValue.AddRef();
-
-				JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
-				sourceUrlValue.AddRef();
-
-				try
-				{
-					errorCode = NativeMethods.JsParse(scriptValue, sourceContext, sourceUrlValue,
-						JsParseScriptAttributes.None, out result);
-					JsErrorHelpers.ThrowIfError(errorCode);
-				}
-				finally
-				{
-					scriptValue.Release();
-					sourceUrlValue.Release();
-				}
+				scriptValue.Release();
+				sourceUrlValue.Release();
 			}
 
 			return result;
@@ -213,33 +205,24 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsValue ParseSerializedScript(string script, byte[] buffer,
 			JsSerializedLoadScriptCallback scriptLoadCallback, JsSourceContext sourceContext, string sourceUrl)
 		{
-			JsValue result;
-			JsErrorCode errorCode;
+			JsValue bufferValue = JsValue.CreateExternalArrayBuffer(buffer);
+			bufferValue.AddRef();
 
-			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+			JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
+			sourceUrlValue.AddRef();
+
+			JsValue result;
+
+			try
 			{
-				errorCode = NativeMethods.JsParseSerializedScript(script, buffer, sourceContext, sourceUrl, out result);
+				JsErrorCode errorCode = NativeMethods.JsParseSerialized(bufferValue, scriptLoadCallback, sourceContext,
+					sourceUrlValue, out result);
 				JsErrorHelpers.ThrowIfError(errorCode);
 			}
-			else
+			finally
 			{
-				JsValue bufferValue = JsValue.CreateExternalArrayBuffer(buffer);
-				bufferValue.AddRef();
-
-				JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
-				sourceUrlValue.AddRef();
-
-				try
-				{
-					errorCode = NativeMethods.JsParseSerialized(bufferValue, scriptLoadCallback, sourceContext,
-						sourceUrlValue, out result);
-					JsErrorHelpers.ThrowIfError(errorCode);
-				}
-				finally
-				{
-					bufferValue.Release();
-					sourceUrlValue.Release();
-				}
+				bufferValue.Release();
+				sourceUrlValue.Release();
 			}
 
 			return result;
@@ -255,37 +238,29 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <param name="sourceContext">A cookie identifying the script that can be used
 		/// by debuggable script contexts</param>
 		/// <param name="sourceUrl">The location the script came from</param>
+		/// <param name="parseAttributes">Attribute mask for parsing the script</param>
 		/// <returns>The result of the script, if any</returns>
-		public static JsValue RunScript(string script, JsSourceContext sourceContext, string sourceUrl)
+		public static JsValue RunScript(string script, JsSourceContext sourceContext, string sourceUrl,
+			ref JsParseScriptAttributes parseAttributes)
 		{
-			JsValue result;
-			JsErrorCode errorCode;
+			JsValue scriptValue = CreateExternalArrayBufferFromScriptCode(script, ref parseAttributes);
+			scriptValue.AddRef();
 
-			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+			JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
+			sourceUrlValue.AddRef();
+
+			JsValue result;
+
+			try
 			{
-				errorCode = NativeMethods.JsRunScript(script, sourceContext, sourceUrl, out result);
+				JsErrorCode errorCode = NativeMethods.JsRun(scriptValue, sourceContext, sourceUrlValue,
+					parseAttributes, out result);
 				JsErrorHelpers.ThrowIfError(errorCode);
 			}
-			else
+			finally
 			{
-				byte[] scriptBytes = Encoding.GetEncoding(0).GetBytes(script);
-				JsValue scriptValue = JsValue.CreateExternalArrayBuffer(scriptBytes);
-				scriptValue.AddRef();
-
-				JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
-				sourceUrlValue.AddRef();
-
-				try
-				{
-					errorCode = NativeMethods.JsRun(scriptValue, sourceContext, sourceUrlValue,
-						JsParseScriptAttributes.None, out result);
-					JsErrorHelpers.ThrowIfError(errorCode);
-				}
-				finally
-				{
-					scriptValue.Release();
-					sourceUrlValue.Release();
-				}
+				scriptValue.Release();
+				sourceUrlValue.Release();
 			}
 
 			return result;
@@ -310,32 +285,23 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsSerializedLoadScriptCallback scriptLoadCallback, JsSourceContext sourceContext, string sourceUrl)
 		{
 			JsValue result;
-			JsErrorCode errorCode;
 
-			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+			JsValue bufferValue = JsValue.CreateExternalArrayBuffer(buffer);
+			bufferValue.AddRef();
+
+			JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
+			sourceUrlValue.AddRef();
+
+			try
 			{
-				errorCode = NativeMethods.JsRunSerializedScript(script, buffer, sourceContext, sourceUrl, out result);
+				JsErrorCode errorCode = NativeMethods.JsRunSerialized(bufferValue, scriptLoadCallback, sourceContext,
+					sourceUrlValue, out result);
 				JsErrorHelpers.ThrowIfError(errorCode);
 			}
-			else
+			finally
 			{
-				JsValue bufferValue = JsValue.CreateExternalArrayBuffer(buffer);
-				bufferValue.AddRef();
-
-				JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
-				sourceUrlValue.AddRef();
-
-				try
-				{
-					errorCode = NativeMethods.JsRunSerialized(bufferValue, scriptLoadCallback, sourceContext,
-						sourceUrlValue, out result);
-					JsErrorHelpers.ThrowIfError(errorCode);
-				}
-				finally
-				{
-					bufferValue.Release();
-					sourceUrlValue.Release();
-				}
+				bufferValue.Release();
+				sourceUrlValue.Release();
 			}
 
 			return result;
@@ -355,47 +321,55 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </para>
 		/// </remarks>
 		/// <param name="script">The script to serialize</param>
+		/// <param name="parseAttributes">Attribute mask for parsing the script</param>
 		/// <returns>The buffer to put the serialized script into</returns>
-		public static byte[] SerializeScript(string script)
+		public static byte[] SerializeScript(string script, ref JsParseScriptAttributes parseAttributes)
 		{
-			byte[] buffer;
-			JsErrorCode errorCode;
+			JsValue scriptValue = CreateExternalArrayBufferFromScriptCode(script, ref parseAttributes);
+			scriptValue.AddRef();
+
+			JsValue bufferValue;
+
+			try
+			{
+				JsErrorCode errorCode = NativeMethods.JsSerialize(scriptValue, out bufferValue, parseAttributes);
+				JsErrorHelpers.ThrowIfError(errorCode);
+			}
+			finally
+			{
+				scriptValue.Release();
+			}
+
+			byte[] buffer = bufferValue.ArrayBufferBytes;
+
+			return buffer;
+		}
+
+		/// <summary>
+		/// Creates a Javascript <c>ArrayBuffer</c> object from script code
+		/// </summary>
+		/// <param name="script">Script code</param>
+		/// <param name="parseAttributes">Attribute mask for parsing the script</param>
+		/// <returns>The new <c>ArrayBuffer</c> object</returns>
+		private static JsValue CreateExternalArrayBufferFromScriptCode(string script,
+			ref JsParseScriptAttributes parseAttributes)
+		{
+			Encoding encoding;
 
 			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
-				buffer = null;
-				uint bufferSize = 0;
-
-				errorCode = NativeMethods.JsSerializeScript(script, buffer, ref bufferSize);
-				JsErrorHelpers.ThrowIfError(errorCode);
-
-				buffer = new byte[(int)bufferSize];
-
-				errorCode = NativeMethods.JsSerializeScript(script, buffer, ref bufferSize);
-				JsErrorHelpers.ThrowIfError(errorCode);
+				encoding = Encoding.Unicode;
+				parseAttributes |= JsParseScriptAttributes.ArrayBufferIsUtf16Encoded;
 			}
 			else
 			{
-				byte[] scriptBytes = Encoding.GetEncoding(0).GetBytes(script);
-				JsValue scriptValue = JsValue.CreateExternalArrayBuffer(scriptBytes);
-				scriptValue.AddRef();
-
-				JsValue bufferValue;
-
-				try
-				{
-					errorCode = NativeMethods.JsSerialize(scriptValue, out bufferValue, JsParseScriptAttributes.None);
-					JsErrorHelpers.ThrowIfError(errorCode);
-				}
-				finally
-				{
-					scriptValue.Release();
-				}
-
-				buffer = bufferValue.ArrayBufferBytes;
+				encoding = Encoding.UTF8;
 			}
 
-			return buffer;
+			byte[] scriptBytes = encoding.GetBytes(script);
+			JsValue scriptValue = JsValue.CreateExternalArrayBuffer(scriptBytes);
+
+			return scriptValue;
 		}
 
 		/// <summary>

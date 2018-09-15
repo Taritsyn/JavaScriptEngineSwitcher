@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.10.2.
+   No longer used the old ChakraCore API for Windows (Internet Explorer-like API).
 
    =============
    DOCUMENTATION

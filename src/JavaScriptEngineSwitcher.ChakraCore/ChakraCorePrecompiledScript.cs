@@ -22,6 +22,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
+		/// Gets a attribute mask for parsing the script
+		/// </summary>
+		public JsParseScriptAttributes ParseAttributes
+		{
+			get;
+			private set;
+		}
+
+		/// <summary>
 		/// Gets a cached data for accelerated recompilation
 		/// </summary>
 		public byte[] CachedBytes
@@ -53,11 +62,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// Constructs an instance of pre-compiled script
 		/// </summary>
 		/// <param name="code">The source code of the script</param>
+		/// <param name="parseAttributes">Attribute mask for parsing the script</param>
 		/// <param name="cachedBytes">Cached data for accelerated recompilation</param>
 		/// <param name="documentName">Document name</param>
-		public ChakraCorePrecompiledScript(string code, byte[] cachedBytes, string documentName)
+		public ChakraCorePrecompiledScript(string code, JsParseScriptAttributes parseAttributes, byte[] cachedBytes,
+			string documentName)
 		{
 			Code = code;
+			ParseAttributes = parseAttributes;
 			CachedBytes = cachedBytes;
 			DocumentName = documentName;
 			LoadScriptSourceCodeCallback = LoadScriptSourceCode;
@@ -76,8 +88,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			out JsValue value, out JsParseScriptAttributes parseAttributes)
 		{
 			bool result;
-			parseAttributes = JsParseScriptAttributes.None;
-			byte[] bytes = Encoding.GetEncoding(0).GetBytes(Code);
+			parseAttributes = ParseAttributes;
+			Encoding encoding = parseAttributes.HasFlag(JsParseScriptAttributes.ArrayBufferIsUtf16Encoded) ?
+				Encoding.Unicode : Encoding.UTF8;
+			byte[] bytes = encoding.GetBytes(Code);
 
 			try
 			{

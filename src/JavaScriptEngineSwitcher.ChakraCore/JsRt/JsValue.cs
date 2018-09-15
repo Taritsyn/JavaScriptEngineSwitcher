@@ -344,11 +344,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
 				var stringLength = new UIntPtr((uint)value.Length);
-				errorCode = NativeMethods.JsPointerToString(value, stringLength, out reference);
+				errorCode = NativeMethods.JsCreateStringUtf16(value, stringLength, out reference);
 			}
 			else
 			{
-				var byteCount = new UIntPtr((uint)Encoding.GetEncoding(0).GetByteCount(value));
+				var byteCount = new UIntPtr((uint)Encoding.UTF8.GetByteCount(value));
 				errorCode = NativeMethods.JsCreateString(value, byteCount, out reference);
 			}
 
@@ -679,13 +679,21 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
-				IntPtr ptr;
-				UIntPtr stringLength;
+				int start = 0;
+				int length = int.MaxValue;
+				char[] buffer = null;
+				UIntPtr written;
 
-				errorCode = NativeMethods.JsStringToPointer(this, out ptr, out stringLength);
+				errorCode = NativeMethods.JsCopyStringUtf16(this, start, length, buffer, out written);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				result = Marshal.PtrToStringUni(ptr, (int)stringLength);
+				length = (int)written;
+				buffer = new char[length];
+
+				errorCode = NativeMethods.JsCopyStringUtf16(this, start, length, buffer, out written);
+				JsErrorHelpers.ThrowIfError(errorCode);
+
+				result = new string(buffer);
 			}
 			else
 			{
@@ -697,12 +705,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsErrorHelpers.ThrowIfError(errorCode);
 
 				buffer = new byte[(int)length];
-				bufferSize = new UIntPtr((uint)length);
+				bufferSize = length;
 
 				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				result = Encoding.GetEncoding(0).GetString(buffer);
+				result = Encoding.UTF8.GetString(buffer);
 			}
 
 			return result;

@@ -1,4 +1,8 @@
-﻿using JavaScriptEngineSwitcher.ChakraCore;
+﻿#if NETCOREAPP
+using System.Text;
+
+#endif
+using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Utilities;
 using JavaScriptEngineSwitcher.Jint;
@@ -23,6 +27,10 @@ namespace JavaScriptEngineSwitcher.Tests
 		{
 			if (_initializedFlag.Set())
 			{
+#if NETCOREAPP
+				Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+#endif
 				JsEngineSwitcher.Current.EngineFactories
 					.AddChakraCore()
 					.AddJint()
