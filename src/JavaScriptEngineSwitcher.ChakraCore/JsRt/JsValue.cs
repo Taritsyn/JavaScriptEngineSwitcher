@@ -475,6 +475,47 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
+		/// Creates a Javascript <c>ArrayBuffer</c> object to access external memory
+		/// </summary>
+		/// <remarks>Requires an active script context.</remarks>
+		/// <param name="value">String value</param>
+		/// <param name="encoding">Character encoding</param>
+		/// <returns>The new <c>ArrayBuffer</c> object</returns>
+		public static unsafe JsValue CreateExternalArrayBuffer(string value, Encoding encoding)
+		{
+			int bufferLength;
+			IntPtr bufferPtr;
+			JsObjectFinalizeCallback finalizeCallback;
+
+			if (value != null)
+			{
+				bufferLength = encoding.GetByteCount(value);
+				bufferPtr = Marshal.AllocHGlobal(bufferLength);
+
+				fixed (char* pScript = value)
+				{
+					encoding.GetBytes(pScript, value.Length, (byte*)bufferPtr, bufferLength);
+				}
+
+				finalizeCallback = DefaultExternalBufferFinalizeCallback.Instance;
+			}
+			else
+			{
+				bufferLength = 0;
+				bufferPtr = IntPtr.Zero;
+				finalizeCallback = null;
+			}
+
+			JsValue reference;
+			JsErrorCode errorCode = NativeMethods.JsCreateExternalArrayBuffer(bufferPtr, (uint)bufferLength,
+				finalizeCallback, bufferPtr, out reference);
+			JsErrorHelpers.ThrowIfError(errorCode);
+
+			return reference;
+		}
+
+
+		/// <summary>
 		/// Creates a new JavaScript error object
 		/// </summary>
 		/// <remarks>

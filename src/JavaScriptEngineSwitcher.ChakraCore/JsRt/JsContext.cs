@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Text;
-#if NET45 || NET471 || NETSTANDARD
 using System.Runtime.InteropServices;
-#endif
+using System.Text;
 #if NET40
 
 using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
@@ -366,8 +364,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				encoding = Encoding.UTF8;
 			}
 
-			byte[] scriptBytes = encoding.GetBytes(script);
-			JsValue scriptValue = JsValue.CreateExternalArrayBuffer(scriptBytes);
+			JsValue scriptValue = JsValue.CreateExternalArrayBuffer(script, encoding);
 
 			return scriptValue;
 		}

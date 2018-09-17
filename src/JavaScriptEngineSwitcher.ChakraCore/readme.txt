@@ -30,7 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   No longer used the old ChakraCore API for Windows (Internet Explorer-like API).
+   1. No longer used the old ChakraCore API for Windows (Internet Explorer-like
+      API);
+   2. Optimized a memory usage.
 
    =============
    DOCUMENTATION

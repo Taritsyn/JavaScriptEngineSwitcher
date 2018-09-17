@@ -8,6 +8,8 @@ using System.Text;
 using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
 #endif
 
+using JavaScriptEngineSwitcher.ChakraCore.Helpers;
+
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
 	/// <summary>
@@ -93,16 +95,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			string processedName;
 			int byteCount;
 
-			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && !string.IsNullOrEmpty(name))
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
-				byte[] bytes = Encoding.UTF8.GetBytes(name);
-				processedName = Encoding.GetEncoding(0).GetString(bytes);
-				byteCount = bytes.Length;
+				processedName = EncodingHelpers.UnicodeToUtf8(name, out byteCount);
 			}
 			else
 			{
 				processedName = name;
-				byteCount = Encoding.UTF8.GetByteCount(name);
+				byteCount = Encoding.UTF8.GetByteCount(processedName);
 			}
 
 			JsPropertyId id;

@@ -91,11 +91,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			parseAttributes = ParseAttributes;
 			Encoding encoding = parseAttributes.HasFlag(JsParseScriptAttributes.ArrayBufferIsUtf16Encoded) ?
 				Encoding.Unicode : Encoding.UTF8;
-			byte[] bytes = encoding.GetBytes(Code);
 
 			try
 			{
-				value = JsValue.CreateExternalArrayBuffer(bytes);
+				value = JsValue.CreateExternalArrayBuffer(Code, encoding);
 				result = true;
 			}
 			catch (OriginalException)
