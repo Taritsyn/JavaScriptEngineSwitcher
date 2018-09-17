@@ -1,5 +1,6 @@
 ﻿using System;
 #if NET45 || NET471 || NETSTANDARD
+using System.Buffers;
 using System.Runtime.InteropServices;
 #endif
 using System.Text;
@@ -53,13 +54,31 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsErrorCode errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				buffer = new byte[(int)length];
+				string name;
 				bufferSize = length;
+#if NET45 || NET471 || NETSTANDARD
+				var byteArrayPool = ArrayPool<byte>.Shared;
+				buffer = byteArrayPool.Rent((int)bufferSize);
+
+				try
+				{
+					errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
+					JsErrorHelpers.ThrowIfError(errorCode);
+
+					name = Encoding.UTF8.GetString(buffer, 0, (int)bufferSize);
+				}
+				finally
+				{
+					byteArrayPool.Return(buffer, true);
+				}
+#else
+				buffer = new byte[(int)bufferSize];
 
 				errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				string name = Encoding.UTF8.GetString(buffer);
+				name = Encoding.UTF8.GetString(buffer);
+#endif
 
 				return name;
 			}

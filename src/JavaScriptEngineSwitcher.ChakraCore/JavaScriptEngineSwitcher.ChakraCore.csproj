@@ -38,6 +38,14 @@ This package does not contain the native implementations of ChakraCore. Therefor
 		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net471' Or '$(TargetFramework)' == 'netstandard1.3' ">
+		<PackageReference Include="System.Buffers" Version="4.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<PackageReference Include="System.Buffers" Version="4.4.0" />
+	</ItemGroup>
+
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
 		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.1.0" />
 		<PackageReference Include="System.Threading.Thread" Version="4.0.0" />

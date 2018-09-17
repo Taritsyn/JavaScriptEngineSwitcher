@@ -1,4 +1,7 @@
 ﻿using System;
+#if NET45 || NET471 || NETSTANDARD
+using System.Buffers;
+#endif
 using System.Runtime.InteropServices;
 using System.Text;
 #if NET40
@@ -262,7 +265,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					return new byte[0];
 				}
 
-				byte[] buffer = new byte[bufferLength];
+				var buffer = new byte[bufferLength];
 				Marshal.Copy(bufferPtr, buffer, 0, (int)bufferLength);
 
 				return buffer;
@@ -729,12 +732,29 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsErrorHelpers.ThrowIfError(errorCode);
 
 				length = (int)written;
+#if NET45 || NET471 || NETSTANDARD
+				var charArrayPool = ArrayPool<char>.Shared;
+				buffer = charArrayPool.Rent(length);
+
+				try
+				{
+					errorCode = NativeMethods.JsCopyStringUtf16(this, start, length, buffer, out written);
+					JsErrorHelpers.ThrowIfError(errorCode);
+
+					result = new string(buffer, start, length);
+				}
+				finally
+				{
+					charArrayPool.Return(buffer, true);
+				}
+#else
 				buffer = new char[length];
 
 				errorCode = NativeMethods.JsCopyStringUtf16(this, start, length, buffer, out written);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
 				result = new string(buffer);
+#endif
 			}
 			else
 			{
@@ -745,13 +765,30 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				buffer = new byte[(int)length];
 				bufferSize = length;
+#if NET45 || NET471 || NETSTANDARD
+				var byteArrayPool = ArrayPool<byte>.Shared;
+				buffer = byteArrayPool.Rent((int)bufferSize);
+
+				try
+				{
+					errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
+					JsErrorHelpers.ThrowIfError(errorCode);
+
+					result = Encoding.UTF8.GetString(buffer, 0, (int)bufferSize);
+				}
+				finally
+				{
+					byteArrayPool.Return(buffer, true);
+				}
+#else
+				buffer = new byte[(int)bufferSize];
 
 				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
 				result = Encoding.UTF8.GetString(buffer);
+#endif
 			}
 
 			return result;
