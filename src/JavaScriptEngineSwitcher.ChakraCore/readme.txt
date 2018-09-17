@@ -32,7 +32,9 @@
    =============
    1. No longer used the old ChakraCore API for Windows (Internet Explorer-like
       API);
-   2. Optimized a memory usage.
+   2. Optimized a memory usage;
+   3. `MaxStackSize` configuration property was removed from the version for .NET
+      Standard 1.3.
 
    =============
    DOCUMENTATION

@@ -11,6 +11,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 	/// </summary>
 	public sealed class ChakraCoreSettings
 	{
+#if !NETSTANDARD1_3
 		/// <summary>
 		/// The stack size is sufficient to run the code of modern JavaScript libraries in 32-bit process
 		/// </summary>
@@ -26,6 +27,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		private int _maxStackSize;
 
+#endif
 		/// <summary>
 		/// Gets or sets a flag for whether to disable any background work (such as garbage collection)
 		/// on background threads
@@ -90,6 +92,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			get;
 			set;
 		}
+#if !NETSTANDARD1_3
 
 		/// <summary>
 		/// Gets or sets a maximum stack size in bytes
@@ -115,6 +118,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				_maxStackSize = value;
 			}
 		}
+#endif
 
 		/// <summary>
 		/// Gets or sets a current memory limit for a runtime in bytes
@@ -139,7 +143,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			DisableFatalOnOOM = false;
 			DisableNativeCodeGeneration = false;
 			EnableExperimentalFeatures = false;
+#if !NETSTANDARD1_3
 			MaxStackSize = is64BitProcess ? STACK_SIZE_64 : STACK_SIZE_32;
+#endif
 			MemoryLimit = is64BitProcess ? new UIntPtr(ulong.MaxValue) : new UIntPtr(uint.MaxValue);
 		}
 	}

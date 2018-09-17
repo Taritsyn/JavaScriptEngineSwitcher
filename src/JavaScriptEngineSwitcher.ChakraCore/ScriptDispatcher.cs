@@ -44,6 +44,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private InterlockedStatedFlag _disposedFlag = new InterlockedStatedFlag();
 
 
+#if NETSTANDARD1_3
+		/// <summary>
+		/// Constructs an instance of script dispatcher
+		/// </summary>
+		public ScriptDispatcher()
+		{
+			_thread = new Thread(StartThread)
+#else
 		/// <summary>
 		/// Constructs an instance of script dispatcher
 		/// </summary>
@@ -51,9 +59,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// or 0 to use the default maximum stack size specified in the header for the executable.</param>
 		public ScriptDispatcher(int maxStackSize)
 		{
-#if NETSTANDARD1_3
-			_thread = new Thread(StartThread)
-#else
 			_thread = new Thread(StartThread, maxStackSize)
 #endif
 			{

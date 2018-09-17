@@ -159,7 +159,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				attributes |= JsRuntimeAttributes.EnableExperimentalFeatures;
 			}
 
+#if NETSTANDARD1_3
+			_dispatcher = new ScriptDispatcher();
+#else
 			_dispatcher = new ScriptDispatcher(chakraCoreSettings.MaxStackSize);
+#endif
 			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
 			_promiseContinuationCallback = PromiseContinuationCallback;
 
