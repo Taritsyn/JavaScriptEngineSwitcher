@@ -19,7 +19,9 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 3.0.0 RC 1.
+   1. Added support of MSIE JavaScript Engine version 3.0.0 RC 1;
+   2. In configuration settings of the MSIE JS engine was added one new property -
+      `MaxStackSize` (default `492` or `984` KB).
 
    =============
    DOCUMENTATION

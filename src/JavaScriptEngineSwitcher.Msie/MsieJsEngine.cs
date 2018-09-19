@@ -79,6 +79,9 @@ namespace JavaScriptEngineSwitcher.Msie
 					EnableDebugging = msieSettings.EnableDebugging,
 					EngineMode = Utils.GetEnumFromOtherEnum<JsEngineMode, OriginalEngineMode>(
 						msieSettings.EngineMode),
+#if !NETSTANDARD1_3
+					MaxStackSize = msieSettings.MaxStackSize,
+#endif
 					UseEcmaScript5Polyfill = msieSettings.UseEcmaScript5Polyfill,
 					UseJson2Library = msieSettings.UseJson2Library
 				});
