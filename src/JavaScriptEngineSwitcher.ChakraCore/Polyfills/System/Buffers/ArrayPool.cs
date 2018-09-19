@@ -87,11 +87,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Polyfills.System.Buffers
 		/// if it's determined that the pool already has enough buffers stored.
 		/// </remarks>
 		/// <param name="array">The buffer previously obtained from <see cref="Rent"/> to return to the pool</param>
-		/// <param name="clearArray">If <c>true</c> and if the pool will store the buffer to enable subsequent
-		/// reuse, <see cref="Return"/> will clear <paramref name="array"/> of its contents so that a subsequent
-		/// consumer via <see cref="Rent"/> will not see the previous consumer's content. If <c>false</c> or
-		/// if the pool will release the buffer, the array's contents are left unchanged.</param>
-		public abstract void Return(T[] array, bool clearArray = false);
+		public abstract void Return(T[] array);
 	}
 }
 #endif

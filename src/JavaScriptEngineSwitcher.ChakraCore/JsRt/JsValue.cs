@@ -746,7 +746,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				}
 				finally
 				{
-					charArrayPool.Return(buffer, true);
+					charArrayPool.Return(buffer);
 				}
 			}
 			else
@@ -771,7 +771,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				}
 				finally
 				{
-					byteArrayPool.Return(buffer, true);
+					byteArrayPool.Return(buffer);
 				}
 			}
 

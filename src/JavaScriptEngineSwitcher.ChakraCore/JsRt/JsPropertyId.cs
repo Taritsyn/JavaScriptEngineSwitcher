@@ -71,7 +71,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				}
 				finally
 				{
-					byteArrayPool.Return(buffer, true);
+					byteArrayPool.Return(buffer);
 				}
 
 				return name;

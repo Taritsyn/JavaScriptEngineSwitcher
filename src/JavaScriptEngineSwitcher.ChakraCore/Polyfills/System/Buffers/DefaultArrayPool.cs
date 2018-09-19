@@ -125,7 +125,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Polyfills.System.Buffers
 			return buffer;
 		}
 
-		public override void Return(T[] array, bool clearArray = false)
+		public override void Return(T[] array)
 		{
 			if (array == null)
 			{
@@ -144,12 +144,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Polyfills.System.Buffers
 			// If we can tell that the buffer was allocated, drop it. Otherwise, check if we have space in the pool
 			if (bucket < _buckets.Length)
 			{
-				// Clear the array if the user requests
-				if (clearArray)
-				{
-					Array.Clear(array, 0, array.Length);
-				}
-
 				// Return the buffer to its bucket. In the future, we might consider having Return return false
 				// instead of dropping a bucket, in which case we could try to return to a lower-sized bucket,
 				// just as how in Rent we allow renting from a higher-sized bucket.
