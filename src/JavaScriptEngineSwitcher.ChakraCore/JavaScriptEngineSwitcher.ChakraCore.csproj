@@ -62,6 +62,11 @@ This package does not contain the native implementations of ChakraCore. Therefor
 			<Pack>true</Pack>
 			<Visible>false</Visible>
 		</Content>
+		<Content Include="../../Licenses/dotnet-corefx-license.txt">
+			<PackagePath>dotnet-corefx-license.txt</PackagePath>
+			<Pack>true</Pack>
+			<Visible>false</Visible>
+		</Content>
 		<Content Include="../../Licenses/jsrt-dotnet-license.txt">
 			<PackagePath>jsrt-dotnet-license.txt</PackagePath>
 			<Pack>true</Pack>

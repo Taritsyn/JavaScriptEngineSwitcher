@@ -186,4 +186,7 @@
   <data name="Engine_MaxStackSizeMustBeNonNegative" xml:space="preserve">
     <value>Maximum stack size must be non-negative.</value>
   </data>
+  <data name="Common_BufferNotFromPool" xml:space="preserve">
+    <value>The buffer is not associated with this pool and may not be returned to it.</value>
+  </data>
 </root>

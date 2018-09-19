@@ -9,6 +9,9 @@ using System.Text;
 using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
 #endif
 
+#if NET40
+using JavaScriptEngineSwitcher.ChakraCore.Polyfills.System.Buffers;
+#endif
 using JavaScriptEngineSwitcher.ChakraCore.Helpers;
 
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
@@ -55,9 +58,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsErrorHelpers.ThrowIfError(errorCode);
 
 				string name;
-				bufferSize = length;
-#if NET45 || NET471 || NETSTANDARD
 				var byteArrayPool = ArrayPool<byte>.Shared;
+				bufferSize = length;
 				buffer = byteArrayPool.Rent((int)bufferSize);
 
 				try
@@ -71,14 +73,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					byteArrayPool.Return(buffer, true);
 				}
-#else
-				buffer = new byte[(int)bufferSize];
-
-				errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
-				JsErrorHelpers.ThrowIfError(errorCode);
-
-				name = Encoding.UTF8.GetString(buffer);
-#endif
 
 				return name;
 			}

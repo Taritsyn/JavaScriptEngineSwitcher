@@ -7,6 +7,8 @@ using System.Text;
 #if NET40
 
 using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
+
+using JavaScriptEngineSwitcher.ChakraCore.Polyfills.System.Buffers;
 #endif
 
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
@@ -337,7 +339,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <remarks>
 		/// Requires an active script context.
 		/// </remarks>
-		/// <param name="value">The string  to convert to a <c>String</c> value</param>
+		/// <param name="value">The string to convert to a <c>String</c> value</param>
 		/// <returns>The new <c>String</c> value</returns>
 		public static JsValue FromString(string value)
 		{
@@ -731,9 +733,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				errorCode = NativeMethods.JsCopyStringUtf16(this, start, length, buffer, out written);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				length = (int)written;
-#if NET45 || NET471 || NETSTANDARD
 				var charArrayPool = ArrayPool<char>.Shared;
+				length = (int)written;
 				buffer = charArrayPool.Rent(length);
 
 				try
@@ -747,14 +748,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					charArrayPool.Return(buffer, true);
 				}
-#else
-				buffer = new char[length];
-
-				errorCode = NativeMethods.JsCopyStringUtf16(this, start, length, buffer, out written);
-				JsErrorHelpers.ThrowIfError(errorCode);
-
-				result = new string(buffer);
-#endif
 			}
 			else
 			{
@@ -765,9 +758,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				bufferSize = length;
-#if NET45 || NET471 || NETSTANDARD
 				var byteArrayPool = ArrayPool<byte>.Shared;
+				bufferSize = length;
 				buffer = byteArrayPool.Rent((int)bufferSize);
 
 				try
@@ -781,14 +773,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					byteArrayPool.Return(buffer, true);
 				}
-#else
-				buffer = new byte[(int)bufferSize];
-
-				errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
-				JsErrorHelpers.ThrowIfError(errorCode);
-
-				result = Encoding.UTF8.GetString(buffer);
-#endif
 			}
 
 			return result;

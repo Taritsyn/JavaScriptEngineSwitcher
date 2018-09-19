@@ -1,5 +1,7 @@
 ﻿using System;
+#if NET45 || NET471 || NETSTANDARD
 using System.Runtime.InteropServices;
+#endif
 using System.Text;
 #if NET40
 

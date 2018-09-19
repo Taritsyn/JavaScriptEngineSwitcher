@@ -241,6 +241,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources
 			get { return GetString("Engine_MaxStackSizeMustBeNonNegative"); }
 		}
 
+		/// <summary>
+		/// Looks up a localized string similar to "The buffer is not associated with this pool and may not be returned to it."
+		/// </summary>
+		internal static string Common_BufferNotFromPool
+		{
+			get { return GetString("Common_BufferNotFromPool"); }
+		}
+
 		private static string GetString(string name)
 		{
 			string value = ResourceManager.GetString(name, _resourceCulture);
