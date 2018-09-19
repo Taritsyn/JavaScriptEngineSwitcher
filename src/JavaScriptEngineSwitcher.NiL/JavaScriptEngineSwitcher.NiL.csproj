@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Product>JS Engine Switcher: NiL</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>beta9</VersionSuffix>
+		<VersionSuffix>rc1</VersionSuffix>
 		<TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -12,8 +12,6 @@
 		<Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1278).</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/3.X/Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;NiL</PackageTags>
-		<PackageReleaseNotes>1. NiL.JS was updated to version 2.5.1278;
-2. Fixed a error #57 “Nil - can't locate function name”.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />

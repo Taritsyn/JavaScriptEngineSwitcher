@@ -1,6 +1,18 @@
 Change log
 ==========
 
+## v3.0.0 RC 1 - September 19, 2018
+ * Fixed a [error #59](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/59) “Unhandled exception when JS exception is thrown”
+ * In JavaScriptEngineSwitcher.Msie:
+   * Added support of MSIE JavaScript Engine version 3.0.0 RC 1
+   * In configuration settings of the MSIE JS engine was added one new property - `MaxStackSize` (default `492` or `984` KB)
+ * In JavaScriptEngineSwitcher.Jint in configuration settings was added one new property - `LocalTimeZone` (default `TimeZoneInfo.Local`)
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.11.1
+   * No longer used the old ChakraCore API for Windows (Internet Explorer-like API)
+   * Optimized a memory usage
+   * `MaxStackSize` configuration property was removed from the version for .NET Standard 1.3
+
 ## v3.0.0 Beta 9 - August 21, 2018
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.5.3 (support of V8 version 6.8.275.28)
  * In JavaScriptEngineSwitcher.Jurassic the original library was rolled back to version of February 24, 2018

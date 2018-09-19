@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: Vroom v3.0.0 Beta 4
+                 README file for JS Engine Switcher: Vroom v3.0.0 RC 1
 
    --------------------------------------------------------------------------------
 
@@ -18,11 +18,6 @@
    For correct working of the VroomJs on Windows require the Visual C++
    Redistributable for Visual Studio 2012 and the Microsoft Visual C++ 2015
    Redistributable.
-
-   =============
-   RELEASE NOTES
-   =============
-   Added support of .NET Framework 4.7.1.
 
    ====================
    POST-INSTALL ACTIONS

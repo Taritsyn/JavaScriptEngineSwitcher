@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-       README file for JS Engine Switcher: MS Dependency Injection v3.0.0 Beta 6
+        README file for JS Engine Switcher: MS Dependency Injection v3.0.0 RC 1
 
    --------------------------------------------------------------------------------
 
@@ -13,12 +13,6 @@
    ===========
    JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension
    methods for adding the JS engine switcher in an `IServiceCollection`.
-
-   =============
-   RELEASE NOTES
-   =============
-   Added a overloaded versions of the `AddJsEngineSwitcher` extension method, which
-   takes an instance of JS engine switcher.
 
    =============
    DOCUMENTATION

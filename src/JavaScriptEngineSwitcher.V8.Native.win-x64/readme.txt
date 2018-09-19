@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: V8 for Windows x64 v3.0.0 Beta 9
+          README file for JS Engine Switcher: V8 for Windows x64 v3.0.0 RC 1
 
    --------------------------------------------------------------------------------
 
@@ -16,12 +16,6 @@
 
    For correct working of the Microsoft ClearScript.V8 require the Microsoft Visual
    C++ Redistributable for Visual Studio 2017.
-
-   =============
-   RELEASE NOTES
-   =============
-   Microsoft ClearScript.V8 was updated to version 5.5.3 (support of V8 version
-   6.8.275.28).
 
    ====================
    POST-INSTALL ACTIONS
