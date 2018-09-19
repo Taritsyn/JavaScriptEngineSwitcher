@@ -27,11 +27,11 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.0.2" />
-		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.0.0-beta9" />
-		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.0.0-beta9" />
-		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.0.0-beta9" />
-		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.0-beta9" />
-		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.0.0-beta9" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.0.0-rc1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.0.0-rc1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.0.0-rc1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.0-rc1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.0.0-rc1" />
 
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
