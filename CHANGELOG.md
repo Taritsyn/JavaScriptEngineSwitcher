@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v2.4.27 - September 21, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore was optimized a memory usage in version for Unix
+
 ## v2.4.26 - September 13, 2018
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.1
 
