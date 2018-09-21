@@ -29,6 +29,7 @@
     <DefineConstants>TRACE;NET40</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -199,6 +200,11 @@
     <Compile Include="..\JavaScriptEngineSwitcher.ChakraCore\ScriptDispatcher.cs">
       <Link>ScriptDispatcher.cs</Link>
     </Compile>
+    <Compile Include="Polyfills\System\Buffers\ArrayPool.cs" />
+    <Compile Include="Polyfills\System\Buffers\DefaultArrayPool.cs" />
+    <Compile Include="Polyfills\System\Buffers\DefaultArrayPoolBucket.cs" />
+    <Compile Include="Polyfills\System\Buffers\Utilities.cs" />
+    <Compile Include="Polyfills\System\Threading\Volatile.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\JavaScriptEngineSwitcher.ChakraCore\Resources\Strings.resx">

@@ -30,6 +30,7 @@ xcopy "%dotnet_project_bin_dir%\netstandard1.3\%project_name%.xml" lib\netstanda
 xcopy "%dotnet_project_bin_dir%\netstandard1.3\ru-ru\%project_name%.resources.dll" lib\netstandard1.3\ru-ru\
 
 copy "%licenses_dir%\chakra-samples-license.txt" chakra-samples-license.txt /Y
+copy "%licenses_dir%\dotnet-corefx-license.txt" dotnet-corefx-license.txt /Y
 copy "%licenses_dir%\jsrt-dotnet-license.txt" jsrt-dotnet-license.txt /Y
 
 %nuget_package_manager% pack "..\%project_name%\%project_name%.nuspec"

@@ -1,7 +1,14 @@
 ﻿using System;
+#if NET45 || NETSTANDARD1_3
+using System.Buffers;
+#endif
 using System.Text;
 
 using JavaScriptEngineSwitcher.Core.Utilities;
+#if NET40
+
+using JavaScriptEngineSwitcher.ChakraCore.Polyfills.System.Buffers;
+#endif
 
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
@@ -56,13 +63,21 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
 					JsErrorHelpers.ThrowIfError(errorCode);
 
-					buffer = new byte[(int)length];
-					bufferSize = new UIntPtr((uint)length);
+					var byteArrayPool = ArrayPool<byte>.Shared;
+					bufferSize = length;
+					buffer = byteArrayPool.Rent((int)bufferSize);
 
-					errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
-					JsErrorHelpers.ThrowIfError(errorCode);
+					try
+					{
+						errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
+						JsErrorHelpers.ThrowIfError(errorCode);
 
-					name = Encoding.GetEncoding(0).GetString(buffer);
+						name = Encoding.UTF8.GetString(buffer, 0, (int)bufferSize);
+					}
+					finally
+					{
+						byteArrayPool.Return(buffer);
+					}
 				}
 
 				return name;
@@ -105,7 +120,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 			else
 			{
-				var byteCount = new UIntPtr((uint)Encoding.GetEncoding(0).GetByteCount(name));
+				var byteCount = new UIntPtr((uint)Encoding.UTF8.GetByteCount(name));
 				errorCode = NativeMethods.JsCreatePropertyId(name, byteCount, out id);
 			}
 

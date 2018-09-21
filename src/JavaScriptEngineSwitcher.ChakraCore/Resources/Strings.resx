@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Common_BufferNotFromPool" xml:space="preserve">
+    <value>The buffer is not associated with this pool and may not be returned to it.</value>
+  </data>
   <data name="Engines_AddingDirectoryToDllSearchPathFailed" xml:space="preserve">
     <value>Failed to add the '{0}' directory to the search path used to locate DLLs for the application.</value>
   </data>

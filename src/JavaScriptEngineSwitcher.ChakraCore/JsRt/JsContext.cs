@@ -167,8 +167,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 			else
 			{
-				byte[] scriptBytes = Encoding.GetEncoding(0).GetBytes(script);
-				JsValue scriptValue = JsValue.CreateExternalArrayBuffer(scriptBytes);
+				JsValue scriptValue = JsValue.CreateExternalArrayBuffer(script, Encoding.UTF8);
 				scriptValue.AddRef();
 
 				JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
@@ -213,8 +212,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 			else
 			{
-				byte[] scriptBytes = Encoding.GetEncoding(0).GetBytes(script);
-				JsValue scriptValue = JsValue.CreateExternalArrayBuffer(scriptBytes);
+				JsValue scriptValue = JsValue.CreateExternalArrayBuffer(script, Encoding.UTF8);
 				scriptValue.AddRef();
 
 				JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
@@ -271,8 +269,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 			else
 			{
-				byte[] scriptBytes = Encoding.GetEncoding(0).GetBytes(script);
-				JsValue scriptValue = JsValue.CreateExternalArrayBuffer(scriptBytes);
+				JsValue scriptValue = JsValue.CreateExternalArrayBuffer(script, Encoding.UTF8);
 				scriptValue.AddRef();
 
 				JsValue bufferValue;

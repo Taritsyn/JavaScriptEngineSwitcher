@@ -60,6 +60,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "The buffer is not associated with this pool and may not be returned to it."
+		/// </summary>
+		public static string Common_BufferNotFromPool
+		{
+			get { return GetString("Common_BufferNotFromPool"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "Failed to add the '{0}' directory to the search path used to locate DLLs for the application."
 		/// </summary>
 		public static string Engines_AddingDirectoryToDllSearchPathFailed
