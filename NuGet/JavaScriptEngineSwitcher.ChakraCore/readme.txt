@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Optimized a memory usage in version for Unix.
+   ChakraCore was updated to version 1.11.2.
 
    =============
    DOCUMENTATION
