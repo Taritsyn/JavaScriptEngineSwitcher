@@ -18,8 +18,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.0.6" />
 
 		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
 		<ProjectReference Include="..\JavaScriptEngineSwitcher.Sample.Resources\JavaScriptEngineSwitcher.Sample.Resources.csproj" />

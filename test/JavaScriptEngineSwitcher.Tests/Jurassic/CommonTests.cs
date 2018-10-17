@@ -47,6 +47,7 @@ $variable1 + _variable2 - variable3;";
 			Assert.Equal(0, exception.ColumnNumber);
 		}
 
+		[Fact]
 		public override void MappingRuntimeErrorDuringExecutionOfCodeIsCorrect()
 		{
 			// Arrange
