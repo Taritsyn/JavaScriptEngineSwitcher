@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ORIGINAL_CURRENT_DIR=%cd%
 KOREBUILD_DOTNET_CHANNEL=rel-1.0.0
-KOREBUILD_DOTNET_VERSION=1.1.7
+KOREBUILD_DOTNET_VERSION=1.1.11
 
 repoFolder="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $repoFolder
