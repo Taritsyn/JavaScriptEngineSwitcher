@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<Title>$(Product)</Title>
 		<Authors>Andrey Taritsyn</Authors>
-		<PackageLicenseUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageLicense>https://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</PackageLicense>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</RepositoryUrl>

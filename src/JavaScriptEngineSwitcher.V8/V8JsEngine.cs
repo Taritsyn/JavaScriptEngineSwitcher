@@ -283,7 +283,7 @@ namespace JavaScriptEngineSwitcher.V8
 							lineNumber = firstErrorLocationItem.LineNumber;
 							columnNumber = firstErrorLocationItem.ColumnNumber;
 							string sourceLine = firstErrorLocationItem.SourceFragment;
-							sourceFragment = JsErrorHelpers.GetSourceFragmentFromLine(sourceLine, columnNumber);
+							sourceFragment = TextHelpers.GetTextFragmentFromLine(sourceLine, columnNumber);
 
 							firstErrorLocationItem.SourceFragment = sourceFragment;
 						}

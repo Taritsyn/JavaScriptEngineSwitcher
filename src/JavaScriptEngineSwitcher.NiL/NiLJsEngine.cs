@@ -205,7 +205,7 @@ namespace JavaScriptEngineSwitcher.NiL
 						lineNumber = codeCoordinates.Line;
 						columnNumber = codeCoordinates.Column;
 					}
-					sourceFragment = JsErrorHelpers.GetSourceFragmentFromCode(sourceCode, lineNumber, columnNumber);
+					sourceFragment = TextHelpers.GetTextFragment(sourceCode, lineNumber, columnNumber);
 					message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty,
 						lineNumber, columnNumber, sourceFragment);
 

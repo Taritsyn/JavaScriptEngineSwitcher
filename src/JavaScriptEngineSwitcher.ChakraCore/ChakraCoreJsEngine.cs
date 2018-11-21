@@ -17,6 +17,7 @@ using JavaScriptEngineSwitcher.Core.Utilities;
 using ErrorLocationItem = JavaScriptEngineSwitcher.Core.Helpers.ErrorLocationItem;
 using CoreErrorHelpers = JavaScriptEngineSwitcher.Core.Helpers.JsErrorHelpers;
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
+using TextHelpers = JavaScriptEngineSwitcher.Core.Helpers.TextHelpers;
 using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
 using WrapperEngineException = JavaScriptEngineSwitcher.Core.JsEngineException;
 using WrapperEngineLoadException = JavaScriptEngineSwitcher.Core.JsEngineLoadException;
@@ -1006,7 +1007,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						{
 							JsValue sourcePropertyValue = metadataValue.GetProperty(sourcePropertyId);
 							sourceLine = sourcePropertyValue.ConvertToString().ToString();
-							sourceFragment = CoreErrorHelpers.GetSourceFragmentFromLine(sourceLine, columnNumber);
+							sourceFragment = TextHelpers.GetTextFragmentFromLine(sourceLine, columnNumber);
 						}
 
 						JsPropertyId stackPropertyId = JsPropertyId.FromString("stack");

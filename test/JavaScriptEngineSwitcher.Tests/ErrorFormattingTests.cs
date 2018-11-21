@@ -53,13 +53,13 @@ namespace JavaScriptEngineSwitcher.Tests
 				"case 2:enc=enc.slice(0,-1)+'=';break}return @enc}";
 
 			// Act
-			string output1 = JsErrorHelpers.GetSourceFragmentFromLine(input1, 1, 100);
-			string output2 = JsErrorHelpers.GetSourceFragmentFromLine(input2, 1, 100);
-			string output3 = JsErrorHelpers.GetSourceFragmentFromLine(input3, 5, 100);
-			string output4 = JsErrorHelpers.GetSourceFragmentFromLine(input4, 70, 85);
-			string output5 = JsErrorHelpers.GetSourceFragmentFromLine(input5, 145, 100);
-			string output6 = JsErrorHelpers.GetSourceFragmentFromLine(input6, 23, 100);
-			string output7 = JsErrorHelpers.GetSourceFragmentFromLine(input7, 465, 100);
+			string output1 = TextHelpers.GetTextFragmentFromLine(input1, 1, 100);
+			string output2 = TextHelpers.GetTextFragmentFromLine(input2, 1, 100);
+			string output3 = TextHelpers.GetTextFragmentFromLine(input3, 5, 100);
+			string output4 = TextHelpers.GetTextFragmentFromLine(input4, 70, 85);
+			string output5 = TextHelpers.GetTextFragmentFromLine(input5, 145, 100);
+			string output6 = TextHelpers.GetTextFragmentFromLine(input6, 23, 100);
+			string output7 = TextHelpers.GetTextFragmentFromLine(input7, 465, 100);
 
 			// Assert
 			Assert.Equal(targetOutput1, output1);

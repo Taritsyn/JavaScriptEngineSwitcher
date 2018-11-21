@@ -20,7 +20,9 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #59 “Unhandled exception when JS exception is thrown”.
+   `GetSourceFragmentFromCode` and `GetSourceFragmentFromLine` methods of
+   `JsErrorHelpers` class were replaced by the `GetTextFragment` and
+   `GetTextFragmentFromLine` methods of `TextHelpers` class.
 
    =============
    DOCUMENTATION

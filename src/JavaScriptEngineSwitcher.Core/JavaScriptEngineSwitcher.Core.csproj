@@ -14,7 +14,7 @@
 		<Description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .NET, Microsoft ClearScript.V8, Jurassic, Jint, ChakraCore, VroomJs and NiL.JS). This library allows you to quickly and easily switch to using of another JavaScript engine.</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Core_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript</PackageTags>
-		<PackageReleaseNotes>Fixed a error #59 “Unhandled exception when JS exception is thrown”.</PackageReleaseNotes>
+		<PackageReleaseNotes>`GetSourceFragmentFromCode` and `GetSourceFragmentFromLine` methods of `JsErrorHelpers` class were replaced by the `GetTextFragment` and `GetTextFragmentFromLine` methods of `TextHelpers` class.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
