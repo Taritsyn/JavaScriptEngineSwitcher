@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Product>JS Engine Switcher: Benchmarks</Product>
+		<VersionPrefix>3.0.0</VersionPrefix>
+		<VersionSuffix>rc1</VersionSuffix>
+		<TargetFrameworks>net46;netcoreapp2.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<Import Project="../../build/common.props" />
+
+	<ItemGroup>
+		<PackageReference Include="BenchmarkDotNet" Version="0.11.3" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.0.0-rc1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.0-rc1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.0.0-rc1" />
+
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jint/JavaScriptEngineSwitcher.Jint.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jurassic/JavaScriptEngineSwitcher.Jurassic.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Msie/JavaScriptEngineSwitcher.Msie.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.NiL/JavaScriptEngineSwitcher.NiL.csproj" />
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.0.0-rc1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x86" Version="3.0.0-rc1" />
+
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.V8/JavaScriptEngineSwitcher.V8.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.0.0-rc1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.0.0-rc1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources/russian-translit.js" />
+	</ItemGroup>
+
+</Project>
