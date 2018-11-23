@@ -627,6 +627,29 @@ namespace JavaScriptEngineSwitcher.Tests
 			Assert.Equal("Привет, Петя!", output);
 		}
 
+		[Fact]
+		public virtual void CallingOfFunctionWithNameContainingUnicodeCharactersIsCorrect()
+		{
+			// Arrange
+			const string functionCode = @"function сумма(число1, число2) {
+	var результат = число1 + число2;
+
+	return результат;
+}";
+
+			// Act
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.Execute(functionCode);
+				output = jsEngine.CallFunction<int>("сумма", 678, 711);
+			}
+
+			// Assert
+			Assert.Equal(1389, output);
+		}
+
 		#endregion
 
 		#region Getting, setting and removing variables
@@ -887,6 +910,30 @@ namespace JavaScriptEngineSwitcher.Tests
 			// Arrange
 			const string variableName = "price";
 			const double input = 120.55;
+
+			// Act
+			bool variableBeforeRemovingExists;
+			bool variableAfterRemovingExists;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.SetVariableValue(variableName, input);
+				variableBeforeRemovingExists = jsEngine.HasVariable(variableName);
+				jsEngine.RemoveVariable(variableName);
+				variableAfterRemovingExists = jsEngine.HasVariable(variableName);
+			}
+
+			// Assert
+			Assert.True(variableBeforeRemovingExists);
+			Assert.False(variableAfterRemovingExists);
+		}
+
+		[Fact]
+		public virtual void RemovingVariableWithNameContainingUnicodeCharactersIsCorrect()
+		{
+			// Arrange
+			const string variableName = "цена";
+			const double input = 6780.00;
 
 			// Act
 			bool variableBeforeRemovingExists;
