@@ -30,11 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version 1.11.1;
-   2. No longer used the old ChakraCore API for Windows (Internet Explorer-like API);
-   3. Optimized a memory usage;
-   4. `MaxStackSize` configuration property was removed from the version for .NET
-      Standard 1.3.
+   In the `NativeMethods` class for the `netstandard` targets was changed a calling
+   convention from `StdCall` to `Cdecl`.
 
    =============
    DOCUMENTATION

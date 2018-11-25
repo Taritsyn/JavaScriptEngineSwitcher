@@ -23,10 +23,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;ChakraCore</PackageTags>
-		<PackageReleaseNotes>1. ChakraCore was updated to version 1.11.1;
-2. No longer used the old ChakraCore API for Windows (Internet Explorer-like API);
-3. Optimized a memory usage;
-4. `MaxStackSize` configuration property was removed from the version for .NET Standard 1.3.</PackageReleaseNotes>
+		<PackageReleaseNotes>In the `NativeMethods` class for the `netstandard` targets was changed a calling convention from `StdCall` to `Cdecl`.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
