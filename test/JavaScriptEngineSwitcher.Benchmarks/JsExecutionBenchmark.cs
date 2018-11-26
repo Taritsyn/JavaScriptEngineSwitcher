@@ -206,14 +206,47 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new JurassicJsEngine();
 			TransliterateStrings(createJsEngine, withPrecompilation);
 		}
+#if NET46
+
+		[Benchmark]
+		public void MsieClassic()
+		{
+			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			{
+				EngineMode = JsEngineMode.Classic
+			});
+			TransliterateStrings(createJsEngine, false);
+		}
+
+		[Benchmark]
+		public void MsieChakraActiveScript()
+		{
+			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			{
+				EngineMode = JsEngineMode.ChakraActiveScript
+			});
+			TransliterateStrings(createJsEngine, false);
+		}
+#endif
+		[Benchmark]
+		[Arguments(false)]
+		[Arguments(true)]
+		public void MsieChakraIeJsRt(bool withPrecompilation)
+		{
+			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings {
+				EngineMode = JsEngineMode.ChakraIeJsRt
+			});
+			TransliterateStrings(createJsEngine, withPrecompilation);
+		}
 
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void Msie(bool withPrecompilation)
+		public void MsieChakraEdgeJsRt(bool withPrecompilation)
 		{
-			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings {
-				EngineMode = JsEngineMode.ChakraIeJsRt
+			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			{
+				EngineMode = JsEngineMode.ChakraEdgeJsRt
 			});
 			TransliterateStrings(createJsEngine, withPrecompilation);
 		}
