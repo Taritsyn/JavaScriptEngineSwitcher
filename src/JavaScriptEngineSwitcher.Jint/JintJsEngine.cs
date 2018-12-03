@@ -14,6 +14,8 @@ using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOve
 using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
 using OriginalValue = Jint.Native.JsValue;
 
+using AdvancedStringBuilder;
+
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Constants;
 using JavaScriptEngineSwitcher.Core.Helpers;
@@ -209,7 +211,8 @@ namespace JavaScriptEngineSwitcher.Jint
 
 			if (callChainItems.Length > 0)
 			{
-				StringBuilder stackBuilder = StringBuilderPool.GetBuilder();
+				var stringBuilderPool = StringBuilderPool.Shared;
+				StringBuilder stackBuilder = stringBuilderPool.Rent();
 
 				for (int chainItemIndex = callChainItems.Length - 1; chainItemIndex >= 0; chainItemIndex--)
 				{
@@ -227,7 +230,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				}
 
 				callStack = stackBuilder.ToString();
-				StringBuilderPool.ReleaseBuilder(stackBuilder);
+				stringBuilderPool.Return(stackBuilder);
 			}
 
 			string description = originalRecursionException.Message;

@@ -8,7 +8,7 @@
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<NoWarn>$(NoWarn);CS1591</NoWarn>
+		<NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
 		<Description>JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the VroomJs (http://github.com/pauldotknopf/vroomjs-core) version 1.2.3 with support of V8 version 3.17.16.2).
@@ -24,10 +24,19 @@ For correct working of the VroomJs on Windows require the Visual C++ Redistribut
 	<Import Project="../../build/nuget-metadata.props" />
 
 	<ItemGroup>
+		<PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
 		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha5" PrivateAssets="All" />
 		<PackageReference Include="VroomJs" Version="1.2.3" />
 
 		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
+		<PackageReference Include="PolyfillsForOldDotNet.System.Runtime.InteropServices.RuntimeInformation" Version="0.1.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

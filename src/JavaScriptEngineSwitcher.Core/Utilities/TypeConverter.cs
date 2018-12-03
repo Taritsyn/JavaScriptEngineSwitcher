@@ -6,10 +6,7 @@ using System.Reflection;
 #endif
 using OriginalTypeConverter = System.ComponentModel.TypeConverter;
 
-#if NET40
-using JavaScriptEngineSwitcher.Core.Polyfills.System;
-#endif
-#if NET40 || NETSTANDARD1_3
+#if NETSTANDARD1_3
 using JavaScriptEngineSwitcher.Core.Polyfills.System.Reflection;
 #endif
 using JavaScriptEngineSwitcher.Core.Resources;
@@ -154,7 +151,11 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 				}
 			}
 
+#if NET40
+			if (type.IsInstanceOfType(obj))
+#else
 			if (type.GetTypeInfo().IsInstanceOfType(obj))
+#endif
 			{
 				convertedObject = obj;
 				return true;
@@ -178,7 +179,11 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 				return false;
 			}
 
+#if NET40
+			Type typeInfo = type;
+#else
 			TypeInfo typeInfo = type.GetTypeInfo();
+#endif
 			if (!typeInfo.IsValueType)
 			{
 				return false;

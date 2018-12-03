@@ -6,12 +6,10 @@ using System.Runtime.InteropServices;
 using System.Text;
 #if NET40
 
-using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
+using PolyfillsForOldDotNet.System.Buffers;
+using PolyfillsForOldDotNet.System.Runtime.InteropServices;
 #endif
 
-#if NET40
-using JavaScriptEngineSwitcher.ChakraCore.Polyfills.System.Buffers;
-#endif
 using JavaScriptEngineSwitcher.ChakraCore.Helpers;
 
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt

@@ -5,13 +5,13 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
+using AdvancedStringBuilder;
+#if NET40
+using PolyfillsForOldDotNet.System.Runtime.InteropServices;
+#endif
+
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Extensions;
-#if NET40
-using JavaScriptEngineSwitcher.Core.Polyfills.System;
-using JavaScriptEngineSwitcher.Core.Polyfills.System.Reflection;
-using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
-#endif
 using JavaScriptEngineSwitcher.Core.Utilities;
 
 using ErrorLocationItem = JavaScriptEngineSwitcher.Core.Helpers.ErrorLocationItem;
@@ -519,7 +519,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 			{
 				object[] processedArgs = MapToHostType(args.Skip(1).ToArray());
-				ParameterInfo[] parameters = value.GetMethodInfo().GetParameters();
+#if NET40
+				MethodInfo method = value.Method;
+#else
+				MethodInfo method = value.GetMethodInfo();
+#endif
+				ParameterInfo[] parameters = method.GetParameters();
 				JsValue undefinedValue = JsValue.Undefined;
 
 				ReflectionHelpers.FixArgumentTypes(ref processedArgs, parameters);
@@ -552,7 +557,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		private JsValue CreateConstructor(Type type)
 		{
+#if NET40
+			Type typeInfo = type;
+#else
 			TypeInfo typeInfo = type.GetTypeInfo();
+#endif
 			string typeName = type.FullName;
 			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(true);
 			ConstructorInfo[] constructors = type.GetConstructors(defaultBindingFlags);
@@ -1143,7 +1152,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					"https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/JS-Engine-Switcher:-ChakraCore#{0}";
 				Architecture osArchitecture = RuntimeInformation.OSArchitecture;
 
-				StringBuilder descriptionBuilder = StringBuilderPool.GetBuilder();
+				var stringBuilderPool = StringBuilderPool.Shared;
+				StringBuilder descriptionBuilder = stringBuilderPool.Rent();
 				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 				{
 					descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForWindows);
@@ -1247,7 +1257,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				}
 
 				description = descriptionBuilder.ToString();
-				StringBuilderPool.ReleaseBuilder(descriptionBuilder);
+				stringBuilderPool.Return(descriptionBuilder);
 
 				message = CoreErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName);
 			}

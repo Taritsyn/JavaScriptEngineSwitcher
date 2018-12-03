@@ -5,9 +5,10 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using AdvancedStringBuilder;
+
 using JavaScriptEngineSwitcher.Core.Extensions;
 using JavaScriptEngineSwitcher.Core.Resources;
-using JavaScriptEngineSwitcher.Core.Utilities;
 
 namespace JavaScriptEngineSwitcher.Core.Helpers
 {
@@ -111,7 +112,8 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				return string.Empty;
 			}
 
-			StringBuilder locationBuilder = StringBuilderPool.GetBuilder();
+			var stringBuilderPool = StringBuilderPool.Shared;
+			StringBuilder locationBuilder = stringBuilderPool.Rent();
 
 			for (int locationItemIndex = 0; locationItemIndex < locationItemCount; locationItemIndex++)
 			{
@@ -127,7 +129,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 			}
 
 			string errorLocation = locationBuilder.ToString();
-			StringBuilderPool.ReleaseBuilder(locationBuilder);
+			stringBuilderPool.Return(locationBuilder);
 
 			return errorLocation;
 		}
@@ -222,7 +224,8 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 
 			if (!string.IsNullOrWhiteSpace(description))
 			{
-				StringBuilder messageBuilder = StringBuilderPool.GetBuilder();
+				var stringBuilderPool = StringBuilderPool.Shared;
+				StringBuilder messageBuilder = stringBuilderPool.Rent();
 				messageBuilder.Append(jsEngineNotLoadedPart);
 				messageBuilder.Append(" ");
 				if (quoteDescription)
@@ -235,7 +238,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				}
 
 				message = messageBuilder.ToString();
-				StringBuilderPool.ReleaseBuilder(messageBuilder);
+				stringBuilderPool.Return(messageBuilder);
 			}
 			else
 			{
@@ -301,7 +304,8 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				);
 			}
 
-			StringBuilder messageBuilder = StringBuilderPool.GetBuilder();
+			var stringBuilderPool = StringBuilderPool.Shared;
+			StringBuilder messageBuilder = stringBuilderPool.Rent();
 			if (!string.IsNullOrWhiteSpace(type))
 			{
 				messageBuilder.Append(type);
@@ -325,7 +329,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 			}
 
 			string errorMessage = messageBuilder.ToString();
-			StringBuilderPool.ReleaseBuilder(messageBuilder);
+			stringBuilderPool.Return(messageBuilder);
 
 			return errorMessage;
 		}
@@ -347,7 +351,8 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				throw new ArgumentNullException(nameof(jsException));
 			}
 
-			StringBuilder detailsBuilder = StringBuilderPool.GetBuilder();
+			var stringBuilderPool = StringBuilderPool.Shared;
+			StringBuilder detailsBuilder = stringBuilderPool.Rent();
 			WriteCommonErrorDetails(detailsBuilder, jsException, omitMessage);
 
 			var jsScriptException = jsException as JsScriptException;
@@ -365,7 +370,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 			detailsBuilder.TrimEnd();
 
 			string errorDetails = detailsBuilder.ToString();
-			StringBuilderPool.ReleaseBuilder(detailsBuilder);
+			stringBuilderPool.Return(detailsBuilder);
 
 			return errorDetails;
 		}
@@ -384,7 +389,8 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				throw new ArgumentNullException(nameof(jsScriptException));
 			}
 
-			StringBuilder detailsBuilder = StringBuilderPool.GetBuilder();
+			var stringBuilderPool = StringBuilderPool.Shared;
+			StringBuilder detailsBuilder = stringBuilderPool.Rent();
 			WriteCommonErrorDetails(detailsBuilder, jsScriptException, omitMessage);
 			WriteScriptErrorDetails(detailsBuilder, jsScriptException);
 
@@ -397,7 +403,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 			detailsBuilder.TrimEnd();
 
 			string errorDetails = detailsBuilder.ToString();
-			StringBuilderPool.ReleaseBuilder(detailsBuilder);
+			stringBuilderPool.Return(detailsBuilder);
 
 			return errorDetails;
 		}
@@ -416,7 +422,8 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				throw new ArgumentNullException(nameof(jsRuntimeException));
 			}
 
-			StringBuilder detailsBuilder = StringBuilderPool.GetBuilder();
+			var stringBuilderPool = StringBuilderPool.Shared;
+			StringBuilder detailsBuilder = stringBuilderPool.Rent();
 			WriteCommonErrorDetails(detailsBuilder, jsRuntimeException, omitMessage);
 			WriteScriptErrorDetails(detailsBuilder, jsRuntimeException);
 			WriteRuntimeErrorDetails(detailsBuilder, jsRuntimeException);
@@ -424,7 +431,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 			detailsBuilder.TrimEnd();
 
 			string errorDetails = detailsBuilder.ToString();
-			StringBuilderPool.ReleaseBuilder(detailsBuilder);
+			stringBuilderPool.Return(detailsBuilder);
 
 			return errorDetails;
 		}

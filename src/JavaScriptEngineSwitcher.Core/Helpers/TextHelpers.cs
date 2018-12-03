@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Text;
 
+using AdvancedStringBuilder;
+
 using JavaScriptEngineSwitcher.Core.Extensions;
-using JavaScriptEngineSwitcher.Core.Utilities;
 
 namespace JavaScriptEngineSwitcher.Core.Helpers
 {
@@ -104,7 +105,8 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 					endPart = ellipsisSymbol;
 				}
 
-				StringBuilder fragmentBuilder = StringBuilderPool.GetBuilder();
+				var stringBuilderPool = StringBuilderPool.Shared;
+				StringBuilder fragmentBuilder = stringBuilderPool.Rent();
 				if (startPart.Length > 0)
 				{
 					fragmentBuilder.Append(startPart);
@@ -116,7 +118,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				}
 
 				fragment = fragmentBuilder.ToString();
-				StringBuilderPool.ReleaseBuilder(fragmentBuilder);
+				stringBuilderPool.Return(fragmentBuilder);
 			}
 			else
 			{

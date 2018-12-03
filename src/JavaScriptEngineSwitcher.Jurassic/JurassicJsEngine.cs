@@ -19,9 +19,6 @@ using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Constants;
 using JavaScriptEngineSwitcher.Core.Extensions;
 using JavaScriptEngineSwitcher.Core.Helpers;
-#if NET40
-using JavaScriptEngineSwitcher.Core.Polyfills.System;
-#endif
 using JavaScriptEngineSwitcher.Core.Utilities;
 
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
@@ -689,7 +686,11 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
+#if NET40
+			Assembly assembly = type.Assembly;
+#else
 			Assembly assembly = type.GetTypeInfo().Assembly;
+#endif
 			string nameSpace = type.Namespace;
 			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
 
@@ -859,7 +860,11 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
+#if NET40
+			Assembly assembly = type.Assembly;
+#else
 			Assembly assembly = type.GetTypeInfo().Assembly;
+#endif
 			string nameSpace = type.Namespace;
 			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
 			string uniqueDocumentName = GetUniqueDocumentName(resourceFullName, false);

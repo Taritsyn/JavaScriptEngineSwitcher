@@ -4,9 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 using JavaScriptEngineSwitcher.Core.Helpers;
-#if NET40
-using JavaScriptEngineSwitcher.Core.Polyfills.System;
-#endif
 using JavaScriptEngineSwitcher.Core.Resources;
 using JavaScriptEngineSwitcher.Core.Utilities;
 
@@ -266,7 +263,11 @@ namespace JavaScriptEngineSwitcher.Core
 				);
 			}
 
+#if NET40
+			Assembly assembly = type.Assembly;
+#else
 			Assembly assembly = type.GetTypeInfo().Assembly;
+#endif
 			string nameSpace = type.Namespace;
 			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
 
@@ -613,7 +614,11 @@ namespace JavaScriptEngineSwitcher.Core
 				);
 			}
 
+#if NET40
+			Assembly assembly = type.Assembly;
+#else
 			Assembly assembly = type.GetTypeInfo().Assembly;
+#endif
 			string nameSpace = type.Namespace;
 			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
 

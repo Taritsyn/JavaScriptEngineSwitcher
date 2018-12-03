@@ -12,6 +12,8 @@ using OriginalRuntimeConstraints = Microsoft.ClearScript.V8.V8RuntimeConstraints
 using OriginalScript = Microsoft.ClearScript.V8.V8Script;
 using OriginalUndefined = Microsoft.ClearScript.Undefined;
 
+using AdvancedStringBuilder;
+
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Constants;
 using JavaScriptEngineSwitcher.Core.Extensions;
@@ -361,7 +363,8 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				string assemblyFileName = errorMessageMatch.Groups["assemblyFileName"].Value;
 
-				StringBuilder descriptionBuilder = StringBuilderPool.GetBuilder();
+				var stringBuilderPool = StringBuilderPool.Shared;
+				StringBuilder descriptionBuilder = stringBuilderPool.Rent();
 				descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, assemblyFileName);
 				descriptionBuilder.Append(" ");
 				if (assemblyFileName == DllName.V8Base64Bit || assemblyFileName == DllName.V8Base32Bit)
@@ -381,7 +384,7 @@ namespace JavaScriptEngineSwitcher.V8
 				}
 
 				description = descriptionBuilder.ToString();
-				StringBuilderPool.ReleaseBuilder(descriptionBuilder);
+				stringBuilderPool.Return(descriptionBuilder);
 
 				message = JsErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName);
 			}

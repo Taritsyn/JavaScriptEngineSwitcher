@@ -2,8 +2,9 @@
 using System.Globalization;
 using System.Text;
 
+using AdvancedStringBuilder;
+
 using JavaScriptEngineSwitcher.Core;
-using JavaScriptEngineSwitcher.Core.Utilities;
 
 using JavaScriptEngineSwitcher.Vroom.Resources;
 
@@ -85,6 +86,7 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 				return string.Empty;
 			}
 
+			var stringBuilderPool = StringBuilderPool.Shared;
 			StringBuilder sb = null;
 			int charCount = value.Length;
 
@@ -99,7 +101,7 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 				{
 					if (sb == null)
 					{
-						sb = StringBuilderPool.GetBuilder();
+						sb = stringBuilderPool.Rent();
 					}
 
 					if (count > 0)
@@ -155,7 +157,7 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 			}
 
 			string encodedValue = sb.ToString();
-			StringBuilderPool.ReleaseBuilder(sb);
+			stringBuilderPool.Return(sb);
 
 			return encodedValue;
 		}

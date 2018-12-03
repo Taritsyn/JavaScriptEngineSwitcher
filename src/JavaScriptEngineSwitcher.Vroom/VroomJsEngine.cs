@@ -6,6 +6,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using AdvancedStringBuilder;
+#if NET40
+using PolyfillsForOldDotNet.System.Runtime.InteropServices;
+#endif
+
 using OriginalAssemblyLoader = VroomJs.AssemblyLoader;
 using OriginalContext = VroomJs.JsContext;
 using OriginalEngine = VroomJs.JsEngine;
@@ -16,9 +21,6 @@ using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Constants;
 using JavaScriptEngineSwitcher.Core.Extensions;
 using JavaScriptEngineSwitcher.Core.Helpers;
-#if NET40
-using JavaScriptEngineSwitcher.Core.Polyfills.System.Runtime.InteropServices;
-#endif
 using JavaScriptEngineSwitcher.Core.Utilities;
 
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
@@ -307,7 +309,8 @@ namespace JavaScriptEngineSwitcher.Vroom
 				const string buildInstructionsUrl = "https://github.com/pauldotknopf/vroomjs-core#maclinux";
 				bool quoteDescription = false;
 
-				StringBuilder descriptionBuilder = StringBuilderPool.GetBuilder();
+				var stringBuilderPool = StringBuilderPool.Shared;
+				StringBuilder descriptionBuilder = stringBuilderPool.Rent();
 				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 				{
 					Architecture osArchitecture = RuntimeInformation.OSArchitecture;
@@ -336,7 +339,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 				}
 
 				description = descriptionBuilder.ToString();
-				StringBuilderPool.ReleaseBuilder(descriptionBuilder);
+				stringBuilderPool.Return(descriptionBuilder);
 
 				message = JsErrorHelpers.GenerateEngineLoadErrorMessage(description, EngineName,
 					quoteDescription);
@@ -441,14 +444,24 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 			if (argumentCount > 0)
 			{
-				var functionCallBuilder = StringBuilderPool.GetBuilder();
-				functionCallBuilder.Append(functionName);
-				functionCallBuilder.Append("(");
+				string[] serializedArgs = new string[argumentCount];
 
 				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
 				{
 					object value = args[argumentIndex];
 					string serializedValue = SimplisticJsSerializer.Serialize(value);
+
+					serializedArgs[argumentIndex] = serializedValue;
+				}
+
+				var stringBuilderPool = StringBuilderPool.Shared;
+				StringBuilder functionCallBuilder = stringBuilderPool.Rent();
+				functionCallBuilder.Append(functionName);
+				functionCallBuilder.Append("(");
+
+				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
+				{
+					string serializedValue = serializedArgs[argumentIndex];
 
 					if (argumentIndex > 0)
 					{
@@ -460,7 +473,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 				functionCallBuilder.Append(");");
 
 				functionCallExpression = functionCallBuilder.ToString();
-				StringBuilderPool.ReleaseBuilder(functionCallBuilder);
+				stringBuilderPool.Return(functionCallBuilder);
 			}
 			else
 			{

@@ -5,9 +5,10 @@ using System.Runtime.Serialization;
 using System.Security.Permissions;
 #endif
 
+using AdvancedStringBuilder;
+
 using JavaScriptEngineSwitcher.Core.Constants;
 using JavaScriptEngineSwitcher.Core.Helpers;
-using JavaScriptEngineSwitcher.Core.Utilities;
 
 namespace JavaScriptEngineSwitcher.Core
 {
@@ -170,12 +171,14 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <returns>A string that represents the current exception</returns>
 		public override string ToString()
 		{
-			StringBuilder resultBuilder = StringBuilderPool.GetBuilder();
+			string errorDetails = JsErrorHelpers.GenerateErrorDetails(this, true);
+
+			var stringBuilderPool = StringBuilderPool.Shared;
+			StringBuilder resultBuilder = stringBuilderPool.Rent();
 			resultBuilder.Append(this.GetType().FullName);
 			resultBuilder.Append(": ");
 			resultBuilder.Append(this.Message);
 
-			string errorDetails = JsErrorHelpers.GenerateErrorDetails(this, true);
 			if (errorDetails.Length > 0)
 			{
 				resultBuilder.AppendLine();
@@ -196,7 +199,7 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 
 			string result = resultBuilder.ToString();
-			StringBuilderPool.ReleaseBuilder(resultBuilder);
+			stringBuilderPool.Return(resultBuilder);
 
 			return result;
 		}

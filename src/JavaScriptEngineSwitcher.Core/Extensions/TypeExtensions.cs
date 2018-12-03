@@ -2,10 +2,6 @@
 #if NETSTANDARD1_3
 using System.Reflection;
 #endif
-#if NET40
-
-using JavaScriptEngineSwitcher.Core.Polyfills.System.Reflection;
-#endif
 
 namespace JavaScriptEngineSwitcher.Core.Extensions
 {
