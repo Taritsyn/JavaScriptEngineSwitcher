@@ -29,8 +29,8 @@
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.0.0-rc2" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.0-rc2" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.0.0-rc2" />
-		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.0.0-rc1" />
-		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x86" Version="3.0.0-rc1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.0.0-rc2" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x86" Version="3.0.0-rc2" />
 
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
