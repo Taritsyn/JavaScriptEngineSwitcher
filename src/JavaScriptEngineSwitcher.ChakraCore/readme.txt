@@ -30,8 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   In the `NativeMethods` class for the `netstandard` targets was changed a calling
-   convention from `StdCall` to `Cdecl`.
+   1. In the `NativeMethods` class for the `netstandard` and `netcoreapp` targets
+      was changed a calling convention from `StdCall` to `Cdecl`;
+   2. Added a `netcoreapp2.1` target.
 
    =============
    DOCUMENTATION

@@ -10,7 +10,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 	/// </summary>
 	internal static class NativeMethods
 	{
-#if NETSTANDARD
+#if NETSTANDARD || NETCOREAPP2_1
 		private const CallingConvention DefaultCallingConvention = CallingConvention.Cdecl;
 #else
 		private const CallingConvention DefaultCallingConvention = CallingConvention.StdCall;

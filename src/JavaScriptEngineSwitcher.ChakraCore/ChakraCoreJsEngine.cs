@@ -101,7 +101,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
-#if !NETSTANDARD
+#if NETFULL
 
 		/// <summary>
 		/// Synchronizer of JS engine initialization
@@ -128,7 +128,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <param name="settings">Settings of the ChakraCore JS engine</param>
 		public ChakraCoreJsEngine(ChakraCoreSettings settings)
 		{
-#if !NETSTANDARD
+#if NETFULL
 			Initialize();
 
 #endif
@@ -207,7 +207,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			Dispose(false);
 		}
 
-#if !NETSTANDARD
+#if NETFULL
 
 		/// <summary>
 		/// Initializes a JS engine

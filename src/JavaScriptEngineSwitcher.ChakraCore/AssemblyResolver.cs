@@ -1,4 +1,4 @@
-﻿#if !NETSTANDARD
+﻿#if NETFULL
 using System;
 using System.IO;
 using System.Runtime.InteropServices;

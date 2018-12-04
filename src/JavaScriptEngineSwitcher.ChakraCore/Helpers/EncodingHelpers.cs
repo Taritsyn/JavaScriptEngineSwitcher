@@ -1,4 +1,4 @@
-﻿#if NET471 || NETSTANDARD
+﻿#if NET471 || NETSTANDARD || NETCOREAPP2_1
 using System;
 using System.Runtime.InteropServices;
 #endif
@@ -11,7 +11,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 	/// </summary>
 	internal static class EncodingHelpers
 	{
-#if NET471 || NETSTANDARD
+#if NET471 || NETSTANDARD || NETCOREAPP2_1
 		public static unsafe string UnicodeToUtf8(string value, out int byteCount)
 #else
 		public static string UnicodeToUtf8(string value, out int byteCount)
@@ -24,7 +24,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			}
 
 			string result;
-#if NET471 || NETSTANDARD
+#if NET471 || NETSTANDARD || NETCOREAPP2_1
 			byteCount = Encoding.UTF8.GetByteCount(value);
 			IntPtr bufferPtr = Marshal.AllocHGlobal(byteCount);
 
