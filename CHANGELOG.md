@@ -1,6 +1,19 @@
 Change log
 ==========
 
+## v3.0.0 RC 2 - December 4, 2018
+ * `GetSourceFragmentFromCode` and `GetSourceFragmentFromLine` methods of `JsErrorHelpers` class were replaced by the `GetTextFragment` and `GetTextFragmentFromLine` methods of `TextHelpers` class
+ * Part of the auxiliary code was moved to external libraries: [PolyfillsForOldDotNet](https://github.com/Taritsyn/PolyfillsForOldDotNet) and [AdvancedStringBuilder](https://github.com/Taritsyn/AdvancedStringBuilder)
+ * Removed a unnecessary `net471` targets
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 RC 2
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.5.4 (support of V8 version 7.0.276.42)
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.11.3
+   * In the `NativeMethods` class for the `netstandard` and `netcoreapp` targets was changed a calling convention from `StdCall` to `Cdecl`
+   * Charset was explicitly specified in the `JsCreateString`, `JsCopyString` and `JsCreatePropertyId` methods of `NativeMethods` class
+   * Added a `netcoreapp2.1` target
+ *  In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1282
+
 ## v3.0.0 RC 1 - September 19, 2018
  * Fixed a [error #59](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/59) “Unhandled exception when JS exception is thrown”
  * In JavaScriptEngineSwitcher.Msie:
