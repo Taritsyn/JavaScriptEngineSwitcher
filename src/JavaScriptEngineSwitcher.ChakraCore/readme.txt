@@ -30,11 +30,12 @@
    =============
    RELEASE NOTES
    =============
-   1. In the `NativeMethods` class for the `netstandard` and `netcoreapp` targets
+   1. ChakraCore was updated to version 1.11.3;
+   2. In the `NativeMethods` class for the `netstandard` and `netcoreapp` targets
       was changed a calling convention from `StdCall` to `Cdecl`;
-   2. Charset was explicitly specified in the `JsCreateString`, `JsCopyString` and
+   3. Charset was explicitly specified in the `JsCreateString`, `JsCopyString` and
       `JsCreatePropertyId` methods of `NativeMethods` class;
-   3. Added a `netcoreapp2.1` target.
+   4. Added a `netcoreapp2.1` target.
 
    =============
    DOCUMENTATION
