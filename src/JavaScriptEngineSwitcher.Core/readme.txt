@@ -20,9 +20,11 @@
    =============
    RELEASE NOTES
    =============
-   `GetSourceFragmentFromCode` and `GetSourceFragmentFromLine` methods of
-   `JsErrorHelpers` class were replaced by the `GetTextFragment` and
-   `GetTextFragmentFromLine` methods of `TextHelpers` class.
+   1. `GetSourceFragmentFromCode` and `GetSourceFragmentFromLine` methods of
+      `JsErrorHelpers` class were replaced by the `GetTextFragment` and
+      `GetTextFragmentFromLine` methods of `TextHelpers` class;
+   2. Part of the auxiliary code was moved to external libraries:
+      PolyfillsForOldDotNet and AdvancedStringBuilder.
 
    =============
    DOCUMENTATION
