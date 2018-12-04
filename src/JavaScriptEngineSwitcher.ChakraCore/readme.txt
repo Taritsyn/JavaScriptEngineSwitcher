@@ -32,7 +32,9 @@
    =============
    1. In the `NativeMethods` class for the `netstandard` and `netcoreapp` targets
       was changed a calling convention from `StdCall` to `Cdecl`;
-   2. Added a `netcoreapp2.1` target.
+   2. Charset was explicitly specified in the `JsCreateString`, `JsCopyString` and
+      `JsCreatePropertyId` methods of `NativeMethods` class;
+   3. Added a `netcoreapp2.1` target.
 
    =============
    DOCUMENTATION

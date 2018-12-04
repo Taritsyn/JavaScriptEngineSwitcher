@@ -334,13 +334,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 		#region Hosting
 
-		[DllImport(DllName.Universal, CallingConvention = DefaultCallingConvention)]
+		[DllImport(DllName.Universal, CallingConvention = DefaultCallingConvention, CharSet = CharSet.Ansi)]
 		internal static extern JsErrorCode JsCreateString(string content, UIntPtr length, out JsValue value);
 
 		[DllImport(DllName.Universal, CallingConvention = DefaultCallingConvention, CharSet = CharSet.Unicode)]
 		internal static extern JsErrorCode JsCreateStringUtf16(string content, UIntPtr length, out JsValue value);
 
-		[DllImport(DllName.Universal, CallingConvention = DefaultCallingConvention)]
+		[DllImport(DllName.Universal, CallingConvention = DefaultCallingConvention, CharSet = CharSet.Ansi)]
 		internal static extern JsErrorCode JsCopyString(JsValue value, byte[] buffer, UIntPtr bufferSize,
 			out UIntPtr length);
 
@@ -356,7 +356,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		internal static extern JsErrorCode JsRun(JsValue script, JsSourceContext sourceContext, JsValue sourceUrl,
 			JsParseScriptAttributes parseAttributes, out JsValue result);
 
-		[DllImport(DllName.Universal, CallingConvention = DefaultCallingConvention)]
+		[DllImport(DllName.Universal, CallingConvention = DefaultCallingConvention, CharSet = CharSet.Ansi)]
 		internal static extern JsErrorCode JsCreatePropertyId(string name, UIntPtr length,
 			out JsPropertyId propertyId);
 
