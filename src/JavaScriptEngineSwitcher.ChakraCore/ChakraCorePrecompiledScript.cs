@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Text;
 
 using JavaScriptEngineSwitcher.Core;
 
@@ -12,6 +13,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 	/// </summary>
 	internal sealed class ChakraCorePrecompiledScript : IPrecompiledScript
 	{
+		/// <summary>
+		/// Callback for finalization of external buffer
+		/// </summary>
+		private JsObjectFinalizeCallback _externalBufferFinalizeCallback;
+
 		/// <summary>
 		/// Gets a source code of the script
 		/// </summary>
@@ -68,6 +74,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		public ChakraCorePrecompiledScript(string code, JsParseScriptAttributes parseAttributes, byte[] cachedBytes,
 			string documentName)
 		{
+			_externalBufferFinalizeCallback = Marshal.FreeHGlobal;
+
 			Code = code;
 			ParseAttributes = parseAttributes;
 			CachedBytes = cachedBytes;
@@ -94,7 +102,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			try
 			{
-				value = JsValue.CreateExternalArrayBuffer(Code, encoding);
+				value = JsValue.CreateExternalArrayBuffer(Code, encoding, _externalBufferFinalizeCallback);
 				result = true;
 			}
 			catch (OriginalException)

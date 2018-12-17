@@ -23,10 +23,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;ChakraCore</PackageTags>
-		<PackageReleaseNotes>1. ChakraCore was updated to version 1.11.3;
-2. In the `NativeMethods` class for the `netstandard` and `netcoreapp` targets was changed a calling convention from `StdCall` to `Cdecl`;
-3. Charset was explicitly specified in the `JsCreateString`, `JsCopyString` and `JsCreatePropertyId` methods of `NativeMethods` class;
-4. Added a `netcoreapp2.1` target.</PackageReleaseNotes>
+		<PackageReleaseNotes>Improved a performance of script pre-compilation.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />

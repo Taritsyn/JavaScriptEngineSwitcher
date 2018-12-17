@@ -108,7 +108,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
-				processedName = EncodingHelpers.UnicodeToUtf8(name, out byteCount);
+				processedName = EncodingHelpers.UnicodeToAnsi(name, out byteCount);
 			}
 			else
 			{

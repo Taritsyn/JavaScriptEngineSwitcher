@@ -164,8 +164,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsValue ParseScript(string script, JsSourceContext sourceContext, string sourceUrl,
 			ref JsParseScriptAttributes parseAttributes)
 		{
-			JsValue scriptValue = CreateExternalArrayBufferFromScriptCode(script, ref parseAttributes);
-			scriptValue.AddRef();
+			JsPooledArrayBuffer scriptBuffer = CreatePooledArrayBufferFromScriptCode(script, ref parseAttributes);
 
 			JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
 			sourceUrlValue.AddRef();
@@ -174,13 +173,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 			try
 			{
-				JsErrorCode errorCode = NativeMethods.JsParse(scriptValue, sourceContext, sourceUrlValue,
+				JsErrorCode errorCode = NativeMethods.JsParse(scriptBuffer.Value, sourceContext, sourceUrlValue,
 					parseAttributes, out result);
 				JsErrorHelpers.ThrowIfError(errorCode);
 			}
 			finally
 			{
-				scriptValue.Release();
+				scriptBuffer.Dispose();
 				sourceUrlValue.Release();
 			}
 
@@ -225,6 +224,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				sourceUrlValue.Release();
 			}
 
+			GC.KeepAlive(buffer);
+
 			return result;
 		}
 
@@ -243,8 +244,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsValue RunScript(string script, JsSourceContext sourceContext, string sourceUrl,
 			ref JsParseScriptAttributes parseAttributes)
 		{
-			JsValue scriptValue = CreateExternalArrayBufferFromScriptCode(script, ref parseAttributes);
-			scriptValue.AddRef();
+			JsPooledArrayBuffer scriptBuffer = CreatePooledArrayBufferFromScriptCode(script, ref parseAttributes);
 
 			JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
 			sourceUrlValue.AddRef();
@@ -253,13 +253,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 			try
 			{
-				JsErrorCode errorCode = NativeMethods.JsRun(scriptValue, sourceContext, sourceUrlValue,
+				JsErrorCode errorCode = NativeMethods.JsRun(scriptBuffer.Value, sourceContext, sourceUrlValue,
 					parseAttributes, out result);
 				JsErrorHelpers.ThrowIfError(errorCode);
 			}
 			finally
 			{
-				scriptValue.Release();
+				scriptBuffer.Dispose();
 				sourceUrlValue.Release();
 			}
 
@@ -284,13 +284,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public static JsValue RunSerializedScript(string script, byte[] buffer,
 			JsSerializedLoadScriptCallback scriptLoadCallback, JsSourceContext sourceContext, string sourceUrl)
 		{
-			JsValue result;
-
 			JsValue bufferValue = JsValue.CreateExternalArrayBuffer(buffer);
 			bufferValue.AddRef();
 
 			JsValue sourceUrlValue = JsValue.FromString(sourceUrl);
 			sourceUrlValue.AddRef();
+
+			JsValue result;
 
 			try
 			{
@@ -303,6 +303,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				bufferValue.Release();
 				sourceUrlValue.Release();
 			}
+
+			GC.KeepAlive(buffer);
 
 			return result;
 		}
@@ -325,19 +327,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <returns>The buffer to put the serialized script into</returns>
 		public static byte[] SerializeScript(string script, ref JsParseScriptAttributes parseAttributes)
 		{
-			JsValue scriptValue = CreateExternalArrayBufferFromScriptCode(script, ref parseAttributes);
-			scriptValue.AddRef();
-
+			JsPooledArrayBuffer scriptBuffer = CreatePooledArrayBufferFromScriptCode(script, ref parseAttributes);
 			JsValue bufferValue;
 
 			try
 			{
-				JsErrorCode errorCode = NativeMethods.JsSerialize(scriptValue, out bufferValue, parseAttributes);
+				JsErrorCode errorCode = NativeMethods.JsSerialize(scriptBuffer.Value, out bufferValue, parseAttributes);
 				JsErrorHelpers.ThrowIfError(errorCode);
 			}
 			finally
 			{
-				scriptValue.Release();
+				scriptBuffer.Dispose();
 			}
 
 			byte[] buffer = bufferValue.ArrayBufferBytes;
@@ -346,12 +346,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
-		/// Creates a Javascript <c>ArrayBuffer</c> object from script code
+		/// Creates a pooled Javascript <c>ArrayBuffer</c> object from script code
 		/// </summary>
 		/// <param name="script">Script code</param>
 		/// <param name="parseAttributes">Attribute mask for parsing the script</param>
-		/// <returns>The new <c>ArrayBuffer</c> object</returns>
-		private static JsValue CreateExternalArrayBufferFromScriptCode(string script,
+		/// <returns>Instance of <see cref="JsPooledArrayBuffer"/></returns>
+		private static JsPooledArrayBuffer CreatePooledArrayBufferFromScriptCode(string script,
 			ref JsParseScriptAttributes parseAttributes)
 		{
 			Encoding encoding;
@@ -366,9 +366,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				encoding = Encoding.UTF8;
 			}
 
-			JsValue scriptValue = JsValue.CreateExternalArrayBuffer(script, encoding);
+			JsPooledArrayBuffer scriptBuffer = JsPooledArrayBuffer.Create(script, encoding);
 
-			return scriptValue;
+			return scriptBuffer;
 		}
 
 		/// <summary>

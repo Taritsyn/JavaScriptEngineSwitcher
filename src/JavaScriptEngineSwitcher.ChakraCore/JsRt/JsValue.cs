@@ -450,29 +450,23 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <returns>The new <c>ArrayBuffer</c> object</returns>
 		public static JsValue CreateExternalArrayBuffer(byte[] buffer)
 		{
-			IntPtr bufferPtr;
-			int bufferLength;
-			JsObjectFinalizeCallback finalizeCallback;
-
-			if (buffer != null)
+			if (buffer == null)
 			{
-				bufferLength = buffer.Length;
-
-				bufferPtr = Marshal.AllocHGlobal(bufferLength);
-				Marshal.Copy(buffer, 0, bufferPtr, bufferLength);
-
-				finalizeCallback = DefaultExternalBufferFinalizeCallback.Instance;
-			}
-			else
-			{
-				bufferLength = 0;
-				bufferPtr = IntPtr.Zero;
-				finalizeCallback = null;
+				throw new ArgumentNullException(nameof(buffer));
 			}
 
 			JsValue reference;
-			JsErrorCode errorCode = NativeMethods.JsCreateExternalArrayBuffer(bufferPtr, (uint)bufferLength,
-				finalizeCallback, bufferPtr, out reference);
+			JsErrorCode errorCode;
+
+			unsafe
+			{
+				fixed (byte* pBuffer = buffer)
+				{
+					errorCode = NativeMethods.JsCreateExternalArrayBuffer((IntPtr)pBuffer, (uint)buffer.Length,
+						null, IntPtr.Zero, out reference);
+				}
+			}
+
 			JsErrorHelpers.ThrowIfError(errorCode);
 
 			return reference;
@@ -484,36 +478,41 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <remarks>Requires an active script context.</remarks>
 		/// <param name="value">String value</param>
 		/// <param name="encoding">Character encoding</param>
+		/// <param name="finalizeCallback">Callback for finalization of external buffer</param>
 		/// <returns>The new <c>ArrayBuffer</c> object</returns>
-		public static unsafe JsValue CreateExternalArrayBuffer(string value, Encoding encoding)
+		public static JsValue CreateExternalArrayBuffer(string value, Encoding encoding,
+			JsObjectFinalizeCallback finalizeCallback)
 		{
-			int bufferLength;
-			IntPtr bufferPtr;
-			JsObjectFinalizeCallback finalizeCallback;
-
-			if (value != null)
+			if (value == null)
 			{
-				bufferLength = encoding.GetByteCount(value);
-				bufferPtr = Marshal.AllocHGlobal(bufferLength);
-
-				fixed (char* pScript = value)
-				{
-					encoding.GetBytes(pScript, value.Length, (byte*)bufferPtr, bufferLength);
-				}
-
-				finalizeCallback = DefaultExternalBufferFinalizeCallback.Instance;
+				throw new ArgumentNullException(nameof(value));
 			}
-			else
+
+			if (encoding == null)
 			{
-				bufferLength = 0;
-				bufferPtr = IntPtr.Zero;
-				finalizeCallback = null;
+				throw new ArgumentNullException(nameof(encoding));
 			}
+
+			int bufferLength = encoding.GetByteCount(value);
+			IntPtr bufferPtr = Marshal.AllocHGlobal(bufferLength);
 
 			JsValue reference;
-			JsErrorCode errorCode = NativeMethods.JsCreateExternalArrayBuffer(bufferPtr, (uint)bufferLength,
-				finalizeCallback, bufferPtr, out reference);
+			JsErrorCode errorCode;
+
+			unsafe
+			{
+				var pBuffer = (byte*)bufferPtr;
+
+				fixed (char* pValue = value)
+				{
+					encoding.GetBytes(pValue, value.Length, pBuffer, bufferLength);
+					errorCode = NativeMethods.JsCreateExternalArrayBuffer((IntPtr)pBuffer, (uint)bufferLength,
+						finalizeCallback, bufferPtr, out reference);
+				}
+			}
+
 			JsErrorHelpers.ThrowIfError(errorCode);
+			GC.KeepAlive(finalizeCallback);
 
 			return reference;
 		}

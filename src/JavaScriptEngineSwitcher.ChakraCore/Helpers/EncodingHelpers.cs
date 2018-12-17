@@ -1,8 +1,11 @@
-﻿#if NET471 || NETSTANDARD || NETCOREAPP2_1
-using System;
-using System.Runtime.InteropServices;
+﻿#if NET45 || NET471 || NETSTANDARD || NETCOREAPP2_1
+using System.Buffers;
 #endif
 using System.Text;
+#if NET40
+
+using PolyfillsForOldDotNet.System.Buffers;
+#endif
 
 namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 {
@@ -11,11 +14,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 	/// </summary>
 	internal static class EncodingHelpers
 	{
-#if NET471 || NETSTANDARD || NETCOREAPP2_1
-		public static unsafe string UnicodeToUtf8(string value, out int byteCount)
-#else
-		public static string UnicodeToUtf8(string value, out int byteCount)
-#endif
+		public static string UnicodeToAnsi(string value, out int byteCount)
 		{
 			if (string.IsNullOrEmpty(value))
 			{
@@ -23,29 +22,26 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				return value;
 			}
 
-			string result;
-#if NET471 || NETSTANDARD || NETCOREAPP2_1
-			byteCount = Encoding.UTF8.GetByteCount(value);
-			IntPtr bufferPtr = Marshal.AllocHGlobal(byteCount);
+			Encoding utf8Encoding = Encoding.UTF8;
+			Encoding ansiEncoding = Encoding.GetEncoding(0);
 
-			try
+			var byteArrayPool = ArrayPool<byte>.Shared;
+			int bufferLength = utf8Encoding.GetByteCount(value);
+			byte[] buffer = byteArrayPool.Rent(bufferLength);
+
+			unsafe
 			{
 				fixed (char* pValue = value)
+				fixed (byte* pBuffer = buffer)
 				{
-					Encoding.UTF8.GetBytes(pValue, value.Length, (byte*)bufferPtr, byteCount);
+					utf8Encoding.GetBytes(pValue, value.Length, pBuffer, bufferLength);
 				}
+			}
 
-				result = Encoding.GetEncoding(0).GetString((byte*)bufferPtr, byteCount);
-			}
-			finally
-			{
-				Marshal.FreeHGlobal(bufferPtr);
-			}
-#else
-			byte[] bytes = Encoding.UTF8.GetBytes(value);
-			byteCount = bytes.Length;
-			result = Encoding.GetEncoding(0).GetString(bytes);
-#endif
+			string result = ansiEncoding.GetString(buffer, 0, bufferLength);
+			byteCount = ansiEncoding.GetByteCount(result);
+
+			byteArrayPool.Return(buffer);
 
 			return result;
 		}
