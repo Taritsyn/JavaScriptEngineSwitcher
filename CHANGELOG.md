@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.0.0 RC 3 - December 18, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.11.4
+   * Improved a performance of script pre-compilation
+
 ## v3.0.0 RC 2 - December 4, 2018
  * `GetSourceFragmentFromCode` and `GetSourceFragmentFromLine` methods of `JsErrorHelpers` class were replaced by the `GetTextFragment` and `GetTextFragmentFromLine` methods of `TextHelpers` class
  * Part of the auxiliary code was moved to external libraries: [PolyfillsForOldDotNet](https://github.com/Taritsyn/PolyfillsForOldDotNet) and [AdvancedStringBuilder](https://github.com/Taritsyn/AdvancedStringBuilder)
