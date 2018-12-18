@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   Improved a performance of script pre-compilation.
+   1. ChakraCore was updated to version 1.11.4;
+   2. Improved a performance of script pre-compilation.
 
    =============
    DOCUMENTATION

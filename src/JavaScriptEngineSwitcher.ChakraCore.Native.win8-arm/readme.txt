@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-      README file for JS Engine Switcher: ChakraCore for Windows ARM v3.0.0 RC 2
+      README file for JS Engine Switcher: ChakraCore for Windows ARM v3.0.0 RC 3
 
    --------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.3.
+   ChakraCore was updated to version 1.11.4.
 
    =============
    DOCUMENTATION
