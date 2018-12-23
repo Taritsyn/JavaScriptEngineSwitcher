@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 
 using Xunit;
 
@@ -39,27 +40,15 @@ function declinationOfSeconds(number) {
 	return declensionOfNumerals(number, ['секунда', 'секунды', 'секунд']);
 }";
 			const string functionName = "declinationOfSeconds";
+			const int itemCount = 4;
 
-			const int input0 = 0;
-			const string targetOutput0 = "секунд";
-
-			const int input1 = 1;
-			const string targetOutput1 = "секунда";
-
-			const int input2 = 42;
-			const string targetOutput2 = "секунды";
-
-			const int input3 = 600;
-			const string targetOutput3 = "секунд";
+			int[] inputSeconds = new int[itemCount] { 0, 1, 42, 600 };
+			string[] targetOutputStrings = new string[itemCount] { "секунд", "секунда", "секунды", "секунд" };
+			string[] outputStrings = new string[itemCount];
 
 			// Act
 			bool supportsScriptPrecompilation = false;
 			IPrecompiledScript precompiledCode = null;
-
-			string output0 = string.Empty;
-			string output1 = string.Empty;
-			string output2 = string.Empty;
-			string output3 = string.Empty;
 
 			using (var jsEngine = CreateJsEngine())
 			{
@@ -69,38 +58,29 @@ function declinationOfSeconds(number) {
 					precompiledCode = jsEngine.Precompile(libraryCode, "declinationOfSeconds.js");
 
 					jsEngine.Execute(precompiledCode);
-					output0 = jsEngine.CallFunction<string>(functionName, input0);
+					outputStrings[0] = jsEngine.CallFunction<string>(functionName, inputSeconds[0]);
 				}
 			}
 
 			if (supportsScriptPrecompilation)
 			{
-				using (var firstJsEngine = CreateJsEngine())
+				Parallel.For(1, itemCount, itemIndex =>
 				{
-					firstJsEngine.Execute(precompiledCode);
-					output1 = firstJsEngine.CallFunction<string>(functionName, input1);
-				}
-
-				using (var secondJsEngine = CreateJsEngine())
-				{
-					secondJsEngine.Execute(precompiledCode);
-					output2 = secondJsEngine.CallFunction<string>(functionName, input2);
-				}
-
-				using (var thirdJsEngine = CreateJsEngine())
-				{
-					thirdJsEngine.Execute(precompiledCode);
-					output3 = thirdJsEngine.CallFunction<string>(functionName, input3);
-				}
+					using (var jsEngine = CreateJsEngine())
+					{
+						jsEngine.Execute(precompiledCode);
+						outputStrings[itemIndex] = jsEngine.CallFunction<string>(functionName, inputSeconds[itemIndex]);
+					}
+				});
 			}
 
 			// Assert
 			if (supportsScriptPrecompilation)
 			{
-				Assert.Equal(targetOutput0, output0);
-				Assert.Equal(targetOutput1, output1);
-				Assert.Equal(targetOutput2, output2);
-				Assert.Equal(targetOutput3, output3);
+				for (int itemIndex = 0; itemIndex < itemCount; itemIndex++)
+				{
+					Assert.Equal(targetOutputStrings[itemIndex], outputStrings[itemIndex]);
+				}
 			}
 		}
 
@@ -110,27 +90,15 @@ function declinationOfSeconds(number) {
 			// Arrange
 			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "../SharedFiles/declinationOfMinutes.js"));
 			const string functionName = "declinationOfMinutes";
+			const int itemCount = 4;
 
-			const int input0 = 0;
-			const string targetOutput0 = "минут";
-
-			const int input1 = 1;
-			const string targetOutput1 = "минута";
-
-			const int input2 = 22;
-			const string targetOutput2 = "минуты";
-
-			const int input3 = 88;
-			const string targetOutput3 = "минут";
+			int[] inputMinutes = new int[itemCount] { 0, 1, 22, 88 };
+			string[] targetOutputStrings = new string[itemCount] { "минут", "минута", "минуты", "минут" };
+			string[] outputStrings = new string[itemCount];
 
 			// Act
 			bool supportsScriptPrecompilation = false;
 			IPrecompiledScript precompiledFile = null;
-
-			string output0 = string.Empty;
-			string output1 = string.Empty;
-			string output2 = string.Empty;
-			string output3 = string.Empty;
 
 			using (var jsEngine = CreateJsEngine())
 			{
@@ -140,38 +108,29 @@ function declinationOfSeconds(number) {
 					precompiledFile = jsEngine.PrecompileFile(filePath);
 
 					jsEngine.Execute(precompiledFile);
-					output0 = jsEngine.CallFunction<string>(functionName, input0);
+					outputStrings[0] = jsEngine.CallFunction<string>(functionName, inputMinutes[0]);
 				}
 			}
 
 			if (supportsScriptPrecompilation)
 			{
-				using (var firstJsEngine = CreateJsEngine())
+				Parallel.For(1, itemCount, itemIndex =>
 				{
-					firstJsEngine.Execute(precompiledFile);
-					output1 = firstJsEngine.CallFunction<string>(functionName, input1);
-				}
-
-				using (var secondJsEngine = CreateJsEngine())
-				{
-					secondJsEngine.Execute(precompiledFile);
-					output2 = secondJsEngine.CallFunction<string>(functionName, input2);
-				}
-
-				using (var thirdJsEngine = CreateJsEngine())
-				{
-					thirdJsEngine.Execute(precompiledFile);
-					output3 = thirdJsEngine.CallFunction<string>(functionName, input3);
-				}
+					using (var jsEngine = CreateJsEngine())
+					{
+						jsEngine.Execute(precompiledFile);
+						outputStrings[itemIndex] = jsEngine.CallFunction<string>(functionName, inputMinutes[itemIndex]);
+					}
+				});
 			}
 
 			// Assert
 			if (supportsScriptPrecompilation)
 			{
-				Assert.Equal(targetOutput0, output0);
-				Assert.Equal(targetOutput1, output1);
-				Assert.Equal(targetOutput2, output2);
-				Assert.Equal(targetOutput3, output3);
+				for (int itemIndex = 0; itemIndex < itemCount; itemIndex++)
+				{
+					Assert.Equal(targetOutputStrings[itemIndex], outputStrings[itemIndex]);
+				}
 			}
 		}
 
@@ -181,27 +140,15 @@ function declinationOfSeconds(number) {
 			// Arrange
 			const string resourceName = "Resources.declinationOfHours.js";
 			const string functionName = "declinationOfHours";
+			const int itemCount = 4;
 
-			const int input0 = 0;
-			const string targetOutput0 = "часов";
-
-			const int input1 = 1;
-			const string targetOutput1 = "час";
-
-			const int input2 = 24;
-			const string targetOutput2 = "часа";
-
-			const int input3 = 48;
-			const string targetOutput3 = "часов";
+			int[] inputHours = new int[itemCount] { 0, 1, 24, 48 };
+			string[] targetOutputStrings = new string[itemCount] { "часов", "час", "часа", "часов" };
+			string[] outputStrings = new string[itemCount];
 
 			// Act
 			bool supportsScriptPrecompilation = false;
 			IPrecompiledScript precompiledResource = null;
-
-			string output0 = string.Empty;
-			string output1 = string.Empty;
-			string output2 = string.Empty;
-			string output3 = string.Empty;
 
 			using (var jsEngine = CreateJsEngine())
 			{
@@ -211,38 +158,29 @@ function declinationOfSeconds(number) {
 					precompiledResource = jsEngine.PrecompileResource(resourceName, typeof(PrecompilationTestsBase));
 
 					jsEngine.Execute(precompiledResource);
-					output0 = jsEngine.CallFunction<string>(functionName, input0);
+					outputStrings[0] = jsEngine.CallFunction<string>(functionName, inputHours[0]);
 				}
 			}
 
 			if (supportsScriptPrecompilation)
 			{
-				using (var firstJsEngine = CreateJsEngine())
+				Parallel.For(1, itemCount, itemIndex =>
 				{
-					firstJsEngine.Execute(precompiledResource);
-					output1 = firstJsEngine.CallFunction<string>(functionName, input1);
-				}
-
-				using (var secondJsEngine = CreateJsEngine())
-				{
-					secondJsEngine.Execute(precompiledResource);
-					output2 = secondJsEngine.CallFunction<string>(functionName, input2);
-				}
-
-				using (var thirdJsEngine = CreateJsEngine())
-				{
-					thirdJsEngine.Execute(precompiledResource);
-					output3 = thirdJsEngine.CallFunction<string>(functionName, input3);
-				}
+					using (var jsEngine = CreateJsEngine())
+					{
+						jsEngine.Execute(precompiledResource);
+						outputStrings[itemIndex] = jsEngine.CallFunction<string>(functionName, inputHours[itemIndex]);
+					}
+				});
 			}
 
 			// Assert
 			if (supportsScriptPrecompilation)
 			{
-				Assert.Equal(targetOutput0, output0);
-				Assert.Equal(targetOutput1, output1);
-				Assert.Equal(targetOutput2, output2);
-				Assert.Equal(targetOutput3, output3);
+				for (int itemIndex = 0; itemIndex < itemCount; itemIndex++)
+				{
+					Assert.Equal(targetOutputStrings[itemIndex], outputStrings[itemIndex]);
+				}
 			}
 		}
 
@@ -252,27 +190,15 @@ function declinationOfSeconds(number) {
 			// Arrange
 			const string resourceName = "JavaScriptEngineSwitcher.Tests.Resources.declinationOfDays.js";
 			const string functionName = "declinationOfDays";
+			const int itemCount = 4;
 
-			const int input0 = 0;
-			const string targetOutput0 = "дней";
-
-			const int input1 = 1;
-			const string targetOutput1 = "день";
-
-			const int input2 = 3;
-			const string targetOutput2 = "дня";
-
-			const int input3 = 80;
-			const string targetOutput3 = "дней";
+			int[] inputDays = new int[itemCount] { 0, 1, 3, 80 };
+			string[] targetOutputStrings = new string[itemCount] { "дней", "день", "дня", "дней" };
+			string[] outputStrings = new string[itemCount];
 
 			// Act
 			bool supportsScriptPrecompilation = false;
 			IPrecompiledScript precompiledResource = null;
-
-			string output0 = string.Empty;
-			string output1 = string.Empty;
-			string output2 = string.Empty;
-			string output3 = string.Empty;
 
 			using (var jsEngine = CreateJsEngine())
 			{
@@ -283,38 +209,29 @@ function declinationOfSeconds(number) {
 						typeof(PrecompilationTestsBase).GetTypeInfo().Assembly);
 
 					jsEngine.Execute(precompiledResource);
-					output0 = jsEngine.CallFunction<string>(functionName, input0);
+					outputStrings[0] = jsEngine.CallFunction<string>(functionName, inputDays[0]);
 				}
 			}
 
 			if (supportsScriptPrecompilation)
 			{
-				using (var firstJsEngine = CreateJsEngine())
+				Parallel.For(1, itemCount, itemIndex =>
 				{
-					firstJsEngine.Execute(precompiledResource);
-					output1 = firstJsEngine.CallFunction<string>(functionName, input1);
-				}
-
-				using (var secondJsEngine = CreateJsEngine())
-				{
-					secondJsEngine.Execute(precompiledResource);
-					output2 = secondJsEngine.CallFunction<string>(functionName, input2);
-				}
-
-				using (var thirdJsEngine = CreateJsEngine())
-				{
-					thirdJsEngine.Execute(precompiledResource);
-					output3 = thirdJsEngine.CallFunction<string>(functionName, input3);
-				}
+					using (var jsEngine = CreateJsEngine())
+					{
+						jsEngine.Execute(precompiledResource);
+						outputStrings[itemIndex] = jsEngine.CallFunction<string>(functionName, inputDays[itemIndex]);
+					}
+				});
 			}
 
 			// Assert
 			if (supportsScriptPrecompilation)
 			{
-				Assert.Equal(targetOutput0, output0);
-				Assert.Equal(targetOutput1, output1);
-				Assert.Equal(targetOutput2, output2);
-				Assert.Equal(targetOutput3, output3);
+				for (int itemIndex = 0; itemIndex < itemCount; itemIndex++)
+				{
+					Assert.Equal(targetOutputStrings[itemIndex], outputStrings[itemIndex]);
+				}
 			}
 		}
 

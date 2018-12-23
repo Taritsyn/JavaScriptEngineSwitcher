@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Text;
 
 using JavaScriptEngineSwitcher.Core;
 
@@ -14,17 +13,46 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 	internal sealed class ChakraCorePrecompiledScript : IPrecompiledScript
 	{
 		/// <summary>
-		/// Callback for finalization of external buffer
+		/// Source code of the script
 		/// </summary>
-		private JsObjectFinalizeCallback _externalBufferFinalizeCallback;
+		private readonly string _code;
+
+		/// <summary>
+		/// Attribute mask for parsing the script
+		/// </summary>
+		private readonly JsParseScriptAttributes _parseAttributes;
+
+		/// <summary>
+		/// Cached data for accelerated recompilation
+		/// </summary>
+		private readonly byte[] _cachedBytes;
+
+		/// <summary>
+		/// Document name
+		/// </summary>
+		private readonly string _documentName;
+
+		/// <summary>
+		/// Callback to load the source code of the serialized script
+		/// </summary>
+		private readonly JsSerializedLoadScriptCallback _loadScriptSourceCodeCallback;
+
+		/// <summary>
+		/// Source code of the script as an array of bytes
+		/// </summary>
+		private byte[] _codeBytes;
+
+		/// <summary>
+		/// Synchronizer of the script source code loading
+		/// </summary>
+		private readonly object _scriptLoadingSynchronizer = new object();
 
 		/// <summary>
 		/// Gets a source code of the script
 		/// </summary>
 		public string Code
 		{
-			get;
-			private set;
+			get { return _code; }
 		}
 
 		/// <summary>
@@ -32,8 +60,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public JsParseScriptAttributes ParseAttributes
 		{
-			get;
-			private set;
+			get { return _parseAttributes; }
 		}
 
 		/// <summary>
@@ -41,8 +68,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public byte[] CachedBytes
 		{
-			get;
-			private set;
+			get { return _cachedBytes; }
 		}
 
 		/// <summary>
@@ -50,8 +76,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public string DocumentName
 		{
-			get;
-			private set;
+			get { return _documentName; }
 		}
 
 		/// <summary>
@@ -59,8 +84,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		public JsSerializedLoadScriptCallback LoadScriptSourceCodeCallback
 		{
-			get;
-			private set;
+			get { return _loadScriptSourceCodeCallback; }
 		}
 
 
@@ -74,13 +98,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		public ChakraCorePrecompiledScript(string code, JsParseScriptAttributes parseAttributes, byte[] cachedBytes,
 			string documentName)
 		{
-			_externalBufferFinalizeCallback = Marshal.FreeHGlobal;
-
-			Code = code;
-			ParseAttributes = parseAttributes;
-			CachedBytes = cachedBytes;
-			DocumentName = documentName;
-			LoadScriptSourceCodeCallback = LoadScriptSourceCode;
+			_code = code;
+			_parseAttributes = parseAttributes;
+			_cachedBytes = cachedBytes;
+			_documentName = documentName;
+			_loadScriptSourceCodeCallback = LoadScriptSourceCode;
 		}
 
 
@@ -92,17 +114,28 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <param name="value">The script returned</param>
 		/// <param name="parseAttributes">Attribute mask for parsing the script</param>
 		/// <returns>true if the operation succeeded, false otherwise</returns>
-		private bool LoadScriptSourceCode(JsSourceContext sourceContext,
-			out JsValue value, out JsParseScriptAttributes parseAttributes)
+		private bool LoadScriptSourceCode(JsSourceContext sourceContext, out JsValue value,
+			out JsParseScriptAttributes parseAttributes)
 		{
+			if (_codeBytes == null)
+			{
+				lock (_scriptLoadingSynchronizer)
+				{
+					if (_codeBytes == null)
+					{
+						Encoding encoding = _parseAttributes.HasFlag(JsParseScriptAttributes.ArrayBufferIsUtf16Encoded) ?
+							Encoding.Unicode : Encoding.UTF8;
+						_codeBytes = encoding.GetBytes(_code);
+					}
+				}
+			}
+
 			bool result;
-			parseAttributes = ParseAttributes;
-			Encoding encoding = parseAttributes.HasFlag(JsParseScriptAttributes.ArrayBufferIsUtf16Encoded) ?
-				Encoding.Unicode : Encoding.UTF8;
+			parseAttributes = _parseAttributes;
 
 			try
 			{
-				value = JsValue.CreateExternalArrayBuffer(Code, encoding, _externalBufferFinalizeCallback);
+				value = JsValue.CreateExternalArrayBuffer(_codeBytes);
 				result = true;
 			}
 			catch (OriginalException)

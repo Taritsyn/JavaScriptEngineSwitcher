@@ -22,23 +22,35 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				return value;
 			}
 
+			int valueLength = value.Length;
 			Encoding utf8Encoding = Encoding.UTF8;
 			Encoding ansiEncoding = Encoding.GetEncoding(0);
 
 			var byteArrayPool = ArrayPool<byte>.Shared;
 			int bufferLength = utf8Encoding.GetByteCount(value);
-			byte[] buffer = byteArrayPool.Rent(bufferLength);
+			byte[] buffer = byteArrayPool.Rent(bufferLength + 1);
+
+			string result;
+#if NET471 || NETSTANDARD || NETCOREAPP2_1
 
 			unsafe
 			{
 				fixed (char* pValue = value)
 				fixed (byte* pBuffer = buffer)
 				{
-					utf8Encoding.GetBytes(pValue, value.Length, pBuffer, bufferLength);
+					utf8Encoding.GetBytes(pValue, valueLength, pBuffer, bufferLength);
+					pBuffer[bufferLength] = 0;
+
+					result = ansiEncoding.GetString(pBuffer, bufferLength);
 				}
 			}
 
-			string result = ansiEncoding.GetString(buffer, 0, bufferLength);
+#else
+			utf8Encoding.GetBytes(value, 0, valueLength, buffer, 0);
+			buffer[bufferLength] = 0;
+
+			result = ansiEncoding.GetString(buffer, 0, bufferLength);
+#endif
 			byteCount = ansiEncoding.GetByteCount(result);
 
 			byteArrayPool.Return(buffer);

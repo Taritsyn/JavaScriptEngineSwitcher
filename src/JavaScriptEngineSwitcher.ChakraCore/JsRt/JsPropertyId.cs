@@ -55,17 +55,20 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsErrorCode errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
 				JsErrorHelpers.ThrowIfError(errorCode);
 
-				string name;
 				var byteArrayPool = ArrayPool<byte>.Shared;
 				bufferSize = length;
-				buffer = byteArrayPool.Rent((int)bufferSize);
+				int bufferLength = (int)bufferSize;
+				buffer = byteArrayPool.Rent(bufferLength + 1);
+				buffer[bufferLength] = 0;
+
+				string name;
 
 				try
 				{
 					errorCode = NativeMethods.JsCopyPropertyId(this, buffer, bufferSize, out length);
 					JsErrorHelpers.ThrowIfError(errorCode);
 
-					name = Encoding.UTF8.GetString(buffer, 0, (int)bufferSize);
+					name = Encoding.UTF8.GetString(buffer, 0, bufferLength);
 				}
 				finally
 				{

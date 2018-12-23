@@ -455,68 +455,23 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				throw new ArgumentNullException(nameof(buffer));
 			}
 
-			JsValue reference;
-			JsErrorCode errorCode;
+			int bufferLength = buffer.Length;
 
 			unsafe
 			{
 				fixed (byte* pBuffer = buffer)
 				{
-					errorCode = NativeMethods.JsCreateExternalArrayBuffer((IntPtr)pBuffer, (uint)buffer.Length,
-						null, IntPtr.Zero, out reference);
-				}
-			}
+					JsValue reference;
+					JsErrorCode errorCode;
 
-			JsErrorHelpers.ThrowIfError(errorCode);
-
-			return reference;
-		}
-
-		/// <summary>
-		/// Creates a Javascript <c>ArrayBuffer</c> object to access external memory
-		/// </summary>
-		/// <remarks>Requires an active script context.</remarks>
-		/// <param name="value">String value</param>
-		/// <param name="encoding">Character encoding</param>
-		/// <param name="finalizeCallback">Callback for finalization of external buffer</param>
-		/// <returns>The new <c>ArrayBuffer</c> object</returns>
-		public static JsValue CreateExternalArrayBuffer(string value, Encoding encoding,
-			JsObjectFinalizeCallback finalizeCallback)
-		{
-			if (value == null)
-			{
-				throw new ArgumentNullException(nameof(value));
-			}
-
-			if (encoding == null)
-			{
-				throw new ArgumentNullException(nameof(encoding));
-			}
-
-			int bufferLength = encoding.GetByteCount(value);
-			IntPtr bufferPtr = Marshal.AllocHGlobal(bufferLength);
-
-			JsValue reference;
-			JsErrorCode errorCode;
-
-			unsafe
-			{
-				var pBuffer = (byte*)bufferPtr;
-
-				fixed (char* pValue = value)
-				{
-					encoding.GetBytes(pValue, value.Length, pBuffer, bufferLength);
 					errorCode = NativeMethods.JsCreateExternalArrayBuffer((IntPtr)pBuffer, (uint)bufferLength,
-						finalizeCallback, bufferPtr, out reference);
+						null, IntPtr.Zero, out reference);
+					JsErrorHelpers.ThrowIfError(errorCode);
+
+					return reference;
 				}
 			}
-
-			JsErrorHelpers.ThrowIfError(errorCode);
-			GC.KeepAlive(finalizeCallback);
-
-			return reference;
 		}
-
 
 		/// <summary>
 		/// Creates a new JavaScript error object
@@ -733,7 +688,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 				var charArrayPool = ArrayPool<char>.Shared;
 				length = (int)written;
-				buffer = charArrayPool.Rent(length);
+				buffer = charArrayPool.Rent(length + 1);
+				buffer[length] = '\0';
 
 				try
 				{
@@ -758,14 +714,16 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 				var byteArrayPool = ArrayPool<byte>.Shared;
 				bufferSize = length;
-				buffer = byteArrayPool.Rent((int)bufferSize);
+				int bufferLength = (int)bufferSize;
+				buffer = byteArrayPool.Rent(bufferLength + 1);
+				buffer[bufferLength] = 0;
 
 				try
 				{
 					errorCode = NativeMethods.JsCopyString(this, buffer, bufferSize, out length);
 					JsErrorHelpers.ThrowIfError(errorCode);
 
-					result = Encoding.UTF8.GetString(buffer, 0, (int)bufferSize);
+					result = Encoding.UTF8.GetString(buffer, 0, bufferLength);
 				}
 				finally
 				{

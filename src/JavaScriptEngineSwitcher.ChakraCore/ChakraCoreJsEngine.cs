@@ -1406,10 +1406,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					{
 						throw WrapJsException(e);
 					}
+					finally
+					{
+						GC.KeepAlive(chakraCorePrecompiledScript);
+					}
 				}
 			});
-
-			GC.KeepAlive(chakraCorePrecompiledScript);
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
