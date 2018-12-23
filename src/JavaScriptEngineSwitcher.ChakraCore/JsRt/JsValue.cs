@@ -456,21 +456,56 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 
 			int bufferLength = buffer.Length;
+			IntPtr bufferPtr = Marshal.AllocHGlobal(bufferLength + 1);
 
-			unsafe
+			Marshal.Copy(buffer, 0, bufferPtr, bufferLength);
+			Marshal.WriteByte(bufferPtr, bufferLength, 0);
+
+			JsValue reference;
+			JsErrorCode errorCode = NativeMethods.JsCreateExternalArrayBuffer(bufferPtr, (uint)bufferLength,
+				DefaultExternalBufferFinalizeCallback.Instance, bufferPtr, out reference);
+			JsErrorHelpers.ThrowIfError(errorCode);
+
+			return reference;
+		}
+
+		/// <summary>
+		/// Creates a Javascript <c>ArrayBuffer</c> object to access external memory
+		/// </summary>
+		/// <remarks>Requires an active script context.</remarks>
+		/// <param name="value">String value</param>
+		/// <param name="encoding">Character encoding</param>
+		/// <returns>The new <c>ArrayBuffer</c> object</returns>
+		public static unsafe JsValue CreateExternalArrayBuffer(string value, Encoding encoding)
+		{
+			if (value == null)
 			{
-				fixed (byte* pBuffer = buffer)
-				{
-					JsValue reference;
-					JsErrorCode errorCode;
-
-					errorCode = NativeMethods.JsCreateExternalArrayBuffer((IntPtr)pBuffer, (uint)bufferLength,
-						null, IntPtr.Zero, out reference);
-					JsErrorHelpers.ThrowIfError(errorCode);
-
-					return reference;
-				}
+				throw new ArgumentNullException(nameof(value));
 			}
+
+			if (encoding == null)
+			{
+				throw new ArgumentNullException(nameof(encoding));
+			}
+
+			int valueLength = value.Length;
+			int bufferLength = encoding.GetByteCount(value);
+			IntPtr bufferPtr = Marshal.AllocHGlobal(bufferLength + 1);
+
+			fixed (char* pValue = value)
+			{
+				var pBuffer = (byte*)bufferPtr;
+				pBuffer[bufferLength] = 0;
+
+				encoding.GetBytes(pValue, valueLength, pBuffer, bufferLength);
+			}
+
+			JsValue reference;
+			JsErrorCode errorCode = NativeMethods.JsCreateExternalArrayBuffer(bufferPtr, (uint)bufferLength,
+				DefaultExternalBufferFinalizeCallback.Instance, bufferPtr, out reference);
+			JsErrorHelpers.ThrowIfError(errorCode);
+
+			return reference;
 		}
 
 		/// <summary>

@@ -22,6 +22,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				return value;
 			}
 
+			string result;
 			int valueLength = value.Length;
 			Encoding utf8Encoding = Encoding.UTF8;
 			Encoding ansiEncoding = Encoding.GetEncoding(0);
@@ -29,33 +30,40 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			var byteArrayPool = ArrayPool<byte>.Shared;
 			int bufferLength = utf8Encoding.GetByteCount(value);
 			byte[] buffer = byteArrayPool.Rent(bufferLength + 1);
-
-			string result;
-#if NET471 || NETSTANDARD || NETCOREAPP2_1
-
-			unsafe
-			{
-				fixed (char* pValue = value)
-				fixed (byte* pBuffer = buffer)
-				{
-					utf8Encoding.GetBytes(pValue, valueLength, pBuffer, bufferLength);
-					pBuffer[bufferLength] = 0;
-
-					result = ansiEncoding.GetString(pBuffer, bufferLength);
-				}
-			}
-
-#else
-			utf8Encoding.GetBytes(value, 0, valueLength, buffer, 0);
 			buffer[bufferLength] = 0;
 
-			result = ansiEncoding.GetString(buffer, 0, bufferLength);
+			try
+			{
+#if NET471 || NETSTANDARD || NETCOREAPP2_1
+				result = ConvertStringInternal(utf8Encoding, ansiEncoding, value, valueLength, buffer, bufferLength);
+#else
+				utf8Encoding.GetBytes(value, 0, valueLength, buffer, 0);
+				result = ansiEncoding.GetString(buffer, 0, bufferLength);
 #endif
-			byteCount = ansiEncoding.GetByteCount(result);
+			}
+			finally
+			{
+				byteArrayPool.Return(buffer);
+			}
 
-			byteArrayPool.Return(buffer);
+			byteCount = bufferLength;
 
 			return result;
 		}
+#if NET471 || NETSTANDARD || NETCOREAPP2_1
+
+		private static unsafe string ConvertStringInternal(Encoding srcEncoding, Encoding dstEncoding, string s,
+			int charCount, byte[] bytes, int byteCount)
+		{
+			fixed (char* pString = s)
+			fixed (byte* pBytes = bytes)
+			{
+				srcEncoding.GetBytes(pString, charCount, pBytes, byteCount);
+				string result = dstEncoding.GetString(pBytes, byteCount);
+
+				return result;
+			}
+		}
+#endif
 	}
 }
