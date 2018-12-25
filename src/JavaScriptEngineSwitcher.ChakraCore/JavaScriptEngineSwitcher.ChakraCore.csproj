@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<Product>JS Engine Switcher: ChakraCore</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>rc3</VersionSuffix>
 		<TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks>
 		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
 		<OutputType>Library</OutputType>
@@ -23,7 +22,12 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;ChakraCore</PackageTags>
-		<PackageReleaseNotes>Fixed a errors that occurred when accessing to the external memory.</PackageReleaseNotes>
+		<PackageReleaseNotes>1. ChakraCore was updated to version 1.11.4;
+2. No longer used the old ChakraCore API for Windows (Internet Explorer-like API);
+3. Added a ability to interrupt execution of the script;
+4. Added a ability to pre-compile scripts;
+5. In configuration settings of the ChakraCore JS engine was added one new property - `MaxStackSize` (default `492` or `984` KB);
+6. Added support of .NET Framework 4.7.1, .NET Standard 2.0 and .NET Core App 2.1.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />

@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<Product>JS Engine Switcher: Jint</Product>
 		<VersionPrefix>3.0.0</VersionPrefix>
-		<VersionSuffix>rc2</VersionSuffix>
 		<TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -13,6 +12,10 @@
 		<Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 2.11.58).</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Jint</PackageTags>
+		<PackageReleaseNotes>1. Jint was updated to version 2.11.58;
+2. Added a ability to pre-compile scripts;
+3. In configuration settings of the Jint JS engine a `Timeout` property has been replaced by the `TimeoutInterval` property (default `TimeSpan.Zero`) and was added one new property - `LocalTimeZone` (default `TimeZoneInfo.Local`);
+4. Added support of .NET Standard 2.0.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />

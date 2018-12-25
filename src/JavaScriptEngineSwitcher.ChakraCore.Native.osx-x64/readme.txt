@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-        README file for JS Engine Switcher: ChakraCore for OS X x64 v3.0.0 RC 3
+          README file for JS Engine Switcher: ChakraCore for OS X x64 v3.0.0
 
    --------------------------------------------------------------------------------
 

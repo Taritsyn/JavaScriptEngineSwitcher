@@ -1,6 +1,44 @@
 Change log
 ==========
 
+## v3.0.0 - December 25, 2018
+ * In the `JsEngineSwitcher` class a `Instance` property was renamed to the `Current` property
+ * Now you can implement your own version of the `JsEngineSwitcher` class
+ * Format of the error messages was unified
+ * Created a new exception classes: `JsCompilationException`, `JsEngineException`, `JsFatalException`, `JsInterruptedException`, `JsTimeoutException`, `JsScriptException` and `JsUsageException`. These exceptions are responsible for handling errors, some of which were previously handled by the `JsRuntimeException` class
+ * In the `JsException` class was added two new properties: `Category` and `Description`
+ * From the `JsRuntimeException` class was removed one property - `ErrorCode`
+ * In the `JsRuntimeException` class was added three new properties: `Type`, `DocumentName` and `CallStack`
+ * `JsEngineLoadException` class now is inherited from the `JsEngineException` class
+ * Removed a `EmptyValueException` class
+ * `Format` method of the `JsErrorHelpers` class was renamed to the `GenerateErrorDetails`
+ * Part of the auxiliary code was moved to external libraries: [PolyfillsForOldDotNet](https://github.com/Taritsyn/PolyfillsForOldDotNet) and [AdvancedStringBuilder](https://github.com/Taritsyn/AdvancedStringBuilder)
+ * In `IJsEngine` interface was added two new  properties: `SupportsScriptInterruption` and `SupportsScriptPrecompilation`, and four new methods: `Interrupt`, `Precompile`, `PrecompileFile` and `PrecompileResource`
+ * In JavaScriptEngineSwitcher.Extensions.MsDependencyInjection added a overloaded versions of the `AddJsEngineSwitcher` extension method, which takes an instance of JS engine switcher
+ * In JavaScriptEngineSwitcher.ChakraCore, JavaScriptEngineSwitcher.Msie, JavaScriptEngineSwitcher.V8 and JavaScriptEngineSwitcher.Vroom added a ability to interrupt execution of the script
+ * In JavaScriptEngineSwitcher.ChakraCore, JavaScriptEngineSwitcher.Jint, JavaScriptEngineSwitcher.Jurassic, JavaScriptEngineSwitcher.Msie and JavaScriptEngineSwitcher.V8 added a ability to pre-compile scripts
+ * In all modules, except the JavaScriptEngineSwitcher.V8, added support of .NET Standard 2.0
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.11.4
+   * No longer used the old ChakraCore API for Windows (Internet Explorer-like API)
+   * Now the ChakraCore for Windows requires the [Microsoft Visual C++ Redistributable for Visual Studio 2017](https://www.visualstudio.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2017)
+   * In configuration settings of the ChakraCore JS engine was added one new property - `MaxStackSize` (default `492` or `984` KB)
+   * Added support of .NET Framework 4.7.1 and .NET Core App 2.1
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 2.11.58
+   * In configuration settings of the Jint JS engine a `Timeout` property has been replaced by the `TimeoutInterval` property (default `TimeSpan.Zero`) and was added one new property - `LocalTimeZone` (default `TimeZoneInfo.Local`)
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of February 24, 2018
+ * In JavaScriptEngineSwitcher.Msie:
+   * MSIE JavaScript Engine was updated to version 3.0.0
+   * In configuration settings of the MSIE JS engine was added one new property - `MaxStackSize` (default `492` or `984` KB)
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 5.5.4 (support of V8 version 7.0.276.42)
+   * Now requires .NET Framework 4.5 or higher
+   * Now the Microsoft ClearScript.V8 requires the [Microsoft Visual C++ Redistributable for Visual Studio 2017](https://www.visualstudio.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2017)
+   * In configuration settings of the V8 JS engine became obsolete the `MaxExecutableSize` property and added two new properties: `AwaitDebuggerAndPauseOnStart` (default `false`) and `EnableRemoteDebugging` (default `false`)
+ * In JavaScriptEngineSwitcher.Vroom added support of .NET Framework 4.7.1
+ * Added a module based on the [NiL.JS](https://github.com/nilproject/NiL.JS)
+
 ## v3.0.0 RC 3 - December 18, 2018
  * In JavaScriptEngineSwitcher.ChakraCore:
    * ChakraCore was updated to version 1.11.4

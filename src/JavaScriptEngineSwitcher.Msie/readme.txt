@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                 README file for JS Engine Switcher: MSIE v3.0.0 RC 2
+                    README file for JS Engine Switcher: MSIE v3.0.0
 
    --------------------------------------------------------------------------------
 
@@ -19,7 +19,12 @@
    =============
    RELEASE NOTES
    =============
-   Added support of MSIE JavaScript Engine version 3.0.0 RC 2.
+   1. MSIE JavaScript Engine was updated to version 3.0.0;
+   2. Added a ability to interrupt execution of the script;
+   3. Added a ability to pre-compile scripts;
+   4. In configuration settings of the MSIE JS engine was added one new property -
+      `MaxStackSize` (default `492` or `984` KB);
+   5. Added support of .NET Standard 2.0.
 
    =============
    DOCUMENTATION
