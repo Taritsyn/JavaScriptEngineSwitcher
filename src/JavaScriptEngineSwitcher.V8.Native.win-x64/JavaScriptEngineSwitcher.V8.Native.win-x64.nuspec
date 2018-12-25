@@ -6,7 +6,7 @@
 		<title>JS Engine Switcher: V8 for Windows (x64)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
-		<licenseUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
+		<license type="file">LICENSE.txt</license>
 		<projectUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</iconUrl>
 		<repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
@@ -27,6 +27,7 @@ For correct working of the Microsoft ClearScript.V8 require the Microsoft Visual
 		<file src="tools/Install.ps1" target="tools/" />
 		<file src="tools/Uninstall.ps1" target="tools/" />
 		<file src="readme.txt" />
+		<file src="../../LICENSE.txt" target="LICENSE.txt" />
 		<file src="../../Licenses/clearscript-license.txt" target="clearscript-license.txt" />
 		<file src="../../Licenses/v8-license.txt" target="v8-license.txt" />
 	</files>

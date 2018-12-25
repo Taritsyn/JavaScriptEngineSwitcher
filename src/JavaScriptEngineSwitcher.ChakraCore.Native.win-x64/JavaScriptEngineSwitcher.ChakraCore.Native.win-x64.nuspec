@@ -6,7 +6,7 @@
 		<title>JS Engine Switcher: ChakraCore for Windows (x64)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
-		<licenseUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher/blob/master/LICENSE</licenseUrl>
+		<license type="file">LICENSE.txt</license>
 		<projectUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</iconUrl>
 		<repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
@@ -25,6 +25,7 @@ For correct working of the ChakraCore require the Microsoft Visual C++ Redistrib
 		<file src="tools/Install.ps1" target="tools/" />
 		<file src="tools/Uninstall.ps1" target="tools/" />
 		<file src="readme.txt" />
+		<file src="../../LICENSE.txt" target="LICENSE.txt" />
 		<file src="../../Licenses/chakra-core-license.txt" target="chakra-core-license.txt" />
 	</files>
 </package>
