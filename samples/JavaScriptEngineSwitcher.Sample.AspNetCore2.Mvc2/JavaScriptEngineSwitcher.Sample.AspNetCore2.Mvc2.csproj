@@ -14,12 +14,12 @@
 	<Import Project="../../build/common.props" />
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.2" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.0.0-rc3" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.0.0-rc3" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.0.0-rc3" />
@@ -37,7 +37,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -46,11 +46,8 @@
 		</None>
 	</ItemGroup>
 
-	<Target Name="GulpClean" AfterTargets="Clean">
-		<Exec Command="gulp clean-builded-assets" />
-	</Target>
 	<Target Name="GulpBuild" AfterTargets="AfterBuild">
-		<Exec Command="gulp build-assets" />
+		<Exec Command="gulp" />
 	</Target>
 	<Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
 		<Exec Command="npm install" />
