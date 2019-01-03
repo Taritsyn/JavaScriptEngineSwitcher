@@ -1,4 +1,6 @@
-﻿using BenchmarkDotNet.Running;
+﻿using System.Reflection;
+
+using BenchmarkDotNet.Running;
 
 namespace JavaScriptEngineSwitcher.Benchmarks
 {
@@ -6,7 +8,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 	{
 		public static void Main(string[] args)
 		{
-			BenchmarkRunner.Run<JsExecutionBenchmark>();
+			BenchmarkSwitcher.FromAssembly(typeof(Program).GetTypeInfo().Assembly).Run(args);
 		}
 	}
 }
