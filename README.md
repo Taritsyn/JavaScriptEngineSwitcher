@@ -58,3 +58,4 @@ If you use the JavaScript Engine Switcher in some project, please send me a mess
  * [T1.Scripts](http://nuget.org/packages/T1.Scripts)
  * [Wyam](http://wyam.io/)
  * [zxcvbn.net](https://github.com/darcythomas/zxcvbn.net) by Darcy Thomas
+ * [ProteanCMS](https://github.com/Eonic/ProteanCMS) by Trevor Spink
