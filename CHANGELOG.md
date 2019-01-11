@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.0.1 - January 11, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.11.5
+   * Fixed a [error #65](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/65) “Memory leak using EmbedHostObject”
+
 ## v3.0.0 - December 25, 2018
  * In the `JsEngineSwitcher` class a `Instance` property was renamed to the `Current` property
  * Now you can implement your own version of the `JsEngineSwitcher` class
