@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2018 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2019 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #65 “Memory leak using EmbedHostObject”.
+   1. ChakraCore was updated to version 1.11.5;
+   2. Fixed a error #65 “Memory leak using EmbedHostObject”.
 
    =============
    DOCUMENTATION
