@@ -10,6 +10,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <summary>
 		/// Gets a instance of default callback for finalization of external buffer
 		/// </summary>
-		public static readonly JsObjectFinalizeCallback Instance = Marshal.FreeHGlobal;
+		public static readonly JsFinalizeCallback Instance = Marshal.FreeHGlobal;
 	}
 }

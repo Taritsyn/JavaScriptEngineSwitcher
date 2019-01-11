@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+#if NET45 || NET471 || NETSTANDARD || NETCOREAPP2_1
 using System.Runtime.InteropServices;
+#endif
 using System.Text;
 
 using AdvancedStringBuilder;
@@ -29,7 +29,6 @@ using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
 using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
 
 using JavaScriptEngineSwitcher.ChakraCore.Constants;
-using JavaScriptEngineSwitcher.ChakraCore.Helpers;
 using JavaScriptEngineSwitcher.ChakraCore.JsRt;
 using JavaScriptEngineSwitcher.ChakraCore.Resources;
 
@@ -72,24 +71,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private JsSourceContext _jsSourceContext = JsSourceContext.FromIntPtr(IntPtr.Zero);
 
 		/// <summary>
-		/// Set of external objects
+		/// Type mapper
 		/// </summary>
-		private HashSet<object> _externalObjects = new HashSet<object>();
-
-		/// <summary>
-		/// Callback for finalization of external object
-		/// </summary>
-		private JsObjectFinalizeCallback _externalObjectFinalizeCallback;
+		private TypeMapper _typeMapper = new TypeMapper();
 
 		/// <summary>
 		/// Callback for continuation of promise
 		/// </summary>
 		private JsPromiseContinuationCallback _promiseContinuationCallback;
-
-		/// <summary>
-		/// List of native function callbacks
-		/// </summary>
-		private HashSet<JsNativeFunction> _nativeFunctions = new HashSet<JsNativeFunction>();
 
 		/// <summary>
 		/// Script dispatcher
@@ -165,7 +154,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 #else
 			_dispatcher = new ScriptDispatcher(chakraCoreSettings.MaxStackSize);
 #endif
-			_externalObjectFinalizeCallback = ExternalObjectFinalizeCallback;
 			_promiseContinuationCallback = PromiseContinuationCallback;
 
 			try
@@ -325,631 +313,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		#region Mapping
-
-		/// <summary>
-		/// Makes a mapping of value from the host type to a script type
-		/// </summary>
-		/// <param name="value">The source value</param>
-		/// <returns>The mapped value</returns>
-		private JsValue MapToScriptType(object value)
-		{
-			if (value == null)
-			{
-				return JsValue.Null;
-			}
-
-			if (value is Undefined)
-			{
-				return JsValue.Undefined;
-			}
-
-			TypeCode typeCode = value.GetType().GetTypeCode();
-
-			switch (typeCode)
-			{
-				case TypeCode.Boolean:
-					return (bool)value ? JsValue.True : JsValue.False;
-
-				case TypeCode.SByte:
-				case TypeCode.Byte:
-				case TypeCode.Int16:
-				case TypeCode.UInt16:
-				case TypeCode.Int32:
-				case TypeCode.UInt32:
-				case TypeCode.Int64:
-				case TypeCode.UInt64:
-					return JsValue.FromInt32(Convert.ToInt32(value));
-
-				case TypeCode.Single:
-				case TypeCode.Double:
-				case TypeCode.Decimal:
-					return JsValue.FromDouble(Convert.ToDouble(value));
-
-				case TypeCode.Char:
-				case TypeCode.String:
-					return JsValue.FromString((string)value);
-
-				default:
-					return FromObject(value);
-			}
-		}
-
-		/// <summary>
-		/// Makes a mapping of array items from the host type to a script type
-		/// </summary>
-		/// <param name="args">The source array</param>
-		/// <returns>The mapped array</returns>
-		private JsValue[] MapToScriptType(object[] args)
-		{
-			return args.Select(MapToScriptType).ToArray();
-		}
-
-		/// <summary>
-		/// Makes a mapping of value from the script type to a host type
-		/// </summary>
-		/// <param name="value">The source value</param>
-		/// <returns>The mapped value</returns>
-		private object MapToHostType(JsValue value)
-		{
-			JsValueType valueType = value.ValueType;
-			JsValue processedValue;
-			object result;
-
-			switch (valueType)
-			{
-				case JsValueType.Null:
-					result = null;
-					break;
-				case JsValueType.Undefined:
-					result = Undefined.Value;
-					break;
-				case JsValueType.Boolean:
-					processedValue = value.ConvertToBoolean();
-					result = processedValue.ToBoolean();
-					break;
-				case JsValueType.Number:
-					processedValue = value.ConvertToNumber();
-					result = NumericHelpers.CastDoubleValueToCorrectType(processedValue.ToDouble());
-					break;
-				case JsValueType.String:
-					processedValue = value.ConvertToString();
-					result = processedValue.ToString();
-					break;
-				case JsValueType.Object:
-				case JsValueType.Function:
-				case JsValueType.Error:
-				case JsValueType.Array:
-				case JsValueType.Symbol:
-				case JsValueType.ArrayBuffer:
-				case JsValueType.TypedArray:
-				case JsValueType.DataView:
-					result = ToObject(value);
-					break;
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// Makes a mapping of array items from the script type to a host type
-		/// </summary>
-		/// <param name="args">The source array</param>
-		/// <returns>The mapped array</returns>
-		private object[] MapToHostType(JsValue[] args)
-		{
-			return args.Select(MapToHostType).ToArray();
-		}
-
-		private JsValue FromObject(object value)
-		{
-			var del = value as Delegate;
-			JsValue objValue = del != null ? CreateFunctionFromDelegate(del) : CreateExternalObjectFromObject(value);
-
-			return objValue;
-		}
-
-		private object ToObject(JsValue value)
-		{
-			object result = value.HasExternalData ?
-				GCHandle.FromIntPtr(value.ExternalData).Target : value.ConvertToObject();
-
-			return result;
-		}
-
-		private JsValue CreateExternalObjectFromObject(object value)
-		{
-			GCHandle handle = GCHandle.Alloc(value);
-			_externalObjects.Add(value);
-
-			JsValue objValue = JsValue.CreateExternalObject(
-				GCHandle.ToIntPtr(handle), _externalObjectFinalizeCallback);
-			Type type = value.GetType();
-
-			ProjectFields(objValue, type, true);
-			ProjectProperties(objValue, type, true);
-			ProjectMethods(objValue, type, true);
-			FreezeObject(objValue);
-
-			return objValue;
-		}
-
-		private void ExternalObjectFinalizeCallback(IntPtr data)
-		{
-			if (data == IntPtr.Zero)
-			{
-				return;
-			}
-
-			GCHandle handle = GCHandle.FromIntPtr(data);
-			object obj = handle.Target;
-
-			if (obj != null && _externalObjects != null)
-			{
-				_externalObjects.Remove(obj);
-			}
-
-			handle.Free();
-		}
-
-		private JsValue CreateObjectFromType(Type type)
-		{
-			JsValue typeValue = CreateConstructor(type);
-
-			ProjectFields(typeValue, type, false);
-			ProjectProperties(typeValue, type, false);
-			ProjectMethods(typeValue, type, false);
-			FreezeObject(typeValue);
-
-			return typeValue;
-		}
-
-		private void FreezeObject(JsValue objValue)
-		{
-			JsValue freezeMethodValue = JsValue.GlobalObject
-				.GetProperty("Object")
-				.GetProperty("freeze")
-				;
-			freezeMethodValue.CallFunction(objValue);
-		}
-
-		private JsValue CreateFunctionFromDelegate(Delegate value)
-		{
-			JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
-			{
-				object[] processedArgs = MapToHostType(args.Skip(1).ToArray());
-#if NET40
-				MethodInfo method = value.Method;
-#else
-				MethodInfo method = value.GetMethodInfo();
-#endif
-				ParameterInfo[] parameters = method.GetParameters();
-				JsValue undefinedValue = JsValue.Undefined;
-
-				ReflectionHelpers.FixArgumentTypes(ref processedArgs, parameters);
-
-				object result;
-
-				try
-				{
-					result = value.DynamicInvoke(processedArgs);
-				}
-				catch (Exception e)
-				{
-					JsValue errorValue = JsErrorHelpers.CreateError(
-						string.Format(Strings.Runtime_HostDelegateInvocationFailed, e.Message));
-					JsErrorHelpers.SetException(errorValue);
-
-					return undefinedValue;
-				}
-
-				JsValue resultValue = MapToScriptType(result);
-
-				return resultValue;
-			};
-			_nativeFunctions.Add(nativeFunction);
-
-			JsValue functionValue = JsValue.CreateFunction(nativeFunction);
-
-			return functionValue;
-		}
-
-		private JsValue CreateConstructor(Type type)
-		{
-#if NET40
-			Type typeInfo = type;
-#else
-			TypeInfo typeInfo = type.GetTypeInfo();
-#endif
-			string typeName = type.FullName;
-			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(true);
-			ConstructorInfo[] constructors = type.GetConstructors(defaultBindingFlags);
-
-			JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
-			{
-				JsValue resultValue;
-				JsValue undefinedValue = JsValue.Undefined;
-
-				object[] processedArgs = MapToHostType(args.Skip(1).ToArray());
-				object result;
-
-				if (processedArgs.Length == 0 && typeInfo.IsValueType)
-				{
-					result = Activator.CreateInstance(type);
-					resultValue = MapToScriptType(result);
-
-					return resultValue;
-				}
-
-				if (constructors.Length == 0)
-				{
-					JsValue errorValue = JsErrorHelpers.CreateError(
-						string.Format(Strings.Runtime_HostTypeConstructorNotFound, typeName));
-					JsErrorHelpers.SetException(errorValue);
-
-					return undefinedValue;
-				}
-
-				var bestFitConstructor = (ConstructorInfo)ReflectionHelpers.GetBestFitMethod(
-					constructors, processedArgs);
-				if (bestFitConstructor == null)
-				{
-					JsValue errorValue = JsErrorHelpers.CreateReferenceError(
-						string.Format(Strings.Runtime_SuitableConstructorOfHostTypeNotFound, typeName));
-					JsErrorHelpers.SetException(errorValue);
-
-					return undefinedValue;
-				}
-
-				ReflectionHelpers.FixArgumentTypes(ref processedArgs, bestFitConstructor.GetParameters());
-
-				try
-				{
-					result = bestFitConstructor.Invoke(processedArgs);
-				}
-				catch (Exception e)
-				{
-					JsValue errorValue = JsErrorHelpers.CreateError(
-						string.Format(Strings.Runtime_HostTypeConstructorInvocationFailed, typeName, e.Message));
-					JsErrorHelpers.SetException(errorValue);
-
-					return undefinedValue;
-				}
-
-				resultValue = MapToScriptType(result);
-
-				return resultValue;
-			};
-			_nativeFunctions.Add(nativeFunction);
-
-			JsValue constructorValue = JsValue.CreateFunction(nativeFunction);
-
-			return constructorValue;
-		}
-
-		private void ProjectFields(JsValue target, Type type, bool instance)
-		{
-			string typeName = type.FullName;
-			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(instance);
-			FieldInfo[] fields = type.GetFields(defaultBindingFlags);
-
-			foreach (FieldInfo field in fields)
-			{
-				string fieldName = field.Name;
-
-				JsValue descriptorValue = JsValue.CreateObject();
-				descriptorValue.SetProperty("enumerable", JsValue.True, true);
-
-				JsNativeFunction nativeGetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
-				{
-					JsValue thisValue = args[0];
-					JsValue undefinedValue = JsValue.Undefined;
-
-					object thisObj = null;
-
-					if (instance)
-					{
-						if (!thisValue.HasExternalData)
-						{
-							JsValue errorValue = JsErrorHelpers.CreateTypeError(
-								string.Format(Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
-							JsErrorHelpers.SetException(errorValue);
-
-							return undefinedValue;
-						}
-
-						thisObj = MapToHostType(thisValue);
-					}
-
-					object result;
-
-					try
-					{
-						result = field.GetValue(thisObj);
-					}
-					catch (Exception e)
-					{
-						string errorMessage = instance ?
-							string.Format(Strings.Runtime_HostObjectFieldGettingFailed, fieldName, e.Message)
-							:
-							string.Format(Strings.Runtime_HostTypeFieldGettingFailed, fieldName, typeName, e.Message)
-							;
-
-						JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
-						JsErrorHelpers.SetException(errorValue);
-
-						return undefinedValue;
-					}
-
-					JsValue resultValue = MapToScriptType(result);
-
-					return resultValue;
-				};
-				_nativeFunctions.Add(nativeGetFunction);
-
-				JsValue getMethodValue = JsValue.CreateFunction(nativeGetFunction);
-				descriptorValue.SetProperty("get", getMethodValue, true);
-
-				JsNativeFunction nativeSetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
-				{
-					JsValue thisValue = args[0];
-					JsValue undefinedValue = JsValue.Undefined;
-
-					object thisObj = null;
-
-					if (instance)
-					{
-						if (!thisValue.HasExternalData)
-						{
-							JsValue errorValue = JsErrorHelpers.CreateTypeError(
-								string.Format(Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
-							JsErrorHelpers.SetException(errorValue);
-
-							return undefinedValue;
-						}
-
-						thisObj = MapToHostType(thisValue);
-					}
-
-					object value = MapToHostType(args.Skip(1).First());
-					ReflectionHelpers.FixFieldValueType(ref value, field);
-
-					try
-					{
-						field.SetValue(thisObj, value);
-					}
-					catch (Exception e)
-					{
-						string errorMessage = instance ?
-							string.Format(Strings.Runtime_HostObjectFieldSettingFailed, fieldName, e.Message)
-							:
-							string.Format(Strings.Runtime_HostTypeFieldSettingFailed, fieldName, typeName, e.Message)
-							;
-
-						JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
-						JsErrorHelpers.SetException(errorValue);
-
-						return undefinedValue;
-					}
-
-					return undefinedValue;
-				};
-				_nativeFunctions.Add(nativeSetFunction);
-
-				JsValue setMethodValue = JsValue.CreateFunction(nativeSetFunction);
-				descriptorValue.SetProperty("set", setMethodValue, true);
-
-				target.DefineProperty(fieldName, descriptorValue);
-			}
-		}
-
-		private void ProjectProperties(JsValue target, Type type, bool instance)
-		{
-			string typeName = type.FullName;
-			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(instance);
-			PropertyInfo[] properties = type.GetProperties(defaultBindingFlags);
-
-			foreach (PropertyInfo property in properties)
-			{
-				string propertyName = property.Name;
-
-				JsValue descriptorValue = JsValue.CreateObject();
-				descriptorValue.SetProperty("enumerable", JsValue.True, true);
-
-				if (property.GetGetMethod() != null)
-				{
-					JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
-					{
-						JsValue thisValue = args[0];
-						JsValue undefinedValue = JsValue.Undefined;
-
-						object thisObj = null;
-
-						if (instance)
-						{
-							if (!thisValue.HasExternalData)
-							{
-								JsValue errorValue = JsErrorHelpers.CreateTypeError(
-									string.Format(Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
-								JsErrorHelpers.SetException(errorValue);
-
-								return undefinedValue;
-							}
-
-							thisObj = MapToHostType(thisValue);
-						}
-
-						object result;
-
-						try
-						{
-							result = property.GetValue(thisObj, new object[0]);
-						}
-						catch (Exception e)
-						{
-							string errorMessage = instance ?
-								string.Format(
-									Strings.Runtime_HostObjectPropertyGettingFailed, propertyName, e.Message)
-								:
-								string.Format(
-									Strings.Runtime_HostTypePropertyGettingFailed, propertyName, typeName, e.Message)
-								;
-
-							JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
-							JsErrorHelpers.SetException(errorValue);
-
-							return undefinedValue;
-						}
-
-						JsValue resultValue = MapToScriptType(result);
-
-						return resultValue;
-					};
-					_nativeFunctions.Add(nativeFunction);
-
-					JsValue getMethodValue = JsValue.CreateFunction(nativeFunction);
-					descriptorValue.SetProperty("get", getMethodValue, true);
-				}
-
-				if (property.GetSetMethod() != null)
-				{
-					JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
-					{
-						JsValue thisValue = args[0];
-						JsValue undefinedValue = JsValue.Undefined;
-
-						object thisObj = null;
-
-						if (instance)
-						{
-							if (!thisValue.HasExternalData)
-							{
-								JsValue errorValue = JsErrorHelpers.CreateTypeError(
-									string.Format(Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
-								JsErrorHelpers.SetException(errorValue);
-
-								return undefinedValue;
-							}
-
-							thisObj = MapToHostType(thisValue);
-						}
-
-						object value = MapToHostType(args.Skip(1).First());
-						ReflectionHelpers.FixPropertyValueType(ref value, property);
-
-						try
-						{
-							property.SetValue(thisObj, value, new object[0]);
-						}
-						catch (Exception e)
-						{
-							string errorMessage = instance ?
-								string.Format(
-									Strings.Runtime_HostObjectPropertySettingFailed, propertyName, e.Message)
-								:
-								string.Format(
-									Strings.Runtime_HostTypePropertySettingFailed, propertyName, typeName, e.Message)
-								;
-
-							JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
-							JsErrorHelpers.SetException(errorValue);
-
-							return undefinedValue;
-						}
-
-						return undefinedValue;
-					};
-					_nativeFunctions.Add(nativeFunction);
-
-					JsValue setMethodValue = JsValue.CreateFunction(nativeFunction);
-					descriptorValue.SetProperty("set", setMethodValue, true);
-				}
-
-				target.DefineProperty(propertyName, descriptorValue);
-			}
-		}
-
-		private void ProjectMethods(JsValue target, Type type, bool instance)
-		{
-			string typeName = type.FullName;
-			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(instance);
-			MethodInfo[] methods = type.GetMethods(defaultBindingFlags);
-			IEnumerable<IGrouping<string, MethodInfo>> methodGroups = methods.GroupBy(m => m.Name);
-
-			foreach (IGrouping<string, MethodInfo> methodGroup in methodGroups)
-			{
-				string methodName = methodGroup.Key;
-				MethodInfo[] methodCandidates = methodGroup.ToArray();
-
-				JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
-				{
-					JsValue thisValue = args[0];
-					JsValue undefinedValue = JsValue.Undefined;
-
-					object thisObj = null;
-
-					if (instance)
-					{
-						if (!thisValue.HasExternalData)
-						{
-							JsValue errorValue = JsErrorHelpers.CreateTypeError(
-								string.Format(Strings.Runtime_InvalidThisContextForHostObjectMethod, methodName));
-							JsErrorHelpers.SetException(errorValue);
-
-							return undefinedValue;
-						}
-
-						thisObj = MapToHostType(thisValue);
-					}
-
-					object[] processedArgs = MapToHostType(args.Skip(1).ToArray());
-
-					var bestFitMethod = (MethodInfo)ReflectionHelpers.GetBestFitMethod(
-						methodCandidates, processedArgs);
-					if (bestFitMethod == null)
-					{
-						JsValue errorValue = JsErrorHelpers.CreateReferenceError(
-							string.Format(Strings.Runtime_SuitableMethodOfHostObjectNotFound, methodName));
-						JsErrorHelpers.SetException(errorValue);
-
-						return undefinedValue;
-					}
-
-					ReflectionHelpers.FixArgumentTypes(ref processedArgs, bestFitMethod.GetParameters());
-
-					object result;
-
-					try
-					{
-						result = bestFitMethod.Invoke(thisObj, processedArgs);
-					}
-					catch (Exception e)
-					{
-						string errorMessage = instance ?
-							string.Format(
-								Strings.Runtime_HostObjectMethodInvocationFailed, methodName, e.Message)
-							:
-							string.Format(
-								Strings.Runtime_HostTypeMethodInvocationFailed, methodName, typeName, e.Message)
-							;
-
-						JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
-						JsErrorHelpers.SetException(errorValue);
-
-						return undefinedValue;
-					}
-
-					JsValue resultValue = MapToScriptType(result);
-
-					return resultValue;
-				};
-				_nativeFunctions.Add(nativeFunction);
-
-				JsValue methodValue = JsValue.CreateFunction(nativeFunction);
-				target.SetProperty(methodName, methodValue, true);
-			}
-		}
 
 		private static WrapperException WrapJsException(OriginalException originalException,
 			string defaultDocumentName = null)
@@ -1329,7 +692,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						JsValue resultValue = JsContext.RunScript(expression, _jsSourceContext++,
 							uniqueDocumentName, ref parseAttributes);
 
-						return MapToHostType(resultValue);
+						return _typeMapper.MapToHostType(resultValue);
 					}
 					catch (OriginalException e)
 					{
@@ -1439,7 +802,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 						if (args.Length > 0)
 						{
-							JsValue[] processedArgs = MapToScriptType(args);
+							JsValue[] processedArgs = _typeMapper.MapToScriptType(args);
 
 							foreach (JsValue processedArg in processedArgs)
 							{
@@ -1468,7 +831,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 							resultValue = functionValue.CallFunction(globalObj);
 						}
 
-						return MapToHostType(resultValue);
+						return _typeMapper.MapToHostType(resultValue);
 					}
 					catch (OriginalException e)
 					{
@@ -1527,7 +890,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					{
 						JsValue variableValue = JsValue.GlobalObject.GetProperty(variableName);
 
-						return MapToHostType(variableValue);
+						return _typeMapper.MapToHostType(variableValue);
 					}
 					catch (OriginalException e)
 					{
@@ -1554,7 +917,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				{
 					try
 					{
-						JsValue inputValue = MapToScriptType(value);
+						JsValue inputValue = _typeMapper.MapToScriptType(value);
 						AddReferenceToValue(inputValue);
 
 						try
@@ -1606,7 +969,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				{
 					try
 					{
-						JsValue processedValue = MapToScriptType(value);
+						JsValue processedValue = _typeMapper.GetOrCreateScriptObject(value);
 						JsValue.GlobalObject.SetProperty(itemName, processedValue, true);
 					}
 					catch (OriginalException e)
@@ -1625,7 +988,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				{
 					try
 					{
-						JsValue typeValue = CreateObjectFromType(type);
+						JsValue typeValue = _typeMapper.GetOrCreateScriptType(type);
 						JsValue.GlobalObject.SetProperty(itemName, typeValue, true);
 					}
 					catch (OriginalException e)
@@ -1721,20 +1084,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						_dispatcher = null;
 					}
 
-					if (_externalObjects != null)
+					if (_typeMapper != null)
 					{
-						_externalObjects.Clear();
-						_externalObjects = null;
-					}
-
-					if (_nativeFunctions != null)
-					{
-						_nativeFunctions.Clear();
-						_nativeFunctions = null;
+						_typeMapper.Dispose();
+						_typeMapper = null;
 					}
 
 					_promiseContinuationCallback = null;
-					_externalObjectFinalizeCallback = null;
 				}
 				else
 				{

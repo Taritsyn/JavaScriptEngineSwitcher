@@ -186,7 +186,7 @@
   <data name="Engine_MaxStackSizeMustBeNonNegative" xml:space="preserve">
     <value>Максимальный размер стека должен быть неотрицательным!</value>
   </data>
-  <data name="Common_BufferNotFromPool" xml:space="preserve">
-    <value>Буфер не связан с этим пулом и не может быть возвращен в него.</value>
+  <data name="Common_ArgumentHasIncorrectType" xml:space="preserve">
+    <value>Параметр с именем "{0}" должен иметь тип `{1}`!</value>
   </data>
 </root>

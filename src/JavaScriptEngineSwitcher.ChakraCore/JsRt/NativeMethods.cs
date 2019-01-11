@@ -146,7 +146,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 		[DllImport(DllName.Universal)]
 		internal static extern JsErrorCode JsCreateExternalObject(IntPtr data,
-			JsObjectFinalizeCallback finalizeCallback, out JsValue obj);
+			JsFinalizeCallback finalizeCallback, out JsValue obj);
+
+		[DllImport(DllName.Universal)]
+		internal static extern JsErrorCode JsCreateExternalObjectWithPrototype(IntPtr data,
+			JsFinalizeCallback finalizeCallback, JsValue prototype, out JsValue obj);
 
 		[DllImport(DllName.Universal)]
 		internal static extern JsErrorCode JsConvertValueToObject(JsValue value, out JsValue obj);
@@ -240,7 +244,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 		[DllImport(DllName.Universal)]
 		internal static extern JsErrorCode JsCreateExternalArrayBuffer(IntPtr data, uint byteLength,
-			JsObjectFinalizeCallback finalizeCallback, IntPtr callbackState, out JsValue result);
+			JsFinalizeCallback finalizeCallback, IntPtr callbackState, out JsValue result);
 
 		[DllImport(DllName.Universal)]
 		internal static extern JsErrorCode JsCreateTypedArray(JsTypedArrayType arrayType, JsValue arrayBuffer,

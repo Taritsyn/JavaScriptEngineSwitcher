@@ -242,11 +242,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "The buffer is not associated with this pool and may not be returned to it."
+		/// Looks up a localized string similar to "The parameter '{0}' must have a `{1}` type."
 		/// </summary>
-		internal static string Common_BufferNotFromPool
+		internal static string Common_ArgumentHasIncorrectType
 		{
-			get { return GetString("Common_BufferNotFromPool"); }
+			get { return GetString("Common_ArgumentHasIncorrectType"); }
 		}
 
 		private static string GetString(string name)

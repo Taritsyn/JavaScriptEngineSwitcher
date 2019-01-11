@@ -3,8 +3,8 @@
 namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
 	/// <summary>
-	/// The finalization callback
+	/// A finalizer callback
 	/// </summary>
 	/// <param name="data">The external data that was passed in when creating the object being finalized</param>
-	internal delegate void JsObjectFinalizeCallback(IntPtr data);
+	internal delegate void JsFinalizeCallback(IntPtr data);
 }

@@ -22,12 +22,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;ChakraCore</PackageTags>
-		<PackageReleaseNotes>1. ChakraCore was updated to version 1.11.4;
-2. No longer used the old ChakraCore API for Windows (Internet Explorer-like API);
-3. Added a ability to interrupt execution of the script;
-4. Added a ability to pre-compile scripts;
-5. In configuration settings of the ChakraCore JS engine was added one new property - `MaxStackSize` (default `492` or `984` KB);
-6. Added support of .NET Framework 4.7.1, .NET Standard 2.0 and .NET Core App 2.1.</PackageReleaseNotes>
+		<PackageReleaseNotes>Fixed a error #65 “Memory leak using EmbedHostObject”.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />

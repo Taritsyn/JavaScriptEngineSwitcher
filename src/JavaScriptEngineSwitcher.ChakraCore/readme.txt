@@ -30,15 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version 1.11.4;
-   2. No longer used the old ChakraCore API for Windows (Internet Explorer-like
-      API);
-   3. Added a ability to interrupt execution of the script;
-   4. Added a ability to pre-compile scripts;
-   5. In configuration settings of the ChakraCore JS engine was added one new
-      property - `MaxStackSize` (default `492` or `984` KB);
-   6. Added support of .NET Framework 4.7.1, .NET Standard 2.0 and .NET Core App
-      2.1.
+   Fixed a error #65 “Memory leak using EmbedHostObject”.
 
    =============
    DOCUMENTATION
