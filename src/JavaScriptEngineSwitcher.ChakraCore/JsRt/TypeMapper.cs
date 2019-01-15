@@ -24,8 +24,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <summary>
 		/// Storage for lazy-initialized embedded objects
 		/// </summary>
-		private ConcurrentDictionary<EmbeddedObjectKey, Lazy<EmbeddedObject>> _lazyEmbeddedObjects =
-			new ConcurrentDictionary<EmbeddedObjectKey, Lazy<EmbeddedObject>>();
+		private ConcurrentDictionary<EmbeddedObjectKey, Lazy<EmbeddedObject>> _lazyEmbeddedObjects;
 
 		/// <summary>
 		/// Callback for finalization of embedded object
@@ -33,15 +32,34 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		private JsFinalizeCallback _embeddedObjectFinalizeCallback;
 
 		/// <summary>
+		/// Synchronizer of embedded object storage's initialization
+		/// </summary>
+		private readonly object _embeddedObjectStorageInitializationSynchronizer = new object();
+
+		/// <summary>
+		/// Flag indicating whether the embedded object storage is initialized
+		/// </summary>
+		private bool _embeddedObjectStorageInitialized;
+
+		/// <summary>
 		/// Storage for lazy-initialized embedded types
 		/// </summary>
-		private ConcurrentDictionary<string, Lazy<EmbeddedType>> _lazyEmbeddedTypes =
-			new ConcurrentDictionary<string, Lazy<EmbeddedType>>();
+		private ConcurrentDictionary<string, Lazy<EmbeddedType>> _lazyEmbeddedTypes;
 
 		/// <summary>
 		/// Callback for finalization of embedded type
 		/// </summary>
 		private JsFinalizeCallback _embeddedTypeFinalizeCallback;
+
+		/// <summary>
+		/// Synchronizer of embedded type storage's initialization
+		/// </summary>
+		private readonly object _embeddedTypeStorageInitializationSynchronizer = new object();
+
+		/// <summary>
+		/// Flag indicating whether the embedded type storage is initialized
+		/// </summary>
+		private bool _embeddedTypeStorageInitialized;
 
 		/// <summary>
 		/// Flag indicating whether this object is disposed
@@ -53,10 +71,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// Constructs an instance of type mapper
 		/// </summary>
 		public TypeMapper()
-		{
-			_embeddedObjectFinalizeCallback = EmbeddedObjectFinalizeCallback;
-			_embeddedTypeFinalizeCallback = EmbeddedTypeFinalizeCallback;
-		}
+		{ }
 
 
 		/// <summary>
@@ -66,6 +81,20 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <returns>JavaScript value created from an host object</returns>
 		public JsValue GetOrCreateScriptObject(object obj)
 		{
+			if (!_embeddedObjectStorageInitialized)
+			{
+				lock (_embeddedObjectStorageInitializationSynchronizer)
+				{
+					if (!_embeddedObjectStorageInitialized)
+					{
+						_lazyEmbeddedObjects = new ConcurrentDictionary<EmbeddedObjectKey, Lazy<EmbeddedObject>>();
+						_embeddedObjectFinalizeCallback = EmbeddedObjectFinalizeCallback;
+
+						_embeddedObjectStorageInitialized = true;
+					}
+				}
+			}
+
 			var embeddedObjectKey = new EmbeddedObjectKey(obj);
 			EmbeddedObject embeddedObject = _lazyEmbeddedObjects.GetOrAdd(
 				embeddedObjectKey,
@@ -82,6 +111,20 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <returns>JavaScript value created from an host type</returns>
 		public JsValue GetOrCreateScriptType(Type type)
 		{
+			if (!_embeddedTypeStorageInitialized)
+			{
+				lock (_embeddedTypeStorageInitializationSynchronizer)
+				{
+					if (!_embeddedTypeStorageInitialized)
+					{
+						_lazyEmbeddedTypes = new ConcurrentDictionary<string, Lazy<EmbeddedType>>();
+						_embeddedTypeFinalizeCallback = EmbeddedTypeFinalizeCallback;
+
+						_embeddedTypeStorageInitialized = true;
+					}
+				}
+			}
+
 			string embeddedTypeKey = type.AssemblyQualifiedName;
 			EmbeddedType embeddedType = _lazyEmbeddedTypes.GetOrAdd(
 				embeddedTypeKey,

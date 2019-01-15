@@ -30,8 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version 1.11.5;
-   2. Fixed a error #65 “Memory leak using EmbedHostObject”.
+   Reduced a memory consumption in cases, where not used the embedding of objects
+   and types.
 
    =============
    DOCUMENTATION
