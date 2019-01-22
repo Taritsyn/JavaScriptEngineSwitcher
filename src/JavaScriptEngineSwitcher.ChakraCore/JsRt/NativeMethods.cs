@@ -149,10 +149,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsFinalizeCallback finalizeCallback, out JsValue obj);
 
 		[DllImport(DllName.Universal)]
-		internal static extern JsErrorCode JsCreateExternalObjectWithPrototype(IntPtr data,
-			JsFinalizeCallback finalizeCallback, JsValue prototype, out JsValue obj);
-
-		[DllImport(DllName.Universal)]
 		internal static extern JsErrorCode JsConvertValueToObject(JsValue value, out JsValue obj);
 
 		[DllImport(DllName.Universal)]

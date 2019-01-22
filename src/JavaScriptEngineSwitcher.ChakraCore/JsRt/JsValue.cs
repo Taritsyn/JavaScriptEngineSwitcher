@@ -394,24 +394,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
-		/// Creates a new <c>Object</c> (with prototype) that stores some external data
-		/// </summary>
-		/// <remarks>
-		/// Requires an active script context.
-		/// </remarks>
-		/// <param name="data">External data that the object will represent. May be null.</param>
-		/// <param name="finalizer">A callback for when the object is finalized. May be null.</param>
-		/// <param name="prototype">Prototype object or null</param>
-		/// <returns>The new <c>Object</c></returns>
-		public static JsValue CreateExternalObjectWithPrototype(IntPtr data, JsFinalizeCallback finalizer, JsValue prototype)
-		{
-			JsValue reference;
-			JsErrorHelpers.ThrowIfError(NativeMethods.JsCreateExternalObjectWithPrototype(data, finalizer, prototype, out reference));
-
-			return reference;
-		}
-
-		/// <summary>
 		/// Creates a new JavaScript function
 		/// </summary>
 		/// <remarks>

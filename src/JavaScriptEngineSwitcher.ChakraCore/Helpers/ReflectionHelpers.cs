@@ -27,6 +27,20 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			return bindingFlags;
 		}
 
+		public static bool IsFullyFledgedMethod(MethodInfo method)
+		{
+			if (!method.Attributes.HasFlag(MethodAttributes.SpecialName))
+			{
+				return true;
+			}
+
+			string name = method.Name;
+			bool isFullyFledged = !(name.StartsWith("get_", StringComparison.Ordinal)
+				|| name.StartsWith("set_", StringComparison.Ordinal));
+
+			return isFullyFledged;
+		}
+
 		public static void FixFieldValueType(ref object value, FieldInfo field)
 		{
 			Type valueType = value.GetType();

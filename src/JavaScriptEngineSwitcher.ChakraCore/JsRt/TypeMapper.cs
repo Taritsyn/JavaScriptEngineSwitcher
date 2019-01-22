@@ -313,12 +313,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				return resultValue;
 			};
 
-			JsValue functionValue = JsValue.CreateFunction(nativeFunction);
+			GCHandle delHandle = GCHandle.Alloc(del);
+			IntPtr delPtr = GCHandle.ToIntPtr(delHandle);
+			JsValue prototypeValue = JsValue.CreateExternalObject(delPtr, _embeddedObjectFinalizeCallback);
 
-			GCHandle objHandle = GCHandle.Alloc(del);
-			IntPtr objPtr = GCHandle.ToIntPtr(objHandle);
-			JsValue objValue = JsValue.CreateExternalObjectWithPrototype(objPtr,
-				_embeddedObjectFinalizeCallback, functionValue);
+			JsValue functionValue = JsValue.CreateFunction(nativeFunction);
+			functionValue.Prototype = prototypeValue;
 
 			var embeddedObject = new EmbeddedObject(del, functionValue,
 				new List<JsNativeFunction> { nativeFunction });
@@ -419,23 +419,22 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				return resultValue;
 			};
 
-			JsValue constructorValue = JsValue.CreateFunction(nativeConstructorFunction);
-
 			string embeddedTypeKey = type.AssemblyQualifiedName;
 			GCHandle embeddedTypeKeyHandle = GCHandle.Alloc(embeddedTypeKey);
 			IntPtr embeddedTypeKeyPtr = GCHandle.ToIntPtr(embeddedTypeKeyHandle);
 			JsValue prototypeValue = JsValue.CreateExternalObject(embeddedTypeKeyPtr,
 				_embeddedTypeFinalizeCallback);
-			constructorValue.Prototype = prototypeValue;
-			prototypeValue.SetProperty("constructor", constructorValue, true);
 
-			var embeddedType = new EmbeddedType(type, constructorValue,
+			JsValue typeValue = JsValue.CreateFunction(nativeConstructorFunction);
+			typeValue.Prototype = prototypeValue;
+
+			var embeddedType = new EmbeddedType(type, typeValue,
 				new List<JsNativeFunction> { nativeConstructorFunction });
 
 			ProjectFields(embeddedType);
 			ProjectProperties(embeddedType);
 			ProjectMethods(embeddedType);
-			FreezeObject(constructorValue);
+			FreezeObject(typeValue);
 
 			return embeddedType;
 		}
@@ -697,9 +696,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			string typeName = type.FullName;
 			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(instance);
 			IEnumerable<MethodInfo> methods = type.GetMethods(defaultBindingFlags)
-				.Where(m => !(m.Attributes.HasFlag(MethodAttributes.SpecialName)
-					&& (m.Name.StartsWith("get_") || m.Name.StartsWith("set_"))))
-				;
+				.Where(ReflectionHelpers.IsFullyFledgedMethod);
 			IEnumerable<IGrouping<string, MethodInfo>> methodGroups = methods.GroupBy(m => m.Name);
 
 			foreach (IGrouping<string, MethodInfo> methodGroup in methodGroups)

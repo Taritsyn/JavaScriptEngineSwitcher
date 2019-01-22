@@ -30,8 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   Reduced a memory consumption in cases, where not used the embedding of objects
-   and types.
+  1. Reduced a memory consumption in cases, where not used the embedding of objects
+     and types;
+  2. Fixed a wrong implementation of destruction of the embedded delegates.
 
    =============
    DOCUMENTATION
