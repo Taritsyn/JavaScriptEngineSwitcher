@@ -13,11 +13,7 @@
 		<Description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge on the machine.</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;MSIE;IE;Chakra</PackageTags>
-		<PackageReleaseNotes>1. MSIE JavaScript Engine was updated to version 3.0.0;
-2. Added a ability to interrupt execution of the script;
-3. Added a ability to pre-compile scripts;
-4. In configuration settings of the MSIE JS engine was added one new property - `MaxStackSize` (default `492` or `984` KB);
-5. Added support of .NET Standard 2.0.</PackageReleaseNotes>
+		<PackageReleaseNotes>MSIE JavaScript Engine was updated to version 3.0.1.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
@@ -26,7 +22,7 @@
 	<Import Project="../../build/nuget-metadata.props" />
 
 	<ItemGroup>
-		<PackageReference Include="MsieJavaScriptEngine" Version="3.0.0" />
+		<PackageReference Include="MsieJavaScriptEngine" Version="3.0.1" />
 		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
 
 		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />

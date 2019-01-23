@@ -5,6 +5,7 @@ using System.Drawing;
 #endif
 using System.IO;
 using System.Linq;
+using System.Text;
 
 using Xunit;
 
@@ -13,6 +14,7 @@ using JavaScriptEngineSwitcher.Tests.Interop.Animals;
 #if NETCOREAPP1_0
 using JavaScriptEngineSwitcher.Tests.Interop.Drawing;
 #endif
+using JavaScriptEngineSwitcher.Tests.Interop.Logging;
 
 namespace JavaScriptEngineSwitcher.Tests
 {
@@ -537,6 +539,52 @@ smileDay.GetDayOfYear();";
 			Assert.Equal(targetOutput, output);
 		}
 
+		[Fact]
+		public virtual void EmbeddingOfInstanceOfDelegateWithoutResultIsCorrect()
+		{
+			// Arrange
+			var logBuilder = new StringBuilder();
+			Action<string> log = (string value) =>
+			{
+				logBuilder.AppendLine(value);
+			};
+
+			const string input = @"(function(log, undefined) {
+	var num = 2, count = 0;
+
+	log('-= Start code execution =-');
+
+	while (num != Infinity) {
+		num = num * num;
+		count++;
+	}
+
+	log('-= End of code execution =-');
+
+	return count;
+}(log));";
+			const int targetOutput = 10;
+			string targetLogOutput = "-= Start code execution =-" + Environment.NewLine +
+				"-= End of code execution =-" + Environment.NewLine;
+
+			// Act
+			int output;
+			string logOutput;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("log", log);
+				output = jsEngine.Evaluate<int>(input);
+
+				logOutput = logBuilder.ToString();
+				logBuilder.Clear();
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+			Assert.Equal(targetLogOutput, logOutput);
+		}
+
 		#endregion
 
 		#region Removal
@@ -833,17 +881,22 @@ smileDay.GetDayOfYear();";
 		public virtual void EmbeddingOfCustomReferenceTypeWithFieldIsCorrect()
 		{
 			// Arrange
-			Type simpleSingletonType = typeof(SimpleSingleton);
+			Type defaultLoggerType = typeof(DefaultLogger);
+			Type throwExceptionLoggerType = typeof(ThrowExceptionLogger);
+			const string updateCode = "DefaultLogger.Current = new ThrowExceptionLogger();";
 
-			const string input = "SimpleSingleton.Instance.ToString()";
-			const string targetOutput = "[simple singleton]";
+			const string input = "DefaultLogger.Current.ToString()";
+			const string targetOutput = "[throw exception logger]";
 
 			// Act
 			string output;
 
 			using (var jsEngine = CreateJsEngine())
 			{
-				jsEngine.EmbedHostType("SimpleSingleton", simpleSingletonType);
+				jsEngine.EmbedHostType("DefaultLogger", defaultLoggerType);
+				jsEngine.EmbedHostType("ThrowExceptionLogger", throwExceptionLoggerType);
+				jsEngine.Execute(updateCode);
+
 				output = jsEngine.Evaluate<string>(input);
 			}
 

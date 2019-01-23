@@ -9,7 +9,7 @@ using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
-//using JavaScriptEngineSwitcher.Msie;
+using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
 #if NET46
 using JavaScriptEngineSwitcher.V8;
@@ -100,47 +100,47 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new JurassicJsEngine();
 			EmbedAndUseHostTypes(createJsEngine);
 		}
-		//#if NET46
+#if NET46
 
-		//		[Benchmark]
-		//		public void MsieClassic()
-		//		{
-		//			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
-		//			{
-		//				EngineMode = JsEngineMode.Classic
-		//			});
-		//			EmbedAndUseHostTypes(createJsEngine);
-		//		}
+		[Benchmark]
+		public void MsieClassic()
+		{
+			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			{
+				EngineMode = JsEngineMode.Classic
+			});
+			EmbedAndUseHostTypes(createJsEngine);
+		}
 
-		//		[Benchmark]
-		//		public void MsieChakraActiveScript()
-		//		{
-		//			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
-		//			{
-		//				EngineMode = JsEngineMode.ChakraActiveScript
-		//			});
-		//			EmbedAndUseHostTypes(createJsEngine);
-		//		}
-		//#endif
-		//[Benchmark]
-		//public void MsieChakraIeJsRt()
-		//{
-		//	Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
-		//	{
-		//		EngineMode = JsEngineMode.ChakraIeJsRt
-		//	});
-		//	EmbedAndUseHostTypes(createJsEngine);
-		//}
+		[Benchmark]
+		public void MsieChakraActiveScript()
+		{
+			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			{
+				EngineMode = JsEngineMode.ChakraActiveScript
+			});
+			EmbedAndUseHostTypes(createJsEngine);
+		}
+#endif
+		[Benchmark]
+		public void MsieChakraIeJsRt()
+		{
+			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			{
+				EngineMode = JsEngineMode.ChakraIeJsRt
+			});
+			EmbedAndUseHostTypes(createJsEngine);
+		}
 
-		//[Benchmark]
-		//public void MsieChakraEdgeJsRt()
-		//{
-		//	Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
-		//	{
-		//		EngineMode = JsEngineMode.ChakraEdgeJsRt
-		//	});
-		//	EmbedAndUseHostTypes(createJsEngine);
-		//}
+		[Benchmark]
+		public void MsieChakraEdgeJsRt()
+		{
+			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			{
+				EngineMode = JsEngineMode.ChakraEdgeJsRt
+			});
+			EmbedAndUseHostTypes(createJsEngine);
+		}
 
 		[Benchmark]
 		public void NiL()

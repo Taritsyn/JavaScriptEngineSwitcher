@@ -122,15 +122,15 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		}
 #if NET46
 
-		//[Benchmark]
-		//public void MsieClassic()
-		//{
-		//	Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
-		//	{
-		//		EngineMode = JsEngineMode.Classic
-		//	});
-		//	EmbedAndUseHostObjects(createJsEngine);
-		//}
+		[Benchmark]
+		public void MsieClassic()
+		{
+			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			{
+				EngineMode = JsEngineMode.Classic
+			});
+			EmbedAndUseHostObjects(createJsEngine);
+		}
 
 		[Benchmark]
 		public void MsieChakraActiveScript()

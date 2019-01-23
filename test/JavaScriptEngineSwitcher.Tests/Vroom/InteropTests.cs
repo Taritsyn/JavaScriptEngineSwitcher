@@ -38,6 +38,9 @@
 		public override void EmbeddingOfInstanceOfDelegateWithTwoParametersIsCorrect()
 		{ }
 
+		public override void EmbeddingOfInstanceOfDelegateWithoutResultIsCorrect()
+		{ }
+
 		#endregion
 
 		#endregion
@@ -48,6 +51,9 @@
 		#region Types with fields
 
 		public override void EmbeddingOfBuiltinValueTypeWithFieldIsCorrect()
+		{ }
+
+		public override void EmbeddingOfCustomReferenceTypeWithFieldIsCorrect()
 		{ }
 
 		#endregion
