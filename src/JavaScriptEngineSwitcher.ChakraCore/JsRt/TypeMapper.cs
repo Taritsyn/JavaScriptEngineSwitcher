@@ -200,7 +200,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public object MapToHostType(JsValue value)
 		{
 			JsValueType valueType = value.ValueType;
-			JsValue processedValue;
 			object result;
 
 			switch (valueType)
@@ -212,16 +211,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					result = Undefined.Value;
 					break;
 				case JsValueType.Boolean:
-					processedValue = value.ConvertToBoolean();
-					result = processedValue.ToBoolean();
+					result = value.ToBoolean();
 					break;
 				case JsValueType.Number:
-					processedValue = value.ConvertToNumber();
-					result = NumericHelpers.CastDoubleValueToCorrectType(processedValue.ToDouble());
+					result = NumericHelpers.CastDoubleValueToCorrectType(value.ToDouble());
 					break;
 				case JsValueType.String:
-					processedValue = value.ConvertToString();
-					result = processedValue.ToString();
+					result = value.ToString();
 					break;
 				case JsValueType.Object:
 				case JsValueType.Function:
