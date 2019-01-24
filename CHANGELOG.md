@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## v3.0.2 - January 24, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * Reduced a memory consumption in cases, where not used the embedding of objects and types
+   * Fixed a wrong implementation of destruction of the embedded delegates
+   * Accelerated a conversion of script types to host types
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.1
+
 ## v3.0.1 - January 11, 2019
  * In JavaScriptEngineSwitcher.ChakraCore:
    * ChakraCore was updated to version 1.11.5
