@@ -51,11 +51,14 @@ If you use the JavaScript Engine Switcher in some project, please send me a mess
 
  * [Bundle Transformer](https://github.com/Taritsyn/BundleTransformer) by Andrey Taritsyn
  * [Cruncher](https://github.com/JimBobSquarePants/Cruncher) by James South
+ * [E.F.F.C JavaScriptEngineSwitcher Extention Lib](https://github.com/redwolf0817/EFFC.JavaScriptEngineSwitcher.Extention) by ItTrending
  * [GFMParserSample.Net](https://github.com/mad4-red/GFMParserSample.Net)
  * [JSPool](http://dan.cx/projects/jspool) by Daniel Lo Nigro
+ * [MediaGetCore](https://github.com/XuPeiYao/MediaGetCore) by Xu Pei-Yao
  * [ProteanCMS](https://github.com/Eonic/ProteanCMS) by Trevor Spink
  * [ReactJS.NET](http://reactjs.net/) by Daniel Lo Nigro
  * [Sitecore JavaScript Presentation Module](https://github.com/asmagin/sitecore-js-presentation) by Alex Smagin
  * [T1.Scripts](http://nuget.org/packages/T1.Scripts)
+ * [Transformalize](https://github.com/dalenewman/Transformalize) by Dale Newman
  * [Wyam](http://wyam.io/)
  * [zxcvbn.net](https://github.com/darcythomas/zxcvbn.net) by Darcy Thomas
