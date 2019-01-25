@@ -69,6 +69,16 @@ Change log
    * Added a `netcoreapp2.1` target
  *  In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1282
 
+## v2.4.29 - November 20, 2018
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.10
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.3
+
+## v2.4.28 - October 13, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.2
+
+## v2.4.27 - September 21, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore was optimized a memory usage in version for Unix
+
 ## v3.0.0 RC 1 - September 19, 2018
  * Fixed a [error #59](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/59) “Unhandled exception when JS exception is thrown”
  * In JavaScriptEngineSwitcher.Msie:
@@ -81,6 +91,16 @@ Change log
    * Optimized a memory usage
    * `MaxStackSize` configuration property was removed from the version for .NET Standard 1.3
 
+## v2.4.26 - September 13, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.1
+
+## v2.4.25 - September 8, 2018
+ * In JavaScriptEngineSwitcher.Jint in configuration settings was added one new property - `LocalTimeZone` (default `TimeZoneInfo.Local`)
+ * In JavaScriptEngineSwitcher.ChakraCore improved a performance in version for Unix
+
+## v2.4.24 - August 30, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.0
+
 ## v3.0.0 Beta 9 - August 21, 2018
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.5.3 (support of V8 version 6.8.275.28)
  * In JavaScriptEngineSwitcher.Jurassic the original library was rolled back to version of February 24, 2018
@@ -89,16 +109,36 @@ Change log
    * Added support of NiL.JS version 2.5.1278
    * Fixed a [error #57](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/57) “Nil - can't locate function name”
 
+## v2.4.23 - August 20, 2018
+ * In JavaScriptEngineSwitcher.Jurassic the original library was rolled back to version of February 24, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.10.2
+
+## v2.4.22 - July 11, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.10.1
+
 ## v3.0.0 Beta 8 - July 7, 2018
  * ChakraCore was updated to version 1.10.0
  * In configuration settings of the ChakraCore JS engine was added one new property - `DisableExecutablePageAllocation` (default `false`)
 
+## v2.4.21 - July 2, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.10.0
+   * In configuration settings of the ChakraCore JS engine was added one new property - `DisableExecutablePageAllocation` (default `false`)
+
 ## v3.0.0 Beta 7 - June 18, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.5
+
+## v2.4.20 - June 13, 2018
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.5
 
 ## v3.0.0 Beta 6 - June 12, 2018
  * In JavaScriptEngineSwitcher.Extensions.MsDependencyInjection added a overloaded versions of the `AddJsEngineSwitcher` extension method, which takes an instance of JS engine switcher
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of June 7, 2018
+
+## v2.4.19 - June 12, 2018
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.9
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of June 7, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore changed a implementation of the `Dispose` method
 
 ## v3.0.0 Beta 5 - June 6, 2018
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Beta 4
@@ -115,6 +155,10 @@ Change log
    * Fixed a implementation of the `JsSerializedLoadScriptCallback` delegate
    * Fixed a [error #34](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/34) “Finalazier thread is blocked because of JavaScriptEngineSwitcher.ChakraCore.ChakraCoreJsEngine”
 
+## v2.4.18 - May 24, 2018
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.8
+ * In JavaScriptEngineSwitcher.ChakraCore fixed a [error #34](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/34) “Finalazier thread is blocked because of JavaScriptEngineSwitcher.ChakraCore.ChakraCoreJsEngine”
+
 ## v3.0.0 Beta 3 - May 22, 2018
  * In `IJsEngine` interface was added `SupportsScriptPrecompilation` property and three new methods: `Precompile`, `PrecompileFile` and `PrecompileResource`
  * In JavaScriptEngineSwitcher.Msie, JavaScriptEngineSwitcher.V8, JavaScriptEngineSwitcher.Jurassic, JavaScriptEngineSwitcher.Jint and JavaScriptEngineSwitcher.ChakraCore added a ability to pre-compile scripts
@@ -125,7 +169,20 @@ Change log
    * ChakraCore was updated to version 1.8.4
    * JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm package has been replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.win-arm package
 
+## v2.4.17 - May 9, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.8.4
+   * JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm package has been replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.win-arm package
+
+## v2.4.16 - April 13, 2018
+ * In JavaScriptEngineSwitcher.V8.Native.win-* and JavaScriptEngineSwitcher.ChakraCore.Native.win-* packages the directories with `win7-*` RIDs was renamed to `win-*`
+
 ## v3.0.0 Beta 2 - April 12, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.3
+
+## v2.4.15 - April 11, 2018
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.7
+ * In JavaScriptEngineSwitcher.ChakraCore and JavaScriptEngineSwitcher.Vroom fixed a minor errors
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.3
 
 ## v3.0.0 Beta 1 - April 8, 2018
@@ -149,10 +206,36 @@ Change log
    * Now the ChakraCore for Windows requires the [Microsoft Visual C++ Redistributable for Visual Studio 2017](https://www.visualstudio.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2017)
    * In configuration settings of the ChakraCore JS engine was added one new property - `MaxStackSize` (default `492` or `984` KB)
 
+## v2.4.14 - March 14, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.8.2
+
+## v2.4.13 - February 24, 2018
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.6
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 5.4.10
+   * Improved implementation of the `CallFunction` method
+   * Removed unnecessary locks from the `V8JsEngine` class
+   * In configuration settings of the V8 JS engine was added 3 new properties: `HeapSizeSampleInterval` (default `TimeSpan.Zero`), `MaxHeapSize` (default `UIntPtr.Zero`) and `MaxStackUsage` (default `UIntPtr.Zero`)
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of February 24, 2018
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 2.11.58
+
+## v2.4.12 - February 20, 2018
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.8.1
+   * JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64 package has been replaced by the JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64 package
+   * ICU-57 library was embedded into the `libChakraCore.so` and `libChakraCore.dylib` assemblies
+   * Prevented an occurrence of the “Host may not have set any promise continuation callback. Promises may not be executed.” error
+   * In configuration settings of the ChakraCore JS engine was added two new properties - `MemoryLimit` and `DisableFatalOnOOM` (default `false`)
+   * Now during calling of the `CollectGarbage` method is no longer performed blocking
+
 ## v3.0.0 Alpha 10 - January 3, 2018
  * In JavaScriptEngineSwitcher.V8:
    * Added support of Microsoft ClearScript.V8 version 5.5.1.1 (support of V8 version 6.3.292.48)
    * In configuration settings of the V8 JS engine was added one new property - `AwaitDebuggerAndPauseOnStart` (default `false`)
+
+## v2.4.11 - December 24, 2017
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 2.2.5
+ * In JavaScriptEngineSwitcher.ChakraCore fixed a error, that occurred during finding the suitable method overload, that receives numeric values and interfaces as parameters, of the host object
 
 ## v3.0.0 Alpha 9 - December 22, 2017
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.0 Alpha 3
