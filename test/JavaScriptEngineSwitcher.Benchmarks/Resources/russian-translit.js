@@ -357,6 +357,76 @@ var transliterate = (function () {
 			'Я': 'Ja'
 		},
 
+		// ISO 9:1995
+		'iso-9-1995': {
+			'а': 'a',
+			'б': 'b',
+			'в': 'v',
+			'г': 'g',
+			'д': 'd',
+			'е': 'e',
+			'ё': 'ë',
+			'ж': 'ž',
+			'з': 'z',
+			'и': 'i',
+			'й': 'j',
+			'к': 'k',
+			'л': 'l',
+			'м': 'm',
+			'н': 'n',
+			'о': 'o',
+			'п': 'p',
+			'р': 'r',
+			'с': 's',
+			'т': 't',
+			'у': 'u',
+			'ф': 'f',
+			'х': 'h',
+			'ц': 'c',
+			'ч': 'č',
+			'ш': 'š',
+			'щ': 'ŝ',
+			'ъ': '"',
+			'ы': 'y',
+			'ь': '\'',
+			'э': 'è',
+			'ю': 'û',
+			'я': 'â',
+			'А': 'A',
+			'Б': 'B',
+			'В': 'V',
+			'Г': 'G',
+			'Д': 'D',
+			'Е': 'E',
+			'Ё': 'Ë',
+			'Ж': 'Ž',
+			'З': 'Z',
+			'И': 'I',
+			'Й': 'J',
+			'К': 'K',
+			'Л': 'L',
+			'М': 'M',
+			'Н': 'N',
+			'О': 'O',
+			'П': 'P',
+			'Р': 'R',
+			'С': 'S',
+			'Т': 'T',
+			'У': 'U',
+			'Ф': 'F',
+			'Х': 'H',
+			'Ц': 'C',
+			'Ч': 'Č',
+			'Ш': 'Š',
+			'Щ': 'Ŝ',
+			'Ъ': '"',
+			'Ы': 'Y',
+			'Ь': '\'',
+			'Э': 'È',
+			'Ю': 'Û',
+			'Я': 'Â'
+		},
+
 		// LC
 		'lc': {
 			'а': 'a',
@@ -705,8 +775,122 @@ var transliterate = (function () {
 			'Э': 'E',
 			'Ю': 'Iu',
 			'Я': 'Ia'
+		},
+
+		// Международные телеграммы
+		'international-telegrams': {
+			'а': 'a',
+			'б': 'b',
+			'в': 'v',
+			'г': 'g',
+			'д': 'd',
+			'е': 'e',
+			'ё': 'e',
+			'ж': 'j',
+			'з': 'z',
+			'и': 'i',
+			'й': 'i',
+			'к': 'k',
+			'л': 'l',
+			'м': 'm',
+			'н': 'n',
+			'о': 'o',
+			'п': 'p',
+			'р': 'r',
+			'с': 's',
+			'т': 't',
+			'у': 'u',
+			'ф': 'f',
+			'х': 'h',
+			'ц': 'c',
+			'ч': 'ch',
+			'ш': 'sh',
+			'щ': 'sc',
+			'ъ': '',
+			'ы': 'y',
+			'ь': '',
+			'э': 'e',
+			'ю': 'iu',
+			'я': 'ia',
+			'А': 'A',
+			'Б': 'B',
+			'В': 'V',
+			'Г': 'G',
+			'Д': 'D',
+			'Е': 'E',
+			'Ё': 'E',
+			'Ж': 'J',
+			'З': 'Z',
+			'И': 'I',
+			'Й': 'I',
+			'К': 'K',
+			'Л': 'L',
+			'М': 'M',
+			'Н': 'N',
+			'О': 'O',
+			'П': 'P',
+			'Р': 'R',
+			'С': 'S',
+			'Т': 'T',
+			'У': 'U',
+			'Ф': 'F',
+			'Х': 'H',
+			'Ц': 'C',
+			'Ч': 'Ch',
+			'Ш': 'Sh',
+			'Щ': 'Sc',
+			'Ъ': '',
+			'Ы': 'Y',
+			'Ь': '',
+			'Э': 'E',
+			'Ю': 'Iu',
+			'Я': 'Ia'
 		}
 	};
+
+	function toYandexFriendlyUrl(value) {
+		var processedValue,
+			result
+			;
+
+		processedValue = value.toLowerCase();
+		result = processedValue.replace(/([а-яё])|([\s_-])|([^a-z\d])/gi,
+			function (all, charValue, space, special, offset) {
+				var replacements,
+					charCode,
+					index,
+					transliteratedCharValue
+					;
+
+				if (space) {
+					return '-';
+				}
+
+				if (special) {
+					return '';
+				}
+
+				replacements = ['yo', 'a', 'b', 'v', 'g', 'd', 'e', 'zh',
+					'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p',
+					'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh',
+					'shch', '', 'y', '', 'e', 'yu', 'ya'];
+
+				charCode = charValue.charCodeAt(0);
+				if (charCode == 1025 || charCode == 1105) {
+					index = 0;
+				}
+				else {
+					index = charCode > 1071 ? charCode - 1071 : charCode - 1039;
+				}
+
+				transliteratedCharValue = replacements[index];
+
+				return transliteratedCharValue;
+			}
+		);
+
+		return result;
+	}
 
 	/**
 	* Производит транслитерацию русского текста с кириллицы на латиницу
@@ -731,6 +915,10 @@ var transliterate = (function () {
 		charCount = value.length;
 		if (charCount === 0) {
 			return value;
+		}
+
+		if (type === 'yandex-friendly-url') {
+			return toYandexFriendlyUrl(value);
 		}
 
 		characterMapping = characterMappings[type];
