@@ -25,7 +25,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			string result;
 			int valueLength = value.Length;
 			Encoding utf8Encoding = Encoding.UTF8;
+#if NETFULL
+			Encoding ansiEncoding = Encoding.Default;
+#else
 			Encoding ansiEncoding = Encoding.GetEncoding(0);
+#endif
 
 			var byteArrayPool = ArrayPool<byte>.Shared;
 			int bufferLength = utf8Encoding.GetByteCount(value);
@@ -34,7 +38,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 			try
 			{
-#if NET471 || NETSTANDARD || NETCOREAPP2_1
+#if NET45 || NET471 || NETSTANDARD || NETCOREAPP2_1
 				result = ConvertStringInternal(utf8Encoding, ansiEncoding, value, valueLength, buffer, bufferLength);
 #else
 				utf8Encoding.GetBytes(value, 0, valueLength, buffer, 0);
@@ -50,7 +54,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 			return result;
 		}
-#if NET471 || NETSTANDARD || NETCOREAPP2_1
+#if NET45 || NET471 || NETSTANDARD || NETCOREAPP2_1
 
 		private static unsafe string ConvertStringInternal(Encoding srcEncoding, Encoding dstEncoding, string s,
 			int charCount, byte[] bytes, int byteCount)
@@ -59,10 +63,37 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			fixed (byte* pBytes = bytes)
 			{
 				srcEncoding.GetBytes(pString, charCount, pBytes, byteCount);
+#if NET471 || NETSTANDARD || NETCOREAPP2_1
 				string result = dstEncoding.GetString(pBytes, byteCount);
 
 				return result;
 			}
+#else
+			}
+
+			int resultLength = dstEncoding.GetCharCount(bytes, 0, byteCount);
+			var charArrayPool = ArrayPool<char>.Shared;
+			char[] resultChars = charArrayPool.Rent(resultLength + 1);
+			resultChars[resultLength] = '\0';
+
+			string result;
+
+			try
+			{
+				fixed (byte* pBytes = bytes)
+				fixed (char* pResultChars = resultChars)
+				{
+					dstEncoding.GetChars(pBytes, byteCount, pResultChars, resultLength);
+					result = new string(pResultChars, 0, resultLength);
+				}
+			}
+			finally
+			{
+				charArrayPool.Return(resultChars);
+			}
+
+			return result;
+#endif
 		}
 #endif
 	}
