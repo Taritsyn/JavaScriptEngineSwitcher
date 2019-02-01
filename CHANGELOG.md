@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.0.4 - February 1, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore in error message fixed a link to the documentation
+
 ## v3.0.3 - January 29, 2019
  * In JavaScriptEngineSwitcher.ChakraCore improved a performance of the `UnicodeToAnsi` method of `EncodingHelpers` class
  * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1294
