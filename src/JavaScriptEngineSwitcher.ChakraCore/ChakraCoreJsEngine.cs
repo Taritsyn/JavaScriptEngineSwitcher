@@ -512,7 +512,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				const string buildInstructionsUrl =
 					"https://github.com/Microsoft/ChakraCore/wiki/Building-ChakraCore#{0}";
 				const string manualInstallationInstructionsUrl =
-					"https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/JS-Engine-Switcher:-ChakraCore#{0}";
+					"https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/ChakraCore#{0}";
 				Architecture osArchitecture = RuntimeInformation.OSArchitecture;
 
 				var stringBuilderPool = StringBuilderPool.Shared;

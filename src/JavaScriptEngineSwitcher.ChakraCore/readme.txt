@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Improved a performance of the `UnicodeToAnsi` method of `EncodingHelpers` class.
+   In error message fixed a link to the documentation.
 
    =============
    DOCUMENTATION
