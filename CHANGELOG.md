@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.0.5 - February 8, 2019
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.5.5 (support of V8 version 7.2.502.25)
+
 ## v3.0.4 - February 1, 2019
  * In JavaScriptEngineSwitcher.ChakraCore in error message fixed a link to the documentation
 
