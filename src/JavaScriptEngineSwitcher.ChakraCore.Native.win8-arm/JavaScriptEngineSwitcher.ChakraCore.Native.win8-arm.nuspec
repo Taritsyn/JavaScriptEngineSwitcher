@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm</id>
-		<version>3.0.1</version>
+		<version>3.0.6</version>
 		<title>JS Engine Switcher: ChakraCore for Windows (ARM)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -12,7 +12,7 @@
 		<repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>This package is deprecated. Instead, it is recommended to use a 'JavaScriptEngineSwitcher.ChakraCore.Native.win-arm' package.</description>
-		<releaseNotes>ChakraCore was updated to version 1.11.5.</releaseNotes>
+		<releaseNotes>ChakraCore was updated to version 1.11.6.</releaseNotes>
 		<copyright>Copyright © 2013-2019 Andrey Taritsyn</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore Windows ARM</tags>

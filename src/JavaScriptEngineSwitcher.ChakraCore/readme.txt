@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   In error message fixed a link to the documentation.
+   ChakraCore was updated to version 1.11.6.
 
    =============
    DOCUMENTATION
