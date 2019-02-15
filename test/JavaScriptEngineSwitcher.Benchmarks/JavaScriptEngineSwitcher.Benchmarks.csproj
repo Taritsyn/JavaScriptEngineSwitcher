@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<Product>JS Engine Switcher: Benchmarks</Product>
-		<VersionPrefix>3.0.5</VersionPrefix>
+		<VersionPrefix>3.0.6</VersionPrefix>
 		<TargetFrameworks>net46;netcoreapp2.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
