@@ -11,7 +11,7 @@ using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
-#if NET46
+#if NET461
 using JavaScriptEngineSwitcher.V8;
 #endif
 using JavaScriptEngineSwitcher.Vroom;
@@ -211,7 +211,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new JurassicJsEngine();
 			TransliterateStrings(createJsEngine, withPrecompilation);
 		}
-#if NET46
+#if NET461
 
 		[Benchmark]
 		public void MsieClassic()
@@ -263,7 +263,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
 			TransliterateStrings(createJsEngine, false);
 		}
-#if NET46
+#if NET461
 
 		[Benchmark]
 		[Arguments(false)]
