@@ -156,6 +156,10 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			WrapperException wrapperException;
 			string message = originalJavaScriptException.Message;
+			if (string.IsNullOrWhiteSpace(message))
+			{
+				message = "An unknown error occurred";
+			}
 			string description = message;
 			string type = string.Empty;
 			string documentName = originalJavaScriptException.Location.Source;
