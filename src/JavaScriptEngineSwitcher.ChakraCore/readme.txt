@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.6.
+   Fixed a error #68 “Embedded delegates are no longer linked with the `Function`
+   prototype”.
 
    =============
    DOCUMENTATION

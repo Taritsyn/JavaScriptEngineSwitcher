@@ -22,6 +22,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 	internal sealed class TypeMapper : IDisposable
 	{
 		/// <summary>
+		/// Name of property to store the external object
+		/// </summary>
+		private const string ExternalObjectPropertyName = "_JavaScriptEngineSwitcher_externalObject";
+
+		/// <summary>
 		/// Storage for lazy-initialized embedded objects
 		/// </summary>
 		private ConcurrentDictionary<EmbeddedObjectKey, Lazy<EmbeddedObject>> _lazyEmbeddedObjects;
@@ -200,7 +205,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		public object MapToHostType(JsValue value)
 		{
 			JsValueType valueType = value.ValueType;
-			object result;
+			object result = null;
 
 			switch (valueType)
 			{
@@ -219,8 +224,18 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				case JsValueType.String:
 					result = value.ToString();
 					break;
-				case JsValueType.Object:
 				case JsValueType.Function:
+					JsPropertyId externalObjectPropertyId = JsPropertyId.FromString(ExternalObjectPropertyName);
+					if (value.HasProperty(externalObjectPropertyId))
+					{
+						JsValue externalObjectValue = value.GetProperty(externalObjectPropertyId);
+						result = externalObjectValue.HasExternalData ?
+							GCHandle.FromIntPtr(externalObjectValue.ExternalData).Target : null;
+					}
+
+					result = result ?? value.ConvertToObject();
+					break;
+				case JsValueType.Object:
 				case JsValueType.Error:
 				case JsValueType.Array:
 				case JsValueType.Symbol:
@@ -311,10 +326,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 			GCHandle delHandle = GCHandle.Alloc(del);
 			IntPtr delPtr = GCHandle.ToIntPtr(delHandle);
-			JsValue prototypeValue = JsValue.CreateExternalObject(delPtr, _embeddedObjectFinalizeCallback);
+			JsValue objValue = JsValue.CreateExternalObject(delPtr, _embeddedObjectFinalizeCallback);
 
 			JsValue functionValue = JsValue.CreateFunction(nativeFunction);
-			functionValue.Prototype = prototypeValue;
+			SetNonEnumerableProperty(functionValue, ExternalObjectPropertyName, objValue);
 
 			var embeddedObject = new EmbeddedObject(del, functionValue,
 				new List<JsNativeFunction> { nativeFunction });
@@ -415,14 +430,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				return resultValue;
 			};
 
-			string embeddedTypeKey = type.AssemblyQualifiedName;
-			GCHandle embeddedTypeKeyHandle = GCHandle.Alloc(embeddedTypeKey);
-			IntPtr embeddedTypeKeyPtr = GCHandle.ToIntPtr(embeddedTypeKeyHandle);
-			JsValue prototypeValue = JsValue.CreateExternalObject(embeddedTypeKeyPtr,
-				_embeddedTypeFinalizeCallback);
+			GCHandle embeddedTypeHandle = GCHandle.Alloc(type);
+			IntPtr embeddedTypePtr = GCHandle.ToIntPtr(embeddedTypeHandle);
+			JsValue objValue = JsValue.CreateExternalObject(embeddedTypePtr, _embeddedTypeFinalizeCallback);
 
 			JsValue typeValue = JsValue.CreateFunction(nativeConstructorFunction);
-			typeValue.Prototype = prototypeValue;
+			SetNonEnumerableProperty(typeValue, ExternalObjectPropertyName, objValue);
 
 			var embeddedType = new EmbeddedType(type, typeValue,
 				new List<JsNativeFunction> { nativeConstructorFunction });
@@ -442,8 +455,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				return;
 			}
 
-			GCHandle embeddedTypeKeyHandle = GCHandle.FromIntPtr(ptr);
-			var embeddedTypeKey = (string)embeddedTypeKeyHandle.Target;
+			GCHandle embeddedTypeHandle = GCHandle.FromIntPtr(ptr);
+			var type = (Type)embeddedTypeHandle.Target;
+			string embeddedTypeKey = type.AssemblyQualifiedName;
 			var lazyEmbeddedTypes = _lazyEmbeddedTypes;
 
 			if (!string.IsNullOrEmpty(embeddedTypeKey) && lazyEmbeddedTypes != null)
@@ -456,7 +470,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				}
 			}
 
-			embeddedTypeKeyHandle.Free();
+			embeddedTypeHandle.Free();
 		}
 
 		private void ProjectFields(EmbeddedItem externalItem)
@@ -772,13 +786,25 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
-		private void FreezeObject(JsValue objValue)
+		private static void FreezeObject(JsValue objValue)
 		{
 			JsValue freezeMethodValue = JsValue.GlobalObject
 				.GetProperty("Object")
 				.GetProperty("freeze")
 				;
 			freezeMethodValue.CallFunction(objValue);
+		}
+
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private static void SetNonEnumerableProperty(JsValue objValue, string name, JsValue value)
+		{
+			JsValue descriptorValue = JsValue.CreateObject();
+			descriptorValue.SetProperty("enumerable", JsValue.False, true);
+			descriptorValue.SetProperty("writable", JsValue.True, true);
+
+			JsPropertyId id = JsPropertyId.FromString(name);
+			objValue.DefineProperty(id, descriptorValue);
+			objValue.SetProperty(id, value, true);
 		}
 
 		#region IDisposable implementation
