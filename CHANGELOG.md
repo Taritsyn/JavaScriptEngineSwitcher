@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## v3.0.7 - March 13, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.11.7
+   * Fixed a [error #68](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/68) “Embedded delegates are no longer linked with the `Function` prototype”
+ * In JavaScriptEngineSwitcher.Jint fixed a error that occurs in the strict mode when generating an error message
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.2
+
 ## v3.0.6 - February 15, 2019
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.6
 

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<Product>JS Engine Switcher: Tests</Product>
-		<VersionPrefix>3.0.6</VersionPrefix>
+		<VersionPrefix>3.0.7</VersionPrefix>
 		<TargetFrameworks>net452;net471;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
 		<RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">1.0.14</RuntimeFrameworkVersion>
 		<OutputType>Library</OutputType>
