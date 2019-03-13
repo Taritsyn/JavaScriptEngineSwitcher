@@ -6,5 +6,19 @@
 		{
 			get { return "MsieJsEngine"; }
 		}
+
+
+		#region Embedding of objects
+
+		#region Delegates
+
+#if !NETCOREAPP
+		public override void EmbeddedInstanceOfDelegateHasFunctionPrototype()
+		{ }
+#endif
+
+		#endregion
+
+		#endregion
 	}
 }

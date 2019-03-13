@@ -7,6 +7,18 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		{
 			get { return "V8JsEngine"; }
 		}
+
+
+		#region Embedding of objects
+
+		#region Delegates
+
+		public override void EmbeddedInstanceOfDelegateHasFunctionPrototype()
+		{ }
+
+		#endregion
+
+		#endregion
 	}
 }
 #endif

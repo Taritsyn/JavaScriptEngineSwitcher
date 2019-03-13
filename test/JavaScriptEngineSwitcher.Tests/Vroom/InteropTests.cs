@@ -41,6 +41,9 @@
 		public override void EmbeddingOfInstanceOfDelegateWithoutResultIsCorrect()
 		{ }
 
+		public override void EmbeddedInstanceOfDelegateHasFunctionPrototype()
+		{ }
+
 		#endregion
 
 		#endregion
