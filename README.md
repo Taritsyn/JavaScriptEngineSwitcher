@@ -61,4 +61,5 @@ If you use the JavaScript Engine Switcher in some project, please send me a mess
  * [T1.Scripts](http://nuget.org/packages/T1.Scripts)
  * [Transformalize](https://github.com/dalenewman/Transformalize) by Dale Newman
  * [Wyam](http://wyam.io/)
+ * [ZeroReact.NET](https://github.com/DaniilSokolyuk/ZeroReact.NET) by Daniil Sokolyuk
  * [zxcvbn.net](https://github.com/darcythomas/zxcvbn.net) by Darcy Thomas
