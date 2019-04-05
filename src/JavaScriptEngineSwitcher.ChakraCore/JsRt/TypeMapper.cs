@@ -10,6 +10,8 @@ using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Extensions;
 using JavaScriptEngineSwitcher.Core.Utilities;
 
+using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
+
 using JavaScriptEngineSwitcher.ChakraCore.Helpers;
 using JavaScriptEngineSwitcher.ChakraCore.JsRt.Embedding;
 using JavaScriptEngineSwitcher.ChakraCore.Resources;
@@ -311,12 +313,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				}
 				catch (Exception e)
 				{
-					JsValue undefinedValue = JsValue.Undefined;
-					JsValue errorValue = JsErrorHelpers.CreateError(
-						string.Format(Strings.Runtime_HostDelegateInvocationFailed, e.Message));
+					Exception exception = UnwrapException(e);
+					var wrapperException = exception as WrapperException;
+					JsValue errorValue = wrapperException != null ?
+						JsValue.FromString(wrapperException.Message)
+						:
+						JsErrorHelpers.CreateError(string.Format(
+							Strings.Runtime_HostDelegateInvocationFailed, exception.Message))
+						;
 					JsErrorHelpers.SetException(errorValue);
 
-					return undefinedValue;
+					return JsValue.Undefined;
 				}
 
 				JsValue resultValue = MapToScriptType(result);
@@ -389,24 +396,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 				if (constructors.Length == 0)
 				{
-					JsValue undefinedValue = JsValue.Undefined;
-					JsValue errorValue = JsErrorHelpers.CreateError(
-						string.Format(Strings.Runtime_HostTypeConstructorNotFound, typeName));
-					JsErrorHelpers.SetException(errorValue);
-
-					return undefinedValue;
+					CreateAndSetError(string.Format(Strings.Runtime_HostTypeConstructorNotFound, typeName));
+					return JsValue.Undefined;
 				}
 
 				var bestFitConstructor = (ConstructorInfo)ReflectionHelpers.GetBestFitMethod(
 					constructors, processedArgs);
 				if (bestFitConstructor == null)
 				{
-					JsValue undefinedValue = JsValue.Undefined;
-					JsValue errorValue = JsErrorHelpers.CreateReferenceError(
-						string.Format(Strings.Runtime_SuitableConstructorOfHostTypeNotFound, typeName));
-					JsErrorHelpers.SetException(errorValue);
-
-					return undefinedValue;
+					CreateAndSetReferenceError(string.Format(
+						Strings.Runtime_SuitableConstructorOfHostTypeNotFound, typeName));
+					return JsValue.Undefined;
 				}
 
 				ReflectionHelpers.FixArgumentTypes(ref processedArgs, bestFitConstructor.GetParameters());
@@ -417,12 +417,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				}
 				catch (Exception e)
 				{
-					JsValue undefinedValue = JsValue.Undefined;
-					JsValue errorValue = JsErrorHelpers.CreateError(
-						string.Format(Strings.Runtime_HostTypeConstructorInvocationFailed, typeName, e.Message));
+					Exception exception = UnwrapException(e);
+					var wrapperException = exception as WrapperException;
+					JsValue errorValue = wrapperException != null ?
+						JsValue.FromString(wrapperException.Message)
+						:
+						JsErrorHelpers.CreateError(string.Format(
+							Strings.Runtime_HostTypeConstructorInvocationFailed, typeName, exception.Message))
+						;
 					JsErrorHelpers.SetException(errorValue);
 
-					return undefinedValue;
+					return JsValue.Undefined;
 				}
 
 				resultValue = MapToScriptType(result);
@@ -496,12 +501,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					if (instance && obj == null)
 					{
-						JsValue undefinedValue = JsValue.Undefined;
-						JsValue errorValue = JsErrorHelpers.CreateTypeError(
-							string.Format(Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
-						JsErrorHelpers.SetException(errorValue);
-
-						return undefinedValue;
+						CreateAndSetTypeError(string.Format(
+							Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
+						return JsValue.Undefined;
 					}
 
 					object result;
@@ -512,17 +514,28 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					}
 					catch (Exception e)
 					{
-						string errorMessage = instance ?
-							string.Format(Strings.Runtime_HostObjectFieldGettingFailed, fieldName, e.Message)
-							:
-							string.Format(Strings.Runtime_HostTypeFieldGettingFailed, fieldName, typeName, e.Message)
-							;
+						Exception exception = UnwrapException(e);
+						var wrapperException = exception as WrapperException;
+						JsValue errorValue;
 
-						JsValue undefinedValue = JsValue.Undefined;
-						JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
+						if (wrapperException != null)
+						{
+							errorValue = JsValue.FromString(wrapperException.Message);
+						}
+						else
+						{
+							string errorMessage = instance ?
+								string.Format(Strings.Runtime_HostObjectFieldGettingFailed, fieldName,
+									exception.Message)
+								:
+								string.Format(Strings.Runtime_HostTypeFieldGettingFailed, fieldName, typeName,
+									exception.Message)
+								;
+							errorValue = JsErrorHelpers.CreateError(errorMessage);
+						}
 						JsErrorHelpers.SetException(errorValue);
 
-						return undefinedValue;
+						return JsValue.Undefined;
 					}
 
 					JsValue resultValue = MapToScriptType(result);
@@ -538,12 +551,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					if (instance && obj == null)
 					{
-						JsValue undefinedValue = JsValue.Undefined;
-						JsValue errorValue = JsErrorHelpers.CreateTypeError(
-							string.Format(Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
-						JsErrorHelpers.SetException(errorValue);
-
-						return undefinedValue;
+						CreateAndSetTypeError(string.Format(
+							Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
+						return JsValue.Undefined;
 					}
 
 					object value = MapToHostType(args[1]);
@@ -555,17 +565,28 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					}
 					catch (Exception e)
 					{
-						string errorMessage = instance ?
-							string.Format(Strings.Runtime_HostObjectFieldSettingFailed, fieldName, e.Message)
-							:
-							string.Format(Strings.Runtime_HostTypeFieldSettingFailed, fieldName, typeName, e.Message)
-							;
+						Exception exception = UnwrapException(e);
+						var wrapperException = exception as WrapperException;
+						JsValue errorValue;
 
-						JsValue undefinedValue = JsValue.Undefined;
-						JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
+						if (wrapperException != null)
+						{
+							errorValue = JsValue.FromString(wrapperException.Message);
+						}
+						else
+						{
+							string errorMessage = instance ?
+								string.Format(Strings.Runtime_HostObjectFieldSettingFailed, fieldName,
+									exception.Message)
+								:
+								string.Format(Strings.Runtime_HostTypeFieldSettingFailed, fieldName, typeName,
+									exception.Message)
+								;
+							errorValue = JsErrorHelpers.CreateError(errorMessage);
+						}
 						JsErrorHelpers.SetException(errorValue);
 
-						return undefinedValue;
+						return JsValue.Undefined;
 					}
 
 					return JsValue.Undefined;
@@ -604,12 +625,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					{
 						if (instance && obj == null)
 						{
-							JsValue undefinedValue = JsValue.Undefined;
-							JsValue errorValue = JsErrorHelpers.CreateTypeError(
-								string.Format(Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
-							JsErrorHelpers.SetException(errorValue);
-
-							return undefinedValue;
+							CreateAndSetTypeError(string.Format(
+								Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
+							return JsValue.Undefined;
 						}
 
 						object result;
@@ -620,19 +638,28 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						}
 						catch (Exception e)
 						{
-							string errorMessage = instance ?
-								string.Format(
-									Strings.Runtime_HostObjectPropertyGettingFailed, propertyName, e.Message)
-								:
-								string.Format(
-									Strings.Runtime_HostTypePropertyGettingFailed, propertyName, typeName, e.Message)
-								;
+							Exception exception = UnwrapException(e);
+							var wrapperException = exception as WrapperException;
+							JsValue errorValue;
 
-							JsValue undefinedValue = JsValue.Undefined;
-							JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
+							if (wrapperException != null)
+							{
+								errorValue = JsValue.FromString(wrapperException.Message);
+							}
+							else
+							{
+								string errorMessage = instance ?
+									string.Format(Strings.Runtime_HostObjectPropertyGettingFailed, propertyName,
+										exception.Message)
+									:
+									string.Format(Strings.Runtime_HostTypePropertyGettingFailed, propertyName,
+										typeName, exception.Message)
+									;
+								errorValue = JsErrorHelpers.CreateError(errorMessage);
+							}
 							JsErrorHelpers.SetException(errorValue);
 
-							return undefinedValue;
+							return JsValue.Undefined;
 						}
 
 						JsValue resultValue = MapToScriptType(result);
@@ -651,12 +678,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					{
 						if (instance && obj == null)
 						{
-							JsValue undefinedValue = JsValue.Undefined;
-							JsValue errorValue = JsErrorHelpers.CreateTypeError(
-								string.Format(Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
-							JsErrorHelpers.SetException(errorValue);
-
-							return undefinedValue;
+							CreateAndSetTypeError(string.Format(
+								Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
+							return JsValue.Undefined;
 						}
 
 						object value = MapToHostType(args[1]);
@@ -668,19 +692,28 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						}
 						catch (Exception e)
 						{
-							string errorMessage = instance ?
-								string.Format(
-									Strings.Runtime_HostObjectPropertySettingFailed, propertyName, e.Message)
-								:
-								string.Format(
-									Strings.Runtime_HostTypePropertySettingFailed, propertyName, typeName, e.Message)
-								;
+							Exception exception = UnwrapException(e);
+							var wrapperException = exception as WrapperException;
+							JsValue errorValue;
 
-							JsValue undefinedValue = JsValue.Undefined;
-							JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
+							if (wrapperException != null)
+							{
+								errorValue = JsValue.FromString(wrapperException.Message);
+							}
+							else
+							{
+								string errorMessage = instance ?
+									string.Format(Strings.Runtime_HostObjectPropertySettingFailed, propertyName,
+										exception.Message)
+									:
+									string.Format(Strings.Runtime_HostTypePropertySettingFailed, propertyName,
+										typeName, exception.Message)
+									;
+								errorValue = JsErrorHelpers.CreateError(errorMessage);
+							}
 							JsErrorHelpers.SetException(errorValue);
 
-							return undefinedValue;
+							return JsValue.Undefined;
 						}
 
 						return JsValue.Undefined;
@@ -718,12 +751,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					if (instance && obj == null)
 					{
-						JsValue undefinedValue = JsValue.Undefined;
-						JsValue errorValue = JsErrorHelpers.CreateTypeError(
-							string.Format(Strings.Runtime_InvalidThisContextForHostObjectMethod, methodName));
-						JsErrorHelpers.SetException(errorValue);
-
-						return undefinedValue;
+						CreateAndSetTypeError(string.Format(
+							Strings.Runtime_InvalidThisContextForHostObjectMethod, methodName));
+						return JsValue.Undefined;
 					}
 
 					object[] processedArgs = GetHostItemMemberArguments(args);
@@ -732,12 +762,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						methodCandidates, processedArgs);
 					if (bestFitMethod == null)
 					{
-						JsValue undefinedValue = JsValue.Undefined;
-						JsValue errorValue = JsErrorHelpers.CreateReferenceError(
-							string.Format(Strings.Runtime_SuitableMethodOfHostObjectNotFound, methodName));
-						JsErrorHelpers.SetException(errorValue);
-
-						return undefinedValue;
+						CreateAndSetReferenceError(string.Format(
+							Strings.Runtime_SuitableMethodOfHostObjectNotFound, methodName));
+						return JsValue.Undefined;
 					}
 
 					ReflectionHelpers.FixArgumentTypes(ref processedArgs, bestFitMethod.GetParameters());
@@ -750,19 +777,28 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					}
 					catch (Exception e)
 					{
-						string errorMessage = instance ?
-							string.Format(
-								Strings.Runtime_HostObjectMethodInvocationFailed, methodName, e.Message)
-							:
-							string.Format(
-								Strings.Runtime_HostTypeMethodInvocationFailed, methodName, typeName, e.Message)
-							;
+						Exception exception = UnwrapException(e);
+						var wrapperException = exception as WrapperException;
+						JsValue errorValue;
 
-						JsValue undefinedValue = JsValue.Undefined;
-						JsValue errorValue = JsErrorHelpers.CreateError(errorMessage);
+						if (wrapperException != null)
+						{
+							errorValue = JsValue.FromString(wrapperException.Message);
+						}
+						else
+						{
+							string errorMessage = instance ?
+								string.Format(Strings.Runtime_HostObjectMethodInvocationFailed, methodName,
+									exception.Message)
+								:
+								string.Format(Strings.Runtime_HostTypeMethodInvocationFailed, methodName, typeName,
+									exception.Message)
+								;
+							errorValue = JsErrorHelpers.CreateError(errorMessage);
+						}
 						JsErrorHelpers.SetException(errorValue);
 
-						return undefinedValue;
+						return JsValue.Undefined;
 					}
 
 					JsValue resultValue = MapToScriptType(result);
@@ -805,6 +841,52 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsPropertyId id = JsPropertyId.FromString(name);
 			objValue.DefineProperty(id, descriptorValue);
 			objValue.SetProperty(id, value, true);
+		}
+
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private static void CreateAndSetError(string message)
+		{
+			JsValue errorValue = JsErrorHelpers.CreateError(message);
+			JsErrorHelpers.SetException(errorValue);
+		}
+
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private static void CreateAndSetReferenceError(string message)
+		{
+			JsValue errorValue = JsErrorHelpers.CreateReferenceError(message);
+			JsErrorHelpers.SetException(errorValue);
+		}
+
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private static void CreateAndSetTypeError(string message)
+		{
+			JsValue errorValue = JsErrorHelpers.CreateTypeError(message);
+			JsErrorHelpers.SetException(errorValue);
+		}
+
+		private static Exception UnwrapException(Exception exception)
+		{
+			Exception originalException = exception;
+			var targetInvocationException = exception as TargetInvocationException;
+
+			if (targetInvocationException != null)
+			{
+				Exception innerException = targetInvocationException.InnerException;
+				if (innerException != null)
+				{
+					var wrapperException = innerException as WrapperException;
+					if (wrapperException != null)
+					{
+						originalException = wrapperException;
+					}
+					else
+					{
+						originalException = innerException;
+					}
+				}
+			}
+
+			return originalException;
 		}
 
 		#region IDisposable implementation

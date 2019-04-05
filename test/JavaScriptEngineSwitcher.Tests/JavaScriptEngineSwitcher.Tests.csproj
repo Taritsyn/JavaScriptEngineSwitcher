@@ -60,4 +60,12 @@
 		<EmbeddedResource Include="Resources/cube.js;Resources/declinationOfDays.js;Resources/declinationOfHours.js;Resources/power.js" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Content Include="Files/**/*.*">
+			<Link>Files/%(RecursiveDir)/%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+
 </Project>

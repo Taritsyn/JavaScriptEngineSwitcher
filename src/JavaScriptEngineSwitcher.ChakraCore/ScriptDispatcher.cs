@@ -142,6 +142,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <returns>Result of the delegate invocation</returns>
 		private object InnnerInvoke(Func<object> del)
 		{
+			if (Thread.CurrentThread == _thread)
+			{
+				return del();
+			}
+
 			ScriptTask task;
 
 			using (var waitHandle = new ManualResetEvent(false))
