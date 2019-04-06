@@ -11,5 +11,9 @@
 		// TODO: Remove after fixing a error in the MSIE JavaScript Engine for .NET
 		public override void RecursiveExecutionOfFilesIsCorrect()
 		{ }
+
+		// TODO: Remove after fixing a error in the MSIE JavaScript Engine for .NET
+		public override void RecursiveEvaluationOfFilesIsCorrect()
+		{ }
 	}
 }

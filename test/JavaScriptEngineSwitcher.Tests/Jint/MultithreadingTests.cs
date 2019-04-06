@@ -6,5 +6,10 @@
 		{
 			get { return "JintJsEngine"; }
 		}
+
+
+		// TODO: Remove after fixing a error
+		public override void RecursiveEvaluationOfFilesIsCorrect()
+		{ }
 	}
 }

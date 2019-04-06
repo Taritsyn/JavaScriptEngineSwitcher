@@ -185,7 +185,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					return JsValue.FromString((string)value);
 
 				default:
-					return GetOrCreateScriptObject(value);
+					return value is JsValue ? (JsValue)value : GetOrCreateScriptObject(value);
 			}
 		}
 
@@ -874,15 +874,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				Exception innerException = targetInvocationException.InnerException;
 				if (innerException != null)
 				{
-					var wrapperException = innerException as WrapperException;
-					if (wrapperException != null)
-					{
-						originalException = wrapperException;
-					}
-					else
-					{
-						originalException = innerException;
-					}
+					originalException = innerException;
 				}
 			}
 
