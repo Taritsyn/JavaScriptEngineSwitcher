@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<Product>JS Engine Switcher: Benchmarks</Product>
-		<VersionPrefix>3.0.7</VersionPrefix>
+		<VersionPrefix>3.0.8</VersionPrefix>
 		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -12,7 +12,7 @@
 	<Import Project="../../build/common.props" />
 
 	<ItemGroup>
-		<PackageReference Include="BenchmarkDotNet" Version="0.11.4" />
+		<PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.0.7" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.7" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.0.7" />
