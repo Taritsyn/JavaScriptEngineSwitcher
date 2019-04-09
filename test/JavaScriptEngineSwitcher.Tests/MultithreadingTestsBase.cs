@@ -34,57 +34,5 @@ namespace JavaScriptEngineSwitcher.Tests
 			// Assert
 			Assert.Equal(targetOutput, output);
 		}
-
-		[Fact]
-		public virtual void RecursiveExecutionOfFilesIsCorrect()
-		{
-			// Arrange
-			const string variableName = "num";
-			const int targetOutput = 12;
-
-			// Act
-			int output;
-
-			using (var jsEngine = CreateJsEngine())
-			{
-				Action<string> executeFile = path => jsEngine.ExecuteFile(path);
-
-				jsEngine.EmbedHostObject("executeFile", executeFile);
-				jsEngine.ExecuteFile("Files/recursiveExecution/mainFile.js");
-
-				output = jsEngine.GetVariableValue<int>(variableName);
-			}
-
-			// Assert
-			Assert.Equal(targetOutput, output);
-		}
-
-		[Fact]
-		public virtual void RecursiveEvaluationOfFilesIsCorrect()
-		{
-			// Arrange
-			const string input = "require('index').calculateResult();";
-			const double targetOutput = 132.14;
-
-			// Act
-			double output;
-
-			using (var jsEngine = CreateJsEngine())
-			{
-				Func<string, object> loadModule = name => {
-					string path = Path.Combine("Files/recursiveEvaluation", $"{name}.js");
-					string code = File.ReadAllText(path);
-					object result = jsEngine.Evaluate(code, path);
-
-					return result;
-				};
-
-				jsEngine.EmbedHostObject("require", loadModule);
-				output = jsEngine.Evaluate<double>(input);
-			}
-
-			// Assert
-			Assert.Equal(targetOutput, output);
-		}
 	}
 }

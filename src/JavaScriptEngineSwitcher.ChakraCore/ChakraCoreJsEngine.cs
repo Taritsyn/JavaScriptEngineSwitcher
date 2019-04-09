@@ -11,6 +11,7 @@ using PolyfillsForOldDotNet.System.Runtime.InteropServices;
 #endif
 
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Core.Constants;
 using JavaScriptEngineSwitcher.Core.Extensions;
 using JavaScriptEngineSwitcher.Core.Utilities;
 
@@ -341,18 +342,63 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					if (errorValueType == JsValueType.Error
 						|| errorValueType == JsValueType.Object)
 					{
+						JsPropertyId innerErrorPropertyId = JsPropertyId.FromString("innerException");
+						if (errorValue.HasProperty(innerErrorPropertyId))
+						{
+							JsValue innerErrorValue = errorValue.GetProperty(innerErrorPropertyId);
+							JsPropertyId metadataPropertyId = JsPropertyId.FromString("metadata");
+
+							if (innerErrorValue.HasProperty(metadataPropertyId))
+							{
+								errorValue = innerErrorValue;
+								metadataValue = innerErrorValue.GetProperty(metadataPropertyId);
+							}
+						}
+
 						JsValue messagePropertyValue = errorValue.GetProperty("message");
-						description = messagePropertyValue.ConvertToString().ToString();
+						string localDescription = messagePropertyValue.ConvertToString().ToString();
+						if (!string.IsNullOrWhiteSpace(localDescription))
+						{
+							description = localDescription;
+						}
 
 						JsValue namePropertyValue = errorValue.GetProperty("name");
 						type = namePropertyValue.ValueType == JsValueType.String ?
-							namePropertyValue.ConvertToString().ToString() : string.Empty;
+							namePropertyValue.ToString() : string.Empty;
+
+						JsPropertyId descriptionPropertyId = JsPropertyId.FromString("description");
+						if (errorValue.HasProperty(descriptionPropertyId))
+						{
+							JsValue descriptionPropertyValue = errorValue.GetProperty(descriptionPropertyId);
+							localDescription = descriptionPropertyValue.ConvertToString().ToString();
+							if (!string.IsNullOrWhiteSpace(localDescription))
+							{
+								description = localDescription;
+							}
+						}
+
+						if (type == JsErrorType.Syntax)
+						{
+							errorCode = JsErrorCode.ScriptCompile;
+						}
+						else
+						{
+							JsPropertyId numberPropertyId = JsPropertyId.FromString("number");
+							if (errorValue.HasProperty(numberPropertyId))
+							{
+								JsValue numberPropertyValue = errorValue.GetProperty(numberPropertyId);
+								int errorNumber = numberPropertyValue.ValueType == JsValueType.Number ?
+									numberPropertyValue.ToInt32() : 0;
+								errorCode = (JsErrorCode)errorNumber;
+							}
+						}
 
 						JsPropertyId urlPropertyId = JsPropertyId.FromString("url");
 						if (metadataValue.HasProperty(urlPropertyId))
 						{
 							JsValue urlPropertyValue = metadataValue.GetProperty(urlPropertyId);
-							string url = urlPropertyValue.ConvertToString().ToString();
+							string url = urlPropertyValue.ValueType == JsValueType.String ?
+								urlPropertyValue.ToString() : string.Empty;
 							if (url != "undefined")
 							{
 								documentName = url;
@@ -363,14 +409,16 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						if (metadataValue.HasProperty(linePropertyId))
 						{
 							JsValue linePropertyValue = metadataValue.GetProperty(linePropertyId);
-							lineNumber = linePropertyValue.ConvertToNumber().ToInt32() + 1;
+							lineNumber = linePropertyValue.ValueType == JsValueType.Number ?
+								linePropertyValue.ToInt32() + 1 : 0;
 						}
 
 						JsPropertyId columnPropertyId = JsPropertyId.FromString("column");
 						if (metadataValue.HasProperty(columnPropertyId))
 						{
 							JsValue columnPropertyValue = metadataValue.GetProperty(columnPropertyId);
-							columnNumber = columnPropertyValue.ConvertToNumber().ToInt32() + 1;
+							columnNumber = columnPropertyValue.ValueType == JsValueType.Number ?
+								columnPropertyValue.ToInt32() + 1 : 0;
 						}
 
 						string sourceLine = string.Empty;
@@ -378,27 +426,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						if (metadataValue.HasProperty(sourcePropertyId))
 						{
 							JsValue sourcePropertyValue = metadataValue.GetProperty(sourcePropertyId);
-							sourceLine = sourcePropertyValue.ConvertToString().ToString();
+							sourceLine = sourcePropertyValue.ValueType == JsValueType.String ?
+								sourcePropertyValue.ToString() : string.Empty;
 							sourceFragment = TextHelpers.GetTextFragmentFromLine(sourceLine, columnNumber);
 						}
 
 						JsPropertyId stackPropertyId = JsPropertyId.FromString("stack");
 						if (errorValue.HasProperty(stackPropertyId))
 						{
-							JsPropertyId descriptionPropertyId = JsPropertyId.FromString("description");
-							if (errorValue.HasProperty(descriptionPropertyId))
-							{
-								JsValue descriptionPropertyValue = errorValue.GetProperty(descriptionPropertyId);
-								if (descriptionPropertyValue.ValueType == JsValueType.String
-									|| descriptionPropertyValue.StringLength > 0)
-								{
-									description = descriptionPropertyValue.ConvertToString().ToString();
-								}
-							}
-
 							JsValue stackPropertyValue = errorValue.GetProperty(stackPropertyId);
 							string messageWithTypeAndCallStack = stackPropertyValue.ValueType == JsValueType.String ?
-								stackPropertyValue.ConvertToString().ToString() : string.Empty;
+								stackPropertyValue.ToString() : string.Empty;
 							string messageWithType = errorValue.ConvertToString().ToString();
 							string rawCallStack = messageWithTypeAndCallStack
 								.TrimStart(messageWithType)
@@ -428,6 +466,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 							message = CoreErrorHelpers.GenerateScriptErrorMessage(type, description, documentName,
 								lineNumber, columnNumber, sourceFragment);
 						}
+					}
+					else if (errorValueType == JsValueType.String)
+					{
+						message = errorValue.ToString();
+						description = message;
 					}
 					else
 					{

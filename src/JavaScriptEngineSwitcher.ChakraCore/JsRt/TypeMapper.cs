@@ -10,7 +10,10 @@ using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Extensions;
 using JavaScriptEngineSwitcher.Core.Utilities;
 
+using CoreErrorHelpers = JavaScriptEngineSwitcher.Core.Helpers.JsErrorHelpers;
 using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
+using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
+using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
 
 using JavaScriptEngineSwitcher.ChakraCore.Helpers;
 using JavaScriptEngineSwitcher.ChakraCore.JsRt.Embedding;
@@ -316,7 +319,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					Exception exception = UnwrapException(e);
 					var wrapperException = exception as WrapperException;
 					JsValue errorValue = wrapperException != null ?
-						JsValue.FromString(wrapperException.Message)
+						CreateErrorFromWrapperException(wrapperException)
 						:
 						JsErrorHelpers.CreateError(string.Format(
 							Strings.Runtime_HostDelegateInvocationFailed, exception.Message))
@@ -420,7 +423,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					Exception exception = UnwrapException(e);
 					var wrapperException = exception as WrapperException;
 					JsValue errorValue = wrapperException != null ?
-						JsValue.FromString(wrapperException.Message)
+						CreateErrorFromWrapperException(wrapperException)
 						:
 						JsErrorHelpers.CreateError(string.Format(
 							Strings.Runtime_HostTypeConstructorInvocationFailed, typeName, exception.Message))
@@ -520,7 +523,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 						if (wrapperException != null)
 						{
-							errorValue = JsValue.FromString(wrapperException.Message);
+							errorValue = CreateErrorFromWrapperException(wrapperException);
 						}
 						else
 						{
@@ -571,7 +574,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 						if (wrapperException != null)
 						{
-							errorValue = JsValue.FromString(wrapperException.Message);
+							errorValue = CreateErrorFromWrapperException(wrapperException);
 						}
 						else
 						{
@@ -644,7 +647,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 							if (wrapperException != null)
 							{
-								errorValue = JsValue.FromString(wrapperException.Message);
+								errorValue = CreateErrorFromWrapperException(wrapperException);
 							}
 							else
 							{
@@ -698,7 +701,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 							if (wrapperException != null)
 							{
-								errorValue = JsValue.FromString(wrapperException.Message);
+								errorValue = CreateErrorFromWrapperException(wrapperException);
 							}
 							else
 							{
@@ -783,7 +786,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 						if (wrapperException != null)
 						{
-							errorValue = JsValue.FromString(wrapperException.Message);
+							errorValue = CreateErrorFromWrapperException(wrapperException);
 						}
 						else
 						{
@@ -879,6 +882,73 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 
 			return originalException;
+		}
+
+		private static JsValue CreateErrorFromWrapperException(WrapperException exception)
+		{
+			var originalException = exception.InnerException as JsException;
+			JsErrorCode errorCode = originalException != null ?
+				originalException.ErrorCode : JsErrorCode.NoError;
+			string description = exception.Description;
+
+			JsValue innerErrorValue = JsErrorHelpers.CreateError(description);
+			innerErrorValue.SetProperty("description", JsValue.FromString(description), true);
+
+			JsValue metadataValue = JsValue.CreateObject();
+
+			var scriptException = exception as WrapperScriptException;
+			if (scriptException != null)
+			{
+				string type = scriptException.Type;
+				string documentName = scriptException.DocumentName;
+				int lineNumber = scriptException.LineNumber;
+				if (lineNumber > 0)
+				{
+					lineNumber--;
+				}
+				int columnNumber = scriptException.ColumnNumber;
+				if (columnNumber > 0)
+				{
+					columnNumber--;
+				}
+				string sourceFragment = scriptException.SourceFragment;
+
+				innerErrorValue.SetProperty("name", JsValue.FromString(type), true);
+
+				var runtimeException = scriptException as WrapperRuntimeException;
+				if (runtimeException != null)
+				{
+					var errorNumber = (int)errorCode;
+					string callStack = runtimeException.CallStack;
+					string messageWithTypeAndCallStack = CoreErrorHelpers.GenerateScriptErrorMessage(type,
+						description, callStack);
+
+					innerErrorValue.SetProperty("number", JsValue.FromInt32(errorNumber), true);
+					if (!string.IsNullOrWhiteSpace(callStack))
+					{
+						innerErrorValue.SetProperty("stack", JsValue.FromString(messageWithTypeAndCallStack), true);
+					}
+				}
+				else
+				{
+					innerErrorValue.SetProperty("url", JsValue.FromString(documentName), true);
+					innerErrorValue.SetProperty("line", JsValue.FromInt32(lineNumber), true);
+					innerErrorValue.SetProperty("column", JsValue.FromInt32(columnNumber), true);
+					innerErrorValue.SetProperty("source", JsValue.FromString(sourceFragment), true);
+				}
+
+				metadataValue.SetProperty("url", JsValue.FromString(documentName), true);
+				metadataValue.SetProperty("line", JsValue.FromInt32(lineNumber), true);
+				metadataValue.SetProperty("column", JsValue.FromInt32(columnNumber), true);
+				metadataValue.SetProperty("source", JsValue.FromString(sourceFragment), true);
+			}
+
+			innerErrorValue.SetProperty("metadata", metadataValue, true);
+
+			JsValue errorValue = JsErrorHelpers.CreateError(description);
+			errorValue.SetProperty("innerException", innerErrorValue, true);
+
+			return errorValue;
 		}
 
 		#region IDisposable implementation

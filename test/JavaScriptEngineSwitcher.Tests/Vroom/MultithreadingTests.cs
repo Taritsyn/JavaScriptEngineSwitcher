@@ -6,12 +6,5 @@
 		{
 			get { return "VroomJsEngine"; }
 		}
-
-
-		public override void RecursiveExecutionOfFilesIsCorrect()
-		{ }
-
-		public override void RecursiveEvaluationOfFilesIsCorrect()
-		{ }
 	}
 }

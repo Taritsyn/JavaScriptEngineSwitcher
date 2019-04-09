@@ -9,6 +9,8 @@ using System.Text;
 
 using Xunit;
 
+using JavaScriptEngineSwitcher.Core;
+
 using JavaScriptEngineSwitcher.Tests.Interop;
 using JavaScriptEngineSwitcher.Tests.Interop.Animals;
 #if NETCOREAPP1_0
@@ -604,6 +606,65 @@ smileDay.GetDayOfYear();";
 
 			// Assert
 			Assert.True(output);
+		}
+
+		#endregion
+
+		#region Recursive calls
+
+		[Fact]
+		public virtual void RecursiveEvaluationOfFilesIsCorrect()
+		{
+			// Arrange
+			const string directoryPath = "Files/recursiveEvaluation/noError";
+			const string input = "require('index').calculateResult();";
+			const double targetOutput = 132.14;
+
+			// Act
+			double output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				Func<string, object> loadModule = path => {
+					string absolutePath = Path.Combine(directoryPath, $"{path}.js");
+					string code = File.ReadAllText(absolutePath);
+					object result = jsEngine.Evaluate(code, absolutePath);
+
+					return result;
+				};
+
+				jsEngine.EmbedHostObject("require", loadModule);
+				output = jsEngine.Evaluate<double>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public virtual void RecursiveExecutionOfFilesIsCorrect()
+		{
+			// Arrange
+			const string directoryPath = "Files/recursiveExecution/noError";
+			const string variableName = "num";
+			const int targetOutput = 12;
+
+			// Act
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				Action<string> executeFile = path => jsEngine.ExecuteFile(path);
+
+				jsEngine.SetVariableValue("directoryPath", directoryPath);
+				jsEngine.EmbedHostObject("executeFile", executeFile);
+				jsEngine.ExecuteFile(Path.Combine(directoryPath, "mainFile.js"));
+
+				output = jsEngine.GetVariableValue<int>(variableName);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
