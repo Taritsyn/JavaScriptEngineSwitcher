@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #72 “(chakra) recursive evaluation”.
+   ChakraCore was updated to version 1.11.8.
 
    =============
    DOCUMENTATION
