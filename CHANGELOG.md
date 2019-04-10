@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.0.9 - April 10, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.8
+
 ## v3.0.8 - April 9, 2019
  * In JavaScriptEngineSwitcher.ChakraCore fixed a [error #72](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/72) “(chakra) recursive evaluation”
  * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1320
