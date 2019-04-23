@@ -200,8 +200,7 @@ for (var i = 0; i < 10000; i++) {
 			using (IJsEngine jsEngine = new ChakraCoreJsEngine(
 				new ChakraCoreSettings
 				{
-					MemoryLimit = new UIntPtr(2 * 1024 * 1024),
-					DisableFatalOnOOM = true
+					MemoryLimit = new UIntPtr(2 * 1024 * 1024)
 				}
 			))
 			{
@@ -234,8 +233,7 @@ for (var i = 0; i < 10000; i++) {
 				jsEngine = new ChakraCoreJsEngine(
 					new ChakraCoreSettings
 					{
-						MemoryLimit = new UIntPtr(8 * 1024),
-						DisableFatalOnOOM = true
+						MemoryLimit = new UIntPtr(8 * 1024)
 					}
 				);
 			}

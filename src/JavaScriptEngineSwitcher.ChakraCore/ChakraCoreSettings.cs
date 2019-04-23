@@ -140,7 +140,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			DisableBackgroundWork = false;
 			DisableEval = false;
 			DisableExecutablePageAllocation = false;
-			DisableFatalOnOOM = false;
+			DisableFatalOnOOM = true;
 			DisableNativeCodeGeneration = false;
 			EnableExperimentalFeatures = false;
 #if !NETSTANDARD1_3

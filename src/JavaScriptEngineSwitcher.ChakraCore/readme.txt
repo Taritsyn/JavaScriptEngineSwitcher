@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.8.
+   In configuration settings of the ChakraCore JS engine was changed default value
+   of `DisableFatalOnOOM` property from `false` to `true`.
 
    =============
    DOCUMENTATION
