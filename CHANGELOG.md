@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.0.10 - April 29, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore in configuration settings was changed default value of `DisableFatalOnOOM` property from `false` to `true`
+ * In JavaScriptEngineSwitcher.Jint fixed a error that occurred during the recursive execution and evaluation of JS files
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.3
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1327
+
 ## v3.0.9 - April 10, 2019
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.8
 
