@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 using IOriginalCallable = Jint.Native.ICallable;
@@ -12,6 +13,7 @@ using OriginalProgram = Jint.Parser.Ast.Program;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
 using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
+using OriginalTypes = Jint.Runtime.Types;
 using OriginalValue = Jint.Native.JsValue;
 
 using AdvancedStringBuilder;
@@ -60,6 +62,11 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// </summary>
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
+
+		/// <summary>
+		/// List of primitive class names
+		/// </summary>
+		private static ISet<string> _primitiveClassNames = new HashSet<string> { "Boolean", "Number", "String" };
 
 
 		/// <summary>
@@ -120,9 +127,21 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <returns>The mapped value</returns>
 		private object MapToHostType(OriginalValue value)
 		{
-			if (value.IsUndefined())
+			switch (value.Type)
 			{
-				return Undefined.Value;
+				case OriginalTypes.Undefined:
+					return Undefined.Value;
+
+				case OriginalTypes.Object:
+					var objInstance = value.As<OriginalObjectInstance>();
+					if (objInstance != null && !_primitiveClassNames.Contains(objInstance.Class))
+					{
+						return objInstance;
+					}
+					else
+					{
+						break;
+					}
 			}
 
 			return value.ToObject();

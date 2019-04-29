@@ -17,7 +17,8 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error that occurs in the strict mode when generating an error message.
+   Fixed a error that occurred during the recursive execution and evaluation of JS
+   files.
 
    =============
    DOCUMENTATION
