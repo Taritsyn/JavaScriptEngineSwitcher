@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                   README file for JS Engine Switcher: MSIE v3.0.10
+                   README file for JS Engine Switcher: MSIE v3.1.0
 
    --------------------------------------------------------------------------------
 
@@ -15,11 +15,6 @@
    MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)).
    For correct working of the MSIE JavaScript Engine it is recommended to install
    Internet Explorer 9+ or Microsoft Edge on the machine.
-
-   =============
-   RELEASE NOTES
-   =============
-   MSIE JavaScript Engine was updated to version 3.0.3.
 
    =============
    DOCUMENTATION

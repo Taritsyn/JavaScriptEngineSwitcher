@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.1.0 - May 3, 2019
+ * In the `JsEngineFactoryCollection` class was added a `Count` property and `GetRegisteredFactories` method
+ * Removed a deprecated packages: JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm and JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.5.6 (support of V8 version 7.4.288.26)
+
 ## v3.0.10 - April 29, 2019
  * In JavaScriptEngineSwitcher.ChakraCore in configuration settings was changed default value of `DisableFatalOnOOM` property from `false` to `true`
  * In JavaScriptEngineSwitcher.Jint fixed a error that occurred during the recursive execution and evaluation of JS files

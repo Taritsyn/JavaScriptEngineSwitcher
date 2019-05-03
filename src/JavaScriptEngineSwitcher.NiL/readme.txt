@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for JS Engine Switcher: NiL v3.0.10
+                    README file for JS Engine Switcher: NiL v3.1.0
 
    --------------------------------------------------------------------------------
 
@@ -13,11 +13,6 @@
    ===========
    JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the
    NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1327).
-
-   =============
-   RELEASE NOTES
-   =============
-   NiL.JS was updated to version 2.5.1327.
 
    =============
    DOCUMENTATION

@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{3FE10516
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "licenses", "licenses", "{4AB5950E-3FA8-4A77-A067-F325BFD80537}"
 	ProjectSection(SolutionItems) = preProject
+		Licenses\advanced-string-builder-license.txt = Licenses\advanced-string-builder-license.txt
 		Licenses\chakra-core-license.txt = Licenses\chakra-core-license.txt
 		Licenses\chakra-samples-license.txt = Licenses\chakra-samples-license.txt
 		Licenses\clearscript-license.txt = Licenses\clearscript-license.txt
@@ -28,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "licenses", "licenses", "{4A
 		Licenses\jurassic-license.txt = Licenses\jurassic-license.txt
 		Licenses\msie-javascript-engine-license.txt = Licenses\msie-javascript-engine-license.txt
 		Licenses\nil-license.txt = Licenses\nil-license.txt
+		Licenses\polyfills-for-old-dot-net-license.txt = Licenses\polyfills-for-old-dot-net-license.txt
 		Licenses\v8-license.txt = Licenses\v8-license.txt
 		Licenses\vroomjs-core-license.txt = Licenses\vroomjs-core-license.txt
 	EndProjectSection
