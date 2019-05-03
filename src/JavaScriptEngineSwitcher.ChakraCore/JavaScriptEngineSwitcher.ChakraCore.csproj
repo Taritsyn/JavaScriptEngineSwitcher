@@ -64,18 +64,23 @@ This package does not contain the native implementations of ChakraCore. Therefor
 			<PackagePath>readme.txt</PackagePath>
 			<Pack>true</Pack>
 		</Content>
+		<Content Include="../../Licenses/advanced-string-builder-license.txt">
+			<PackagePath>advanced-string-builder-license.txt</PackagePath>
+			<Pack>true</Pack>
+			<Visible>false</Visible>
+		</Content>
 		<Content Include="../../Licenses/chakra-samples-license.txt">
 			<PackagePath>chakra-samples-license.txt</PackagePath>
 			<Pack>true</Pack>
 			<Visible>false</Visible>
 		</Content>
-		<Content Include="../../Licenses/dotnet-corefx-license.txt">
-			<PackagePath>dotnet-corefx-license.txt</PackagePath>
+		<Content Include="../../Licenses/jsrt-dotnet-license.txt">
+			<PackagePath>jsrt-dotnet-license.txt</PackagePath>
 			<Pack>true</Pack>
 			<Visible>false</Visible>
 		</Content>
-		<Content Include="../../Licenses/jsrt-dotnet-license.txt">
-			<PackagePath>jsrt-dotnet-license.txt</PackagePath>
+		<Content Include="../../Licenses/polyfills-for-old-dot-net-license.txt">
+			<PackagePath>polyfills-for-old-dot-net-license.txt</PackagePath>
 			<Pack>true</Pack>
 			<Visible>false</Visible>
 		</Content>

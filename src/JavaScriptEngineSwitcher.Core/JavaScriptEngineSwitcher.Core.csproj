@@ -35,6 +35,11 @@
 			<PackagePath>readme.txt</PackagePath>
 			<Pack>true</Pack>
 		</Content>
+		<Content Include="../../Licenses/advanced-string-builder-license.txt">
+			<PackagePath>advanced-string-builder-license.txt</PackagePath>
+			<Pack>true</Pack>
+			<Visible>false</Visible>
+		</Content>
 	</ItemGroup>
 
 	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">

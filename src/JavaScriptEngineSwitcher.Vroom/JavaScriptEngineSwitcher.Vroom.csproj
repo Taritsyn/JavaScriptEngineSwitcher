@@ -45,6 +45,11 @@ For correct working of the VroomJs on Windows require the Visual C++ Redistribut
 			<PackagePath>readme.txt</PackagePath>
 			<Pack>true</Pack>
 		</Content>
+		<Content Include="../../Licenses/advanced-string-builder-license.txt">
+			<PackagePath>advanced-string-builder-license.txt</PackagePath>
+			<Pack>true</Pack>
+			<Visible>false</Visible>
+		</Content>
 		<Content Include="../../Licenses/vroomjs-core-license.txt">
 			<PackagePath>vroomjs-core-license.txt</PackagePath>
 			<Pack>true</Pack>
