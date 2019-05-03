@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace JavaScriptEngineSwitcher.Core
 {
@@ -15,6 +16,23 @@ namespace JavaScriptEngineSwitcher.Core
 		private readonly Dictionary<string, IJsEngineFactory> _factories =
 			new Dictionary<string, IJsEngineFactory>();
 
+		/// <summary>
+		/// Gets a number of factories in the collection
+		/// </summary>
+		public int Count
+		{
+			get { return _factories.Count; }
+		}
+
+
+		/// <summary>
+		/// Gets all registered factories
+		/// </summary>
+		/// <returns>A read-only collection of all factories in the collection</returns>
+		public ReadOnlyCollection<IJsEngineFactory> GetRegisteredFactories()
+		{
+			return new List<IJsEngineFactory>(_factories.Values).AsReadOnly();
+		}
 
 		/// <summary>
 		/// Gets a factory by JS engine name
@@ -91,25 +109,16 @@ namespace JavaScriptEngineSwitcher.Core
 			_factories.Clear();
 		}
 
-		/// <summary>
-		/// Gets an enumerator for all factories in the collection
-		/// </summary>
-		/// <returns>Enumerator for all factories in the collection</returns>
-		private IEnumerator<IJsEngineFactory> InnerGetEnumerator()
-		{
-			return _factories.Values.GetEnumerator();
-		}
-
 		#region IEnumerable implementation
 
 		public IEnumerator<IJsEngineFactory> GetEnumerator()
 		{
-			return InnerGetEnumerator();
+			return _factories.Values.GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			return InnerGetEnumerator();
+			return _factories.Values.GetEnumerator();
 		}
 
 		#endregion
