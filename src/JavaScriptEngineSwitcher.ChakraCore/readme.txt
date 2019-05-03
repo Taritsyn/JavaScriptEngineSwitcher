@@ -30,8 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   In configuration settings of the ChakraCore JS engine was changed default value
-   of `DisableFatalOnOOM` property from `false` to `true`.
+   Removed a deprecated packages:
+   JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm and
+   JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64.
 
    =============
    DOCUMENTATION

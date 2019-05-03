@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-          README file for JS Engine Switcher: ChakraCore for Linux x64 v3.0.9
+          README file for JS Engine Switcher: ChakraCore for Linux x64 v3.1.0
 
    --------------------------------------------------------------------------------
 
@@ -15,11 +15,6 @@
    contains the native implementation of ChakraCore version 1.11.8 for Linux (x64).
 
    This package is only compatible with .NET Core.
-
-   =============
-   RELEASE NOTES
-   =============
-   ChakraCore was updated to version 1.11.8.
 
    =============
    DOCUMENTATION

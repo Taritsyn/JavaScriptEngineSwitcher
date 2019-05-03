@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</id>
-		<version>3.0.9</version>
+		<version>3.1.0</version>
 		<title>JS Engine Switcher: ChakraCore for OS X (x64)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -14,7 +14,6 @@
 		<description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.11.8 for OS X (x64).
 
 This package is only compatible with .NET Core.</description>
-		<releaseNotes>ChakraCore was updated to version 1.11.8.</releaseNotes>
 		<copyright>Copyright © 2013-2019 Andrey Taritsyn</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore macOS OSX x64</tags>
