@@ -30,9 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Removed a deprecated packages:
-   JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm and
-   JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64.
+   ChakraCore was updated to version 1.11.9.
 
    =============
    DOCUMENTATION
