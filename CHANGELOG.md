@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.1.1 - May 15, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.9
+
 ## v3.1.0 - May 3, 2019
  * In the `JsEngineFactoryCollection` class was added a `Count` property and `GetRegisteredFactories` method
  * Removed a deprecated packages: JavaScriptEngineSwitcher.ChakraCore.Native.win8-arm and JavaScriptEngineSwitcher.ChakraCore.Native.debian-x64
