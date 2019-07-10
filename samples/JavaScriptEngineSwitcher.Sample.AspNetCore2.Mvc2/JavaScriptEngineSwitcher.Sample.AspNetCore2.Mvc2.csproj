@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<Product>JS Engine Switcher: Sample ASP.NET Core 2.0 MVC 2 Site</Product>
-		<VersionPrefix>3.1.2</VersionPrefix>
+		<VersionPrefix>3.1.3</VersionPrefix>
 		<TargetFramework>netcoreapp2.0</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
