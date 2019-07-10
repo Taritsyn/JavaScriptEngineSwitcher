@@ -22,7 +22,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;ChakraCore</PackageTags>
-		<PackageReleaseNotes>ChakraCore was updated to version 1.11.10.</PackageReleaseNotes>
+		<PackageReleaseNotes>ChakraCore was updated to version 1.11.11.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
