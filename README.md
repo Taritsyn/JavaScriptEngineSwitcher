@@ -49,6 +49,7 @@ See the [changelog](CHANGELOG.md).
 ## Who's Using JavaScript Engine Switcher
 If you use the JavaScript Engine Switcher in some project, please send me a message so I can include it in this list:
 
+ * [Autoprefixer Host for .NET](https://github.com/Taritsyn/AutoprefixerHost) by Andrey Taritsyn
  * [Bundle Transformer](https://github.com/Taritsyn/BundleTransformer) by Andrey Taritsyn
  * [Cruncher](https://github.com/JimBobSquarePants/Cruncher) by James South
  * [E.F.F.C JavaScriptEngineSwitcher Extention Lib](https://github.com/redwolf0817/EFFC.JavaScriptEngineSwitcher.Extention) by ItTrending
@@ -59,7 +60,6 @@ If you use the JavaScript Engine Switcher in some project, please send me a mess
  * [ReactJS.NET](http://reactjs.net/) by Daniel Lo Nigro
  * [Sitecore JavaScript Presentation Module](https://github.com/asmagin/sitecore-js-presentation) by Alex Smagin
  * [T1.Scripts](http://nuget.org/packages/T1.Scripts)
- * [Transformalize](https://github.com/dalenewman/Transformalize) by Dale Newman
  * [Wyam](http://wyam.io/)
  * [ZeroReact.NET](https://github.com/DaniilSokolyuk/ZeroReact.NET) by Daniil Sokolyuk
  * [zxcvbn.net](https://github.com/darcythomas/zxcvbn.net) by Darcy Thomas
