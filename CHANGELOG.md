@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.1.5 - August 2, 2019
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.6.0 (support of V8 version 7.6.303.28)
+
 ## v3.1.4 - July 17, 2019
  * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1339
 
