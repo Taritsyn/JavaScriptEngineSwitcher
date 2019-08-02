@@ -27,8 +27,8 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.1.0" />
-		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x86" Version="3.1.0" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.1.5" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x86" Version="3.1.5" />
 
 		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.V8/JavaScriptEngineSwitcher.V8.csproj" />
 	</ItemGroup>

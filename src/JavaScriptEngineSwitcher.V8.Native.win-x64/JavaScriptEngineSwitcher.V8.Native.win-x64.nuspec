@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>JavaScriptEngineSwitcher.V8.Native.win-x64</id>
-		<version>3.1.0</version>
+		<version>3.1.5</version>
 		<title>JS Engine Switcher: V8 for Windows (x64)</title>
 		<authors>Andrey Taritsyn</authors>
 		<owners>Andrey Taritsyn</owners>
@@ -11,16 +11,17 @@
 		<iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</iconUrl>
 		<repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>This package complements the JavaScriptEngineSwitcher.V8 package and contains the native implementation of V8 version 7.4.288.26 for Windows (x64).
+		<description>This package complements the JavaScriptEngineSwitcher.V8 package and contains the native implementation of V8 version 7.6.303.28 for Windows (x64).
 
 For correct working of the Microsoft ClearScript.V8 require the Microsoft Visual C++ Redistributable for Visual Studio 2017.</description>
-		<releaseNotes>Microsoft ClearScript.V8 was updated to version 5.5.6 (support of V8 version 7.4.288.26).</releaseNotes>
+		<releaseNotes>Microsoft ClearScript.V8 was updated to version 5.6.0 (support of V8 version 7.6.303.28).</releaseNotes>
 		<copyright>Copyright © 2013-2019 Andrey Taritsyn</copyright>
 		<language>en-US</language>
 		<tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript Windows x64</tags>
 	</metadata>
 	<files>
 		<file src="../../lib/ClearScript/runtimes/win-x64/native/ClearScriptV8-64.dll" target="runtimes/win-x64/native/" />
+		<file src="../../lib/ClearScript/runtimes/win-x64/native/v8-libcpp-x64.dll" target="runtimes/win-x64/native/" />
 		<file src="../../lib/ClearScript/runtimes/win-x64/native/v8-base-x64.dll" target="runtimes/win-x64/native/" />
 		<file src="../../lib/ClearScript/runtimes/win-x64/native/v8-x64.dll" target="runtimes/win-x64/native/" />
 		<file src="build/JavaScriptEngineSwitcher.V8.Native.win-x64.props" target="build/" />

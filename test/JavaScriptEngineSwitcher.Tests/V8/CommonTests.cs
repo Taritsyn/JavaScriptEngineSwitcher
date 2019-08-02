@@ -198,7 +198,7 @@ for (var i = 0; i < 10000; i++) {
 			using (IJsEngine jsEngine = new V8JsEngine(
 				new V8Settings
 				{
-					MaxHeapSize = new UIntPtr(2 * 1024 * 1024)
+					MaxHeapSize = new UIntPtr(640 * 1024)
 				}
 			))
 			{

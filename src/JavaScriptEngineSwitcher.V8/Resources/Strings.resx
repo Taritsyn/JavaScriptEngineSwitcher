@@ -121,7 +121,7 @@
     <value>Failed to load the ClearScript `undefined` value.</value>
   </data>
   <data name="Engine_VcRedist2017InstallationRequired" xml:space="preserve">
-    <value>In addition, you still need to install the Microsoft Visual C++ Redistributable for Visual Studio 2017 (https://www.visualstudio.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2017).</value>
+    <value>In addition, you still need to install the Microsoft Visual C++ Redistributable for Visual Studio 2017 (https://visualstudio.microsoft.com/vs/older-downloads/#microsoft-visual-c-redistributable-for-visual-studio-2017).</value>
   </data>
   <data name="Usage_PrecompiledScriptNotAccepted" xml:space="preserve">
     <value>Pre-compiled script is not accepted. To be accepted, the pre-compiled script must have been created by the same V8 build.</value>
