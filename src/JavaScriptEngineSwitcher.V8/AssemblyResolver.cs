@@ -2,6 +2,8 @@
 using System.IO;
 using System.Reflection;
 
+using Microsoft.ClearScript.V8;
+
 using JavaScriptEngineSwitcher.V8.Constants;
 
 namespace JavaScriptEngineSwitcher.V8
@@ -45,17 +47,28 @@ namespace JavaScriptEngineSwitcher.V8
 					platformBitness = 32;
 				}
 
+				string assemblyName = DllName.ClearScriptV8Universal + "-" + platformBitness;
 				string assemblyDirectoryPath = Path.Combine(baseDirectoryPath, platformName);
-				string assemblyFileName = DllName.ClearScriptV8Universal + "-" + platformBitness + ".dll";
+				string assemblyFileName = assemblyName + ".dll";
 				string assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);
 				bool assemblyFileExists = File.Exists(assemblyFilePath);
 
-				if (!assemblyFileExists)
+				if (assemblyFileExists)
 				{
-					return null;
+					return Assembly.LoadFile(assemblyFilePath);
 				}
 
-				return Assembly.LoadFile(assemblyFilePath);
+				Assembly clearScriptAssembly = typeof(V8ScriptEngine).Assembly;
+				string clearScriptAssemblyFullName = clearScriptAssembly.FullName;
+				int commaPosition = clearScriptAssemblyFullName.IndexOf(',');
+
+				if (commaPosition != -1)
+				{
+					string assemblyFullName = assemblyName +
+						clearScriptAssemblyFullName.Substring(commaPosition);
+
+					return Assembly.Load(assemblyFullName);
+				}
 			}
 
 			return null;

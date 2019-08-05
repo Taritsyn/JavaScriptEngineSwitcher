@@ -367,10 +367,10 @@ namespace JavaScriptEngineSwitcher.V8
 				StringBuilder descriptionBuilder = stringBuilderPool.Rent();
 				descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, assemblyFileName);
 				descriptionBuilder.Append(" ");
-				if (assemblyFileName == DllName.V8Base64Bit || assemblyFileName == DllName.V8Base32Bit)
+				if (assemblyFileName == DllName.V8LibCpp64Bit || assemblyFileName == DllName.V8LibCpp32Bit)
 				{
 					descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
-						assemblyFileName == DllName.V8Base64Bit ?
+						assemblyFileName == DllName.V8LibCpp64Bit ?
 							"JavaScriptEngineSwitcher.V8.Native.win-x64"
 							:
 							"JavaScriptEngineSwitcher.V8.Native.win-x86"

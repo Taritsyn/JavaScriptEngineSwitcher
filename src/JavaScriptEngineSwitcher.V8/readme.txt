@@ -25,7 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 5.6.0.
+   Fixed a error #73 “Trying to Run this in the GAC”.
 
    =============
    DOCUMENTATION
