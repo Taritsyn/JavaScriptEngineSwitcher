@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.1.6 - August 5, 2019
+ * In JavaScriptEngineSwitcher.V8 fixed a [error #73](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/73) “Trying to Run this in the GAC”
+
 ## v3.1.5 - August 2, 2019
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 5.6.0 (support of V8 version 7.6.303.28)
 
