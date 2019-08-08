@@ -88,7 +88,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			{
 				try
 				{
-					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "getItem.js");
+					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "get-item.js");
 					jsEngine.Execute(precompiledScript);
 				}
 				catch (JsRuntimeException e)
@@ -102,7 +102,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("items is null", exception.Description);
 			Assert.Equal("TypeError", exception.Type);
-			Assert.Equal("getItem.js", exception.DocumentName);
+			Assert.Equal("get-item.js", exception.DocumentName);
 			Assert.Equal(2, exception.LineNumber);
 			Assert.Equal(13, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
@@ -123,14 +123,14 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		charIndex
 		;
 
-	for (charIndex = 0; charIndex < length; charIndex++) 
+	for (charIndex = 0; charIndex < length; charIndex++)
 		result += possible.charAt(Math.floor(Math.random() * possible.length));
 	}
 
 	return result;
 }";
 			string targetOutput = "SyntaxError: Illegal return statement" + Environment.NewLine +
-				"   at makeId.js:11:8"
+				"   at make-id.js:11:8"
 				;
 
 			IPrecompiledScript precompiledScript = null;
@@ -141,7 +141,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			{
 				try
 				{
-					precompiledScript = jsEngine.Precompile(input, "makeId.js");
+					precompiledScript = jsEngine.Precompile(input, "make-id.js");
 				}
 				catch (JsCompilationException e)
 				{
@@ -172,7 +172,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 	return getFullName(firstName, lastName);
 })(getFullName);";
 			string targetOutput = "ReferenceError: middleName is not defined" + Environment.NewLine +
-				"   at getFullName.js:2:2"
+				"   at get-full-name.js:2:2"
 				;
 
 			JsRuntimeException exception = null;
@@ -182,7 +182,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			{
 				try
 				{
-					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "getFullName.js");
+					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "get-full-name.js");
 					jsEngine.Execute(precompiledScript);
 				}
 				catch (JsRuntimeException e)

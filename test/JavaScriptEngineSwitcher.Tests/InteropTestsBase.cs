@@ -20,7 +20,7 @@ using JavaScriptEngineSwitcher.Tests.Interop.Logging;
 
 namespace JavaScriptEngineSwitcher.Tests
 {
-	public abstract class InteropTestsBase : FileSystemTestsBase
+	public abstract class InteropTestsBase : TestsBase
 	{
 		#region Embedding of objects
 
@@ -404,7 +404,7 @@ smileDay.GetDayOfYear();";
 		{
 			// Arrange
 			var fileManager = new FileManager();
-			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "../SharedFiles/link.txt"));
+			const string filePath = "Files/link.txt";
 
 			string input = string.Format("fileManager.ReadFile('{0}')", filePath.Replace(@"\", @"\\"));
 			const string targetOutput = "http://www.panopticoncentral.net/2015/09/09/the-two-faces-of-jsrt-in-windows-10/";
@@ -616,8 +616,8 @@ smileDay.GetDayOfYear();";
 		public virtual void RecursiveEvaluationOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveEvaluation/noError";
-			const string input = "require('index').calculateResult();";
+			const string directoryPath = "Files/recursive-evaluation/no-error";
+			const string input = "evaluateFile('index').calculateResult();";
 			const double targetOutput = 132.14;
 
 			// Act
@@ -625,7 +625,7 @@ smileDay.GetDayOfYear();";
 
 			using (var jsEngine = CreateJsEngine())
 			{
-				Func<string, object> loadModule = path => {
+				Func<string, object> evaluateFile = path => {
 					string absolutePath = Path.Combine(directoryPath, $"{path}.js");
 					string code = File.ReadAllText(absolutePath);
 					object result = jsEngine.Evaluate(code, absolutePath);
@@ -633,7 +633,7 @@ smileDay.GetDayOfYear();";
 					return result;
 				};
 
-				jsEngine.EmbedHostObject("require", loadModule);
+				jsEngine.EmbedHostObject("evaluateFile", evaluateFile);
 				output = jsEngine.Evaluate<double>(input);
 			}
 
@@ -645,7 +645,7 @@ smileDay.GetDayOfYear();";
 		public virtual void RecursiveExecutionOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveExecution/noError";
+			const string directoryPath = "Files/recursive-execution/no-error";
 			const string variableName = "num";
 			const int targetOutput = 12;
 
@@ -658,7 +658,7 @@ smileDay.GetDayOfYear();";
 
 				jsEngine.SetVariableValue("directoryPath", directoryPath);
 				jsEngine.EmbedHostObject("executeFile", executeFile);
-				jsEngine.ExecuteFile(Path.Combine(directoryPath, "mainFile.js"));
+				jsEngine.ExecuteFile(Path.Combine(directoryPath, "main-file.js"));
 
 				output = jsEngine.GetVariableValue<int>(variableName);
 			}

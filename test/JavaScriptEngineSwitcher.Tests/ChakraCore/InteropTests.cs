@@ -25,8 +25,8 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		public void MappingCompilationErrorDuringRecursiveEvaluationOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveEvaluation/compilationError";
-			const string input = "require('index').calculateResult();";
+			const string directoryPath = "Files/recursive-evaluation/compilation-error";
+			const string input = "evaluateFile('index').calculateResult();";
 
 			// Act
 			JsCompilationException exception = null;
@@ -35,7 +35,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 			{
 				try
 				{
-					Func<string, object> loadModule = path => {
+					Func<string, object> evaluateFile = path => {
 						string absolutePath = Path.Combine(directoryPath, $"{path}.js");
 						string code = File.ReadAllText(absolutePath);
 						object result = jsEngine.Evaluate(code, absolutePath);
@@ -43,7 +43,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 						return result;
 					};
 
-					jsEngine.EmbedHostObject("require", loadModule);
+					jsEngine.EmbedHostObject("evaluateFile", evaluateFile);
 					double output = jsEngine.Evaluate<double>(input);
 				}
 				catch (JsCompilationException e)
@@ -67,8 +67,8 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		public void MappingRuntimeErrorDuringRecursiveEvaluationOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveEvaluation/runtimeError";
-			const string input = "require('index').calculateResult();";
+			const string directoryPath = "Files/recursive-evaluation/runtime-error";
+			const string input = "evaluateFile('index').calculateResult();";
 
 			// Act
 			JsRuntimeException exception = null;
@@ -77,7 +77,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 			{
 				try
 				{
-					Func<string, object> loadModule = path => {
+					Func<string, object> evaluateFile = path => {
 						string absolutePath = Path.Combine(directoryPath, $"{path}.js");
 						string code = File.ReadAllText(absolutePath);
 						object result = jsEngine.Evaluate(code, absolutePath);
@@ -85,7 +85,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 						return result;
 					};
 
-					jsEngine.EmbedHostObject("require", loadModule);
+					jsEngine.EmbedHostObject("evaluateFile", evaluateFile);
 					double output = jsEngine.Evaluate<double>(input);
 				}
 				catch (JsRuntimeException e)
@@ -115,8 +115,8 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		public void MappingHostErrorDuringRecursiveEvaluationOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveEvaluation/hostError";
-			const string input = "require('index').calculateResult();";
+			const string directoryPath = "Files/recursive-evaluation/host-error";
+			const string input = "evaluateFile('index').calculateResult();";
 
 			// Act
 			JsRuntimeException exception = null;
@@ -125,7 +125,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 			{
 				try
 				{
-					Func<string, object> loadModule = path => {
+					Func<string, object> evaluateFile = path => {
 						string absolutePath = Path.Combine(directoryPath, $"{path}.js");
 						string code = File.ReadAllText(absolutePath);
 						object result = jsEngine.Evaluate(code, absolutePath);
@@ -133,7 +133,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 						return result;
 					};
 
-					jsEngine.EmbedHostObject("require", loadModule);
+					jsEngine.EmbedHostObject("evaluateFile", evaluateFile);
 					double output = jsEngine.Evaluate<double>(input);
 				}
 				catch (JsRuntimeException e)
@@ -151,7 +151,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 			Assert.Equal("index.js", exception.DocumentName);
 			Assert.Equal(6, exception.LineNumber);
 			Assert.Equal(3, exception.ColumnNumber);
-			Assert.Equal("		var math = require('./match'),", exception.SourceFragment);
+			Assert.Equal("		var math = evaluateFile('./match'),", exception.SourceFragment);
 			Assert.Equal(
 				"   at calculateResult (index.js:6:3)" + Environment.NewLine +
 				"   at Global code (Script Document:1:1)",
@@ -163,7 +163,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		public void MappingCompilationErrorDuringRecursiveExecutionOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveExecution/compilationError";
+			const string directoryPath = "Files/recursive-execution/compilation-error";
 			const string variableName = "num";
 
 			// Act
@@ -177,7 +177,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 
 					jsEngine.SetVariableValue("directoryPath", directoryPath);
 					jsEngine.EmbedHostObject("executeFile", executeFile);
-					jsEngine.ExecuteFile(Path.Combine(directoryPath, "mainFile.js"));
+					jsEngine.ExecuteFile(Path.Combine(directoryPath, "main-file.js"));
 
 					int output = jsEngine.GetVariableValue<int>(variableName);
 				}
@@ -192,7 +192,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 			Assert.Equal("Compilation error", exception.Category);
 			Assert.Equal("Invalid character", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
-			Assert.Equal("secondFile.js", exception.DocumentName);
+			Assert.Equal("second-file.js", exception.DocumentName);
 			Assert.Equal(1, exception.LineNumber);
 			Assert.Equal(6, exception.ColumnNumber);
 			Assert.Equal("num -# 3;", exception.SourceFragment);
@@ -202,7 +202,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		public void MappingRuntimeErrorDuringRecursiveExecutionOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveExecution/runtimeError";
+			const string directoryPath = "Files/recursive-execution/runtime-error";
 			const string variableName = "num";
 
 			// Act
@@ -216,7 +216,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 
 					jsEngine.SetVariableValue("directoryPath", directoryPath);
 					jsEngine.EmbedHostObject("executeFile", executeFile);
-					jsEngine.ExecuteFile(Path.Combine(directoryPath, "mainFile.js"));
+					jsEngine.ExecuteFile(Path.Combine(directoryPath, "main-file.js"));
 
 					int output = jsEngine.GetVariableValue<int>(variableName);
 				}
@@ -231,14 +231,14 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("'nuм' is not defined", exception.Description);
 			Assert.Equal("ReferenceError", exception.Type);
-			Assert.Equal("secondFile.js", exception.DocumentName);
+			Assert.Equal("second-file.js", exception.DocumentName);
 			Assert.Equal(1, exception.LineNumber);
 			Assert.Equal(1, exception.ColumnNumber);
 			Assert.Equal("nuм -= 3;", exception.SourceFragment);
 			Assert.Equal(
-				"   at Global code (secondFile.js:1:1)" + Environment.NewLine +
-				"   at Global code (firstFile.js:2:1)" + Environment.NewLine +
-				"   at Global code (mainFile.js:2:1)",
+				"   at Global code (second-file.js:1:1)" + Environment.NewLine +
+				"   at Global code (first-file.js:2:1)" + Environment.NewLine +
+				"   at Global code (main-file.js:2:1)",
 				exception.CallStack
 			);
 		}
@@ -247,7 +247,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		public void MappingHostErrorDuringRecursiveExecutionOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveExecution/hostError";
+			const string directoryPath = "Files/recursive-execution/host-error";
 			const string variableName = "num";
 
 			// Act
@@ -261,7 +261,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 
 					jsEngine.SetVariableValue("directoryPath", directoryPath);
 					jsEngine.EmbedHostObject("executeFile", executeFile);
-					jsEngine.ExecuteFile(Path.Combine(directoryPath, "mainFile.js"));
+					jsEngine.ExecuteFile(Path.Combine(directoryPath, "main-file.js"));
 
 					int output = jsEngine.GetVariableValue<int>(variableName);
 				}
@@ -279,16 +279,16 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 				exception.Description
 			);
 			Assert.Equal("Error", exception.Type);
-			Assert.Equal("firstFile.js", exception.DocumentName);
+			Assert.Equal("first-file.js", exception.DocumentName);
 			Assert.Equal(2, exception.LineNumber);
 			Assert.Equal(1, exception.ColumnNumber);
 			Assert.Equal(
-				"executeFile(directoryPath + \"/secondFile.jsx\");",
+				"executeFile(directoryPath + \"/second-file.jsx\");",
 				exception.SourceFragment
 			);
 			Assert.Equal(
-				"   at Global code (firstFile.js:2:1)" + Environment.NewLine +
-				"   at Global code (mainFile.js:2:1)",
+				"   at Global code (first-file.js:2:1)" + Environment.NewLine +
+				"   at Global code (main-file.js:2:1)",
 				exception.CallStack
 			);
 		}

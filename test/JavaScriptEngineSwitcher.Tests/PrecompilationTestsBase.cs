@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Threading.Tasks;
 
 using Xunit;
@@ -8,7 +7,7 @@ using JavaScriptEngineSwitcher.Core;
 
 namespace JavaScriptEngineSwitcher.Tests
 {
-	public abstract class PrecompilationTestsBase : FileSystemTestsBase
+	public abstract class PrecompilationTestsBase : TestsBase
 	{
 		#region Execution of precompiled scripts
 
@@ -55,7 +54,7 @@ function declinationOfSeconds(number) {
 				supportsScriptPrecompilation = jsEngine.SupportsScriptPrecompilation;
 				if (supportsScriptPrecompilation)
 				{
-					precompiledCode = jsEngine.Precompile(libraryCode, "declinationOfSeconds.js");
+					precompiledCode = jsEngine.Precompile(libraryCode, "declination-of-seconds.js");
 
 					jsEngine.Execute(precompiledCode);
 					outputStrings[0] = jsEngine.CallFunction<string>(functionName, inputSeconds[0]);
@@ -88,7 +87,7 @@ function declinationOfSeconds(number) {
 		public virtual void ExecutionOfPrecompiledFileIsCorrect()
 		{
 			// Arrange
-			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "../SharedFiles/declinationOfMinutes.js"));
+			const string filePath = "Files/declination-of-minutes.js";
 			const string functionName = "declinationOfMinutes";
 			const int itemCount = 4;
 
@@ -138,7 +137,7 @@ function declinationOfSeconds(number) {
 		public virtual void ExecutionOfPrecompiledResourceByNameAndTypeIsCorrect()
 		{
 			// Arrange
-			const string resourceName = "Resources.declinationOfHours.js";
+			const string resourceName = "Resources.declination-of-hours.js";
 			const string functionName = "declinationOfHours";
 			const int itemCount = 4;
 
@@ -188,7 +187,7 @@ function declinationOfSeconds(number) {
 		public virtual void ExecutionOfPrecompiledResourceByNameAndAssemblyIsCorrect()
 		{
 			// Arrange
-			const string resourceName = "JavaScriptEngineSwitcher.Tests.Resources.declinationOfDays.js";
+			const string resourceName = "JavaScriptEngineSwitcher.Tests.Resources.declination-of-days.js";
 			const string functionName = "declinationOfDays";
 			const int itemCount = 4;
 

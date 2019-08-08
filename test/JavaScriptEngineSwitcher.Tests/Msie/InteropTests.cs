@@ -35,8 +35,8 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 		public void MappingRuntimeErrorDuringRecursiveEvaluationOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveEvaluation/runtimeError";
-			const string input = "require('index').calculateResult();";
+			const string directoryPath = "Files/recursive-evaluation/runtime-error";
+			const string input = "evaluateFile('index').calculateResult();";
 
 			// Act
 			JsRuntimeException exception = null;
@@ -45,7 +45,7 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 			{
 				try
 				{
-					Func<string, object> loadModule = path => {
+					Func<string, object> evaluateFile = path => {
 						string absolutePath = Path.Combine(directoryPath, $"{path}.js");
 						string code = File.ReadAllText(absolutePath);
 						object result = jsEngine.Evaluate(code, absolutePath);
@@ -53,7 +53,7 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 						return result;
 					};
 
-					jsEngine.EmbedHostObject("require", loadModule);
+					jsEngine.EmbedHostObject("evaluateFile", evaluateFile);
 					double output = jsEngine.Evaluate<double>(input);
 				}
 				catch (JsRuntimeException e)

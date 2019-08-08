@@ -89,7 +89,7 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 			{
 				try
 				{
-					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "getItem.js");
+					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "get-item.js");
 					jsEngine.Execute(precompiledScript);
 				}
 				catch (JsRuntimeException e)
@@ -103,14 +103,14 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Cannot read property '5' of null", exception.Description);
 			Assert.Equal("TypeError", exception.Type);
-			Assert.Equal("getItem.js", exception.DocumentName);
+			Assert.Equal("get-item.js", exception.DocumentName);
 			Assert.Equal(2, exception.LineNumber);
 			Assert.Equal(18, exception.ColumnNumber);
 			Assert.Equal("	var item = items[itemIndex];", exception.SourceFragment);
 			Assert.Equal(
-				"   at getItem (getItem.js:2:18)" + Environment.NewLine +
-				"   at getItem.js:9:10" + Environment.NewLine +
-				"   at getItem.js:13:3",
+				"   at getItem (get-item.js:2:18)" + Environment.NewLine +
+				"   at get-item.js:9:10" + Environment.NewLine +
+				"   at get-item.js:13:3",
 				exception.CallStack
 			);
 		}
@@ -129,14 +129,14 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		charIndex
 		;
 
-	for (charIndex = 0; charIndex < length; charIndex++) 
+	for (charIndex = 0; charIndex < length; charIndex++)
 		result += possible.charAt(Math.floor(Math.random() * possible.length));
 	}
 
 	return result;
 }";
 			string targetOutput = "SyntaxError: Illegal return statement" + Environment.NewLine +
-				"   at makeId.js:11:2 -> 	return result;"
+				"   at make-id.js:11:2 -> 	return result;"
 				;
 
 			IPrecompiledScript precompiledScript = null;
@@ -147,7 +147,7 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 			{
 				try
 				{
-					precompiledScript = jsEngine.Precompile(input, "makeId.js");
+					precompiledScript = jsEngine.Precompile(input, "make-id.js");
 				}
 				catch (JsCompilationException e)
 				{
@@ -178,10 +178,10 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 	return getFullName(firstName, lastName);
 })(getFullName);";
 			string targetOutput = "ReferenceError: middleName is not defined" + Environment.NewLine +
-				"   at getFullName (getFullName.js:2:35) -> 	var fullName = firstName + " +
+				"   at getFullName (get-full-name.js:2:35) -> 	var fullName = firstName + " +
 				"' ' + middleName + ' ' + lastName;" + Environment.NewLine +
-				"   at getFullName.js:12:9" + Environment.NewLine +
-				"   at getFullName.js:13:3"
+				"   at get-full-name.js:12:9" + Environment.NewLine +
+				"   at get-full-name.js:13:3"
 				;
 
 			JsRuntimeException exception = null;
@@ -191,7 +191,7 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 			{
 				try
 				{
-					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "getFullName.js");
+					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "get-full-name.js");
 					jsEngine.Execute(precompiledScript);
 				}
 				catch (JsRuntimeException e)

@@ -38,13 +38,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0C281F46-F1D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{53B43213-2E66-42C2-8476-600A2FD2DA75}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedFiles", "SharedFiles", "{958A803E-3A62-4E29-9866-9DCE451943BC}"
-	ProjectSection(SolutionItems) = preProject
-		test\SharedFiles\declinationOfMinutes.js = test\SharedFiles\declinationOfMinutes.js
-		test\SharedFiles\link.txt = test\SharedFiles\link.txt
-		test\SharedFiles\square.js = test\SharedFiles\square.js
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Core", "src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj", "{13559975-F99D-4B93-BF46-227C0B6E0DFB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Extensions.MsDependencyInjection", "src\JavaScriptEngineSwitcher.Extensions.MsDependencyInjection\JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj", "{5B693A49-BEC2-4532-ADFE-80C4AA930E27}"
@@ -164,7 +157,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{958A803E-3A62-4E29-9866-9DCE451943BC} = {53B43213-2E66-42C2-8476-600A2FD2DA75}
 		{13559975-F99D-4B93-BF46-227C0B6E0DFB} = {0C281F46-F1D2-4A1C-8560-375EDA65D680}
 		{5B693A49-BEC2-4532-ADFE-80C4AA930E27} = {0C281F46-F1D2-4A1C-8560-375EDA65D680}
 		{B3C4AA95-2227-47DD-B58C-22FA589CB28D} = {0C281F46-F1D2-4A1C-8560-375EDA65D680}

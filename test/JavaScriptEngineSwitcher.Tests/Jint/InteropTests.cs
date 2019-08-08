@@ -25,8 +25,8 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		public void MappingCompilationErrorDuringRecursiveEvaluationOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveEvaluation/compilationError";
-			const string input = "require('index').calculateResult();";
+			const string directoryPath = "Files/recursive-evaluation/compilation-error";
+			const string input = "evaluateFile('index').calculateResult();";
 
 			// Act
 			JsCompilationException exception = null;
@@ -35,7 +35,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			{
 				try
 				{
-					Func<string, object> loadModule = path => {
+					Func<string, object> evaluateFile = path => {
 						string absolutePath = Path.Combine(directoryPath, $"{path}.js");
 						string code = File.ReadAllText(absolutePath);
 						object result = jsEngine.Evaluate(code, absolutePath);
@@ -43,7 +43,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 						return result;
 					};
 
-					jsEngine.EmbedHostObject("require", loadModule);
+					jsEngine.EmbedHostObject("evaluateFile", evaluateFile);
 					double output = jsEngine.Evaluate<double>(input);
 				}
 				catch (JsCompilationException e)
@@ -67,8 +67,8 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		public void MappingRuntimeErrorDuringRecursiveEvaluationOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveEvaluation/runtimeError";
-			const string input = "require('index').calculateResult();";
+			const string directoryPath = "Files/recursive-evaluation/runtime-error";
+			const string input = "evaluateFile('index').calculateResult();";
 
 			// Act
 			JsRuntimeException exception = null;
@@ -77,7 +77,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			{
 				try
 				{
-					Func<string, object> loadModule = path => {
+					Func<string, object> evaluateFile = path => {
 						string absolutePath = Path.Combine(directoryPath, $"{path}.js");
 						string code = File.ReadAllText(absolutePath);
 						object result = jsEngine.Evaluate(code, absolutePath);
@@ -85,7 +85,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 						return result;
 					};
 
-					jsEngine.EmbedHostObject("require", loadModule);
+					jsEngine.EmbedHostObject("evaluateFile", evaluateFile);
 					double output = jsEngine.Evaluate<double>(input);
 				}
 				catch (JsRuntimeException e)
@@ -110,8 +110,8 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		public void MappingHostErrorDuringRecursiveEvaluationOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveEvaluation/hostError";
-			const string input = "require('index').calculateResult();";
+			const string directoryPath = "Files/recursive-evaluation/host-error";
+			const string input = "evaluateFile('index').calculateResult();";
 
 			// Act
 			FileNotFoundException exception = null;
@@ -120,7 +120,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			{
 				try
 				{
-					Func<string, object> loadModule = path => {
+					Func<string, object> evaluateFile = path => {
 						string absolutePath = Path.Combine(directoryPath, $"{path}.js");
 						string code = File.ReadAllText(absolutePath);
 						object result = jsEngine.Evaluate(code, absolutePath);
@@ -128,7 +128,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 						return result;
 					};
 
-					jsEngine.EmbedHostObject("require", loadModule);
+					jsEngine.EmbedHostObject("evaluateFile", evaluateFile);
 					double output = jsEngine.Evaluate<double>(input);
 				}
 				catch (FileNotFoundException e)
@@ -146,7 +146,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		public void MappingCompilationErrorDuringRecursiveExecutionOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveExecution/compilationError";
+			const string directoryPath = "Files/recursive-execution/compilation-error";
 			const string variableName = "num";
 
 			// Act
@@ -160,7 +160,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 					jsEngine.SetVariableValue("directoryPath", directoryPath);
 					jsEngine.EmbedHostObject("executeFile", executeFile);
-					jsEngine.ExecuteFile(Path.Combine(directoryPath, "mainFile.js"));
+					jsEngine.ExecuteFile(Path.Combine(directoryPath, "main-file.js"));
 
 					int output = jsEngine.GetVariableValue<int>(variableName);
 				}
@@ -175,7 +175,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Equal("Compilation error", exception.Category);
 			Assert.Equal("Unexpected token ILLEGAL", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
-			Assert.Equal("secondFile.js", exception.DocumentName);
+			Assert.Equal("second-file.js", exception.DocumentName);
 			Assert.Equal(1, exception.LineNumber);
 			Assert.Equal(6, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
@@ -185,7 +185,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		public void MappingRuntimeErrorDuringRecursiveExecutionOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveExecution/runtimeError";
+			const string directoryPath = "Files/recursive-execution/runtime-error";
 			const string variableName = "num";
 
 			// Act
@@ -199,7 +199,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 					jsEngine.SetVariableValue("directoryPath", directoryPath);
 					jsEngine.EmbedHostObject("executeFile", executeFile);
-					jsEngine.ExecuteFile(Path.Combine(directoryPath, "mainFile.js"));
+					jsEngine.ExecuteFile(Path.Combine(directoryPath, "main-file.js"));
 
 					int output = jsEngine.GetVariableValue<int>(variableName);
 				}
@@ -214,7 +214,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("nuм is not defined", exception.Description);
 			Assert.Equal("ReferenceError", exception.Type);
-			Assert.Equal("secondFile.js", exception.DocumentName);
+			Assert.Equal("second-file.js", exception.DocumentName);
 			Assert.Equal(1, exception.LineNumber);
 			Assert.Equal(1, exception.ColumnNumber);
 			Assert.Equal("", exception.SourceFragment);
@@ -228,7 +228,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		public void MappingHostErrorDuringRecursiveExecutionOfFilesIsCorrect()
 		{
 			// Arrange
-			const string directoryPath = "Files/recursiveExecution/hostError";
+			const string directoryPath = "Files/recursive-execution/host-error";
 			const string variableName = "num";
 
 			// Act
@@ -242,7 +242,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 					jsEngine.SetVariableValue("directoryPath", directoryPath);
 					jsEngine.EmbedHostObject("executeFile", executeFile);
-					jsEngine.ExecuteFile(Path.Combine(directoryPath, "mainFile.js"));
+					jsEngine.ExecuteFile(Path.Combine(directoryPath, "main-file.js"));
 
 					int output = jsEngine.GetVariableValue<int>(variableName);
 				}
@@ -254,7 +254,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 			// Assert
 			Assert.NotNull(exception);
-			Assert.Equal("File '" + directoryPath + "/secondFile.jsx' not exist.", exception.Message);
+			Assert.Equal("File '" + directoryPath + "/second-file.jsx' not exist.", exception.Message);
 		}
 
 		#endregion

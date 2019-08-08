@@ -88,7 +88,7 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 			{
 				try
 				{
-					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "getItem.js");
+					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "get-item.js");
 					jsEngine.Execute(precompiledScript);
 				}
 				catch (JsRuntimeException e)
@@ -102,14 +102,14 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Unable to get property '5' of undefined or null reference", exception.Description);
 			Assert.Equal("TypeError", exception.Type);
-			Assert.Equal("getItem.js", exception.DocumentName);
+			Assert.Equal("get-item.js", exception.DocumentName);
 			Assert.Equal(2, exception.LineNumber);
 			Assert.Equal(2, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
 			Assert.Equal(
-				"   at getItem (getItem.js:2:2)" + Environment.NewLine +
-				"   at Anonymous function (getItem.js:9:3)" + Environment.NewLine +
-				"   at Global code (getItem.js:7:2)",
+				"   at getItem (get-item.js:2:2)" + Environment.NewLine +
+				"   at Anonymous function (get-item.js:9:3)" + Environment.NewLine +
+				"   at Global code (get-item.js:7:2)",
 				exception.CallStack
 			);
 		}
@@ -128,14 +128,14 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 		charIndex
 		;
 
-	for (charIndex = 0; charIndex < length; charIndex++) 
+	for (charIndex = 0; charIndex < length; charIndex++)
 		result += possible.charAt(Math.floor(Math.random() * possible.length));
 	}
 
 	return result;
 }";
 			string targetOutput = "SyntaxError: 'return' statement outside of function" + Environment.NewLine +
-				"   at makeId.js:11:2 -> 	return result;"
+				"   at make-id.js:11:2 -> 	return result;"
 				;
 
 			IPrecompiledScript precompiledScript = null;
@@ -146,7 +146,7 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 			{
 				try
 				{
-					precompiledScript = jsEngine.Precompile(input, "makeId.js");
+					precompiledScript = jsEngine.Precompile(input, "make-id.js");
 				}
 				catch (JsCompilationException e)
 				{
@@ -177,9 +177,9 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 	return getFullName(firstName, lastName);
 })(getFullName);";
 			string targetOutput = "ReferenceError: 'middleName' is undefined" + Environment.NewLine +
-				"   at getFullName (getFullName.js:2:2)" + Environment.NewLine +
-				"   at Anonymous function (getFullName.js:12:2)" + Environment.NewLine +
-				"   at Global code (getFullName.js:7:2)"
+				"   at getFullName (get-full-name.js:2:2)" + Environment.NewLine +
+				"   at Anonymous function (get-full-name.js:12:2)" + Environment.NewLine +
+				"   at Global code (get-full-name.js:7:2)"
 				;
 
 			JsRuntimeException exception = null;
@@ -189,7 +189,7 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 			{
 				try
 				{
-					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "getFullName.js");
+					IPrecompiledScript precompiledScript = jsEngine.Precompile(input, "get-full-name.js");
 					jsEngine.Execute(precompiledScript);
 				}
 				catch (JsRuntimeException e)

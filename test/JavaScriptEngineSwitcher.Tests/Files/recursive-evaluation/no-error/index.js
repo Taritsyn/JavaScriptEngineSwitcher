@@ -1,9 +1,9 @@
-﻿/*global require */
+﻿/*global evaluateFile */
 (function () {
 	'use strict';
 
 	function calculateResult() {
-		var math = require('./math'),
+		var math = evaluateFile('./math'),
 			result = math.sum(math.cube(5), math.square(2), math.PI)
 			;
 

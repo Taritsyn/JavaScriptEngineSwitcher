@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
 using System.Threading;
 
@@ -9,7 +8,7 @@ using JavaScriptEngineSwitcher.Core;
 
 namespace JavaScriptEngineSwitcher.Tests
 {
-	public abstract class CommonTestsBase : FileSystemTestsBase
+	public abstract class CommonTestsBase : TestsBase
 	{
 		#region Evaluation of scripts
 
@@ -183,7 +182,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		public virtual void ExecutionOfFileIsCorrect()
 		{
 			// Arrange
-			string filePath = Path.GetFullPath(Path.Combine(_baseDirectoryPath, "../SharedFiles/square.js"));
+			const string filePath = "Files/square.js";
 			const string input = "square(6);";
 			const int targetOutput = 36;
 
