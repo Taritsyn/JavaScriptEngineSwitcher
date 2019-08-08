@@ -38,13 +38,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0C281F46-F1D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{53B43213-2E66-42C2-8476-600A2FD2DA75}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedFiles", "SharedFiles", "{958A803E-3A62-4E29-9866-9DCE451943BC}"
-	ProjectSection(SolutionItems) = preProject
-		test\SharedFiles\declinationOfMinutes.js = test\SharedFiles\declinationOfMinutes.js
-		test\SharedFiles\link.txt = test\SharedFiles\link.txt
-		test\SharedFiles\square.js = test\SharedFiles\square.js
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{E5989CB5-AACE-4D35-A8EE-26942F140DA3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedData", "SharedData", "{C5173D1C-5284-4FD5-9E0D-C7FD0DC8E029}"
@@ -210,7 +203,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{958A803E-3A62-4E29-9866-9DCE451943BC} = {53B43213-2E66-42C2-8476-600A2FD2DA75}
 		{C5173D1C-5284-4FD5-9E0D-C7FD0DC8E029} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{F8CC9C7C-656D-4A76-A912-D5708009DD7C} = {C5173D1C-5284-4FD5-9E0D-C7FD0DC8E029}
 		{13559975-F99D-4B93-BF46-227C0B6E0DFB} = {0C281F46-F1D2-4A1C-8560-375EDA65D680}
