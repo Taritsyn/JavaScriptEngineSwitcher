@@ -226,14 +226,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "In addition, you still need to install the Microsoft Visual C++ Redistributable for Visual Studio..."
-		/// </summary>
-		internal static string Engine_VcRedist2017InstallationRequired
-		{
-			get { return GetString("Engine_VcRedist2017InstallationRequired"); }
-		}
-
-		/// <summary>
 		/// Looks up a localized string similar to "Maximum stack size must be non-negative."
 		/// </summary>
 		internal static string Engine_MaxStackSizeMustBeNonNegative
