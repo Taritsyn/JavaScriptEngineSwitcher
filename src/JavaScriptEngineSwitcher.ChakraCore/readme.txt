@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.12.
+   ChakraCore was updated to version 1.11.13.
 
    =============
    DOCUMENTATION

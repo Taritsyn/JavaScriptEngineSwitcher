@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: ChakraCore for Windows x86 v3.1.7
+         README file for JS Engine Switcher: ChakraCore for Windows x86 v3.1.8
 
    --------------------------------------------------------------------------------
 
@@ -12,14 +12,12 @@
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.ChakraCore package and
-   contains the native implementation of ChakraCore version 1.11.12 for Windows (x86).
+   contains the native implementation of ChakraCore version 1.11.13 for Windows (x86).
 
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version 1.11.12;
-   2. MSVC runtime was embedded into the native assembly. Now you do not need to
-      install the Microsoft Visual C++ Redistributable for Visual Studio 2017.
+   ChakraCore was updated to version 1.11.13.
 
    =============
    DOCUMENTATION
