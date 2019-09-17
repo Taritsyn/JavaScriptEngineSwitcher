@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.1.9 - September 17, 2019
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1372
+
 ## v3.1.8 - September 12, 2019
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.13
 
