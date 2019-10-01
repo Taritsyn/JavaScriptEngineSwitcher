@@ -415,6 +415,24 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
+		/// Sets a promise continuation callback function that is called by the context when a task
+		/// needs to be queued for future execution
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// Requires an active script context.
+		/// </para>
+		/// </remarks>
+		/// <param name="promiseContinuationCallback">The callback function being set</param>
+		/// <param name="callbackState">User provided state that will be passed back to the callback</param>
+		public static void SetPromiseContinuationCallback(JsPromiseContinuationCallback promiseContinuationCallback,
+			IntPtr callbackState)
+		{
+			JsErrorHelpers.ThrowIfError(NativeMethods.JsSetPromiseContinuationCallback(promiseContinuationCallback,
+				callbackState));
+		}
+
+		/// <summary>
 		/// Adds a reference to a script context
 		/// </summary>
 		/// <remarks>

@@ -31,7 +31,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Queue of script tasks
 		/// </summary>
-		private readonly Queue<ScriptTask> _taskQueue = new Queue<ScriptTask>();
+		private Queue<ScriptTask> _taskQueue = new Queue<ScriptTask>();
 
 		/// <summary>
 		/// Synchronizer of script task queue
@@ -83,7 +83,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// </summary>
 		private void StartThread()
 		{
-			while(true)
+			while (true)
 			{
 				ScriptTask task = null;
 
@@ -102,16 +102,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 				if (task != null)
 				{
-					try
-					{
-						task.Result = task.Delegate();
-					}
-					catch (Exception e)
-					{
-						task.Exception = e;
-					}
-
-					task.WaitHandle.Set();
+					task.Run();
 				}
 				else
 				{
@@ -134,28 +125,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
-		/// Runs a specified delegate on the thread with modified stack size,
-		/// and returns its result as an <see cref="System.Object"/>.
-		/// Blocks until the invocation of delegate is completed.
+		/// Executes a script task
 		/// </summary>
-		/// <param name="del">Delegate to invocation</param>
-		/// <returns>Result of the delegate invocation</returns>
-		private object InnnerInvoke(Func<object> del)
+		/// <param name="task">Script task</param>
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private void ExecuteTask(ScriptTask task)
 		{
-			if (Thread.CurrentThread == _thread)
-			{
-				return del();
-			}
-
-			ScriptTask task;
-
-			using (var waitHandle = new ManualResetEvent(false))
-			{
-				task = new ScriptTask(del, waitHandle);
-				EnqueueTask(task);
-
-				waitHandle.WaitOne();
-			}
+			EnqueueTask(task);
+			task.Wait();
 
 			Exception exception = task.Exception;
 			if (exception != null)
@@ -169,8 +146,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 #error No implementation for this target
 #endif
 			}
-
-			return task.Result;
 		}
 
 		/// <summary>
@@ -191,7 +166,16 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				throw new ArgumentNullException(nameof(func));
 			}
 
-			return (T)InnnerInvoke(() => func());
+			if (Thread.CurrentThread == _thread)
+			{
+				return func();
+			}
+
+			using (var task = new ScriptTaskWithResult<T>(func))
+			{
+				ExecuteTask(task);
+				return task.Result;
+			}
 		}
 
 		/// <summary>
@@ -208,17 +192,22 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				throw new ArgumentNullException(nameof(action));
 			}
 
-			InnnerInvoke(() =>
+			if (Thread.CurrentThread == _thread)
 			{
 				action();
-				return null;
-			});
+				return;
+			}
+
+			using (var task = new ScriptTaskWithoutResult(action))
+			{
+				ExecuteTask(task);
+			}
 		}
 
 		#region IDisposable implementation
 
 		/// <summary>
-		/// Destroys object
+		/// Destroys a script dispatcher
 		/// </summary>
 		public void Dispose()
 		{
@@ -237,6 +226,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					_waitHandle.Dispose();
 					_waitHandle = null;
 				}
+
+				_taskQueue = null;
 			}
 		}
 
@@ -247,55 +238,195 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Represents a script task, that must be executed on separate thread
 		/// </summary>
-		private sealed class ScriptTask
+		private abstract class ScriptTask : IDisposable
 		{
 			/// <summary>
-			/// Gets a delegate to invocation
+			/// Event to signal when the invocation of delegate has completed
 			/// </summary>
-			public Func<object> Delegate
-			{
-				get;
-				private set;
-			}
+			protected ManualResetEvent _waitHandle = new ManualResetEvent(false);
 
 			/// <summary>
-			/// Gets a event to signal when the invocation of delegate has completed
+			/// Exception, that occurred during the invocation of delegate
 			/// </summary>
-			public ManualResetEvent WaitHandle
-			{
-				get;
-				private set;
-			}
+			protected Exception _exception;
 
 			/// <summary>
-			/// Gets or sets a result of the delegate invocation
+			/// Flag that object is destroyed
 			/// </summary>
-			public object Result
-			{
-				get;
-				set;
-			}
+			protected StatedFlag _disposedFlag = new StatedFlag();
 
 			/// <summary>
-			/// Gets or sets a exception, that occurred during the invocation of delegate.
+			/// Gets a exception, that occurred during the invocation of delegate.
 			/// If no exception has occurred, this will be null.
 			/// </summary>
 			public Exception Exception
 			{
-				get;
-				set;
+				get { return _exception; }
+			}
+
+
+			[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+			protected void VerifyNotDisposed()
+			{
+				if (_disposedFlag.IsSet())
+				{
+					throw new ObjectDisposedException(ToString());
+				}
+			}
+
+			/// <summary>
+			/// Runs a script task
+			/// </summary>
+			public abstract void Run();
+
+			/// <summary>
+			/// Waits for the script task to complete execution
+			/// </summary>
+			public void Wait()
+			{
+				VerifyNotDisposed();
+
+				_waitHandle.WaitOne();
+			}
+
+			#region IDisposable implementation
+
+			/// <summary>
+			/// Destroys a script task
+			/// </summary>
+			public virtual void Dispose()
+			{
+				if (_waitHandle != null)
+				{
+					_waitHandle.Dispose();
+					_waitHandle = null;
+				}
+
+				_exception = null;
+			}
+
+			#endregion
+		}
+
+		/// <summary>
+		/// Represents a script task with result, that must be executed on separate thread
+		/// </summary>
+		private sealed class ScriptTaskWithResult<TResult> : ScriptTask
+		{
+			/// <summary>
+			/// Delegate to invocation
+			/// </summary>
+			private Func<TResult> _func;
+
+			/// <summary>
+			/// Result of the delegate invocation
+			/// </summary>
+			private TResult _result;
+
+			/// <summary>
+			/// Gets a result of the delegate invocation
+			/// </summary>
+			public TResult Result
+			{
+				get { return _result; }
 			}
 
 
 			/// <summary>
-			/// Constructs an instance of script task
+			/// Constructs an instance of script task with result
 			/// </summary>
-			/// <param name="del">Delegate to invocation</param>
-			/// <param name="waitHandle">Event to signal when the invocation of delegate has completed</param>
-			public ScriptTask(Func<object> del, ManualResetEvent waitHandle)
+			/// <param name="func">Delegate to invocation</param>
+			public ScriptTaskWithResult(Func<TResult> func)
 			{
-				Delegate = del;
-				WaitHandle = waitHandle;
+				_func = func;
+			}
+
+
+			/// <summary>
+			/// Runs a script task
+			/// </summary>
+			public override void Run()
+			{
+				VerifyNotDisposed();
+
+				try
+				{
+					_result = _func();
+				}
+				catch (Exception e)
+				{
+					_exception = e;
+				}
+
+				_waitHandle.Set();
+			}
+
+			/// <summary>
+			/// Destroys a script task
+			/// </summary>
+			public override void Dispose()
+			{
+				if (_disposedFlag.Set())
+				{
+					base.Dispose();
+
+					_result = default(TResult);
+					_func = null;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Represents a script task without result, that must be executed on separate thread
+		/// </summary>
+		private sealed class ScriptTaskWithoutResult : ScriptTask
+		{
+			/// <summary>
+			/// Delegate to invocation
+			/// </summary>
+			private Action _action;
+
+
+			/// <summary>
+			/// Constructs an instance of script task without result
+			/// </summary>
+			/// <param name="action">Delegate to invocation</param>
+			public ScriptTaskWithoutResult(Action action)
+			{
+				_action = action;
+			}
+
+
+			/// <summary>
+			/// Runs a script task
+			/// </summary>
+			public override void Run()
+			{
+				VerifyNotDisposed();
+
+				try
+				{
+					_action();
+				}
+				catch (Exception e)
+				{
+					_exception = e;
+				}
+
+				_waitHandle.Set();
+			}
+
+			/// <summary>
+			/// Destroys a script task
+			/// </summary>
+			public override void Dispose()
+			{
+				if (_disposedFlag.Set())
+				{
+					base.Dispose();
+
+					_action = null;
+				}
 			}
 		}
 

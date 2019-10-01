@@ -324,7 +324,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						JsErrorHelpers.CreateError(string.Format(
 							Strings.Runtime_HostDelegateInvocationFailed, exception.Message))
 						;
-					JsErrorHelpers.SetException(errorValue);
+					JsContext.SetException(errorValue);
 
 					return JsValue.Undefined;
 				}
@@ -428,7 +428,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						JsErrorHelpers.CreateError(string.Format(
 							Strings.Runtime_HostTypeConstructorInvocationFailed, typeName, exception.Message))
 						;
-					JsErrorHelpers.SetException(errorValue);
+					JsContext.SetException(errorValue);
 
 					return JsValue.Undefined;
 				}
@@ -536,7 +536,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 								;
 							errorValue = JsErrorHelpers.CreateError(errorMessage);
 						}
-						JsErrorHelpers.SetException(errorValue);
+						JsContext.SetException(errorValue);
 
 						return JsValue.Undefined;
 					}
@@ -587,7 +587,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 								;
 							errorValue = JsErrorHelpers.CreateError(errorMessage);
 						}
-						JsErrorHelpers.SetException(errorValue);
+						JsContext.SetException(errorValue);
 
 						return JsValue.Undefined;
 					}
@@ -660,7 +660,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 									;
 								errorValue = JsErrorHelpers.CreateError(errorMessage);
 							}
-							JsErrorHelpers.SetException(errorValue);
+							JsContext.SetException(errorValue);
 
 							return JsValue.Undefined;
 						}
@@ -714,7 +714,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 									;
 								errorValue = JsErrorHelpers.CreateError(errorMessage);
 							}
-							JsErrorHelpers.SetException(errorValue);
+							JsContext.SetException(errorValue);
 
 							return JsValue.Undefined;
 						}
@@ -799,7 +799,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 								;
 							errorValue = JsErrorHelpers.CreateError(errorMessage);
 						}
-						JsErrorHelpers.SetException(errorValue);
+						JsContext.SetException(errorValue);
 
 						return JsValue.Undefined;
 					}
@@ -850,21 +850,21 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		private static void CreateAndSetError(string message)
 		{
 			JsValue errorValue = JsErrorHelpers.CreateError(message);
-			JsErrorHelpers.SetException(errorValue);
+			JsContext.SetException(errorValue);
 		}
 
 		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
 		private static void CreateAndSetReferenceError(string message)
 		{
 			JsValue errorValue = JsErrorHelpers.CreateReferenceError(message);
-			JsErrorHelpers.SetException(errorValue);
+			JsContext.SetException(errorValue);
 		}
 
 		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
 		private static void CreateAndSetTypeError(string message)
 		{
 			JsValue errorValue = JsErrorHelpers.CreateTypeError(message);
-			JsErrorHelpers.SetException(errorValue);
+			JsContext.SetException(errorValue);
 		}
 
 		private static Exception UnwrapException(Exception exception)
