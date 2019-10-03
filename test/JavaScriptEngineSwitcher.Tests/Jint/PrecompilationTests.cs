@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NETCOREAPP1_0
+using System;
 
 using Xunit;
 
@@ -55,11 +56,11 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Null(precompiledScript);
 			Assert.NotNull(exception);
 			Assert.Equal("Compilation error", exception.Category);
-			Assert.Equal("Unexpected token ;", exception.Description);
+			Assert.Equal("Unexpected token }", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("guid.js", exception.DocumentName);
-			Assert.Equal(6, exception.LineNumber);
-			Assert.Equal(4, exception.ColumnNumber);
+			Assert.Equal(7, exception.LineNumber);
+			Assert.Equal(2, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
 		}
 
@@ -129,8 +130,8 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 	return result;
 }";
-			string targetOutput = "SyntaxError: Illegal return statement" + Environment.NewLine +
-				"   at make-id.js:11:8"
+			string targetOutput = "SyntaxError: Unexpected token }" + Environment.NewLine +
+				"   at make-id.js:12:1"
 				;
 
 			IPrecompiledScript precompiledScript = null;
@@ -200,3 +201,4 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		#endregion
 	}
 }
+#endif

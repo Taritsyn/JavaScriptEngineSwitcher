@@ -5,8 +5,8 @@ using System.Text;
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Utilities;
-using JavaScriptEngineSwitcher.Jint;
 #if !NETCOREAPP1_0
+using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 #endif
 using JavaScriptEngineSwitcher.Msie;
@@ -33,8 +33,8 @@ namespace JavaScriptEngineSwitcher.Tests
 #endif
 				JsEngineSwitcher.Current.EngineFactories
 					.AddChakraCore()
-					.AddJint()
 #if !NETCOREAPP1_0
+					.AddJint()
 					.AddJurassic()
 #endif
 					.AddMsie(new MsieSettings

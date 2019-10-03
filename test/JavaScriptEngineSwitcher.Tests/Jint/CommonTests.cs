@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NETCOREAPP1_0
+using System;
 
 using Xunit;
 
@@ -394,3 +395,4 @@ var foo = 'Browser's bar';";
 		#endregion
 	}
 }
+#endif

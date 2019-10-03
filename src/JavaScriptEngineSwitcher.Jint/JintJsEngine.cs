@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
+using Jint;
 using IOriginalCallable = Jint.Native.ICallable;
 using OriginalEngine = Jint.Engine;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
-using OriginalParser = Jint.Parser.JavaScriptParser;
-using OriginalParserException = Jint.Parser.ParserException;
-using OriginalParserOptions = Jint.Parser.ParserOptions;
-using OriginalProgram = Jint.Parser.Ast.Program;
+using OriginalParser = Esprima.JavaScriptParser;
+using OriginalParserException = Esprima.ParserException;
+using OriginalParserOptions = Esprima.ParserOptions;
+using OriginalProgram = Esprima.Ast.Program;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
 using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
@@ -45,7 +46,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "2.11.58";
+		private const string EngineVersion = "3.0.0 Beta 1598";
 
 		/// <summary>
 		/// Jint JS engine
@@ -103,6 +104,18 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 
+		private OriginalParserOptions CreateParserOptions(string source)
+		{
+			var parserOptions = new OriginalParserOptions(source)
+			{
+				AdaptRegexp = true,
+				Tolerant = true,
+				Loc = true
+			};
+
+			return parserOptions;
+		}
+
 		#region Mapping
 
 		/// <summary>
@@ -151,7 +164,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			string description = originalParserException.Description;
 			string type = JsErrorType.Syntax;
-			string documentName = originalParserException.Source;
+			string documentName = originalParserException.SourceText;
 			int lineNumber = originalParserException.LineNumber;
 			int columnNumber = originalParserException.Column;
 			string message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName, lineNumber,
@@ -319,12 +332,9 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				try
 				{
-					var parserOptions = new OriginalParserOptions
-					{
-						Source = uniqueDocumentName
-					};
-					var parser = new OriginalParser();
-					program = parser.Parse(code, parserOptions);
+					var parserOptions = CreateParserOptions(uniqueDocumentName);
+					var parser = new OriginalParser(code, parserOptions);
+					program = parser.ParseProgram();
 				}
 				catch (OriginalParserException e)
 				{
@@ -351,10 +361,7 @@ namespace JavaScriptEngineSwitcher.Jint
 
 				try
 				{
-					var parserOptions = new OriginalParserOptions
-					{
-						Source = uniqueDocumentName
-					};
+					var parserOptions = CreateParserOptions(uniqueDocumentName);
 					resultValue = _jsEngine.Execute(expression, parserOptions).GetCompletionValue();
 				}
 				catch (OriginalParserException e)
@@ -409,10 +416,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				try
 				{
-					var parserOptions = new OriginalParserOptions
-					{
-						Source = uniqueDocumentName
-					};
+					var parserOptions = CreateParserOptions(uniqueDocumentName);
 					_jsEngine.Execute(code, parserOptions);
 				}
 				catch (OriginalParserException e)

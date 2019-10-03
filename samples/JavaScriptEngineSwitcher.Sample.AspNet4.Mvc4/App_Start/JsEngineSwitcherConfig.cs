@@ -1,6 +1,5 @@
 ﻿using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
-using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
@@ -14,7 +13,6 @@ namespace JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4
 		{
 			engineSwitcher.EngineFactories
 				.AddChakraCore()
-				.AddJint()
 				.AddJurassic()
 				.AddMsie(new MsieSettings
 				{

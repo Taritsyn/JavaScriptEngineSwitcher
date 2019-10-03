@@ -1,4 +1,4 @@
-﻿using OriginalProgram = Jint.Parser.Ast.Program;
+﻿using OriginalProgram = Esprima.Ast.Program;
 
 using JavaScriptEngineSwitcher.Core;
 

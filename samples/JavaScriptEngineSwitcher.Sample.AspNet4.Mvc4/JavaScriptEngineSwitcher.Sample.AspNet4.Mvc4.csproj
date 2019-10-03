@@ -120,10 +120,6 @@
       <Project>{13559975-f99d-4b93-bf46-227c0b6e0dfb}</Project>
       <Name>JavaScriptEngineSwitcher.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jint\JavaScriptEngineSwitcher.Jint.csproj">
-      <Project>{22d73c6e-5f35-497b-a93b-f9eaaae4ddaa}</Project>
-      <Name>JavaScriptEngineSwitcher.Jint</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Jurassic\JavaScriptEngineSwitcher.Jurassic.csproj">
       <Project>{d31b5a77-8018-4d76-b372-325564385b2d}</Project>
       <Name>JavaScriptEngineSwitcher.Jurassic</Name>

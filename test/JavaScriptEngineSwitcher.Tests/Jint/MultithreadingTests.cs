@@ -1,4 +1,5 @@
-﻿namespace JavaScriptEngineSwitcher.Tests.Jint
+﻿#if !NETCOREAPP1_0
+namespace JavaScriptEngineSwitcher.Tests.Jint
 {
 	public class MultithreadingTests : MultithreadingTestsBase
 	{
@@ -8,3 +9,4 @@
 		}
 	}
 }
+#endif

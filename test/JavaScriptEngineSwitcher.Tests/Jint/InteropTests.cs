@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NETCOREAPP1_0
+using System;
 using System.IO;
 
 using Xunit;
@@ -264,3 +265,4 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		#endregion
 	}
 }
+#endif
