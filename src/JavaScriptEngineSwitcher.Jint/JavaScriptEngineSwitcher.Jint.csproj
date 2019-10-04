@@ -44,6 +44,11 @@
 			<Pack>true</Pack>
 			<Visible>false</Visible>
 		</Content>
+		<Content Include="../../Licenses/net-object-deep-copy-license.txt">
+			<PackagePath>net-object-deep-copy-license.txt</PackagePath>
+			<Pack>true</Pack>
+			<Visible>false</Visible>
+		</Content>
 	</ItemGroup>
 
 </Project>

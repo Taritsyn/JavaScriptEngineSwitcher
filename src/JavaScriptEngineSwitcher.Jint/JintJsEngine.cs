@@ -31,6 +31,8 @@ using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException
 using WrapperTimeoutException = JavaScriptEngineSwitcher.Core.JsTimeoutException;
 using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
 
+using JavaScriptEngineSwitcher.Jint.Extensions;
+
 namespace JavaScriptEngineSwitcher.Jint
 {
 	/// <summary>
@@ -104,9 +106,14 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 
-		private OriginalParserOptions CreateParserOptions(string source)
+		/// <summary>
+		/// Creates a Esprima .NET parser options with document name and special settings for the Jint
+		/// </summary>
+		/// <param name="documentName">Document name</param>
+		/// <returns>Esprima .NET parser options with document name and special settings for the Jint</returns>
+		private static OriginalParserOptions CreateParserOptions(string documentName)
 		{
-			var parserOptions = new OriginalParserOptions(source)
+			var parserOptions = new OriginalParserOptions(documentName)
 			{
 				AdaptRegexp = true,
 				Tolerant = true,
@@ -327,19 +334,16 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			OriginalProgram program;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+			OriginalParserOptions parserOptions = CreateParserOptions(uniqueDocumentName);
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					var parserOptions = CreateParserOptions(uniqueDocumentName);
-					var parser = new OriginalParser(code, parserOptions);
-					program = parser.ParseProgram();
-				}
-				catch (OriginalParserException e)
-				{
-					throw WrapParserException(e);
-				}
+				var parser = new OriginalParser(code, parserOptions);
+				program = parser.ParseProgram();
+			}
+			catch (OriginalParserException e)
+			{
+				throw WrapParserException(e);
 			}
 
 			return new JintPrecompiledScript(program);
@@ -354,6 +358,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			object result;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+			OriginalParserOptions parserOptions = CreateParserOptions(uniqueDocumentName);
 
 			lock (_executionSynchronizer)
 			{
@@ -361,7 +366,6 @@ namespace JavaScriptEngineSwitcher.Jint
 
 				try
 				{
-					var parserOptions = CreateParserOptions(uniqueDocumentName);
 					resultValue = _jsEngine.Execute(expression, parserOptions).GetCompletionValue();
 				}
 				catch (OriginalParserException e)
@@ -411,12 +415,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		protected override void InnerExecute(string code, string documentName)
 		{
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+			OriginalParserOptions parserOptions = CreateParserOptions(uniqueDocumentName);
 
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					var parserOptions = CreateParserOptions(uniqueDocumentName);
 					_jsEngine.Execute(code, parserOptions);
 				}
 				catch (OriginalParserException e)
@@ -454,11 +458,14 @@ namespace JavaScriptEngineSwitcher.Jint
 				);
 			}
 
+			// Create a copy of the instance of `Esprima.Ast.Program` class because the Jint 3 changes its state
+			OriginalProgram programCopy = jintPrecompiledScript.Program.Copy();
+
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					_jsEngine.Execute(jintPrecompiledScript.Program);
+					_jsEngine.Execute(programCopy);
 				}
 				catch (OriginalJavaScriptException e)
 				{
