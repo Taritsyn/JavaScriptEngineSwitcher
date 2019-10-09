@@ -56,6 +56,15 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 		/// <summary>
+		/// Gets or sets a current memory limit for a engine in bytes
+		/// </summary>
+		public long MemoryLimit
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to allow run the script in strict mode
 		/// </summary>
 		public bool StrictMode
@@ -94,6 +103,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			LocalTimeZone = TimeZoneInfo.Local;
 			MaxRecursionDepth = -1;
 			MaxStatements = 0;
+			MemoryLimit = 0;
 			StrictMode = false;
 			TimeoutInterval = TimeSpan.Zero;
 		}

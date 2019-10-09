@@ -6,6 +6,7 @@ using Jint;
 using IOriginalCallable = Jint.Native.ICallable;
 using OriginalEngine = Jint.Engine;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
+using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
 using OriginalParser = Esprima.JavaScriptParser;
 using OriginalParserException = Esprima.ParserException;
@@ -92,6 +93,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				_jsEngine = new OriginalEngine(c => c
 					.AllowDebuggerStatement(jintSettings.AllowDebuggerStatement)
 					.DebugMode(jintSettings.EnableDebugging)
+					.LimitMemory(jintSettings.MemoryLimit)
 					.LimitRecursion(jintSettings.MaxRecursionDepth)
 					.LocalTimeZone(jintSettings.LocalTimeZone ?? TimeZoneInfo.Local)
 					.MaxStatements(jintSettings.MaxStatements)
@@ -244,6 +246,22 @@ namespace JavaScriptEngineSwitcher.Jint
 			return wrapperException;
 		}
 
+		private static WrapperRuntimeException WrapMemoryLimitExceededException(
+			OriginalMemoryLimitExceededException originalMemoryException)
+		{
+			string description = originalMemoryException.Message;
+			string type = JsErrorType.Common;
+			string message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty);
+
+			var wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+				originalMemoryException)
+			{
+				Description = description
+			};
+
+			return wrapperRuntimeException;
+		}
+
 		private static WrapperRuntimeException WrapRecursionDepthOverflowException(
 			OriginalRecursionDepthOverflowException originalRecursionException)
 		{
@@ -376,6 +394,10 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					throw WrapJavaScriptException(e);
 				}
+				catch (OriginalMemoryLimitExceededException e)
+				{
+					throw WrapMemoryLimitExceededException(e);
+				}
 				catch (OriginalRecursionDepthOverflowException e)
 				{
 					throw WrapRecursionDepthOverflowException(e);
@@ -431,6 +453,10 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					throw WrapJavaScriptException(e);
 				}
+				catch (OriginalMemoryLimitExceededException e)
+				{
+					throw WrapMemoryLimitExceededException(e);
+				}
 				catch (OriginalRecursionDepthOverflowException e)
 				{
 					throw WrapRecursionDepthOverflowException(e);
@@ -470,6 +496,10 @@ namespace JavaScriptEngineSwitcher.Jint
 				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
+				}
+				catch (OriginalMemoryLimitExceededException e)
+				{
+					throw WrapMemoryLimitExceededException(e);
 				}
 				catch (OriginalRecursionDepthOverflowException e)
 				{
@@ -530,6 +560,10 @@ namespace JavaScriptEngineSwitcher.Jint
 				catch (OriginalJavaScriptException e)
 				{
 					throw WrapJavaScriptException(e);
+				}
+				catch (OriginalMemoryLimitExceededException e)
+				{
+					throw WrapMemoryLimitExceededException(e);
 				}
 				catch (OriginalRecursionDepthOverflowException e)
 				{

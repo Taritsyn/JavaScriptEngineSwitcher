@@ -178,6 +178,42 @@ factorial(0);";
 		}
 
 		[Fact]
+		public void MappingRuntimeErrorDuringOutOfMemoryIsCorrect()
+		{
+			// Arrange
+			const string input = @"var arr = [];
+
+for (var i = 0; i < 10000; i++) {
+	arr.push('Current date: ' + new Date());
+}";
+
+			JsRuntimeException exception = null;
+
+			// Act
+			using (IJsEngine jsEngine = new JintJsEngine(
+				new JintSettings
+				{
+					MemoryLimit = 2 * 1024 * 1024
+				}
+			))
+			{
+				try
+				{
+					jsEngine.Execute(input);
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Matches(@"^Script has allocated \d+ but is limited to 2097152$", exception.Description);
+		}
+
+		[Fact]
 		public void MappingRuntimeErrorDuringRecursionDepthOverflowIsCorrect()
 		{
 			// Arrange
