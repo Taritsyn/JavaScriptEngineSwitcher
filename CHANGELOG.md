@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## v3.1.10 - October 9, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.11.14
+   * Slightly improved performance
+   * The `CollectGarbage` method is called synchronously again
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.4
+
 ## v3.1.9 - September 17, 2019
  * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1372
 
