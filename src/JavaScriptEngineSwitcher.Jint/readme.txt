@@ -12,12 +12,12 @@
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the
-   Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 1598).
+   Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 1612).
 
    =============
    RELEASE NOTES
    =============
-   1. Jint was updated to version 3.0.0 Beta 1598;
+   1. Jint was updated to version 3.0.0 Beta 1612;
    2. No longer supports a .NET Framework 4.0 Client and .NET Standard 1.3;
    3. In configuration settings of the Jint JS engine was added two new properties:
       `MemoryLimit` (default `0`) and `RegexTimeoutInterval` (default `null`).

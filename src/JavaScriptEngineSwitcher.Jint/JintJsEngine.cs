@@ -31,8 +31,6 @@ using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException
 using WrapperTimeoutException = JavaScriptEngineSwitcher.Core.JsTimeoutException;
 using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
 
-using JavaScriptEngineSwitcher.Jint.Extensions;
-
 namespace JavaScriptEngineSwitcher.Jint
 {
 	/// <summary>
@@ -48,7 +46,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 1598";
+		private const string EngineVersion = "3.0.0 Beta 1612";
 
 		/// <summary>
 		/// Jint JS engine
@@ -487,14 +485,11 @@ namespace JavaScriptEngineSwitcher.Jint
 				);
 			}
 
-			// Create a copy of the instance of `Esprima.Ast.Program` class because the Jint 3 changes its state
-			OriginalProgram programCopy = jintPrecompiledScript.Program.Copy();
-
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					_jsEngine.Execute(programCopy);
+					_jsEngine.Execute(jintPrecompiledScript.Program);
 				}
 				catch (OriginalJavaScriptException e)
 				{
