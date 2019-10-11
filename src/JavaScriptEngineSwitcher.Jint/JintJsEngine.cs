@@ -90,16 +90,22 @@ namespace JavaScriptEngineSwitcher.Jint
 
 			try
 			{
-				_jsEngine = new OriginalEngine(c => c
-					.AllowDebuggerStatement(jintSettings.AllowDebuggerStatement)
-					.DebugMode(jintSettings.EnableDebugging)
-					.LimitMemory(jintSettings.MemoryLimit)
-					.LimitRecursion(jintSettings.MaxRecursionDepth)
-					.LocalTimeZone(jintSettings.LocalTimeZone ?? TimeZoneInfo.Local)
-					.MaxStatements(jintSettings.MaxStatements)
-					.Strict(jintSettings.StrictMode)
-					.TimeoutInterval(jintSettings.TimeoutInterval)
-				);
+				_jsEngine = new OriginalEngine(options => {
+					options
+						.AllowDebuggerStatement(jintSettings.AllowDebuggerStatement)
+						.DebugMode(jintSettings.EnableDebugging)
+						.LimitMemory(jintSettings.MemoryLimit)
+						.LimitRecursion(jintSettings.MaxRecursionDepth)
+						.LocalTimeZone(jintSettings.LocalTimeZone ?? TimeZoneInfo.Local)
+						.MaxStatements(jintSettings.MaxStatements)
+						.Strict(jintSettings.StrictMode)
+						.TimeoutInterval(jintSettings.TimeoutInterval)
+						;
+					if (jintSettings.RegexTimeoutInterval.HasValue)
+					{
+						options.RegexTimeoutInterval(jintSettings.RegexTimeoutInterval.Value);
+					}
+				});
 			}
 			catch (Exception e)
 			{

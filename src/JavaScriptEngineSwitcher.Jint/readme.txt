@@ -19,8 +19,8 @@
    =============
    1. Jint was updated to version 3.0.0 Beta 1598;
    2. No longer supports a .NET Framework 4.0 Client and .NET Standard 1.3;
-   3. In configuration settings of the Jint JS engine was added one new property -
-      `MemoryLimit` (default `0`).
+   3. In configuration settings of the Jint JS engine was added two new properties:
+      `MemoryLimit` (default `0`) and `RegexTimeoutInterval` (default `null`).
 
    =============
    DOCUMENTATION

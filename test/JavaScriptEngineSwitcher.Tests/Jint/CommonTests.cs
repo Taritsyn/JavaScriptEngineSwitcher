@@ -352,6 +352,49 @@ for (var i = 0; i < 10000; i++) {
 			Assert.Empty(exception.CallStack);
 		}
 
+		[Fact]
+		public void MappingTimeoutErrorDuringRegexHangingIsCorrect()
+		{
+			// Arrange
+			const string input = @"var regexp = /^(\w+\s?)*$/,
+	str = 'An input string that takes a long time or even makes this regular expression to hang!'
+	;
+
+// Will take a very long time
+regexp.test(str);";
+
+			JsTimeoutException exception = null;
+
+			// Act
+			using (var jsEngine = new JintJsEngine(
+				new JintSettings
+				{
+					RegexTimeoutInterval = TimeSpan.FromMilliseconds(25)
+				}
+			))
+			{
+				try
+				{
+					jsEngine.Execute(input, "regexp-hanging.js");
+				}
+				catch (JsTimeoutException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Timeout error", exception.Category);
+			Assert.Equal("Script execution exceeded timeout.", exception.Description);
+			Assert.Empty(exception.Type);
+			Assert.Empty(exception.DocumentName);
+			Assert.Equal(0, exception.LineNumber);
+			Assert.Equal(0, exception.ColumnNumber);
+			Assert.Empty(exception.SourceFragment);
+			Assert.Empty(exception.CallStack);
+		}
+
 		#endregion
 
 		#region Generation of error messages

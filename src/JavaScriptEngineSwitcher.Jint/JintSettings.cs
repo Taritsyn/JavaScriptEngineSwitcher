@@ -65,6 +65,17 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 		/// <summary>
+		/// Gets or sets a timeout interval for regular expressions.
+		/// If the value of this property is null, then the value of regular expression
+		/// timeout interval are taken from the <see cref="TimeoutInterval"/> property.
+		/// </summary>
+		public TimeSpan? RegexTimeoutInterval
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to allow run the script in strict mode
 		/// </summary>
 		public bool StrictMode
@@ -104,6 +115,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			MaxRecursionDepth = -1;
 			MaxStatements = 0;
 			MemoryLimit = 0;
+			RegexTimeoutInterval = null;
 			StrictMode = false;
 			TimeoutInterval = TimeSpan.Zero;
 		}
