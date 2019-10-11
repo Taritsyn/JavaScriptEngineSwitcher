@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 
 using Jint;
-using IOriginalCallable = Jint.Native.ICallable;
 using OriginalEngine = Jint.Engine;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
@@ -101,10 +100,13 @@ namespace JavaScriptEngineSwitcher.Jint
 						.Strict(jintSettings.StrictMode)
 						.TimeoutInterval(jintSettings.TimeoutInterval)
 						;
+
 					if (jintSettings.RegexTimeoutInterval.HasValue)
 					{
 						options.RegexTimeoutInterval(jintSettings.RegexTimeoutInterval.Value);
 					}
+
+					options.AddObjectConverter(new UndefinedConverter());
 				});
 			}
 			catch (Exception e)
@@ -140,11 +142,6 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <returns>The mapped value</returns>
 		private OriginalValue MapToScriptType(object value)
 		{
-			if (value is Undefined)
-			{
-				return OriginalValue.Undefined;
-			}
-
 			return OriginalValue.FromObject(_jsEngine, value);
 		}
 
@@ -539,29 +536,11 @@ namespace JavaScriptEngineSwitcher.Jint
 					throw WrapJavaScriptException(e);
 				}
 
-				var callable = functionValue.TryCast<IOriginalCallable>();
-				if (callable == null)
-				{
-					throw new WrapperRuntimeException(
-						string.Format(CoreStrings.Runtime_FunctionNotExist, functionName));
-				}
-
-				int argumentCount = args.Length;
-				var processedArgs = new OriginalValue[argumentCount];
-
-				if (argumentCount > 0)
-				{
-					for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
-					{
-						processedArgs[argumentIndex] = MapToScriptType(args[argumentIndex]);
-					}
-				}
-
 				OriginalValue resultValue;
 
 				try
 				{
-					resultValue = callable.Call(functionValue, processedArgs);
+					resultValue = _jsEngine.Invoke(functionValue, args);
 				}
 				catch (OriginalJavaScriptException e)
 				{
@@ -582,6 +561,11 @@ namespace JavaScriptEngineSwitcher.Jint
 				catch (TimeoutException e)
 				{
 					throw WrapTimeoutException(e);
+				}
+				catch (ArgumentException e) when (e.Message == "Can only invoke functions")
+				{
+					throw new WrapperRuntimeException(
+						string.Format(CoreStrings.Runtime_FunctionNotExist, functionName));
 				}
 
 				result = MapToHostType(resultValue);
