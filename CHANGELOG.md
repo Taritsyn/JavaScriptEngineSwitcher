@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## v3.2.0 - October 12, 2019
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 3.0.0 Beta 1612. Special thanks to [Marko Lahma](https://github.com/lahma) and [Sébastien Ros](https://github.com/sebastienros)
+   * No longer supports a .NET Framework 4.0 Client and .NET Standard 1.3
+   * In configuration settings of the Jint JS engine was added two new properties: `MemoryLimit` (default `0`) and `RegexTimeoutInterval` (default `null`)
+   * To install this package, the “Include Prerelease” option must be set in the NuGet Package Manager
+
 ## v3.1.10 - October 9, 2019
  * In JavaScriptEngineSwitcher.ChakraCore:
    * ChakraCore was updated to version 1.11.14

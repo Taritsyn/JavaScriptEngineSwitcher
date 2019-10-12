@@ -2,7 +2,8 @@
 
 	<PropertyGroup>
 		<Product>JS Engine Switcher: Jint</Product>
-		<VersionPrefix>3.1.0</VersionPrefix>
+		<VersionPrefix>3.2.0</VersionPrefix>
+		<VersionSuffix>preview</VersionSuffix>
 		<TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -12,9 +13,10 @@
 		<Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 1612).</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconUrl>
 		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Jint</PackageTags>
-		<PackageReleaseNotes>1. Jint was updated to version 3.0.0 Beta 1612;
+		<PackageReleaseNotes>1. Jint was updated to version 3.0.0 Beta 1612. Special thanks to Marko Lahma and Sébastien Ros;
 2. No longer supports a .NET Framework 4.0 Client and .NET Standard 1.3;
-3. In configuration settings of the Jint JS engine was added two new properties: `MemoryLimit` (default `0`) and `RegexTimeoutInterval` (default `null`).</PackageReleaseNotes>
+3. In configuration settings of the Jint JS engine was added two new properties: `MemoryLimit` (default `0`) and `RegexTimeoutInterval` (default `null`);
+4. To install this package, the “Include Prerelease” option must be set in the NuGet Package Manager.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Import Project="../../build/common.props" />
@@ -41,11 +43,6 @@
 		</Content>
 		<Content Include="../../Licenses/jint-license.txt">
 			<PackagePath>jint-license.txt</PackagePath>
-			<Pack>true</Pack>
-			<Visible>false</Visible>
-		</Content>
-		<Content Include="../../Licenses/net-object-deep-copy-license.txt">
-			<PackagePath>net-object-deep-copy-license.txt</PackagePath>
 			<Pack>true</Pack>
 			<Visible>false</Visible>
 		</Content>
