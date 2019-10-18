@@ -13,6 +13,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
+		<PackageReference Include="BuildBundlerMinifier" Version="3.0.415" PrivateAssets="All" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.1.10" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.1.10" />
 		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.1.10" />
@@ -40,6 +41,17 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="Resources/russian-translit.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Files/template-rendering/lib/bundle.min.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Files/template-rendering/content/**/*.*">
+			<Link>Files/template-rendering/content/%(RecursiveDir)/%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
 	</ItemGroup>
 
 </Project>

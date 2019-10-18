@@ -20,7 +20,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 {
 	[MemoryDiagnoser]
 	[Orderer(SummaryOrderPolicy.Method, MethodOrderPolicy.Declared)]
-	public class JsExecutionBenchmark
+	public class JsExecutionLightBenchmark
 	{
 		/// <summary>
 		/// Name of the file containing library for transliteration of Russian
@@ -61,7 +61,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		/// <summary>
 		/// Static constructor
 		/// </summary>
-		static JsExecutionBenchmark()
+		static JsExecutionLightBenchmark()
 		{
 			PopulateTestData();
 		}
@@ -73,7 +73,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		public static void PopulateTestData()
 		{
 			_libraryCode = Utils.GetResourceAsString(
-				$"Resources.{LibraryFileName}", typeof(JsExecutionBenchmark));
+				$"Resources.{LibraryFileName}", typeof(JsExecutionLightBenchmark));
 			_inputTypes = new string[ItemCount]
 			{
 				"basic", "letters-numbers", "gost-16876-71", "gost-7-79-2000", "police", "foreign-passport",
