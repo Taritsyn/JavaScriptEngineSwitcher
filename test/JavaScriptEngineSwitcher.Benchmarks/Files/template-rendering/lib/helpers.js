@@ -19,21 +19,6 @@ var renderTemplate = (function (handlebars, undefined) {
 		);
 	});
 
-	handlebars.registerPartial('treeNodes',
-		'{{#each nodes}}\n' +
-		'	{{#if nodes}}\n' +
-		'	<li>\n' +
-		'		{{name}}\n' +
-		'		<ul>\n' +
-		'		{{> treeNodes}}\n' +
-		'		<\/ul>\n' +
-		'	<\/li>\n' +
-		'	{{else}}\n' +
-		'	<li>{{name}}<\/li>\n' +
-		'	{{\/if}}\n' +
-		'{{\/each}}'
-	);
-
 	/**
 	* Renders a Handlebars templates
 	*
