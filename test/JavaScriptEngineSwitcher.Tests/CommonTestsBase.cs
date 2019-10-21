@@ -10,6 +10,17 @@ namespace JavaScriptEngineSwitcher.Tests
 {
 	public abstract class CommonTestsBase : TestsBase
 	{
+		#region Creation of engines
+
+		[Fact]
+		public virtual void CreationOfEngineWithoutDisposingIsCorrect()
+		{
+			IJsEngine jsEngine = CreateJsEngine();
+			jsEngine.Execute("var a = 1 + 1;");
+		}
+
+		#endregion
+
 		#region Evaluation of scripts
 
 		[Fact]

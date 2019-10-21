@@ -166,8 +166,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					if (_jsContext.IsValid)
 					{
 						_jsContext.AddRef();
-						JsContext.Current = _jsContext;
-						JsContext.SetPromiseContinuationCallback(_promiseContinuationCallback, IntPtr.Zero);
+
+						using (new JsScope(_jsContext))
+						{
+							JsContext.SetPromiseContinuationCallback(_promiseContinuationCallback, IntPtr.Zero);
+						}
 					}
 				});
 			}
@@ -683,16 +686,19 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			IPrecompiledScript precompiledScript = _dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsParseScriptAttributes parseAttributes = JsParseScriptAttributes.None;
-					byte[] cachedBytes = JsContext.SerializeScript(code, ref parseAttributes);
+					try
+					{
+						JsParseScriptAttributes parseAttributes = JsParseScriptAttributes.None;
+						byte[] cachedBytes = JsContext.SerializeScript(code, ref parseAttributes);
 
-					return new ChakraCorePrecompiledScript(code, parseAttributes, cachedBytes, uniqueDocumentName);
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e, uniqueDocumentName);
+						return new ChakraCorePrecompiledScript(code, parseAttributes, cachedBytes, uniqueDocumentName);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e, uniqueDocumentName);
+					}
 				}
 			});
 
@@ -710,17 +716,20 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			object result = _dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsParseScriptAttributes parseAttributes = JsParseScriptAttributes.None;
-					JsValue resultValue = JsContext.RunScript(expression, _jsSourceContext++,
-						uniqueDocumentName, ref parseAttributes);
+					try
+					{
+						JsParseScriptAttributes parseAttributes = JsParseScriptAttributes.None;
+						JsValue resultValue = JsContext.RunScript(expression, _jsSourceContext++,
+							uniqueDocumentName, ref parseAttributes);
 
-					return _typeMapper.MapToHostType(resultValue);
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e);
+						return _typeMapper.MapToHostType(resultValue);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
 				}
 			});
 
@@ -750,14 +759,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			_dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsParseScriptAttributes parseAttributes = JsParseScriptAttributes.None;
-					JsContext.RunScript(code, _jsSourceContext++, uniqueDocumentName, ref parseAttributes);
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e);
+					try
+					{
+						JsParseScriptAttributes parseAttributes = JsParseScriptAttributes.None;
+						JsContext.RunScript(code, _jsSourceContext++, uniqueDocumentName, ref parseAttributes);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
 				}
 			});
 		}
@@ -776,20 +788,23 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			_dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsContext.RunSerializedScript(chakraCorePrecompiledScript.Code,
-						chakraCorePrecompiledScript.CachedBytes,
-						chakraCorePrecompiledScript.LoadScriptSourceCodeCallback, _jsSourceContext++,
-						chakraCorePrecompiledScript.DocumentName);
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e);
-				}
-				finally
-				{
-					GC.KeepAlive(chakraCorePrecompiledScript);
+					try
+					{
+						JsContext.RunSerializedScript(chakraCorePrecompiledScript.Code,
+							chakraCorePrecompiledScript.CachedBytes,
+							chakraCorePrecompiledScript.LoadScriptSourceCodeCallback, _jsSourceContext++,
+							chakraCorePrecompiledScript.DocumentName);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
+					finally
+					{
+						GC.KeepAlive(chakraCorePrecompiledScript);
+					}
 				}
 			});
 		}
@@ -798,60 +813,63 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			object result = _dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsValue globalObj = JsValue.GlobalObject;
-					JsPropertyId functionId = JsPropertyId.FromString(functionName);
-
-					bool functionExist = globalObj.HasProperty(functionId);
-					if (!functionExist)
+					try
 					{
-						throw new WrapperRuntimeException(
-							string.Format(CoreStrings.Runtime_FunctionNotExist, functionName),
-							EngineName, EngineVersion
-						);
-					}
+						JsValue globalObj = JsValue.GlobalObject;
+						JsPropertyId functionId = JsPropertyId.FromString(functionName);
 
-					JsValue resultValue;
-					JsValue functionValue = globalObj.GetProperty(functionId);
-
-					int argCount = args.Length;
-					if (argCount > 0)
-					{
-						int processedArgCount = argCount + 1;
-						var processedArgs = new JsValue[processedArgCount];
-						processedArgs[0] = globalObj;
-
-						for (int argIndex = 0; argIndex < argCount; argIndex++)
+						bool functionExist = globalObj.HasProperty(functionId);
+						if (!functionExist)
 						{
-							JsValue processedArg = _typeMapper.MapToScriptType(args[argIndex]);
-							AddReferenceToValue(processedArg);
-
-							processedArgs[argIndex + 1] = processedArg;
+							throw new WrapperRuntimeException(
+								string.Format(CoreStrings.Runtime_FunctionNotExist, functionName),
+								EngineName, EngineVersion
+							);
 						}
 
-						try
+						JsValue resultValue;
+						JsValue functionValue = globalObj.GetProperty(functionId);
+
+						int argCount = args.Length;
+						if (argCount > 0)
 						{
-							resultValue = functionValue.CallFunction(processedArgs);
-						}
-						finally
-						{
-							for (int argIndex = 1; argIndex < processedArgCount; argIndex++)
+							int processedArgCount = argCount + 1;
+							var processedArgs = new JsValue[processedArgCount];
+							processedArgs[0] = globalObj;
+
+							for (int argIndex = 0; argIndex < argCount; argIndex++)
 							{
-								RemoveReferenceToValue(processedArgs[argIndex]);
+								JsValue processedArg = _typeMapper.MapToScriptType(args[argIndex]);
+								AddReferenceToValue(processedArg);
+
+								processedArgs[argIndex + 1] = processedArg;
+							}
+
+							try
+							{
+								resultValue = functionValue.CallFunction(processedArgs);
+							}
+							finally
+							{
+								for (int argIndex = 1; argIndex < processedArgCount; argIndex++)
+								{
+									RemoveReferenceToValue(processedArgs[argIndex]);
+								}
 							}
 						}
-					}
-					else
-					{
-						resultValue = functionValue.CallFunction(globalObj);
-					}
+						else
+						{
+							resultValue = functionValue.CallFunction(globalObj);
+						}
 
-					return _typeMapper.MapToHostType(resultValue);
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e);
+						return _typeMapper.MapToHostType(resultValue);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
 				}
 			});
 
@@ -869,23 +887,26 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			bool result = _dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsValue globalObj = JsValue.GlobalObject;
-					JsPropertyId variableId = JsPropertyId.FromString(variableName);
-					bool variableExist = globalObj.HasProperty(variableId);
-
-					if (variableExist)
+					try
 					{
-						JsValue variableValue = globalObj.GetProperty(variableId);
-						variableExist = variableValue.ValueType != JsValueType.Undefined;
-					}
+						JsValue globalObj = JsValue.GlobalObject;
+						JsPropertyId variableId = JsPropertyId.FromString(variableName);
+						bool variableExist = globalObj.HasProperty(variableId);
 
-					return variableExist;
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e);
+						if (variableExist)
+						{
+							JsValue variableValue = globalObj.GetProperty(variableId);
+							variableExist = variableValue.ValueType != JsValueType.Undefined;
+						}
+
+						return variableExist;
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
 				}
 			});
 
@@ -896,15 +917,18 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			object result = _dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsValue variableValue = JsValue.GlobalObject.GetProperty(variableName);
+					try
+					{
+						JsValue variableValue = JsValue.GlobalObject.GetProperty(variableName);
 
-					return _typeMapper.MapToHostType(variableValue);
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e);
+						return _typeMapper.MapToHostType(variableValue);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
 				}
 			});
 
@@ -922,23 +946,26 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			_dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsValue inputValue = _typeMapper.MapToScriptType(value);
-					AddReferenceToValue(inputValue);
-
 					try
 					{
-						JsValue.GlobalObject.SetProperty(variableName, inputValue, true);
+						JsValue inputValue = _typeMapper.MapToScriptType(value);
+						AddReferenceToValue(inputValue);
+
+						try
+						{
+							JsValue.GlobalObject.SetProperty(variableName, inputValue, true);
+						}
+						finally
+						{
+							RemoveReferenceToValue(inputValue);
+						}
 					}
-					finally
+					catch (OriginalException e)
 					{
-						RemoveReferenceToValue(inputValue);
+						throw WrapJsException(e);
 					}
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e);
 				}
 			});
 		}
@@ -947,19 +974,22 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			_dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsValue globalObj = JsValue.GlobalObject;
-					JsPropertyId variableId = JsPropertyId.FromString(variableName);
-
-					if (globalObj.HasProperty(variableId))
+					try
 					{
-						globalObj.SetProperty(variableId, JsValue.Undefined, true);
+						JsValue globalObj = JsValue.GlobalObject;
+						JsPropertyId variableId = JsPropertyId.FromString(variableName);
+
+						if (globalObj.HasProperty(variableId))
+						{
+							globalObj.SetProperty(variableId, JsValue.Undefined, true);
+						}
 					}
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e);
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
 				}
 			});
 		}
@@ -968,14 +998,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			_dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsValue processedValue = _typeMapper.GetOrCreateScriptObject(value);
-					JsValue.GlobalObject.SetProperty(itemName, processedValue, true);
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e);
+					try
+					{
+						JsValue processedValue = _typeMapper.GetOrCreateScriptObject(value);
+						JsValue.GlobalObject.SetProperty(itemName, processedValue, true);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
 				}
 			});
 		}
@@ -984,14 +1017,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			_dispatcher.Invoke(() =>
 			{
-				try
+				using (new JsScope(_jsContext))
 				{
-					JsValue typeValue = _typeMapper.GetOrCreateScriptType(type);
-					JsValue.GlobalObject.SetProperty(itemName, typeValue, true);
-				}
-				catch (OriginalException e)
-				{
-					throw WrapJsException(e);
+					try
+					{
+						JsValue typeValue = _typeMapper.GetOrCreateScriptType(type);
+						JsValue.GlobalObject.SetProperty(itemName, typeValue, true);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
 				}
 			});
 		}
@@ -1003,7 +1039,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		protected override void InnerCollectGarbage()
 		{
-			_dispatcher.Invoke(_jsRuntime.CollectGarbage);
+			_jsRuntime.CollectGarbage();
 		}
 
 		#region IJsEngine implementation
@@ -1101,7 +1137,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			if (_jsContext.IsValid)
 			{
-				JsContext.Current = JsContext.Invalid;
 				_jsContext.Release();
 			}
 			_jsRuntime.Dispose();
