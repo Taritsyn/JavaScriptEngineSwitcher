@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.2.1 - October 21, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * Fixed a error that caused a crash during finalization
+   * During calling of the `CollectGarbage` method is again not performed blocking
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.5
+
 ## v3.2.0 - October 12, 2019
  * In JavaScriptEngineSwitcher.Jint:
    * Jint was updated to version 3.0.0 Beta 1612. Special thanks to [Marko Lahma](https://github.com/lahma) and [Sébastien Ros](https://github.com/sebastienros)
