@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.2.2 - October 26, 2019
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 1629
+
 ## v3.2.1 - October 21, 2019
  * In JavaScriptEngineSwitcher.ChakraCore:
    * Fixed a error that caused a crash during finalization
