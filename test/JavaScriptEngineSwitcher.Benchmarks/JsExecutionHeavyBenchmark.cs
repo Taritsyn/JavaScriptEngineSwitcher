@@ -10,7 +10,7 @@ using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-//using JavaScriptEngineSwitcher.NiL;
+using JavaScriptEngineSwitcher.NiL;
 #if NET461
 using JavaScriptEngineSwitcher.V8;
 #endif
@@ -159,14 +159,14 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			RenderTemplates(createJsEngine, withPrecompilation);
 		}
 
-		[Benchmark]
-		[Arguments(false)]
-		[Arguments(true)]
-		public void Jint(bool withPrecompilation)
-		{
-			Func<IJsEngine> createJsEngine = () => new JintJsEngine();
-			RenderTemplates(createJsEngine, withPrecompilation);
-		}
+		//[Benchmark]
+		//[Arguments(false)]
+		//[Arguments(true)]
+		//public void Jint(bool withPrecompilation)
+		//{
+		//	Func<IJsEngine> createJsEngine = () => new JintJsEngine();
+		//	RenderTemplates(createJsEngine, withPrecompilation);
+		//}
 
 		[Benchmark]
 		[Arguments(false)]
@@ -223,12 +223,12 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			RenderTemplates(createJsEngine, withPrecompilation);
 		}
 
-		//[Benchmark]
-		//public void NiL()
-		//{
-		//	Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
-		//	RenderTemplates(createJsEngine, false);
-		//}
+		[Benchmark]
+		public void NiL()
+		{
+			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
+			RenderTemplates(createJsEngine, false);
+		}
 #if NET461
 
 		[Benchmark]
