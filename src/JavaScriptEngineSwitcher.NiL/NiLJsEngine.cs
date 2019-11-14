@@ -87,6 +87,7 @@ namespace JavaScriptEngineSwitcher.NiL
 				{
 					_jsContext.DebuggerCallback += _debuggerCallback;
 				}
+				_jsContext.GlobalContext.CurrentTimeZone = niLSettings.LocalTimeZone;
 			}
 			catch (Exception e)
 			{

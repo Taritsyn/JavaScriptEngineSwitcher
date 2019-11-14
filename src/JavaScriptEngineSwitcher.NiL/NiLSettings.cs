@@ -1,4 +1,6 @@
-﻿using OriginalDebuggerCallback = NiL.JS.Core.DebuggerCallback;
+﻿using System;
+
+using OriginalDebuggerCallback = NiL.JS.Core.DebuggerCallback;
 
 namespace JavaScriptEngineSwitcher.NiL
 {
@@ -26,6 +28,15 @@ namespace JavaScriptEngineSwitcher.NiL
 		}
 
 		/// <summary>
+		/// Gets or sets a local time zone for the <code>Date</code> objects in the script
+		/// </summary>
+		public TimeZoneInfo LocalTimeZone
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to allow run the script in strict mode
 		/// </summary>
 		public bool StrictMode
@@ -42,6 +53,7 @@ namespace JavaScriptEngineSwitcher.NiL
 		{
 			DebuggerCallback = null;
 			EnableDebugging = false;
+			LocalTimeZone = TimeZoneInfo.Local;
 			StrictMode = false;
 		}
 	}
