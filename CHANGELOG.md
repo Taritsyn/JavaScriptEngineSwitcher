@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## v3.2.3 - November 15, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.15
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 1632
+ * In JavaScriptEngineSwitcher.NiL:
+   * NiL.JS was updated to version 2.5.1388
+   * In configuration settings of the NiL JS engine was added one new property - `LocalTimeZone` (default `TimeZoneInfo.Local`)
+
 ## v3.2.2 - October 26, 2019
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 1629
 
