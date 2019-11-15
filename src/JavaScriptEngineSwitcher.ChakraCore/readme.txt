@@ -30,9 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Fixed a error that caused a crash during finalization;
-   2. During calling of the `CollectGarbage` method is again not performed
-      blocking.
+   ChakraCore was updated to version 1.11.15.
 
    =============
    DOCUMENTATION
