@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.2.4 - December 17, 2019
+ * In JavaScriptEngineSwitcher.ChakraCore fixed a errors leading to null reference exceptions in the `ReflectionHelpers` class
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.6
+
 ## v3.2.3 - November 15, 2019
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.15
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 1632
