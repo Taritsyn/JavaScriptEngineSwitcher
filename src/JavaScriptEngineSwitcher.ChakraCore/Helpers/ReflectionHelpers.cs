@@ -43,6 +43,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 		public static void FixFieldValueType(ref object value, FieldInfo field)
 		{
+			if (value == null)
+			{
+				return;
+			}
+
 			Type valueType = value.GetType();
 			Type fieldType = field.FieldType;
 
@@ -59,7 +64,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 		public static void FixPropertyValueType(ref object value, PropertyInfo property)
 		{
-			if (value == null) return;
+			if (value == null)
+			{
+				return;
+			}
+
 			Type valueType = value.GetType();
 			Type propertyType = property.PropertyType;
 
@@ -81,7 +90,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			for (int argIndex = 0; argIndex < argCount; argIndex++)
 			{
 				object argValue = argValues[argIndex];
-				if (argValue == null) continue;
+				if (argValue == null)
+				{
+					continue;
+				}
+
 				Type argType = argValue.GetType();
 
 				ParameterInfo parameter = parameters[argIndex];
@@ -124,17 +137,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			}
 
 			Type[] argTypes = argValues
-				.Select(a =>
-				{
-					if (a == null)
-					{
-						return null;
-					}
-					else
-					{
-						return a.GetType();
-					}
-				})
+				.Select(a => a != null ? a.GetType() : typeof(object))
 				.ToArray()
 				;
 			var compatibleMethods = new List<MethodWithMetadata>();

@@ -70,10 +70,12 @@ namespace JavaScriptEngineSwitcher.Tests
 			var product = new Product
 			{
 				Name = "Red T-shirt",
+				Description = string.Empty,
 				Price = 995.00
 			};
 
-			const string updateCode = "product.Price *= 1.15;";
+			const string updateCode = @"product.Description = null;
+product.Price *= 1.15;";
 
 			const string input1 = "product.Name";
 			const string targetOutput1 = "Red T-shirt";
@@ -219,7 +221,8 @@ namespace JavaScriptEngineSwitcher.Tests
 		{
 			// Arrange
 			var person = new Person("Vanya", "Ivanov");
-			const string updateCode = "person.LastName = person.LastName.substr(0, 5) + 'ff';";
+			const string updateCode = @"person.LastName = person.LastName.substr(0, 5) + 'ff';
+person.Patronymic = null;";
 
 			const string input1 = "person.FirstName";
 			const string targetOutput1 = "Vanya";
@@ -406,7 +409,7 @@ smileDay.GetDayOfYear();";
 			var fileManager = new FileManager();
 			const string filePath = "Files/link.txt";
 
-			string input = string.Format("fileManager.ReadFile('{0}')", filePath.Replace(@"\", @"\\"));
+			string input = string.Format("fileManager.ReadFile('{0}', null)", filePath.Replace(@"\", @"\\"));
 			const string targetOutput = "http://www.panopticoncentral.net/2015/09/09/the-two-faces-of-jsrt-in-windows-10/";
 
 			// Act

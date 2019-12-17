@@ -14,15 +14,26 @@
 			set;
 		}
 
+		public string Patronymic
+		{
+			get;
+			set;
+		}
+
 
 		public Person()
 			: this(string.Empty, string.Empty)
 		{ }
 
 		public Person(string firstName, string lastName)
+			: this(firstName, lastName, string.Empty)
+		{ }
+
+		public Person(string firstName, string lastName, string patronymic)
 		{
 			FirstName = firstName;
 			LastName = lastName;
+			Patronymic = patronymic;
 		}
 
 

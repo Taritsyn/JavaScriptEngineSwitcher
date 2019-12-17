@@ -6,6 +6,8 @@ using Xunit;
 
 using JavaScriptEngineSwitcher.Core;
 
+using JavaScriptEngineSwitcher.Tests.Interop;
+
 namespace JavaScriptEngineSwitcher.Tests.Jint
 {
 	public class InteropTests : InteropTestsBase
@@ -17,6 +19,47 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 
 		#region Embedding of objects
+
+		#region Objects with fields
+
+		[Fact]
+		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithFieldsIsCorrect()
+		{
+			// Arrange
+			var product = new Product
+			{
+				Name = "Red T-shirt",
+				Description = string.Empty,
+				Price = 995.00
+			};
+
+			const string updateCode = "product.Price *= 1.15;";
+
+			const string input1 = "product.Name";
+			const string targetOutput1 = "Red T-shirt";
+
+			const string input2 = "product.Price";
+			const double targetOutput2 = 1144.25;
+
+			// Act
+			string output1;
+			double output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("product", product);
+				jsEngine.Execute(updateCode);
+
+				output1 = jsEngine.Evaluate<string>(input1);
+				output2 = jsEngine.Evaluate<double>(input2);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+		}
+
+		#endregion
 
 		#region Recursive calls
 

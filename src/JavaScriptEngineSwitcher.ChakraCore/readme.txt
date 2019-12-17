@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.15.
+   Fixed a errors leading to null reference exceptions in the `ReflectionHelpers`
+   class. Special thanks to Vanjoge.
 
    =============
    DOCUMENTATION

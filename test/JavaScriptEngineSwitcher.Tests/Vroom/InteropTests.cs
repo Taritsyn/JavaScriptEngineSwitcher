@@ -25,6 +25,9 @@
 		public override void EmbeddingOfInstanceOfBuiltinReferenceTypeWithMethodIsCorrect()
 		{ }
 
+		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithMethodIsCorrect()
+		{ }
+
 		#endregion
 
 		#region Delegates
