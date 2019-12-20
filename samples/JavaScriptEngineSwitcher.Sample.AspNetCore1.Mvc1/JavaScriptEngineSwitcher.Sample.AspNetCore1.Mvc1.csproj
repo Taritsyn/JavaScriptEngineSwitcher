@@ -47,6 +47,7 @@
 	</ItemGroup>
 
 	<Target Name="GulpBuild" AfterTargets="AfterBuild">
+		<Exec Command="bower install" />
 		<Exec Command="gulp" />
 	</Target>
 	<Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
