@@ -1,74 +1,74 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<Product>JS Engine Switcher: V8</Product>
-		<VersionPrefix>3.1.6</VersionPrefix>
-		<TargetFrameworks>net45</TargetFrameworks>
-		<OutputType>Library</OutputType>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-		<Description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version 5.6.0).
+  <PropertyGroup>
+    <Product>JS Engine Switcher: V8</Product>
+    <VersionPrefix>3.1.6</VersionPrefix>
+    <TargetFrameworks>net45</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
+    <Description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version 5.6.0).
 
 This package does not contain the native ClearScript and V8 assemblies. Therefore, you need to choose and install the most appropriate package(s) for your platform. The following packages are available:
 
  * JavaScriptEngineSwitcher.V8.Native.win-x86
  * JavaScriptEngineSwitcher.V8.Native.win-x64</Description>
-		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconUrl>
-		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;V8;ClearScript</PackageTags>
-		<PackageReleaseNotes>Fixed a error #73 “Trying to Run this in the GAC”.</PackageReleaseNotes>
-	</PropertyGroup>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconUrl>
+    <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;V8;ClearScript</PackageTags>
+    <PackageReleaseNotes>Fixed a error #73 “Trying to Run this in the GAC”.</PackageReleaseNotes>
+  </PropertyGroup>
 
-	<Import Project="../../build/common.props" />
-	<Import Project="../../build/strong-name-signing.props" />
-	<Import Project="../../build/nuget-metadata.props" />
+  <Import Project="../../build/common.props" />
+  <Import Project="../../build/strong-name-signing.props" />
+  <Import Project="../../build/nuget-metadata.props" />
 
-	<ItemGroup>
-		<Reference Include="Microsoft.CSharp" Pack="false" />
-		<Reference Include="ClearScript">
-			<HintPath>../../lib/ClearScript/lib/net45/ClearScript.dll</HintPath>
-		</Reference>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" Pack="false" />
+    <Reference Include="ClearScript">
+      <HintPath>../../lib/ClearScript/lib/net45/ClearScript.dll</HintPath>
+    </Reference>
 
-		<PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
-		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
+    <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
+    <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
 
-		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
-	</ItemGroup>
+    <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<Content Include="readme.txt">
-			<PackagePath>readme.txt</PackagePath>
-			<Pack>true</Pack>
-		</Content>
-		<Content Include="../../Licenses/advanced-string-builder-license.txt">
-			<PackagePath>advanced-string-builder-license.txt</PackagePath>
-			<Pack>true</Pack>
-			<Visible>false</Visible>
-		</Content>
-		<Content Include="../../Licenses/clearscript-license.txt">
-			<PackagePath>clearscript-license.txt</PackagePath>
-			<Pack>true</Pack>
-			<Visible>false</Visible>
-		</Content>
-		<Content Include="../../Licenses/v8-license.txt">
-			<PackagePath>v8-license.txt</PackagePath>
-			<Pack>true</Pack>
-			<Visible>false</Visible>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="../../Licenses/advanced-string-builder-license.txt">
+      <PackagePath>advanced-string-builder-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="../../Licenses/clearscript-license.txt">
+      <PackagePath>clearscript-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="../../Licenses/v8-license.txt">
+      <PackagePath>v8-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
 
-	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
-		<ResxToCsTask InputDirectory="./Resources/" Namespace="$(RootNamespace).Resources" InternalAccessModifier="true" />
-	</Target>
-	<Target Name="AddAdditionalAssembliesToPackage" BeforeTargets="GenerateNuspec">
-		<ItemGroup>
-			<_PackageFiles Include="bin/$(Configuration)/*/ClearScript.dll">
-				<PackagePath>lib/%(RecursiveDir)</PackagePath>
-				<Visible>false</Visible>
-				<BuildAction>None</BuildAction>
-			</_PackageFiles>
-		</ItemGroup>
-	</Target>
+  <Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
+    <ResxToCsTask InputDirectory="./Resources/" Namespace="$(RootNamespace).Resources" InternalAccessModifier="true" />
+  </Target>
+  <Target Name="AddAdditionalAssembliesToPackage" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_PackageFiles Include="bin/$(Configuration)/*/ClearScript.dll">
+        <PackagePath>lib/%(RecursiveDir)</PackagePath>
+        <Visible>false</Visible>
+        <BuildAction>None</BuildAction>
+      </_PackageFiles>
+    </ItemGroup>
+  </Target>
 
 </Project>

@@ -1,40 +1,40 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<Product>JS Engine Switcher: MS Dependency Injection</Product>
-		<VersionPrefix>3.1.0</VersionPrefix>
-		<TargetFrameworks>net45;netstandard1.3;netstandard2.0</TargetFrameworks>
-		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
-		<OutputType>Library</OutputType>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<Description>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</Description>
-		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Extensions_MsDependencyInjection_Logo128x128.png</PackageIconUrl>
-		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;DI</PackageTags>
-	</PropertyGroup>
+  <PropertyGroup>
+    <Product>JS Engine Switcher: MS Dependency Injection</Product>
+    <VersionPrefix>3.1.0</VersionPrefix>
+    <TargetFrameworks>net45;netstandard1.3;netstandard2.0</TargetFrameworks>
+    <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
+    <OutputType>Library</OutputType>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</Description>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Extensions_MsDependencyInjection_Logo128x128.png</PackageIconUrl>
+    <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;DI</PackageTags>
+  </PropertyGroup>
 
-	<Import Project="../../build/common.props" />
-	<Import Project="../../build/strong-name-signing.props" />
-	<Import Project="../../build/nuget-metadata.props" />
+  <Import Project="../../build/common.props" />
+  <Import Project="../../build/strong-name-signing.props" />
+  <Import Project="../../build/nuget-metadata.props" />
 
-	<ItemGroup>
-		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
+  </ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'netstandard1.3' ">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.0.2" />
-	</ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'netstandard1.3' ">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.0.2" />
+  </ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
-	</ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<Content Include="readme.txt">
-			<PackagePath>readme.txt</PackagePath>
-			<Pack>true</Pack>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
 
 </Project>

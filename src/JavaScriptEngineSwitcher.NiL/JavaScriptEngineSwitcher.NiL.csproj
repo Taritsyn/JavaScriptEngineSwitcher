@@ -1,47 +1,47 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<Product>JS Engine Switcher: NiL</Product>
-		<VersionPrefix>3.2.3</VersionPrefix>
-		<TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
-		<OutputType>Library</OutputType>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1388).</Description>
-		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconUrl>
-		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;NiL</PackageTags>
-		<PackageReleaseNotes>1. NiL.JS was updated to version 2.5.1388;
+  <PropertyGroup>
+    <Product>JS Engine Switcher: NiL</Product>
+    <VersionPrefix>3.2.3</VersionPrefix>
+    <TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1388).</Description>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconUrl>
+    <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;NiL</PackageTags>
+    <PackageReleaseNotes>1. NiL.JS was updated to version 2.5.1388;
 2. In configuration settings of the NiL JS engine was added one new property - `LocalTimeZone` (default `TimeZoneInfo.Local`).</PackageReleaseNotes>
-	</PropertyGroup>
+  </PropertyGroup>
 
-	<Import Project="../../build/common.props" />
-	<Import Project="../../build/net40-client-target.props" />
-	<Import Project="../../build/strong-name-signing.props" />
-	<Import Project="../../build/nuget-metadata.props" />
+  <Import Project="../../build/common.props" />
+  <Import Project="../../build/net40-client-target.props" />
+  <Import Project="../../build/strong-name-signing.props" />
+  <Import Project="../../build/nuget-metadata.props" />
 
-	<ItemGroup>
-		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
+  </ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' Or '$(TargetFramework)' == 'net45' ">
-		<PackageReference Include="NiL.JS" Version="2.5.1388" />
-	</ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' Or '$(TargetFramework)' == 'net45' ">
+    <PackageReference Include="NiL.JS" Version="2.5.1388" />
+  </ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' Or '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="NiL.JS.NetCore" Version="2.5.1388" />
-	</ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' Or '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="NiL.JS.NetCore" Version="2.5.1388" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<Content Include="readme.txt">
-			<PackagePath>readme.txt</PackagePath>
-			<Pack>true</Pack>
-		</Content>
-		<Content Include="../../Licenses/nil-license.txt">
-			<PackagePath>nil-license.txt</PackagePath>
-			<Pack>true</Pack>
-			<Visible>false</Visible>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="../../Licenses/nil-license.txt">
+      <PackagePath>nil-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
 
 </Project>

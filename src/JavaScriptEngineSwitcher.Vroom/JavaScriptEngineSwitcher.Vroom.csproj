@@ -1,67 +1,67 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<Product>JS Engine Switcher: Vroom</Product>
-		<VersionPrefix>3.1.0</VersionPrefix>
-		<TargetFrameworks>net40-client;net45;net471;netstandard1.6;netstandard2.0</TargetFrameworks>
-		<NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
-		<OutputType>Library</OutputType>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-		<Description>JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the VroomJs (http://github.com/pauldotknopf/vroomjs-core) version 1.2.3 with support of V8 version 3.17.16.2).
+  <PropertyGroup>
+    <Product>JS Engine Switcher: Vroom</Product>
+    <VersionPrefix>3.1.0</VersionPrefix>
+    <TargetFrameworks>net40-client;net45;net471;netstandard1.6;netstandard2.0</TargetFrameworks>
+    <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
+    <OutputType>Library</OutputType>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
+    <Description>JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the VroomJs (http://github.com/pauldotknopf/vroomjs-core) version 1.2.3 with support of V8 version 3.17.16.2).
 
 For correct working of the VroomJs on Windows require the Visual C++ Redistributable for Visual Studio 2012 and Microsoft Visual C++ 2015 Redistributable.</Description>
-		<PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconUrl>
-		<PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;VroomJs;V8</PackageTags>
-	</PropertyGroup>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconUrl>
+    <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;VroomJs;V8</PackageTags>
+  </PropertyGroup>
 
-	<Import Project="../../build/common.props" />
-	<Import Project="../../build/net40-client-target.props" />
-	<Import Project="../../build/strong-name-signing.props" />
-	<Import Project="../../build/nuget-metadata.props" />
+  <Import Project="../../build/common.props" />
+  <Import Project="../../build/net40-client-target.props" />
+  <Import Project="../../build/strong-name-signing.props" />
+  <Import Project="../../build/nuget-metadata.props" />
 
-	<ItemGroup>
-		<PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
-		<PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
-		<PackageReference Include="VroomJs" Version="1.2.3" />
+  <ItemGroup>
+    <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
+    <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
+    <PackageReference Include="VroomJs" Version="1.2.3" />
 
-		<ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
-	</ItemGroup>
+    <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
+  </ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
-		<PackageReference Include="PolyfillsForOldDotNet.System.Runtime.InteropServices.RuntimeInformation" Version="0.1.1" />
-	</ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
+    <PackageReference Include="PolyfillsForOldDotNet.System.Runtime.InteropServices.RuntimeInformation" Version="0.1.1" />
+  </ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.0.0" />
-	</ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.0.0" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<Content Include="readme.txt">
-			<PackagePath>readme.txt</PackagePath>
-			<Pack>true</Pack>
-		</Content>
-		<Content Include="../../Licenses/advanced-string-builder-license.txt">
-			<PackagePath>advanced-string-builder-license.txt</PackagePath>
-			<Pack>true</Pack>
-			<Visible>false</Visible>
-		</Content>
-		<Content Include="../../Licenses/vroomjs-core-license.txt">
-			<PackagePath>vroomjs-core-license.txt</PackagePath>
-			<Pack>true</Pack>
-			<Visible>false</Visible>
-		</Content>
-		<Content Include="../../Licenses/v8-license.txt">
-			<PackagePath>v8-license.txt</PackagePath>
-			<Pack>true</Pack>
-			<Visible>false</Visible>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="../../Licenses/advanced-string-builder-license.txt">
+      <PackagePath>advanced-string-builder-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="../../Licenses/vroomjs-core-license.txt">
+      <PackagePath>vroomjs-core-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="../../Licenses/v8-license.txt">
+      <PackagePath>v8-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
 
-	<Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
-		<ResxToCsTask InputDirectory="./Resources/" Namespace="$(RootNamespace).Resources" InternalAccessModifier="true" />
-	</Target>
+  <Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
+    <ResxToCsTask InputDirectory="./Resources/" Namespace="$(RootNamespace).Resources" InternalAccessModifier="true" />
+  </Target>
 
 </Project>

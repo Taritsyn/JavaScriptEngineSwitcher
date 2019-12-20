@@ -1,23 +1,22 @@
-<?xml version="1.0" encoding="windows-1251"?>
 <Project>
-	<PropertyGroup>
-		<Title>$(Product)</Title>
-		<Authors>Andrey Taritsyn</Authors>
-		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<PackageProjectUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<NeutralLanguage>en-US</NeutralLanguage>
-	</PropertyGroup>
+  <PropertyGroup>
+    <Title>$(Product)</Title>
+    <Authors>Andrey Taritsyn</Authors>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<Content Include="../../LICENSE.txt">
-			<PackagePath>$(PackageLicenseFile)</PackagePath>
-			<Pack>true</Pack>
-			<Visible>false</Visible>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="../../LICENSE.txt">
+      <PackagePath>$(PackageLicenseFile)</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
 
-	<Import Project="nuget-common.props" />
+  <Import Project="nuget-common.props" />
 </Project>
