@@ -1,48 +1,47 @@
-/*global require */
-"use strict";
+/*global require, exports */
+/*jshint esversion: 6 */
 
 // include plug-ins
-var gulp = require('gulp');
-var del = require('del');
-var sourcemaps = require('gulp-sourcemaps');
-var rename = require('gulp-rename');
-var concat = require('gulp-concat');
-var less = require('gulp-less');
-var autoprefixer = require('gulp-autoprefixer');
-var cleanCss = require('gulp-clean-css');
-var uglify = require('gulp-uglify');
+const { src, dest, series, parallel, watch } = require('gulp');
+const del = require('del');
+const sourcemaps = require('gulp-sourcemaps');
+const rename = require('gulp-rename');
+const concat = require('gulp-concat');
+const less = require('gulp-less');
+const autoprefixer = require('gulp-autoprefixer');
+const cleanCss = require('gulp-clean-css');
+const uglify = require('gulp-uglify');
 
-var webRootPath = ".";
-var bowerDirPath = "lib";
-var styleDirPath = webRootPath + '/styles';
-var scriptDirPath = webRootPath + '/scripts';
+const webRootPath = ".";
+const bowerDirPath = "lib";
+const styleDirPath = webRootPath + '/styles';
+const scriptDirPath = webRootPath + '/scripts';
 
 //#region Clean
 //#region Clean builded assets
-gulp.task('clean-builded-styles', function () {
-	del.sync([styleDirPath + '/build/*']);
-});
+function cleanBuildedStyles() {
+	return del([styleDirPath + '/build/*']);
+}
 
-gulp.task('clean-builded-scripts', function () {
-	del.sync([scriptDirPath + '/build/*']);
-});
+function cleanBuildedScripts() {
+	return del([scriptDirPath + '/build/*']);
+}
 
-gulp.task('clean-builded-assets', ['clean-builded-styles', 'clean-builded-scripts'], function () { });
+const cleanBuildedAssets = parallel(cleanBuildedStyles, cleanBuildedScripts);
 //#endregion
 //#endregion
 
 //#region Build assets
 //#region Build styles
-var autoprefixerOptions = {
-	browsers: ['> 1%', 'last 3 versions', 'Firefox ESR', 'Opera 12.1'],
+const autoprefixerOptions = {
+	overrideBrowserslist: ['> 1%', 'last 3 versions', 'Firefox ESR', 'Opera 12.1'],
 	cascade: true
 };
-var cssCleanOptions = { keepSpecialComments: '*' };
-var cssRenameOptions = { extname: '.min.css' };
+const cssCleanOptions = { specialComments: '*' };
+const cssRenameOptions = { extname: '.min.css' };
 
-gulp.task('build-common-styles', function () {
-	return gulp
-		.src([styleDirPath + '/app.less'])
+function buildCommonStyles() {
+	return src([styleDirPath + '/app.less'])
 		.pipe(sourcemaps.init())
 		.pipe(less({
 			relativeUrls: true,
@@ -50,52 +49,49 @@ gulp.task('build-common-styles', function () {
 		}))
 		.pipe(autoprefixer(autoprefixerOptions))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(styleDirPath + '/build'))
+		.pipe(dest(styleDirPath + '/build'))
 		.pipe(sourcemaps.init({ loadMaps: true }))
 		.pipe(concat('common-styles.css'))
 		.pipe(cleanCss(cssCleanOptions))
 		.pipe(rename(cssRenameOptions))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(styleDirPath + '/build'))
+		.pipe(dest(styleDirPath + '/build'))
 		;
-});
+}
 
-gulp.task('build-styles', ['build-common-styles'], function () { });
+const buildStyles = buildCommonStyles;
 //#endregion
 
 //#region Build scripts
-var jsConcatOptions = { newLine: ';' };
-var jsUglifyOptions = {
+const jsConcatOptions = { newLine: ';' };
+const jsUglifyOptions = {
 	output: { comments: /^!/ }
 };
-var jsRenameOptions = { extname: '.min.js' };
+const jsRenameOptions = { extname: '.min.js' };
 
-gulp.task('build-modernizr-scripts', function () {
-	return gulp
-		.src([bowerDirPath + '/modernizr/modernizr.js'])
+function buildModernizrScripts() {
+	return src([bowerDirPath + '/modernizr/modernizr.js'])
 		.pipe(sourcemaps.init())
 		.pipe(uglify(jsUglifyOptions))
 		.pipe(rename(jsRenameOptions))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(scriptDirPath + '/build'))
+		.pipe(dest(scriptDirPath + '/build'))
 		;
-});
+}
 
-gulp.task('build-common-scripts', function () {
-	return gulp
-		.src([scriptDirPath + '/common.js'])
+function buildCommonScripts() {
+	return src([scriptDirPath + '/common.js'])
 		.pipe(sourcemaps.init({ loadMaps: true }))
 		.pipe(rename({ basename: 'common-scripts' }))
 		.pipe(uglify(jsUglifyOptions))
 		.pipe(rename(jsRenameOptions))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(scriptDirPath + '/build'))
+		.pipe(dest(scriptDirPath + '/build'))
 		;
-});
+}
 
-gulp.task('build-evaluation-form-scripts', function () {
-	return gulp
-		.src([bowerDirPath + '/jquery-validation/dist/jquery.validate.js',
+function buildEvaluationFormScripts() {
+	return src([bowerDirPath + '/jquery-validation/dist/jquery.validate.js',
 			bowerDirPath + '/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js',
 			bowerDirPath + '/bootstrap/js/button.js',
 			scriptDirPath + '/evaluation-form.js'])
@@ -104,32 +100,32 @@ gulp.task('build-evaluation-form-scripts', function () {
 		.pipe(uglify(jsUglifyOptions))
 		.pipe(rename(jsRenameOptions))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(scriptDirPath + '/build'))
+		.pipe(dest(scriptDirPath + '/build'))
 		;
-});
+}
 
-gulp.task('build-scripts', ['build-modernizr-scripts', 'build-common-scripts',
-	'build-evaluation-form-scripts'], function () { });
+const buildScripts = parallel(buildModernizrScripts, buildCommonScripts, buildEvaluationFormScripts);
 //#endregion
 
-gulp.task('build-assets', ['build-styles', 'build-scripts'], function () { });
+const buildAssets = parallel(buildStyles, buildScripts);
 //#endregion
 
 //#region Watch assets
-gulp.task('watch-styles', function () {
-	return gulp.watch([styleDirPath + '/**/*.{less,css}', '!' + styleDirPath + '/build/**/*.*'],
-		['build-styles']);
-});
+function watchStyles() {
+	return watch([styleDirPath + '/**/*.{less,css}', '!' + styleDirPath + '/build/**/*.*'],
+		buildStyles);
+}
 
-gulp.task('watch-scripts', function () {
-	return gulp.watch([scriptDirPath + '/**/*.js', '!' + scriptDirPath + '/build/**/*.*'],
-		['build-scripts']);
-});
+function watchScripts() {
+	return watch([scriptDirPath + '/**/*.js', '!' + scriptDirPath + '/build/**/*.*'],
+		buildScripts);
+}
 
-gulp.task('watch-assets', ['watch-styles', 'watch-scripts']);
+const watchAssets = parallel(watchStyles, watchScripts);
 //#endregion
 
-//Set a default tasks
-gulp.task('default', ['clean-builded-assets'], function () {
-	return gulp.start('build-assets');
-});
+// Export tasks
+exports.cleanBuildedAssets = cleanBuildedAssets;
+exports.buildAssets = buildAssets;
+exports.watchAssets = watchAssets;
+exports.default = series(cleanBuildedAssets, buildAssets);
