@@ -12,5 +12,8 @@
     "gulp-autoprefixer": "7.0.1",
     "gulp-clean-css": "4.2.0",
     "gulp-uglify": "3.0.2"
+  },
+  "scripts": {
+    "postinstall" : "bower install"
   }
 }
