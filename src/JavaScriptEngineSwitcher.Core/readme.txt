@@ -20,8 +20,7 @@
    =============
    RELEASE NOTES
    =============
-   In the `JsEngineFactoryCollection` class was added a `Count` property and
-   `GetRegisteredFactories` method.
+   Enabled a SourceLink.
 
    =============
    DOCUMENTATION

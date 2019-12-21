@@ -15,6 +15,7 @@
 For correct working of the VroomJs on Windows require the Visual C++ Redistributable for Visual Studio 2012 and Microsoft Visual C++ 2015 Redistributable.</Description>
     <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconUrl>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;VroomJs;V8</PackageTags>
+    <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />

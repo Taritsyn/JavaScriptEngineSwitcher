@@ -7,8 +7,15 @@
     <PackageProjectUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="../../LICENSE.txt">

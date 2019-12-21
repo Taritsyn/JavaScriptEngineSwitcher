@@ -19,6 +19,11 @@
    Redistributable for Visual Studio 2012 and the Microsoft Visual C++ 2015
    Redistributable.
 
+   =============
+   RELEASE NOTES
+   =============
+   Enabled a SourceLink.
+
    ====================
    POST-INSTALL ACTIONS
    ====================

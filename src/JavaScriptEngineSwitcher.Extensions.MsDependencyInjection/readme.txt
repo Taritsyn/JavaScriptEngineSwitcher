@@ -15,6 +15,11 @@
    methods for adding the JS engine switcher in an `IServiceCollection`.
 
    =============
+   RELEASE NOTES
+   =============
+   Enabled a SourceLink.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -

@@ -17,9 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   1. NiL.JS was updated to version 2.5.1388;
-   2. In configuration settings of the NiL JS engine was added one new property -
-      `LocalTimeZone` (default `TimeZoneInfo.Local`).
+   Enabled a SourceLink.
 
    =============
    DOCUMENTATION

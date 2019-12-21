@@ -25,7 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #73 “Trying to Run this in the GAC”.
+   Enabled a SourceLink.
 
    =============
    DOCUMENTATION

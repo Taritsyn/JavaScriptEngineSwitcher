@@ -13,7 +13,7 @@
     <Description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (MSIE JavaScript Engine for .NET, Microsoft ClearScript.V8, Jurassic, Jint, ChakraCore, VroomJs and NiL.JS). This library allows you to quickly and easily switch to using of another JavaScript engine.</Description>
     <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Core_Logo128x128.png</PackageIconUrl>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript</PackageTags>
-    <PackageReleaseNotes>In the `JsEngineFactoryCollection` class was added a `Count` property and `GetRegisteredFactories` method.</PackageReleaseNotes>
+    <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />

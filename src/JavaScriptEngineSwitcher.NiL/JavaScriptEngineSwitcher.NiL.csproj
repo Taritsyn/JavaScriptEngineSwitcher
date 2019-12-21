@@ -11,8 +11,7 @@
     <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1388).</Description>
     <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconUrl>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;NiL</PackageTags>
-    <PackageReleaseNotes>1. NiL.JS was updated to version 2.5.1388;
-2. In configuration settings of the NiL JS engine was added one new property - `LocalTimeZone` (default `TimeZoneInfo.Local`).</PackageReleaseNotes>
+    <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />

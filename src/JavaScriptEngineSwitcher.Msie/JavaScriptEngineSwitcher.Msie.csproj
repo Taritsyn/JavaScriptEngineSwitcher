@@ -13,7 +13,7 @@
     <Description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge on the machine.</Description>
     <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</PackageIconUrl>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;MSIE;IE;Chakra</PackageTags>
-    <PackageReleaseNotes>MSIE JavaScript Engine was updated to version 3.0.6.</PackageReleaseNotes>
+    <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />

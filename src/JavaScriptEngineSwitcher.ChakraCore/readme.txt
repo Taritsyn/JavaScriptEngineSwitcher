@@ -30,8 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a errors leading to null reference exceptions in the `ReflectionHelpers`
-   class. Special thanks to Vanjoge.
+   Enabled a SourceLink.
 
    =============
    DOCUMENTATION

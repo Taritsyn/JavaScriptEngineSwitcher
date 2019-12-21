@@ -16,6 +16,11 @@
    version of February 24, 2018).
 
    =============
+   RELEASE NOTES
+   =============
+   Enabled a SourceLink.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -

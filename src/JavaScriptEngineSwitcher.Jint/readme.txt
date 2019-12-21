@@ -17,7 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version 3.0.0 Beta 1632.
+   Enabled a SourceLink.
 
    =============
    DOCUMENTATION
