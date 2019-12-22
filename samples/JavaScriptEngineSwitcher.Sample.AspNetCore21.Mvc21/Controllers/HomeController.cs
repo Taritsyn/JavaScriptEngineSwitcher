@@ -1,14 +1,16 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
+using JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21.Models;
 using JavaScriptEngineSwitcher.Sample.Logic.Models;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 
-namespace JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2.Controllers
+namespace JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21.Controllers
 {
 	public class HomeController : Controller
 	{
@@ -72,9 +74,10 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2.Controllers
 			return View();
 		}
 
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
-			return View();
+			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 	}
 }

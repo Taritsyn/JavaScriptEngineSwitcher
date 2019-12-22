@@ -95,7 +95,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1\JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1.csproj", "{5CA92021-B75A-40AF-B5AA-500BAF76B4D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2\JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2.csproj", "{0342791E-6390-4F97-9163-5CE02E4CFF07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21\JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21.csproj", "{0342791E-6390-4F97-9163-5CE02E4CFF07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

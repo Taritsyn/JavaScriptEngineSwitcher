@@ -1,5 +1,5 @@
 {
-  "name": "jsengineswitcher.sample.aspnetcore2.mvc2",
+  "name": "jsengineswitcher.sample.aspnetcore21.mvc21",
   "dependencies": {
     "modernizr": "2.8.3",
     "jquery-compat": "jquery#1.10.2",

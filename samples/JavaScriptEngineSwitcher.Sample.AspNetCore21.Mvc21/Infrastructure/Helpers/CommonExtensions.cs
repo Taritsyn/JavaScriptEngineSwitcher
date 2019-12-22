@@ -3,7 +3,7 @@
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2.Infrastructure.Helpers
+namespace JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21.Infrastructure.Helpers
 {
 	public static class CommonExtensions
 	{

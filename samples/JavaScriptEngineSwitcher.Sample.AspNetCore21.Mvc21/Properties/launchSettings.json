@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2": {
+    "JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

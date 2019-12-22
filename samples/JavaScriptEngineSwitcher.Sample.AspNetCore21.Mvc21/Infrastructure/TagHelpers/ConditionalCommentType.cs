@@ -1,4 +1,4 @@
-﻿namespace JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2.Infrastructure.TagHelpers
+﻿namespace JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21.Infrastructure.TagHelpers
 {
 	public enum ConditionalCommentType
 	{

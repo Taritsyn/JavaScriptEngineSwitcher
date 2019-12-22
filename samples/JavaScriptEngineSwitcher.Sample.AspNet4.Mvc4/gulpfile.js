@@ -1,5 +1,9 @@
 /*global require, exports */
 /*jshint esversion: 6 */
+const WEB_ROOT_PATH = ".";
+const BOWER_DIR_PATH = "lib";
+const STYLE_DIR_PATH = WEB_ROOT_PATH + '/styles';
+const SCRIPT_DIR_PATH = WEB_ROOT_PATH + '/scripts';
 
 // include plug-ins
 let { src, dest, series, parallel, watch } = require('gulp');
@@ -11,11 +15,6 @@ let less = require('gulp-less');
 let autoprefixer = require('gulp-autoprefixer');
 let cleanCss = require('gulp-clean-css');
 let uglify = require('gulp-uglify');
-
-const WEB_ROOT_PATH = ".";
-const BOWER_DIR_PATH = "lib";
-const STYLE_DIR_PATH = WEB_ROOT_PATH + '/styles';
-const SCRIPT_DIR_PATH = WEB_ROOT_PATH + '/scripts';
 
 //#region Clean
 //#region Clean builded assets

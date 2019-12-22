@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +15,7 @@ using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 using JavaScriptEngineSwitcher.Vroom;
 
-namespace JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2
+namespace JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21
 {
 	public class Startup
 	{
@@ -67,6 +68,13 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2
 				.AddVroom()
 				;
 
+			services.Configure<CookiePolicyOptions>(options =>
+			{
+				// This lambda determines whether user consent for non-essential cookies is needed for a given request.
+				options.CheckConsentNeeded = context => true;
+				options.MinimumSameSitePolicy = SameSiteMode.None;
+			});
+
 			// Add framework services.
 			services.AddMvc(options =>
 			{
@@ -79,7 +87,7 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2
 						VaryByHeader = "Accept-Encoding"
 					}
 				);
-			});
+			}).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 			// Add JavaScriptEngineSwitcher sample services to the services container.
 			services.AddSingleton<JsEvaluationService>();
@@ -98,9 +106,12 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore2.Mvc2
 			else
 			{
 				app.UseExceptionHandler("/Home/Error");
+				app.UseHsts();
 			}
 
+			app.UseHttpsRedirection();
 			app.UseStaticFiles();
+			app.UseCookiePolicy();
 
 			app.UseMvc(routes =>
 			{
