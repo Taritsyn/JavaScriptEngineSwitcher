@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   Enabled a SourceLink.
+   1. Added support of .NET Standard 2.1;
+   2. Enabled a SourceLink.
 
    =============
    DOCUMENTATION
