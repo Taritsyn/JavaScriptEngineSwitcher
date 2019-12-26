@@ -5,10 +5,10 @@ if ($project.Type -eq "Web Site") {
 	$binDirectoryPath = Join-Path $projectDirectoryPath "bin"
 	$assemblyFileName = "ChakraCore.dll"
 
-	$assembly64DirectoryPath = Join-Path $binDirectoryPath "x64"
-	$assembly64FilePath = Join-Path $assembly64DirectoryPath $assemblyFileName
-	
-	if (Test-Path $assembly64FilePath) {
-		Remove-Item $assembly64FilePath -Force
+	$assemblyDirectoryPath = Join-Path $binDirectoryPath "x64"
+	$assemblyFilePath = Join-Path $assemblyDirectoryPath $assemblyFileName
+
+	if (Test-Path $assemblyFilePath) {
+		Remove-Item $assemblyFilePath -Force
 	}
 }

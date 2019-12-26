@@ -1,16 +1,16 @@
 param($installPath, $toolsPath, $package, $project)
 
 if ($project.Type -eq "Web Site") {
-	$runtimesDirectoryPath = Join-Path $installPath "runtimes"
+	$runtimeDirectoryPath = Join-Path $installPath "runtimes/win-x64/"
 	$projectDirectoryPath = $project.Properties.Item("FullPath").Value
 	$binDirectoryPath = Join-Path $projectDirectoryPath "bin"
 	$assemblyFileName = "ChakraCore.dll"
 
-	$assembly64DestDirectoryPath = Join-Path $binDirectoryPath "x64"
-	if (!(Test-Path $assembly64DestDirectoryPath)) {
-		New-Item -ItemType Directory -Force -Path $assembly64DestDirectoryPath
+	$assemblyDestDirectoryPath = Join-Path $binDirectoryPath "x64"
+	if (!(Test-Path $assemblyDestDirectoryPath)) {
+		New-Item -ItemType Directory -Force -Path $assemblyDestDirectoryPath
 	}
 
-	$assembly64SourceFilePath = Join-Path $runtimesDirectoryPath ("win-x64/native/" + $assemblyFileName)
-	Copy-Item $assembly64SourceFilePath $assembly64DestDirectoryPath -Force
+	$assemblySourceFilePath = Join-Path $runtimeDirectoryPath ("native/" + $assemblyFileName)
+	Copy-Item $assemblySourceFilePath $assemblyDestDirectoryPath -Force
 }

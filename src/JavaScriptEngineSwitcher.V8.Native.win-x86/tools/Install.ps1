@@ -1,18 +1,22 @@
 param($installPath, $toolsPath, $package, $project)
 
 if ($project.Type -eq "Web Site") {
-	$runtimesDirectoryPath = Join-Path $installPath "runtimes"
+	$runtimeDirectoryPath = Join-Path $installPath "runtimes/win-x86/"
 	$projectDirectoryPath = $project.Properties.Item("FullPath").Value
 	$binDirectoryPath = Join-Path $projectDirectoryPath "bin"
-	$assembly32FileNames = "ClearScriptV8-32.dll", "v8-libcpp-ia32.dll", "v8-base-ia32.dll", "v8-ia32.dll"
+	$managedAssemblyFileName = "ClearScriptV8-32.dll"
+	$nativeAssemblyFileNames = "v8-libcpp-ia32.dll", "v8-base-ia32.dll", "v8-ia32.dll"
 
-	$assembly32DestDirectoryPath = Join-Path $binDirectoryPath "x86"
-	if (!(Test-Path $assembly32DestDirectoryPath)) {
-		New-Item -ItemType Directory -Force -Path $assembly32DestDirectoryPath
+	$assemblyDestDirectoryPath = Join-Path $binDirectoryPath "x86"
+	if (!(Test-Path $assemblyDestDirectoryPath)) {
+		New-Item -ItemType Directory -Force -Path $assemblyDestDirectoryPath
 	}
 
-	foreach ($assembly32FileName in $assembly32FileNames) {
-		$assembly32SourceFilePath = Join-Path $runtimesDirectoryPath ("win-x86/native/" + $assembly32FileName)
-		Copy-Item $assembly32SourceFilePath $assembly32DestDirectoryPath -Force
+	$managedAssemblySourceFilePath = Join-Path $runtimeDirectoryPath ("lib/net45/" + $managedAssemblyFileName)
+	Copy-Item $managedAssemblySourceFilePath $assemblyDestDirectoryPath -Force
+
+	foreach ($nativeAssemblyFileName in $nativeAssemblyFileNames) {
+		$nativeAssemblySourceFilePath = Join-Path $runtimeDirectoryPath ("native/" + $nativeAssemblyFileName)
+		Copy-Item $nativeAssemblySourceFilePath $assemblyDestDirectoryPath -Force
 	}
 }

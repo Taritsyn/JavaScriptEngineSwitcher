@@ -20,7 +20,7 @@ For correct working of the Microsoft ClearScript.V8 require the Microsoft Visual
     <tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript Windows x64</tags>
   </metadata>
   <files>
-    <file src="../../lib/ClearScript/runtimes/win-x64/native/ClearScriptV8-64.dll" target="runtimes/win-x64/native/" />
+    <file src="../../lib/ClearScript/runtimes/win-x64/lib/net45/ClearScriptV8-64.dll" target="runtimes/win-x64/lib/net45/" />
     <file src="../../lib/ClearScript/runtimes/win-x64/native/v8-libcpp-x64.dll" target="runtimes/win-x64/native/" />
     <file src="../../lib/ClearScript/runtimes/win-x64/native/v8-base-x64.dll" target="runtimes/win-x64/native/" />
     <file src="../../lib/ClearScript/runtimes/win-x64/native/v8-x64.dll" target="runtimes/win-x64/native/" />
