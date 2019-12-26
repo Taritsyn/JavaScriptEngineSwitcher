@@ -1,0 +1,11 @@
+﻿using System;
+
+namespace JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31.Models
+{
+	public class ErrorViewModel
+	{
+		public string RequestId { get; set; }
+
+		public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+	}
+}

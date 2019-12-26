@@ -97,6 +97,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21\JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21.csproj", "{0342791E-6390-4F97-9163-5CE02E4CFF07}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31\JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31.csproj", "{D0127B5A-E66B-4DA2-8C57-A8BA2A0163F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -199,6 +201,10 @@ Global
 		{0342791E-6390-4F97-9163-5CE02E4CFF07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0342791E-6390-4F97-9163-5CE02E4CFF07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0342791E-6390-4F97-9163-5CE02E4CFF07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0127B5A-E66B-4DA2-8C57-A8BA2A0163F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0127B5A-E66B-4DA2-8C57-A8BA2A0163F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0127B5A-E66B-4DA2-8C57-A8BA2A0163F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0127B5A-E66B-4DA2-8C57-A8BA2A0163F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -230,6 +236,7 @@ Global
 		{C790AD7F-55C6-4106-8D8C-8F901B7FF245} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{5CA92021-B75A-40AF-B5AA-500BAF76B4D6} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{0342791E-6390-4F97-9163-5CE02E4CFF07} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
+		{D0127B5A-E66B-4DA2-8C57-A8BA2A0163F4} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8184BE59-ACBC-4CD1-9419-D59A0FAC6131}
