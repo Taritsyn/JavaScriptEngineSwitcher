@@ -20,7 +20,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.win-arm
  * JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
-    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;ChakraCore</PackageTags>
     <PackageReleaseNotes>1. Added support of .NET Standard 2.1;
 2. Enabled a SourceLink.</PackageReleaseNotes>
@@ -61,29 +61,35 @@ This package does not contain the native implementations of ChakraCore. Therefor
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
+    <None Include="../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png">
+      <PackagePath>$(PackageIcon)</PackagePath>
       <Pack>true</Pack>
-    </Content>
-    <Content Include="../../Licenses/advanced-string-builder-license.txt">
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../Licenses/advanced-string-builder-license.txt">
       <PackagePath>advanced-string-builder-license.txt</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
-    </Content>
-    <Content Include="../../Licenses/chakra-samples-license.txt">
+    </None>
+    <None Include="../../Licenses/chakra-samples-license.txt">
       <PackagePath>chakra-samples-license.txt</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
-    </Content>
-    <Content Include="../../Licenses/jsrt-dotnet-license.txt">
+    </None>
+    <None Include="../../Licenses/jsrt-dotnet-license.txt">
       <PackagePath>jsrt-dotnet-license.txt</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
-    </Content>
-    <Content Include="../../Licenses/polyfills-for-old-dot-net-license.txt">
+    </None>
+    <None Include="../../Licenses/polyfills-for-old-dot-net-license.txt">
       <PackagePath>polyfills-for-old-dot-net-license.txt</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
+    </None>
+
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
     </Content>
   </ItemGroup>
 

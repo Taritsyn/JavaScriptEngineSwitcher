@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
     <Description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge on the machine.</Description>
-    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;MSIE;IE;Chakra</PackageTags>
     <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
@@ -29,14 +29,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
+    <None Include="../../Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png">
+      <PackagePath>$(PackageIcon)</PackagePath>
       <Pack>true</Pack>
-    </Content>
-    <Content Include="../../Licenses/msie-javascript-engine-license.txt">
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../Licenses/msie-javascript-engine-license.txt">
       <PackagePath>msie-javascript-engine-license.txt</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
+    </None>
+
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
     </Content>
   </ItemGroup>
 

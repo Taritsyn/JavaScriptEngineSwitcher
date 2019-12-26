@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="../../LICENSE.txt">
+    <None Include="../../LICENSE.txt">
       <PackagePath>$(PackageLicenseFile)</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
-    </Content>
+    </None>
   </ItemGroup>
 
   <Import Project="nuget-common.props" />

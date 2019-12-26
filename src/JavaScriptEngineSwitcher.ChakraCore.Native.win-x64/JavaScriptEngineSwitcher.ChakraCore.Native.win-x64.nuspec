@@ -8,7 +8,7 @@
     <owners>Andrey Taritsyn</owners>
     <license type="file">LICENSE.txt</license>
     <projectUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</iconUrl>
+    <icon>icon.png</icon>
     <repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.11.15 for Windows (x64).</description>
@@ -22,8 +22,9 @@
     <file src="build/JavaScriptEngineSwitcher.ChakraCore.Native.win-x64.props" target="build/" />
     <file src="tools/Install.ps1" target="tools/" />
     <file src="tools/Uninstall.ps1" target="tools/" />
-    <file src="readme.txt" />
+    <file src="../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png" target="icon.png" />
     <file src="../../LICENSE.txt" target="LICENSE.txt" />
     <file src="../../Licenses/chakra-core-license.txt" target="chakra-core-license.txt" />
+    <file src="readme.txt" />
   </files>
 </package>

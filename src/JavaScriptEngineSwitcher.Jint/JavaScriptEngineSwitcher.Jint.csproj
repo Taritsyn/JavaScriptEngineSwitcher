@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
     <Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 1632).</Description>
-    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Jint</PackageTags>
     <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
@@ -29,19 +29,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
+    <None Include="../../Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png">
+      <PackagePath>$(PackageIcon)</PackagePath>
       <Pack>true</Pack>
-    </Content>
-    <Content Include="../../Licenses/advanced-string-builder-license.txt">
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../Licenses/advanced-string-builder-license.txt">
       <PackagePath>advanced-string-builder-license.txt</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
-    </Content>
-    <Content Include="../../Licenses/jint-license.txt">
+    </None>
+    <None Include="../../Licenses/jint-license.txt">
       <PackagePath>jint-license.txt</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
+    </None>
+
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
     </Content>
   </ItemGroup>
 

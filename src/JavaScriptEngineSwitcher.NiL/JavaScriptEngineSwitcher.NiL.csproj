@@ -9,7 +9,7 @@
     <NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1388).</Description>
-    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;NiL</PackageTags>
     <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
@@ -32,14 +32,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
+    <None Include="../../Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png">
+      <PackagePath>$(PackageIcon)</PackagePath>
       <Pack>true</Pack>
-    </Content>
-    <Content Include="../../Licenses/nil-license.txt">
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../Licenses/nil-license.txt">
       <PackagePath>nil-license.txt</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
+    </None>
+
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
     </Content>
   </ItemGroup>
 

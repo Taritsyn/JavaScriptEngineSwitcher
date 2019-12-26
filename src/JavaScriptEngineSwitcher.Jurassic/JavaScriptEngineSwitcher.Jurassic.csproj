@@ -9,7 +9,7 @@
     <NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of February 24, 2018).</Description>
-    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Jurassic</PackageTags>
     <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
@@ -26,14 +26,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
+    <None Include="../../Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png">
+      <PackagePath>$(PackageIcon)</PackagePath>
       <Pack>true</Pack>
-    </Content>
-    <Content Include="../../Licenses/jurassic-license.txt">
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../Licenses/jurassic-license.txt">
       <PackagePath>jurassic-license.txt</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
+    </None>
+
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
     </Content>
   </ItemGroup>
 
