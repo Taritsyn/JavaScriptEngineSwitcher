@@ -11,7 +11,7 @@ using JavaScriptEngineSwitcher.Jurassic;
 #endif
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
-#if !NETCOREAPP
+#if NETFULL || NETCOREAPP3_1
 using JavaScriptEngineSwitcher.V8;
 #endif
 using JavaScriptEngineSwitcher.Vroom;
@@ -42,7 +42,7 @@ namespace JavaScriptEngineSwitcher.Tests
 						EngineMode = JsEngineMode.ChakraIeJsRt
 					})
 					.AddNiL()
-#if !NETCOREAPP
+#if NETFULL || NETCOREAPP3_1
 					.AddV8()
 #endif
 					.AddVroom()

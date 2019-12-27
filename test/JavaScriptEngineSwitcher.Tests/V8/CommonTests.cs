@@ -1,4 +1,4 @@
-﻿#if !NETCOREAPP
+﻿#if NETFULL || NETCOREAPP3_1
 using System;
 
 using Xunit;
@@ -127,7 +127,7 @@ factorial(0);";
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Compilation error", exception.Category);
-			Assert.Equal("Unexpected token )", exception.Description);
+			Assert.Equal("Unexpected token ')'", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("factorial.js", exception.DocumentName);
 			Assert.Equal(10, exception.LineNumber);

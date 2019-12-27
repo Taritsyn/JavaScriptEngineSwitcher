@@ -11,7 +11,7 @@ using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
-#if NET461
+#if NET461 || NETCOREAPP3_1
 using JavaScriptEngineSwitcher.V8;
 #endif
 
@@ -168,7 +168,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
 			EmbedAndUseHostObjects(createJsEngine);
 		}
-#if NET461
+#if NET461 || NETCOREAPP3_1
 
 		[Benchmark]
 		public void V8()

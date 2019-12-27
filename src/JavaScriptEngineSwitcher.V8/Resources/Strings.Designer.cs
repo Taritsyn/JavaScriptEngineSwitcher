@@ -66,11 +66,19 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "Failed to set the '{0}' deployment subdirectory to the V8 proxy."
+		/// </summary>
+		internal static string Engines_SettingDeploymentDirectoryToV8ProxyFailed
+		{
+			get { return GetString("Engines_SettingDeploymentDirectoryToV8ProxyFailed"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "In addition, you still need to install the Microsoft Visual C++ Redistributable for Visual Studio..."
 		/// </summary>
-		internal static string Engine_VcRedist2017InstallationRequired
+		internal static string Engine_VcRedist2019InstallationRequired
 		{
-			get { return GetString("Engine_VcRedist2017InstallationRequired"); }
+			get { return GetString("Engine_VcRedist2019InstallationRequired"); }
 		}
 
 		/// <summary>

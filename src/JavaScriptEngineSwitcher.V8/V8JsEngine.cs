@@ -48,7 +48,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "7.6.303.28";
+		private const string EngineVersion = "7.9.317.32";
 
 		/// <summary>
 		/// V8 JS engine
@@ -376,7 +376,7 @@ namespace JavaScriptEngineSwitcher.V8
 							"JavaScriptEngineSwitcher.V8.Native.win-x86"
 						);
 					descriptionBuilder.Append(" ");
-					descriptionBuilder.Append(Strings.Engine_VcRedist2017InstallationRequired);
+					descriptionBuilder.Append(Strings.Engine_VcRedist2019InstallationRequired);
 				}
 				else
 				{

@@ -1,4 +1,4 @@
-﻿#if !NETCOREAPP
+﻿#if NETFULL || NETCOREAPP3_1
 using System;
 
 using Xunit;

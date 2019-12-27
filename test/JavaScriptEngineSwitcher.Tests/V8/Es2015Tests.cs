@@ -1,4 +1,4 @@
-﻿#if !NETCOREAPP
+﻿#if NETFULL || NETCOREAPP3_1
 namespace JavaScriptEngineSwitcher.Tests.V8
 {
 	public class Es2015Tests : Es2015TestsBase

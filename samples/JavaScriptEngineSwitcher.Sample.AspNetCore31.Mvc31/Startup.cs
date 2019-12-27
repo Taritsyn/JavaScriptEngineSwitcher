@@ -12,6 +12,7 @@ using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
+using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Vroom;
 
 namespace JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31
@@ -64,6 +65,7 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31
 					options.EngineMode = JsEngineMode.ChakraIeJsRt;
 				})
 				.AddNiL()
+				.AddV8()
 				.AddVroom()
 				;
 
