@@ -1,8 +1,16 @@
 Change log
 ==========
 
+## v3.3.0 - December 27, 2019
+ * Enabled a SourceLink in NuGet packages
+ * In JavaScriptEngineSwitcher.ChakraCore added support of .NET Standard 2.1
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 6.0.0 (support of V8 version 7.9.317.32)
+   * Added support of .NET Core 3.1 on Windows
+   * Now the Microsoft ClearScript.V8 requires the [Microsoft Visual C++ Redistributable for Visual Studio 2019](https://visualstudio.microsoft.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2019)
+
 ## v3.2.4 - December 17, 2019
- * In JavaScriptEngineSwitcher.ChakraCore fixed a errors leading to null reference exceptions in the `ReflectionHelpers` class
+ * In JavaScriptEngineSwitcher.ChakraCore fixed a errors leading to null reference exceptions in the `ReflectionHelpers` class. Special thanks to [Vanjoge](https://github.com/vanjoge).
  * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.6
 
 ## v3.2.3 - November 15, 2019

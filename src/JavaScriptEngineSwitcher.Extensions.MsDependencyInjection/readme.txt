@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-          README file for JS Engine Switcher: MS Dependency Injection v3.1.0
+          README file for JS Engine Switcher: MS Dependency Injection v3.3.0
 
    --------------------------------------------------------------------------------
 

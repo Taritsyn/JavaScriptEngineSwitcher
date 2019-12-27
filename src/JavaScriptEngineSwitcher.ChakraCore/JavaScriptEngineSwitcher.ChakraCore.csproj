@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: ChakraCore</Product>
-    <VersionPrefix>3.2.4</VersionPrefix>
+    <VersionPrefix>3.3.0</VersionPrefix>
     <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netcoreapp2.1;netstandard2.1</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <NoWarn>$(NoWarn);CS1591;NU5125</NoWarn>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
     <Description>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore (http://github.com/Microsoft/ChakraCore)). Project was based on the code of Chakra-Samples (http://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet (http://github.com/robpaveza/jsrt-dotnet).
