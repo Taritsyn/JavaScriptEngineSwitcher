@@ -71,7 +71,7 @@ This package does not contain the native ClearScript and V8 assemblies. Therefor
   </Target>
   <Target Name="AddAdditionalAssembliesToPackage" BeforeTargets="GenerateNuspec">
     <ItemGroup>
-      <_PackageFiles Include="bin/$(Configuration)/*/ClearScript.dll">
+      <_PackageFiles Include="bin/$(Configuration)/*/ClearScript.dll;bin/$(Configuration)/*/ClearScript.xml">
         <PackagePath>lib/%(RecursiveDir)</PackagePath>
         <Visible>false</Visible>
         <BuildAction>None</BuildAction>
