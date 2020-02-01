@@ -50,6 +50,9 @@
     </None>
   </ItemGroup>
 
+  <Target Name="BowerPackagesInstallation" AfterTargets="BeforeBuild">
+    <Exec Command="bower install" />
+  </Target>
   <Target Name="GulpBuild" AfterTargets="AfterBuild">
     <Exec Command="gulp" />
   </Target>
