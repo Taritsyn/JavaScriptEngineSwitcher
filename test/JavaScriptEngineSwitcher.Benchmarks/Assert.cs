@@ -29,7 +29,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		{
 			if (!ignoreLineBreaks)
 			{
-				return a.Equals(b);
+				return a == b;
 			}
 
 			if (ReferenceEquals(a, b))

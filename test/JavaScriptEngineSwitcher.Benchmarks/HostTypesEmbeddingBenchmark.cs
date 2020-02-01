@@ -62,7 +62,11 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 
 	return result;
 }(SomeClass, Point, SomeOtherClass));";
+#if NETCOREAPP3_1
+			const string targetOutput = "RmFsc2V8MjkyMHwwLjg3Mjg1OTEwNzM4ODQyMzV8QVNERtCk0KvQktCQ";
+#else
 			const string targetOutput = "RmFsc2V8MjkyMHwwLjg3Mjg1OTEwNzM4ODQyNHxBU0RG0KTQq9CS0JA=";
+#endif
 
 			// Act
 			string output;
