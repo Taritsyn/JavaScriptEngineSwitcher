@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for JS Engine Switcher: NiL v3.3.0
+                    README file for JS Engine Switcher: NiL v3.3.1
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2019 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2020 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========

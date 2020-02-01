@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                     README file for JS Engine Switcher: V8 v3.3.0
+                     README file for JS Engine Switcher: V8 v3.3.1
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2019 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2020 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -25,9 +25,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Microsoft ClearScript.V8 was updated to version 6.0.0;
-   2. Added support of .NET Core 3.1 on Windows;
-   3. Enabled a SourceLink.
+   Added a `ClearScript.xml` files to NuGet package.
 
    =============
    DOCUMENTATION

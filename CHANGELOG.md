@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.3.1 - February 1, 2020
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1403
+ * Added a `ClearScript.xml` files to the JavaScriptEngineSwitcher.V8 package
+
 ## v3.3.0 - December 27, 2019
  * Enabled a SourceLink in NuGet packages
  * In JavaScriptEngineSwitcher.ChakraCore added support of .NET Standard 2.1
