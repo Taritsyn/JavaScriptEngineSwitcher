@@ -17,7 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   Enabled a SourceLink.
+   NiL.JS was updated to version 2.5.1403.
 
    =============
    DOCUMENTATION
