@@ -25,9 +25,9 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.2" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.0.2" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.3.0" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.3.0" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.3.0" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.3.2" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.3.2" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.3.2" />
     <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.3.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x86" Version="3.3.0" />
 
@@ -50,14 +50,18 @@
     </None>
   </ItemGroup>
 
-  <Target Name="BowerPackagesInstallation" AfterTargets="BeforeBuild">
+  <Target Name="BowerPackagesInstallation" AfterTargets="AfterBuild">
     <Exec Command="bower install" />
   </Target>
-  <Target Name="GulpBuild" AfterTargets="AfterBuild">
-    <Exec Command="gulp" />
+  <Target Name="GulpClean" AfterTargets="Clean">
+    <Exec Command="gulp cleanBuildedAssets" />
+  </Target>
+  <Target Name="GulpBuild" AfterTargets="BowerPackagesInstallation">
+    <Exec Command="gulp buildAssets" />
   </Target>
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
     <Exec Command="npm install" />
+    <Exec Command="bower install" />
     <Exec Command="gulp" />
   </Target>
 

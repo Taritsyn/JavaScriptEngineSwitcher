@@ -1,20 +1,25 @@
 ﻿
 
    --------------------------------------------------------------------------------
-          README file for JS Engine Switcher: ChakraCore for OS X x64 v3.3.0
+          README file for JS Engine Switcher: ChakraCore for OS X x64 v3.3.2
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2019 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2020 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.ChakraCore package and
-   contains the native implementation of ChakraCore version 1.11.15 for OS X (x64).
+   contains the native implementation of ChakraCore version 1.11.16 for OS X (x64).
 
    This package is only compatible with .NET Core.
+
+   =============
+   RELEASE NOTES
+   =============
+   ChakraCore was updated to version 1.11.16.
 
    =============
    DOCUMENTATION

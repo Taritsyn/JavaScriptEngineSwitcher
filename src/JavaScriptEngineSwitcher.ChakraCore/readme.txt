@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2019 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2020 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -30,8 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of .NET Standard 2.1;
-   2. Enabled a SourceLink.
+   ChakraCore was updated to version 1.11.16.
 
    =============
    DOCUMENTATION
