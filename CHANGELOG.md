@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.3.2 - February 14, 2020
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.16
+
 ## v3.3.1 - February 1, 2020
  * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1403
  * Added a `ClearScript.xml` files to the JavaScriptEngineSwitcher.V8 package

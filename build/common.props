@@ -5,7 +5,7 @@
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' Or '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net451' Or '$(TargetFramework)' == 'net452' Or '$(TargetFramework)' == 'net46' Or '$(TargetFramework)' == 'net471' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' Or '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net451' Or '$(TargetFramework)' == 'net452' Or '$(TargetFramework)' == 'net46' Or '$(TargetFramework)' == 'net461' Or '$(TargetFramework)' == 'net471' ">
     <DefineConstants>$(DefineConstants);NETFULL</DefineConstants>
   </PropertyGroup>
 
