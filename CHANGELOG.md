@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.3.3 - February 15, 2020
+ * In JavaScriptEngineSwitcher.NiL:
+   * NiL.JS was updated to version 2.5.1428
+   * NiL.JS.NetCore package is no longer used
+   * Added support of .NET Framework 4.6.1 and .NET Standard 1.6
+
 ## v3.3.2 - February 14, 2020
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.16
 
