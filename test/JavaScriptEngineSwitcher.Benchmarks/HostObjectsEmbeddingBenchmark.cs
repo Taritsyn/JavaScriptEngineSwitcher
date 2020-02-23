@@ -76,11 +76,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 
 	return result;
 }(someObj, log));";
-#if NETCOREAPP3_1
-			const string targetOutput = "RmFsc2V8MjkxNHwwLjg3Mjg1OTEwNzM4ODQyMzV8QVNERtCk0KvQktCQ";
-#else
-			const string targetOutput = "RmFsc2V8MjkyMHwwLjg3Mjg1OTEwNzM4ODQyNHxBU0RG0KTQq9CS0JA=";
-#endif
+			const string targetOutput = "RmFsc2V8MjkxNHwwLjg3Mjg1OTEwNzM4ODQyNHxBU0RG0KTQq9CS0JA=";
 			string targetLogOutput = "-= Start code execution =-" + Environment.NewLine +
 				"-= End of code execution =-" + Environment.NewLine;
 

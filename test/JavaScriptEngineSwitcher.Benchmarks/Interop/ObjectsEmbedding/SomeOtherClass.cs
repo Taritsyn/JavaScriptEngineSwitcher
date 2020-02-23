@@ -10,7 +10,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks.Interop.ObjectsEmbedding
 		{
 			string rawResult = arg1.ToString(CultureInfo.InvariantCulture) + "|" +
 				arg2.ToString(CultureInfo.InvariantCulture) + "|" +
-				arg3.ToString(CultureInfo.InvariantCulture) + "|" +
+				Math.Round(arg3, 15).ToString(CultureInfo.InvariantCulture) + "|" +
 				arg4
 				;
 			string result = Convert.ToBase64String(Encoding.UTF8.GetBytes(rawResult));

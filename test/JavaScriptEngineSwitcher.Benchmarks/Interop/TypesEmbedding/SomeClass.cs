@@ -24,7 +24,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks.Interop.TypesEmbedding
 		{
 			int result = Convert.ToInt32(arg1) +
 				arg2 +
-				(int)Math.Round(arg3) +
+				(int)Math.Ceiling(arg3) +
 				Encoding.UTF8.GetBytes(arg4).Sum(x => x);
 				;
 
