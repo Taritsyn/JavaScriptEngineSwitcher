@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.4.0 - February 24, 2020
+ * Added a module based on the [Jering.Javascript.NodeJS](https://github.com/JeringTech/Javascript.NodeJS)
+
 ## v3.3.3 - February 15, 2020
  * In JavaScriptEngineSwitcher.NiL:
    * NiL.JS was updated to version 2.5.1428
