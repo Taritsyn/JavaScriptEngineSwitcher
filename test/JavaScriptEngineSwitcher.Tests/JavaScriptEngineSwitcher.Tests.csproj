@@ -58,6 +58,10 @@
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jurassic/JavaScriptEngineSwitcher.Jurassic.csproj" />
   </ItemGroup>
 
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net471' Or '$(TargetFramework)' == 'netcoreapp2.1' Or '$(TargetFramework)' == 'netcoreapp3.1' ">
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Node/JavaScriptEngineSwitcher.Node.csproj" />
+  </ItemGroup>
+
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' Or '$(TargetFramework)' == 'net471' Or '$(TargetFramework)' == 'netcoreapp3.1' ">
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.V8/JavaScriptEngineSwitcher.V8.csproj" />
   </ItemGroup>

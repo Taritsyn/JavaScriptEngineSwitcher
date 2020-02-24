@@ -11,6 +11,9 @@ using JavaScriptEngineSwitcher.Jurassic;
 #endif
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
+#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1
+using JavaScriptEngineSwitcher.Node;
+#endif
 #if NETFULL || NETCOREAPP3_1
 using JavaScriptEngineSwitcher.V8;
 #endif
@@ -42,6 +45,9 @@ namespace JavaScriptEngineSwitcher.Tests
 						EngineMode = JsEngineMode.ChakraIeJsRt
 					})
 					.AddNiL()
+#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1
+					.AddNode()
+#endif
 #if NETFULL || NETCOREAPP3_1
 					.AddV8()
 #endif

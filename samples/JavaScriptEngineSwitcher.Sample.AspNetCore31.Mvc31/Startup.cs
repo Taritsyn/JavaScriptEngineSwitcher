@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Jering.Javascript.NodeJS;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +12,7 @@ using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
+using JavaScriptEngineSwitcher.Node;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Vroom;
@@ -53,6 +55,9 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31
 		{
 			services.AddSingleton(Configuration);
 
+			// Add Jering Node.js service to the services container.
+			services.AddNodeJS();
+
 			// Add JavaScriptEngineSwitcher services to the services container.
 			services.AddJsEngineSwitcher(options =>
 				options.DefaultEngineName = ChakraCoreJsEngine.EngineName
@@ -65,6 +70,7 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31
 					options.EngineMode = JsEngineMode.ChakraIeJsRt;
 				})
 				.AddNiL()
+				.AddNode(services)
 				.AddV8()
 				.AddVroom()
 				;

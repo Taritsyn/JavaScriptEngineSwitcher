@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.12.0" />
-    <PackageReference Include="BuildBundlerMinifier" Version="3.0.415" PrivateAssets="All" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.435" PrivateAssets="All" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.3.2" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.3.2" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.3.2" />
@@ -24,6 +24,7 @@
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jurassic/JavaScriptEngineSwitcher.Jurassic.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Msie/JavaScriptEngineSwitcher.Msie.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.NiL/JavaScriptEngineSwitcher.NiL.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Node/JavaScriptEngineSwitcher.Node.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
   </ItemGroup>
 

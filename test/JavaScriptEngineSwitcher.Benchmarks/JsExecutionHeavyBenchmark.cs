@@ -7,10 +7,11 @@ using BenchmarkDotNet.Order;
 
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
-using JavaScriptEngineSwitcher.Jint;
+//using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
+using JavaScriptEngineSwitcher.Node;
 #if NET461 || NETCOREAPP3_1
 using JavaScriptEngineSwitcher.V8;
 #endif
@@ -227,6 +228,13 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		public void NiL()
 		{
 			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
+			RenderTemplates(createJsEngine, false);
+		}
+
+		[Benchmark]
+		public void Node()
+		{
+			Func<IJsEngine> createJsEngine = () => new NodeJsEngine();
 			RenderTemplates(createJsEngine, false);
 		}
 #if NET461 || NETCOREAPP3_1
