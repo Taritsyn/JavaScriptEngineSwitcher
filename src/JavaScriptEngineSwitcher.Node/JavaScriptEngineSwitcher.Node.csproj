@@ -15,6 +15,7 @@
 This package does not contain the `node.exe`. Therefore, you need to install the Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path` environment variable (automatically done by the official installer).</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Node.js;Jering.Javascript.NodeJS</PackageTags>
+    <PackageReleaseNotes>Default Node JS service is now implemented as a wrapper around the `Jering.Javascript.NodeJS.StaticNodeJSService` class.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />

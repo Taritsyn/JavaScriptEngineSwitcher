@@ -20,6 +20,12 @@
    environment variable (automatically done by the official installer).
 
    =============
+   RELEASE NOTES
+   =============
+   Default Node JS service is now implemented as a wrapper around the
+   `Jering.Javascript.NodeJS.StaticNodeJSService` class.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -

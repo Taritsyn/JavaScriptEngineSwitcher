@@ -95,7 +95,7 @@ namespace JavaScriptEngineSwitcher.Node
 		/// Constructs an instance of adapter for the Node JS engine
 		/// </summary>
 		public NodeJsEngine()
-			: this(GetOrCreateJsService(), new NodeSettings())
+			: this(DefaultNodeJsService.Instance, new NodeSettings())
 		{ }
 
 		/// <summary>
@@ -111,7 +111,7 @@ namespace JavaScriptEngineSwitcher.Node
 		/// </summary>
 		/// <param name="settings">Settings of the Node JS engine</param>
 		public NodeJsEngine(NodeSettings settings)
-			: this(GetOrCreateJsService(), settings)
+			: this(DefaultNodeJsService.Instance, settings)
 		{ }
 
 		/// <summary>
@@ -150,16 +150,6 @@ namespace JavaScriptEngineSwitcher.Node
 			InvokeEngineHelper("addContext", new object[] { _engineId, nodeSettings.UseBuiltinLibrary });
 		}
 
-
-		private static INodeJSService GetOrCreateJsService()
-		{
-			Type staticNodeJsServiceType = typeof(StaticNodeJSService);
-			MethodInfo getOrCreateNodeJsServiceMethodInfo = staticNodeJsServiceType.GetMethod("GetOrCreateNodeJSService",
-				BindingFlags.NonPublic | BindingFlags.Static);
-			var nodeJsService = (INodeJSService)getOrCreateNodeJsServiceMethodInfo.Invoke(null, new object[0]);
-
-			return nodeJsService;
-		}
 
 		private void InvokeEngineHelper(string exportName = null, object[] args = null)
 		{
