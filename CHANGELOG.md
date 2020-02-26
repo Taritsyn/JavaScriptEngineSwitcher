@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.4.1 - February 26, 2020
+ * In JavaScriptEngineSwitcher.Node the default Node JS service is now implemented as a wrapper around the <code title="Jering.Javascript.NodeJS.StaticNodeJSService">StaticNodeJSService</code> class
+
 ## v3.4.0 - February 24, 2020
  * Added a module based on the [Jering.Javascript.NodeJS](https://github.com/JeringTech/Javascript.NodeJS)
 
