@@ -7,7 +7,7 @@ using BenchmarkDotNet.Order;
 
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
-//using JavaScriptEngineSwitcher.Jint;
+using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
@@ -160,14 +160,14 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			RenderTemplates(createJsEngine, withPrecompilation);
 		}
 
-		//[Benchmark]
-		//[Arguments(false)]
-		//[Arguments(true)]
-		//public void Jint(bool withPrecompilation)
-		//{
-		//	Func<IJsEngine> createJsEngine = () => new JintJsEngine();
-		//	RenderTemplates(createJsEngine, withPrecompilation);
-		//}
+		[Benchmark]
+		[Arguments(false)]
+		[Arguments(true)]
+		public void Jint(bool withPrecompilation)
+		{
+			Func<IJsEngine> createJsEngine = () => new JintJsEngine();
+			RenderTemplates(createJsEngine, withPrecompilation);
+		}
 
 		[Benchmark]
 		[Arguments(false)]

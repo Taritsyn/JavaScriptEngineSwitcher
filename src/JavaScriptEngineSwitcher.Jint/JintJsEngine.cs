@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using Jint;
+using IOriginalPrimitiveInstance = Jint.Native.IPrimitiveInstance;
 using OriginalEngine = Jint.Engine;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
@@ -46,7 +47,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 1632";
+		private const string EngineVersion = "3.0.0 Beta 1715";
 
 		/// <summary>
 		/// Jint JS engine
@@ -63,11 +64,6 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// </summary>
 		private readonly UniqueDocumentNameManager _documentNameManager =
 			new UniqueDocumentNameManager(DefaultDocumentName);
-
-		/// <summary>
-		/// List of primitive class names
-		/// </summary>
-		private static ISet<string> _primitiveClassNames = new HashSet<string> { "Boolean", "Number", "String" };
 
 
 		/// <summary>
@@ -156,10 +152,9 @@ namespace JavaScriptEngineSwitcher.Jint
 					return Undefined.Value;
 
 				case OriginalTypes.Object:
-					var objInstance = value.As<OriginalObjectInstance>();
-					if (objInstance != null && !_primitiveClassNames.Contains(objInstance.Class))
+					if (!(value is IOriginalPrimitiveInstance))
 					{
-						return objInstance;
+						return value;
 					}
 					else
 					{
