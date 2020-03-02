@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.4.2 - March 2, 2020
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 3.0.0 Beta 1715
+   * Simplified and improved a handling of JS runtime errors
+
 ## v3.4.1 - February 26, 2020
  * In JavaScriptEngineSwitcher.Node the default Node JS service is now implemented as a wrapper around the <code title="Jering.Javascript.NodeJS.StaticNodeJSService">StaticNodeJSService</code> class
 
