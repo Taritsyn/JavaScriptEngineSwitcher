@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2019 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2020 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -17,7 +17,8 @@
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version 3.0.0 Beta 1715.
+   1. Jint was updated to version 3.0.0 Beta 1715;
+   2. Simplified a handling of JS runtime errors.
 
    =============
    DOCUMENTATION

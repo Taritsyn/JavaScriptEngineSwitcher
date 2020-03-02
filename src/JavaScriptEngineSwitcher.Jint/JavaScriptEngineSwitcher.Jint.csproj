@@ -13,7 +13,8 @@
     <Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 1715).</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Jint</PackageTags>
-    <PackageReleaseNotes>Jint was updated to version 3.0.0 Beta 1715.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Jint was updated to version 3.0.0 Beta 1715;
+2. Simplified a handling of JS runtime errors.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
