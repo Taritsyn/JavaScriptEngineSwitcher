@@ -18,7 +18,7 @@
    RELEASE NOTES
    =============
    1. Jint was updated to version 3.0.0 Beta 1715;
-   2. Simplified a handling of JS runtime errors.
+   2. Simplified and improved a handling of JS runtime errors.
 
    =============
    DOCUMENTATION

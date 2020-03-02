@@ -306,7 +306,7 @@ for (var i = 0; i < 10000; i++) {
 			Assert.NotNull(exception);
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("The maximum number of statements executed have been reached.", exception.Description);
-			Assert.Empty(exception.Type);
+			Assert.Equal("RangeError", exception.Type);
 			Assert.Empty(exception.DocumentName);
 			Assert.Equal(0, exception.LineNumber);
 			Assert.Equal(0, exception.ColumnNumber);
