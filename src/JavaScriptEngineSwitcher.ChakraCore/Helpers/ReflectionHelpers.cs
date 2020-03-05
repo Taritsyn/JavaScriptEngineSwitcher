@@ -86,9 +86,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 		public static void FixArgumentTypes(ref object[] argValues, ParameterInfo[] parameters)
 		{
 			int argCount = argValues.Length;
+			int parameterCount = parameters.Length;
 
 			for (int argIndex = 0; argIndex < argCount; argIndex++)
 			{
+				if (argIndex >= parameterCount)
+				{
+					break;
+				}
+
 				object argValue = argValues[argIndex];
 				if (argValue == null)
 				{

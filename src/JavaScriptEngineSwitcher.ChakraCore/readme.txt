@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.16.
+   Fixed a error #82 “Program crash after function call with too much parameters”.
 
    =============
    DOCUMENTATION
