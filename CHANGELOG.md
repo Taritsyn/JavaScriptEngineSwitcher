@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.4.3 - March 8, 2020
+ * In JavaScriptEngineSwitcher.ChakraCore fixed a [error #82](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/82) “Program crash after function call with too much parameters”
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1431
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.7
+
 ## v3.4.2 - March 2, 2020
  * In JavaScriptEngineSwitcher.Jint:
    * Jint was updated to version 3.0.0 Beta 1715
