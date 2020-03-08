@@ -61,6 +61,32 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 		#endregion
 
+		#region Delegates
+
+		[Fact]
+		public override void CallingOfEmbeddedDelegateWithMissingParameter()
+		{
+			// Arrange
+			var sumFunc = new Func<int, int, int>((a, b) => a + b);
+
+			const string input = "sum(678)";
+			const int targetOutput = 678;
+
+			// Act
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("sum", sumFunc);
+				output = jsEngine.Evaluate<int>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		#endregion
+
 		#region Recursive calls
 
 		#region Mapping of errors

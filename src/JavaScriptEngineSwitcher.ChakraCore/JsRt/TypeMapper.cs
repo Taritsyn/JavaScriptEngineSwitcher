@@ -193,16 +193,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
-		/// Makes a mapping of array items from the host type to a script type
-		/// </summary>
-		/// <param name="args">The source array</param>
-		/// <returns>The mapped array</returns>
-		public JsValue[] MapToScriptType(object[] args)
-		{
-			return args.Select(MapToScriptType).ToArray();
-		}
-
-		/// <summary>
 		/// Makes a mapping of value from the script type to a host type
 		/// </summary>
 		/// <param name="value">The source value</param>
@@ -257,16 +247,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			return result;
 		}
 
-		/// <summary>
-		/// Makes a mapping of array items from the script type to a host type
-		/// </summary>
-		/// <param name="args">The source array</param>
-		/// <returns>The mapped array</returns>
-		public object[] MapToHostType(JsValue[] args)
-		{
-			return args.Select(MapToHostType).ToArray();
-		}
-
 		private EmbeddedObject CreateEmbeddedObjectOrFunction(object obj)
 		{
 			var del = obj as Delegate;
@@ -298,13 +278,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		{
 			JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 			{
-				object[] processedArgs = GetHostItemMemberArguments(args);
 #if NET40
 				MethodInfo method = del.Method;
 #else
 				MethodInfo method = del.GetMethodInfo();
 #endif
 				ParameterInfo[] parameters = method.GetParameters();
+				object[] processedArgs = GetHostItemMemberArguments(args, parameters.Length);
 
 				ReflectionHelpers.FixArgumentTypes(ref processedArgs, parameters);
 
@@ -316,6 +296,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				}
 				catch (Exception e)
 				{
+					JsValue undefinedValue = JsValue.Undefined;
 					Exception exception = UnwrapException(e);
 					var wrapperException = exception as WrapperException;
 					JsValue errorValue = wrapperException != null ?
@@ -326,7 +307,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						;
 					JsContext.SetException(errorValue);
 
-					return JsValue.Undefined;
+					return undefinedValue;
 				}
 
 				JsValue resultValue = MapToScriptType(result);
@@ -397,10 +378,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					return resultValue;
 				}
 
+				JsValue undefinedValue = JsValue.Undefined;
+
 				if (constructors.Length == 0)
 				{
 					CreateAndSetError(string.Format(Strings.Runtime_HostTypeConstructorNotFound, typeName));
-					return JsValue.Undefined;
+					return undefinedValue;
 				}
 
 				var bestFitConstructor = (ConstructorInfo)ReflectionHelpers.GetBestFitMethod(
@@ -409,7 +392,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					CreateAndSetReferenceError(string.Format(
 						Strings.Runtime_SuitableConstructorOfHostTypeNotFound, typeName));
-					return JsValue.Undefined;
+					return undefinedValue;
 				}
 
 				ReflectionHelpers.FixArgumentTypes(ref processedArgs, bestFitConstructor.GetParameters());
@@ -430,7 +413,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						;
 					JsContext.SetException(errorValue);
 
-					return JsValue.Undefined;
+					return undefinedValue;
 				}
 
 				resultValue = MapToScriptType(result);
@@ -502,11 +485,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 				JsNativeFunction nativeGetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 				{
+					JsValue undefinedValue = JsValue.Undefined;
+
 					if (instance && obj == null)
 					{
 						CreateAndSetTypeError(string.Format(
 							Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
-						return JsValue.Undefined;
+						return undefinedValue;
 					}
 
 					object result;
@@ -538,7 +523,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						}
 						JsContext.SetException(errorValue);
 
-						return JsValue.Undefined;
+						return undefinedValue;
 					}
 
 					JsValue resultValue = MapToScriptType(result);
@@ -552,11 +537,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 				JsNativeFunction nativeSetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 				{
+					JsValue undefinedValue = JsValue.Undefined;
+
 					if (instance && obj == null)
 					{
 						CreateAndSetTypeError(string.Format(
 							Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
-						return JsValue.Undefined;
+						return undefinedValue;
 					}
 
 					object value = MapToHostType(args[1]);
@@ -589,10 +576,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						}
 						JsContext.SetException(errorValue);
 
-						return JsValue.Undefined;
+						return undefinedValue;
 					}
 
-					return JsValue.Undefined;
+					return undefinedValue;
 				};
 				nativeFunctions.Add(nativeSetFunction);
 
@@ -626,11 +613,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					JsNativeFunction nativeGetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 					{
+						JsValue undefinedValue = JsValue.Undefined;
+
 						if (instance && obj == null)
 						{
 							CreateAndSetTypeError(string.Format(
 								Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
-							return JsValue.Undefined;
+							return undefinedValue;
 						}
 
 						object result;
@@ -662,7 +651,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 							}
 							JsContext.SetException(errorValue);
 
-							return JsValue.Undefined;
+							return undefinedValue;
 						}
 
 						JsValue resultValue = MapToScriptType(result);
@@ -679,11 +668,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					JsNativeFunction nativeSetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 					{
+						JsValue undefinedValue = JsValue.Undefined;
+
 						if (instance && obj == null)
 						{
 							CreateAndSetTypeError(string.Format(
 								Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
-							return JsValue.Undefined;
+							return undefinedValue;
 						}
 
 						object value = MapToHostType(args[1]);
@@ -716,10 +707,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 							}
 							JsContext.SetException(errorValue);
 
-							return JsValue.Undefined;
+							return undefinedValue;
 						}
 
-						return JsValue.Undefined;
+						return undefinedValue;
 					};
 					nativeFunctions.Add(nativeSetFunction);
 
@@ -752,11 +743,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 				JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 				{
+					JsValue undefinedValue = JsValue.Undefined;
+
 					if (instance && obj == null)
 					{
 						CreateAndSetTypeError(string.Format(
 							Strings.Runtime_InvalidThisContextForHostObjectMethod, methodName));
-						return JsValue.Undefined;
+						return undefinedValue;
 					}
 
 					object[] processedArgs = GetHostItemMemberArguments(args);
@@ -767,7 +760,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					{
 						CreateAndSetReferenceError(string.Format(
 							Strings.Runtime_SuitableMethodOfHostObjectNotFound, methodName));
-						return JsValue.Undefined;
+						return undefinedValue;
 					}
 
 					ReflectionHelpers.FixArgumentTypes(ref processedArgs, bestFitMethod.GetParameters());
@@ -801,7 +794,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						}
 						JsContext.SetException(errorValue);
 
-						return JsValue.Undefined;
+						return undefinedValue;
 					}
 
 					JsValue resultValue = MapToScriptType(result);
@@ -815,11 +808,35 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 		}
 
-		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
-		private object[] GetHostItemMemberArguments(JsValue[] args)
+		private object[] GetHostItemMemberArguments(JsValue[] args, int maxArgCount = -1)
 		{
-			object[] processedArgs = args.Length > 1 ?
-				MapToHostType(args.Skip(1).ToArray()) : new object[0];
+			if (args == null)
+			{
+				throw new ArgumentNullException(nameof(args));
+			}
+
+			int argCount = args.Length;
+			const int skippedArgCount = 1;
+			int processedArgCount = argCount >= skippedArgCount ? argCount - skippedArgCount : 0;
+			if (maxArgCount >= 0 && processedArgCount > maxArgCount)
+			{
+				processedArgCount = maxArgCount;
+			}
+			object[] processedArgs;
+
+			if (processedArgCount > 0)
+			{
+				processedArgs = args
+					.Skip(skippedArgCount)
+					.Take(processedArgCount)
+					.Select(MapToHostType)
+					.ToArray()
+					;
+			}
+			else
+			{
+				processedArgs = new object[0];
+			}
 
 			return processedArgs;
 		}

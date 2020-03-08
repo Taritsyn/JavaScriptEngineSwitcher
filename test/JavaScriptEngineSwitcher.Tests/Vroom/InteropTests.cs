@@ -47,6 +47,12 @@
 		public override void EmbeddedInstanceOfDelegateHasFunctionPrototype()
 		{ }
 
+		public override void CallingOfEmbeddedDelegateWithMissingParameter()
+		{ }
+
+		public override void CallingOfEmbeddedDelegateWithExtraParameter()
+		{ }
+
 		#endregion
 
 		#region Recursive calls
