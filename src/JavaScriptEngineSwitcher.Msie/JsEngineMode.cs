@@ -27,13 +27,13 @@
 
 		/// <summary>
 		/// “IE” JsRT version of Chakra JS engine (supports ECMAScript 5).
-		/// Requires Internet Explorer 11 or Microsoft Edge on the machine.
+		/// Requires Internet Explorer 11 or Microsoft Edge Legacy on the machine.
 		/// </summary>
 		ChakraIeJsRt,
 
 		/// <summary>
 		/// “Edge” JsRT version of Chakra JS engine (supports ECMAScript 5).
-		/// Requires Microsoft Edge on the machine.
+		/// Requires Microsoft Edge Legacy on the machine.
 		/// </summary>
 		ChakraEdgeJsRt
 	}

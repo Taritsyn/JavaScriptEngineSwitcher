@@ -10,10 +10,10 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-    <Description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .Net (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge on the machine.</Description>
+    <Description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .NET (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge Legacy on the machine.</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;MSIE;IE;Chakra</PackageTags>
-    <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
+    <PackageReleaseNotes>MSIE JavaScript Engine was updated to version 3.0.7.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
@@ -22,7 +22,7 @@
   <Import Project="../../build/nuget-metadata.props" />
 
   <ItemGroup>
-    <PackageReference Include="MsieJavaScriptEngine" Version="3.0.6" />
+    <PackageReference Include="MsieJavaScriptEngine" Version="3.0.7" />
     <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
