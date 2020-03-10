@@ -10,12 +10,12 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-    <Description>JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS) version 5.3.2).
+    <Description>JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS) version 5.4.0).
 
 This package does not contain the `node.exe`. Therefore, you need to install the Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path` environment variable (automatically done by the official installer).</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Node.js;Jering.Javascript.NodeJS</PackageTags>
-    <PackageReleaseNotes>Default Node JS service is now implemented as a wrapper around the `Jering.Javascript.NodeJS.StaticNodeJSService` class.</PackageReleaseNotes>
+    <PackageReleaseNotes>Jering.Javascript.NodeJS was updated to version 5.4.0.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
@@ -23,7 +23,7 @@ This package does not contain the `node.exe`. Therefore, you need to install the
   <Import Project="../../build/nuget-metadata.props" />
 
   <ItemGroup>
-    <PackageReference Include="Jering.Javascript.NodeJS" Version="5.3.2" />
+    <PackageReference Include="Jering.Javascript.NodeJS" Version="5.4.0" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
