@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.4.4 - March 11, 2020
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.17
+ * In JavaScriptEngineSwitcher.Node added support of Jering.Javascript.NodeJS version 5.4.0
+
 ## v3.4.3 - March 8, 2020
  * In JavaScriptEngineSwitcher.ChakraCore fixed a [error #82](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/82) “Program crash after function call with too much parameters”
  * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1431
