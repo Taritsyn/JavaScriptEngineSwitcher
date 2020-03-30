@@ -22,7 +22,8 @@
    =============
    RELEASE NOTES
    =============
-   Jering.Javascript.NodeJS was updated to version 5.4.0.
+   Added a handling of errors that occur when switching to multi-process mode of
+   the Jering.Javascript.NodeJS library.
 
    =============
    DOCUMENTATION

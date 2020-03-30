@@ -1,6 +1,29 @@
-﻿const GENERATED_FUNCTION_CALL_FILE_NAME = "JavaScriptEngineSwitcher.Node.Resources.generated-function-call.js";
+﻿/*jshint esversion: 6*/
+/*globals global, module, require*/
+const GENERATED_FUNCTION_CALL_FILE_NAME = "JavaScriptEngineSwitcher.Node.Resources.generated-function-call.js";
 let vm = require('vm');
 let contexts = new Map();
+
+class UsageError extends Error {
+	constructor(...args) {
+		super(...args);
+		this.name = 'UsageError';
+
+		Error.captureStackTrace(this, UsageError);
+	}
+}
+
+function getContext(engineId) {
+	if (!contexts.has(engineId)) {
+		throw new UsageError("JavaScriptEngineSwitcher.Node module cannot work correctly " +
+			"when the Node JS service is configured to work in the multi-process mode of " +
+			"Jering.Javascript.NodeJS library (https://github.com/JeringTech/Javascript.NodeJS#concurrency), " +
+			"because in this mode it is not possible to store a state of JS engine."
+		);
+	}
+
+	return contexts.get(engineId);
+}
 
 module.exports = {
 	addContext: (callback, engineId, useBuiltinLibrary) => {
@@ -19,7 +42,7 @@ module.exports = {
 	},
 
 	evaluate: (callback, engineId, expression, documentName, timeout) => {
-		let context = contexts.get(engineId);
+		let context = getContext(engineId);
 		let options = { filename: documentName };
 		if (timeout > 0) {
 			options.timeout = timeout;
@@ -30,7 +53,7 @@ module.exports = {
 	},
 
 	execute: (callback, engineId, code, documentName, timeout) => {
-		let context = contexts.get(engineId);
+		let context = getContext(engineId);
 		let options = { filename: documentName };
 		if (timeout > 0) {
 			options.timeout = timeout;
@@ -42,7 +65,7 @@ module.exports = {
 	},
 
 	callFunction: (callback, engineId, functionName, args, timeout) => {
-		let context = contexts.get(engineId);
+		let context = getContext(engineId);
 		let result;
 
 		if (timeout <= 0) {
@@ -69,7 +92,7 @@ module.exports = {
 					expression += JSON.stringify(args[argIndex]);
 				}
 
-				expression += ');'
+				expression += ');';
 			}
 			else {
 				expression = `${functionName}();`;
@@ -82,28 +105,28 @@ module.exports = {
 	},
 
 	hasVariable: (callback, engineId, variableName) => {
-		let context = contexts.get(engineId);
+		let context = getContext(engineId);
 		let result = typeof context[variableName] !== 'undefined';
 
 		callback(null, result);
 	},
 
 	getVariableValue: (callback, engineId, variableName) => {
-		let context = contexts.get(engineId);
+		let context = getContext(engineId);
 		let result = context[variableName];
 
 		callback(null, result);
 	},
 
 	setVariableValue: (callback, engineId, variableName, value) => {
-		let context = contexts.get(engineId);
+		let context = getContext(engineId);
 		context[variableName] = value;
 
 		callback(null);
 	},
 
 	removeVariable: (callback, engineId, variableName) => {
-		let context = contexts.get(engineId);
+		let context = getContext(engineId);
 		if (typeof context[variableName] !== 'undefined') {
 			delete context[variableName];
 		}

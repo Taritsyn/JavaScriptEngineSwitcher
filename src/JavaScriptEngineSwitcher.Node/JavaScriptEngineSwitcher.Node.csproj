@@ -15,7 +15,7 @@
 This package does not contain the `node.exe`. Therefore, you need to install the Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path` environment variable (automatically done by the official installer).</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Node.js;Jering.Javascript.NodeJS</PackageTags>
-    <PackageReleaseNotes>Jering.Javascript.NodeJS was updated to version 5.4.0.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added a handling of errors that occur when switching to multi-process mode of the Jering.Javascript.NodeJS library.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />

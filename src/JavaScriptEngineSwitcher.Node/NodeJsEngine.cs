@@ -18,6 +18,7 @@ using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
 using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
 using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
 using WrapperTimeoutException = JavaScriptEngineSwitcher.Core.JsTimeoutException;
+using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
 
 using JavaScriptEngineSwitcher.Node.Helpers;
 
@@ -285,6 +286,14 @@ namespace JavaScriptEngineSwitcher.Node
 
 					wrapperScriptException = new WrapperCompilationException(message, EngineName, _engineVersion,
 						originalException);
+				}
+				else if (type == "UsageError")
+				{
+					wrapperException = new WrapperUsageException(description, EngineName, _engineVersion,
+						originalException);
+					wrapperException.Description = description;
+
+					return wrapperException;
 				}
 				else
 				{
