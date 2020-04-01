@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.4.5 - April 1, 2020
+ * In JavaScriptEngineSwitcher.ChakraCore applied the Tomáš Deml's patch to fix the [“Incompatibility in handling of SIGSEGV between ChakraCore and CoreCLR”](https://github.com/microsoft/ChakraCore/issues/5973) error
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1440
+ * In JavaScriptEngineSwitcher.Node added a handling of errors that occur when switching to multi-process mode of the Jering.Javascript.NodeJS library
+
 ## v3.4.4 - March 11, 2020
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.17
  * In JavaScriptEngineSwitcher.Node added support of Jering.Javascript.NodeJS version 5.4.0
