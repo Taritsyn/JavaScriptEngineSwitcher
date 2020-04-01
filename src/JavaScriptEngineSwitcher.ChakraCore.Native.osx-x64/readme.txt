@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-          README file for JS Engine Switcher: ChakraCore for OS X x64 v3.4.4
+          README file for JS Engine Switcher: ChakraCore for OS X x64 v3.4.5
 
    --------------------------------------------------------------------------------
 
@@ -19,7 +19,8 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.17.
+   Applied the Tomáš Deml's patch to fix the “Incompatibility in handling of
+   SIGSEGV between ChakraCore and CoreCLR” error.
 
    =============
    DOCUMENTATION

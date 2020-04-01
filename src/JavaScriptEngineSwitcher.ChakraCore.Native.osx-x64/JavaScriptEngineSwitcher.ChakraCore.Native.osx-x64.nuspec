@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</id>
-    <version>3.4.4</version>
+    <version>3.4.5</version>
     <title>JS Engine Switcher: ChakraCore for OS X (x64)</title>
     <authors>Andrey Taritsyn</authors>
     <owners>Andrey Taritsyn</owners>
@@ -14,7 +14,7 @@
     <description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.11.17 for OS X (x64).
 
 This package is only compatible with .NET Core.</description>
-    <releaseNotes>ChakraCore was updated to version 1.11.17.</releaseNotes>
+    <releaseNotes>Applied the Tomáš Deml's patch to fix the “Incompatibility in handling of SIGSEGV between ChakraCore and CoreCLR” error.</releaseNotes>
     <copyright>Copyright © 2013-2020 Andrey Taritsyn</copyright>
     <language>en-US</language>
     <tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore macOS OSX x64</tags>
