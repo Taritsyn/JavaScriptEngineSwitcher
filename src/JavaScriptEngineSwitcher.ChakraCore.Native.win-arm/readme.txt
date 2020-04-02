@@ -12,7 +12,8 @@
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.ChakraCore package and
-   contains the native implementation of ChakraCore version 1.11.17 for Windows (ARM).
+   contains the native implementation of ChakraCore version 1.11.17 with the Tomáš
+   Deml's patch for Windows (ARM).
 
    This package is only compatible with .NET Core and .NET Framework 4.5.
 

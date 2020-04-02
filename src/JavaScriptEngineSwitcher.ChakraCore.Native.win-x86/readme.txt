@@ -12,7 +12,8 @@
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.ChakraCore package and
-   contains the native implementation of ChakraCore version 1.11.17 for Windows (x86).
+   contains the native implementation of ChakraCore version 1.11.17 with the Tomáš
+   Deml's patch for Windows (x86).
 
    =============
    RELEASE NOTES
