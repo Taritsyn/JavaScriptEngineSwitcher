@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.5.0 - April 3, 2020
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 3.0.0 Beta 1756
+   * No longer supports a .NET Framework 4.5
+   * Added support of .NET Framework 4.6.1 and .NET Standard 2.1
+
 ## v3.4.5 - April 1, 2020
  * In JavaScriptEngineSwitcher.ChakraCore applied the Tomáš Deml's patch to fix the [“Incompatibility in handling of SIGSEGV between ChakraCore and CoreCLR”](https://github.com/microsoft/ChakraCore/issues/5973) error
  * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1440
