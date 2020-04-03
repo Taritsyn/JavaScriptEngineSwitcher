@@ -1,4 +1,4 @@
-﻿#if !NETCOREAPP1_0
+﻿#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1
 using System;
 using System.IO;
 

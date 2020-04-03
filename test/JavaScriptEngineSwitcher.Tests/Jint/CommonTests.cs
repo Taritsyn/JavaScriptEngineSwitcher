@@ -1,4 +1,4 @@
-﻿#if !NETCOREAPP1_0
+﻿#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1
 using System;
 
 using Xunit;
@@ -213,68 +213,68 @@ for (var i = 0; i < 10000; i++) {
 			Assert.Matches(@"^Script has allocated \d+ but is limited to 2097152$", exception.Description);
 		}
 
-//		[Fact]
-//		public void MappingRuntimeErrorDuringRecursionDepthOverflowIsCorrect()
-//		{
-//			// Arrange
-//			const string input = @"function fibonacci(n) {
-//	if (n === 1) {
-//		return 1;
-//	}
-//	else if (n === 2) {
-//		return 1;
-//	}
-//	else {
-//		return fibonacci(n - 1) + fibonacci(n - 2);
-//	}
-//}
+		[Fact]
+		public void MappingRuntimeErrorDuringRecursionDepthOverflowIsCorrect()
+		{
+			// Arrange
+			const string input = @"function fibonacci(n) {
+	if (n === 1) {
+		return 1;
+	}
+	else if (n === 2) {
+		return 1;
+	}
+	else {
+		return fibonacci(n - 1) + fibonacci(n - 2);
+	}
+}
 
-//(function (fibonacci) {
-//	var a = 5;
-//	var b = 11;
-//	var c = fibonacci(b) - fibonacci(a);
-//})(fibonacci);";
+(function (fibonacci) {
+	var a = 5;
+	var b = 11;
+	var c = fibonacci(b) - fibonacci(a);
+})(fibonacci);";
 
-//			JsRuntimeException exception = null;
+			JsRuntimeException exception = null;
 
-//			// Act
-//			using (var jsEngine = new JintJsEngine(
-//				new JintSettings
-//				{
-//					MaxRecursionDepth = 5
-//				}
-//			))
-//			{
-//				try
-//				{
-//					jsEngine.Execute(input, "fibonacci.js");
-//				}
-//				catch (JsRuntimeException e)
-//				{
-//					exception = e;
-//				}
-//			}
+			// Act
+			using (var jsEngine = new JintJsEngine(
+				new JintSettings
+				{
+					MaxRecursionDepth = 5
+				}
+			))
+			{
+				try
+				{
+					jsEngine.Execute(input, "fibonacci.js");
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
 
-//			// Assert
-//			Assert.NotNull(exception);
-//			Assert.Equal("Runtime error", exception.Category);
-//			Assert.Equal("The recursion is forbidden by script host.", exception.Description);
-//			Assert.Equal("RangeError", exception.Type);
-//			Assert.Empty(exception.DocumentName);
-//			Assert.Equal(0, exception.LineNumber);
-//			Assert.Equal(0, exception.ColumnNumber);
-//			Assert.Empty(exception.SourceFragment);
-//			Assert.Equal(
-//				"   at fibonacci" + Environment.NewLine +
-//				"   at fibonacci" + Environment.NewLine +
-//				"   at fibonacci" + Environment.NewLine +
-//				"   at fibonacci" + Environment.NewLine +
-//				"   at fibonacci" + Environment.NewLine +
-//				"   at fibonacci" + Environment.NewLine +
-//				"   at Anonymous function",
-//				exception.CallStack
-//			);
-//		}
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("The recursion is forbidden by script host.", exception.Description);
+			Assert.Equal("RangeError", exception.Type);
+			Assert.Empty(exception.DocumentName);
+			Assert.Equal(0, exception.LineNumber);
+			Assert.Equal(0, exception.ColumnNumber);
+			Assert.Empty(exception.SourceFragment);
+			Assert.Equal(
+				"   at fibonacci" + Environment.NewLine +
+				"   at fibonacci" + Environment.NewLine +
+				"   at fibonacci" + Environment.NewLine +
+				"   at fibonacci" + Environment.NewLine +
+				"   at fibonacci" + Environment.NewLine +
+				"   at fibonacci" + Environment.NewLine +
+				"   at Anonymous function",
+				exception.CallStack
+			);
+		}
 
 		[Fact]
 		public void MappingRuntimeErrorDuringStatementsCountOverflowIsCorrect()

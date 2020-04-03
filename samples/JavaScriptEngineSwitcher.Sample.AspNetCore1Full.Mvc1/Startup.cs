@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
-using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
@@ -58,7 +57,6 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1
 				options.DefaultEngineName = ChakraCoreJsEngine.EngineName
 			)
 				.AddChakraCore()
-				.AddJint()
 				.AddJurassic()
 				.AddMsie(options =>
 				{

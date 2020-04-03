@@ -33,7 +33,6 @@
 
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
-    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jint/JavaScriptEngineSwitcher.Jint.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jurassic/JavaScriptEngineSwitcher.Jurassic.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Msie/JavaScriptEngineSwitcher.Msie.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.NiL/JavaScriptEngineSwitcher.NiL.csproj" />

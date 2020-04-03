@@ -7,10 +7,10 @@ using OriginalEngine = Jint.Engine;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
+using OriginalParsedScript = Esprima.Ast.Script;
 using OriginalParser = Esprima.JavaScriptParser;
 using OriginalParserException = Esprima.ParserException;
 using OriginalParserOptions = Esprima.ParserOptions;
-using OriginalProgram = Esprima.Ast.Program;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalRuntimeException = Jint.Runtime.JintException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
@@ -46,7 +46,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 1715";
+		private const string EngineVersion = "3.0.0 Beta 1756";
 
 		/// <summary>
 		/// Jint JS engine
@@ -317,21 +317,21 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
 		{
-			OriginalProgram program;
+			OriginalParsedScript parsedScript;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 			OriginalParserOptions parserOptions = CreateParserOptions(uniqueDocumentName);
 
 			try
 			{
 				var parser = new OriginalParser(code, parserOptions);
-				program = parser.ParseProgram();
+				parsedScript = parser.ParseScript();
 			}
 			catch (OriginalParserException e)
 			{
 				throw WrapParserException(e);
 			}
 
-			return new JintPrecompiledScript(program);
+			return new JintPrecompiledScript(parsedScript);
 		}
 
 		protected override object InnerEvaluate(string expression)
@@ -431,7 +431,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				try
 				{
-					_jsEngine.Execute(jintPrecompiledScript.Program);
+					_jsEngine.Execute(jintPrecompiledScript.ParsedScript);
 				}
 				catch (OriginalRuntimeException e)
 				{

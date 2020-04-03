@@ -1,4 +1,4 @@
-﻿using OriginalProgram = Esprima.Ast.Program;
+﻿using OriginalParsedScript = Esprima.Ast.Script;
 
 using JavaScriptEngineSwitcher.Core;
 
@@ -10,9 +10,9 @@ namespace JavaScriptEngineSwitcher.Jint
 	internal sealed class JintPrecompiledScript : IPrecompiledScript
 	{
 		/// <summary>
-		/// Gets a program
+		/// Gets a parsed script
 		/// </summary>
-		public OriginalProgram Program
+		public OriginalParsedScript ParsedScript
 		{
 			get;
 			private set;
@@ -22,10 +22,10 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Constructs an instance of pre-compiled script
 		/// </summary>
-		/// <param name="program">The program</param>
-		public JintPrecompiledScript(OriginalProgram program)
+		/// <param name="parsedScript">The parsed script</param>
+		public JintPrecompiledScript(OriginalParsedScript parsedScript)
 		{
-			Program = program;
+			ParsedScript = parsedScript;
 		}
 
 
