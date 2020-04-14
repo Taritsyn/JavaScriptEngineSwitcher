@@ -1738,13 +1738,14 @@
             </code>
             </example>
         </member>
-        <member name="M:Microsoft.ClearScript.ExtendedHostFunctions.typeLibEnums``1(``0)">
+        <member name="M:Microsoft.ClearScript.ExtendedHostFunctions.typeLibEnums``1(``0,Microsoft.ClearScript.HostTypeCollection)">
             <summary>
-            Imports enumerations from a type library.
+            Imports enumerations defined within or referenced from a COM/ActiveX type library.
             </summary>
-            <typeparam name="T">The imported type whose parent library is to be searched for enumerations.</typeparam>
+            <typeparam name="T">The imported type whose parent library is to be searched for relevant enumerations.</typeparam>
             <param name="obj">An instance of the representative type.</param>
-            <returns>A collection of imported enumerations.</returns>
+            <param name="collection">An optional host type collection with which to merge the imported enumerations.</param>
+            <returns>A host type collection: <paramref name="collection"/> if it is not <c>null</c>, a new host type collection otherwise.</returns>
         </member>
         <member name="T:Microsoft.ClearScript.HostItemFlags">
             <summary>
@@ -1778,7 +1779,8 @@
             Specifies that the script engine is to be given direct access to the exposed object if
             possible. This option, when supported, suppresses marshaling and hands off the object
             for script access without the host's involvement. It is currently supported only for
-            COM objects exposed in Windows Script engines.
+            COM and <see href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.comvisibleattribute">COM-visible</see>
+            objects exposed in Windows Script engines.
             </summary>
         </member>
         <member name="T:Microsoft.ClearScript.HostSettings">
@@ -2497,6 +2499,11 @@
             normal access restrictions for anonymous types, set this property to <c>true</c>.
             </remarks>
         </member>
+        <member name="P:Microsoft.ClearScript.ScriptEngine.ExposeHostObjectStaticMembers">
+            <summary>
+            Controls whether host objects provide access to the static members of their exposed types to script code.
+            </summary>
+        </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.FormatCode">
             <summary>
             Enables or disables script code formatting.
@@ -2585,6 +2592,17 @@
             to simulate output arguments if the script language does not support them natively.
             </remarks>
             <seealso cref="M:Microsoft.ClearScript.HostFunctions.newVar``1(``0)"/>
+        </member>
+        <member name="P:Microsoft.ClearScript.ScriptEngine.UndefinedImportValue">
+            <summary>
+            Gets or sets the engine's undefined import value.
+            </summary>
+            <remarks>
+            Some script languages support one or more special non-<c>null</c> values that represent
+            nonexistent, missing, unknown, or undefined data. When such a value is marshaled to the
+            host, the script engine maps it to the value of this property. The default value is
+            <see cref="F:Microsoft.ClearScript.Undefined.Value"/>.
+            </remarks>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.ContinuationCallback">
             <summary>
@@ -3223,7 +3241,8 @@
             <para>
             If a debugger is attached, it will present the specified script code to the user as a
             document with the specified name. Discarding this document removes it from view but
-            has no effect on the script engine.
+            has no effect on the script engine. Only Windows Script engines honor
+            <paramref name="discard"/>.
             </para>
             </remarks>
         </member>
@@ -3351,7 +3370,8 @@
             <para>
             If a debugger is attached, it will present the specified script code to the user as a
             document with the specified name. Discarding this document removes it from view but
-            has no effect on the script engine.
+            has no effect on the script engine. Only Windows Script engines honor
+            <paramref name="discard"/>.
             </para>
             <para>
             The following table summarizes the types of result values that script code can return.
@@ -3990,10 +4010,15 @@
             Represents an undefined value.
             </summary>
             <remarks>
-            Most script languages support one or more special values that represent nonexistent,
-            missing, unknown, or undefined data. The ClearScript library maps some such values to
-            <c>null</c>, and others to instances of this class.
+            Some script languages support one or more special non-<c>null</c> values that represent
+            nonexistent, missing, unknown, or undefined data. The ClearScript library maps such values
+            to instances of this class.
             </remarks>
+        </member>
+        <member name="F:Microsoft.ClearScript.Undefined.Value">
+            <summary>
+            The sole instance of the <see cref="T:Microsoft.ClearScript.Undefined"/> class.
+            </summary>
         </member>
         <member name="M:Microsoft.ClearScript.Undefined.ToString">
             <summary>

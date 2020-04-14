@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -48,17 +47,12 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "7.9.317.32";
+		private const string EngineVersion = "8.1.307.28";
 
 		/// <summary>
 		/// V8 JS engine
 		/// </summary>
 		private OriginalEngine _jsEngine;
-
-		/// <summary>
-		/// ClearScript <code>undefined</code> value
-		/// </summary>
-		private static OriginalUndefined _originalUndefinedValue;
 
 		/// <summary>
 		/// Regular expression for working with the error message with type
@@ -164,40 +158,7 @@ namespace JavaScriptEngineSwitcher.V8
 
 				AssemblyResolver.Initialize();
 
-				try
-				{
-					LoadUndefinedValue();
-				}
-				catch (InvalidOperationException e)
-				{
-					throw JsErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion);
-				}
-
 				_initialized = true;
-			}
-		}
-
-		/// <summary>
-		/// Loads a ClearScript <code>undefined</code> value
-		/// </summary>
-		private static void LoadUndefinedValue()
-		{
-			FieldInfo undefinedValueFieldInfo = typeof(OriginalUndefined).GetField("Value",
-				BindingFlags.NonPublic | BindingFlags.Static);
-			OriginalUndefined originalUndefinedValue = null;
-
-			if (undefinedValueFieldInfo != null)
-			{
-				originalUndefinedValue = undefinedValueFieldInfo.GetValue(null) as OriginalUndefined;
-			}
-
-			if (originalUndefinedValue != null)
-			{
-				_originalUndefinedValue = originalUndefinedValue;
-			}
-			else
-			{
-				throw new InvalidOperationException(Strings.Engines_ClearScriptUndefinedValueNotLoaded);
 			}
 		}
 
@@ -212,7 +173,7 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			if (value is Undefined)
 			{
-				return _originalUndefinedValue;
+				return OriginalUndefined.Value;
 			}
 
 			return value;

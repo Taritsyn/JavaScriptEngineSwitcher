@@ -6,11 +6,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>False</Visible>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x64\native\v8-libcpp-x64.dll">
-      <Link>x64\v8-libcpp-x64.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>False</Visible>
-    </None>
     <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x64\native\v8-base-x64.dll">
       <Link>x64\v8-base-x64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -18,6 +13,11 @@
     </None>
     <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x64\native\v8-x64.dll">
       <Link>x64\v8-x64.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>False</Visible>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x64\native\v8-zlib-x64.dll">
+      <Link>x64\v8-zlib-x64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>False</Visible>
     </None>

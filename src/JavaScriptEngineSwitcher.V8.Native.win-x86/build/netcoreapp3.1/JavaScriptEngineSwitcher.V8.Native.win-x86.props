@@ -6,11 +6,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>False</Visible>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x86\native\v8-libcpp-ia32.dll">
-      <Link>x86\v8-libcpp-ia32.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>False</Visible>
-    </None>
     <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x86\native\v8-base-ia32.dll">
       <Link>x86\v8-base-ia32.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -18,6 +13,11 @@
     </None>
     <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x86\native\v8-ia32.dll">
       <Link>x86\v8-ia32.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>False</Visible>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x86\native\v8-zlib-ia32.dll">
+      <Link>x86\v8-zlib-ia32.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>False</Visible>
     </None>

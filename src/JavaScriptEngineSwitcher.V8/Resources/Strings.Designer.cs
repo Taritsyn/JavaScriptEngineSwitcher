@@ -58,14 +58,6 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Failed to load the ClearScript `undefined` value."
-		/// </summary>
-		internal static string Engines_ClearScriptUndefinedValueNotLoaded
-		{
-			get { return GetString("Engines_ClearScriptUndefinedValueNotLoaded"); }
-		}
-
-		/// <summary>
 		/// Looks up a localized string similar to "Failed to set the '{0}' deployment subdirectory to the V8 proxy."
 		/// </summary>
 		internal static string Engines_SettingDeploymentDirectoryToV8ProxyFailed

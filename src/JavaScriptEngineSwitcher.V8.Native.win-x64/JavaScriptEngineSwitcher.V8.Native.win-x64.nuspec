@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>JavaScriptEngineSwitcher.V8.Native.win-x64</id>
-    <version>3.3.0</version>
+    <version>3.5.1</version>
     <title>JS Engine Switcher: V8 for Windows (x64)</title>
     <authors>Andrey Taritsyn</authors>
     <owners>Andrey Taritsyn</owners>
@@ -11,21 +11,20 @@
     <icon>icon.png</icon>
     <repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>This package complements the JavaScriptEngineSwitcher.V8 package and contains the native implementation of V8 version 7.9.317.32 for Windows (x64).
+    <description>This package complements the JavaScriptEngineSwitcher.V8 package and contains the native implementation of V8 version 8.1.307.28 for Windows (x64).
 
 For correct working of the Microsoft ClearScript.V8 require the Microsoft Visual C++ Redistributable for Visual Studio 2019.</description>
-    <releaseNotes>1. Microsoft ClearScript.V8 was updated to version 6.0.0 (support of V8 version 7.9.317.32);
-2. Now the Microsoft ClearScript.V8 requires the Microsoft Visual C++ Redistributable for Visual Studio 2019.</releaseNotes>
-    <copyright>Copyright © 2013-2019 Andrey Taritsyn</copyright>
+    <releaseNotes>Microsoft ClearScript.V8 was updated to version 6.0.1 (support of V8 version 8.1.307.28).</releaseNotes>
+    <copyright>Copyright © 2013-2020 Andrey Taritsyn</copyright>
     <language>en-US</language>
     <tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript Windows x64</tags>
   </metadata>
   <files>
     <file src="../../lib/ClearScript/runtimes/win-x64/lib/net45/ClearScriptV8-64.dll" target="runtimes/win-x64/lib/net45/" />
     <file src="../../lib/ClearScript/runtimes/win-x64/lib/netcoreapp3.1/ClearScriptV8-64.dll" target="runtimes/win-x64/lib/netcoreapp3.1/" />
-    <file src="../../lib/ClearScript/runtimes/win-x64/native/v8-libcpp-x64.dll" target="runtimes/win-x64/native/" />
     <file src="../../lib/ClearScript/runtimes/win-x64/native/v8-base-x64.dll" target="runtimes/win-x64/native/" />
     <file src="../../lib/ClearScript/runtimes/win-x64/native/v8-x64.dll" target="runtimes/win-x64/native/" />
+    <file src="../../lib/ClearScript/runtimes/win-x64/native/v8-zlib-x64.dll" target="runtimes/win-x64/native/" />
     <file src="build/net45/JavaScriptEngineSwitcher.V8.Native.win-x64.props" target="build/net45/" />
     <file src="build/netcoreapp3.1/JavaScriptEngineSwitcher.V8.Native.win-x64.props" target="build/netcoreapp3.1/" />
     <file src="tools/Install.ps1" target="tools/" />

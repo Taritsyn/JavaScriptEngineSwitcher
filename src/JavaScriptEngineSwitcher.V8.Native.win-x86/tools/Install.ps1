@@ -5,7 +5,7 @@ if ($project.Type -eq "Web Site") {
 	$projectDirectoryPath = $project.Properties.Item("FullPath").Value
 	$binDirectoryPath = Join-Path $projectDirectoryPath "bin"
 	$managedAssemblyFileName = "ClearScriptV8-32.dll"
-	$nativeAssemblyFileNames = "v8-libcpp-ia32.dll", "v8-base-ia32.dll", "v8-ia32.dll"
+	$nativeAssemblyFileNames = "v8-base-ia32.dll", "v8-ia32.dll", "v8-zlib-ia32.dll"
 
 	$assemblyDestDirectoryPath = Join-Path $binDirectoryPath "x86"
 	if (!(Test-Path $assemblyDestDirectoryPath)) {
