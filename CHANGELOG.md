@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.5.1 - April 14, 2020
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 1778
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 6.0.1 (support of V8 version 8.1.307.28)
+
 ## v3.5.0 - April 3, 2020
  * In JavaScriptEngineSwitcher.Jint:
    * Jint was updated to version 3.0.0 Beta 1756
