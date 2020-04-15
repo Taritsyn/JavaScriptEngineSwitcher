@@ -1,5 +1,5 @@
 diff --git a/pal/src/exception/signal.cpp b/pal/src/exception/signal.cpp
-index 30ecbedf1..e5fa0f4a3 100644
+index 30ecbedf1..5c3117eec 100644
 --- a/pal/src/exception/signal.cpp
 +++ b/pal/src/exception/signal.cpp
 @@ -70,7 +70,7 @@ static void common_signal_handler(PEXCEPTION_POINTERS pointers, int code,
@@ -34,17 +34,3 @@ index 30ecbedf1..e5fa0f4a3 100644
  #if HAVE_SIGINFO_T
      newAction.sa_handler = NULL;
      newAction.sa_sigaction = sigfunc;
-@@ -590,6 +590,13 @@ void handle_signal(int signal_id, SIGFUNC sigfunc, struct sigaction *previousAct
- #endif  /* HAVE_SIGINFO_T */
-     sigemptyset(&newAction.sa_mask);
- 
-+#ifdef INJECT_ACTIVATION_SIGNAL
-+    if ((additionalFlags & SA_ONSTACK) != 0)
-+    {
-+        sigaddset(&newAction.sa_mask, INJECT_ACTIVATION_SIGNAL);
-+    }
-+
-+#endif
-     if (-1 == sigaction(signal_id, &newAction, previousAction))
-     {
-         ASSERT("handle_signal: sigaction() call failed with error code %d (%s)\n",

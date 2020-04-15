@@ -30,8 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Applied the Tomáš Deml's patch to fix the “Incompatibility in handling of
-   SIGSEGV between ChakraCore and CoreCLR” error.
+   ChakraCore was updated to version 1.11.18 (Tomáš Deml's patch applied).
 
    =============
    DOCUMENTATION

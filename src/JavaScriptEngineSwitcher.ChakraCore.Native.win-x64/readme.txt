@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: ChakraCore for Windows x64 v3.4.5
+         README file for JS Engine Switcher: ChakraCore for Windows x64 v3.5.2
 
    --------------------------------------------------------------------------------
 
@@ -12,14 +12,13 @@
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.ChakraCore package and
-   contains the native implementation of ChakraCore version 1.11.17 with the Tomáš
+   contains the native implementation of ChakraCore version 1.11.18 with the Tomáš
    Deml's patch for Windows (x64).
 
    =============
    RELEASE NOTES
    =============
-   Applied the Tomáš Deml's patch to fix the “Incompatibility in handling of
-   SIGSEGV between ChakraCore and CoreCLR” error.
+   ChakraCore was updated to version 1.11.18 (Tomáš Deml's patch applied).
 
    =============
    DOCUMENTATION
