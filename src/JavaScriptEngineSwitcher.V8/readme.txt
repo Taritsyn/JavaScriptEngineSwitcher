@@ -25,7 +25,8 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 6.0.1.
+   Fixed a error that caused incorrect generation of error description for an
+   `JsEngineLoadException` exception.
 
    =============
    DOCUMENTATION
