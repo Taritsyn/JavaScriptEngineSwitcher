@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.5.4 - May 13, 2020
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.19 ([Tomáš Deml's patch](https://github.com/microsoft/ChakraCore/issues/5973) applied)
+
 ## v3.5.3 - May 8, 2020
  * In JavaScriptEngineSwitcher.V8 fixed a error that caused incorrect generation of error description for an `JsEngineLoadException` exception
 
