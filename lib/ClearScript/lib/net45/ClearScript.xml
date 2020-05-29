@@ -103,6 +103,22 @@
             Represents a document category.
             </summary>
         </member>
+        <member name="P:Microsoft.ClearScript.DocumentCategory.MaxCacheSize">
+            <summary>
+            Gets or sets the maximum cache size for the document category.
+            </summary>
+            <remarks>
+            <para>
+            This property specifies the maximum number of prepared or compiled documents of the
+            current category to be cached by script engines. Its initial value is 1024.
+            </para>
+            <para>
+            Each script engine or runtime maintains private caches for supported document
+            categories. These are distinct from the caches used by document loaders.
+            </para>
+            </remarks>
+            <seealso cref="P:Microsoft.ClearScript.DocumentLoader.MaxCacheSize"/>
+        </member>
         <member name="P:Microsoft.ClearScript.DocumentCategory.Script">
             <summary>
             Gets the document category for normal scripts.
@@ -224,6 +240,16 @@
             <summary>
             Gets the default document loader.
             </summary>
+        </member>
+        <member name="P:Microsoft.ClearScript.DocumentLoader.MaxCacheSize">
+            <summary>
+            Gets or sets the maximum size of the document loader's cache.
+            </summary>
+            <remarks>
+            This property specifies the maximum number of documents to be cached by the document
+            loader. For the default document loader, its initial value is 1024.
+            </remarks>
+            <seealso cref="P:Microsoft.ClearScript.DocumentLoader.Default"/>
         </member>
         <member name="M:Microsoft.ClearScript.DocumentLoader.LoadDocument(Microsoft.ClearScript.DocumentSettings,System.Nullable{Microsoft.ClearScript.DocumentInfo},System.String,Microsoft.ClearScript.DocumentCategory,Microsoft.ClearScript.DocumentContextCallback)">
             <summary>
@@ -376,6 +402,24 @@
             <paramref name="identifier"/> and the specified document's category to the specified
             document, bypassing the configuration's document loader.
             </remarks>
+        </member>
+        <member name="T:Microsoft.ClearScript.DynamicHostObject">
+            <summary>
+            Extends <see cref="T:System.Dynamic.DynamicObject"/> for enhanced behavior and performance in a scripting environment.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ClearScript.DynamicHostObject.#ctor">
+            <summary>
+            Initializes a new <see cref="T:Microsoft.ClearScript.DynamicHostObject"/> instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ClearScript.DynamicHostObject.HasMember(System.String,System.Boolean)">
+            <summary>
+            Determines whether the object has the specified named member.
+            </summary>
+            <param name="name">The member name for which to search.</param>
+            <param name="ignoreCase"><c>True</c> to perform a case-insensitive search, <c>false</c> otherwise.</param>
+            <returns><c>True</c> if the named member was found, <c>false</c> otherwise.</returns>
         </member>
         <member name="T:Microsoft.ClearScript.Extensions">
             <summary>
@@ -2233,6 +2277,15 @@
             <param name="task">The task to convert to a promise.</param>
             <param name="engine">The script engine in which the promise will be used.</param>
             <returns>A promise that represents the task's asynchronous operation.</returns>
+        </member>
+        <member name="M:Microsoft.ClearScript.JavaScript.JavaScriptExtensions.ToTask(System.Object)">
+            <summary>
+            Converts a
+            <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</see>
+            to a <see cref="T:System.Threading.Tasks.Task`1"/> instance.
+            </summary>
+            <param name="promise">The promise to convert to a task.</param>
+            <returns>A task that represents the promise's asynchronous operation.</returns>
         </member>
         <member name="T:Microsoft.ClearScript.JavaScript.ModuleCategory">
             <summary>
@@ -5574,6 +5627,23 @@
             Specifies that
             <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#Dynamic_Imports">dynamic module imports</see>
             are to be enabled. This is an experimental feature and may be removed in a future release.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ClearScript.V8.V8ScriptEngineFlags.MarshalUnsafeLongAsBigInt">
+            <summary>
+            Specifies that long integers with values greater than
+            <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER">Number.MAX_SAFE_INTEGER</see>
+            or less than
+            <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MIN_SAFE_INTEGER">Number.MIN_SAFE_INTEGER</see>
+            are to be marshaled as
+            <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt">BigInt</see>.
+            This option is ignored if <see cref="F:Microsoft.ClearScript.V8.V8ScriptEngineFlags.MarshalAllLongAsBigInt"/> is specified.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ClearScript.V8.V8ScriptEngineFlags.MarshalAllLongAsBigInt">
+            <summary>
+            Specifies that all long integers are to be marshaled as
+            <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt">BigInt</see>.
             </summary>
         </member>
         <member name="T:Microsoft.ClearScript.VoidResult">
