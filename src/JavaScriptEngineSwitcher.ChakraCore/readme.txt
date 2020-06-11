@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.19 (Tomáš Deml's patch applied).
+   ChakraCore was updated to version 1.11.20 (Tomáš Deml's patch applied).
 
    =============
    DOCUMENTATION
