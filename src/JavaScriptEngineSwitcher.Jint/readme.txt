@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: Jint v3.5.1 Preview
+                README file for JS Engine Switcher: Jint v3.5.6 Preview
 
    --------------------------------------------------------------------------------
 
