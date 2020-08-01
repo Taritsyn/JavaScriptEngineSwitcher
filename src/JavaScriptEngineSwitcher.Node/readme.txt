@@ -13,7 +13,7 @@
    ===========
    JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the
    Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS)
-   version 5.4.1).
+   version 5.4.2).
 
    This package does not contain the `node.exe`. Therefore, you need to install the
    Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path`
@@ -22,7 +22,7 @@
    =============
    RELEASE NOTES
    =============
-   Jering.Javascript.NodeJS was updated to version 5.4.1.
+   Jering.Javascript.NodeJS was updated to version 5.4.2.
 
    =============
    DOCUMENTATION
