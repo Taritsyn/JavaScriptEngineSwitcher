@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.6.0 - August 1, 2020
+ * In JavaScriptEngineSwitcher.Jint added a ability to interrupt execution of the script
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1466
+ * In JavaScriptEngineSwitcher.Node added support of Jering.Javascript.NodeJS version 5.4.2
+
 ## v3.5.6 - June 11, 2020
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.20 ([Tomáš Deml's patch](https://github.com/microsoft/ChakraCore/issues/5973) applied)
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 1828
