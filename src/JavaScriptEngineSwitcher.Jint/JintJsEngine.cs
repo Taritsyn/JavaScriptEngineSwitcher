@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Threading;
 
 using Jint;
 using IOriginalPrimitiveInstance = Jint.Native.IPrimitiveInstance;
@@ -27,6 +28,7 @@ using JavaScriptEngineSwitcher.Core.Utilities;
 
 using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
+using WrapperInterruptedException = JavaScriptEngineSwitcher.Core.JsInterruptedException;
 using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
 using WrapperTimeoutException = JavaScriptEngineSwitcher.Core.JsTimeoutException;
 using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
@@ -54,6 +56,16 @@ namespace JavaScriptEngineSwitcher.Jint
 		private OriginalEngine _jsEngine;
 
 		/// <summary>
+		/// Token source for canceling of script execution
+		/// </summary>
+		private CancellationTokenSource _cancellationTokenSource;
+
+		/// <summary>
+		/// Constraint for canceling of script execution
+		/// </summary>
+		private CustomCancellationConstraint _cancellationConstraint;
+
+		/// <summary>
 		/// Synchronizer of code execution
 		/// </summary>
 		private readonly object _executionSynchronizer = new object();
@@ -78,6 +90,9 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <param name="settings">Settings of the Jint JS engine</param>
 		public JintJsEngine(JintSettings settings)
 		{
+			_cancellationTokenSource = new CancellationTokenSource();
+			_cancellationConstraint = new CustomCancellationConstraint(_cancellationTokenSource.Token);
+
 			JintSettings jintSettings = settings ?? new JintSettings();
 
 			try
@@ -85,6 +100,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				_jsEngine = new OriginalEngine(options => {
 					options
 						.AllowDebuggerStatement(jintSettings.AllowDebuggerStatement)
+						.Constraint(_cancellationConstraint)
 						.DebugMode(jintSettings.EnableDebugging)
 						.LimitMemory(jintSettings.MemoryLimit)
 						.LimitRecursion(jintSettings.MaxRecursionDepth)
@@ -187,8 +203,9 @@ namespace JavaScriptEngineSwitcher.Jint
 			return wrapperCompilationException;
 		}
 
-		private static WrapperRuntimeException WrapRuntimeException(OriginalRuntimeException originalRuntimeException)
+		private WrapperRuntimeException WrapRuntimeException(OriginalRuntimeException originalRuntimeException)
 		{
+			WrapperRuntimeException wrapperRuntimeException;
 			string message = originalRuntimeException.Message;
 			if (string.IsNullOrWhiteSpace(message))
 			{
@@ -227,11 +244,17 @@ namespace JavaScriptEngineSwitcher.Jint
 
 				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName, lineNumber,
 					columnNumber);
+
+				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+					originalJavaScriptException);
 			}
 			else if (originalRuntimeException is OriginalMemoryLimitExceededException)
 			{
 				type = JsErrorType.Common;
 				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty);
+
+				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+					originalRuntimeException);
 			}
 			else if (originalRuntimeException is OriginalRecursionDepthOverflowException)
 			{
@@ -266,28 +289,45 @@ namespace JavaScriptEngineSwitcher.Jint
 
 				type = JsErrorType.Range;
 				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, callStack);
+
+				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+					originalRecursionException);
 			}
 			else if (originalRuntimeException is OriginalStatementsCountOverflowException)
 			{
 				type = JsErrorType.Range;
 				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty);
+
+				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+					originalRuntimeException);
+			}
+			else if (originalRuntimeException is ScriptExecutionCanceledException)
+			{
+				_cancellationTokenSource = new CancellationTokenSource();
+				_cancellationConstraint.Reset(_cancellationTokenSource.Token);
+
+				type = JsErrorType.Common;
+				message = CoreStrings.Runtime_ScriptInterrupted;
+				description = message;
+
+				wrapperRuntimeException = new WrapperInterruptedException(message,
+					EngineName, EngineVersion, originalRuntimeException);
 			}
 			else
 			{
 				type = JsErrorType.Common;
 				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty);
+
+				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+					originalRuntimeException);
 			}
 
-			var wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
-				originalRuntimeException)
-			{
-				Description = description,
-				Type = type,
-				DocumentName = documentName,
-				LineNumber = lineNumber,
-				ColumnNumber = columnNumber,
-				CallStack = callStack
-			};
+			wrapperRuntimeException.Description = description;
+			wrapperRuntimeException.Type = type;
+			wrapperRuntimeException.DocumentName = documentName;
+			wrapperRuntimeException.LineNumber = lineNumber;
+			wrapperRuntimeException.ColumnNumber = columnNumber;
+			wrapperRuntimeException.CallStack = callStack;
 
 			return wrapperRuntimeException;
 		}
@@ -602,7 +642,7 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		protected override void InnerInterrupt()
 		{
-			throw new NotSupportedException();
+			_cancellationTokenSource.Cancel();
 		}
 
 		protected override void InnerCollectGarbage()
@@ -641,7 +681,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// </summary>
 		public override bool SupportsScriptInterruption
 		{
-			get { return false; }
+			get { return true; }
 		}
 
 		/// <summary>
@@ -663,6 +703,13 @@ namespace JavaScriptEngineSwitcher.Jint
 				lock (_executionSynchronizer)
 				{
 					_jsEngine = null;
+					_cancellationConstraint = null;
+
+					if (_cancellationTokenSource != null)
+					{
+						_cancellationTokenSource.Dispose();
+						_cancellationTokenSource = null;
+					}
 				}
 			}
 		}
