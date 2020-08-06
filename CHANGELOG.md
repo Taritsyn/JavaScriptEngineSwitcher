@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.7.0 - August 6, 2020
+ * In JavaScriptEngineSwitcher.Jurassic:
+   * Jurassic was updated to version of August 3, 2020
+   * In configuration settings of the Jurassic JS engine was added one new non-standard property - `EnableHostCollectionsEmbeddingByValue` (default `false`)
+
 ## v3.6.0 - August 1, 2020
  * In JavaScriptEngineSwitcher.Jint added a ability to interrupt execution of the script
  * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1466
