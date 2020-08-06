@@ -5,7 +5,22 @@
 	/// </summary>
 	public sealed class JurassicSettings
 	{
+		/// <summary>
+		/// Gets or sets a flag for whether to enable conversion of host collections,
+		/// that are passed or returned to script code, to script arrays
+		/// </summary>
+		/// <remarks>
+		/// <para>This property does not allow the embedding of host collections by
+		/// using a <see cref="JavaScriptEngineSwitcher.Core.IJsEngine.EmbedHostObject"/>
+		/// method, it only affects the internal mechanisms of the Jurassic library.</para>
+		/// </remarks>
+		public bool EnableHostCollectionsEmbeddingByValue
+		{
+			get;
+			set;
+		}
 #if !NETSTANDARD2_0
+
 		/// <summary>
 		/// Gets or sets a flag for whether to enable script debugging features
 		/// (allows a generation of debug information)
@@ -15,8 +30,8 @@
 			get;
 			set;
 		}
-
 #endif
+
 		/// <summary>
 		/// Gets or sets a flag for whether to disassemble any generated IL
 		/// and store it in the associated function
@@ -42,6 +57,7 @@
 		/// </summary>
 		public JurassicSettings()
 		{
+			EnableHostCollectionsEmbeddingByValue = false;
 #if !NETSTANDARD2_0
 			EnableDebugging = false;
 #endif

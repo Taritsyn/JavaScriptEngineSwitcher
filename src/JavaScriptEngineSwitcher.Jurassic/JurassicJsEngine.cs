@@ -43,7 +43,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "Feb 24, 2018";
+		private const string EngineVersion = "Aug 3, 2020";
 
 		/// <summary>
 		/// Jurassic JS engine
@@ -81,10 +81,11 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			{
 				_jsEngine = new OriginalEngine
 				{
+					CompatibilityMode = OriginalCompatibilityMode.Latest,
+					DisableClrCollectionsExposingByValue = !jurassicSettings.EnableHostCollectionsEmbeddingByValue,
 #if !NETSTANDARD2_0
 					EnableDebugging = jurassicSettings.EnableDebugging,
 #endif
-					CompatibilityMode = OriginalCompatibilityMode.Latest,
 					EnableExposedClrTypes = true,
 					EnableILAnalysis = jurassicSettings.EnableIlAnalysis,
 					ForceStrictMode = jurassicSettings.StrictMode
@@ -194,7 +195,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			string messageWithCallStack = string.Empty;
 			string description = message;
 			string type = originalJavaScriptException.Name;
-			string documentName = originalJavaScriptException.SourcePath;
+			string documentName = originalJavaScriptException.SourcePath ?? string.Empty;
 			int lineNumber = originalJavaScriptException.LineNumber;
 			string callStack = string.Empty;
 
@@ -231,6 +232,11 @@ namespace JavaScriptEngineSwitcher.Jurassic
 						{
 							FixCallStackItems(callStackItems);
 							callStack = JsErrorHelpers.StringifyErrorLocationItems(callStackItems);
+
+							if (string.IsNullOrWhiteSpace(documentName))
+							{
+								documentName = callStackItems[0].DocumentName;
+							}
 						}
 					}
 

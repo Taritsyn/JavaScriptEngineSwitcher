@@ -13,12 +13,15 @@
    ===========
    JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper
    for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic)
-   version of February 24, 2018).
+   version of August 3, 2020).
 
    =============
    RELEASE NOTES
    =============
-   Enabled a SourceLink.
+   1. Jurassic was updated to version of August 3, 2020;
+   2. In configuration settings of the Jurassic JS engine was added one new
+      non-standard property - `EnableHostCollectionsEmbeddingByValue` (default
+      `false`).
 
    =============
    DOCUMENTATION
