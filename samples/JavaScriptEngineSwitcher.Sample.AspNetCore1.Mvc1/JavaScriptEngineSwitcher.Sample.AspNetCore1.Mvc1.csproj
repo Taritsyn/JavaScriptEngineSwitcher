@@ -26,11 +26,11 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.2" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.0.2" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.5.6" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.5.6" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.5.6" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.5.6" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.5.6" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.7.1" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.7.1" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.7.1" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.7.1" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.7.1" />
 
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
@@ -46,14 +46,17 @@
     </None>
   </ItemGroup>
 
-  <Target Name="BowerPackagesInstallation" AfterTargets="AfterBuild">
-    <Exec Command="bower install" />
+  <Target Name="NodePackageInstallation" BeforeTargets="BeforeBuild;BeforeClean">
+    <Exec Command="npm install" ConsoleToMsBuild="true" />
   </Target>
-  <Target Name="GulpClean" AfterTargets="Clean">
-    <Exec Command="gulp cleanBuildedAssets" />
+  <Target Name="BowerPackagesInstallation" AfterTargets="AfterBuild">
+    <Exec Command="bower install" ConsoleToMsBuild="true" />
+  </Target>
+  <Target Name="GulpClean" AfterTargets="AfterClean">
+    <Exec Command="gulp cleanBuildedAssets" ConsoleToMsBuild="true" />
   </Target>
   <Target Name="GulpBuild" AfterTargets="BowerPackagesInstallation">
-    <Exec Command="gulp buildAssets" />
+    <Exec Command="gulp buildAssets" ConsoleToMsBuild="true" />
   </Target>
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
     <Exec Command="npm install" />
