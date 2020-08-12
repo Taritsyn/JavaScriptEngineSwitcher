@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.7.1 - August 12, 2020
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.21 ([Tomáš Deml's patch](https://github.com/microsoft/ChakraCore/issues/5973) applied)
+
 ## v3.7.0 - August 6, 2020
  * In JavaScriptEngineSwitcher.Jurassic:
    * Jurassic was updated to version of August 3, 2020
