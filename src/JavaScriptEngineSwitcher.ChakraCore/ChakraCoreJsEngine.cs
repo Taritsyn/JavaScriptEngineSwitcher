@@ -53,7 +53,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.11.21";
+		private const string EngineVersion = "1.11.22";
 
 		/// <summary>
 		/// Instance of JS runtime

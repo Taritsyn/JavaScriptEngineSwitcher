@@ -24,13 +24,15 @@
     * JavaScriptEngineSwitcher.ChakraCore.Native.win-x86
     * JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
     * JavaScriptEngineSwitcher.ChakraCore.Native.win-arm
+    * JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64
     * JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64
     * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64
 
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.21 (Tomáš Deml's patch applied).
+   1. ChakraCore was updated to version 1.11.22 (Tomáš Deml's patch applied);
+   2. Added a experimental support of Windows (ARM64).
 
    =============
    DOCUMENTATION

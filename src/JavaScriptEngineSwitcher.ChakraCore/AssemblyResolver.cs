@@ -42,6 +42,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			{
 				platform = "arm";
 			}
+			else if (RuntimeInformation.OSArchitecture == Architecture.Arm64)
+			{
+				platform = "arm64";
+			}
 			else
 			{
 				platform = Utils.Is64BitProcess() ? "x64" : "x86";
