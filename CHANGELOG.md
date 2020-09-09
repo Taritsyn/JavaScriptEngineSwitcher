@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.7.2 - September 9, 2020
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version 1.11.22 ([Tomáš Deml's patch](https://github.com/microsoft/ChakraCore/issues/5973) applied)
+   * Added a experimental support of Windows (ARM64)
+ * In JavaScriptEngineSwitcher.Node added support of Jering.Javascript.NodeJS version 5.4.3
+
 ## v3.7.1 - August 12, 2020
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.21 ([Tomáš Deml's patch](https://github.com/microsoft/ChakraCore/issues/5973) applied)
 

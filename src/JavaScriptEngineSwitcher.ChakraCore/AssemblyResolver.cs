@@ -37,12 +37,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				baseDirectoryPath = currentDomain.BaseDirectory;
 			}
 
+			Architecture architecture = RuntimeInformation.OSArchitecture;
 			string platform;
-			if (RuntimeInformation.OSArchitecture == Architecture.Arm)
+
+			if (architecture == Architecture.Arm)
 			{
 				platform = "arm";
 			}
-			else if (RuntimeInformation.OSArchitecture == Architecture.Arm64)
+			else if (architecture == Architecture.Arm64)
 			{
 				platform = "arm64";
 			}

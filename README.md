@@ -24,6 +24,7 @@ This library can be installed through NuGet:
    * [Windows (x86)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.win-x86)
    * [Windows (x64)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.win-x64)
    * [Windows (ARM)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.win-arm)
+   * [Windows (ARM64)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64)
    * [Linux (x64)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64)
    * [OS X (x64)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64)
  * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint) (supports .NET Framework 4.6.1, .NET Standard 2.0 and .NET Standard 2.1)
