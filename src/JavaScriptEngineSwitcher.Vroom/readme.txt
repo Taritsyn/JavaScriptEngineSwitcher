@@ -27,10 +27,10 @@
    ====================
    POST-INSTALL ACTIONS
    ====================
-   If in your system does not have the assemblies `msvcr110.dll` and `msvcp140.dll`, then
-   download and install the Visual C++ Redistributable Packages for Visual Studio
-   2012 (https://www.microsoft.com/en-us/download/details.aspx?id=30679) and 2015
-   (https://www.microsoft.com/en-us/download/details.aspx?id=53840).
+   If in your system does not have the `msvcr110.dll` and `msvcp140.dll` assemblies,
+   then download and install the Visual C++ Redistributable Packages for Visual
+   Studio 2012 (https://www.microsoft.com/en-us/download/details.aspx?id=30679) and
+   2015 (https://www.microsoft.com/en-us/download/details.aspx?id=53840).
 
    =============
    DOCUMENTATION
