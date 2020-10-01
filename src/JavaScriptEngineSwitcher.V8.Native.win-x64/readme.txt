@@ -27,7 +27,7 @@
    ====================
    POST-INSTALL ACTIONS
    ====================
-   If in your system does not `msvcp140.dll` assembly, then download and install
+   If in your system does not have the `msvcp140.dll` assembly, then download and install
    the Microsoft Visual C++ Redistributable for Visual Studio 2019
    (https://visualstudio.microsoft.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2019).
 
