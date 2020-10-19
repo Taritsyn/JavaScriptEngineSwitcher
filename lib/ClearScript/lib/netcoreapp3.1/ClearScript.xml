@@ -4153,7 +4153,7 @@
             </summary>
             <remarks>
             See the
-            <see href="https://github.com/v8/v8/blob/master/src/inspector/js_protocol-1.3.json">V8 Inspector JSON Protocol</see>
+            <see href="https://github.com/v8/v8/blob/4b9b23521e6fd42373ebbcb20ebe03bf445494f9/src/inspector/js_protocol-1.3.json">V8 Inspector JSON Protocol</see>
             for schema details.
             </remarks>
             <returns>A JSON representation of the profile in V8 Inspector format.</returns>
@@ -4165,7 +4165,7 @@
             <param name="writer">The text writer to which to write the profile.</param>
             <remarks>
             See the
-            <see href="https://github.com/v8/v8/blob/master/src/inspector/js_protocol-1.3.json">V8 Inspector JSON Protocol</see>
+            <see href="https://github.com/v8/v8/blob/4b9b23521e6fd42373ebbcb20ebe03bf445494f9/src/inspector/js_protocol-1.3.json">V8 Inspector JSON Protocol</see>
             for schema details.
             </remarks>
         </member>
@@ -5617,9 +5617,10 @@
             Specifies that the script engine is to perform automatic conversion between
             .NET <see cref="T:System.DateTime"/> objects and JavaScript
             <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</see>
-            objects. This conversion is bidirectional. A <c>DateTime</c> object constructed from
-            a JavaScript <c>Date</c> object always represents a Coordinated Universal Timestamp (UTC)
-            and has its <see cref="P:System.DateTime.Kind"/> property set to <see cref="F:System.DateTimeKind.Utc"/>.
+            objects. This conversion is bidirectional and lossy. A <c>DateTime</c> object
+            constructed from a JavaScript <c>Date</c> object always represents a Coordinated
+            Universal Timestamp (UTC) and has its <see cref="P:System.DateTime.Kind"/> property set to
+            <see cref="F:System.DateTimeKind.Utc"/>.
             </summary>
         </member>
         <member name="F:Microsoft.ClearScript.V8.V8ScriptEngineFlags.EnableDynamicModuleImports">
@@ -5644,6 +5645,15 @@
             <summary>
             Specifies that all long integers are to be marshaled as
             <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt">BigInt</see>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ClearScript.V8.V8ScriptEngineFlags.EnableTaskPromiseConversion">
+            <summary>
+            Specifies that the script engine is to perform automatic conversion between
+            .NET <see cref="T:System.Threading.Tasks.Task"/> objects and JavaScript
+            <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</see>.
+            This conversion is bidirectional and lossy. A <c>Task</c> object constructed from a
+            JavaScript promise always has a result type of <see cref="T:System.Object"/>.
             </summary>
         </member>
         <member name="T:Microsoft.ClearScript.VoidResult">

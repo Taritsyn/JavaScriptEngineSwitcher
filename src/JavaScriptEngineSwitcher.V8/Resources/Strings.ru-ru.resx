@@ -120,9 +120,6 @@
   <data name="Engines_SettingDeploymentDirectoryToV8ProxyFailed" xml:space="preserve">
     <value>Не удалось указать поддиректорию развертывания "{0}" для V8-прокси!</value>
   </data>
-  <data name="Engine_VcRedist2019InstallationRequired" xml:space="preserve">
-    <value>Кроме того, еще требуется установка распространяемого компонента Microsoft Visual C++ для Visual Studio 2019 (https://visualstudio.microsoft.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2019).</value>
-  </data>
   <data name="Usage_PrecompiledScriptNotAccepted" xml:space="preserve">
     <value>Предварительно скомпилированный сценарий не принят! Чтобы быть принятым, предварительно скомпилированный сценарий должен быть создан той же сборкой V8.</value>
   </data>

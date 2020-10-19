@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: V8 for Windows x86 v3.5.5
+             README file for JS Engine Switcher: V8 for Windows x86 v3.8.0
 
    --------------------------------------------------------------------------------
 
@@ -12,23 +12,15 @@
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.V8 package and contains
-   the native implementation of V8 version 8.3.110.9 for Windows (x86).
-
-   For correct working of the Microsoft ClearScript.V8 require the Microsoft Visual
-   C++ Redistributable for Visual Studio 2019.
+   the native implementation of V8 version 8.6.395.17 for Windows (x86).
 
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 6.0.2 (support of V8 version
-   8.3.110.9).
-
-   ====================
-   POST-INSTALL ACTIONS
-   ====================
-   If in your system does not have the `msvcp140.dll` assembly, then download and
-   install the Microsoft Visual C++ Redistributable for Visual Studio 2019
-   (https://visualstudio.microsoft.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2019).
+   1. Microsoft ClearScript.V8 was updated to version 7.0 RC (support of V8 version
+      8.6.395.17);
+   2. MSVC runtime was embedded into the native assembly. Now you do not need to
+      install the Microsoft Visual C++ Redistributable for Visual Studio 2019.
 
    =============
    DOCUMENTATION

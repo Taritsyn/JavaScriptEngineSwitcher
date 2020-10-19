@@ -45,7 +45,7 @@ namespace JavaScriptEngineSwitcher.V8
 				platformBitness = 32;
 			}
 
-			string assemblyName = DllName.ClearScriptV8Universal + "-" + platformBitness.ToString();
+			string assemblyName = DllName.Universal + "-" + platformBitness.ToString();
 			string assemblyDirectoryPath = Path.Combine(baseDirectoryPath, platformName);
 			string assemblyFileName = assemblyName + ".dll";
 			string assemblyFilePath = Path.Combine(assemblyDirectoryPath, assemblyFileName);

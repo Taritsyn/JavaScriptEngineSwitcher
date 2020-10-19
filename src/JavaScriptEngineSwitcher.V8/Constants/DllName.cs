@@ -5,9 +5,8 @@
 	/// </summary>
 	internal static class DllName
 	{
-		public const string ClearScriptV8Universal = "ClearScriptV8";
-		public const string V8Prefix = "v8-";
-		public const string V8Postfix32Bit = "-ia32.dll";
-		public const string V8Postfix64Bit = "-x64.dll";
+		public const string Universal = "ClearScriptV8";
+		public const string ForWindows32Bit = Universal + "-32.dll";
+		public const string ForWindows64Bit = Universal + "-64.dll";
 	}
 }

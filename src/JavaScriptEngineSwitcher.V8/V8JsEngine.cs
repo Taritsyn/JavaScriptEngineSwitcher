@@ -47,7 +47,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "8.3.110.9";
+		private const string EngineVersion = "8.6.395.17";
 
 		/// <summary>
 		/// V8 JS engine
@@ -61,10 +61,10 @@ namespace JavaScriptEngineSwitcher.V8
 			new Regex(@"^(?<type>" + CommonRegExps.JsFullNamePattern + @"):\s+(?<description>[\s\S]+?)$");
 
 		/// <summary>
-		/// Regular expression for working with the interface assembly load error message
+		/// Regular expression for working with the library load error message
 		/// </summary>
-		private static readonly Regex _interfaceAssemblyLoadErrorMessage =
-			new Regex(@"^Cannot load V8 interface assembly. " +
+		private static readonly Regex _libraryLoadErrorMessage =
+			new Regex(@"^Cannot load ClearScript V8 library. " +
 				"Load failure information for (?<assemblyFileName>" + CommonRegExps.DocumentNamePattern + "):");
 
 		/// <summary>
@@ -319,7 +319,7 @@ namespace JavaScriptEngineSwitcher.V8
 			string description;
 			string message;
 
-			Match errorMessageMatch = _interfaceAssemblyLoadErrorMessage.Match(originalMessage);
+			Match errorMessageMatch = _libraryLoadErrorMessage.Match(originalMessage);
 			if (errorMessageMatch.Success)
 			{
 				string assemblyFileName = errorMessageMatch.Groups["assemblyFileName"].Value;
@@ -328,17 +328,14 @@ namespace JavaScriptEngineSwitcher.V8
 				StringBuilder descriptionBuilder = stringBuilderPool.Rent();
 				descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, assemblyFileName);
 				descriptionBuilder.Append(" ");
-				if (assemblyFileName.StartsWith(DllName.V8Prefix)
-					&& (assemblyFileName.EndsWith(DllName.V8Postfix64Bit) || assemblyFileName.EndsWith(DllName.V8Postfix32Bit)))
+				if (assemblyFileName == DllName.ForWindows64Bit || assemblyFileName == DllName.ForWindows32Bit)
 				{
 					descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
-						assemblyFileName.EndsWith(DllName.V8Postfix64Bit) ?
+						assemblyFileName == DllName.ForWindows64Bit ?
 							"JavaScriptEngineSwitcher.V8.Native.win-x64"
 							:
 							"JavaScriptEngineSwitcher.V8.Native.win-x86"
 						);
-					descriptionBuilder.Append(" ");
-					descriptionBuilder.Append(Strings.Engine_VcRedist2019InstallationRequired);
 				}
 				else
 				{

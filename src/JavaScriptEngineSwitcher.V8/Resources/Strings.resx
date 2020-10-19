@@ -120,9 +120,6 @@
   <data name="Engines_SettingDeploymentDirectoryToV8ProxyFailed" xml:space="preserve">
     <value>Failed to set the '{0}' deployment subdirectory to the V8 proxy.</value>
   </data>
-  <data name="Engine_VcRedist2019InstallationRequired" xml:space="preserve">
-    <value>In addition, you still need to install the Microsoft Visual C++ Redistributable for Visual Studio 2019 (https://visualstudio.microsoft.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2019).</value>
-  </data>
   <data name="Usage_PrecompiledScriptNotAccepted" xml:space="preserve">
     <value>Pre-compiled script is not accepted. To be accepted, the pre-compiled script must have been created by the same V8 build.</value>
   </data>

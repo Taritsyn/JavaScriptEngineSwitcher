@@ -66,14 +66,6 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "In addition, you still need to install the Microsoft Visual C++ Redistributable for Visual Studio..."
-		/// </summary>
-		internal static string Engine_VcRedist2019InstallationRequired
-		{
-			get { return GetString("Engine_VcRedist2019InstallationRequired"); }
-		}
-
-		/// <summary>
 		/// Looks up a localized string similar to "Pre-compiled script is not accepted. To be accepted, the pre-compiled script must have been created..."
 		/// </summary>
 		internal static string Usage_PrecompiledScriptNotAccepted
