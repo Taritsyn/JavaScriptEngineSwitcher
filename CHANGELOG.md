@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.8.0 - October 19, 2020
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.0 RC (support of V8 version 8.6.395.17)
+   * MSVC runtime was embedded into the native assemblies for Windows
+
 ## v3.7.2 - September 9, 2020
  * In JavaScriptEngineSwitcher.ChakraCore:
    * ChakraCore was updated to version 1.11.22 ([Tomáš Deml's patch](https://github.com/microsoft/ChakraCore/issues/5973) applied)
