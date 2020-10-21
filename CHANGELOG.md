@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.8.1 - October 21, 2020
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.0 RC2
+
 ## v3.8.0 - October 19, 2020
  * In JavaScriptEngineSwitcher.V8:
    * Microsoft ClearScript.V8 was updated to version 7.0 RC (support of V8 version 8.6.395.17)
