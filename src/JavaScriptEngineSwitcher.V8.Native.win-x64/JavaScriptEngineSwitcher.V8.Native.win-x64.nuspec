@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>JavaScriptEngineSwitcher.V8.Native.win-x64</id>
-    <version>3.8.1</version>
+    <version>3.8.2</version>
     <title>JS Engine Switcher: V8 for Windows (x64)</title>
     <authors>Andrey Taritsyn</authors>
     <owners>Andrey Taritsyn</owners>
@@ -12,7 +12,7 @@
     <repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This package complements the JavaScriptEngineSwitcher.V8 package and contains the native implementation of V8 version 8.6.395.17 for Windows (x64).</description>
-    <releaseNotes>Microsoft ClearScript.V8 was updated to version 7.0 RC2.</releaseNotes>
+    <releaseNotes>Microsoft ClearScript.V8 was updated to version 7.0 RC3.</releaseNotes>
     <copyright>Copyright © 2013-2020 Andrey Taritsyn</copyright>
     <language>en-US</language>
     <tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript Windows x64</tags>

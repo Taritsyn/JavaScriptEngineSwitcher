@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: V8 for Windows x64 v3.8.1
+             README file for JS Engine Switcher: V8 for Windows x64 v3.8.2
 
    --------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 7.0 RC2.
+   Microsoft ClearScript.V8 was updated to version 7.0 RC3.
 
    =============
    DOCUMENTATION
