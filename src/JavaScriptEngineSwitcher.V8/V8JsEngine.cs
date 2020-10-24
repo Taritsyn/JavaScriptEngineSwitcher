@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -67,16 +68,6 @@ namespace JavaScriptEngineSwitcher.V8
 			new Regex(@"^Cannot load ClearScript V8 library. " +
 				"Load failure information for (?<assemblyFileName>" + CommonRegExps.DocumentNamePattern + "):");
 
-		/// <summary>
-		/// Synchronizer of JS engine initialization
-		/// </summary>
-		private static readonly object _initializationSynchronizer = new object();
-
-		/// <summary>
-		/// Flag indicating whether the JS engine is initialized
-		/// </summary>
-		private static bool _initialized;
-
 
 		/// <summary>
 		/// Constructs an instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
@@ -91,8 +82,6 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <param name="settings">Settings of the V8 JS engine</param>
 		public V8JsEngine(V8Settings settings)
 		{
-			Initialize();
-
 			V8Settings v8Settings = settings ?? new V8Settings();
 
 			var constraints = new OriginalRuntimeConstraints
@@ -123,14 +112,16 @@ namespace JavaScriptEngineSwitcher.V8
 
 			try
 			{
-				_jsEngine = new OriginalEngine(constraints, flags, debugPort);
-				_jsEngine.MaxRuntimeHeapSize = v8Settings.MaxHeapSize;
-				_jsEngine.RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval;
-				_jsEngine.MaxRuntimeStackUsage = v8Settings.MaxStackUsage;
+				_jsEngine = new OriginalEngine(constraints, flags, debugPort)
+				{
+					MaxRuntimeHeapSize = v8Settings.MaxHeapSize,
+					RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval,
+					MaxRuntimeStackUsage = v8Settings.MaxStackUsage
+				};
 			}
-			catch (TypeLoadException e)
+			catch (DllNotFoundException e)
 			{
-				throw WrapTypeLoadException(e);
+				throw WrapDllNotFoundException(e);
 			}
 			catch (Exception e)
 			{
@@ -138,29 +129,6 @@ namespace JavaScriptEngineSwitcher.V8
 			}
 		}
 
-
-		/// <summary>
-		/// Initializes a JS engine
-		/// </summary>
-		private static void Initialize()
-		{
-			if (_initialized)
-			{
-				return;
-			}
-
-			lock (_initializationSynchronizer)
-			{
-				if (_initialized)
-				{
-					return;
-				}
-
-				AssemblyResolver.Initialize();
-
-				_initialized = true;
-			}
-		}
 
 		#region Mapping
 
@@ -312,34 +280,77 @@ namespace JavaScriptEngineSwitcher.V8
 			return wrapperInterruptedException;
 		}
 
-		private static WrapperEngineLoadException WrapTypeLoadException(
-			TypeLoadException originalTypeLoadException)
+		private static WrapperEngineLoadException WrapDllNotFoundException(
+			DllNotFoundException originalDllNotFoundException)
 		{
-			string originalMessage = originalTypeLoadException.Message;
+			string originalMessage = originalDllNotFoundException.Message;
 			string description;
 			string message;
 
-			Match errorMessageMatch = _libraryLoadErrorMessage.Match(originalMessage);
-			if (errorMessageMatch.Success)
+			if (originalMessage.ContainsQuotedValue(DllName.Universal))
 			{
-				string assemblyFileName = errorMessageMatch.Groups["assemblyFileName"].Value;
+				Architecture osArchitecture = RuntimeInformation.OSArchitecture;
 
 				var stringBuilderPool = StringBuilderPool.Shared;
 				StringBuilder descriptionBuilder = stringBuilderPool.Rent();
-				descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, assemblyFileName);
-				descriptionBuilder.Append(" ");
-				if (assemblyFileName == DllName.ForWindows64Bit || assemblyFileName == DllName.ForWindows32Bit)
+				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 				{
-					descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
-						assemblyFileName == DllName.ForWindows64Bit ?
-							"JavaScriptEngineSwitcher.V8.Native.win-x64"
-							:
-							"JavaScriptEngineSwitcher.V8.Native.win-x86"
+					descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForWindows);
+					descriptionBuilder.Append(" ");
+					if (osArchitecture == Architecture.X64 || osArchitecture == Architecture.X86)
+					{
+						descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+							Utils.Is64BitProcess() ?
+								"JavaScriptEngineSwitcher.V8.Native.win-x64"
+								:
+								"JavaScriptEngineSwitcher.V8.Native.win-x86"
 						);
+					}
+					else
+					{
+						descriptionBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
+							"JavaScriptEngineSwitcher.V8.Native.win*",
+							osArchitecture.ToString().ToLowerInvariant()
+						);
+					}
+				}
+				else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+				{
+					descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForLinux);
+					descriptionBuilder.Append(" ");
+					if (osArchitecture == Architecture.X64)
+					{
+						descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+							"JavaScriptEngineSwitcher.V8.Native.linux-x64");
+					}
+					else
+					{
+						descriptionBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
+							"JavaScriptEngineSwitcher.V8.Native.linux-*",
+							osArchitecture.ToString().ToLowerInvariant()
+						);
+					}
+				}
+				else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+				{
+					descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, DllName.ForOsx);
+					descriptionBuilder.Append(" ");
+					if (osArchitecture == Architecture.X64)
+					{
+						descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+							"JavaScriptEngineSwitcher.V8.Native.osx-x64");
+					}
+					else
+					{
+						descriptionBuilder.AppendFormat(CoreStrings.Engine_NoNuGetPackageForProcessorArchitecture,
+							"JavaScriptEngineSwitcher.V8.Native.osx-*",
+							osArchitecture.ToString().ToLowerInvariant()
+						);
+					}
 				}
 				else
 				{
-					descriptionBuilder.AppendFormat(CoreStrings.Common_SeeOriginalErrorMessage, originalMessage);
+					descriptionBuilder.Append(CoreStrings.Engine_OperatingSystemNotSupported);
 				}
 
 				description = descriptionBuilder.ToString();
@@ -354,7 +365,7 @@ namespace JavaScriptEngineSwitcher.V8
 			}
 
 			var wrapperEngineLoadException = new WrapperEngineLoadException(message, EngineName, EngineVersion,
-				originalTypeLoadException)
+				originalDllNotFoundException)
 			{
 				Description = description
 			};

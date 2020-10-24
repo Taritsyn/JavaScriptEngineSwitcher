@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: V8 for Windows x64 v3.8.2
+         README file for JS Engine Switcher: V8 for Windows x64 v3.9.0 Preview
 
    --------------------------------------------------------------------------------
 
@@ -13,11 +13,6 @@
    ===========
    This package complements the JavaScriptEngineSwitcher.V8 package and contains
    the native implementation of V8 version 8.6.395.17 for Windows (x64).
-
-   =============
-   RELEASE NOTES
-   =============
-   Microsoft ClearScript.V8 was updated to version 7.0 RC3.
 
    =============
    DOCUMENTATION

@@ -6,7 +6,8 @@
 	internal static class DllName
 	{
 		public const string Universal = "ClearScriptV8";
-		public const string ForWindows32Bit = Universal + "-32.dll";
-		public const string ForWindows64Bit = Universal + "-64.dll";
+		public const string ForWindows = Universal + ".dll";
+		public const string ForLinux = Universal + ".so";
+		public const string ForOsx = Universal + ".dylib";
 	}
 }

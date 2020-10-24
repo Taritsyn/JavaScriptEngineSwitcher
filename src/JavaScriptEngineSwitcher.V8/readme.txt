@@ -21,11 +21,17 @@
 
     * JavaScriptEngineSwitcher.V8.Native.win-x86
     * JavaScriptEngineSwitcher.V8.Native.win-x64
+    * JavaScriptEngineSwitcher.V8.Native.linux-x64
+    * JavaScriptEngineSwitcher.V8.Native.osx-x64
 
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 7.0 RC3.
+   1. Cross-platform is implemented by using an unofficial experimental version of
+      the Microsoft ClearScript.V8 (https://github.com/Taritsyn/ClearScript-Experimental)
+      library, which is not targeted at any particular operating system or processor
+      architecture, and can work with various native assemblies;
+   2. Added a packages, that contains a native assemblies for Linux (x64) and OS X (x64).
 
    =============
    DOCUMENTATION

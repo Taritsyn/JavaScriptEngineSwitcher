@@ -4,7 +4,7 @@ if ($project.Type -eq "Web Site") {
 	$runtimeDirectoryPath = Join-Path $installPath "runtimes/win-x86/"
 	$projectDirectoryPath = $project.Properties.Item("FullPath").Value
 	$binDirectoryPath = Join-Path $projectDirectoryPath "bin"
-	$assemblyFileName = "ClearScriptV8-32.dll"
+	$assemblyFileName = "ClearScriptV8.dll"
 
 	$assemblyDestDirectoryPath = Join-Path $binDirectoryPath "x86"
 	if (!(Test-Path $assemblyDestDirectoryPath)) {

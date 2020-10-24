@@ -1337,6 +1337,26 @@
             <see cref="T:Microsoft.ClearScript.StringDocument"/> instances return <see cref="P:System.Text.Encoding.UTF8"/> for this property.
             </remarks>
         </member>
+        <member name="T:Microsoft.ClearScript.V8.V8AssemblyResolver">
+            <summary>
+            V8 assembly resolver
+            </summary>
+        </member>
+        <member name="F:Microsoft.ClearScript.V8.V8AssemblyResolver._initializationSynchronizer">
+            <summary>
+            Synchronizer of V8 assembly resolver initialization
+            </summary>
+        </member>
+        <member name="F:Microsoft.ClearScript.V8.V8AssemblyResolver._initialized">
+            <summary>
+            Flag indicating whether the V8 assembly resolver is initialized
+            </summary>
+        </member>
+        <member name="M:Microsoft.ClearScript.V8.V8AssemblyResolver.Initialize">
+            <summary>
+            Initialize a V8 assembly resolver
+            </summary>
+        </member>
         <member name="T:Microsoft.ClearScript.V8.V8CacheKind">
             <summary>
             Defines caching options for V8 script compilation.
