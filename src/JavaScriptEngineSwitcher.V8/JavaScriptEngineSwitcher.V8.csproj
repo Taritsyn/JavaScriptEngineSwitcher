@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: V8</Product>
     <VersionPrefix>3.9.0</VersionPrefix>
-    <VersionSuffix>preview</VersionSuffix>
+    <VersionSuffix>preview2</VersionSuffix>
     <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>

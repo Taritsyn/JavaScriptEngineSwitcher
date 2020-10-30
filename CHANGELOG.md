@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.9.0 Preview 2 - October 30, 2020
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.0 RC4 (support of V8 version 8.7.220.10)
+
 ## v3.9.0 Preview - October 24, 2020
  * In JavaScriptEngineSwitcher.V8:
    * Cross-platform is implemented by using an [unofficial experimental version of the Microsoft ClearScript.V8](https://github.com/Taritsyn/ClearScript-Experimental) library, which is not targeted at any particular operating system or processor architecture, and can work with various native assemblies
