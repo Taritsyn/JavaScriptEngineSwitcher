@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>JavaScriptEngineSwitcher.V8.Native.osx-x64</id>
-    <version>3.9.0-preview</version>
+    <version>3.9.0-preview2</version>
     <title>JS Engine Switcher: V8 for OS X (x64)</title>
     <authors>Andrey Taritsyn</authors>
     <owners>Andrey Taritsyn</owners>
@@ -11,9 +11,10 @@
     <icon>icon.png</icon>
     <repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>This package complements the JavaScriptEngineSwitcher.V8 package and contains the native implementation of V8 version 8.6.395.17 for OS X (x64).
+    <description>This package complements the JavaScriptEngineSwitcher.V8 package and contains the native implementation of V8 version 8.7.220.10 for OS X (x64).
 
 This package is only compatible with .NET Core.</description>
+    <releaseNotes>Microsoft ClearScript.V8 was updated to version 7.0 RC4 (support of V8 version 8.7.220.10).</releaseNotes>
     <copyright>Copyright © 2013-2020 Andrey Taritsyn</copyright>
     <language>en-US</language>
     <tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript macOS OSX x64</tags>
