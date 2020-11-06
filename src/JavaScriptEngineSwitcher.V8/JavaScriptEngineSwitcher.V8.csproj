@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: V8</Product>
     <VersionPrefix>3.9.0</VersionPrefix>
-    <VersionSuffix>preview2</VersionSuffix>
+    <VersionSuffix>preview3</VersionSuffix>
     <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -20,7 +20,8 @@ This package does not contain the native ClearScript.V8 assemblies. Therefore, y
  * Microsoft.ClearScript.V8.Native.osx-x64</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;V8;ClearScript</PackageTags>
-    <PackageReleaseNotes>Microsoft ClearScript.V8 was updated to version 7.0 RC5.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Microsoft ClearScript.V8 was updated to version 7.0 RC5 (support of V8 version 8.7.220.16);
+2. Own versions of the ClearScript's assemblies are no longer build, because the official NuGet package is now used. Therefore, you should also replace in your projects the `JavaScriptEngineSwitcher.V8.Native.*` packages by the `Microsoft.ClearScript.V8.Native.*` packages.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />

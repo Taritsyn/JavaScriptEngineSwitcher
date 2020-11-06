@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: V8 v3.9.0 Preview 2
+                README file for JS Engine Switcher: V8 v3.9.0 Preview 3
 
    --------------------------------------------------------------------------------
 
@@ -27,7 +27,12 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 7.0 RC5.
+   1. Microsoft ClearScript.V8 was updated to version 7.0 RC5 (support of V8
+      version 8.7.220.16);
+   2. Own versions of the ClearScript's assemblies are no longer build, because the
+      official NuGet package is now used. Therefore, you should also replace in
+      your projects the `JavaScriptEngineSwitcher.V8.Native.*` packages by the
+      `Microsoft.ClearScript.V8.Native.*` packages.
 
    =============
    DOCUMENTATION

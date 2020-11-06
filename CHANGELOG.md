@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.9.0 Preview 3 - November 6, 2020
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.0 RC5 (support of V8 version 8.7.220.16)
+   * Own versions of the ClearScript's assemblies are no longer build, because the [official NuGet package](https://www.nuget.org/packages/Microsoft.ClearScript.V8) is now used. Therefore, you should also replace in your projects the `JavaScriptEngineSwitcher.V8.Native.*` packages by the `Microsoft.ClearScript.V8.Native.*` packages.
+
 ## v3.9.0 Preview 2 - October 30, 2020
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.0 RC4 (support of V8 version 8.7.220.10)
 
