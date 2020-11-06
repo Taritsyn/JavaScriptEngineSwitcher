@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: V8 for Linux x64 v3.9.0 Preview 2
+         README file for JS Engine Switcher: V8 for Linux x64 v3.9.0 Preview 3
 
    --------------------------------------------------------------------------------
 
@@ -11,16 +11,14 @@
    ===========
    DESCRIPTION
    ===========
-   This package complements the JavaScriptEngineSwitcher.V8 package and contains
-   the native implementation of V8 version 8.7.220.10 for Linux (x64).
-
-   This package is only compatible with .NET Core.
+   This package is deprecated. Instead, it is recommended to use a
+   'Microsoft.ClearScript.V8.Native.linux-x64' package.
 
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 7.0 RC4 (support of V8 version
-   8.7.220.10).
+   Microsoft ClearScript.V8 was updated to version 7.0 RC5 (support of V8 version
+   8.7.220.16).
 
    =============
    DOCUMENTATION
