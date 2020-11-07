@@ -1,7 +1,7 @@
 {
   "name": "jsengineswitcher.sample.aspnetcore31.mvc31",
   "private": true,
-  "version": "3.8.3",
+  "version": "3.8.4",
   "devDependencies": {
     "gulp": "4.0.2",
     "del": "5.1.0",
