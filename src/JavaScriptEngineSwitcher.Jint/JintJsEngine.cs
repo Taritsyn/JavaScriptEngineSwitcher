@@ -4,7 +4,9 @@ using System.Threading;
 
 using Jint;
 using IOriginalPrimitiveInstance = Jint.Native.IPrimitiveInstance;
+using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
 using OriginalEngine = Jint.Engine;
+using OriginalExecutionCanceledException = Jint.Runtime.ExecutionCanceledException;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
@@ -63,7 +65,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Constraint for canceling of script execution
 		/// </summary>
-		private CustomCancellationConstraint _cancellationConstraint;
+		private OriginalCancellationConstraint _cancellationConstraint;
 
 		/// <summary>
 		/// Synchronizer of code execution
@@ -91,7 +93,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		public JintJsEngine(JintSettings settings)
 		{
 			_cancellationTokenSource = new CancellationTokenSource();
-			_cancellationConstraint = new CustomCancellationConstraint(_cancellationTokenSource.Token);
+			_cancellationConstraint = new OriginalCancellationConstraint(_cancellationTokenSource.Token);
 
 			JintSettings jintSettings = settings ?? new JintSettings();
 
@@ -100,6 +102,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				_jsEngine = new OriginalEngine(options => {
 					options
 						.AllowDebuggerStatement(jintSettings.AllowDebuggerStatement)
+						.WithoutConstraint(c => c is OriginalCancellationConstraint)
 						.Constraint(_cancellationConstraint)
 						.DebugMode(jintSettings.EnableDebugging)
 						.LimitMemory(jintSettings.MemoryLimit)
@@ -301,7 +304,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
 					originalRuntimeException);
 			}
-			else if (originalRuntimeException is ScriptExecutionCanceledException)
+			else if (originalRuntimeException is OriginalExecutionCanceledException)
 			{
 				_cancellationTokenSource = new CancellationTokenSource();
 				_cancellationConstraint.Reset(_cancellationTokenSource.Token);

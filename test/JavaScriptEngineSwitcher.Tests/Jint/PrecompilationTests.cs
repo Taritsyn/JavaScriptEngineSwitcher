@@ -101,7 +101,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Runtime error", exception.Category);
-			Assert.Equal("items is null", exception.Description);
+			Assert.Equal("Cannot read property 'items' of null", exception.Description);
 			Assert.Equal("TypeError", exception.Type);
 			Assert.Equal("get-item.js", exception.DocumentName);
 			Assert.Equal(2, exception.LineNumber);
