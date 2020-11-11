@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.8.5 - November 11, 2020
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.23 ([Tomáš Deml's patch](https://github.com/microsoft/ChakraCore/issues/5973) applied)
+
 ## v3.8.4 - November 7, 2020
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 1914
 
