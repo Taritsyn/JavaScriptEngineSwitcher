@@ -53,7 +53,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.11.22";
+		private const string EngineVersion = "1.11.23";
 
 		/// <summary>
 		/// Instance of JS runtime
@@ -564,10 +564,14 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 								"JavaScriptEngineSwitcher.ChakraCore.Native.win-x86"
 						);
 					}
-					else if (osArchitecture == Architecture.Arm)
+					else if (osArchitecture == Architecture.Arm64 || osArchitecture == Architecture.Arm)
 					{
 						descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
-							"JavaScriptEngineSwitcher.ChakraCore.Native.win-arm");
+							Utils.Is64BitProcess() ?
+								"JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64"
+								:
+								"JavaScriptEngineSwitcher.ChakraCore.Native.win-arm"
+						);
 					}
 					else
 					{

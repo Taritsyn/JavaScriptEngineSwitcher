@@ -40,17 +40,17 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			Architecture architecture = RuntimeInformation.OSArchitecture;
 			string platform;
 
-			if (architecture == Architecture.Arm)
+			if (architecture == Architecture.X64 || architecture == Architecture.X86)
 			{
-				platform = "arm";
+				platform = Utils.Is64BitProcess() ? "x64" : "x86";
 			}
-			else if (architecture == Architecture.Arm64)
+			else if (architecture == Architecture.Arm64 || architecture == Architecture.Arm)
 			{
-				platform = "arm64";
+				platform = Utils.Is64BitProcess() ? "arm64" : "arm";
 			}
 			else
 			{
-				platform = Utils.Is64BitProcess() ? "x64" : "x86";
+				return;
 			}
 
 			string assemblyFileName = DllName.ForWindows;

@@ -31,8 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version 1.11.22 (Tomáš Deml's patch applied);
-   2. Added a experimental support of Windows (ARM64).
+   ChakraCore was updated to version 1.11.23 (Tomáš Deml's patch applied).
 
    =============
    DOCUMENTATION
