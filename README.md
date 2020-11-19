@@ -32,9 +32,11 @@ This library can be installed through NuGet:
  * [JS Engine Switcher: MSIE](http://nuget.org/packages/JavaScriptEngineSwitcher.Msie) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Standard 1.3 and .NET Standard 2.0)
  * [JS Engine Switcher: NiL](http://nuget.org/packages/JavaScriptEngineSwitcher.NiL) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Framework 4.6.1, .NET Standard 1.3, .NET Standard 1.6 and .NET Standard 2.0)
  * [JS Engine Switcher: Node](http://nuget.org/packages/JavaScriptEngineSwitcher.Node) (supports .NET Framework 4.6.1 and .NET Standard 2.0)
- * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8) (supports .NET Framework 4.5 and .NET Core App 3.1)
-   * [Windows (x86)](http://nuget.org/packages/JavaScriptEngineSwitcher.V8.Native.win-x86)
-   * [Windows (x64)](http://nuget.org/packages/JavaScriptEngineSwitcher.V8.Native.win-x64)
+ * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8) (supports .NET Framework 4.5, .NET Framework 4.7.1, .NET Core App 3.1 and .NET 5.0)
+   * [Microsoft ClearScript.V8 for Windows (x86)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-x86)
+   * [Microsoft ClearScript.V8 for Windows (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-x64)
+   * [Microsoft ClearScript.V8 for Linux (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.linux-x64)
+   * [Microsoft ClearScript.V8 for OS X (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.osx-x64)
  * [JS Engine Switcher: Vroom](http://nuget.org/packages/JavaScriptEngineSwitcher.Vroom) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Framework 4.7.1, .NET Standard 1.6 and .NET Standard 2.0)
 
 If you have used the JavaScript Engine Switcher version 2.X, then I recommend to first read [“How to upgrade applications to version 3.X”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/How-to-upgrade-applications-to-version-3.X) section of the documentation.
