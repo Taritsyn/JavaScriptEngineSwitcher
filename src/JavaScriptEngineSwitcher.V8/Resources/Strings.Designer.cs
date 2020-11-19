@@ -58,14 +58,6 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Failed to set the '{0}' deployment subdirectory to the V8 proxy."
-		/// </summary>
-		internal static string Engines_SettingDeploymentDirectoryToV8ProxyFailed
-		{
-			get { return GetString("Engines_SettingDeploymentDirectoryToV8ProxyFailed"); }
-		}
-
-		/// <summary>
 		/// Looks up a localized string similar to "Pre-compiled script is not accepted. To be accepted, the pre-compiled script must have been created..."
 		/// </summary>
 		internal static string Usage_PrecompiledScriptNotAccepted

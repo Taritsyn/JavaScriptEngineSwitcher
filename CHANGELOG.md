@@ -7,8 +7,21 @@ Change log
 ## v3.8.4 - November 7, 2020
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 1914
 
+## v3.9.0 Preview 3 - November 6, 2020
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.0 RC5 (support of V8 version 8.7.220.16)
+   * Own versions of the ClearScript's assemblies are no longer build, because the [official NuGet package](https://www.nuget.org/packages/Microsoft.ClearScript.V8) is now used. Therefore, you should also replace in your projects the `JavaScriptEngineSwitcher.V8.Native.*` packages by the `Microsoft.ClearScript.V8.Native.*` packages.
+
+## v3.9.0 Preview 2 - October 30, 2020
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.0 RC4 (support of V8 version 8.7.220.10)
+
 ## v3.8.3 - October 29, 2020
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.0 RC4 (support of V8 version 8.7.220.10)
+
+## v3.9.0 Preview - October 24, 2020
+ * In JavaScriptEngineSwitcher.V8:
+   * Cross-platform is implemented by using an [unofficial experimental version of the Microsoft ClearScript.V8](https://github.com/Taritsyn/ClearScript-Experimental) library, which is not targeted at any particular operating system or processor architecture, and can work with various native assemblies
+   * Added a packages, that contains a native assemblies for Linux (x64) and OS X (x64)
 
 ## v3.8.2 - October 23, 2020
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.0 RC3

@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Engines_SettingDeploymentDirectoryToV8ProxyFailed" xml:space="preserve">
-    <value>Не удалось указать поддиректорию развертывания "{0}" для V8-прокси!</value>
-  </data>
   <data name="Usage_PrecompiledScriptNotAccepted" xml:space="preserve">
     <value>Предварительно скомпилированный сценарий не принят! Чтобы быть принятым, предварительно скомпилированный сценарий должен быть создан той же сборкой V8.</value>
   </data>

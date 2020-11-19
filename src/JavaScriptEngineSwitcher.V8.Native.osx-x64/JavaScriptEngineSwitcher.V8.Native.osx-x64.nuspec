@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>JavaScriptEngineSwitcher.V8.Native.osx-x64</id>
+    <version>3.9.0</version>
+    <title>JS Engine Switcher: V8 for OS X (x64)</title>
+    <authors>Andrey Taritsyn</authors>
+    <owners>Andrey Taritsyn</owners>
+    <license type="file">LICENSE.txt</license>
+    <projectUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
+    <icon>icon.png</icon>
+    <repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This package is deprecated. Instead, it is recommended to use a 'Microsoft.ClearScript.V8.Native.osx-x64' package.</description>
+    <releaseNotes>Microsoft ClearScript.V8 was updated to version 7.0 (support of V8 version 8.7.220.25).</releaseNotes>
+    <copyright>Copyright © 2013-2020 Andrey Taritsyn</copyright>
+    <language>en-US</language>
+    <tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript macOS OSX x64</tags>
+    <dependencies>
+      <dependency id="Microsoft.ClearScript.V8.Native.osx-x64" version="7.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png" target="icon.png" />
+    <file src="../../LICENSE.txt" target="LICENSE.txt" />
+    <file src="../../Licenses/clearscript-license.txt" target="clearscript-license.txt" />
+    <file src="../../Licenses/v8-license.txt" target="v8-license.txt" />
+    <file src="readme.txt" />
+  </files>
+</package>

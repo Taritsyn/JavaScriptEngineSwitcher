@@ -1,4 +1,4 @@
-﻿#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1
+﻿#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1 || NET5_0
 using Xunit;
 
 namespace JavaScriptEngineSwitcher.Tests.Node

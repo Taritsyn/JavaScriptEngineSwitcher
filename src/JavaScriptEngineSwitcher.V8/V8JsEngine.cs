@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -29,7 +30,6 @@ using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException
 using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
 using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
 
-using JavaScriptEngineSwitcher.V8.Constants;
 using JavaScriptEngineSwitcher.V8.Resources;
 
 namespace JavaScriptEngineSwitcher.V8
@@ -47,7 +47,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "8.7.220.10";
+		private const string EngineVersion = "8.7.220.25";
 
 		/// <summary>
 		/// V8 JS engine
@@ -68,14 +68,15 @@ namespace JavaScriptEngineSwitcher.V8
 				"Load failure information for (?<assemblyFileName>" + CommonRegExps.DocumentNamePattern + "):");
 
 		/// <summary>
-		/// Synchronizer of JS engine initialization
+		/// Mapping of native assemblies and NuGet packages
 		/// </summary>
-		private static readonly object _initializationSynchronizer = new object();
-
-		/// <summary>
-		/// Flag indicating whether the JS engine is initialized
-		/// </summary>
-		private static bool _initialized;
+		private static readonly Dictionary<string, string> _nativeAssemblyPackageMap = new Dictionary<string, string>
+		{
+			{ "ClearScriptV8.win-x86.dll", "Microsoft.ClearScript.V8.Native.win-x86" },
+			{ "ClearScriptV8.win-x64.dll", "Microsoft.ClearScript.V8.Native.win-x64" },
+			{ "ClearScriptV8.linux-x64.so", "Microsoft.ClearScript.V8.Native.linux-x64" },
+			{ "ClearScriptV8.osx-x64.dylib", "Microsoft.ClearScript.V8.Native.osx-x64" }
+		};
 
 
 		/// <summary>
@@ -91,8 +92,6 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <param name="settings">Settings of the V8 JS engine</param>
 		public V8JsEngine(V8Settings settings)
 		{
-			Initialize();
-
 			V8Settings v8Settings = settings ?? new V8Settings();
 
 			var constraints = new OriginalRuntimeConstraints
@@ -123,10 +122,12 @@ namespace JavaScriptEngineSwitcher.V8
 
 			try
 			{
-				_jsEngine = new OriginalEngine(constraints, flags, debugPort);
-				_jsEngine.MaxRuntimeHeapSize = v8Settings.MaxHeapSize;
-				_jsEngine.RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval;
-				_jsEngine.MaxRuntimeStackUsage = v8Settings.MaxStackUsage;
+				_jsEngine = new OriginalEngine(constraints, flags, debugPort)
+				{
+					MaxRuntimeHeapSize = v8Settings.MaxHeapSize,
+					RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval,
+					MaxRuntimeStackUsage = v8Settings.MaxStackUsage
+				};
 			}
 			catch (TypeLoadException e)
 			{
@@ -138,29 +139,6 @@ namespace JavaScriptEngineSwitcher.V8
 			}
 		}
 
-
-		/// <summary>
-		/// Initializes a JS engine
-		/// </summary>
-		private static void Initialize()
-		{
-			if (_initialized)
-			{
-				return;
-			}
-
-			lock (_initializationSynchronizer)
-			{
-				if (_initialized)
-				{
-					return;
-				}
-
-				AssemblyResolver.Initialize();
-
-				_initialized = true;
-			}
-		}
 
 		#region Mapping
 
@@ -328,14 +306,11 @@ namespace JavaScriptEngineSwitcher.V8
 				StringBuilder descriptionBuilder = stringBuilderPool.Rent();
 				descriptionBuilder.AppendFormat(CoreStrings.Engine_AssemblyNotFound, assemblyFileName);
 				descriptionBuilder.Append(" ");
-				if (assemblyFileName == DllName.ForWindows64Bit || assemblyFileName == DllName.ForWindows32Bit)
+
+				string packageName;
+				if (_nativeAssemblyPackageMap.TryGetValue(assemblyFileName, out packageName))
 				{
-					descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
-						assemblyFileName == DllName.ForWindows64Bit ?
-							"JavaScriptEngineSwitcher.V8.Native.win-x64"
-							:
-							"JavaScriptEngineSwitcher.V8.Native.win-x86"
-						);
+					descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired, packageName);
 				}
 				else
 				{

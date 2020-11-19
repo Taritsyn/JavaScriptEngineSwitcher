@@ -12,7 +12,7 @@ using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.Node;
-#if NET461 || NETCOREAPP3_1
+#if NET461 || NETCOREAPP3_1 || NET5_0
 using JavaScriptEngineSwitcher.V8;
 #endif
 using JavaScriptEngineSwitcher.Vroom;
@@ -237,7 +237,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new NodeJsEngine();
 			RenderTemplates(createJsEngine, false);
 		}
-#if NET461 || NETCOREAPP3_1
+#if NET461 || NETCOREAPP3_1 || NET5_0
 
 		[Benchmark]
 		[Arguments(false)]
