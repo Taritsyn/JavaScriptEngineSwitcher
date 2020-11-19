@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## v3.9.0 - November 19, 2020
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.0 (support of V8 version 8.7.220.25)
+   * Added support of .NET Framework 4.7.1 and .NET 5.0
+   * Added support of Linux (x64) and OS X (x64)
+   * Own versions of the ClearScript's assemblies are no longer build, because the [official NuGet package](https://www.nuget.org/packages/Microsoft.ClearScript.V8) is now used. Therefore, you should also replace in your projects the `JavaScriptEngineSwitcher.V8.Native.*` packages by the `Microsoft.ClearScript.V8.Native.*` packages.
+
 ## v3.8.5 - November 11, 2020
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.23 ([Tomáš Deml's patch](https://github.com/microsoft/ChakraCore/issues/5973) applied)
 
