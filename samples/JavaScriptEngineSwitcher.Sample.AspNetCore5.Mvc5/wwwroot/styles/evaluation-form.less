@@ -1,0 +1,91 @@
+﻿//
+// Evaluation form
+// --------------------------------------------------
+
+
+.evaluation-form {
+  .clearfix();
+
+  textarea {
+    height: 200px;
+  }
+}
+
+.evaluation-input-output {
+  float: left;
+  width: 65%;
+}
+
+.evaluation-input-clear-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  margin: 6px;
+  display: inline-block;
+  background: transparent url("../images/clear-text.png") no-repeat scroll 0 0;
+  opacity: 0.75;
+  line-height: 0;
+  vertical-align: bottom;
+  cursor: pointer;
+
+  &:hover {
+   opacity: 1;
+ }
+}
+
+.evaluation-input-clear-button.with-scrollbar {
+  margin-right: 29px;
+}
+
+.evaluation-output {
+  margin-top: 1.5em;
+}
+
+.evaluation-input-field,
+.evaluation-output-field {
+  margin-bottom: 0.5em;
+  .box-sizing(border-box);
+  overflow-x: hidden;
+  line-height: @line-height-computed;
+}
+
+.evaluation-output-field {
+  &[readonly] {
+    cursor: auto;
+    background-color: @input-bg;
+  }
+}
+
+.evaluation-error-header {
+  margin-bottom: @line-height-computed;
+  padding-left: 52px;
+  background: transparent url("../images/icons/48x48/error.png") no-repeat scroll 0 50%;
+  color: @black;
+  font-family: @font-family-sans-serif;
+  font-weight: bold;
+  line-height: 48px;
+  vertical-align: middle;
+}
+
+ul.evaluation-error-list,
+ul.evaluation-warning-list {
+  li {
+    margin-bottom: 1em;
+
+    pre {
+      margin-top: 0.5em;
+      white-space: pre;
+      overflow: auto;
+    }
+  }
+}
+
+ul.evaluation-error-list li pre {
+  background-color: @state-danger-bg;
+}
+
+ul.evaluation-warning-list li pre {
+  background-color: @state-warning-bg;
+}
