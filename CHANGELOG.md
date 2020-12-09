@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.9.1 - December 9, 2020
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.24 ([Tomáš Deml's patch](https://github.com/microsoft/ChakraCore/issues/5973) applied)
+
 ## v3.9.0 - November 19, 2020
  * In JavaScriptEngineSwitcher.V8:
    * Microsoft ClearScript.V8 was updated to version 7.0 (support of V8 version 8.7.220.25)
