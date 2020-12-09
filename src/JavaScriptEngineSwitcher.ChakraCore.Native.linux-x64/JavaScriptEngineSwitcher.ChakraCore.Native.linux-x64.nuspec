@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64</id>
-    <version>3.8.5</version>
+    <version>3.9.1</version>
     <title>JS Engine Switcher: ChakraCore for Linux (x64)</title>
     <authors>Andrey Taritsyn</authors>
     <owners>Andrey Taritsyn</owners>
@@ -11,10 +11,10 @@
     <icon>icon.png</icon>
     <repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.11.23 with the Tomáš Deml's patch for Linux (x64).
+    <description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.11.24 with the Tomáš Deml's patch for Linux (x64).
 
 This package is only compatible with .NET Core.</description>
-    <releaseNotes>ChakraCore was updated to version 1.11.23 (Tomáš Deml's patch applied).</releaseNotes>
+    <releaseNotes>ChakraCore was updated to version 1.11.24 (Tomáš Deml's patch applied).</releaseNotes>
     <copyright>Copyright © 2013-2020 Andrey Taritsyn</copyright>
     <language>en-US</language>
     <tags>JavaScriptEngineSwitcher JavaScript ECMAScript ChakraCore Linux x64</tags>

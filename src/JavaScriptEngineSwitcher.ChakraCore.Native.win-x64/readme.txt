@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: ChakraCore for Windows x64 v3.8.5
+         README file for JS Engine Switcher: ChakraCore for Windows x64 v3.9.1
 
    --------------------------------------------------------------------------------
 
@@ -12,13 +12,13 @@
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.ChakraCore package and
-   contains the native implementation of ChakraCore version 1.11.23 with the Tomáš
+   contains the native implementation of ChakraCore version 1.11.24 with the Tomáš
    Deml's patch for Windows (x64).
 
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.23 (Tomáš Deml's patch applied).
+   ChakraCore was updated to version 1.11.24 (Tomáš Deml's patch applied).
 
    =============
    DOCUMENTATION
