@@ -5,15 +5,13 @@ using System.Text;
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Utilities;
-#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1 || NET5_0
+#if !NET452
 using JavaScriptEngineSwitcher.Jint;
 #endif
-#if !NETCOREAPP1_0
 using JavaScriptEngineSwitcher.Jurassic;
-#endif
 using JavaScriptEngineSwitcher.Msie;
 using JavaScriptEngineSwitcher.NiL;
-#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1 || NET5_0
+#if !NET452
 using JavaScriptEngineSwitcher.Node;
 #endif
 #if NETFULL || NETCOREAPP3_1 || NET5_0
@@ -38,18 +36,16 @@ namespace JavaScriptEngineSwitcher.Tests
 #endif
 				JsEngineSwitcher.Current.EngineFactories
 					.AddChakraCore()
-#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1 || NET5_0
+#if !NET452
 					.AddJint()
 #endif
-#if !NETCOREAPP1_0
 					.AddJurassic()
-#endif
 					.AddMsie(new MsieSettings
 					{
 						EngineMode = JsEngineMode.ChakraIeJsRt
 					})
 					.AddNiL()
-#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1 || NET5_0
+#if !NET452
 					.AddNode()
 #endif
 #if NETFULL || NETCOREAPP3_1 || NET5_0

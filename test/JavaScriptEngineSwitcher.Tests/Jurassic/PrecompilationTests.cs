@@ -1,5 +1,4 @@
-﻿#if !NETCOREAPP1_0
-using System;
+﻿using System;
 
 using Xunit;
 
@@ -208,4 +207,3 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 		#endregion
 	}
 }
-#endif

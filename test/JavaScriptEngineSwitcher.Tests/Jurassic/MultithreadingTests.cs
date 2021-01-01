@@ -1,5 +1,4 @@
-﻿#if !NETCOREAPP1_0
-namespace JavaScriptEngineSwitcher.Tests.Jurassic
+﻿namespace JavaScriptEngineSwitcher.Tests.Jurassic
 {
 	public class MultithreadingTests : MultithreadingTestsBase
 	{
@@ -9,4 +8,3 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 		}
 	}
 }
-#endif

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-#if !NETCOREAPP1_0
 using System.Drawing;
-#endif
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,9 +11,6 @@ using JavaScriptEngineSwitcher.Core;
 
 using JavaScriptEngineSwitcher.Tests.Interop;
 using JavaScriptEngineSwitcher.Tests.Interop.Animals;
-#if NETCOREAPP1_0
-using JavaScriptEngineSwitcher.Tests.Interop.Drawing;
-#endif
 using JavaScriptEngineSwitcher.Tests.Interop.Logging;
 
 namespace JavaScriptEngineSwitcher.Tests

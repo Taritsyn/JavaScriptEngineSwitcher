@@ -1,4 +1,4 @@
-﻿#if NET471 || NETCOREAPP2_1 || NETCOREAPP3_1 || NET5_0
+﻿#if !NET452
 namespace JavaScriptEngineSwitcher.Tests.Node
 {
 	public class Es5Tests : Es5TestsBase
