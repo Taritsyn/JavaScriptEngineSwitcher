@@ -9,20 +9,20 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-    <Description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version 7.0).
+    <Description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version 7.1).
 
 This package does not contain the native ClearScript.V8 assemblies. Therefore, you need to choose and install the most appropriate package(s) for your platform. The following packages are available:
 
  * Microsoft.ClearScript.V8.Native.win-x86
  * Microsoft.ClearScript.V8.Native.win-x64
+ * Microsoft.ClearScript.V8.Native.win-arm64
  * Microsoft.ClearScript.V8.Native.linux-x64
+ * Microsoft.ClearScript.V8.Native.linux-arm64
  * Microsoft.ClearScript.V8.Native.osx-x64</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;V8;ClearScript</PackageTags>
-    <PackageReleaseNotes>1. Microsoft ClearScript.V8 was updated to version 7.0;
-2. Added support of .NET Framework 4.7.1 and .NET 5.0;
-3. Added support of Linux (x64) and OS X (x64);
-4. Own versions of the ClearScript's assemblies are no longer build, because the official NuGet package is now used. Therefore, you should also replace in your projects the `JavaScriptEngineSwitcher.V8.Native.*` packages by the `Microsoft.ClearScript.V8.Native.*` packages.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Microsoft ClearScript.V8 was updated to version 7.1;
+2. Added support of Windows (ARM64) and Linux (ARM64).</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
@@ -33,7 +33,7 @@ This package does not contain the native ClearScript.V8 assemblies. Therefore, y
     <Reference Condition=" '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net471' " Include="Microsoft.CSharp" Pack="false" />
 
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
-    <PackageReference Include="Microsoft.ClearScript.V8" Version="7.0.0" />
+    <PackageReference Include="Microsoft.ClearScript.V8" Version="7.1.0" />
     <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />

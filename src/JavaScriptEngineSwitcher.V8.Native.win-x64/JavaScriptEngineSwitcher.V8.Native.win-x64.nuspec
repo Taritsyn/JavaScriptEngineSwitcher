@@ -12,12 +12,12 @@
     <repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This package is deprecated. Instead, it is recommended to use a 'Microsoft.ClearScript.V8.Native.win-x64' package.</description>
-    <releaseNotes>Microsoft ClearScript.V8 was updated to version 7.0 (support of V8 version 8.7.220.25).</releaseNotes>
-    <copyright>Copyright © 2013-2020 Andrey Taritsyn</copyright>
+    <releaseNotes>Microsoft ClearScript.V8 was updated to version 7.1 (support of V8 version 8.8.278.14).</releaseNotes>
+    <copyright>Copyright © 2013-2021 Andrey Taritsyn</copyright>
     <language>en-US</language>
     <tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript Windows x64</tags>
     <dependencies>
-      <dependency id="Microsoft.ClearScript.V8.Native.win-x64" version="7.0.0" />
+      <dependency id="Microsoft.ClearScript.V8.Native.win-x64" version="7.1.0" />
     </dependencies>
   </metadata>
   <files>

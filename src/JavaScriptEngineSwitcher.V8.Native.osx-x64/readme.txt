@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2020 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2021 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -17,8 +17,8 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 7.0 (support of V8 version
-   8.7.220.25).
+   Microsoft ClearScript.V8 was updated to version 7.1 (support of V8 version
+   8.8.278.14).
 
    =============
    DOCUMENTATION
