@@ -35,7 +35,9 @@ This library can be installed through NuGet:
  * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8) (supports .NET Framework 4.5, .NET Framework 4.7.1, .NET Core App 3.1 and .NET 5.0)
    * [Microsoft ClearScript.V8 for Windows (x86)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-x86)
    * [Microsoft ClearScript.V8 for Windows (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-x64)
+   * [Microsoft ClearScript.V8 for Windows (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-arm64)
    * [Microsoft ClearScript.V8 for Linux (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.linux-x64)
+   * [Microsoft ClearScript.V8 for Linux (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.linux-arm64)
    * [Microsoft ClearScript.V8 for OS X (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.osx-x64)
  * [JS Engine Switcher: Vroom](http://nuget.org/packages/JavaScriptEngineSwitcher.Vroom) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Framework 4.7.1, .NET Standard 1.6 and .NET Standard 2.0)
 

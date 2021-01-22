@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.10.0 - January 22, 2021
+ * In JavaScriptEngineSwitcher.Node added support of Jering.Javascript.NodeJS version 5.4.4
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.1 (support of V8 version 8.8.278.14)
+   * Added support of Windows (ARM64) and Linux (ARM64)
+
 ## v3.9.1 - December 9, 2020
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version 1.11.24 ([Tomáš Deml's patch](https://github.com/microsoft/ChakraCore/issues/5973) applied)
 
