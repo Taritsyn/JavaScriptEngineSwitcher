@@ -4,6 +4,9 @@ using System.Threading;
 
 using Jint;
 using IOriginalPrimitiveInstance = Jint.Native.IPrimitiveInstance;
+using OriginalDebuggerBreakDelegate = Jint.Engine.BreakDelegate;
+using OriginalDebuggerStatementHandlingMode = Jint.Runtime.Debugger.DebuggerStatementHandling;
+using OriginalDebuggerStepDelegate = Jint.Engine.DebugStepDelegate;
 using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
 using OriginalEngine = Jint.Engine;
 using OriginalExecutionCanceledException = Jint.Runtime.ExecutionCanceledException;
@@ -50,7 +53,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 1914";
+		private const string EngineVersion = "3.0.0 Beta 2002";
 
 		/// <summary>
 		/// Jint JS engine
@@ -66,6 +69,16 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// Constraint for canceling of script execution
 		/// </summary>
 		private OriginalCancellationConstraint _cancellationConstraint;
+
+		/// <summary>
+		/// Debugger break callback
+		/// </summary>
+		private OriginalDebuggerBreakDelegate _debuggerBreakCallback;
+
+		/// <summary>
+		/// Debugger step callback
+		/// </summary>
+		private OriginalDebuggerStepDelegate _debuggerStepCallback;
 
 		/// <summary>
 		/// Synchronizer of code execution
@@ -96,14 +109,18 @@ namespace JavaScriptEngineSwitcher.Jint
 			_cancellationConstraint = new OriginalCancellationConstraint(_cancellationTokenSource.Token);
 
 			JintSettings jintSettings = settings ?? new JintSettings();
+			_debuggerBreakCallback = jintSettings.DebuggerBreakCallback;
+			_debuggerStepCallback = jintSettings.DebuggerStepCallback;
+			var debuggerStatementHandlingMode = Utils.GetEnumFromOtherEnum<JsDebuggerStatementHandlingMode, OriginalDebuggerStatementHandlingMode>(
+				jintSettings.DebuggerStatementHandlingMode);
 
 			try
 			{
 				_jsEngine = new OriginalEngine(options => {
 					options
-						.AllowDebuggerStatement(jintSettings.AllowDebuggerStatement)
 						.WithoutConstraint(c => c is OriginalCancellationConstraint)
 						.Constraint(_cancellationConstraint)
+						.DebuggerStatementHandling(debuggerStatementHandlingMode)
 						.DebugMode(jintSettings.EnableDebugging)
 						.LimitMemory(jintSettings.MemoryLimit)
 						.LimitRecursion(jintSettings.MaxRecursionDepth)
@@ -120,6 +137,14 @@ namespace JavaScriptEngineSwitcher.Jint
 
 					options.AddObjectConverter(new UndefinedConverter());
 				});
+				if (_debuggerBreakCallback != null)
+				{
+					_jsEngine.Break += _debuggerBreakCallback;
+				}
+				if (_debuggerStepCallback != null)
+				{
+					_jsEngine.Step += _debuggerStepCallback;
+				}
 			}
 			catch (Exception e)
 			{
@@ -138,8 +163,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			var parserOptions = new OriginalParserOptions(documentName)
 			{
 				AdaptRegexp = true,
-				Tolerant = true,
-				Loc = true
+				Tolerant = true
 			};
 
 			return parserOptions;
@@ -274,7 +298,7 @@ namespace JavaScriptEngineSwitcher.Jint
 					for (int chainItemIndex = callChainItems.Length - 1; chainItemIndex >= 0; chainItemIndex--)
 					{
 						string chainItem = callChainItems[chainItemIndex];
-						if (chainItem == "anonymous function")
+						if (chainItem == "(anonymous)")
 						{
 							chainItem = "Anonymous function";
 						}
@@ -705,6 +729,18 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				lock (_executionSynchronizer)
 				{
+					if (_debuggerStepCallback != null)
+					{
+						_jsEngine.Step -= _debuggerStepCallback;
+						_debuggerStepCallback = null;
+					}
+
+					if (_debuggerBreakCallback != null)
+					{
+						_jsEngine.Break -= _debuggerBreakCallback;
+						_debuggerBreakCallback = null;
+					}
+
 					_jsEngine = null;
 					_cancellationConstraint = null;
 

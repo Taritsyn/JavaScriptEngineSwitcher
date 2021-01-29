@@ -1,5 +1,8 @@
 ﻿using System;
 
+using OriginalDebuggerBreakDelegate = Jint.Engine.BreakDelegate;
+using OriginalDebuggerStepDelegate = Jint.Engine.DebugStepDelegate;
+
 namespace JavaScriptEngineSwitcher.Jint
 {
 	/// <summary>
@@ -8,10 +11,27 @@ namespace JavaScriptEngineSwitcher.Jint
 	public sealed class JintSettings
 	{
 		/// <summary>
-		/// Gets or sets a flag for whether to allow the <code>debugger</code> statement
-		/// to be called in a script
+		/// Gets or sets a debugger break callback
 		/// </summary>
-		public bool AllowDebuggerStatement
+		public OriginalDebuggerBreakDelegate DebuggerBreakCallback
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets a handling mode for script <code>debugger</code> statements
+		/// </summary>
+		public JsDebuggerStatementHandlingMode DebuggerStatementHandlingMode
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets a debugger step callback
+		/// </summary>
+		public OriginalDebuggerStepDelegate DebuggerStepCallback
 		{
 			get;
 			set;
@@ -109,7 +129,9 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// </summary>
 		public JintSettings()
 		{
-			AllowDebuggerStatement = false;
+			DebuggerBreakCallback = null;
+			DebuggerStatementHandlingMode = JsDebuggerStatementHandlingMode.Ignore;
+			DebuggerStepCallback = null;
 			EnableDebugging = false;
 			LocalTimeZone = TimeZoneInfo.Local;
 			MaxRecursionDepth = -1;

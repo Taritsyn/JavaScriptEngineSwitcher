@@ -105,7 +105,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Equal("TypeError", exception.Type);
 			Assert.Equal("get-item.js", exception.DocumentName);
 			Assert.Equal(2, exception.LineNumber);
-			Assert.Equal(13, exception.ColumnNumber);
+			Assert.Equal(19, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
 			Assert.Empty(exception.CallStack);
 		}

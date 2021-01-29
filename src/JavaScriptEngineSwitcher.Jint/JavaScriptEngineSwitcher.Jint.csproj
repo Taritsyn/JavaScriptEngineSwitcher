@@ -10,10 +10,11 @@
     <NoWarn>$(NoWarn);CS1591;NU5104</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-    <Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 1914).</Description>
+    <Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 2002).</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Jint</PackageTags>
-    <PackageReleaseNotes>Jint was updated to version 3.0.0 Beta 1914.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Jint was updated to version 3.0.0 Beta 2002;
+2. In configuration settings of the Jint JS engine a `AllowDebuggerStatement` property has been replaced by the `DebuggerStatementHandlingMode` property (default `Ignore`) and was added two new properties: `DebuggerBreakCallback` (default `null`) and `DebuggerStepCallback` (default `null`).</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
@@ -23,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
-    <PackageReference Include="Jint" Version="3.0.0-beta-1914" />
+    <PackageReference Include="Jint" Version="3.0.0-beta-2002" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
