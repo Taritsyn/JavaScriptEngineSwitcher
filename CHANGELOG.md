@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.11.0 - January 30, 2021
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 3.0.0 Beta 2002
+   * In configuration settings of the Jint JS engine a `AllowDebuggerStatement` property has been replaced by the `DebuggerStatementHandlingMode` property (default `Ignore`) and was added two new properties: `DebuggerBreakCallback` (default `null`) and `DebuggerStepCallback` (default `null`)
+
 ## v3.10.0 - January 22, 2021
  * In JavaScriptEngineSwitcher.Node added support of Jering.Javascript.NodeJS version 5.4.4
  * In JavaScriptEngineSwitcher.V8:
