@@ -18,7 +18,10 @@
    =============
    RELEASE NOTES
    =============
-   Runtime exceptions now contain a stack trace.
+   1. Runtime exceptions now contain a stack trace;
+   2. In configuration settings of the Jint JS engine a `AllowDebuggerStatement`
+      property has been returned so as not to break compatibility with previous
+      versions.
 
    =============
    DOCUMENTATION

@@ -11,6 +11,17 @@ namespace JavaScriptEngineSwitcher.Jint
 	public sealed class JintSettings
 	{
 		/// <summary>
+		/// Gets or sets a flag for whether to allow the <code>debugger</code> statement
+		/// to be called in a script
+		/// </summary>
+		[Obsolete("Use a `DebuggerStatementHandlingMode` property")]
+		public bool AllowDebuggerStatement
+		{
+			get { return DebuggerStatementHandlingMode == JsDebuggerStatementHandlingMode.Clr; }
+			set { DebuggerStatementHandlingMode = value ? JsDebuggerStatementHandlingMode.Clr : JsDebuggerStatementHandlingMode.Ignore; }
+		}
+
+		/// <summary>
 		/// Gets or sets a debugger break callback
 		/// </summary>
 		public OriginalDebuggerBreakDelegate DebuggerBreakCallback
