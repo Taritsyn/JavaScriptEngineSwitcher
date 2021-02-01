@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.11.1 - February 1, 2021
+ * In JavaScriptEngineSwitcher.Jint:
+   * Runtime exceptions now contain a stack trace
+   * In configuration settings of the Jint JS engine a `AllowDebuggerStatement` property has been returned so as not to break compatibility with previous versions
+
 ## v3.11.0 - January 30, 2021
  * In JavaScriptEngineSwitcher.Jint:
    * Jint was updated to version 3.0.0 Beta 2002
