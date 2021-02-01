@@ -18,11 +18,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Jint was updated to version 3.0.0 Beta 2002;
-   2. In configuration settings of the Jint JS engine a `AllowDebuggerStatement`
-      property has been replaced by the `DebuggerStatementHandlingMode` property
-      (default `Ignore`) and was added two new properties: `DebuggerBreakCallback`
-      (default `null`) and `DebuggerStepCallback` (default `null`).
+   Runtime exceptions now contain a stack trace.
 
    =============
    DOCUMENTATION

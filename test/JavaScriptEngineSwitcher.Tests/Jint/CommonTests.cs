@@ -15,6 +15,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			get { return "JintJsEngine"; }
 		}
 
+
 		#region Error handling
 
 		#region Mapping of errors
@@ -89,7 +90,7 @@ $variable1 + -variable2 - variable3;";
 			Assert.Equal(5, exception.LineNumber);
 			Assert.Equal(1, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
-			Assert.Empty(exception.CallStack);
+			Assert.Equal("   at Global code (variables.js:5:1)", exception.CallStack);
 		}
 
 		[Fact]
@@ -174,7 +175,11 @@ factorial(0);";
 			Assert.Equal(3, exception.LineNumber);
 			Assert.Equal(3, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
-			Assert.Empty(exception.CallStack);
+			Assert.Equal(
+				"   at factorial (factorial.js:3:3)" + Environment.NewLine +
+				"   at Global code (factorial.js:10:1)",
+				exception.CallStack
+			);
 		}
 
 		[Fact]
@@ -447,7 +452,9 @@ var foo = 'Browser's bar';";
 	foo(a, b);
 })(foo);";
 			string targetOutput = "ReferenceError: bar is not defined" + Environment.NewLine +
-				"   at functions.js:4:3"
+				"   at foo (functions.js:4:3)" + Environment.NewLine +
+				"   at Anonymous function (functions.js:12:2)" + Environment.NewLine +
+				"   at Global code (functions.js)"
 				;
 
 			JsRuntimeException exception = null;

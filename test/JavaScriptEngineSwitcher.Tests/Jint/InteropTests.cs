@@ -298,9 +298,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Equal(1, exception.LineNumber);
 			Assert.Equal(1, exception.ColumnNumber);
 			Assert.Equal("", exception.SourceFragment);
-			Assert.Equal(
-				"",
-				exception.CallStack
+			Assert.Equal("   at Global code (second-file.js:1:1)", exception.CallStack
 			);
 		}
 

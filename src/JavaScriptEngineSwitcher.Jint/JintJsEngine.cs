@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Text;
 using System.Threading;
 
 using Jint;
 using IOriginalPrimitiveInstance = Jint.Native.IPrimitiveInstance;
+using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
 using OriginalDebuggerBreakDelegate = Jint.Engine.BreakDelegate;
 using OriginalDebuggerStatementHandlingMode = Jint.Runtime.Debugger.DebuggerStatementHandling;
 using OriginalDebuggerStepDelegate = Jint.Engine.DebugStepDelegate;
-using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
 using OriginalEngine = Jint.Engine;
 using OriginalExecutionCanceledException = Jint.Runtime.ExecutionCanceledException;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
@@ -24,8 +23,6 @@ using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
 using OriginalTypes = Jint.Runtime.Types;
 using OriginalValue = Jint.Native.JsValue;
 
-using AdvancedStringBuilder;
-
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Constants;
 using JavaScriptEngineSwitcher.Core.Helpers;
@@ -37,6 +34,8 @@ using WrapperInterruptedException = JavaScriptEngineSwitcher.Core.JsInterruptedE
 using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
 using WrapperTimeoutException = JavaScriptEngineSwitcher.Core.JsTimeoutException;
 using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
+
+using JavaScriptEngineSwitcher.Jint.Helpers;
 
 namespace JavaScriptEngineSwitcher.Jint
 {
@@ -252,6 +251,14 @@ namespace JavaScriptEngineSwitcher.Jint
 				lineNumber = originalJavaScriptException.LineNumber;
 				columnNumber = originalJavaScriptException.Column + 1;
 
+				ErrorLocationItem[] callStackItems = JintJsErrorHelpers.ParseErrorLocation(
+					originalJavaScriptException.StackTrace);
+				if (callStackItems.Length > 0)
+				{
+					JintJsErrorHelpers.FixErrorLocationItems(callStackItems, documentName);
+					callStack = JsErrorHelpers.StringifyErrorLocationItems(callStackItems, true);
+				}
+
 				OriginalValue errorValue = originalJavaScriptException.Error;
 				if (errorValue.IsObject())
 				{
@@ -269,8 +276,7 @@ namespace JavaScriptEngineSwitcher.Jint
 					type = JsErrorType.Common;
 				}
 
-				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName, lineNumber,
-					columnNumber);
+				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, callStack);
 
 				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
 					originalJavaScriptException);
@@ -286,34 +292,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			else if (originalRuntimeException is OriginalRecursionDepthOverflowException)
 			{
 				var originalRecursionException = (OriginalRecursionDepthOverflowException)originalRuntimeException;
-				string[] callChainItems = originalRecursionException.CallChain
-					.Split(new string[] { "->" }, StringSplitOptions.None)
-					;
-
-				if (callChainItems.Length > 0)
-				{
-					var stringBuilderPool = StringBuilderPool.Shared;
-					StringBuilder stackBuilder = stringBuilderPool.Rent();
-
-					for (int chainItemIndex = callChainItems.Length - 1; chainItemIndex >= 0; chainItemIndex--)
-					{
-						string chainItem = callChainItems[chainItemIndex];
-						if (chainItem == "(anonymous)")
-						{
-							chainItem = "Anonymous function";
-						}
-
-						JsErrorHelpers.WriteErrorLocationLine(stackBuilder, chainItem, string.Empty, 0, 0);
-						if (chainItemIndex > 0)
-						{
-							stackBuilder.AppendLine();
-						}
-					}
-
-					callStack = stackBuilder.ToString();
-					stringBuilderPool.Return(stackBuilder);
-				}
-
+				callStack = JintJsErrorHelpers.ConvertCallChainToStack(originalRecursionException.CallChain);
 				type = JsErrorType.Range;
 				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, callStack);
 
