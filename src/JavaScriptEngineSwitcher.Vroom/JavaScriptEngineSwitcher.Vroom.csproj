@@ -10,18 +10,21 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-    <Description>JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the VroomJs (http://github.com/pauldotknopf/vroomjs-core) version 1.2.3 with support of V8 version 3.17.16.2).
-
-For correct working of the VroomJs on Windows require the Visual C++ Redistributable for Visual Studio 2012 and Microsoft Visual C++ 2015 Redistributable.</Description>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;VroomJs;V8</PackageTags>
-    <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
   <Import Project="../../build/net40-client-target.props" />
   <Import Project="../../build/strong-name-signing.props" />
-  <Import Project="../../build/nuget-metadata.props" />
+  <Import Project="../../build/nuget-for-dotnet-lib.props" />
+
+  <PropertyGroup>
+    <Description>JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the VroomJs (http://github.com/pauldotknopf/vroomjs-core) version 1.2.3 with support of V8 version 3.17.16.2).
+
+For correct working of the VroomJs on Windows require the Visual C++ Redistributable for Visual Studio 2012 and Microsoft Visual C++ 2015 Redistributable.</Description>
+    <PackageTags>$(PackageCommonTags);VroomJs;V8</PackageTags>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconFullPath>
+    <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
@@ -40,11 +43,6 @@ For correct working of the VroomJs on Windows require the Visual C++ Redistribut
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png">
-      <PackagePath>$(PackageIcon)</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
     <None Include="../../Licenses/advanced-string-builder-license.txt">
       <PackagePath>advanced-string-builder-license.txt</PackagePath>
       <Pack>true</Pack>

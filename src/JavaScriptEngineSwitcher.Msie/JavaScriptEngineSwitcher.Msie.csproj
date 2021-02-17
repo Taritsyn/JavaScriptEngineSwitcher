@@ -10,16 +10,19 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-    <Description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .NET (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge Legacy on the machine.</Description>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;MSIE;IE;Chakra</PackageTags>
-    <PackageReleaseNotes>MSIE JavaScript Engine was updated to version 3.0.7.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
   <Import Project="../../build/net40-client-target.props" />
   <Import Project="../../build/strong-name-signing.props" />
-  <Import Project="../../build/nuget-metadata.props" />
+  <Import Project="../../build/nuget-for-dotnet-lib.props" />
+
+  <PropertyGroup>
+    <Description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .NET (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge Legacy on the machine.</Description>
+    <PackageTags>$(PackageCommonTags);MSIE;IE;Chakra</PackageTags>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</PackageIconFullPath>
+    <PackageReleaseNotes>MSIE JavaScript Engine was updated to version 3.0.7.</PackageReleaseNotes>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MsieJavaScriptEngine" Version="3.0.7" />
@@ -29,11 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png">
-      <PackagePath>$(PackageIcon)</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
     <None Include="../../Licenses/msie-javascript-engine-license.txt">
       <PackagePath>msie-javascript-engine-license.txt</PackagePath>
       <Pack>true</Pack>

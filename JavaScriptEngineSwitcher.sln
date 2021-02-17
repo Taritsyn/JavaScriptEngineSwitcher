@@ -15,8 +15,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{3FE10516-C056-4337-9C9A-5FD592430F87}"
 	ProjectSection(SolutionItems) = preProject
 		build\common.props = build\common.props
+		build\initialize-standard-nuspec-properties.targets = build\initialize-standard-nuspec-properties.targets
+		build\Key.snk = build\Key.snk
+		build\net40-client-target.props = build\net40-client-target.props
 		build\nuget-common.props = build\nuget-common.props
-		build\nuget-metadata.props = build\nuget-metadata.props
+		build\nuget-for-dotnet-lib.props = build\nuget-for-dotnet-lib.props
+		build\nuget-for-native-lib.props = build\nuget-for-native-lib.props
+		build\strong-name-signing.props = build\strong-name-signing.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "licenses", "licenses", "{4AB5950E-3FA8-4A77-A067-F325BFD80537}"

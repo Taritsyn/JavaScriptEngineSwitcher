@@ -1,11 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Product>JS Engine Switcher: V8 for Linux (x64)</Product>
+    <VersionPrefix>3.10.0</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
-    <NuspecFile>$(MSBuildProjectName).nuspec</NuspecFile>
   </PropertyGroup>
 
-  <Import Project="../../build/nuget-common.props" />
+  <Import Project="../../build/common.props" />
+  <Import Project="../../build/nuget-for-native-lib.props" />
+  <Import Project="../../build/initialize-standard-nuspec-properties.targets" />
+
+  <PropertyGroup>
+    <Description>This package is deprecated. Instead, it is recommended to use a 'Microsoft.ClearScript.V8.Native.linux-x64' package.</Description>
+    <PackageTags>$(PackageCommonTags);V8;ClearScript;Linux;x64</PackageTags>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconFullPath>
+    <PackageReleaseNotes>Microsoft ClearScript.V8 was updated to version 7.1 (support of V8 version 8.8.278.14).</PackageReleaseNotes>
+  </PropertyGroup>
 
 </Project>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license.
+
+  This MSBuild target based on the code of Microsoft.DotNet.Arcade.Sdk.
+  https://github.com/dotnet/arcade/blob/master/src/Microsoft.DotNet.Arcade.Sdk/tools/Workarounds.targets
+  -->
+<Project>
+  <!--
+    Workarounds for insufficient support for tools packages by NuGet Pack: https://github.com/NuGet/Home/issues/6321.
+
+    Project that produce tools packages use .nuspec file in order to include all the needed dependencies.
+    This target translates common msbuild properties to NuSpec properties.
+  -->
+  <Target Name="InitializeStandardNuspecProperties"
+          BeforeTargets="GenerateNuspec"
+          Condition="'$(IsPackable)' == 'true'">
+
+    <PropertyGroup>
+      <PackageId Condition="'$(NuspecPackageId)' != ''">$(NuspecPackageId)</PackageId>
+      <PackageProjectUrl Condition="'$(PackageProjectUrl)' == ''">$(RepositoryUrl)</PackageProjectUrl>
+    </PropertyGroup>
+
+    <Error Text="PackageDescription must be specified" Condition="'$(PackageDescription)' == ''"/>
+    <Error Text="PackageProjectUrl must be specified" Condition="'$(PackageProjectUrl)' == ''"/>
+    <Error Text="RepositoryUrl must be specified" Condition="'$(RepositoryUrl)' == ''"/>
+    <Error Text="RepositoryType must be specified" Condition="'$(RepositoryType)' == ''"/>
+    <Error Text="Either PackageLicenseExpression or PackageLicenseFile must be specified" Condition="'$(PackageLicenseExpression)' == '' and '$(PackageLicenseFile)' == ''"/>
+
+    <PropertyGroup Condition="'$(NuspecFile)' != '' and '$(NuspecProperties)' == ''">
+      <_TitleElement/>
+      <_TitleElement Condition="'$(Title)' != ''">
+        <title>$(Title)</title>
+      </_TitleElement>
+
+      <_LicenseElement/>
+      <_LicenseElement Condition="'$(PackageLicenseExpression)' != ''">
+        <license type="expression">$(PackageLicenseExpression)</license>
+      </_LicenseElement>
+      <_LicenseElement Condition="'$(PackageLicenseFile)' != ''">
+        <license type="file">$(PackageLicenseFile)</license>
+      </_LicenseElement>
+
+      <_LicenseFileElement/>
+      <_LicenseFileElement Condition="'$(PackageLicenseFile)' != ''">
+        <file src="$(PackageLicenseFullPath)" target="$(PackageLicenseFile)" />
+      </_LicenseFileElement>
+
+      <_TagsElement/>
+      <_TagsElement Condition="'$(PackageTags)' != ''">
+        <tags>$(PackageTags.Replace(';', ' '))</tags>
+      </_TagsElement>
+
+      <_IconUrlElement/>
+      <_IconUrlElement Condition="'$(PackageIcon)' == '' and '$(PackageIconUrl)' != ''">
+        <iconUrl>$(PackageIconUrl)</iconUrl>
+      </_IconUrlElement>
+
+      <_IconElement/>
+      <_IconElement Condition="'$(PackageIcon)' != ''">
+        <icon>$(PackageIcon)</icon>
+      </_IconElement>
+
+      <_IconFileElement/>
+      <_IconFileElement Condition="'$(PackageIcon)' != ''">
+        <file src="$(PackageIconFullPath)" target="$(PackageIcon)" />
+      </_IconFileElement>
+
+      <_ReleaseNotesElement/>
+      <_ReleaseNotesElement Condition="'$(PackageReleaseNotes)' != ''">
+        <releaseNotes>$(PackageReleaseNotes)</releaseNotes>
+      </_ReleaseNotesElement>
+
+      <_DevelopmentDependencyElement/>
+      <_DevelopmentDependencyElement Condition="'$(DevelopmentDependency)' != ''">
+        <developmentDependency>$(DevelopmentDependency)</developmentDependency>
+      </_DevelopmentDependencyElement>
+
+      <_ServiceableElement/>
+      <_ServiceableElement Condition="'$(Serviceable)' != ''">
+        <serviceable>$(Serviceable)</serviceable>
+      </_ServiceableElement>
+
+      <_NeutralLanguageElement/>
+      <_NeutralLanguageElement Condition="'$(NeutralLanguage)' != ''">
+        <language>$(NeutralLanguage)</language>
+      </_NeutralLanguageElement>
+
+      <_CommonMetadataElements>
+        <id>$(PackageId)</id>
+        $(_TitleElement)
+        <description>$(PackageDescription)</description>
+        <version>$(PackageVersion)</version>
+        <authors>$(Authors)</authors>
+        <requireLicenseAcceptance>$(PackageRequireLicenseAcceptance)</requireLicenseAcceptance>
+        $(_TagsElement)
+        $(_LicenseElement)
+        $(_IconElement)
+        $(_IconUrlElement)
+        $(_ReleaseNotesElement)
+        <projectUrl>$(PackageProjectUrl)</projectUrl>
+        <copyright>$(Copyright)</copyright>
+        $(_DevelopmentDependencyElement)
+        $(_ServiceableElement)
+        <repository type="$(RepositoryType)" url="$(RepositoryUrl)" commit="$(RepositoryCommit)" />
+        $(_NeutralLanguageElement)
+      </_CommonMetadataElements>
+
+      <_CommonFileElements>
+        $(_IconFileElement)
+        $(_LicenseFileElement)
+      </_CommonFileElements>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(NuspecFile)' != '' and '$(NuspecProperties)' == ''">
+      <NuspecProperty Include="CommonMetadataElements=$(_CommonMetadataElements)"/>
+      <NuspecProperty Include="CommonFileElements=$(_CommonFileElements)"/>
+      <NuspecProperty Include="PackageId=$(PackageId)"/>
+      <NuspecProperty Include="Version=$(PackageVersion)"/>
+      <NuspecProperty Include="ProjectDirectory=$(MSBuildProjectDirectory)"/>
+    </ItemGroup>
+    <PropertyGroup Condition="'$(NuspecFile)' != '' and '$(NuspecProperties)' == ''">
+      <NuspecProperties>@(NuspecProperty, ';')</NuspecProperties>
+    </PropertyGroup>
+  </Target>
+</Project>

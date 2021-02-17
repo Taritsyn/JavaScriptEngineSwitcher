@@ -1,0 +1,8 @@
+<Project>
+  <Import Project="nuget-common.props" />
+
+  <PropertyGroup>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <NuspecFile>$(MSBuildProjectName).nuspec</NuspecFile>
+  </PropertyGroup>
+</Project>

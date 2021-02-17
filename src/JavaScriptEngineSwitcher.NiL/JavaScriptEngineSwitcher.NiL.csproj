@@ -8,16 +8,19 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1466).</Description>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;NiL</PackageTags>
-    <PackageReleaseNotes>NiL.JS was updated to version 2.5.1466.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
   <Import Project="../../build/net40-client-target.props" />
   <Import Project="../../build/strong-name-signing.props" />
-  <Import Project="../../build/nuget-metadata.props" />
+  <Import Project="../../build/nuget-for-dotnet-lib.props" />
+
+  <PropertyGroup>
+    <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1466).</Description>
+    <PackageTags>$(PackageCommonTags);NiL</PackageTags>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconFullPath>
+    <PackageReleaseNotes>NiL.JS was updated to version 2.5.1466.</PackageReleaseNotes>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
@@ -25,11 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png">
-      <PackagePath>$(PackageIcon)</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
     <None Include="../../Licenses/nil-license.txt">
       <PackagePath>nil-license.txt</PackagePath>
       <Pack>true</Pack>

@@ -11,6 +11,14 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
+  </PropertyGroup>
+
+  <Import Project="../../build/common.props" />
+  <Import Project="../../build/net40-client-target.props" />
+  <Import Project="../../build/strong-name-signing.props" />
+  <Import Project="../../build/nuget-for-dotnet-lib.props" />
+
+  <PropertyGroup>
     <Description>JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine` (wrapper for the ChakraCore (http://github.com/Microsoft/ChakraCore)). Project was based on the code of Chakra-Samples (http://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet (http://github.com/robpaveza/jsrt-dotnet).
 
 This package does not contain the native implementations of ChakraCore. Therefore, you need to choose and install the most appropriate package(s) for your platform. The following packages are available:
@@ -21,15 +29,10 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64
  * JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;ChakraCore</PackageTags>
+    <PackageTags>$(PackageCommonTags);ChakraCore</PackageTags>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>ChakraCore was updated to version 1.11.24 (Tomáš Deml's patch applied).</PackageReleaseNotes>
   </PropertyGroup>
-
-  <Import Project="../../build/common.props" />
-  <Import Project="../../build/net40-client-target.props" />
-  <Import Project="../../build/strong-name-signing.props" />
-  <Import Project="../../build/nuget-metadata.props" />
 
   <ItemGroup>
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
@@ -61,11 +64,6 @@ This package does not contain the native implementations of ChakraCore. Therefor
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png">
-      <PackagePath>$(PackageIcon)</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
     <None Include="../../Licenses/advanced-string-builder-license.txt">
       <PackagePath>advanced-string-builder-license.txt</PackagePath>
       <Pack>true</Pack>

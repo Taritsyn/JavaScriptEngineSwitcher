@@ -1,28 +1,13 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>JavaScriptEngineSwitcher.V8.Native.linux-x64</id>
-    <version>3.10.0</version>
-    <title>JS Engine Switcher: V8 for Linux (x64)</title>
-    <authors>Andrey Taritsyn</authors>
-    <owners>Andrey Taritsyn</owners>
-    <license type="file">LICENSE.txt</license>
-    <projectUrl>https://github.com/Taritsyn/JavaScriptEngineSwitcher</projectUrl>
-    <icon>icon.png</icon>
-    <repository type="git" url="https://github.com/Taritsyn/JavaScriptEngineSwitcher" />
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>This package is deprecated. Instead, it is recommended to use a 'Microsoft.ClearScript.V8.Native.linux-x64' package.</description>
-    <releaseNotes>Microsoft ClearScript.V8 was updated to version 7.1 (support of V8 version 8.8.278.14).</releaseNotes>
-    <copyright>Copyright © 2013-2021 Andrey Taritsyn</copyright>
-    <language>en-US</language>
-    <tags>JavaScriptEngineSwitcher JavaScript ECMAScript V8 ClearScript Linux x64</tags>
+    $CommonMetadataElements$
     <dependencies>
       <dependency id="Microsoft.ClearScript.V8.Native.linux-x64" version="7.1.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png" target="icon.png" />
-    <file src="../../LICENSE.txt" target="LICENSE.txt" />
+    $CommonFileElements$
     <file src="../../Licenses/clearscript-license.txt" target="clearscript-license.txt" />
     <file src="../../Licenses/v8-license.txt" target="v8-license.txt" />
     <file src="readme.txt" />

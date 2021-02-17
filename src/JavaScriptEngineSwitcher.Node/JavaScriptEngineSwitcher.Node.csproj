@@ -10,17 +10,20 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
-    <Description>JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS) version 5.4.4).
-
-This package does not contain the `node.exe`. Therefore, you need to install the Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path` environment variable (automatically done by the official installer).</Description>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript;Node.js;Jering.Javascript.NodeJS</PackageTags>
-    <PackageReleaseNotes>Jering.Javascript.NodeJS was updated to version 5.4.4.</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
   <Import Project="../../build/strong-name-signing.props" />
-  <Import Project="../../build/nuget-metadata.props" />
+  <Import Project="../../build/nuget-for-dotnet-lib.props" />
+
+  <PropertyGroup>
+    <Description>JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS) version 5.4.4).
+
+This package does not contain the `node.exe`. Therefore, you need to install the Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path` environment variable (automatically done by the official installer).</Description>
+    <PackageTags>$(PackageCommonTags);Node.js;Jering.Javascript.NodeJS</PackageTags>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png</PackageIconFullPath>
+    <PackageReleaseNotes>Jering.Javascript.NodeJS was updated to version 5.4.4.</PackageReleaseNotes>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Jering.Javascript.NodeJS" Version="5.4.4" />
@@ -29,11 +32,6 @@ This package does not contain the `node.exe`. Therefore, you need to install the
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png">
-      <PackagePath>$(PackageIcon)</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
     <None Include="../../Licenses/jering-javascript-nodejs-license.txt">
       <PackagePath>jering-javascript-nodejs-license.txt</PackagePath>
       <Pack>true</Pack>
