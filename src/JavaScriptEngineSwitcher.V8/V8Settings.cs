@@ -58,6 +58,26 @@ namespace JavaScriptEngineSwitcher.V8
 		}
 
 		/// <summary>
+		/// Gets or sets a heap expansion multiplier
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// When set to a value greater than 1, this property enables on-demand heap expansion,
+		/// which automatically increases the maximum heap size by the specified multiplier
+		/// whenever the script engine is close to exceeding the current limit. Note that a buggy
+		/// or malicious script can still cause an application to fail by exhausting its address
+		/// space or total available memory. On-demand heap expansion is recommended for use in
+		/// conjunction with heap size monitoring (see <see cref="MaxHeapSize"/> property to help
+		/// contain runaway scripts.
+		/// </para>
+		/// </remarks>
+		public double HeapExpansionMultiplier
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a minimum time interval between consecutive heap size samples
 		/// </summary>
 		/// <remarks>
@@ -159,6 +179,7 @@ namespace JavaScriptEngineSwitcher.V8
 			EnableRemoteDebugging = false;
 			DebugPort = 9222;
 			DisableGlobalMembers = false;
+			HeapExpansionMultiplier = 0;
 			HeapSizeSampleInterval = TimeSpan.Zero;
 			MaxHeapSize = UIntPtr.Zero;
 			MaxNewSpaceSize = 0;

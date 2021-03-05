@@ -32,7 +32,9 @@
    =============
    1. Microsoft ClearScript.V8 was updated to version 7.1.1;
    2. Added support of .NET Standard 2.1;
-   3. Added support of Linux (ARM).
+   3. Added support of Linux (ARM);
+   4. In configuration settings of the V8 JS engine was added one new property -
+      `HeapExpansionMultiplier` (default `0`).
 
    =============
    DOCUMENTATION

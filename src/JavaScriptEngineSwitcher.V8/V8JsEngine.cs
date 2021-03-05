@@ -99,6 +99,7 @@ namespace JavaScriptEngineSwitcher.V8
 
 			var constraints = new OriginalRuntimeConstraints
 			{
+				HeapExpansionMultiplier = v8Settings.HeapExpansionMultiplier,
 				MaxNewSpaceSize = v8Settings.MaxNewSpaceSize,
 				MaxOldSpaceSize = v8Settings.MaxOldSpaceSize,
 			};
