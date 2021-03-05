@@ -31,7 +31,8 @@
    RELEASE NOTES
    =============
    1. Microsoft ClearScript.V8 was updated to version 7.1.1;
-   2. Added support of Linux (ARM).
+   2. Added support of .NET Standard 2.1;
+   3. Added support of Linux (ARM).
 
    =============
    DOCUMENTATION
