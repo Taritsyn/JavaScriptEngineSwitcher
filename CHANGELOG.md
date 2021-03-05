@@ -1,6 +1,14 @@
 Change log
 ==========
 
+## v3.11.2 - March 5, 2021
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1475
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.1.1 (support of V8 version 8.9.255.20)
+   * Added support of .NET Standard 2.1
+   * Added support of Linux (ARM)
+   * In configuration settings of the V8 JS engine was added one new property - `HeapExpansionMultiplier` (default `0`)
+
 ## v3.11.1 - February 1, 2021
  * In JavaScriptEngineSwitcher.Jint:
    * Runtime exceptions now contain a stack trace
