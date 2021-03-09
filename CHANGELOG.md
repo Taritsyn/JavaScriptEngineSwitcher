@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.11.3 - March 9, 2021
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2031
+
 ## v3.11.2 - March 5, 2021
  * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1475
  * In JavaScriptEngineSwitcher.V8:
