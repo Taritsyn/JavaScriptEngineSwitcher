@@ -68,7 +68,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// or malicious script can still cause an application to fail by exhausting its address
 		/// space or total available memory. On-demand heap expansion is recommended for use in
 		/// conjunction with heap size monitoring (see <see cref="MaxHeapSize"/> property to help
-		/// contain runaway scripts.
+		/// contain runaway scripts).
 		/// </para>
 		/// </remarks>
 		public double HeapExpansionMultiplier

@@ -101,7 +101,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Runtime error", exception.Category);
-			Assert.Equal("Cannot read property 'items' of null", exception.Description);
+			Assert.Equal("Cannot read property '5' of null", exception.Description);
 			Assert.Equal("TypeError", exception.Type);
 			Assert.Equal("get-item.js", exception.DocumentName);
 			Assert.Equal(2, exception.LineNumber);
@@ -110,7 +110,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Equal(
 				"   at getItem (get-item.js:2:19)" + Environment.NewLine +
 				"   at Anonymous function (get-item.js:9:10)" + Environment.NewLine +
-				"   at Global code (get-item.js)",
+				"   at Global code (get-item.js:13:2)",
 				exception.CallStack
 			);
 		}
@@ -180,7 +180,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			string targetOutput = "ReferenceError: middleName is not defined" + Environment.NewLine +
 				"   at getFullName (get-full-name.js:2:2)" + Environment.NewLine +
 				"   at Anonymous function (get-full-name.js:12:9)" + Environment.NewLine +
-				"   at Global code (get-full-name.js)"
+				"   at Global code (get-full-name.js:13:2)"
 				;
 
 			JsRuntimeException exception = null;

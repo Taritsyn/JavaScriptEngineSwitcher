@@ -454,7 +454,7 @@ var foo = 'Browser's bar';";
 			string targetOutput = "ReferenceError: bar is not defined" + Environment.NewLine +
 				"   at foo (functions.js:4:3)" + Environment.NewLine +
 				"   at Anonymous function (functions.js:12:2)" + Environment.NewLine +
-				"   at Global code (functions.js)"
+				"   at Global code (functions.js:13:2)"
 				;
 
 			JsRuntimeException exception = null;

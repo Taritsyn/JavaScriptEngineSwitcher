@@ -52,7 +52,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2002";
+		private const string EngineVersion = "3.0.0 Beta 2031";
 
 		/// <summary>
 		/// Jint JS engine
@@ -255,7 +255,7 @@ namespace JavaScriptEngineSwitcher.Jint
 					originalJavaScriptException.StackTrace);
 				if (callStackItems.Length > 0)
 				{
-					JintJsErrorHelpers.FixErrorLocationItems(callStackItems, documentName);
+					JintJsErrorHelpers.FixErrorLocationItems(callStackItems);
 					callStack = JsErrorHelpers.StringifyErrorLocationItems(callStackItems, true);
 				}
 

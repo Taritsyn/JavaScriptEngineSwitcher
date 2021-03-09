@@ -22,6 +22,7 @@ namespace JavaScriptEngineSwitcher.Jint.Helpers
 
 		private const string OriginalAnonymousFunctionName = "(anonymous)";
 		private const string WrapperAnonymousFunctionName = "Anonymous function";
+		private const string DelegateFunctionName = "delegate";
 
 		/// <summary>
 		/// Regular expression for working with line of the script error location
@@ -29,14 +30,18 @@ namespace JavaScriptEngineSwitcher.Jint.Helpers
 		private static readonly Regex _errorLocationLineRegex =
 			new Regex(@"^[ ]{3}at " +
 				@"(?:" +
-					@"(?<functionName>" +
-						@"[\w][\w ]*" +
+					@"(?:" +
+						@"(?<functionName>" +
+							@"[\w][\w ]*" +
+							@"|" +
+							CommonRegExps.JsFullNamePattern +
+							@"|" +
+							Regex.Escape(OriginalAnonymousFunctionName) +
+						@") " +
+						@"\((?:" + CommonRegExps.JsFullNamePattern + @"(?:, " + CommonRegExps.JsFullNamePattern + @")*)?\)" +
 						@"|" +
-						CommonRegExps.JsFullNamePattern +
-						@"|" +
-						Regex.Escape(OriginalAnonymousFunctionName) +
+						@"(?<functionName>" + Regex.Escape(DelegateFunctionName) + @")" +
 					@") " +
-					@"(?:\(" + CommonRegExps.JsFullNamePattern + @"(?:, " + CommonRegExps.JsFullNamePattern + @")*\) )?" +
 				@")?" +
 				@"(?<documentName>" + CommonRegExps.DocumentNamePattern + @"):" +
 				@"(?<lineNumber>\d+)(?::(?<columnNumber>\d+))?$");
@@ -92,29 +97,18 @@ namespace JavaScriptEngineSwitcher.Jint.Helpers
 		/// Fixes a error location items
 		/// </summary>
 		/// <param name="errorLocationItems">An array of <see cref="ErrorLocationItem"/> instances</param>
-		/// <param name="currentDocumentName">Current document name</param>
-		public static void FixErrorLocationItems(ErrorLocationItem[] errorLocationItems, string currentDocumentName)
+		public static void FixErrorLocationItems(ErrorLocationItem[] errorLocationItems)
 		{
 			foreach (ErrorLocationItem errorLocationItem in errorLocationItems)
 			{
 				string functionName = errorLocationItem.FunctionName;
-				if (functionName.Length > 0)
-				{
-					if (functionName == OriginalAnonymousFunctionName)
-					{
-						errorLocationItem.FunctionName = WrapperAnonymousFunctionName;
-					}
-				}
-				else
+				if (functionName.Length == 0 || functionName == DelegateFunctionName)
 				{
 					errorLocationItem.FunctionName = "Global code";
 				}
-
-				if (errorLocationItem.DocumentName == ":0" && errorLocationItem.LineNumber == 1)
+				else if (functionName == OriginalAnonymousFunctionName)
 				{
-					errorLocationItem.DocumentName = currentDocumentName;
-					errorLocationItem.LineNumber = 0;
-					errorLocationItem.ColumnNumber = 0;
+					errorLocationItem.FunctionName = WrapperAnonymousFunctionName;
 				}
 			}
 		}

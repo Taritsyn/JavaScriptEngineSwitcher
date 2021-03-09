@@ -89,17 +89,8 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 		#region Recursive calls
 
-		[Fact]
-		public override void RecursiveEvaluationOfFilesIsCorrect()
-		{ }
-
-		[Fact]
-		public override void RecursiveExecutionOfFilesIsCorrect()
-		{ }
-
 		#region Mapping of errors
 
-		/*
 		[Fact]
 		public void MappingCompilationErrorDuringRecursiveEvaluationOfFilesIsCorrect()
 		{
@@ -182,7 +173,12 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Equal(10, exception.LineNumber);
 			Assert.Equal(4, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
-			Assert.Empty(exception.CallStack);
+			Assert.Equal(
+				"   at sum (math.js:10:4)" + Environment.NewLine +
+				"   at calculateResult (index.js:7:13)" + Environment.NewLine +
+				"   at Global code (Script Document:1:1)",
+				exception.CallStack
+			);
 		}
 
 		[Fact]
@@ -220,7 +216,6 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.NotNull(exception);
 			Assert.StartsWith("Could not find file '", exception.Message);
 		}
-		*/
 
 		[Fact]
 		public void MappingCompilationErrorDuringRecursiveExecutionOfFilesIsCorrect()
@@ -297,8 +292,12 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Equal("second-file.js", exception.DocumentName);
 			Assert.Equal(1, exception.LineNumber);
 			Assert.Equal(1, exception.ColumnNumber);
-			Assert.Equal("", exception.SourceFragment);
-			Assert.Equal("   at Global code (second-file.js:1:1)", exception.CallStack
+			Assert.Empty(exception.SourceFragment);
+			Assert.Equal(
+				"   at Global code (second-file.js:1:1)" + Environment.NewLine +
+				"   at Global code (first-file.js:2:1)" + Environment.NewLine +
+				"   at Global code (main-file.js:2:1)",
+				exception.CallStack
 			);
 		}
 
