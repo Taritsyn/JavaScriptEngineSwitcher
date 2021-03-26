@@ -81,7 +81,7 @@ $variable1 + -variable2 - variable3;";
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Runtime error", exception.Category);
-			Assert.Equal("variable2 is not defined", exception.Description);
+			Assert.Equal("variable2 is not defined.", exception.Description);
 			Assert.Equal("ReferenceError", exception.Type);
 			Assert.Equal("variables.js", exception.DocumentName);
 			Assert.Equal(5, exception.LineNumber);
@@ -230,10 +230,8 @@ var foo = 'Browser's bar';";
 
 	foo(a, b);
 })(foo);";
-			string targetOutput = "ReferenceError: bar is not defined" + Environment.NewLine +
-				"   at foo (functions.js:4)" + Environment.NewLine +
-				"   at Anonymous function (functions.js:12)" + Environment.NewLine +
-				"   at Global code (functions.js:8)"
+			string targetOutput = "ReferenceError: bar is not defined." + Environment.NewLine +
+				"   at Global code (functions.js:4)"
 				;
 
 			JsRuntimeException exception = null;

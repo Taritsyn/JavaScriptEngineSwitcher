@@ -16,15 +16,14 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of August 3, 2020).</Description>
+    <Description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of March 19, 2021).</Description>
     <PackageTags>$(PackageCommonTags);Jurassic</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>1. Jurassic was updated to version of August 3, 2020;
-2. In configuration settings of the Jurassic JS engine was added one new non-standard property - `EnableHostCollectionsEmbeddingByValue` (default `false`).</PackageReleaseNotes>
+    <PackageReleaseNotes>Jurassic was updated to version of March 19, 2021.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jurassic.Unofficial" Version="2020.8.3.1" />
+    <PackageReference Include="Jurassic.Unofficial" Version="2021.3.19" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>

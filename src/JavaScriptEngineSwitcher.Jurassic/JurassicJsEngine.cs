@@ -43,7 +43,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "Aug 3, 2020";
+		private const string EngineVersion = "Mar 19, 2021";
 
 		/// <summary>
 		/// Jurassic JS engine
@@ -187,24 +187,23 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			return wrapperCompilationException;
 		}
 
-		private static WrapperException WrapJavaScriptException(
+		private WrapperException WrapJavaScriptException(
 			OriginalJavaScriptException originalJavaScriptException)
 		{
 			WrapperException wrapperException;
 			string message = originalJavaScriptException.Message;
 			string messageWithCallStack = string.Empty;
-			string description = message;
-			string type = originalJavaScriptException.Name;
+			string description = originalJavaScriptException.ErrorMessage;
+			string type = originalJavaScriptException.ErrorType.ToString();
 			string documentName = originalJavaScriptException.SourcePath ?? string.Empty;
 			int lineNumber = originalJavaScriptException.LineNumber;
 			string callStack = string.Empty;
 
-			var errorValue = originalJavaScriptException.ErrorObject as OriginalErrorInstance;
+			object errorObject = originalJavaScriptException.GetErrorObject(_jsEngine);
+			var errorValue = errorObject as OriginalErrorInstance;
 			if (errorValue != null)
 			{
 				messageWithCallStack = errorValue.Stack;
-				description = !string.IsNullOrEmpty(errorValue.Message) ?
-					errorValue.Message : description;
 			}
 
 			if (!string.IsNullOrEmpty(type))

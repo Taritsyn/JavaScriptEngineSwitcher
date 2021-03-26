@@ -29,7 +29,7 @@ myObj.prototype = { getFoo: { value: function () { return this.foo } } };;
 myObj.foo = 1;
 ";
 			const string input4B = "Object.keys(myObj).toString();";
-			const string targetOutput4 = "displayName,foo";
+			const string targetOutput4 = "foo";
 
 			// Act
 			string output1;

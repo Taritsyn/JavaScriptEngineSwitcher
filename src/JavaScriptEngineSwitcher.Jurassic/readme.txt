@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2019 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2021 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -13,15 +13,12 @@
    ===========
    JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper
    for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic)
-   version of August 3, 2020).
+   version of March 19, 2021).
 
    =============
    RELEASE NOTES
    =============
-   1. Jurassic was updated to version of August 3, 2020;
-   2. In configuration settings of the Jurassic JS engine was added one new
-      non-standard property - `EnableHostCollectionsEmbeddingByValue` (default
-      `false`).
+   Jurassic was updated to version of March 19, 2021.
 
    =============
    DOCUMENTATION

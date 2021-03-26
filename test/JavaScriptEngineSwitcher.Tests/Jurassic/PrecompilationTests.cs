@@ -107,9 +107,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 			Assert.Equal(0, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
 			Assert.Equal(
-				"   at getItem (get-item.js:2)" + Environment.NewLine +
-				"   at Anonymous function (get-item.js:9)" + Environment.NewLine +
-				"   at Global code (get-item.js:7)",
+				"   at getItem (get-item.js:2)",
 				exception.CallStack
 			);
 		}
@@ -176,10 +174,8 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 
 	return getFullName(firstName, lastName);
 })(getFullName);";
-			string targetOutput = "ReferenceError: middleName is not defined" + Environment.NewLine +
-				"   at getFullName (get-full-name.js:2)" + Environment.NewLine +
-				"   at Anonymous function (get-full-name.js:12)" + Environment.NewLine +
-				"   at Global code (get-full-name.js:7)"
+			string targetOutput = "ReferenceError: middleName is not defined." + Environment.NewLine +
+				"   at Global code (get-full-name.js:2)"
 				;
 
 			JsRuntimeException exception = null;
