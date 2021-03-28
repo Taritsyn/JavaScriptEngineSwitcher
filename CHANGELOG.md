@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.12.0 - March 28, 2021
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of March 19, 2021
+
 ## v3.11.4 - March 19, 2021
  * In JavaScriptEngineSwitcher.NiL:
    * NiL.JS was updated to version 2.5.1486

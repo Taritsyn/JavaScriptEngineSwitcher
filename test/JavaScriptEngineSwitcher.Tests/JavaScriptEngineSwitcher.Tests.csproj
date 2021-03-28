@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Tests</Product>
-    <VersionPrefix>3.11.4</VersionPrefix>
+    <VersionPrefix>3.12.0</VersionPrefix>
     <TargetFrameworks>net452;net471;netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
