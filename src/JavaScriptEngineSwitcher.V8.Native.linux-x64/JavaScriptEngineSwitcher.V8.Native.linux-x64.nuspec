@@ -3,7 +3,7 @@
   <metadata>
     $CommonMetadataElements$
     <dependencies>
-      <dependency id="Microsoft.ClearScript.V8.Native.linux-x64" version="7.1.1" />
+      <dependency id="Microsoft.ClearScript.V8.Native.linux-x64" version="7.1.2" />
     </dependencies>
   </metadata>
   <files>
