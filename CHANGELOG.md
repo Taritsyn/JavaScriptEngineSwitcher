@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.12.1 - April 18, 2021
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1493
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.1.2 (support of V8 version 9.0.257.19)
+
 ## v3.12.0 - March 28, 2021
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of March 19, 2021
 
