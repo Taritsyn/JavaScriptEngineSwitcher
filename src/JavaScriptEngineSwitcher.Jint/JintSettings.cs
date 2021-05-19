@@ -1,7 +1,7 @@
 ﻿using System;
 
-using OriginalDebuggerBreakDelegate = Jint.Engine.BreakDelegate;
-using OriginalDebuggerStepDelegate = Jint.Engine.DebugStepDelegate;
+using OriginalDebuggerBreakDelegate = Jint.Runtime.Debugger.DebugHandler.BreakDelegate;
+using OriginalDebuggerStepDelegate = Jint.Runtime.Debugger.DebugHandler.DebugStepDelegate;
 
 namespace JavaScriptEngineSwitcher.Jint
 {

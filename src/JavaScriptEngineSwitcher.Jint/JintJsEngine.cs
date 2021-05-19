@@ -4,9 +4,9 @@ using System.Threading;
 using Jint;
 using IOriginalPrimitiveInstance = Jint.Native.IPrimitiveInstance;
 using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
-using OriginalDebuggerBreakDelegate = Jint.Engine.BreakDelegate;
+using OriginalDebuggerBreakDelegate = Jint.Runtime.Debugger.DebugHandler.BreakDelegate;
 using OriginalDebuggerStatementHandlingMode = Jint.Runtime.Debugger.DebuggerStatementHandling;
-using OriginalDebuggerStepDelegate = Jint.Engine.DebugStepDelegate;
+using OriginalDebuggerStepDelegate = Jint.Runtime.Debugger.DebugHandler.DebugStepDelegate;
 using OriginalEngine = Jint.Engine;
 using OriginalExecutionCanceledException = Jint.Runtime.ExecutionCanceledException;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
@@ -52,7 +52,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2031";
+		private const string EngineVersion = "3.0.0 Beta 2032";
 
 		/// <summary>
 		/// Jint JS engine
@@ -138,11 +138,11 @@ namespace JavaScriptEngineSwitcher.Jint
 				});
 				if (_debuggerBreakCallback != null)
 				{
-					_jsEngine.Break += _debuggerBreakCallback;
+					_jsEngine.DebugHandler.Break += _debuggerBreakCallback;
 				}
 				if (_debuggerStepCallback != null)
 				{
-					_jsEngine.Step += _debuggerStepCallback;
+					_jsEngine.DebugHandler.Step += _debuggerStepCallback;
 				}
 			}
 			catch (Exception e)
@@ -397,7 +397,7 @@ namespace JavaScriptEngineSwitcher.Jint
 
 				try
 				{
-					resultValue = _jsEngine.Execute(expression, parserOptions).GetCompletionValue();
+					resultValue = _jsEngine.Evaluate(expression, parserOptions);
 				}
 				catch (OriginalParserException e)
 				{
@@ -710,13 +710,13 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					if (_debuggerStepCallback != null)
 					{
-						_jsEngine.Step -= _debuggerStepCallback;
+						_jsEngine.DebugHandler.Step -= _debuggerStepCallback;
 						_debuggerStepCallback = null;
 					}
 
 					if (_debuggerBreakCallback != null)
 					{
-						_jsEngine.Break -= _debuggerBreakCallback;
+						_jsEngine.DebugHandler.Break -= _debuggerBreakCallback;
 						_debuggerBreakCallback = null;
 					}
 
