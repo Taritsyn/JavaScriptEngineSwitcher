@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Sample ASP.NET Core 3.1 MVC 3.1 Site</Product>
-    <VersionPrefix>3.12.1</VersionPrefix>
+    <VersionPrefix>3.12.2</VersionPrefix>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -13,12 +13,12 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.11" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.11" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.11" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.11" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.11" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.15" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.15" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.15" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.15" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.15" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" PrivateAssets="All" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.9.1" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.9.1" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.9.1" />
