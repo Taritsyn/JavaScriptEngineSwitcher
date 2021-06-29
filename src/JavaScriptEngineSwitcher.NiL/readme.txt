@@ -12,12 +12,13 @@
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the
-   NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1510).
+   NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1514).
 
    =============
    RELEASE NOTES
    =============
-   NiL.JS was updated to version 2.5.1510.
+   1. NiL.JS was updated to version 2.5.1514;
+   2. Added support of .NET Core App 3.1.
 
    =============
    DOCUMENTATION
