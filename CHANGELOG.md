@@ -1,6 +1,14 @@
 Change log
 ==========
 
+## v3.12.4 - June 29, 2021
+ * In JavaScriptEngineSwitcher.NiL:
+   * NiL.JS was updated to version 2.5.1514
+   * Added support of .NET Core App 3.1
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.1.4 (support of V8 version 9.1.269.36)
+   * Added support of OS X (ARM64)
+
 ## v3.12.3 - May 26, 2021
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.1.3 (support of V8 version 9.1.269.28)
 
