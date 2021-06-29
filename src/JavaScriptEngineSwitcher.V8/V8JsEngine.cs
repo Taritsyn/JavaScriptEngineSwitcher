@@ -47,7 +47,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "9.1.269.28";
+		private const string EngineVersion = "9.1.269.36";
 
 		/// <summary>
 		/// V8 JS engine
@@ -78,7 +78,8 @@ namespace JavaScriptEngineSwitcher.V8
 			{ "ClearScriptV8.linux-x64.so", "Microsoft.ClearScript.V8.Native.linux-x64" },
 			{ "ClearScriptV8.linux-arm.so", "Microsoft.ClearScript.V8.Native.linux-arm" },
 			{ "ClearScriptV8.linux-arm64.so", "Microsoft.ClearScript.V8.Native.linux-arm64" },
-			{ "ClearScriptV8.osx-x64.dylib", "Microsoft.ClearScript.V8.Native.osx-x64" }
+			{ "ClearScriptV8.osx-x64.dylib", "Microsoft.ClearScript.V8.Native.osx-x64" },
+			{ "ClearScriptV8.osx-arm64.dylib", "Microsoft.ClearScript.V8.Native.osx-arm64" }
 		};
 
 
