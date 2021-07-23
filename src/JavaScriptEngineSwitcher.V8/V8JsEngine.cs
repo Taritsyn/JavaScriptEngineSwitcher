@@ -47,7 +47,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "9.1.269.36";
+		private const string EngineVersion = "9.2.230.21";
 
 		/// <summary>
 		/// V8 JS engine
@@ -101,8 +101,9 @@ namespace JavaScriptEngineSwitcher.V8
 			var constraints = new OriginalRuntimeConstraints
 			{
 				HeapExpansionMultiplier = v8Settings.HeapExpansionMultiplier,
+				MaxArrayBufferAllocation = v8Settings.MaxArrayBufferAllocation,
 				MaxNewSpaceSize = v8Settings.MaxNewSpaceSize,
-				MaxOldSpaceSize = v8Settings.MaxOldSpaceSize,
+				MaxOldSpaceSize = v8Settings.MaxOldSpaceSize
 			};
 
 			OriginalEngineFlags flags = OriginalEngineFlags.None;

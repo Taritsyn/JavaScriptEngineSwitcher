@@ -93,6 +93,21 @@ namespace JavaScriptEngineSwitcher.V8
 		}
 
 		/// <summary>
+		/// Gets or sets a maximum amount of <code>ArrayBuffer</code> memory the runtime may allocate.
+		/// </summary>
+		/// <remarks>
+		/// This property is specified in bytes. <code>ArrayBuffer</code> memory is allocated outside
+		/// the runtime's heap and released when its garbage collector reclaims the corresponding
+		/// JavaScript <code>ArrayBuffer</code> object. Leave this property at its default value to
+		/// enforce no limit.
+		/// </remarks>
+		public ulong MaxArrayBufferAllocation
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a maximum size of the executable code heap in mebibytes
 		/// </summary>
 		[Obsolete("Executable code now occupies the old object heap. Use a `MaxOldSpaceSize` property instead.")]
@@ -121,6 +136,11 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <para>
 		/// Exceeding this limit causes the V8 runtime to interrupt script execution and throw
 		/// an exception.
+		/// </para>
+		/// <para>
+		/// Note that <code>ArrayBuffer</code> memory is allocated outside the runtime's heap and is
+		/// therefore not tracked by heap size monitoring. See <see cref="MaxArrayBufferAllocation"/>
+		/// property for additional information.
 		/// </para>
 		/// </remarks>
 		public UIntPtr MaxHeapSize
@@ -181,6 +201,7 @@ namespace JavaScriptEngineSwitcher.V8
 			DisableGlobalMembers = false;
 			HeapExpansionMultiplier = 0;
 			HeapSizeSampleInterval = TimeSpan.Zero;
+			MaxArrayBufferAllocation = ulong.MaxValue;
 			MaxHeapSize = UIntPtr.Zero;
 			MaxNewSpaceSize = 0;
 			MaxOldSpaceSize = 0;

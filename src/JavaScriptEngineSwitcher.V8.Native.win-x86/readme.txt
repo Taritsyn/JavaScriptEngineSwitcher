@@ -17,8 +17,8 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 7.1.4 (support of V8 version
-   9.1.269.36).
+   Microsoft ClearScript.V8 was updated to version 7.1.5 (support of V8 version
+   9.2.230.21).
 
    =============
    DOCUMENTATION

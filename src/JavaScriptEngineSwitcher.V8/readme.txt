@@ -13,7 +13,7 @@
    ===========
    JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the
    Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version
-   7.1.4).
+   7.1.5).
 
    This package does not contain the native ClearScript.V8 assemblies.
    Therefore, you need to choose and install the most appropriate package(s) for
@@ -31,8 +31,9 @@
    =============
    RELEASE NOTES
    =============
-   1. Microsoft ClearScript.V8 was updated to version 7.1.4;
-   2. Added support of OS X (ARM64).
+   1. Microsoft ClearScript.V8 was updated to version 7.1.5;
+   2. In configuration settings of the V8 JS engine was added one new property -
+      `MaxArrayBufferAllocation` (default `UInt64.MaxValue`).
 
    =============
    DOCUMENTATION
