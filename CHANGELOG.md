@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.12.5 - July 23, 2021
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2033
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.1.5 (support of V8 version 9.2.230.21)
+   * In configuration settings of the V8 JS engine was added one new property - `MaxArrayBufferAllocation` (default `UInt64.MaxValue`)
+
 ## v3.12.4 - June 29, 2021
  * In JavaScriptEngineSwitcher.NiL:
    * NiL.JS was updated to version 2.5.1514
