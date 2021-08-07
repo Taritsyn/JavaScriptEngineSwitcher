@@ -31,7 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.24 (Tomáš Deml's patch applied).
+   Improved a implementation of the `Dispose` method.
 
    =============
    DOCUMENTATION
