@@ -1,14 +1,13 @@
 param($installPath, $toolsPath, $package, $project)
 
-if ($project.Type -eq "Web Site") {
-	$projectDirectoryPath = $project.Properties.Item("FullPath").Value
-	$binDirectoryPath = Join-Path $projectDirectoryPath "bin"
-	$assemblyFileName = "ChakraCore.dll"
+if ($project.Type -eq 'Web Site') {
+    $projectDir = $project.Properties.Item('FullPath').Value
+    $assemblySourceFiles = Join-Path $installPath 'runtimes/win-arm/native/*.*'
 
-	$assemblyDirectoryPath = Join-Path $binDirectoryPath "arm"
-	$assemblyFilePath = Join-Path $assemblyDirectoryPath $assemblyFileName
-
-	if (Test-Path $assemblyFilePath) {
-		Remove-Item $assemblyFilePath -Force
-	}
+    foreach ($assemblySourceFileInfo in Get-Item($assemblySourceFiles)) {
+        $assemblyFile = Join-Path $projectDir "bin/arm/$($assemblySourceFileInfo.Name)"
+        if (Test-Path $assemblyFile) {
+            Remove-Item $assemblyFile -Force
+        }
+    }
 }

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: ChakraCore for Windows (x64)</Product>
-    <VersionPrefix>3.9.1</VersionPrefix>
+    <VersionPrefix>3.12.6</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
@@ -14,7 +14,7 @@
     <Description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version 1.11.24 with the Tomáš Deml's patch for Windows (x64).</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore;Windows;x64</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>ChakraCore was updated to version 1.11.24 (Tomáš Deml's patch applied).</PackageReleaseNotes>
+    <PackageReleaseNotes>MSBuild and PowerShell scripts for installing the native assemblies are made more simple and universal.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

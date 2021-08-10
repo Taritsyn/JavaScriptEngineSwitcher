@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-        README file for JS Engine Switcher: ChakraCore for Windows ARM64 v3.9.1
+       README file for JS Engine Switcher: ChakraCore for Windows ARM64 v3.12.6
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2020 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2021 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -20,7 +20,8 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version 1.11.24 (Tomáš Deml's patch applied).
+   MSBuild and PowerShell scripts for installing the native assemblies are made
+   more simple and universal.
 
    =============
    DOCUMENTATION

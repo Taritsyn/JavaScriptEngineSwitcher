@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: ChakraCore for Windows (ARM)</Product>
-    <VersionPrefix>3.9.1</VersionPrefix>
+    <VersionPrefix>3.12.6</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
@@ -16,7 +16,7 @@
 This package is only compatible with .NET Core and .NET Framework 4.5.</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore;Windows;ARM</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>ChakraCore was updated to version 1.11.24 (Tomáš Deml's patch applied).</PackageReleaseNotes>
+    <PackageReleaseNotes>MSBuild and PowerShell scripts for installing the native assemblies are made more simple and universal.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
