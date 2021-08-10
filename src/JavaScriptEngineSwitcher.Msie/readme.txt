@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                   README file for JS Engine Switcher: MSIE v3.4.3
+                   README file for JS Engine Switcher: MSIE v3.12.6
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2020 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2021 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========

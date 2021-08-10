@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.12.6 - August 10, 2021
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * Improved a implementation of the `Dispose` method
+   * MSBuild and PowerShell scripts for installing the native assemblies are made more simple and universal
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.8
+
 ## v3.12.5 - July 23, 2021
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2033
  * In JavaScriptEngineSwitcher.V8:

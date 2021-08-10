@@ -93,7 +93,7 @@ namespace JavaScriptEngineSwitcher.V8
 		}
 
 		/// <summary>
-		/// Gets or sets a maximum amount of <code>ArrayBuffer</code> memory the runtime may allocate.
+		/// Gets or sets a maximum amount of <code>ArrayBuffer</code> memory the runtime may allocate
 		/// </summary>
 		/// <remarks>
 		/// This property is specified in bytes. <code>ArrayBuffer</code> memory is allocated outside
