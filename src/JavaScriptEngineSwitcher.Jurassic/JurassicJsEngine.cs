@@ -43,7 +43,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "Mar 19, 2021";
+		private const string EngineVersion = "May 27, 2021";
 
 		/// <summary>
 		/// Jurassic JS engine
@@ -83,9 +83,6 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					CompatibilityMode = OriginalCompatibilityMode.Latest,
 					DisableClrCollectionsExposingByValue = !jurassicSettings.EnableHostCollectionsEmbeddingByValue,
-#if !NETSTANDARD2_0
-					EnableDebugging = jurassicSettings.EnableDebugging,
-#endif
 					EnableExposedClrTypes = true,
 					EnableILAnalysis = jurassicSettings.EnableIlAnalysis,
 					ForceStrictMode = jurassicSettings.StrictMode
@@ -97,26 +94,6 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			}
 		}
 
-
-		private string GetUniqueDocumentName(string documentName, bool isFile)
-		{
-			string uniqueDocumentName;
-
-#if !NETSTANDARD2_0
-			if (_jsEngine.EnableDebugging)
-			{
-				uniqueDocumentName = isFile ? documentName : null;
-			}
-			else
-			{
-#endif
-				uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
-#if !NETSTANDARD2_0
-			}
-#endif
-
-			return uniqueDocumentName;
-		}
 
 		#region Mapping
 
@@ -299,14 +276,14 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
 		{
 			OriginalCompiledScript compiledScript;
-			string uniqueDocumentName = GetUniqueDocumentName(documentName, false);
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
 			lock (_executionSynchronizer)
 			{
 				try
 				{
 					var source = new OriginalStringScriptSource(code, uniqueDocumentName);
-					compiledScript = _jsEngine.Compile(source);
+					compiledScript = OriginalCompiledScript.Compile(source);
 				}
 				catch (OriginalSyntaxException e)
 				{
@@ -325,7 +302,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		protected override object InnerEvaluate(string expression, string documentName)
 		{
 			object result;
-			string uniqueDocumentName = GetUniqueDocumentName(documentName, false);
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
 			lock (_executionSynchronizer)
 			{
@@ -364,7 +341,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override void InnerExecute(string code, string documentName)
 		{
-			string uniqueDocumentName = GetUniqueDocumentName(documentName, false);
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
 			lock (_executionSynchronizer)
 			{
@@ -633,14 +610,14 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			}
 
 			OriginalCompiledScript compiledScript;
-			string uniqueDocumentName = GetUniqueDocumentName(path, true);
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(path);
 
 			lock (_executionSynchronizer)
 			{
 				try
 				{
 					var source = new FileScriptSource(uniqueDocumentName, path, encoding);
-					compiledScript = _jsEngine.Compile(source);
+					compiledScript = OriginalCompiledScript.Compile(source);
 				}
 				catch (OriginalSyntaxException e)
 				{
@@ -700,14 +677,14 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
 
 			OriginalCompiledScript compiledScript;
-			string uniqueDocumentName = GetUniqueDocumentName(resourceFullName, false);
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(resourceFullName);
 
 			lock (_executionSynchronizer)
 			{
 				try
 				{
 					var source = new ResourceScriptSource(uniqueDocumentName, resourceFullName, assembly);
-					compiledScript = _jsEngine.Compile(source);
+					compiledScript = OriginalCompiledScript.Compile(source);
 				}
 				catch (OriginalSyntaxException e)
 				{
@@ -759,14 +736,14 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			}
 
 			OriginalCompiledScript compiledScript;
-			string uniqueDocumentName = GetUniqueDocumentName(resourceName, false);
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(resourceName);
 
 			lock (_executionSynchronizer)
 			{
 				try
 				{
 					var source = new ResourceScriptSource(uniqueDocumentName, resourceName, assembly);
-					compiledScript = _jsEngine.Compile(source);
+					compiledScript = OriginalCompiledScript.Compile(source);
 				}
 				catch (OriginalSyntaxException e)
 				{
@@ -809,7 +786,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
-			string uniqueDocumentName = GetUniqueDocumentName(path, true);
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(path);
 
 			lock (_executionSynchronizer)
 			{
@@ -872,7 +849,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 #endif
 			string nameSpace = type.Namespace;
 			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
-			string uniqueDocumentName = GetUniqueDocumentName(resourceFullName, false);
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(resourceFullName);
 
 			lock (_executionSynchronizer)
 			{
@@ -928,7 +905,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
-			string uniqueDocumentName = GetUniqueDocumentName(resourceName, false);
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(resourceName);
 
 			lock (_executionSynchronizer)
 			{

@@ -1,4 +1,6 @@
-﻿namespace JavaScriptEngineSwitcher.Jurassic
+﻿using System;
+
+namespace JavaScriptEngineSwitcher.Jurassic
 {
 	/// <summary>
 	/// Settings of the Jurassic JS engine
@@ -25,6 +27,7 @@
 		/// Gets or sets a flag for whether to enable script debugging features
 		/// (allows a generation of debug information)
 		/// </summary>
+		[Obsolete("Since the Jurassic version 3.2.1, debugging is no longer supported.")]
 		public bool EnableDebugging
 		{
 			get;
@@ -58,9 +61,6 @@
 		public JurassicSettings()
 		{
 			EnableHostCollectionsEmbeddingByValue = false;
-#if !NETSTANDARD2_0
-			EnableDebugging = false;
-#endif
 			EnableIlAnalysis = false;
 			StrictMode = false;
 		}
