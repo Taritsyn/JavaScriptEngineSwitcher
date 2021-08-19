@@ -16,15 +16,15 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of August 5, 2021).</Description>
+    <Description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of August 18, 2021).</Description>
     <PackageTags>$(PackageCommonTags);Jurassic</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>1. Jurassic was updated to version of August 5, 2021;
-2. In configuration settings of the Jurassic JS engine the `EnableDebugging` property has become deprecated.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Jurassic was updated to version of August 18, 2021;
+2. Debugging is no longer supported.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jurassic.Unofficial" Version="2021.8.5" />
+    <PackageReference Include="Jurassic.Unofficial" Version="2021.8.18" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
