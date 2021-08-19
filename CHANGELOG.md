@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.13.0 - August 19, 2021
+ * In JavaScriptEngineSwitcher.Jurassic:
+   * Jurassic was updated to version of August 18, 2021
+   * Debugging is no longer supported
+
 ## v3.12.6 - August 10, 2021
  * In JavaScriptEngineSwitcher.ChakraCore:
    * Improved a implementation of the `Dispose` method
