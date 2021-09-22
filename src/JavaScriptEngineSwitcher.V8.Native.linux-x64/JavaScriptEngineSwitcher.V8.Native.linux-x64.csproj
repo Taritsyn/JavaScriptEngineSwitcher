@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: V8 for Linux (x64)</Product>
-    <VersionPrefix>3.12.5</VersionPrefix>
+    <VersionPrefix>3.13.1</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
