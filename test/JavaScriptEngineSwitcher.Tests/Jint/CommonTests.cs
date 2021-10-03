@@ -219,6 +219,38 @@ for (var i = 0; i < 10000; i++) {
 		}
 
 		[Fact]
+		public void MappingRuntimeErrorDuringArraySizeExceededIsCorrect()
+		{
+			// Arrange
+			const string input = @"var arr = new Array(1000000000);";
+
+			JsRuntimeException exception = null;
+
+			// Act
+			using (IJsEngine jsEngine = new JintJsEngine(
+				new JintSettings
+				{
+					MaxArraySize = 1_000_000
+				}
+			))
+			{
+				try
+				{
+					jsEngine.Execute(input);
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("The array size 1000000000 is larger than maximum allowed (1000000)", exception.Description);
+		}
+
+		[Fact]
 		public void MappingRuntimeErrorDuringRecursionDepthOverflowIsCorrect()
 		{
 			// Arrange

@@ -52,7 +52,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2034";
+		private const string EngineVersion = "3.0.0 Beta 2035";
 
 		/// <summary>
 		/// Jint JS engine
@@ -124,6 +124,7 @@ namespace JavaScriptEngineSwitcher.Jint
 						.LimitMemory(jintSettings.MemoryLimit)
 						.LimitRecursion(jintSettings.MaxRecursionDepth)
 						.LocalTimeZone(jintSettings.LocalTimeZone ?? TimeZoneInfo.Local)
+						.MaxArraySize(jintSettings.MaxArraySize)
 						.MaxStatements(jintSettings.MaxStatements)
 						.Strict(jintSettings.StrictMode)
 						.TimeoutInterval(jintSettings.TimeoutInterval)

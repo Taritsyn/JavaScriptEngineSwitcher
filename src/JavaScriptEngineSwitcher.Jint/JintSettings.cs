@@ -67,6 +67,15 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 		/// <summary>
+		/// Gets or sets a maximum size for JavaScript array
+		/// </summary>
+		public uint MaxArraySize
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a maximum allowed depth of recursion:
 		///    -1 - recursion without limits;
 		///     N - one scope function can be called no more than N times.
@@ -145,6 +154,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			DebuggerStepCallback = null;
 			EnableDebugging = false;
 			LocalTimeZone = TimeZoneInfo.Local;
+			MaxArraySize = uint.MaxValue;
 			MaxRecursionDepth = -1;
 			MaxStatements = 0;
 			MemoryLimit = 0;
