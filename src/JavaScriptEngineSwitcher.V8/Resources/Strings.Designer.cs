@@ -58,6 +58,14 @@ namespace JavaScriptEngineSwitcher.V8.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "By default, some features of the JavaScript Internationalization API are not supported."
+		/// </summary>
+		internal static string Engine_InternationalizationApiNotFullySupported
+		{
+			get { return GetString("Engine_InternationalizationApiNotFullySupported"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "Pre-compiled script is not accepted. To be accepted, the pre-compiled script must have been created..."
 		/// </summary>
 		internal static string Usage_PrecompiledScriptNotAccepted

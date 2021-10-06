@@ -247,6 +247,19 @@ namespace JavaScriptEngineSwitcher.V8
 					}
 					else
 					{
+						if (description == "Internal error. Icu error.")
+						{
+							var stringBuilderPool = StringBuilderPool.Shared;
+							StringBuilder descriptionBuilder = stringBuilderPool.Rent();
+							descriptionBuilder.Append(Strings.Engine_InternationalizationApiNotFullySupported);
+							descriptionBuilder.Append(" ");
+							descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+								"Microsoft.ClearScript.V8.ICUData");
+
+							description = descriptionBuilder.ToString();
+							stringBuilderPool.Return(descriptionBuilder);
+						}
+
 						callStack = JsErrorHelpers.StringifyErrorLocationItems(errorLocationItems, true);
 						string callStackWithSourceFragment = JsErrorHelpers.StringifyErrorLocationItems(
 							errorLocationItems);

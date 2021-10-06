@@ -31,7 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 7.1.6.
+   Implemented a handling of error “Internal error. Icu error”.
 
    =============
    DOCUMENTATION

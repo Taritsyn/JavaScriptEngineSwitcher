@@ -30,7 +30,7 @@ This package does not contain the native ClearScript.V8 assemblies. Therefore, y
  * Microsoft.ClearScript.V8.Native.osx-arm64</Description>
     <PackageTags>$(PackageCommonTags);V8;ClearScript</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Microsoft ClearScript.V8 was updated to version 7.1.6.</PackageReleaseNotes>
+    <PackageReleaseNotes>Implemented a handling of error “Internal error. Icu error”.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

@@ -183,6 +183,44 @@ factorial(0);";
 		}
 
 		[Fact]
+		public void MappingRuntimeErrorDuringUsingInternationalizationApiIsCorrect()
+		{
+			// Arrange
+			const string functionCode = @"function formatDate(value, locale) {
+	if (typeof value === 'string' && value.length > 0) {
+		value = new Date(value);
+	}
+
+	return new Intl.DateTimeFormat(locale).format(value);
+}";
+
+			JsRuntimeException exception = null;
+
+			// Act
+			using (var jsEngine = CreateJsEngine())
+			{
+				try
+				{
+					jsEngine.Execute(functionCode);
+					string result = jsEngine.CallFunction<string>("formatDate", "2021-09-16", "ru-ru");
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal(
+				"By default, some features of the JavaScript Internationalization API are not supported. " +
+				"Try to install the Microsoft.ClearScript.V8.ICUData package via NuGet.",
+				exception.Description
+			);
+		}
+
+		[Fact]
 		public void MappingRuntimeErrorDuringOutOfMemoryIsCorrect()
 		{
 			// Arrange
