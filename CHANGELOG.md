@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.13.2 - October 6, 2021
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 3.0.0 Beta 2035
+   * In configuration settings of the Jint JS engine was added one new property - `MaxArraySize` (default `uint.MaxValue`)
+ * In JavaScriptEngineSwitcher.V8 implemented a handling of error “Internal error. Icu error”
+
 ## v3.13.1 - September 22, 2021
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2034
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.1.6 (support of V8 version 9.4.146.16)
