@@ -16,7 +16,7 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version 7.1.6).
+    <Description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version 7.1.7).
 
 This package does not contain the native ClearScript.V8 assemblies. Therefore, you need to choose and install the most appropriate package(s) for your platform. The following packages are available:
 
@@ -30,14 +30,14 @@ This package does not contain the native ClearScript.V8 assemblies. Therefore, y
  * Microsoft.ClearScript.V8.Native.osx-arm64</Description>
     <PackageTags>$(PackageCommonTags);V8;ClearScript</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Implemented a handling of error “Internal error. Icu error”.</PackageReleaseNotes>
+    <PackageReleaseNotes>Microsoft ClearScript.V8 was updated to version 7.1.7.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Condition=" '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net471' " Include="Microsoft.CSharp" Pack="false" />
 
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
-    <PackageReference Include="Microsoft.ClearScript.V8" Version="7.1.6" />
+    <PackageReference Include="Microsoft.ClearScript.V8" Version="7.1.7" />
     <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
