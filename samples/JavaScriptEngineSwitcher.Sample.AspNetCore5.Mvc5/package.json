@@ -1,7 +1,7 @@
 {
   "name": "javascriptengineswitcher.sample.aspnetcore5.mvc5",
   "private": true,
-  "version": "3.13.2",
+  "version": "3.13.3",
   "devDependencies": {
     "gulp": "4.0.2",
     "del": "5.1.0",
