@@ -18,16 +18,15 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 2035).</Description>
+    <Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 2036).</Description>
     <PackageTags>$(PackageCommonTags);Jint</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>1. Jint was updated to version 3.0.0 Beta 2035;
-2. In configuration settings of the Jint JS engine was added one new property - `MaxArraySize` (default `uint.MaxValue`).</PackageReleaseNotes>
+    <PackageReleaseNotes>Jint was updated to version 3.0.0 Beta 2036.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
-    <PackageReference Include="Jint" Version="3.0.0-beta-2035" />
+    <PackageReference Include="Jint" Version="3.0.0-beta-2036" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
