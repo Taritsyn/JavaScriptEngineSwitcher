@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-#if NET451 || NET471 || NETSTANDARD
+#if NET451_OR_GREATER || NETSTANDARD
 using HostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
-#elif NETCOREAPP3_1 || NET5_0
+#elif NETCOREAPP3_1_OR_GREATER
 using HostingEnvironment = Microsoft.AspNetCore.Hosting.IWebHostEnvironment;
 #elif NET40
 using System.Web;
@@ -17,12 +17,12 @@ namespace JavaScriptEngineSwitcher.Sample.Logic.Services
 	public sealed class FileContentService
 	{
 		private readonly string _textContentDirectoryPath;
-#if NET451 || NET471 || NETSTANDARD || NETCOREAPP
+#if NET451_OR_GREATER || NETSTANDARD || NETCOREAPP
 		private readonly HostingEnvironment _hostingEnvironment;
 #endif
 
 
-#if NET451 || NET471 || NETSTANDARD || NETCOREAPP
+#if NET451_OR_GREATER || NETSTANDARD || NETCOREAPP
 		public FileContentService(
 			string textContentDirectoryPath,
 			HostingEnvironment hostingEnvironment
@@ -78,7 +78,7 @@ namespace JavaScriptEngineSwitcher.Sample.Logic.Services
 
 		private string GetPhysicalFilePath(string filePath)
 		{
-#if NET451 || NET471 || NETSTANDARD || NETCOREAPP
+#if NET451_OR_GREATER || NETSTANDARD || NETCOREAPP
 			string applicationDirectoryPath = _hostingEnvironment.ContentRootPath;
 #elif NET40
 			HttpContext context = HttpContext.Current;

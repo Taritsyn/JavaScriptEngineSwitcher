@@ -13,12 +13,6 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.17" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.17" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.17" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.17" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.17" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" PrivateAssets="All" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.12.6" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.12.6" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.12.6" />
@@ -44,12 +38,6 @@
     <ProjectReference Include="../JavaScriptEngineSwitcher.Sample.Logic/JavaScriptEngineSwitcher.Sample.Logic.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.V8/JavaScriptEngineSwitcher.V8.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="wwwroot/**/*;Views/**/*">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
   </ItemGroup>
 
   <Target Name="NodePackageInstallation" BeforeTargets="BeforeBuild;BeforeClean">

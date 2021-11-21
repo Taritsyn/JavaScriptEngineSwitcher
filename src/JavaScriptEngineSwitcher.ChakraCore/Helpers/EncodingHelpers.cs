@@ -1,4 +1,4 @@
-﻿#if NET45 || NET471 || NETSTANDARD || NETCOREAPP2_1
+﻿#if NET45_OR_GREATER || NETSTANDARD || NETCOREAPP2_1
 using System.Buffers;
 #endif
 using System.Text;
@@ -25,7 +25,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			string result;
 			int valueLength = value.Length;
 			Encoding utf8Encoding = Encoding.UTF8;
-#if NETFULL
+#if NETFRAMEWORK
 			Encoding ansiEncoding = Encoding.Default;
 #else
 			Encoding ansiEncoding = Encoding.GetEncoding(0);
@@ -38,7 +38,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 			try
 			{
-#if NET45 || NET471 || NETSTANDARD || NETCOREAPP2_1
+#if NET45_OR_GREATER || NETSTANDARD || NETCOREAPP2_1
 				result = ConvertStringInternal(utf8Encoding, ansiEncoding, value, valueLength, buffer, bufferLength);
 #else
 				utf8Encoding.GetBytes(value, 0, valueLength, buffer, 0);
@@ -54,7 +54,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 			return result;
 		}
-#if NET45 || NET471 || NETSTANDARD || NETCOREAPP2_1
+#if NET45_OR_GREATER || NETSTANDARD || NETCOREAPP2_1
 
 		private static unsafe string ConvertStringInternal(Encoding srcEncoding, Encoding dstEncoding, string s,
 			int charCount, byte[] bytes, int byteCount)

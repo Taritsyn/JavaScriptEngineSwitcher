@@ -1,0 +1,67 @@
+﻿@using JavaScriptEngineSwitcher.Sample.Logic.Models
+@using JavaScriptEngineSwitcher.Sample.Resources
+
+@model JsEvaluationViewModel
+
+@{
+	ViewBag.Title = "Demo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form asp-controller="Home" asp-action="Demo" method="post" data-form-type="evaluation-form">
+	<div class="evaluation-form">
+		<div class="evaluation-input-output">
+			<section class="evaluation-input">
+				<div class="form-group">
+					<label asp-for="EngineName">@Html.DisplayNameFor(m => m.EngineName):</label>
+					<select asp-for="EngineName"
+						asp-items="Model.AvailableEngineList"
+						class="form-control"></select>
+				</div>
+				<div class="form-group">
+					<label asp-for="Expression">@Html.DisplayNameFor(m => m.Expression):</label>
+					<div class="textarea-wrapper">
+						<textarea asp-for="Expression" class="form-control evaluation-input-field"
+							data-control-type="evaluation-input-field" rows="12" cols="80"></textarea>
+					</div>
+					<span asp-validation-for="Expression"></span>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn" data-control-type="minify-button">@EvaluationStrings.ButtonText_Evaluate</button>
+				</div>
+			</section>
+
+			@if (Model.Result != null)
+			{
+				<section class="evaluation-output">
+				@if (Model.Result.Errors.Count == 0)
+				{
+					<div class="form-group">
+						<label asp-for="Result.Value">@Html.DisplayNameFor(m => m.Result.Value):</label>
+						<textarea asp-for="Result.Value" class="form-control evaluation-output-field"
+							data-control-type="evaluation-output-field" rows="12" cols="80"
+							readonly="readonly"></textarea>
+					</div>
+				}
+				else
+				{
+					await Html.RenderPartialAsync("_JsEvaluationErrorList", Model.Result.Errors);
+				}
+				</section>
+			}
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	<environment names="Development">
+		<script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
+		<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+		<script src="~/lib/bootstrap/js/button.js" asp-append-version="true"></script>
+		<script src="~/scripts/evaluation-form.js" asp-append-version="true"></script>
+	</environment>
+	<environment names="Staging,Production">
+		<script src="~/scripts/build/evaluation-form-scripts.min.js" asp-append-version="true"></script>
+	</environment>
+}

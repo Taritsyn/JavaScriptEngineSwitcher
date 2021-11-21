@@ -14,7 +14,7 @@ using JavaScriptEngineSwitcher.NiL;
 #if !NET452
 using JavaScriptEngineSwitcher.Node;
 #endif
-#if NETFULL || NETCOREAPP3_1 || NET5_0
+#if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.V8;
 #endif
 using JavaScriptEngineSwitcher.Vroom;
@@ -48,7 +48,7 @@ namespace JavaScriptEngineSwitcher.Tests
 #if !NET452
 					.AddNode()
 #endif
-#if NETFULL || NETCOREAPP3_1 || NET5_0
+#if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER
 					.AddV8()
 #endif
 					.AddVroom()

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-#if NET451 || NET471 || NETSTANDARD || NETCOREAPP
+#if NET451_OR_GREATER || NETSTANDARD || NETCOREAPP
 using Microsoft.AspNetCore.Mvc.Rendering;
 #elif NET40
 using System.Web.Mvc;

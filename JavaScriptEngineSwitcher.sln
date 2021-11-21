@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{19575E10-6B8E-4CF0-B7D2-898FFF47E157}"
 	ProjectSection(SolutionItems) = preProject
@@ -112,7 +112,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31\JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31.csproj", "{D0127B5A-E66B-4DA2-8C57-A8BA2A0163F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5\JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5.csproj", "{189376C9-49DA-4A12-9C78-CE39E8EC7731}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5\JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5.csproj", "{189376C9-49DA-4A12-9C78-CE39E8EC7731}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptEngineSwitcher.Sample.AspNetCore6.Mvc6", "samples\JavaScriptEngineSwitcher.Sample.AspNetCore6.Mvc6\JavaScriptEngineSwitcher.Sample.AspNetCore6.Mvc6.csproj", "{58321699-3715-4CA7-8036-A9F26E4C93F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -240,6 +242,10 @@ Global
 		{189376C9-49DA-4A12-9C78-CE39E8EC7731}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{189376C9-49DA-4A12-9C78-CE39E8EC7731}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{189376C9-49DA-4A12-9C78-CE39E8EC7731}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58321699-3715-4CA7-8036-A9F26E4C93F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58321699-3715-4CA7-8036-A9F26E4C93F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58321699-3715-4CA7-8036-A9F26E4C93F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58321699-3715-4CA7-8036-A9F26E4C93F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -277,6 +283,7 @@ Global
 		{0342791E-6390-4F97-9163-5CE02E4CFF07} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{D0127B5A-E66B-4DA2-8C57-A8BA2A0163F4} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{189376C9-49DA-4A12-9C78-CE39E8EC7731} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
+		{58321699-3715-4CA7-8036-A9F26E4C93F3} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8184BE59-ACBC-4CD1-9419-D59A0FAC6131}

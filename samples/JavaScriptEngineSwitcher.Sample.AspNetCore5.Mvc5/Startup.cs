@@ -105,13 +105,12 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5
 			else
 			{
 				app.UseExceptionHandler("/Home/Error");
-				app.UseHsts();
 			}
 
-			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
 			app.UseRouting();
+
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(

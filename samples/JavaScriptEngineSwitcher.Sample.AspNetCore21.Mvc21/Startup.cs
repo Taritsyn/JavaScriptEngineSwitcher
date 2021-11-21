@@ -112,12 +112,9 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21
 			else
 			{
 				app.UseExceptionHandler("/Home/Error");
-				app.UseHsts();
 			}
 
-			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-			app.UseCookiePolicy();
 
 			app.UseMvc(routes =>
 			{

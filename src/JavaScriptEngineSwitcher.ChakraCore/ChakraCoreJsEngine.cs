@@ -1,5 +1,5 @@
 ﻿using System;
-#if NET45 || NET471 || NETSTANDARD || NETCOREAPP2_1
+#if NET45_OR_GREATER || NETSTANDARD || NETCOREAPP2_1
 using System.Runtime.InteropServices;
 #endif
 using System.Text;
@@ -89,7 +89,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// Unique document name manager
 		/// </summary>
 		private UniqueDocumentNameManager _documentNameManager = new UniqueDocumentNameManager(DefaultDocumentName);
-#if NETFULL
+#if NETFRAMEWORK
 
 		/// <summary>
 		/// Synchronizer of JS engine initialization
@@ -116,7 +116,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <param name="settings">Settings of the ChakraCore JS engine</param>
 		public ChakraCoreJsEngine(ChakraCoreSettings settings)
 		{
-#if NETFULL
+#if NETFRAMEWORK
 			Initialize();
 
 #endif
@@ -199,7 +199,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			Dispose(false);
 		}
 
-#if NETFULL
+#if NETFRAMEWORK
 
 		/// <summary>
 		/// Initializes a JS engine

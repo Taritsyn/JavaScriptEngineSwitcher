@@ -1,4 +1,4 @@
-﻿#if NETFULL || NETCOREAPP3_1 || NET5_0
+﻿#if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER
 namespace JavaScriptEngineSwitcher.Tests.V8
 {
 	public class Es5Tests : Es5TestsBase
