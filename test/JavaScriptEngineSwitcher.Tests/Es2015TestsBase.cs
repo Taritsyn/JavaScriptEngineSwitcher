@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-
-using Xunit;
+﻿using Xunit;
 
 namespace JavaScriptEngineSwitcher.Tests
 {
@@ -13,27 +10,27 @@ namespace JavaScriptEngineSwitcher.Tests
 		public virtual void ExecutionOfPromisesIsCorrect()
 		{
 			// Arrange
-			var stringBuilder = new StringBuilder();
-			const string input = @"var successfulWork = new Promise(function(resolve, reject) {
-	resolve(""Success!"");
-});
-
-var unsuccessfulWork = new Promise(function (resolve, reject) {
-	reject(""Fail!"");
-});
+			const string input = @"var output = '',
+	successfulWork = new Promise(function(resolve, reject) {
+		resolve('Success!');
+	}),
+	unsuccessfulWork = new Promise(function (resolve, reject) {
+		reject('Fail!');
+	})
+	;
 
 function resolveCallback(result) {
-	stringBuilder.AppendLine('Resolved: ' + result);
+	output += 'Resolved: ' + result + '\n';
 }
 
 function rejectCallback(reason) {
-	stringBuilder.AppendLine('Rejected: ' + reason);
+	output += 'Rejected: ' + reason + '\n';
 }
 
 successfulWork.then(resolveCallback, rejectCallback);
 unsuccessfulWork.then(resolveCallback, rejectCallback);";
-			string targetOutput = "Resolved: Success!" + Environment.NewLine +
-				"Rejected: Fail!" + Environment.NewLine
+			string targetOutput = "Resolved: Success!\n" +
+				"Rejected: Fail!\n"
 				;
 
 			// Act
@@ -41,11 +38,8 @@ unsuccessfulWork.then(resolveCallback, rejectCallback);";
 
 			using (var jsEngine = CreateJsEngine())
 			{
-				jsEngine.EmbedHostObject("stringBuilder", stringBuilder);
 				jsEngine.Execute(input);
-
-				output = stringBuilder.ToString();
-				stringBuilder.Clear();
+				output = jsEngine.GetVariableValue<string>("output");
 			}
 
 			// Assert
