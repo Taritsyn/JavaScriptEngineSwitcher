@@ -10,8 +10,8 @@ using JavaScriptEngineSwitcher.Jint;
 #endif
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-using JavaScriptEngineSwitcher.NiL;
 #if !NET452
+using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.Node;
 #endif
 #if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER
@@ -44,8 +44,8 @@ namespace JavaScriptEngineSwitcher.Tests
 					{
 						EngineMode = JsEngineMode.ChakraIeJsRt
 					})
-					.AddNiL()
 #if !NET452
+					.AddNiL()
 					.AddNode()
 #endif
 #if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER

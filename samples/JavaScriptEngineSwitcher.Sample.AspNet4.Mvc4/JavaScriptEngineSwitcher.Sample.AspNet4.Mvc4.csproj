@@ -129,10 +129,6 @@
       <Project>{b3c4aa95-2227-47dd-b58c-22fa589cb28d}</Project>
       <Name>JavaScriptEngineSwitcher.Msie</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.NiL\JavaScriptEngineSwitcher.NiL.csproj">
-      <Project>{f0bf7975-2e8a-4ec8-8daa-760a4302f419}</Project>
-      <Name>JavaScriptEngineSwitcher.NiL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Vroom\JavaScriptEngineSwitcher.Vroom.csproj">
       <Project>{238d7e69-7052-4dfc-83ef-79d3d124c12b}</Project>
       <Name>JavaScriptEngineSwitcher.Vroom</Name>

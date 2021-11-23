@@ -25,11 +25,7 @@ namespace JavaScriptEngineSwitcher.Sample.Logic.Services
 		{
 			_engineDisplayNameMappings = new Dictionary<string, string>
 			{
-				{ "ChakraCoreJsEngine", "ChakraCore" },
-				{ "JintJsEngine", "Jint" },
-				{ "JurassicJsEngine", "Jurassic" },
-				{ "MsieJsEngine", "MSIE" },
-				{ "V8JsEngine", "V8" }
+				{ "MsieJsEngine", "MSIE" }
 			};
 		}
 

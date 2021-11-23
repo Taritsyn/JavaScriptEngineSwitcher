@@ -2,7 +2,6 @@
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.Vroom;
 
 namespace JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4
@@ -18,7 +17,6 @@ namespace JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4
 				{
 					EngineMode = JsEngineMode.ChakraIeJsRt
 				})
-				.AddNiL()
 				.AddVroom()
 				;
 			engineSwitcher.DefaultEngineName = ChakraCoreJsEngine.EngineName;

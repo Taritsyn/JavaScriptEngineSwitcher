@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: NiL</Product>
     <VersionPrefix>3.12.4</VersionPrefix>
-    <TargetFrameworks>net40-client;net45;net461;netstandard1.3;netstandard1.6;netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>net461;net48;netstandard1.3;netstandard1.6;netstandard2.0;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
@@ -16,15 +16,17 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1532).</Description>
+    <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1541).</Description>
     <PackageTags>$(PackageCommonTags);NiL</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>NiL.JS was updated to version 2.5.1532.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. NiL.JS was updated to version 2.5.1541;
+2. No longer supports a .NET Framework 4.0 Client and .NET Framework 4.5;
+3. Added support of .NET Framework 4.8 and .NET 6.0.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
-    <PackageReference Include="NiL.JS" Version="2.5.1532" />
+    <PackageReference Include="NiL.JS" Version="2.5.1541" />
   </ItemGroup>
 
   <ItemGroup>

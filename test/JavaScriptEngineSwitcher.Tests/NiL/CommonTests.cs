@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NET452
+using System;
 
 using Xunit;
 
@@ -254,3 +255,4 @@ var foo = 'Browser's bar';";
 		#endregion
 	}
 }
+#endif

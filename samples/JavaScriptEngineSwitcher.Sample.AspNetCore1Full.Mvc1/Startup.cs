@@ -10,7 +10,6 @@ using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Vroom;
@@ -62,7 +61,6 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1
 				{
 					options.EngineMode = JsEngineMode.ChakraIeJsRt;
 				})
-				.AddNiL()
 				.AddV8()
 				.AddVroom()
 				;
