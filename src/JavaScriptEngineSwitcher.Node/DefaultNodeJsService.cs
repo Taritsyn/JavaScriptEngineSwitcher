@@ -48,14 +48,14 @@ namespace JavaScriptEngineSwitcher.Node
 			return StaticNodeJSService.InvokeFromFileAsync(modulePath, exportName, args, cancellationToken);
 		}
 
-		public Task<T> InvokeFromStringAsync<T>(string moduleString, string newCacheIdentifier = null, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
+		public Task<T> InvokeFromStringAsync<T>(string moduleString, string cacheIdentifier = null, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
 		{
-			return StaticNodeJSService.InvokeFromStringAsync<T>(moduleString, newCacheIdentifier, exportName, args, cancellationToken);
+			return StaticNodeJSService.InvokeFromStringAsync<T>(moduleString, cacheIdentifier, exportName, args, cancellationToken);
 		}
 
-		public Task InvokeFromStringAsync(string moduleString, string newCacheIdentifier = null, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
+		public Task InvokeFromStringAsync(string moduleString, string cacheIdentifier = null, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
 		{
-			return StaticNodeJSService.InvokeFromStringAsync(moduleString, newCacheIdentifier, exportName, args, cancellationToken);
+			return StaticNodeJSService.InvokeFromStringAsync(moduleString, cacheIdentifier, exportName, args, cancellationToken);
 		}
 
 		public Task<T> InvokeFromStringAsync<T>(Func<string> moduleFactory, string cacheIdentifier, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
@@ -68,14 +68,14 @@ namespace JavaScriptEngineSwitcher.Node
 			return StaticNodeJSService.InvokeFromStringAsync(moduleFactory, cacheIdentifier, exportName, args, cancellationToken);
 		}
 
-		public Task<T> InvokeFromStreamAsync<T>(Stream moduleStream, string newCacheIdentifier = null, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
+		public Task<T> InvokeFromStreamAsync<T>(Stream moduleStream, string cacheIdentifier = null, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
 		{
-			return StaticNodeJSService.InvokeFromStreamAsync<T>(moduleStream, newCacheIdentifier, exportName, args, cancellationToken);
+			return StaticNodeJSService.InvokeFromStreamAsync<T>(moduleStream, cacheIdentifier, exportName, args, cancellationToken);
 		}
 
-		public Task InvokeFromStreamAsync(Stream moduleStream, string newCacheIdentifier = null, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
+		public Task InvokeFromStreamAsync(Stream moduleStream, string cacheIdentifier = null, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
 		{
-			return StaticNodeJSService.InvokeFromStreamAsync(moduleStream, newCacheIdentifier, exportName, args, cancellationToken);
+			return StaticNodeJSService.InvokeFromStreamAsync(moduleStream, cacheIdentifier, exportName, args, cancellationToken);
 		}
 
 		public Task<T> InvokeFromStreamAsync<T>(Func<Stream> moduleFactory, string cacheIdentifier, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
@@ -96,6 +96,11 @@ namespace JavaScriptEngineSwitcher.Node
 		public Task<bool> TryInvokeFromCacheAsync(string moduleCacheIdentifier, string exportName = null, object[] args = null, CancellationToken cancellationToken = default)
 		{
 			return StaticNodeJSService.TryInvokeFromCacheAsync(moduleCacheIdentifier, exportName, args, cancellationToken);
+		}
+
+		public void MoveToNewProcess()
+		{
+			throw new NotSupportedException();
 		}
 
 		#region IDisposable implementation

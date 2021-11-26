@@ -131,6 +131,6 @@ module.exports = {
 			delete context[variableName];
 		}
 
-		callback(null, undefined);
+		callback(null);
 	}
 };

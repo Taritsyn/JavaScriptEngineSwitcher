@@ -133,7 +133,7 @@ namespace JavaScriptEngineSwitcher.Node
 			{
 				Task<string> versionTask = _jsService.InvokeFromStringAsync<string>(
 					@"module.exports = (callback) => {
-	var version = process.versions.node;
+	let version = process.versions.node;
 	callback(null , version);
 };"
 				);

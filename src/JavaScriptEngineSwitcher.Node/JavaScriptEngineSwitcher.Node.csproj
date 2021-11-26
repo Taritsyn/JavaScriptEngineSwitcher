@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Node</Product>
     <VersionPrefix>3.10.0</VersionPrefix>
-    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -17,16 +17,17 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS) version 5.4.4).
+    <Description>JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS) version 6.2.0).
 
 This package does not contain the `node.exe`. Therefore, you need to install the Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path` environment variable (automatically done by the official installer).</Description>
     <PackageTags>$(PackageCommonTags);Node.js;Jering.Javascript.NodeJS</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Jering.Javascript.NodeJS was updated to version 5.4.4.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Jering.Javascript.NodeJS was updated to version 6.2.0;
+2. Added support of .NET Core App 3.1 and .NET 5.0.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jering.Javascript.NodeJS" Version="5.4.4" />
+    <PackageReference Include="Jering.Javascript.NodeJS" Version="6.2.0" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
