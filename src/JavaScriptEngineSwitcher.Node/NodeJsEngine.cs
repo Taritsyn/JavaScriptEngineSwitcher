@@ -368,7 +368,8 @@ namespace JavaScriptEngineSwitcher.Node
 				string documentName = item.DocumentName;
 				string functionName = item.FunctionName;
 
-				if (documentName == "vm.js"
+				if (documentName == "node:vm"
+					|| documentName == "vm.js"
 					|| documentName == GENERATED_FUNCTION_CALL_FILE_NAME
 					|| (documentName == "anonymous" && functionName == "callFunction"))
 				{

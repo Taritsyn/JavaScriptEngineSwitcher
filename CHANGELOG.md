@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.15.0 - November 28, 2021
+ * In JavaScriptEngineSwitcher.Node:
+   * Jering.Javascript.NodeJS was updated to version 6.2.0
+   * Added support of .NET Core App 3.1 and .NET 5.0
+
 ## v3.14.0 - November 23, 2021
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2036
  * In JavaScriptEngineSwitcher.NiL:
