@@ -16,15 +16,15 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1548).</Description>
+    <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1552).</Description>
     <PackageTags>$(PackageCommonTags);NiL</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>NiL.JS was updated to version 2.5.1548.</PackageReleaseNotes>
+    <PackageReleaseNotes>NiL.JS was updated to version 2.5.1552.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
-    <PackageReference Include="NiL.JS" Version="2.5.1548" />
+    <PackageReference Include="NiL.JS" Version="2.5.1552" />
   </ItemGroup>
 
   <ItemGroup>
