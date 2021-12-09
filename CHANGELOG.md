@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## v3.16.0 - December 9, 2021
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version of November 11, 2021
+   * No longer supports a .NET Core App 2.1
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2037
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1552
+
 ## v3.15.0 - November 28, 2021
  * In JavaScriptEngineSwitcher.Node:
    * Jering.Javascript.NodeJS was updated to version 6.2.0
