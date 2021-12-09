@@ -1,7 +1,7 @@
 JavaScript Engine Switcher [![NuGet version](http://img.shields.io/nuget/v/JavaScriptEngineSwitcher.Core.svg)](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Core/)  [![Download count](https://img.shields.io/nuget/dt/JavaScriptEngineSwitcher.Core.svg)](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Core/)
 ==========================
 
-JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([ChakraCore](https://github.com/Microsoft/ChakraCore), [Jering.Javascript.NodeJS](https://github.com/JeringTech/Javascript.NodeJS), [Jint](https://github.com/sebastienros/jint), [Jurassic](https://github.com/paulbartrum/jurassic), [MSIE JavaScript Engine for .NET](https://github.com/Taritsyn/MsieJavaScriptEngine), [NiL.JS](https://github.com/nilproject/NiL.JS), [Microsoft ClearScript.V8](https://github.com/Microsoft/ClearScript) and [VroomJs](https://github.com/pauldotknopf/vroomjs-core)).
+JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([ChakraCore](https://github.com/chakra-core/ChakraCore), [Jering.Javascript.NodeJS](https://github.com/JeringTech/Javascript.NodeJS), [Jint](https://github.com/sebastienros/jint), [Jurassic](https://github.com/paulbartrum/jurassic), [MSIE JavaScript Engine for .NET](https://github.com/Taritsyn/MsieJavaScriptEngine), [NiL.JS](https://github.com/nilproject/NiL.JS), [Microsoft ClearScript.V8](https://github.com/Microsoft/ClearScript) and [VroomJs](https://github.com/pauldotknopf/vroomjs-core)).
 This library allows you to quickly and easily switch to using of another JavaScript engine.
 
 The supported .NET types are as follows:

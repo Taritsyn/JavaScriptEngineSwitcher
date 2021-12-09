@@ -12,10 +12,10 @@
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine`
-   (wrapper for the ChakraCore (http://github.com/Microsoft/ChakraCore)).
+   (wrapper for the ChakraCore (https://github.com/chakra-core/ChakraCore)).
    Project was based on the code of Chakra-Samples
-   (http://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet
-   (http://github.com/robpaveza/jsrt-dotnet).
+   (https://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet
+   (https://github.com/robpaveza/jsrt-dotnet).
 
    This package does not contain the native implementations of ChakraCore.
    Therefore, you need to choose and install the most appropriate package(s) for
@@ -31,7 +31,8 @@
    =============
    RELEASE NOTES
    =============
-   No longer supports a .NET Core App 2.1.
+   1. ChakraCore was updated to version of November 11, 2021;
+   2. No longer supports a .NET Core App 2.1.
 
    =============
    DOCUMENTATION

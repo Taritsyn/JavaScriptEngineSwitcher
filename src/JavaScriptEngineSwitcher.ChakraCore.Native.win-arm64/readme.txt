@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-       README file for JS Engine Switcher: ChakraCore for Windows ARM64 v3.12.6
+       README file for JS Engine Switcher: ChakraCore for Windows ARM64 v3.16.0
 
    --------------------------------------------------------------------------------
 
@@ -12,16 +12,15 @@
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.ChakraCore package and
-   contains the native implementation of ChakraCore version 1.11.24 with the Tomáš
-   Deml's patch for Windows (ARM64).
+   contains the native implementation of ChakraCore version of November 11, 2021
+   for Windows (ARM64).
 
    This package is only compatible with .NET Core and .NET Framework 4.5.
 
    =============
    RELEASE NOTES
    =============
-   MSBuild and PowerShell scripts for installing the native assemblies are made
-   more simple and universal.
+   ChakraCore was updated to version of November 11, 2021.
 
    =============
    DOCUMENTATION

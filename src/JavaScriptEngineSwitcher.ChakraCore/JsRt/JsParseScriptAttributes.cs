@@ -23,6 +23,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// ChakraCore assumes ExternalArrayBuffer is Utf8 by default.
 		/// This one needs to be set for Utf16.
 		/// </summary>
-		ArrayBufferIsUtf16Encoded = 0x2
+		ArrayBufferIsUtf16Encoded = 0x2,
+
+		/// <summary>
+		/// Script should be parsed in strict mode
+		/// </summary>
+		StrictMode = 0x4
 	}
 }

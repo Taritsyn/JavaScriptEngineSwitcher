@@ -102,7 +102,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </para>
 		/// </remarks>
 		/// <param name="name">The name of the property ID to get or create.
-		/// The name may consist of only digits.</param>
+		/// The string is expected to be ASCII / utf8 encoded.
+		/// The name can be any JavaScript property identifier, including all digits.</param>
 		/// <returns>The property ID in this runtime for the given name</returns>
 		public static JsPropertyId FromString(string name)
 		{

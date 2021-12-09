@@ -147,7 +147,7 @@
 		InvalidContext,
 
 		/// <summary>
-		/// Module evaluation is called in wrong context
+		/// The Module HostInfoKind provided was invalid
 		/// </summary>
 		InvalidModuleHostInfoKind,
 
@@ -277,7 +277,26 @@
 		/// <summary>
 		/// VM was unable to perform the request action
 		/// </summary>
-		DiagUnableToPerformAction
+		DiagUnableToPerformAction,
+
+		#endregion
+
+		#region Serialization
+
+		/// <summary>
+		/// Serializer/Deserializer does not support current data
+		/// </summary>
+		SerializerNotSupported,
+
+		/// <summary>
+		/// Current object is not transferable during serialization
+		/// </summary>
+		TransferableNotSupported,
+
+		/// <summary>
+		/// Current object is already detached when serialized
+		/// </summary>
+		TransferableAlreadyDetached
 
 		#endregion
 	}

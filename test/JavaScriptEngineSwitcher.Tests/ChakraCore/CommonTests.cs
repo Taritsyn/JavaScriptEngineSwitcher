@@ -126,7 +126,7 @@ factorial(0);";
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Compilation error", exception.Category);
-			Assert.Equal("Syntax error", exception.Description);
+			Assert.Equal("Unexpected token ')' after '%'", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("factorial.js", exception.DocumentName);
 			Assert.Equal(10, exception.LineNumber);
