@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: ChakraCore</Product>
     <VersionPrefix>3.12.6</VersionPrefix>
-    <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netcoreapp2.1;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netstandard2.1</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -31,7 +31,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Improved a implementation of the `Dispose` method.</PackageReleaseNotes>
+    <PackageReleaseNotes>No longer supports a .NET Core App 2.1.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

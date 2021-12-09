@@ -1,5 +1,5 @@
 ﻿using System;
-#if NET45_OR_GREATER || NETSTANDARD || NETCOREAPP2_1
+#if NET45_OR_GREATER || NETSTANDARD
 using System.Buffers;
 #endif
 using System.Runtime.InteropServices;

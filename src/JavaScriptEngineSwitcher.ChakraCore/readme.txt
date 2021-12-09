@@ -31,7 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   Improved a implementation of the `Dispose` method.
+   No longer supports a .NET Core App 2.1.
 
    =============
    DOCUMENTATION

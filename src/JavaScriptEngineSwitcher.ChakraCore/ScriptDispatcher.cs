@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-#if NET45_OR_GREATER || NETSTANDARD || NETCOREAPP2_1
+#if NET45_OR_GREATER || NETSTANDARD
 using System.Runtime.ExceptionServices;
 #endif
 using System.Threading;
@@ -137,7 +137,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			Exception exception = task.Exception;
 			if (exception != null)
 			{
-#if NET45_OR_GREATER || NETSTANDARD || NETCOREAPP2_1
+#if NET45_OR_GREATER || NETSTANDARD
 				ExceptionDispatchInfo.Capture(exception).Throw();
 #elif NET40
 				exception.PreserveStackTrace();
