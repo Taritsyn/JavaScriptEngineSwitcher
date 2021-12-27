@@ -13,7 +13,7 @@
    ===========
    JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the
    Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS)
-   version 6.2.0).
+   version 6.3.0).
 
    This package does not contain the `node.exe`. Therefore, you need to install the
    Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path`
@@ -22,8 +22,8 @@
    =============
    RELEASE NOTES
    =============
-   1. Jering.Javascript.NodeJS was updated to version 6.2.0;
-   2. Added support of .NET Core App 3.1 and .NET 5.0.
+   1. Jering.Javascript.NodeJS was updated to version 6.3.0;
+   2. Added support of .NET 6.
 
    =============
    DOCUMENTATION
