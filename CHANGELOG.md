@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.17.0 - December 27, 2021
+ * In JavaScriptEngineSwitcher.Node:
+   * Jering.Javascript.NodeJS was updated to version 6.3.0
+   * Added support of .NET 6
+
 ## v3.16.0 - December 9, 2021
  * In JavaScriptEngineSwitcher.ChakraCore:
    * ChakraCore was updated to version of November 11, 2021
