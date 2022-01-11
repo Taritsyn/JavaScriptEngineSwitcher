@@ -47,7 +47,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "9.6.180.14";
+		private const string EngineVersion = "9.7.106.18";
 
 		/// <summary>
 		/// V8 JS engine
@@ -523,8 +523,21 @@ namespace JavaScriptEngineSwitcher.V8
 
 		protected override bool InnerHasVariable(string variableName)
 		{
-			string expression = string.Format("(typeof {0} !== 'undefined');", variableName);
-			var result = InnerEvaluate<bool>(expression);
+			bool result;
+
+			try
+			{
+				object variableValue = _jsEngine.Global.GetProperty(variableName);
+				result = variableValue != OriginalUndefined.Value;
+			}
+			catch (OriginalException e)
+			{
+				throw WrapScriptEngineException(e);
+			}
+			catch (OriginalInterruptedException e)
+			{
+				throw WrapScriptInterruptedException(e);
+			}
 
 			return result;
 		}
@@ -535,7 +548,7 @@ namespace JavaScriptEngineSwitcher.V8
 
 			try
 			{
-				result = _jsEngine.Script[variableName];
+				result = _jsEngine.Global.GetProperty(variableName);
 			}
 			catch (OriginalException e)
 			{
@@ -564,7 +577,7 @@ namespace JavaScriptEngineSwitcher.V8
 
 			try
 			{
-				_jsEngine.Script[variableName] = processedValue;
+				_jsEngine.Global.SetProperty(variableName, processedValue);
 			}
 			catch (OriginalException e)
 			{
@@ -578,7 +591,18 @@ namespace JavaScriptEngineSwitcher.V8
 
 		protected override void InnerRemoveVariable(string variableName)
 		{
-			InnerSetVariableValue(variableName, Undefined.Value);
+			try
+			{
+				_jsEngine.Global.DeleteProperty(variableName);
+			}
+			catch (OriginalException e)
+			{
+				throw WrapScriptEngineException(e);
+			}
+			catch (OriginalInterruptedException e)
+			{
+				throw WrapScriptInterruptedException(e);
+			}
 		}
 
 		protected override void InnerEmbedHostObject(string itemName, object value)
