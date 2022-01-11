@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: V8 for OS X x64 v3.14.0
+             README file for JS Engine Switcher: V8 for OS X x64 v3.17.1
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2021 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2022 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========

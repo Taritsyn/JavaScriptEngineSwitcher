@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.17.1 - January 11, 2022
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.2.1 (support of V8 version 9.7.106.18)
+
 ## v3.17.0 - December 27, 2021
  * In JavaScriptEngineSwitcher.Node:
    * Jering.Javascript.NodeJS was updated to version 6.3.0
