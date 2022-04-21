@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.18.0 - April 21, 2022
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 3.0.0 Beta 2038
+   * In configuration settings of the Jint JS engine were changed types of the `DebuggerBreakCallback` and `DebuggerStepCallback` properties to the
+   <code title="Jint.Runtime.Debugger.DebugHandler.DebugEventHandler">DebugEventHandler</code> type
+
 ## v3.17.4 - March 30, 2022
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of March 12, 2022
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.2.4 (support of V8 version 10.0.139.8)
