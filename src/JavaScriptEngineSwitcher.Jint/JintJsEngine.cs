@@ -4,9 +4,8 @@ using System.Threading;
 using Jint;
 using IOriginalPrimitiveInstance = Jint.Native.IPrimitiveInstance;
 using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
-using OriginalDebuggerBreakDelegate = Jint.Runtime.Debugger.DebugHandler.BreakDelegate;
+using OriginalDebuggerEventHandler = Jint.Runtime.Debugger.DebugHandler.DebugEventHandler;
 using OriginalDebuggerStatementHandlingMode = Jint.Runtime.Debugger.DebuggerStatementHandling;
-using OriginalDebuggerStepDelegate = Jint.Runtime.Debugger.DebugHandler.DebugStepDelegate;
 using OriginalEngine = Jint.Engine;
 using OriginalExecutionCanceledException = Jint.Runtime.ExecutionCanceledException;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
@@ -52,7 +51,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2037";
+		private const string EngineVersion = "3.0.0 Beta 2038";
 
 		/// <summary>
 		/// Jint JS engine
@@ -72,12 +71,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Debugger break callback
 		/// </summary>
-		private OriginalDebuggerBreakDelegate _debuggerBreakCallback;
+		private OriginalDebuggerEventHandler _debuggerBreakCallback;
 
 		/// <summary>
 		/// Debugger step callback
 		/// </summary>
-		private OriginalDebuggerStepDelegate _debuggerStepCallback;
+		private OriginalDebuggerEventHandler _debuggerStepCallback;
 
 		/// <summary>
 		/// Synchronizer of code execution

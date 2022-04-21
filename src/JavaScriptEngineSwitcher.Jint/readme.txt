@@ -13,12 +13,15 @@
    ===========
    JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the
    Jint JavaScript Engine (http://github.com/sebastienros/jint) version
-   3.0.0 Beta 2037).
+   3.0.0 Beta 2038).
 
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version 3.0.0 Beta 2037.
+   1. Jint was updated to version 3.0.0 Beta 2038;
+   2. In configuration settings of the Jint JS engine were changed types of the
+      `DebuggerBreakCallback` and `DebuggerStepCallback` properties to the
+      `DebugEventHandler` type.
 
    =============
    DOCUMENTATION

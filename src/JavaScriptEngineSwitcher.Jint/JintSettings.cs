@@ -1,7 +1,6 @@
 ﻿using System;
 
-using OriginalDebuggerBreakDelegate = Jint.Runtime.Debugger.DebugHandler.BreakDelegate;
-using OriginalDebuggerStepDelegate = Jint.Runtime.Debugger.DebugHandler.DebugStepDelegate;
+using OriginalDebuggerEventHandler = Jint.Runtime.Debugger.DebugHandler.DebugEventHandler;
 
 namespace JavaScriptEngineSwitcher.Jint
 {
@@ -24,7 +23,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Gets or sets a debugger break callback
 		/// </summary>
-		public OriginalDebuggerBreakDelegate DebuggerBreakCallback
+		public OriginalDebuggerEventHandler DebuggerBreakCallback
 		{
 			get;
 			set;
@@ -42,7 +41,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Gets or sets a debugger step callback
 		/// </summary>
-		public OriginalDebuggerStepDelegate DebuggerStepCallback
+		public OriginalDebuggerEventHandler DebuggerStepCallback
 		{
 			get;
 			set;
