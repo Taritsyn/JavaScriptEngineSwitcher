@@ -43,7 +43,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "Mar 12, 2022";
+		private const string EngineVersion = "Apr 30, 2022";
 
 		/// <summary>
 		/// Jurassic JS engine
