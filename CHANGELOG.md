@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.18.1 - May 3, 2022
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of April 30, 2022
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.2.5 (support of V8 version 10.1.124.11)
+
 ## v3.18.0 - April 21, 2022
  * In JavaScriptEngineSwitcher.Jint:
    * Jint was updated to version 3.0.0 Beta 2038
