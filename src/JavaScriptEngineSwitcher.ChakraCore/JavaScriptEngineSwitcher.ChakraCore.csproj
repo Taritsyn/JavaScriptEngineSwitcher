@@ -31,8 +31,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>1. ChakraCore was updated to version of November 11, 2021;
-2. No longer supports a .NET Core App 2.1.</PackageReleaseNotes>
+    <PackageReleaseNotes>ChakraCore was updated to version of January 31, 2022.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

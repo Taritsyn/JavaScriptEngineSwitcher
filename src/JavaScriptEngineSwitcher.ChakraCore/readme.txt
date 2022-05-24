@@ -31,8 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version of November 11, 2021;
-   2. No longer supports a .NET Core App 2.1.
+   ChakraCore was updated to version of January 31, 2022.
 
    =============
    DOCUMENTATION
