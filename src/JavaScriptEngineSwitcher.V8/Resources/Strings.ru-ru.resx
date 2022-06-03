@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Engine_InternationalizationApiNotFullySupported" xml:space="preserve">
-    <value>По умолчанию некоторые возможности JavaScript Internationalization API не поддерживаются.</value>
-  </data>
   <data name="Usage_PrecompiledScriptNotAccepted" xml:space="preserve">
     <value>Предварительно скомпилированный сценарий не принят! Чтобы быть принятым, предварительно скомпилированный сценарий должен быть создан той же сборкой V8.</value>
   </data>

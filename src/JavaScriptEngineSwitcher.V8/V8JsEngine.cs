@@ -47,7 +47,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "10.1.124.11";
+		private const string EngineVersion = "10.2.154.5";
 
 		/// <summary>
 		/// V8 JS engine
@@ -247,19 +247,6 @@ namespace JavaScriptEngineSwitcher.V8
 					}
 					else
 					{
-						if (description == "Internal error. Icu error.")
-						{
-							var stringBuilderPool = StringBuilderPool.Shared;
-							StringBuilder descriptionBuilder = stringBuilderPool.Rent();
-							descriptionBuilder.Append(Strings.Engine_InternationalizationApiNotFullySupported);
-							descriptionBuilder.Append(" ");
-							descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
-								"Microsoft.ClearScript.V8.ICUData");
-
-							description = descriptionBuilder.ToString();
-							stringBuilderPool.Return(descriptionBuilder);
-						}
-
 						callStack = JsErrorHelpers.StringifyErrorLocationItems(errorLocationItems, true);
 						string callStackWithSourceFragment = JsErrorHelpers.StringifyErrorLocationItems(
 							errorLocationItems);
