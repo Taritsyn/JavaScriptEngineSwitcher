@@ -35,19 +35,19 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' Or '$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)' == 'net5.0' Or '$(TargetFramework)' == 'net6.0' ">
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-arm64" Version="7.3.0" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.3.0" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x86" Version="7.3.0" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-arm64" Version="7.3.1" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.3.1" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x86" Version="7.3.1" />
 
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.V8/JavaScriptEngineSwitcher.V8.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)' == 'net5.0' Or '$(TargetFramework)' == 'net6.0' ">
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-arm" Version="7.3.0" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-arm64" Version="7.3.0" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-x64" Version="7.3.0" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.osx-arm64" Version="7.3.0" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.osx-x64" Version="7.3.0" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-arm" Version="7.3.1" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-arm64" Version="7.3.1" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-x64" Version="7.3.1" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.osx-arm64" Version="7.3.1" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.osx-x64" Version="7.3.1" />
   </ItemGroup>
 
   <ItemGroup>
