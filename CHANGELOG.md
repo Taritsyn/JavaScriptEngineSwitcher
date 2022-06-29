@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.18.4 - June 29, 2022
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.3.1 (support of V8 version 10.3.174.17)
+
 ## v3.18.3 - June 3, 2022
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.3.0 (support of V8 version 10.2.154.5)
 
