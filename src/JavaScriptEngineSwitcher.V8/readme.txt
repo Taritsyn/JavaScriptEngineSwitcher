@@ -31,7 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 7.3.1.
+   Fixed a error #102 “Resources should conform to correct ICU standard for naming”.
 
    =============
    DOCUMENTATION

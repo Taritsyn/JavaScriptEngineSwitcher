@@ -23,7 +23,7 @@
 For correct working of the VroomJs on Windows require the Visual C++ Redistributable for Visual Studio 2012 and Microsoft Visual C++ 2015 Redistributable.</Description>
     <PackageTags>$(PackageCommonTags);VroomJs;V8</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed a error #102 “Resources should conform to correct ICU standard for naming”.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

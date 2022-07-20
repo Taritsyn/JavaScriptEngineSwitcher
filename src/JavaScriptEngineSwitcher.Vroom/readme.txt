@@ -22,7 +22,7 @@
    =============
    RELEASE NOTES
    =============
-   Enabled a SourceLink.
+   Fixed a error #102 “Resources should conform to correct ICU standard for naming”.
 
    ====================
    POST-INSTALL ACTIONS
