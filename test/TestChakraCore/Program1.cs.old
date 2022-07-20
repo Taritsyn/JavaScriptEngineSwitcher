@@ -1,0 +1,62 @@
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Text;
+
+using JavaScriptEngineSwitcher.ChakraCore;
+using JavaScriptEngineSwitcher.Core;
+
+namespace TestChakraCore
+{
+	class Program
+    {
+		const string LibraryCode = @"function declensionOfNumerals(number, titles) {
+	if (number < 0) {
+		throw new Error('123');
+	}
+
+	var result,
+		titleIndex,
+		cases = [2, 0, 1, 1, 1, 2],
+		caseIndex
+		;
+
+	if (number % 100 > 4 && number % 100 < 20) {
+		titleIndex = 2;
+	}
+	else {
+		caseIndex = number % 10 < 5 ? number % 10 : 5;
+		titleIndex = cases[caseIndex];
+	}
+
+	result = titles[titleIndex];
+
+	return result;
+}
+
+function declinationOfSeconds(number) {
+	return declensionOfNumerals(number, ['секунда', 'секунды', 'секунд']);
+}";
+		const string FunctionName = "declinationOfSeconds";
+
+
+		private static IJsEngine _engine;
+
+		static Program()
+		{
+			_engine = new ChakraCoreJsEngine();
+			_engine.Execute(LibraryCode, "declinationOfSeconds.js");
+			_engine.Execute("var a =123;");
+		}
+
+		static void Main(string[] args)
+        {
+			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+			Console.WriteLine(_engine.CallFunction<string>(FunctionName, 0));
+			Console.WriteLine(_engine.CallFunction<string>(FunctionName, 1));
+			_engine.CollectGarbage();
+			Console.WriteLine(_engine.CallFunction<string>(FunctionName, 42));
+			Console.WriteLine(_engine.CallFunction<string>(FunctionName, 600));
+		}
+    }
+}

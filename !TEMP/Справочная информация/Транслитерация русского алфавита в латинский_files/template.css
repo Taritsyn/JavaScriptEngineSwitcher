@@ -1,0 +1,1608 @@
+body {
+	background: rgb(255, 255, 255); color: rgb(0, 0, 0); line-height: 1.5; font-family: sans-serif;
+}
+body#bd {
+	background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 12px;
+}
+body#bd #ja-wrapper {
+	overflow: visible;
+}
+body.fs1 #ja-wrapper {
+	font-size: 80%;
+}
+body.fs2 #ja-wrapper {
+	font-size: 90%;
+}
+body.fs3 #ja-wrapper {
+	font-size: 100%;
+}
+body.fs4 #ja-wrapper {
+	font-size: 110%;
+}
+body.fs5 #ja-wrapper {
+	font-size: 120%;
+}
+body.fs6 #ja-wrapper {
+	font-size: 130%;
+}
+a {
+	
+}
+a:hover {
+	
+}
+a:active {
+	
+}
+a:focus {
+	
+}
+.column p {
+	margin: 15px 0px; padding: 0px;
+}
+.column pre {
+	margin: 15px 0px; padding: 0px;
+}
+.column blockquote {
+	margin: 15px 0px; padding: 0px;
+}
+.column h1 {
+	margin: 15px 0px; padding: 0px;
+}
+.column h2 {
+	margin: 15px 0px; padding: 0px;
+}
+.column h3 {
+	margin: 15px 0px; padding: 0px;
+}
+.column h4 {
+	margin: 15px 0px; padding: 0px;
+}
+.column h5 {
+	margin: 15px 0px; padding: 0px;
+}
+.column h6 {
+	margin: 15px 0px; padding: 0px;
+}
+.column ol {
+	margin: 15px 0px; padding: 0px;
+}
+.column ul {
+	margin: 15px 0px; padding: 0px;
+}
+.column dl {
+	margin: 15px 0px; padding: 0px;
+}
+h1 {
+	font-size: 180%;
+}
+h2 {
+	font-size: 150%;
+}
+h3 {
+	font-size: 125%;
+}
+h4 {
+	text-transform: uppercase; font-size: 100%;
+}
+h5 {
+	font-size: 100%;
+}
+.contentheading {
+	line-height: 1.2;
+}
+.componentheading {
+	line-height: 1.2;
+}
+h1 {
+	line-height: 1.2;
+}
+h2 {
+	line-height: 1.2;
+}
+h3 {
+	line-height: 1.2;
+}
+h4 {
+	line-height: 1.2;
+}
+h5 {
+	line-height: 1.2;
+}
+h1.componentheading {
+	margin: 0px; padding: 0px 0px 4px;
+}
+.componentheading {
+	margin: 0px; padding: 0px 0px 4px;
+}
+.componentheading {
+	
+}
+h1.contentheading {
+	margin: 0px; padding: 0px 0px 5px;
+}
+h2.contentheading {
+	margin: 0px; padding: 0px 0px 5px;
+}
+.contentheading {
+	margin: 0px; padding: 0px 0px 5px;
+}
+.contentheading {
+	
+}
+.blog-featured .contentheading {
+	
+}
+.contentheading a {
+	
+}
+.contentheading a:hover {
+	
+}
+.contentheading a:active {
+	
+}
+.contentheading a:focus {
+	
+}
+.jitem-title {
+	
+}
+small {
+	font-size: 92%;
+}
+.small {
+	font-size: 92%;
+}
+.smalldark {
+	font-size: 92%;
+}
+.small-text {
+	font-size: 92%;
+}
+.article-tools {
+	font-size: 92%;
+}
+.img_caption {
+	font-size: 92%;
+}
+.contenttoc {
+	font-size: 92%;
+}
+p.site-slogan {
+	font-size: 92%;
+}
+a.readon {
+	font-size: 92%;
+}
+#ja-navhelper {
+	font-size: 92%;
+}
+#ja-footer {
+	font-size: 92%;
+}
+small {
+	
+}
+.small {
+	
+}
+.smalldark {
+	text-align: left;
+}
+.column ul li {
+	background: url("../../images/jat3_plugin/bullet.gif") no-repeat 20px 7px; line-height: 160%; overflow: hidden; padding-left: 30px; margin-bottom: 5px;
+}
+.column ol li {
+	line-height: 180%; margin-left: 30px;
+}
+.column dt {
+	font-weight: bold;
+}
+.column dd {
+	margin-left: 15px;
+}
+p.readmore {
+	margin: 0px;
+}
+p.readmore a {
+	
+}
+p.readmore a:hover {
+	
+}
+p.readmore a:active {
+	
+}
+p.readmore a:focus {
+	
+}
+hr {
+	border-width: 1px 0px 0px; border-style: solid none none; border-color: currentColor; height: 1px;
+}
+form label {
+	cursor: pointer;
+}
+input {
+	font-size: 100%;
+}
+select {
+	font-size: 100%;
+}
+textarea {
+	font-size: 100%;
+}
+.inputbox {
+	font-size: 100%;
+}
+.inputbox {
+	
+}
+.inputbox:hover {
+	
+}
+.inputbox:focus {
+	
+}
+.button {
+	
+}
+.button:hover {
+	
+}
+.button:focus {
+	
+}
+.checkbox {
+	
+}
+.radio {
+	
+}
+fieldset {
+	margin: 0px; padding: 5px 0px; border: currentColor; border-image: none;
+}
+legend {
+	line-height: 1.2; font-size: 125%; font-weight: bolder;
+}
+.hidelabeltxt {
+	display: none;
+}
+fieldset dt {
+	padding: 3px 0px; clear: left; float: left; min-width: 12em;
+}
+fieldset dd {
+	padding: 3px 0px; min-height: 25px;
+}
+.login_form fieldset {
+	padding: 15px 0px 0px;
+}
+.login fieldset {
+	padding: 15px 0px 0px;
+}
+.login_form fieldset p {
+	margin: 0px 0px 5px;
+}
+.login fieldset p {
+	margin: 0px 0px 5px;
+}
+.login_form label {
+	width: 130px; text-align: right; font-weight: bold; float: left; display: block;
+}
+.login label {
+	width: 130px; text-align: right; font-weight: bold; float: left; display: block;
+}
+.login-fields {
+	margin: 0px 0px 10px;
+}
+.login_form .inputbox {
+	width: 150px; margin-left: 10px;
+}
+.login-fields .required {
+	width: 150px; margin-left: 10px;
+}
+.login_form .remember .inputbox {
+	width: 20px;
+}
+.login_form .button {
+	margin-left: 140px;
+}
+.login button {
+	margin-left: 140px;
+}
+.form-register fieldset {
+	padding: 0px 0px 10px;
+}
+.form-register p {
+	margin: 0px 0px 5px;
+}
+.form-register p.form-des {
+	margin: 15px 0px;
+}
+.form-register label {
+	width: 130px; text-align: right; font-weight: bold; float: left; display: block;
+}
+.form-register .inputbox {
+	width: 200px; margin-left: 10px;
+}
+.form-register .button {
+	margin-left: 140px;
+}
+.registration fieldset dt {
+	margin-right: 5px;
+}
+.user-details {
+	padding: 10px 0px;
+}
+.user-details p {
+	margin: 0px 0px 5px;
+}
+.user-details label {
+	width: 130px; text-align: right; font-weight: bold; float: left; display: block;
+}
+.user-details .inputbox {
+	width: 200px; margin-left: 10px;
+}
+.user-details .button {
+	margin-left: 140px;
+}
+.user-details .paramlist .paramlist_key {
+	padding: 0px 0px 5px; width: 130px;
+}
+.user-details .paramlist .paramlist_value {
+	padding: 0px 0px 5px;
+}
+.user-details .user_name span {
+	padding-left: 10px; font-weight: bold;
+}
+.remind fieldset dl {
+	margin: 0px;
+}
+.reset fieldset dl {
+	margin: 0px;
+}
+.remind fieldset dt {
+	margin: 0px; padding: 0px;
+}
+.reset fieldset dt {
+	margin: 0px; padding: 0px;
+}
+.remind fieldset dd {
+	margin: 5px 0px; padding: 0px; min-height: 0px;
+}
+.reset fieldset dd {
+	margin: 5px 0px; padding: 0px; min-height: 0px;
+}
+form#searchForm {
+	padding: 15px 0px;
+}
+.searchintro {
+	
+}
+.results h4 {
+	margin: 15px 0px 0px;
+}
+.results p {
+	margin: 0px 0px 10px;
+}
+.search fieldset {
+	margin: 25px 0px 15px; padding: 10px; border: 1px solid rgb(240, 240, 240); border-image: none;
+}
+.search fieldset legend {
+	font-size: 100%;
+}
+.search .phrases-box {
+	margin: 0px 0px 10px;
+}
+.search .word button {
+	margin-left: 5px;
+}
+.search .word .inputbox {
+	vertical-align: top;
+}
+.search .word label {
+	vertical-align: bottom;
+}
+#component-contact address {
+	font-style: normal;
+}
+#component-contact #emailForm {
+	
+}
+.contact_email {
+	margin: 0px 0px 10px;
+}
+.contact_email div {
+	padding: 5px 0px;
+}
+.contact_email label {
+	width: 17em; font-weight: bold; float: left; display: block;
+}
+.contact_email-copy {
+	margin: 15px 0px;
+}
+.contact-email-copy label {
+	display: inline;
+}
+div.contact-links ul li {
+	background: none;
+}
+.panel {
+	border: 1px solid rgb(221, 221, 221); border-image: none; margin-top: -1px;
+}
+#ja-content-main .contact .panel h3 {
+	background: rgb(238, 238, 238); margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+.panel h3 a {
+	padding: 6px; color: rgb(68, 68, 68); text-decoration: none; display: block;
+}
+.panel h3.pane-toggler a {
+	background: rgb(245, 245, 245);
+}
+.panel h3.pane-toggler-down a {
+	background: rgb(245, 245, 245); border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.jpane-slider {
+	margin: 0px; padding: 0px 15px !important; border: 0px solid currentColor; border-image: none; height: 0px; overflow: hidden;
+}
+.pane-slider {
+	margin: 0px; padding: 0px 15px !important; border: 0px solid currentColor; border-image: none; height: 0px; overflow: hidden;
+}
+.panel .contact-form {
+	
+}
+.panel .contact-miscinfo {
+	
+}
+.contact .panel .contact-form form {
+	margin: 15px 0px 0px;
+}
+.contact .panel .contact-address {
+	margin: 15px 0px 0px;
+}
+.contact-image {
+	margin: 15px 0px; overflow: hidden; display: block;
+}
+.categories-list .category-desc ul li {
+	list-style-type: square;
+}
+#ja-content-main .contact .panel .pane-hide {
+	display: none;
+}
+div.current {
+	padding: 10px; border: 1px solid rgb(204, 204, 204); border-image: none; clear: both; max-width: 500px;
+}
+#close a {
+	text-decoration: none;
+}
+.tabs#contact-slider {
+	margin: 15px 0px 0px; clear: both; float: left; z-index: 50;
+}
+.tabs#contact-slider dt {
+	background: rgb(240, 240, 240); padding: 4px 10px; color: rgb(102, 102, 102); margin-right: 3px; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-top-width: 1px; border-right-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-left-style: solid; float: left;
+}
+.tabs#contact-slider dt.open {
+	background: rgb(249, 249, 249); color: rgb(0, 0, 0); border-bottom-color: rgb(249, 249, 249); border-bottom-width: 1px; border-bottom-style: solid; z-index: 100;
+}
+.tabs#contact-slider dt h3 {
+	margin: 0px; padding-bottom: 0px; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+#ja-content-main .contact h3 {
+	margin: 20px 0px; padding-bottom: 15px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.form-required {
+	background: url("../../images/jat3_plugin/req.png") no-repeat rgb(255, 255, 255) !important; margin: 10px 0px; padding: 10px 40px; font-weight: bold;
+}
+.contact .inputbox {
+	background: rgb(255, 255, 255); padding: 3px; border: 1px solid rgb(204, 204, 204); border-image: none;
+}
+div.encyclopedia_col1 {
+	width: 49%; float: left;
+}
+div.encyclopedia_col1 p.img_caption {
+	font-size: 0.6em;
+}
+div.encyclopedia_col2 {
+	width: 49%; padding-left: 3px; margin-left: 2px; float: right;
+}
+div.encyclopedia_col2 p {
+	padding-left: 3px; margin-left: 2px;
+}
+div.encyclopedia_links ul {
+	margin: 0px 0px 1px; padding: 10px 0px; width: 100%; display: block; list-style-type: none;
+}
+div.encyclopedia_links ul li {
+	margin: 2px; padding: 2px; display: inline; white-space: nowrap;
+}
+div.jcat-children dt {
+	padding: 3px 0px; clear: left; float: left; min-width: 7em;
+}
+div.jcat-children dd {
+	padding: 3px 0px; min-height: 25px;
+}
+.blog {
+	
+}
+.item-separator {
+	display: none;
+}
+.row-separator {
+	display: none;
+}
+.items-leading {
+	
+}
+.items-leading .leading {
+	padding-bottom: 15px;
+}
+.items-row {
+	padding-top: 15px; padding-bottom: 15px;
+}
+.item {
+	
+}
+.img-intro-none {
+	margin-bottom: 15px;
+}
+.img-intro-left {
+	margin-right: 15px; margin-bottom: 15px; float: left;
+}
+.img-intro-right {
+	margin-bottom: 15px; margin-left: 15px; float: right;
+}
+.article-tools {
+	clear: both; display: block; position: relative;
+}
+dl.article-info {
+	margin: 0px; padding: 0px; width: 70%; text-transform: none; float: left;
+}
+dl.article-info dd {
+	margin: 0px; padding: 0px 5px 0px 0px; display: inline;
+}
+dl.article-info dt {
+	margin: 0px; padding: 0px 5px 0px 0px; display: inline;
+}
+dd.parent-category-name {
+	
+}
+dd.category-name {
+	
+}
+dd.create {
+	padding-right: 5px;
+}
+dd.createdby {
+	padding-right: 5px;
+}
+dd.hits {
+	padding-right: 5px;
+}
+p.article-url {
+	margin: 10px 0px 0px;
+}
+p.modifydate {
+	margin: 10px 0px 0px;
+}
+.contentdescription {
+	padding: 10px 15px; display: block;
+}
+.contentdescription p {
+	margin: 0px;
+}
+ul.actions {
+	margin: 0px; padding: 0px; float: right;
+}
+ul.actions li {
+	background: none; margin: 0px; padding: 0px; line-height: 1; display: inline;
+}
+ul.actions li img {
+	margin: 0px 5px 0px 0px; border: 0px currentColor; border-image: none;
+}
+ul#archive-items > li {
+	margin: 0px; padding: 0px; line-height: normal; overflow: visible;
+}
+ul#archive-items div.intro {
+	overflow: hidden; clear: both;
+}
+.article-content {
+	overflow: hidden;
+}
+.categories-list {
+	
+}
+.categories-list h1 {
+	
+}
+.categories-list ul {
+	
+}
+div.categories-list ul li {
+	background: none; padding-left: 0px;
+}
+.categories-list ul li span.item-title {
+	
+}
+.categories-list li span.item-title a {
+	
+}
+div.categories-list dl.article-count dt {
+	display: inline;
+}
+div.categories-list dl.article-count dd {
+	display: inline;
+}
+div.categories-list dl.article-count dd {
+	margin-left: 0px;
+}
+div.categories-list ul li ul {
+	margin-left: 15px;
+}
+div.categories-list ul li li {
+	background: rgb(242, 242, 242); padding: 10px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+div.categories-list ul li li li {
+	background: rgb(221, 221, 221);
+}
+div.categories-list ul li li.last {
+	border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+.cat-children {
+	
+}
+.cat-children h3 {
+	
+}
+.cat-children ul {
+	
+}
+.cat-children ul li {
+	
+}
+.cat-children ul li span.jitem-title {
+	
+}
+.cat-children ul li span.jitem-title a {
+	
+}
+.img_caption {
+	margin-top: 15px; margin-bottom: 10px;
+}
+.img_caption.left {
+	margin-right: 10px;
+}
+.img_caption.right {
+	margin-left: 10px;
+}
+p.img_caption {
+	margin: 0px; padding: 0px; text-align: center; clear: both;
+}
+th {
+	padding: 5px; text-align: left; font-weight: bold;
+}
+td {
+	padding: 3px; font-size: 100%;
+}
+thead tr th {
+	
+}
+thead tr th a {
+	
+}
+thead tr th a:hover {
+	
+}
+thead tr th a:focus {
+	
+}
+thead tr th a:active {
+	
+}
+ul li.cat-list-row0 {
+	background: none; margin: 0px; padding: 5px;
+}
+ul li.cat-list-row1 {
+	background: none; margin: 0px; padding: 5px;
+}
+ul li.cat-list-row1 {
+	border: 1px solid rgb(221, 221, 221); border-image: none;
+}
+.cat-list-row2 {
+	border-color: rgb(221, 221, 221);
+}
+.cat-list-row1 {
+	border-color: rgb(221, 221, 221);
+}
+tr.cat-list-row2 td {
+	border-color: rgb(221, 221, 221);
+}
+tr.cat-list-row1 td {
+	border-color: rgb(221, 221, 221);
+}
+.cat-list-row1:hover {
+	background-color: rgb(255, 255, 204);
+}
+.cat-list-row2:hover {
+	background-color: rgb(255, 255, 204);
+}
+.cat-list-row2 {
+	
+}
+tr.cat-list-row2 td {
+	
+}
+table.contentpane {
+	width: 100%;
+}
+table.tablelist {
+	width: 100%;
+}
+table.category {
+	width: 100%;
+}
+table.contentpaneopen {
+	border: currentColor; border-image: none; border-collapse: collapse; border-spacing: 0;
+}
+table.contenttoc {
+	margin: 0px 0px 10px 12px; padding: 0px; width: 30%; float: right;
+}
+table.contenttoc a {
+	
+}
+table.contenttoc td {
+	padding: 5px 10px;
+}
+table.contenttoc th {
+	padding: 5px 10px;
+}
+div.poll {
+	padding: 15px 0px;
+}
+form#poll {
+	padding-bottom: 10px; margin-bottom: 10px;
+}
+dl.poll {
+	padding-bottom: 10px; font-size: 92%; margin-bottom: 10px;
+}
+dl.poll dt {
+	float: left;
+}
+dl.poll dd {
+	float: left;
+}
+dl.poll dt {
+	width: 100px; clear: left;
+}
+dl.poll dd {
+	width: 400px; clear: right;
+}
+table.pollstableborder {
+	padding: 0px; border: currentColor; border-image: none; width: 100%; text-align: left;
+}
+table.pollstableborder img {
+	vertical-align: baseline;
+}
+table.pollstableborder td {
+	
+}
+table.pollstableborder tr.sectiontableentry0 td {
+	
+}
+table.pollstableborder tr.sectiontableentry1 td {
+	
+}
+table.searchintro {
+	padding: 10px 0px; width: 100%;
+}
+table.searchintro td {
+	
+}
+table.contentpaneopen {
+	width: 100%;
+}
+table.contentpane {
+	width: 100%;
+}
+table.blog {
+	width: 100%;
+}
+.pagination ul {
+	margin: 10px 0px; float: left;
+}
+ul.pagenav {
+	margin: 10px 0px; float: left;
+}
+.pagination ul li {
+	background: none; margin: 0px; padding: 0px; overflow: hidden; float: left; display: block;
+}
+ul.pagenav li {
+	background: none; margin: 0px; padding: 0px; overflow: hidden; float: left; display: block;
+}
+.pagination ul li span.pagenav {
+	padding: 0px 5px;
+}
+.pagination ul li a.pagenav {
+	padding: 0px 5px;
+}
+ul.pagenav li a {
+	padding: 0px 5px;
+}
+.pagination ul a.pagenav {
+	
+}
+.pagination ul a.pagenav:hover {
+	
+}
+.pagination ul a.pagenav:active {
+	
+}
+.pagination ul a.pagenav:focus {
+	
+}
+.ja-content-main fieldset.filters {
+	margin: 10px 0px 5px; font-size: 92%;
+}
+.ja-content-main .display-limit {
+	margin: 10px 0px 5px; font-size: 92%;
+}
+.ja-content-main fieldset.filters .filter-search {
+	width: 50%; float: left;
+}
+.ja-content-main fieldset.filters .display-limit {
+	width: 50%; float: left;
+}
+.ja-content-main fieldset.filters .display-limit {
+	text-align: right; float: right;
+}
+.ja-content-main .pagenavbar {
+	font-weight: bold;
+}
+.ja-content-main .pagenavcounter {
+	margin: 15px 0px; text-align: center;
+}
+.ja-content-main .counter {
+	margin: 15px 0px; text-align: right; line-height: 1; float: right;
+}
+.ja-content-main .counter span {
+	
+}
+.items-more {
+	padding: 15px 0px 5px;
+}
+.items-more h3 {
+	margin: 0px 0px 5px;
+}
+.items-more ol {
+	
+}
+div.back_button a {
+	margin: 10px 0px; display: block;
+}
+div.back_button a:hover {
+	margin: 10px 0px; display: block;
+}
+div.back_button a:active {
+	margin: 10px 0px; display: block;
+}
+#system-message {
+	
+}
+#system-message dd.message ul {
+	margin: 0px; padding: 0px;
+}
+#system-message dd.error ul {
+	margin: 0px; padding: 0px;
+}
+#system-message dd.notice ul {
+	margin: 0px; padding: 0px;
+}
+#system-message dd.message ul li {
+	background: none; margin: 0px; padding: 5px;
+}
+#system-message dd.error ul li {
+	background: none; margin: 0px; padding: 5px;
+}
+#system-message dd.notice ul li {
+	background: none; margin: 0px; padding: 5px;
+}
+#system-message .alert {
+	padding: 8px 35px 8px 14px; border: 1px solid rgb(251, 238, 213); border-image: none; color: rgb(192, 152, 83); margin-bottom: 18px; text-shadow: 0px 1px 0px rgba(255,255,255,0.5); background-color: rgb(252, 232, 227);
+}
+#system-message .alert-heading {
+	font-weight: bold;
+}
+#system-message .close {
+	color: rgb(0, 0, 0); line-height: 18px; font-size: 20px; font-weight: bold; float: right; opacity: 0.2; text-shadow: 0px 1px 0px #ffffff;
+}
+#system-message .alert .close {
+	top: -2px; right: -21px; line-height: 18px; position: relative;
+}
+#system-message .close:hover {
+	opacity: 1;
+}
+#system-message .close:focus {
+	opacity: 1;
+}
+#system-message .close:active {
+	opacity: 1;
+}
+#system-message dd.message ul {
+	
+}
+#system-message dd.error ul {
+	
+}
+#system-message dd.notice ul {
+	
+}
+.items-row.cols-2 .column-2 .contentpaneopen_edit {
+	padding-left: 15px;
+}
+.tip-wrap {
+	background: rgb(255, 255, 204); border: 1px solid rgb(226, 226, 181); border-image: none; z-index: 999;
+}
+.tip-title {
+	padding: 5px 10px; font-weight: bold; border-bottom-color: rgb(226, 226, 181); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.tip-text {
+	margin: 0px; padding: 5px 10px; font-size: 100%;
+}
+.hasTip img {
+	margin: 0px 5px 0px 0px; border: currentColor; border-image: none;
+}
+.contentpaneopen_edit img {
+	vertical-align: middle;
+}
+.edit fieldset {
+	margin: 25px 0px 15px; padding: 10px; border: 1px solid rgb(240, 240, 240); border-image: none;
+}
+.edit .formelm {
+	margin: 0px 0px 10px;
+}
+.edit.item-page .formelm {
+	margin-top: 5px;
+}
+.edit .formelm label {
+	font-weight: bold; display: inline-block; min-width: 100px;
+}
+.edit .formelm-buttons {
+	margin: 0px 0px 10px;
+}
+.edit .formelm-area {
+	margin: 0px 0px 10px;
+}
+.edit .formelm-area label {
+	font-weight: bold; margin-bottom: 5px; display: block;
+}
+.profile-edit fieldset dt {
+	min-width: 17em;
+}
+.edit.item-page div.fltlft {
+	margin-bottom: 5px;
+}
+div.ja-moduletable h3 {
+	margin: 0px 0px 8px; padding: 0px 0px 5px; overflow: hidden;
+}
+div.moduletable h3 {
+	margin: 0px 0px 8px; padding: 0px 0px 5px; overflow: hidden;
+}
+div.moduletable_menu h3 {
+	margin-bottom: 0px;
+}
+div.ja-moduletable {
+	padding: 0px 0px 20px; margin-top: 10px; margin-bottom: 10px; position: relative;
+}
+div.moduletable {
+	padding: 0px 0px 20px; margin-top: 10px; margin-bottom: 10px; position: relative;
+}
+div.ja-module h3 {
+	margin: 0px 0px 10px; padding: 8px 0px; overflow: hidden;
+}
+div.module h3 {
+	margin: 0px 0px 10px; padding: 8px 0px; overflow: hidden;
+}
+div.ja-module {
+	overflow: hidden; margin-bottom: 20px; position: relative;
+}
+div.module {
+	overflow: hidden; margin-bottom: 20px; position: relative;
+}
+.badge {
+	top: 0px; width: 45px; height: 46px; right: 0px; position: absolute; background-image: url("../../images/jat3_plugin/icon-badge.png"); background-repeat: no-repeat;
+}
+.badge-hot .badge {
+	
+}
+.badge-new .badge {
+	
+}
+.badge-pick .badge {
+	
+}
+.badge-top .badge {
+	
+}
+#ja-search {
+	right: 0px; bottom: 15px; position: absolute;
+}
+#ja-search label {
+	display: none;
+}
+#ja-search .inputbox {
+	
+}
+#ja-search .inputbox:hover {
+	
+}
+#ja-search .inputbox:focus {
+	
+}
+#ja-search .button {
+	
+}
+#form-login-username .inputbox {
+	background-position: 5px; font-weight: bold; background-repeat: no-repeat;
+}
+#form-login-password .inputbox {
+	background-position: 5px; font-weight: bold; background-repeat: no-repeat;
+}
+#form-login-username .inputbox {
+	
+}
+#form-login-password .inputbox {
+	
+}
+#form-login ul {
+	margin: 0px !important; padding: 0px;
+}
+#form-login p {
+	margin: 0px 0px 5px;
+}
+#form-login .button {
+	margin: 10px 0px;
+}
+h4.poll-title {
+	margin: 0px; padding: 0px;
+}
+a.poll-result {
+	text-transform: uppercase; font-size: 92%;
+}
+form.poll .button {
+	margin-right: 5px;
+}
+div.bannergroup_text div.banneritem_text {
+	padding: 5px 0px;
+}
+div.bannergroup_text div.banneritem_text a {
+	font-weight: bold;
+}
+div.bannergroup_text div.bannerheader {
+	font-size: 92%;
+}
+div.bannergroup_text div.bannerfooter_text a {
+	font-size: 92%;
+}
+div.bannergroup_text div.bannerfooter_text {
+	padding: 5px 0px 0px; text-align: right;
+}
+div.bannergroup {
+	margin-bottom: 10px;
+}
+div.module_text h3 {
+	
+}
+div.module_text span {
+	clear: both; float: left; display: block;
+}
+div.module_text {
+	
+}
+div.module_text .ja-box-bl {
+	
+}
+div.module_text .ja-box-tr {
+	
+}
+div.module_text .ja-box-tl {
+	
+}
+div.module_noborder {
+	background: none; padding: 0px;
+}
+div.module_noborder .ja-box-bl {
+	background: none; padding: 0px;
+}
+div.module_noborder .ja-box-tr {
+	background: none; padding: 0px;
+}
+div.module_noborder .ja-box-tl {
+	background: none; padding: 0px;
+}
+h3.show {
+	background: url("../../images/jat3_plugin/icon-show.png") no-repeat 100% 60%; cursor: pointer;
+}
+h3.hide {
+	background: url("../../images/jat3_plugin/icon-hide.png") no-repeat 100% 60%; cursor: pointer;
+}
+div.ja-moduletable .mod-languages ul {
+	margin: 0px;
+}
+div.ja-module .mod-languages ul {
+	margin: 0px;
+}
+div.ja-moduletable .mod-languages ul li {
+	background: none; padding: 0px; margin-right: 5px; display: inline-block;
+}
+div.ja-module .mod-languages ul li {
+	background: none; padding: 0px; margin-right: 5px; display: inline-block;
+}
+.wrap {
+	
+}
+.main {
+	
+}
+.ja-box {
+	
+}
+#ja-wrapper {
+	
+}
+#ja-container {
+	position: relative; z-index: 5;
+}
+#ja-container .main {
+	
+}
+.ja-l1r1#ja-container {
+	
+}
+#ja-container {
+	
+}
+.ja-r1#ja-container {
+	
+}
+.ja-l1#ja-container {
+	
+}
+.ja-mass-top {
+	
+}
+.ja-mass-top .ja-moduletable {
+	margin-right: 0px; margin-left: 0px;
+}
+.ja-mass-top .ja-module {
+	margin-right: 0px; margin-left: 0px;
+}
+.ja-mass-bottom {
+	
+}
+.ja-mass-bottom .ja-moduletable {
+	margin-right: 0px; margin-left: 0px;
+}
+.ja-mass-bottom .ja-module {
+	margin-right: 0px; margin-left: 0px;
+}
+#ja-mainbody {
+	
+}
+#ja-main .inner {
+	
+}
+#ja-contentwrap {
+	
+}
+.ja-content-top {
+	
+}
+#ja-content-top .ja-moduletable {
+	margin-right: 0px; margin-left: 0px;
+}
+#ja-content-top .ja-module {
+	margin-right: 0px; margin-left: 0px;
+}
+.ja-content-main {
+	margin-bottom: 20px;
+}
+.ja-content-bottom {
+	
+}
+#ja-content-bottom .ja-moduletable {
+	margin-right: 0px; margin-left: 0px;
+}
+#ja-content-bottom .ja-module {
+	margin-right: 0px; margin-left: 0px;
+}
+.ja-colswrap {
+	
+}
+.ja-col {
+	
+}
+#ja-left .ja-l2 {
+	
+}
+#ja-right .ja-r2 {
+	
+}
+#ja-header {
+	position: relative; z-index: 10;
+}
+#ja-header .main {
+	padding: 30px 0px 15px;
+}
+h1.logo {
+	
+}
+div.logo-text h1 {
+	
+}
+h1.logo {
+	float: left; position: relative; z-index: 1;
+}
+div.logo-text {
+	float: left; position: relative; z-index: 1;
+}
+h1.logo {
+	width: 184px; height: 28px;
+}
+h1.logo a {
+	background: url("../../images/jat3_plugin/logo-t3.gif") no-repeat left; width: 184px; height: 28px; display: block;
+}
+h1.logo a span {
+	top: -1000px; position: absolute;
+}
+div.logo-text {
+	margin-top: 8px;
+}
+div.logo-text h1 a {
+	text-decoration: none;
+}
+p.site-slogan {
+	margin: 8px 0px 0px; padding: 0px 5px; font-size: 85%; display: block;
+}
+#ja-mainnav {
+	line-height: 1; position: relative; z-index: 11;
+}
+#ja-mainnav .main {
+	
+}
+span.has-image {
+	background-position: left 1px; overflow: hidden; padding-left: 25px; display: block; background-repeat: no-repeat;
+}
+span.menu-title {
+	display: block; cursor: pointer;
+}
+span.menu-desc {
+	font-size: 92%; font-weight: normal; display: block;
+}
+#ja-navhelper {
+	
+}
+#ja-navhelper .main {
+	padding: 5px 0px;
+}
+#ja-navhelper a {
+	padding: 0px 2px;
+}
+#ja-navhelper a:hover {
+	
+}
+#ja-navhelper a:active {
+	
+}
+#ja-navhelper a:focus {
+	
+}
+.ja-breadcrums {
+	width: 80%; margin-top: 2px; float: left;
+}
+.ja-breadcrums strong {
+	margin-right: 5px;
+}
+.ja-breadcrums img {
+	margin: 1px 5px;
+}
+.ja-links {
+	margin-top: 2px; float: right;
+}
+.ja-links li {
+	background: none; padding: 0px; display: inline;
+}
+.ja-links li.top a {
+	
+}
+.ja-links li.top a:hover {
+	
+}
+.ja-links li.layout-switcher a {
+	
+}
+.ja-links li.layout-switcher a:hover {
+	
+}
+.ja-links li.user-reset a {
+	
+}
+.ja-links li.user-reset a:hover {
+	
+}
+#ja-container ul.menu {
+	margin: 0px; padding: 0px;
+}
+#ja-container ul.menu li {
+	background: none; margin: 0px; padding: 0px; overflow: hidden;
+}
+#ja-container ul.menu li a {
+	padding: 6px 0px; display: block;
+}
+#ja-container ul.menu li a:hover {
+	
+}
+#ja-container ul.menu li a:active {
+	
+}
+#ja-container ul.menu li a:focus {
+	
+}
+#ja-container ul.menu li.active > a {
+	font-weight: bold;
+}
+#ja-container ul.menu li a img {
+	margin-right: 3px;
+}
+#ja-container ul.menu li ul {
+	margin: 0px 0px 0px 10px;
+}
+#ja-container ul.menu li li {
+	background: url("../../images/jat3_plugin/arrow.png") no-repeat left 11px;
+}
+#ja-container ul.menu li li a {
+	text-indent: 10px; font-weight: normal;
+}
+#ja-container ul.menu li li a:hover {
+	background: none;
+}
+#ja-container ul.menu li li a:active {
+	background: none;
+}
+#ja-container ul.menu li li a:focus {
+	background: none;
+}
+#ja-container ul.menu li.active > a {
+	font-weight: bold;
+}
+#ja-container ul.menu span.separator {
+	display: none;
+}
+#ja-topsl .ja-box {
+	padding: 0px;
+}
+#ja-botsl .ja-box {
+	padding: 0px;
+}
+#ja-topsl .ja-box-right {
+	background: none;
+}
+#ja-botsl .ja-box-right {
+	background: none;
+}
+#ja-topsl .ja-box-full {
+	background: none;
+}
+#ja-botsl .ja-box-full {
+	background: none;
+}
+#ja-topsl .ja-moduletable {
+	padding-top: 0px; padding-bottom: 0px; margin-top: 0px; margin-bottom: 20px;
+}
+#ja-botsl .ja-moduletable {
+	padding-top: 0px; padding-bottom: 0px; margin-top: 0px; margin-bottom: 20px;
+}
+#ja-topsl li {
+	background-position: 1px 6px; padding-left: 10px;
+}
+#ja-botsl li {
+	background-position: 1px 6px; padding-left: 10px;
+}
+#ja-topsl ol li {
+	padding: 0px; margin-left: 25px;
+}
+#ja-botsl ol li {
+	padding: 0px; margin-left: 25px;
+}
+#ja-topsl ul {
+	margin: 0px; padding: 0px;
+}
+#ja-topsl p {
+	margin: 0px; padding: 0px;
+}
+#ja-topsl ol {
+	margin: 0px; padding: 0px;
+}
+#ja-botsl ul {
+	margin: 0px; padding: 0px;
+}
+#ja-botsl p {
+	margin: 0px; padding: 0px;
+}
+#ja-botsl ol {
+	margin: 0px; padding: 0px;
+}
+#ja-topsl a {
+	
+}
+#ja-botsl a {
+	
+}
+#ja-topsl a:hover {
+	
+}
+#ja-topsl a:active {
+	
+}
+#ja-topsl a:focus {
+	
+}
+#ja-botsl a:hover {
+	
+}
+#ja-botsl a:active {
+	
+}
+#ja-botsl a:focus {
+	
+}
+#ja-topsl {
+	
+}
+#ja-topsl .main {
+	padding: 20px 0px 0px;
+}
+#ja-topsl h3 {
+	margin: 0px 0px 8px;
+}
+#ja-botsl {
+	
+}
+#ja-botsl .main {
+	padding: 20px 0px 0px;
+}
+#ja-botsl .ja-moduletable {
+	margin-bottom: 20px;
+}
+#ja-botsl .moduletable {
+	margin-bottom: 20px;
+}
+#ja-botsl h3 {
+	margin: 0px 0px 8px;
+}
+.ja-box-right .ja-moduletable {
+	
+}
+.ja-box-right .moduletable {
+	
+}
+.ja-box-full .ja-moduletable {
+	
+}
+.ja-box-full .moduletable {
+	
+}
+#ja-footer {
+	padding: 20px 0px; clear: both;
+}
+#ja-footer .main {
+	padding: 0px; text-align: center; position: relative;
+}
+#ja-footer .inner {
+	padding: 0px;
+}
+#ja-footer small {
+	font-size: 100%;
+}
+#ja-footer .ja-footnav {
+	margin: 10px 0px; overflow: hidden; font-size: 100%; position: relative;
+}
+.ja-footnav ul {
+	line-height: normal;
+}
+.ja-footnav li {
+	background: none; padding: 0px 5px; display: inline;
+}
+.ja-footnav li a {
+	
+}
+.ja-footnav li a:hover {
+	
+}
+.ja-footnav li a:active {
+	
+}
+.ja-footnav li a:focus {
+	
+}
+.ja-copyright {
+	margin-bottom: 1em;
+}
+.ja-copyright small {
+	display: block;
+}
+ul.ja-usertools-font {
+	
+}
+ul.ja-usertools-font li {
+	background: none; margin: 0px; padding: 0px; display: inline;
+}
+ul.ja-usertools-screen li {
+	background: none; margin: 0px; padding: 0px; display: inline;
+}
+ul.ja-usertools-screen {
+	
+}
+#ja-poweredby {
+	margin: 0px auto;
+}
+#ja-banner {
+	width: 100%; text-align: center; overflow: hidden;
+}
+div.ja-innerdiv {
+	padding-bottom: 10px; clear: both; margin-bottom: 10px;
+}
+div.ja-innerdiv h4 {
+	margin: 5px 0px; padding: 0px;
+}
+a.ja-cpanel-video {
+	background: url("../../images/jat3_plugin/icon-youtube.png") no-repeat center rgb(255, 255, 255); padding: 0px; border: 1px solid rgb(153, 153, 153); border-image: none; width: 22px; height: 22px; right: 10px; bottom: 10px; color: rgb(102, 102, 102); text-indent: -9999px; font-weight: bold; text-decoration: none; display: block; position: absolute;
+}
+a.ja-cpanel-video span {
+	color: rgb(102, 102, 102);
+}
+a.ja-cpanel-video:hover {
+	border-color: rgb(102, 102, 102); text-decoration: none;
+}
+a.ja-cpanel-video:focus {
+	border-color: rgb(102, 102, 102); text-decoration: none;
+}
+a.ja-cpanel-video:active {
+	border-color: rgb(102, 102, 102); text-decoration: none;
+}
+a.ja-cpanel-video:hover span {
+	color: rgb(15, 133, 216);
+}
+.t3-logo {
+	display: block;
+}
+.t3-logo-sm {
+	display: block;
+}
+.t3-logo {
+	width: 200px; height: 34px;
+}
+.t3-logo a {
+	width: 200px; height: 34px;
+}
+.t3-logo-sm {
+	width: 77px; height: 34px;
+}
+.t3-logo-sm a {
+	width: 77px; height: 34px;
+}
+.t3-logo a {
+	background-position: center; text-indent: -1000em; display: block; background-repeat: no-repeat;
+}
+.t3-logo-sm a {
+	background-position: center; text-indent: -1000em; display: block; background-repeat: no-repeat;
+}
+.t3-logo-light a {
+	background-image: url("../../images/jat3_plugin/t3_logo_light.png");
+}
+.t3-logo-dark a {
+	background-image: url("../../images/jat3_plugin/t3_logo_dark.png");
+}
+.t3-logo-light-sm a {
+	background-image: url("../../images/jat3_plugin/t3_logo_light_sm.png");
+}
+.t3-logo-dark-sm a {
+	background-image: url("../../images/jat3_plugin/t3_logo_dark_sm.png");
+}

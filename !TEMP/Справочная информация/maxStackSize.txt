@@ -1,0 +1,57 @@
+		/// <summary>
+		/// The stack size is sufficient to run the code of modern JavaScript libraries in 32-bit process
+		/// </summary>
+		const int STACK_SIZE_32 = 492 * 1024; // like 32-bit Node.js
+
+		/// <summary>
+		/// The stack size is sufficient to run the code of modern JavaScript libraries in 64-bit process
+		/// </summary>
+		const int STACK_SIZE_64 = 984 * 1024; // like 64-bit Node.js
+
+		//   maxStackSize:
+		//     The maximum stack size to be used by the thread, or 0 to use the default maximum
+		//     stack size specified in the header for the executable.Important For partially
+		//     trusted code, maxStackSize is ignored if it is greater than the default stack
+		//     size. No exception is thrown.
+
+		int maxStackSize
+
+maxStackSize
+    Type: System.Int32
+
+    The maximum stack size, in bytes, to be used by the thread, or 0 to use the default maximum stack size specified in the header for the executable.
+
+    Important   For partially trusted code, maxStackSize is ignored if it is greater than the default stack size. No exception is thrown. 
+
+		/// <summary>
+		/// Gets or sets a maximum amount by which the V8 runtime is permitted to grow
+		/// the stack during script execution in bytes
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// When it is set to the default value, no stack usage limit is enforced, and
+		/// scripts with unchecked recursion or other excessive stack usage can cause
+		/// unrecoverable errors and process termination.
+		/// </para>
+		/// <para>
+		/// Note that the V8 runtime does not monitor stack usage while a host call is in progress.
+		/// Monitoring is resumed when control returns to the runtime.
+		/// </para>
+		/// </remarks>
+		public UIntPtr MaxStackUsage
+		{
+			get;
+			set;
+		}
+
+      if (0 > maxStackSize)
+        throw new ArgumentOutOfRangeException(nameof (maxStackSize), Environment.GetResourceString("ArgumentOutOfRange_NeedNonNegNum"));
+
+Non-negative number required.
+Parameter name: maxStackSize
+
+
+
+
+
+Engine_MaxStackSizeMustBeNonNegative

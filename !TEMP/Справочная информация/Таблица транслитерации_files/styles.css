@@ -1,0 +1,61 @@
+@import url( normalize.css );
+@import url( ../fonts/stylesheet.css );
+@import url( plugins.css ) all;
+@import url( styles_all.css ) all;
+html {
+	margin: 0px; padding: 0px;
+}
+body {
+	margin: 0px; padding: 0px;
+}
+.forprint {
+	display: none;
+}
+.donotprint {
+	
+}
+.hidden {
+	
+}
+.visuallyhidden {
+	
+}
+.invisible {
+	
+}
+.clearfix {
+	position: relative;
+}
+.clearfix::before {
+	width: 100%;
+}
+.clearfix::after {
+	
+}
+.borderbox {
+	box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.borderbox::before {
+	box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.borderbox::after {
+	box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+@media print
+{
+a::after {
+	display: none; content: "";
+}
+a {
+	border: 0px currentColor; border-image: none; color: black;
+}
+* {
+	-webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.donotprint {
+	display: none !important;
+}
+.forprint {
+	display: block;
+}
+}

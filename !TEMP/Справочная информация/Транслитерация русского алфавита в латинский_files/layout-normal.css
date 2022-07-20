@@ -1,0 +1,162 @@
+.main {
+	width: 976px;
+}
+.column {
+	
+}
+#ja-content {
+	width: 480px;
+}
+.ja-frontpage #ja-content {
+	width: 480px;
+}
+.item {
+	width: 100% !important; float: none;
+}
+.cols-1 .item {
+	width: 100% !important;
+}
+.cols-2 .item {
+	width: 100% !important;
+}
+.cols-3 .item {
+	width: 100% !important;
+}
+.cols-4 .item {
+	width: 100% !important;
+}
+.cols-5 .item {
+	width: 100% !important;
+}
+#ja-header {
+	top: 0px; position: fixed;
+}
+#ja-container {
+	margin-top: 53px;
+}
+h1.logo {
+	width: 40px !important; height: 40px !important;
+}
+h1.logo a {
+	padding: 0px 0.5em !important; height: 40px !important;
+}
+h1.logo a img {
+	padding-top: 10px;
+}
+div.logo-text {
+	height: 40px;
+}
+div.logo-text h1 {
+	margin-top: 0.3em;
+}
+#ja-top {
+	height: 40px; border-left-color: currentColor; border-left-width: medium; border-left-style: none; min-width: 76px; background-color: rgb(68, 68, 68);
+}
+#ja-search {
+	padding: 0px; width: 25px; height: 40px; right: 0px; bottom: 0px; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none; position: absolute;
+}
+#ja-search .search-btn {
+	width: 25px; height: 40px; margin-top: 0px;
+}
+.active#ja-search .search-btn {
+	width: 25px; height: 40px; margin-top: 0px; cursor: pointer; background-color: rgb(236, 83, 77);
+}
+#ja-search .search-btn:hover {
+	width: 25px; height: 40px; margin-top: 0px; cursor: pointer; background-color: rgb(236, 83, 77);
+}
+#ja-search form.search {
+	background: rgb(236, 83, 77); padding: 0.5em; top: 40px; width: 200px; right: 0px; display: none; position: absolute;
+}
+#ja-search:hover form.search {
+	display: block !important;
+}
+.active#ja-search form.search {
+	display: block !important;
+}
+#ja-search .inputbox {
+	background: rgb(34, 34, 34); margin: 0px; padding: 4px 0px; border: 1px solid rgb(34, 34, 34); border-image: none; width: 100%; color: rgb(204, 204, 204); text-indent: 10px;
+}
+#ja-social {
+	height: 40px;
+}
+#ja-social ul {
+	padding: 5px 0px 0px 1em;
+}
+#ja-social ul li {
+	
+}
+#ja-social ul li a {
+	background-color: rgb(34, 34, 34);
+}
+#ja-footer {
+	
+}
+.hide-in-normal {
+	display: none;
+}
+#ja-mainnav {
+	max-width: 633px;
+}
+.ja-megamenu {
+	width: 642px;
+}
+.ja-megamenu ul.level0 li.mega {
+	height: 40px !important;
+}
+.ja-megamenu ul.level0 li.mega a.mega {
+	height: 40px !important;
+}
+.ja-megamenu ul.level0 li.mega span.menu-title {
+	padding: 0px !important; margin-top: 0.75em !important;
+}
+.ja-megamenu ul.level0 li.haschild span.menu-title {
+	padding: 0px !important; margin-top: 0.75em !important;
+}
+.ja-megamenu ul.level1 li.mega span.menu-title {
+	margin-top: 0px !important;
+}
+.ja-megamenu ul.level1 li.mega {
+	height: auto !important;
+}
+.ja-megamenu ul.level1 li.mega a.mega {
+	height: auto !important;
+}
+.ja-megamenu ul.level0 li.mega span.menu-desc {
+	display: none;
+}
+#ja-menu-button {
+	display: none;
+}
+.ja-megamenu ul.level0 li.mega a.mega {
+	text-transform: none !important;
+}
+.mobile-meeting-website {
+	display: none !important;
+}
+.normal-meeting-website {
+	display: inline-block !important;
+}
+#ja-search + #toolbar {
+	padding-right: 25px;
+}
+#channels-icon {
+	display: block;
+}
+#channels-icons-popup {
+	background: rgb(236, 83, 77); top: 40px; width: 232px; right: 0px; display: none; position: absolute;
+}
+#channels-icon:hover #channels-icons-popup {
+	display: block !important;
+}
+.active#channels-icon #channels-icons-popup {
+	display: block !important;
+}
+#channels-icons {
+	display: none;
+}
+.welcome-arrow-block {
+	width: 33%;
+}
+.grid-quadruple {
+	width: 720px;
+}

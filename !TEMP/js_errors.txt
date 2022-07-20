@@ -1,0 +1,37 @@
+Runtime 
+
+{
+	exception: 	{
+		message: "'q' is not defined",
+		description: "'q' is not defined",
+		number: -2146823279,
+		stack: "ReferenceError: 'q' is not defined
+   at Global code (mainFile.js:5:1)",
+	}
+,
+	source: "q();",
+	line: 4,
+	column: 0,
+	length: 0,
+	url: "mainFile.js",
+}
+
+Compilation
+
+{
+	exception: 	{
+		description: "Invalid character",
+		message: "Invalid character",
+		line: 4,
+		column: 0,
+		length: 0,
+		source: "@$;",
+		url: "mainFile.js",
+	}
+,
+	source: "@$;",
+	line: 4,
+	column: 0,
+	length: 0,
+	url: "mainFile.js",
+}

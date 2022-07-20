@@ -1,0 +1,459 @@
+.container {
+	margin: 0px auto; padding: 0px; width: 960px; position: relative;
+}
+.container .column {
+	margin-right: 10px; margin-left: 10px; float: left; display: inline;
+}
+.container .columns {
+	margin-right: 10px; margin-left: 10px; float: left; display: inline;
+}
+.row {
+	margin-bottom: 20px;
+}
+.alpha.column {
+	margin-left: 0px;
+}
+.alpha.columns {
+	margin-left: 0px;
+}
+.omega.column {
+	margin-right: 0px;
+}
+.omega.columns {
+	margin-right: 0px;
+}
+.container .column.one {
+	width: 40px;
+}
+.container .columns.one {
+	width: 40px;
+}
+.container .columns.two {
+	width: 100px;
+}
+.container .columns.three {
+	width: 160px;
+}
+.container .columns.four {
+	width: 220px;
+}
+.container .columns.five {
+	width: 280px;
+}
+.container .columns.six {
+	width: 340px;
+}
+.container .columns.seven {
+	width: 400px;
+}
+.container .columns.eight {
+	width: 460px;
+}
+.container .columns.nine {
+	width: 520px;
+}
+.container .columns.ten {
+	width: 580px;
+}
+.container .columns.eleven {
+	width: 640px;
+}
+.container .columns.twelve {
+	width: 700px;
+}
+.container .columns.thirteen {
+	width: 760px;
+}
+.container .columns.fourteen {
+	width: 820px;
+}
+.container .columns.fifteen {
+	width: 880px;
+}
+.container .columns.sixteen {
+	width: 940px;
+}
+.container .column.one-third {
+	width: 300px;
+}
+.container .column.two-thirds {
+	width: 620px;
+}
+.container .offset-by-one {
+	padding-left: 60px;
+}
+.container .offset-by-two {
+	padding-left: 120px;
+}
+.container .offset-by-three {
+	padding-left: 180px;
+}
+.container .offset-by-four {
+	padding-left: 240px;
+}
+.container .offset-by-five {
+	padding-left: 300px;
+}
+.container .offset-by-six {
+	padding-left: 360px;
+}
+.container .offset-by-seven {
+	padding-left: 420px;
+}
+.container .offset-by-eight {
+	padding-left: 480px;
+}
+.container .offset-by-nine {
+	padding-left: 540px;
+}
+.container .offset-by-ten {
+	padding-left: 600px;
+}
+.container .offset-by-eleven {
+	padding-left: 660px;
+}
+.container .offset-by-twelve {
+	padding-left: 720px;
+}
+.container .offset-by-thirteen {
+	padding-left: 780px;
+}
+.container .offset-by-fourteen {
+	padding-left: 840px;
+}
+.container .offset-by-fifteen {
+	padding-left: 900px;
+}
+.container {
+	width: 768px;
+}
+.container .column {
+	margin-right: 10px; margin-left: 10px;
+}
+.container .columns {
+	margin-right: 10px; margin-left: 10px;
+}
+.alpha.column {
+	margin-right: 10px; margin-left: 0px;
+}
+.alpha.columns {
+	margin-right: 10px; margin-left: 0px;
+}
+.omega.column {
+	margin-right: 0px; margin-left: 10px;
+}
+.omega.columns {
+	margin-right: 0px; margin-left: 10px;
+}
+.omega.alpha {
+	margin-right: 0px; margin-left: 0px;
+}
+.container .column.one {
+	width: 28px;
+}
+.container .columns.one {
+	width: 28px;
+}
+.container .columns.two {
+	width: 76px;
+}
+.container .columns.three {
+	width: 124px;
+}
+.container .columns.four {
+	width: 172px;
+}
+.container .columns.five {
+	width: 220px;
+}
+.container .columns.six {
+	width: 268px;
+}
+.container .columns.seven {
+	width: 316px;
+}
+.container .columns.eight {
+	width: 364px;
+}
+.container .columns.nine {
+	width: 412px;
+}
+.container .columns.ten {
+	width: 460px;
+}
+.container .columns.eleven {
+	width: 508px;
+}
+.container .columns.twelve {
+	width: 556px;
+}
+.container .columns.thirteen {
+	width: 604px;
+}
+.container .columns.fourteen {
+	width: 652px;
+}
+.container .columns.fifteen {
+	width: 700px;
+}
+.container .columns.sixteen {
+	width: 748px;
+}
+.container .column.one-third {
+	width: 236px;
+}
+.container .column.two-thirds {
+	width: 492px;
+}
+.container .offset-by-one {
+	padding-left: 48px;
+}
+.container .offset-by-two {
+	padding-left: 96px;
+}
+.container .offset-by-three {
+	padding-left: 144px;
+}
+.container .offset-by-four {
+	padding-left: 192px;
+}
+.container .offset-by-five {
+	padding-left: 240px;
+}
+.container .offset-by-six {
+	padding-left: 288px;
+}
+.container .offset-by-seven {
+	padding-left: 336px;
+}
+.container .offset-by-eight {
+	padding-left: 384px;
+}
+.container .offset-by-nine {
+	padding-left: 432px;
+}
+.container .offset-by-ten {
+	padding-left: 480px;
+}
+.container .offset-by-eleven {
+	padding-left: 528px;
+}
+.container .offset-by-twelve {
+	padding-left: 576px;
+}
+.container .offset-by-thirteen {
+	padding-left: 624px;
+}
+.container .offset-by-fourteen {
+	padding-left: 672px;
+}
+.container .offset-by-fifteen {
+	padding-left: 720px;
+}
+.container {
+	width: 300px;
+}
+.container .columns {
+	margin: 0px;
+}
+.container .column {
+	margin: 0px;
+}
+.container .column.one {
+	width: 300px;
+}
+.container .columns.one {
+	width: 300px;
+}
+.container .columns.two {
+	width: 300px;
+}
+.container .columns.three {
+	width: 300px;
+}
+.container .columns.four {
+	width: 300px;
+}
+.container .columns.five {
+	width: 300px;
+}
+.container .columns.six {
+	width: 300px;
+}
+.container .columns.seven {
+	width: 300px;
+}
+.container .columns.eight {
+	width: 300px;
+}
+.container .columns.nine {
+	width: 300px;
+}
+.container .columns.ten {
+	width: 300px;
+}
+.container .columns.eleven {
+	width: 300px;
+}
+.container .columns.twelve {
+	width: 300px;
+}
+.container .columns.thirteen {
+	width: 300px;
+}
+.container .columns.fourteen {
+	width: 300px;
+}
+.container .columns.fifteen {
+	width: 300px;
+}
+.container .columns.sixteen {
+	width: 300px;
+}
+.container .column.one-third {
+	width: 300px;
+}
+.container .column.two-thirds {
+	width: 300px;
+}
+.container .offset-by-one {
+	padding-left: 0px;
+}
+.container .offset-by-two {
+	padding-left: 0px;
+}
+.container .offset-by-three {
+	padding-left: 0px;
+}
+.container .offset-by-four {
+	padding-left: 0px;
+}
+.container .offset-by-five {
+	padding-left: 0px;
+}
+.container .offset-by-six {
+	padding-left: 0px;
+}
+.container .offset-by-seven {
+	padding-left: 0px;
+}
+.container .offset-by-eight {
+	padding-left: 0px;
+}
+.container .offset-by-nine {
+	padding-left: 0px;
+}
+.container .offset-by-ten {
+	padding-left: 0px;
+}
+.container .offset-by-eleven {
+	padding-left: 0px;
+}
+.container .offset-by-twelve {
+	padding-left: 0px;
+}
+.container .offset-by-thirteen {
+	padding-left: 0px;
+}
+.container .offset-by-fourteen {
+	padding-left: 0px;
+}
+.container .offset-by-fifteen {
+	padding-left: 0px;
+}
+.container {
+	width: 420px;
+}
+.container .columns {
+	margin: 0px;
+}
+.container .column {
+	margin: 0px;
+}
+.container .column.one {
+	width: 420px;
+}
+.container .columns.one {
+	width: 420px;
+}
+.container .columns.two {
+	width: 420px;
+}
+.container .columns.three {
+	width: 420px;
+}
+.container .columns.four {
+	width: 420px;
+}
+.container .columns.five {
+	width: 420px;
+}
+.container .columns.six {
+	width: 420px;
+}
+.container .columns.seven {
+	width: 420px;
+}
+.container .columns.eight {
+	width: 420px;
+}
+.container .columns.nine {
+	width: 420px;
+}
+.container .columns.ten {
+	width: 420px;
+}
+.container .columns.eleven {
+	width: 420px;
+}
+.container .columns.twelve {
+	width: 420px;
+}
+.container .columns.thirteen {
+	width: 420px;
+}
+.container .columns.fourteen {
+	width: 420px;
+}
+.container .columns.fifteen {
+	width: 420px;
+}
+.container .columns.sixteen {
+	width: 420px;
+}
+.container .column.one-third {
+	width: 420px;
+}
+.container .column.two-thirds {
+	width: 420px;
+}
+.container::after {
+	height: 0px; clear: both; display: block; visibility: hidden; content: "\0020";
+}
+.clearfix::before {
+	width: 0px; height: 0px; overflow: hidden; display: block; visibility: hidden; content: "\0020";
+}
+.clearfix::after {
+	width: 0px; height: 0px; overflow: hidden; display: block; visibility: hidden; content: "\0020";
+}
+.row::before {
+	width: 0px; height: 0px; overflow: hidden; display: block; visibility: hidden; content: "\0020";
+}
+.row::after {
+	width: 0px; height: 0px; overflow: hidden; display: block; visibility: hidden; content: "\0020";
+}
+.row::after {
+	clear: both;
+}
+.clearfix::after {
+	clear: both;
+}
+.row {
+	zoom: 1;
+}
+.clearfix {
+	zoom: 1;
+}
+.clear {
+	width: 0px; height: 0px; overflow: hidden; clear: both; display: block; visibility: hidden;
+}

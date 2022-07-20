@@ -1,0 +1,216 @@
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine("Data.Count: " + scriptEngineException.Data.Count);
+			sb.AppendLine("EngineName: " + scriptEngineException.EngineName);
+			sb.AppendLine("ErrorDetails: " + scriptEngineException.ErrorDetails);
+			sb.AppendLine("ExecutionStarted: " + scriptEngineException.ExecutionStarted);
+			sb.AppendLine("HelpLink: " + scriptEngineException.HelpLink);
+			sb.AppendLine("HResult: " + scriptEngineException.HResult);
+			if (scriptEngineException.InnerException != null)
+			{
+				sb.AppendLine("InnerException.GetType().FullName: " + scriptEngineException.InnerException.GetType().FullName);
+			}
+			sb.AppendLine("IsFatal: " + scriptEngineException.IsFatal);
+			sb.AppendLine("Message: " + scriptEngineException.Message);
+			sb.AppendLine("Source: " + scriptEngineException.Source);
+			sb.AppendLine("StackTrace: " + scriptEngineException.StackTrace);
+			sb.AppendLine();
+			sb.AppendLine("ToString(): " + scriptEngineException.ToString());
+
+			string output = sb.ToString();
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+1
+
+Data.Count: 0
+EngineName: V8ScriptEngine
+ErrorDetails: SyntaxError: Invalid or unexpected token
+    at temp.js:4:9 -> 						c @= 1;
+ExecutionStarted: False
+HelpLink: 
+HResult: -2146233079
+IsFatal: False
+Message: SyntaxError: Invalid or unexpected token
+Source: ClearScriptV8-32
+StackTrace:    at V8Exception.ThrowScriptEngineException(V8Exception* )
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.Execute(String gcDocumentName, String gcCode, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass70_0.<Execute>b__0()
+   at Microsoft.ClearScript.ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.BaseScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass75_0`1.<ScriptInvoke>b__0()
+   at Microsoft.ClearScript.V8.?A0xc91009d1.LockCallback(Void* pvArg)
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.InvokeWithLock(Action gcAction)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.Execute(String documentName, String code, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.ScriptEngine.Execute(String documentName, Boolean discard, String code)
+   at JavaScriptEngineSwitcher.V8.V8JsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.V8\V8JsEngine.cs:line 301
+
+ToString(): Microsoft.ClearScript.ScriptEngineException: SyntaxError: Invalid or unexpected token
+   at V8Exception.ThrowScriptEngineException(V8Exception* )
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.Execute(String gcDocumentName, String gcCode, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass70_0.<Execute>b__0()
+   at Microsoft.ClearScript.ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.BaseScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass75_0`1.<ScriptInvoke>b__0()
+   at Microsoft.ClearScript.V8.?A0xc91009d1.LockCallback(Void* pvArg)
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.InvokeWithLock(Action gcAction)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.Execute(String documentName, String code, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.ScriptEngine.Execute(String documentName, Boolean discard, String code)
+   at JavaScriptEngineSwitcher.V8.V8JsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.V8\V8JsEngine.cs:line 301
+   --- Script error details follow ---
+   SyntaxError: Invalid or unexpected token
+       at temp.js:4:9 -> 						c @= 1;
+
+===========================================================================================
+
+2
+
+Data.Count: 0
+EngineName: V8ScriptEngine
+ErrorDetails: ReferenceError: n is not defined
+    at f (temp.js:9:6) -> 					n();
+    at temp.js:16:4
+ExecutionStarted: True
+HelpLink: 
+HResult: -2146233079
+IsFatal: False
+Message: ReferenceError: n is not defined
+Source: ClearScriptV8-32
+StackTrace:    at V8Exception.ThrowScriptEngineException(V8Exception* )
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.Execute(String gcDocumentName, String gcCode, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass70_0.<Execute>b__0()
+   at Microsoft.ClearScript.ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.BaseScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass75_0`1.<ScriptInvoke>b__0()
+   at Microsoft.ClearScript.V8.?A0xc91009d1.LockCallback(Void* pvArg)
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.InvokeWithLock(Action gcAction)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.Execute(String documentName, String code, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.ScriptEngine.Execute(String documentName, Boolean discard, String code)
+   at JavaScriptEngineSwitcher.V8.V8JsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.V8\V8JsEngine.cs:line 301
+
+ToString(): Microsoft.ClearScript.ScriptEngineException: ReferenceError: n is not defined
+   at V8Exception.ThrowScriptEngineException(V8Exception* )
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.Execute(String gcDocumentName, String gcCode, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass70_0.<Execute>b__0()
+   at Microsoft.ClearScript.ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.BaseScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass75_0`1.<ScriptInvoke>b__0()
+   at Microsoft.ClearScript.V8.?A0xc91009d1.LockCallback(Void* pvArg)
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.InvokeWithLock(Action gcAction)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.Execute(String documentName, String code, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.ScriptEngine.Execute(String documentName, Boolean discard, String code)
+   at JavaScriptEngineSwitcher.V8.V8JsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.V8\V8JsEngine.cs:line 301
+   --- Script error details follow ---
+   ReferenceError: n is not defined
+       at f (temp.js:9:6) -> 					n();
+       at temp.js:16:4
+
+====================================================================================================
+
+3
+
+Data.Count: 0
+EngineName: V8ScriptEngine
+ErrorDetails: Error: Ура!!!
+    at temp.js:17:10 -> 			throw new Error('Ура!!!'); //c(12,3);
+ExecutionStarted: True
+HelpLink: 
+HResult: -2146233079
+IsFatal: False
+Message: Error: Ура!!!
+Source: ClearScriptV8-32
+StackTrace:    at V8Exception.ThrowScriptEngineException(V8Exception* )
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.Execute(String gcDocumentName, String gcCode, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass70_0.<Execute>b__0()
+   at Microsoft.ClearScript.ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.BaseScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass75_0`1.<ScriptInvoke>b__0()
+   at Microsoft.ClearScript.V8.?A0xc91009d1.LockCallback(Void* pvArg)
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.InvokeWithLock(Action gcAction)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.Execute(String documentName, String code, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.ScriptEngine.Execute(String documentName, Boolean discard, String code)
+   at JavaScriptEngineSwitcher.V8.V8JsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.V8\V8JsEngine.cs:line 301
+
+ToString(): Microsoft.ClearScript.ScriptEngineException: Error: Ура!!!
+   at V8Exception.ThrowScriptEngineException(V8Exception* )
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.Execute(String gcDocumentName, String gcCode, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass70_0.<Execute>b__0()
+   at Microsoft.ClearScript.ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.BaseScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass75_0`1.<ScriptInvoke>b__0()
+   at Microsoft.ClearScript.V8.?A0xc91009d1.LockCallback(Void* pvArg)
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.InvokeWithLock(Action gcAction)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.Execute(String documentName, String code, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.ScriptEngine.Execute(String documentName, Boolean discard, String code)
+   at JavaScriptEngineSwitcher.V8.V8JsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.V8\V8JsEngine.cs:line 301
+   --- Script error details follow ---
+   Error: Ура!!!
+       at temp.js:17:10 -> 			throw new Error('Ура!!!'); //c(12,3);
+
+======================================================================================================
+
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine("Data.Count: " + scriptInterruptedException.Data.Count);
+			sb.AppendLine("EngineName: " + scriptInterruptedException.EngineName);
+			sb.AppendLine("ErrorDetails: " + scriptInterruptedException.ErrorDetails);
+			sb.AppendLine("ExecutionStarted: " + scriptInterruptedException.ExecutionStarted);
+			sb.AppendLine("HelpLink: " + scriptInterruptedException.HelpLink);
+			sb.AppendLine("HResult: " + scriptInterruptedException.HResult);
+			if (scriptInterruptedException.InnerException != null)
+			{
+				sb.AppendLine("InnerException.GetType().FullName: " + scriptInterruptedException.InnerException.GetType().FullName);
+			}
+			sb.AppendLine("IsFatal: " + scriptInterruptedException.IsFatal);
+			sb.AppendLine("Message: " + scriptInterruptedException.Message);
+			sb.AppendLine("Source: " + scriptInterruptedException.Source);
+			sb.AppendLine("StackTrace: " + scriptInterruptedException.StackTrace);
+			sb.AppendLine();
+			sb.AppendLine("ToString(): " + scriptInterruptedException.ToString());
+
+			string output = sb.ToString();
+
+--------------------------------------------------------------------------------------------------------------------
+
+Data.Count: 0
+EngineName: V8ScriptEngine
+ErrorDetails: Script execution interrupted by host
+ExecutionStarted: True
+HelpLink: 
+HResult: -2146233029
+IsFatal: False
+Message: Script execution interrupted by host
+Source: ClearScriptV8-32
+StackTrace:    at V8Exception.ThrowScriptEngineException(V8Exception* )
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.Execute(String gcDocumentName, String gcCode, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass70_0.<Execute>b__0()
+   at Microsoft.ClearScript.ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.BaseScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass75_0`1.<ScriptInvoke>b__0()
+   at Microsoft.ClearScript.V8.?A0xc91009d1.LockCallback(Void* pvArg)
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.InvokeWithLock(Action gcAction)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.Execute(String documentName, String code, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.ScriptEngine.Execute(String documentName, Boolean discard, String code)
+   at JavaScriptEngineSwitcher.V8.V8JsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.V8\V8JsEngine.cs:line 301
+
+ToString(): Microsoft.ClearScript.ScriptInterruptedException: Script execution interrupted by host
+   at V8Exception.ThrowScriptEngineException(V8Exception* )
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.Execute(String gcDocumentName, String gcCode, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass70_0.<Execute>b__0()
+   at Microsoft.ClearScript.ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.BaseScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.<>c__DisplayClass75_0`1.<ScriptInvoke>b__0()
+   at Microsoft.ClearScript.V8.?A0xc91009d1.LockCallback(Void* pvArg)
+   at Microsoft.ClearScript.V8.V8ContextProxyImpl.InvokeWithLock(Action gcAction)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.ScriptInvoke[T](Func`1 func)
+   at Microsoft.ClearScript.V8.V8ScriptEngine.Execute(String documentName, String code, Boolean evaluate, Boolean discard)
+   at Microsoft.ClearScript.ScriptEngine.Execute(String documentName, Boolean discard, String code)
+   at JavaScriptEngineSwitcher.V8.V8JsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.V8\V8JsEngine.cs:line 301
+
+

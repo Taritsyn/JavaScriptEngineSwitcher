@@ -1,0 +1,33 @@
+Jint
+
+Exception
+	ParserException
+	JavaScriptException
+	RecursionDepthOverflowException
+	StatementsCountOverflowException
+
+Jurassic
+
+Exception
+	SyntaxErrorException
+	JavaScriptException
+
+ClearScript
+
+IScriptEngineException
+	ScriptEngineException
+	ScriptInterruptedException
+
+VroomJs
+
+Exception
+	JsException
+		JsSyntaxError
+		JsInteropException
+	JsExecutionTimedOutException
+
+
+Parser Error Message
+ParseException
+
+

@@ -1,0 +1,42 @@
+		[Fact]
+		public virtual void DynamicImportingOfModuleIsCorrect()
+		{
+			// Arrange
+			const string input = @"let result, caughtError;
+
+(async function () {
+	try {
+		Console.WriteLine('123');
+		const arithmetic = await import('Files/module-loading/es2015/arithmetic/arithmetic.js');
+		result = arithmetic.Add(678, 711);
+		Console.WriteLine('456');
+	}
+	catch (e) {
+		caughtError = e;
+	}
+
+	waitHandle.Set();
+})();";
+			const int targetResult = 0;
+			Type targetCaughtErrorType = typeof(Undefined);
+
+			// Act
+			int result;
+			object caughtError;
+
+			using (var jsEngine = CreateJsEngine())
+			using (var waitHandle = new ManualResetEvent(false))
+			{
+				jsEngine.EmbedHostObject("waitHandle", waitHandle);
+				jsEngine.EmbedHostType("Console", typeof(Console));
+				jsEngine.Evaluate(input);
+				waitHandle.WaitOne();
+
+				result = jsEngine.GetVariableValue<int>("result");
+				caughtError = jsEngine.GetVariableValue("caughtError");
+			}
+
+			// Assert
+			Assert.IsAssignableFrom(targetCaughtErrorType, caughtError);
+			Assert.Equal(targetResult, result);
+		}

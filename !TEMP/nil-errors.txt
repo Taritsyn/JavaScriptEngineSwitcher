@@ -1,0 +1,215 @@
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine("Code: " + originalException.Code);
+			if (originalException.CodeCoordinates != null)
+			{
+				sb.AppendLine("CodeCoordinates.Column: " + originalException.CodeCoordinates.Column);
+				sb.AppendLine("CodeCoordinates.Length: " + originalException.CodeCoordinates.Length);
+				sb.AppendLine("CodeCoordinates.Line: " + originalException.CodeCoordinates.Line);
+				sb.AppendLine("CodeCoordinates.ToString(): " + originalException.CodeCoordinates.ToString());
+			}
+			sb.AppendLine("Data.Count: " + originalException.Data.Count);
+			if (originalException.ExceptionMaker != null)
+			{
+				sb.AppendLine("ExceptionMaker.Childs.Length: " + originalException.ExceptionMaker.Childs.Length);
+				sb.AppendLine("ExceptionMaker.Eliminated: " + originalException.ExceptionMaker.Eliminated);
+				sb.AppendLine("ExceptionMaker.EndPosition: " + originalException.ExceptionMaker.EndPosition);
+				sb.AppendLine("ExceptionMaker.Length: " + originalException.ExceptionMaker.Length);
+				sb.AppendLine("ExceptionMaker.Position: " + originalException.ExceptionMaker.Position);
+				sb.AppendLine("ExceptionMaker.ToString(): " + originalException.ExceptionMaker.ToString());
+			}
+			sb.AppendLine("HelpLink: " + originalException.HelpLink);
+			sb.AppendLine("Message: " + originalException.Message);
+			sb.AppendLine("Source: " + originalException.Source);
+			sb.AppendLine("StackTrace: " + originalException.StackTrace);
+			sb.AppendLine("TargetSite: " + originalException.TargetSite);
+			sb.AppendLine();
+			sb.AppendLine("ToString(): " + originalException.ToString());
+
+			var error = originalException.Error.Value as Error;
+			if (error != null)
+			{
+				sb.AppendLine();
+				sb.AppendLine("message: " + error.message);
+				sb.AppendLine("name: " + error.name);
+				sb.AppendLine("toString(): " + error.toString());
+				sb.AppendLine();
+				sb.AppendLine("ToString(): " + error.ToString());
+			}
+
+			string output = sb.ToString();
+
+--------------------------------------------------------------------------------------------------------------
+
+1
+
+Code: 
+Data.Count: 0
+HelpLink: 
+Message: SyntaxError: Unexpected token '@' (4:9) at 
+Source: NiL.JS
+StackTrace:    at NiL.JS.ExceptionHelper.Throw(Error error)
+   at NiL.JS.ExceptionHelper.ThrowSyntaxError(String message, String code, Int32 position, Int32 length)
+   at NiL.JS.ExceptionHelper.ThrowSyntaxError(String message, String code, Int32 position)
+   at NiL.JS.Expressions.ExpressionTree.parseContinuation(ParseInfo state, Expression first, Int32 startIndex, Int32& i, Boolean& root, Boolean forUnary, Boolean processComma, Boolean forNew, Boolean forForLoop)
+   at NiL.JS.Expressions.ExpressionTree.Parse(ParseInfo state, Int32& index, Boolean forUnary, Boolean processComma, Boolean forNew, Boolean root, Boolean forForLoop)
+   at NiL.JS.Expressions.ExpressionTree.Parse(ParseInfo state, Int32& index)
+   at NiL.JS.Core.Parser.Parse(ParseInfo state, Int32& index, CodeFragmentType ruleSet, Boolean throwError)
+   at NiL.JS.Statements.CodeBlock.Parse(ParseInfo state, Int32& index)
+   at NiL.JS.Core.Context.Eval(String code, JSValue thisBind, Boolean suppressScopeCreation)
+   at NiL.JS.Core.Context.Eval(String code)
+   at JavaScriptEngineSwitcher.NiL.NiLJsEngine.InnerExecute(String code, String documentName)
+TargetSite: Void Throw(NiL.JS.BaseLibrary.Error)
+
+ToString(): NiL.JS.Core.JSException: SyntaxError: Unexpected token '@' (4:9) at 
+   at NiL.JS.ExceptionHelper.Throw(Error error)
+   at NiL.JS.ExceptionHelper.ThrowSyntaxError(String message, String code, Int32 position, Int32 length)
+   at NiL.JS.ExceptionHelper.ThrowSyntaxError(String message, String code, Int32 position)
+   at NiL.JS.Expressions.ExpressionTree.parseContinuation(ParseInfo state, Expression first, Int32 startIndex, Int32& i, Boolean& root, Boolean forUnary, Boolean processComma, Boolean forNew, Boolean forForLoop)
+   at NiL.JS.Expressions.ExpressionTree.Parse(ParseInfo state, Int32& index, Boolean forUnary, Boolean processComma, Boolean forNew, Boolean root, Boolean forForLoop)
+   at NiL.JS.Expressions.ExpressionTree.Parse(ParseInfo state, Int32& index)
+   at NiL.JS.Core.Parser.Parse(ParseInfo state, Int32& index, CodeFragmentType ruleSet, Boolean throwError)
+   at NiL.JS.Statements.CodeBlock.Parse(ParseInfo state, Int32& index)
+   at NiL.JS.Core.Context.Eval(String code, JSValue thisBind, Boolean suppressScopeCreation)
+   at NiL.JS.Core.Context.Eval(String code)
+   at JavaScriptEngineSwitcher.NiL.NiLJsEngine.InnerExecute(String code, String documentName)
+
+message: Unexpected token '@' (4:9)
+name: SyntaxError
+toString(): SyntaxError: Unexpected token '@' (4:9)
+
+ToString(): SyntaxError: Unexpected token '@' (4:9)
+
+
+--------------------------------------------------------------------------------------------------------------
+
+2
+
+Code: 
+			function e() {
+				return true;
+			}
+
+			function f(){
+				var b = 12+15;
+				if (b > 20) {
+					n();
+				}
+			}
+
+			var a = null;
+			var b = 2;
+			var c = b/a;
+			f();
+			//throw new Error('Ура!!!'); //c(12,3);
+CodeCoordinates.Column: 6
+CodeCoordinates.Length: 1
+CodeCoordinates.Line: 9
+CodeCoordinates.ToString(): (9:6*1)
+Data.Count: 0
+ExceptionMaker.Childs.Length: 0
+ExceptionMaker.Eliminated: False
+ExceptionMaker.EndPosition: 110
+ExceptionMaker.Length: 1
+ExceptionMaker.Position: 109
+ExceptionMaker.ToString(): n
+HelpLink: 
+Message: ReferenceError: Variable "n" is not defined at (9:6*1)
+Source: NiL.JS
+StackTrace:    at NiL.JS.ExceptionHelper.Throw(Error error, CodeNode exceptionMaker, String code)
+   at NiL.JS.ExceptionHelper.ThrowVariableIsNotDefined(String variableName, String code, Int32 position, Int32 length, CodeNode exceptionMaker)
+   at NiL.JS.Expressions.Variable.Evaluate(Context context)
+   at NiL.JS.Expressions.Call.Evaluate(Context context)
+   at NiL.JS.Statements.IfElse.Evaluate(Context context)
+   at NiL.JS.Statements.CodeBlock.evaluateLines(Context context, Int32 i, Boolean clearSuspendData)
+   at NiL.JS.Statements.CodeBlock.Evaluate(Context context)
+   at NiL.JS.BaseLibrary.Function.evaluateBody(Context internalContext)
+   at NiL.JS.Core.Functions.SimpleFunction.fastInvoke(JSValue targetObject, Expression[] arguments, Context initiator)
+   at NiL.JS.Core.Functions.SimpleFunction.InternalInvoke(JSValue targetObject, Expression[] arguments, Context initiator, Boolean withSpread, Boolean construct)
+   at NiL.JS.Expressions.Call.Evaluate(Context context)
+   at NiL.JS.Statements.CodeBlock.evaluateLines(Context context, Int32 i, Boolean clearSuspendData)
+   at NiL.JS.Statements.CodeBlock.Evaluate(Context context)
+   at NiL.JS.Core.Context.Eval(String code, JSValue thisBind, Boolean suppressScopeCreation)
+   at NiL.JS.Core.Context.Eval(String code)
+   at JavaScriptEngineSwitcher.NiL.NiLJsEngine.InnerExecute(String code, String documentName)
+TargetSite: Void Throw(NiL.JS.BaseLibrary.Error, NiL.JS.Core.CodeNode, System.String)
+
+ToString(): NiL.JS.Core.JSException: ReferenceError: Variable "n" is not defined at (9:6*1)
+   at NiL.JS.ExceptionHelper.Throw(Error error, CodeNode exceptionMaker, String code)
+   at NiL.JS.ExceptionHelper.ThrowVariableIsNotDefined(String variableName, String code, Int32 position, Int32 length, CodeNode exceptionMaker)
+   at NiL.JS.Expressions.Variable.Evaluate(Context context)
+   at NiL.JS.Expressions.Call.Evaluate(Context context)
+   at NiL.JS.Statements.IfElse.Evaluate(Context context)
+   at NiL.JS.Statements.CodeBlock.evaluateLines(Context context, Int32 i, Boolean clearSuspendData)
+   at NiL.JS.Statements.CodeBlock.Evaluate(Context context)
+   at NiL.JS.BaseLibrary.Function.evaluateBody(Context internalContext)
+   at NiL.JS.Core.Functions.SimpleFunction.fastInvoke(JSValue targetObject, Expression[] arguments, Context initiator)
+   at NiL.JS.Core.Functions.SimpleFunction.InternalInvoke(JSValue targetObject, Expression[] arguments, Context initiator, Boolean withSpread, Boolean construct)
+   at NiL.JS.Expressions.Call.Evaluate(Context context)
+   at NiL.JS.Statements.CodeBlock.evaluateLines(Context context, Int32 i, Boolean clearSuspendData)
+   at NiL.JS.Statements.CodeBlock.Evaluate(Context context)
+   at NiL.JS.Core.Context.Eval(String code, JSValue thisBind, Boolean suppressScopeCreation)
+   at NiL.JS.Core.Context.Eval(String code)
+   at JavaScriptEngineSwitcher.NiL.NiLJsEngine.InnerExecute(String code, String documentName)
+
+message: Variable "n" is not defined
+name: ReferenceError
+toString(): ReferenceError: Variable "n" is not defined
+
+ToString(): ReferenceError: Variable "n" is not defined
+
+
+--------------------------------------------------------------------------------------------------------------
+
+3
+
+
+Code: 
+Data.Count: 0
+HelpLink: 
+Message: Error: Ура!!! at 
+Source: NiL.JS
+StackTrace:    at NiL.JS.ExceptionHelper.Throw(JSValue error)
+   at NiL.JS.Statements.Throw.Evaluate(Context context)
+   at NiL.JS.Statements.CodeBlock.evaluateLines(Context context, Int32 i, Boolean clearSuspendData)
+   at NiL.JS.Statements.CodeBlock.Evaluate(Context context)
+   at NiL.JS.Core.Context.Eval(String code, JSValue thisBind, Boolean suppressScopeCreation)
+   at NiL.JS.Core.Context.Eval(String code)
+   at JavaScriptEngineSwitcher.NiL.NiLJsEngine.InnerExecute(String code, String documentName)
+TargetSite: Void Throw(NiL.JS.Core.JSValue)
+
+ToString(): NiL.JS.Core.JSException: Error: Ура!!! at 
+   at NiL.JS.ExceptionHelper.Throw(JSValue error)
+   at NiL.JS.Statements.Throw.Evaluate(Context context)
+   at NiL.JS.Statements.CodeBlock.evaluateLines(Context context, Int32 i, Boolean clearSuspendData)
+   at NiL.JS.Statements.CodeBlock.Evaluate(Context context)
+   at NiL.JS.Core.Context.Eval(String code, JSValue thisBind, Boolean suppressScopeCreation)
+   at NiL.JS.Core.Context.Eval(String code)
+   at JavaScriptEngineSwitcher.NiL.NiLJsEngine.InnerExecute(String code, String documentName)
+
+message: Ура!!!
+name: Error
+toString(): Error: Ура!!!
+
+ToString(): Error: Ура!!!
+
+--------------------------------------------------------------------------------------------------------------
+
+4
+
+Code: 
+Data.Count: 0
+HelpLink: 
+Message: RangeError: Stack overflow. at 
+Source: NiL.JS
+StackTrace:    at NiL.JS.Expressions.Call.checkStack()
+   at NiL.JS.Expressions.Call.Evaluate(Context context)
+   at NiL.JS.Statements.CodeBlock.evaluateLines(Context context, Int32 i, Boolean clearSuspendData)
+   at NiL.JS.Statements.CodeBlock.Evaluate(Context context)
+   at NiL.JS.BaseLibrary.Function.evaluateBody(Context internalContext)
+
+
+message: Stack overflow.
+name: RangeError
+toString(): RangeError: Stack overflow.
+
+ToString(): RangeError: Stack overflow.

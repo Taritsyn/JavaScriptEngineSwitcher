@@ -1,0 +1,48 @@
+Test run for C:\Projects\JavaScriptEngineSwitcher\test\JavaScriptEngineSwitcher.Tests\bin\Debug\net452\JavaScriptEngineSwitcher.Tests.dll (.NETFramework,Version=v4.5.2)
+Microsoft (R) Test Execution Command Line Tool Version 17.0.0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   590, Skipped:     0, Total:   590, Duration: 2 s - JavaScriptEngineSwitcher.Tests.dll (net452)
+Test run for C:\Projects\JavaScriptEngineSwitcher\test\JavaScriptEngineSwitcher.Tests\bin\Debug\net471\JavaScriptEngineSwitcher.Tests.dll (.NETFramework,Version=v4.7.1)
+Microsoft (R) Test Execution Command Line Tool Version 17.0.0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   903, Skipped:     0, Total:   903, Duration: 3 s - JavaScriptEngineSwitcher.Tests.dll (net471)
+Test run for C:\Projects\JavaScriptEngineSwitcher\test\JavaScriptEngineSwitcher.Tests\bin\Debug\netcoreapp2.1\JavaScriptEngineSwitcher.Tests.dll (.NETCoreApp,Version=v2.1)
+Microsoft (R) Test Execution Command Line Tool Version 17.0.0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   785, Skipped:     0, Total:   785, Duration: 1 s - JavaScriptEngineSwitcher.Tests.dll (netcoreapp2.1)
+Test run for C:\Projects\JavaScriptEngineSwitcher\test\JavaScriptEngineSwitcher.Tests\bin\Debug\netcoreapp3.1\JavaScriptEngineSwitcher.Tests.dll (.NETCoreApp,Version=v3.1)
+Microsoft (R) Test Execution Command Line Tool Version 17.0.0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   903, Skipped:     0, Total:   903, Duration: 1 s - JavaScriptEngineSwitcher.Tests.dll (netcoreapp3.1)
+Test run for C:\Projects\JavaScriptEngineSwitcher\test\JavaScriptEngineSwitcher.Tests\bin\Debug\net5.0\JavaScriptEngineSwitcher.Tests.dll (.NETCoreApp,Version=v5.0)
+Microsoft (R) Test Execution Command Line Tool Version 17.0.0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   903, Skipped:     0, Total:   903, Duration: 2 s - JavaScriptEngineSwitcher.Tests.dll (net5.0)
+Test run for C:\Projects\JavaScriptEngineSwitcher\test\JavaScriptEngineSwitcher.Tests\bin\Debug\net6.0\JavaScriptEngineSwitcher.Tests.dll (.NETCoreApp,Version=v6.0)
+Microsoft (R) Test Execution Command Line Tool Version 17.0.0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   903, Skipped:     0, Total:   903, Duration: 1 s - JavaScriptEngineSwitcher.Tests.dll (net6.0)

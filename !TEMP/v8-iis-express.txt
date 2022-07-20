@@ -1,0 +1,108 @@
+
+Server Error in '/' Application.
+Cannot load V8 interface assembly. Load failure information for v8-base-ia32.dll:
+C:\Users\Andrey\AppData\Local\Temp\Temporary ASP.NET Files\vs\476f254c\1a7f290b\assembly\dl3\c8b1303e\00ec1aa6_bec8d301\v8-base-ia32.dll: The specified module could not be found
+C:\temp\React.NET\src\React.Sample.Mvc4\v8-base-ia32.dll: The specified module could not be found
+C:\temp\React.NET\src\React.Sample.Mvc4\bin\v8-base-ia32.dll: The specified module could not be found
+Description: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.
+
+Exception Details: System.TypeLoadException: Cannot load V8 interface assembly. Load failure information for v8-base-ia32.dll:
+C:\Users\Andrey\AppData\Local\Temp\Temporary ASP.NET Files\vs\476f254c\1a7f290b\assembly\dl3\c8b1303e\00ec1aa6_bec8d301\v8-base-ia32.dll: The specified module could not be found
+C:\temp\React.NET\src\React.Sample.Mvc4\v8-base-ia32.dll: The specified module could not be found
+C:\temp\React.NET\src\React.Sample.Mvc4\bin\v8-base-ia32.dll: The specified module could not be found
+
+Source Error:
+
+
+Line 15: 
+Line 16: 	<!-- Render the component server-side, passing initial props -->
+Line 17: 	@Html.React("CommentsBox", new { initialComments = Model.Comments, page = Model.Page })
+Line 18: 
+Line 19: 	<!-- Load all required scripts (React + the site's scripts) -->
+
+
+Source File: c:\temp\React.NET\src\React.Sample.Mvc4\Views\Home\Index.cshtml    Line: 17
+
+Stack Trace:
+
+
+[TypeLoadException: Cannot load V8 interface assembly. Load failure information for v8-base-ia32.dll:
+C:\Users\Andrey\AppData\Local\Temp\Temporary ASP.NET Files\vs\476f254c\1a7f290b\assembly\dl3\c8b1303e\00ec1aa6_bec8d301\v8-base-ia32.dll: The specified module could not be found
+C:\temp\React.NET\src\React.Sample.Mvc4\v8-base-ia32.dll: The specified module could not be found
+C:\temp\React.NET\src\React.Sample.Mvc4\bin\v8-base-ia32.dll: The specified module could not be found]
+   Microsoft.ClearScript.V8.V8Proxy.LoadNativeLibrary(String baseFileName) +620
+   Microsoft.ClearScript.V8.V8Proxy.LoadAssembly() +54
+   Microsoft.ClearScript.V8.V8Proxy.GetAssembly() +25
+   Microsoft.ClearScript.V8.V8Proxy.GetImplType(Type type) +28
+   Microsoft.ClearScript.V8.V8Proxy.CreateImpl(Object[] args) +139
+   Microsoft.ClearScript.V8.V8IsolateProxy.Create(String name, V8RuntimeConstraints constraints, V8RuntimeFlags flags, Int32 debugPort) +123
+   Microsoft.ClearScript.V8.V8Runtime..ctor(String name, V8RuntimeConstraints constraints, V8RuntimeFlags flags, Int32 debugPort) +164
+   Microsoft.ClearScript.V8.V8ScriptEngine..ctor(V8Runtime runtime, String name, V8RuntimeConstraints constraints, V8ScriptEngineFlags flags, Int32 debugPort) +144
+   JavaScriptEngineSwitcher.V8.V8JsEngine..ctor(V8Settings settings) +165
+
+[JsEngineLoadException: Failed to create instance of the V8JsEngine. Most likely it happened, because the 'v8-base-ia32.dll' assembly or one of its dependencies was not found. Try to install the JavaScriptEngineSwitcher.V8.Native.win-x86 package via NuGet. In addition, you still need to install the Microsoft Visual C++ Redistributable for Visual Studio 2017 (https://www.visualstudio.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2017).]
+   JavaScriptEngineSwitcher.V8.V8JsEngine..ctor(V8Settings settings) +298
+   JavaScriptEngineSwitcher.V8.V8JsEngineFactory.CreateEngine() +26
+   JSPool.JsPool`2.CreateEngine() +95
+   JSPool.JsPool`2.PopulateEngines() +18
+   JSPool.JsPool`2..ctor(JsPoolConfig`1 config) +191
+   React.JavaScriptEngineFactory.CreatePool() +429
+   React.JavaScriptEngineFactory..ctor(IJsEngineSwitcher jsEngineSwitcher, IReactSiteConfiguration config, IFileSystem fileSystem) +133
+   lambda_method(Closure , Object[] ) +112
+   React.TinyIoC.TinyIoCContainer.ConstructType(Type requestedType, Type implementationType, ConstructorInfo constructor, NamedParameterOverloads parameters, ResolveOptions options) +710
+
+[TinyIoCResolutionException: Unable to resolve type: React.JavaScriptEngineFactory]
+   React.TinyIoC.TinyIoCContainer.ConstructType(Type requestedType, Type implementationType, ConstructorInfo constructor, NamedParameterOverloads parameters, ResolveOptions options) +745
+   React.TinyIoC.SingletonFactory.GetObject(Type requestedType, TinyIoCContainer container, NamedParameterOverloads parameters, ResolveOptions options) +122
+   React.TinyIoC.TinyIoCContainer.ResolveInternal(TypeRegistration registration, NamedParameterOverloads parameters, ResolveOptions options) +85
+   React.TinyIoC.TinyIoCContainer.ConstructType(Type requestedType, Type implementationType, ConstructorInfo constructor, NamedParameterOverloads parameters, ResolveOptions options) +388
+
+[TinyIoCResolutionException: Unable to resolve type: React.ReactEnvironment]
+   React.TinyIoC.TinyIoCContainer.ConstructType(Type requestedType, Type implementationType, ConstructorInfo constructor, NamedParameterOverloads parameters, ResolveOptions options) +546
+   React.TinyIoC.CustomObjectLifetimeFactory.GetObject(Type requestedType, TinyIoCContainer container, NamedParameterOverloads parameters, ResolveOptions options) +109
+   React.TinyIoC.TinyIoCContainer.ResolveInternal(TypeRegistration registration, NamedParameterOverloads parameters, ResolveOptions options) +85
+   React.TinyIoC.TinyIoCContainer.Resolve(Type resolveType) +60
+   React.TinyIoC.TinyIoCContainer.Resolve() +56
+   React.ReactEnvironment.get_GetCurrentOrThrow() +38
+
+[ReactNotInitialisedException: ReactJS.NET has not been initialised correctly. Please ensure you have called services.AddReact() and app.UseReact() in your Startup.cs file.]
+   React.ReactEnvironment.get_GetCurrentOrThrow() +92
+   React.Web.Mvc.<>c__DisplayClass2_0`1.<React>b__0(TextWriter writer) +248
+   React.Web.Mvc.ActionHtmlString.ToHtmlString() +145
+   System.Web.HttpUtility.HtmlEncode(Object value) +39
+   System.Web.WebPages.WebPageBase.Write(Object value) +91
+   ASP._Page_Views_Home_Index_cshtml.Execute() in c:\temp\React.NET\src\React.Sample.Mvc4\Views\Home\Index.cshtml:17
+   System.Web.WebPages.WebPageBase.ExecutePageHierarchy() +196
+   System.Web.Mvc.WebViewPage.ExecutePageHierarchy() +127
+   System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage) +76
+   System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance) +257
+   System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer) +115
+   System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context) +294
+   System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult) +15
+   System.Web.Mvc.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17() +23
+   System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation) +242
+   System.Web.Mvc.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19() +25
+   System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult) +175
+   System.Web.Mvc.Async.<>c__DisplayClass2a.<BeginInvokeAction>b__20() +89
+   System.Web.Mvc.Async.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult) +102
+   System.Web.Mvc.Async.WrappedAsyncResult`1.End() +58
+   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult) +44
+   System.Web.Mvc.<>c__DisplayClass1d.<BeginExecuteCore>b__18(IAsyncResult asyncResult) +15
+   System.Web.Mvc.Async.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar) +16
+   System.Web.Mvc.Async.WrappedAsyncResult`1.End() +58
+   System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult) +54
+   System.Web.Mvc.Async.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar) +16
+   System.Web.Mvc.Async.WrappedAsyncResult`1.End() +58
+   System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult) +44
+   System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult) +12
+   System.Web.Mvc.<>c__DisplayClass8.<BeginProcessRequest>b__3(IAsyncResult asyncResult) +25
+   System.Web.Mvc.Async.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar) +16
+   System.Web.Mvc.Async.WrappedAsyncResult`1.End() +58
+   System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult) +44
+   System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result) +11
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +9873789
+   System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step) +48
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) +159
+
+
+Version Information: Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.7.3160.0 

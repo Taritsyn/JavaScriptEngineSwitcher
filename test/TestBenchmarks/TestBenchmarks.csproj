@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net46;netcoreapp2.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<Import Project="../../build/common.props" />
+
+	<ItemGroup>
+		<PackageReference Include="BenchmarkDotNet" Version="0.11.3" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.0.1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.0.1" />
+
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.0.0" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x86" Version="3.0.0" />
+
+		<ProjectReference Include="../../src/JavaScriptEngineSwitcher.V8/JavaScriptEngineSwitcher.V8.csproj" />
+	</ItemGroup>
+
+</Project>

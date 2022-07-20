@@ -1,0 +1,76 @@
+						JsValue value = /*metadataValue*/errorValue;
+						JsValue propertyNames = value.GetOwnPropertyNames();
+						int propertyCount = propertyNames.GetProperty("length").ConvertToNumber().ToInt32();
+
+						var sb = new System.Text.StringBuilder();
+
+						for (int propertyIndex = 0; propertyIndex < propertyCount; propertyIndex++)
+						{
+							string propertyName = propertyNames.GetIndexedProperty(JsValue.FromInt32(propertyIndex)).ConvertToString().ToString();
+							string propertyValue = value.GetProperty(propertyName).ConvertToString().ToString();
+
+							sb.AppendLine(string.Format("{0}\t\t{1}", propertyName, propertyValue));
+						}
+
+						string output = sb.ToString();
+
+---------------------------------------------------------------------------------------
+
+1
+
+exception		SyntaxError: Invalid character
+source								c @= 1;
+line		3
+column		8
+length		0
+url		temp.js
+
+message		Invalid character
+line		3
+column		8
+length		0
+source								c @= 1;
+url		temp.js
+
+
+================================================
+
+2
+
+exception		ReferenceError: 'n' is not defined
+source							n();
+line		8
+column		5
+length		0
+url		temp.js
+
+message		'n' is not defined
+description		'n' is not defined
+number		-2146823279
+stack		ReferenceError: 'n' is not defined
+   at f (temp.js:9:6)
+   at Global code (temp.js:16:4)
+
+================================================
+
+3
+
+exception		Error: Ура!!!
+source					throw new Error('Ура!!!'); //c(1
+line		16
+column		3
+length		0
+url		temp.js
+
+description		Ура!!!
+message		Ура!!!
+stack		Error: Ура!!!
+   at Global code (temp.js:17:4)
+
+=================================================
+
+4
+
+
+
+

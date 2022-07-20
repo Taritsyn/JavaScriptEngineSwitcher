@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net461</TargetFramework>
+	</PropertyGroup>
+
+	<Import Project="../../build/common.props" />
+
+	<ItemGroup>
+		<Content Include="Files/template-rendering/lib/bundle.min.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Files/template-rendering/content/**/*.*">
+			<Link>Files/template-rendering/content/%(RecursiveDir)/%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BuildBundlerMinifier" Version="3.0.415" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Core\JavaScriptEngineSwitcher.Core.csproj" />
+		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.Msie\JavaScriptEngineSwitcher.Msie.csproj" />
+		<ProjectReference Include="..\..\src\JavaScriptEngineSwitcher.NiL\JavaScriptEngineSwitcher.NiL.csproj" />
+	</ItemGroup>
+
+</Project>

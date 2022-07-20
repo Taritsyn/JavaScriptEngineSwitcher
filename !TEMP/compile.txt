@@ -1,0 +1,267 @@
+Jurassic
+
+		//
+		// Summary:
+		//     Compiles the given source code and returns it in a form that can be executed
+		//     many times.
+		//
+		// Parameters:
+		//   source:
+		//     The javascript source code to execute.
+		//
+		// Returns:
+		//     A CompiledScript instance, which can be executed as many times as needed.
+		//
+		// Exceptions:
+		//   T:System.ArgumentNullException:
+		//     source is a null reference.
+		public CompiledScript Compile(ScriptSource source);
+
+	//
+	// Summary:
+	//     Represents the result of compiling a script.
+	public sealed class CompiledScript
+	{
+		//
+		// Summary:
+		//     Compiles source code into a quickly executed form.
+		//
+		// Parameters:
+		//   source:
+		//     The javascript source code to execute.
+		//
+		// Returns:
+		//     A CompiledScript instance, which can be executed as many times as needed.
+		//
+		// Exceptions:
+		//   T:System.ArgumentNullException:
+		//     source is a null reference.
+		public static CompiledScript Compile(ScriptSource source);
+		//
+		// Summary:
+		//     Compiles source code into a quickly executed form, using the given compiler options.
+		//
+		// Parameters:
+		//   source:
+		//     The javascript source code to execute.
+		//
+		//   options:
+		//     Compiler options, or null to use the default options.
+		//
+		// Returns:
+		//     A CompiledScript instance, which can be executed as many times as needed.
+		//
+		// Exceptions:
+		//   T:System.ArgumentNullException:
+		//     source is a null reference.
+		public static CompiledScript Compile(ScriptSource source, CompilerOptions options);
+		//
+		// Summary:
+		//     Executes the compiled script.
+		//
+		// Parameters:
+		//   engine:
+		//     The script engine to use to execute the script.
+		//
+		// Exceptions:
+		//   T:System.ArgumentNullException:
+		//     engine is a null reference.
+		public void Execute(ScriptEngine engine);
+	}
+
+V8
+
+		public V8Script Compile(string documentName, string code, V8CacheKind cacheKind, out byte[] cacheBytes);
+		public V8Script Compile(string code, V8CacheKind cacheKind, out byte[] cacheBytes);
+		public V8Script Compile(string documentName, string code);
+		public V8Script Compile(string code);
+		public V8Script Compile(string documentName, string code, V8CacheKind cacheKind, byte[] cacheBytes, out bool cacheAccepted);
+		public V8Script Compile(string code, V8CacheKind cacheKind, byte[] cacheBytes, out bool cacheAccepted);
+
+    /// <summary>
+    /// Represents a compiled script that can be executed multiple times without recompilation.
+    /// </summary>
+    public abstract class V8Script : IDisposable
+    {
+        private readonly string name;
+
+        internal V8Script(string name)
+        {
+            this.name = name;
+        }
+
+        /// <summary>
+        /// Gets the document name associated with the compiled script.
+        /// </summary>
+        public string Name
+        {
+            get { return name; }
+        }
+
+        #region IDisposable implementation (abstract)
+
+        /// <summary>
+        /// Releases all resources used by the compiled script.
+        /// </summary>
+        /// <remarks>
+        /// Call <c>Dispose()</c> when you are finished using the compiled script. <c>Dispose()</c>
+        /// leaves the compiled script in an unusable state. After calling <c>Dispose()</c>, you
+        /// must release all references to the compiled script so the garbage collector can reclaim
+        /// the memory that the compiled script was occupying.
+        /// </remarks>
+        [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Justification = "This class is almost purely abstract; the implementation class uses the C++/CLI disposal pattern.")]
+        public abstract void Dispose();
+
+        #endregion
+}
+
+        /// <summary>
+        /// Creates a compiled script.
+        /// </summary>
+        /// <param name="code">The script code to compile.</param>
+        /// <returns>A compiled script that can be executed multiple times without recompilation.</returns>
+        public V8Script Compile(string code)
+        {
+            return Compile(null, code);
+        }
+
+        /// <summary>
+        /// Creates a compiled script with an associated document name.
+        /// </summary>
+        /// <param name="documentName">A document name for the compiled script. Currently this name is used only as a label in presentation contexts such as debugger user interfaces.</param>
+        /// <param name="code">The script code to compile.</param>
+        /// <returns>A compiled script that can be executed multiple times without recompilation.</returns>
+        public V8Script Compile(string documentName, string code)
+        {
+            VerifyNotDisposed();
+
+            return ScriptInvoke(() =>
+            {
+                var uniqueName = documentNameManager.GetUniqueName(documentName, "Script Document");
+                return proxy.Compile(uniqueName, FormatCode ? MiscHelpers.FormatCode(code) : code);
+            });
+        }
+
+        /// <summary>
+        /// Creates a compiled script, generating cache data for accelerated recompilation.
+        /// </summary>
+        /// <param name="code">The script code to compile.</param>
+        /// <param name="cacheKind">The kind of cache data to be generated.</param>
+        /// <param name="cacheBytes">Cache data for accelerated recompilation.</param>
+        /// <returns>A compiled script that can be executed multiple times without recompilation.</returns>
+        /// <remarks>
+        /// The generated cache data can be stored externally and is usable in other V8 script
+        /// engines and application processes. V8 script engines with debugging enabled cannot
+        /// generate cache data.
+        /// </remarks>
+        /// <seealso cref="Compile(string, V8CacheKind, byte[], out bool)"/>
+        public V8Script Compile(string code, V8CacheKind cacheKind, out byte[] cacheBytes)
+        {
+            return Compile(null, code, cacheKind, out cacheBytes);
+        }
+
+        /// <summary>
+        /// Creates a compiled script with an associated document name, generating cache data for accelerated recompilation.
+        /// </summary>
+        /// <param name="documentName">A document name for the compiled script. Currently this name is used only as a label in presentation contexts such as debugger user interfaces.</param>
+        /// <param name="code">The script code to compile.</param>
+        /// <param name="cacheKind">The kind of cache data to be generated.</param>
+        /// <param name="cacheBytes">Cache data for accelerated recompilation.</param>
+        /// <returns>A compiled script that can be executed multiple times without recompilation.</returns>
+        /// <remarks>
+        /// The generated cache data can be stored externally and is usable in other V8 script
+        /// engines and application processes. V8 script engines with debugging enabled cannot
+        /// generate cache data.
+        /// </remarks>
+        /// <seealso cref="Compile(string, string, V8CacheKind, byte[], out bool)"/>
+        public V8Script Compile(string documentName, string code, V8CacheKind cacheKind, out byte[] cacheBytes)
+        {
+            VerifyNotDisposed();
+
+            V8Script tempScript = null;
+            cacheBytes = ScriptInvoke(() =>
+            {
+                byte[] tempCacheBytes;
+                var uniqueName = documentNameManager.GetUniqueName(documentName, "Script Document");
+                tempScript = proxy.Compile(uniqueName, FormatCode ? MiscHelpers.FormatCode(code) : code, cacheKind, out tempCacheBytes);
+                return tempCacheBytes;
+            });
+
+            return tempScript;
+        }
+
+        /// <summary>
+        /// Creates a compiled script, consuming previously generated cache data.
+        /// </summary>
+        /// <param name="code">The script code to compile.</param>
+        /// <param name="cacheKind">The kind of cache data to be consumed.</param>
+        /// <param name="cacheBytes">Cache data for accelerated compilation.</param>
+        /// <param name="cacheAccepted"><c>True</c> if <paramref name="cacheBytes"/> was accepted, <c>false</c> otherwise.</param>
+        /// <returns>A compiled script that can be executed multiple times without recompilation.</returns>
+        /// <remarks>
+        /// To be accepted, the cache data must have been generated for identical script code by
+        /// the same V8 build. V8 script engines with debugging enabled cannot consume cache data.
+        /// </remarks>
+        /// <seealso cref="Compile(string, V8CacheKind, out byte[])"/>
+        public V8Script Compile(string code, V8CacheKind cacheKind, byte[] cacheBytes, out bool cacheAccepted)
+        {
+            return Compile(null, code, cacheKind, cacheBytes, out cacheAccepted);
+        }
+
+        /// <summary>
+        /// Creates a compiled script with an associated document name, consuming previously generated cache data.
+        /// </summary>
+        /// <param name="documentName">A document name for the compiled script. Currently this name is used only as a label in presentation contexts such as debugger user interfaces.</param>
+        /// <param name="code">The script code to compile.</param>
+        /// <param name="cacheKind">The kind of cache data to be consumed.</param>
+        /// <param name="cacheBytes">Cache data for accelerated compilation.</param>
+        /// <param name="cacheAccepted"><c>True</c> if <paramref name="cacheBytes"/> was accepted, <c>false</c> otherwise.</param>
+        /// <returns>A compiled script that can be executed multiple times without recompilation.</returns>
+        /// <remarks>
+        /// To be accepted, the cache data must have been generated for identical script code by
+        /// the same V8 build. V8 script engines with debugging enabled cannot consume cache data.
+        /// </remarks>
+        /// <seealso cref="Compile(string, string, V8CacheKind, out byte[])"/>
+        public V8Script Compile(string documentName, string code, V8CacheKind cacheKind, byte[] cacheBytes, out bool cacheAccepted)
+        {
+            VerifyNotDisposed();
+
+            V8Script tempScript = null;
+            cacheAccepted = ScriptInvoke(() =>
+            {
+                bool tempCacheAccepted;
+                var uniqueName = documentNameManager.GetUniqueName(documentName, "Script Document");
+                tempScript = proxy.Compile(uniqueName, FormatCode ? MiscHelpers.FormatCode(code) : code, cacheKind, cacheBytes, out tempCacheAccepted);
+                return tempCacheAccepted;
+            });
+
+            return tempScript;
+}
+
+        /// <summary>
+        /// Evaluates a compiled script.
+        /// </summary>
+        /// <param name="script">The compiled script to evaluate.</param>
+        /// <returns>The result value.</returns>
+        /// <remarks>
+        /// For information about the types of result values that script code can return, see
+        /// <see cref="ScriptEngine.Evaluate(string, bool, string)"/>.
+        /// </remarks>
+        public object Evaluate(V8Script script)
+        {
+            return Execute(script, true);
+        }
+
+        /// <summary>
+        /// Executes a compiled script.
+        /// </summary>
+        /// <param name="script">The compiled script to execute.</param>
+        /// <remarks>
+        /// This method is similar to <see cref="Evaluate(V8Script)"/> with the exception that it
+        /// does not marshal a result value to the host. It can provide a performance advantage
+        /// when the result value is not needed.
+        /// </remarks>
+        public void Execute(V8Script script)
+        {
+            Execute(script, false);
+}

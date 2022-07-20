@@ -1,0 +1,135 @@
+.wrap {
+	width: 100%; clear: both;
+}
+.main {
+	margin: 0px auto; position: relative; max-width: 1200px;
+}
+.column {
+	overflow: hidden; float: left;
+}
+.ja-mass {
+	clear: both;
+}
+.main .inner {
+	padding-right: 15px; padding-left: 15px;
+}
+.main .main-inner1 {
+	
+}
+.column div.ja-moduletable {
+	margin-right: 15px; margin-left: 15px;
+}
+.column div.moduletable {
+	margin-right: 15px; margin-left: 15px;
+}
+.column div.ja-module {
+	margin-right: 15px; margin-left: 15px;
+}
+.column div.module {
+	margin-right: 15px; margin-left: 15px;
+}
+.ja-inset2 div.ja-moduletable {
+	margin-right: 0px; margin-left: 30px;
+}
+.ja-inset2 .div.moduletable {
+	margin-right: 0px; margin-left: 30px;
+}
+.ja-inset2 div.ja-module {
+	margin-right: 0px; margin-left: 30px;
+}
+.ja-inset2 div.module {
+	margin-right: 0px; margin-left: 30px;
+}
+.ja-inset1 div.ja-moduletable {
+	margin-right: 30px; margin-left: 0px;
+}
+.ja-inset1 .div.moduletable {
+	margin-right: 30px; margin-left: 0px;
+}
+.ja-inset1 div.ja-module {
+	margin-right: 30px; margin-left: 0px;
+}
+.ja-inset1 div.module {
+	margin-right: 30px; margin-left: 0px;
+}
+.item .contentpaneopen {
+	padding-right: 15px; padding-left: 15px;
+}
+.items-leading {
+	
+}
+.items-row {
+	margin-right: -15px; margin-left: -15px;
+}
+#ja-mainbody {
+	float: left;
+}
+#ja-current-content {
+	float: right;
+}
+#ja-main {
+	float: right;
+}
+.ja-colswrap {
+	
+}
+.ja-col {
+	
+}
+#ja-left .ja-l2 .ja-left1 {
+	width: 50%;
+}
+#ja-left .ja-l2 .ja-left2 {
+	width: 50%;
+}
+#ja-left .ja-l1 .ja-col {
+	width: 100%;
+}
+#ja-right {
+	float: right;
+}
+#ja-right .ja-r2 .ja-right1 {
+	width: 50%;
+}
+#ja-right .ja-r2 .ja-right2 {
+	width: 50%;
+}
+#ja-right .ja-r1 .ja-col {
+	width: 100%;
+}
+#ja-header {
+	
+}
+#ja-footer {
+	clear: both;
+}
+.item {
+	float: left; position: relative;
+}
+.cols-1 .item {
+	width: 100%;
+}
+.cols-2 .item {
+	width: 50%;
+}
+.cols-3 .item {
+	width: 33.33%;
+}
+.cols-4 .item {
+	width: 25%;
+}
+.cols-5 .item {
+	width: 20%;
+}
+#ja-topsl {
+	
+}
+#ja-botsl {
+	
+}
+.ja-box {
+	overflow: hidden; float: left;
+}
+.ja-box-right {
+	right: 0px; position: absolute;
+}

@@ -1,0 +1,26 @@
+Engine_InternationalizationApiNotFullySupported
+
+  <data name="Engine_InternationalizationApiNotFullySupported" xml:space="preserve">
+    <value>By default, some features of the JavaScript Internationalization API are not supported.</value>
+  </data>
+
+  <data name="Engine_InternationalizationApiNotFullySupported" xml:space="preserve">
+    <value>По умолчанию некоторые возможности JavaScript Internationalization API не поддерживаются.</value>
+  </data>
+
+						if (description == "Internal error. Icu error.")
+						{
+							var stringBuilderPool = StringBuilderPool.Shared;
+							StringBuilder descriptionBuilder = stringBuilderPool.Rent();
+							descriptionBuilder.Append(Strings.Engine_InternationalizationApiNotFullySupported);
+							descriptionBuilder.Append(" ");
+							descriptionBuilder.AppendFormat(CoreStrings.Engine_NuGetPackageInstallationRequired,
+								"Microsoft.ClearScript.V8.ICUData");
+
+							description = descriptionBuilder.ToString();
+							stringBuilderPool.Return(descriptionBuilder);
+						}
+
+
+
+If your code uses the JavaScript Internationalization API, then you will need to additionally install the [Microsoft.ClearScript.V8.ICUData](https://www.nuget.org/packages/Microsoft.ClearScript.V8.ICUData) package.

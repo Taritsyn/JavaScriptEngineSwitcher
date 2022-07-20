@@ -1,0 +1,52 @@
+		public object ParseAndEvaluate(string expression, string documentName)
+		{
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+
+			object result = _dispatcher.Invoke(() =>
+			{
+				using (CreateJsScope())
+				{
+					try
+					{
+						JsValue functionValue = JsContext.ParseScript(expression, _jsSourceContext++,
+							uniqueDocumentName);
+						JsValue resultValue = functionValue.CallFunction(new[] { JsValue.GlobalObject });
+
+						return MapToHostType(resultValue);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
+				}
+			});
+
+			return result;
+		}
+
+		public object ParseAndEvaluateSerialized(string expression, string documentName)
+		{
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
+
+			object result = _dispatcher.Invoke(() =>
+			{
+				using (CreateJsScope())
+				{
+					try
+					{
+						byte[] buffer = JsContext.SerializeScript(expression);
+						JsValue functionValue = JsContext.ParseSerializedScript(expression, buffer,
+							_jsSourceContext++, uniqueDocumentName);
+						JsValue resultValue = functionValue.CallFunction(new[] { JsValue.GlobalObject });
+
+						return MapToHostType(resultValue);
+					}
+					catch (OriginalException e)
+					{
+						throw WrapJsException(e);
+					}
+				}
+			});
+
+			return result;
+		}

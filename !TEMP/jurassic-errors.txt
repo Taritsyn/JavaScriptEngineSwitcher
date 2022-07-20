@@ -1,0 +1,145 @@
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine("Data.Count: " + scriptException.Data.Count);
+			sb.AppendLine("FunctionName: " + scriptException.FunctionName);
+			sb.AppendLine("HelpLink: " + scriptException.HelpLink);
+			if (scriptException.InnerException != null)
+			{
+				sb.AppendLine("InnerException.GetType().FullName: " + scriptException.InnerException.GetType().FullName);
+			}
+			sb.AppendLine("LineNumber: " + scriptException.LineNumber);
+			sb.AppendLine("Message: " + scriptException.Message);
+			sb.AppendLine("Name: " + scriptException.Name);
+			sb.AppendLine("Source: " + scriptException.Source);
+			sb.AppendLine("SourcePath: " + scriptException.SourcePath);
+			sb.AppendLine("StackTrace: " + scriptException.StackTrace);
+			sb.AppendLine();
+			sb.AppendLine("ToString(): " + scriptException.ToString());
+
+			var value = scriptException.ErrorObject as OriginalErrorInstance;
+			if (value != null)
+			{
+				sb.AppendLine();
+				sb.AppendLine("Message: " + value.Message);
+				sb.AppendLine("Name: " + value.Name);
+				sb.AppendLine("Stack: " + value.Stack);
+				sb.AppendLine();
+				sb.AppendLine("ToString(): " + value.ToString());
+
+				sb.AppendLine();
+
+				foreach (var property in value.Properties)
+				{
+					sb.AppendLine(property.Key + "\t\t" + property.Value);
+				}
+			}
+
+			string output = sb.ToString();
+
+--------------------------------------------------------------------------------------------------------------
+
+1
+
+Data.Count: 0
+FunctionName: 
+HelpLink: 
+LineNumber: 4
+Message: SyntaxError: Unexpected character '@'.
+Name: SyntaxError
+Source: Jurassic
+SourcePath: temp.js
+StackTrace:    at Jurassic.ScriptEngine.Execute(ScriptSource source)
+   at JavaScriptEngineSwitcher.Jurassic.JurassicJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jurassic\JurassicJsEngine.cs:line 280
+
+ToString(): Jurassic.JavaScriptException: SyntaxError: Unexpected character '@'.
+   at Jurassic.ScriptEngine.Execute(ScriptSource source)
+   at JavaScriptEngineSwitcher.Jurassic.JurassicJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jurassic\JurassicJsEngine.cs:line 280
+
+Message: Unexpected character '@'.
+Name: SyntaxError
+Stack: SyntaxError: Unexpected character '@'.
+    at temp.js:4
+
+ToString(): SyntaxError: Unexpected character '@'.
+
+message		Unexpected character '@'.
+stack		SyntaxError: Unexpected character '@'.
+    at temp.js:4
+
+======================================================================================================
+
+2
+
+Data.Count: 0
+FunctionName: f
+HelpLink: 
+LineNumber: 9
+Message: ReferenceError: n is not defined
+Name: ReferenceError
+Source: Jurassic
+SourcePath: temp.js
+StackTrace:    at f(ScriptEngine , Scope , Object , FunctionInstance , Object[] )
+   at Jurassic.Library.UserDefinedFunction.CallLateBound(Object thisObject, Object[] argumentValues)
+   at Jurassic.Library.FunctionInstance.CallWithStackTrace(String path, String function, Int32 line, Object thisObject, Object[] argumentValues)
+   at global_temp_js(ScriptEngine , Scope , Object )
+   at Jurassic.Compiler.GlobalMethodGenerator.Execute(ScriptEngine engine)
+   at Jurassic.ScriptEngine.Execute(ScriptSource source)
+   at JavaScriptEngineSwitcher.Jurassic.JurassicJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jurassic\JurassicJsEngine.cs:line 280
+
+ToString(): Jurassic.JavaScriptException: ReferenceError: n is not defined
+   at f(ScriptEngine , Scope , Object , FunctionInstance , Object[] )
+   at Jurassic.Library.UserDefinedFunction.CallLateBound(Object thisObject, Object[] argumentValues)
+   at Jurassic.Library.FunctionInstance.CallWithStackTrace(String path, String function, Int32 line, Object thisObject, Object[] argumentValues)
+   at global_temp_js(ScriptEngine , Scope , Object )
+   at Jurassic.Compiler.GlobalMethodGenerator.Execute(ScriptEngine engine)
+   at Jurassic.ScriptEngine.Execute(ScriptSource source)
+   at JavaScriptEngineSwitcher.Jurassic.JurassicJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jurassic\JurassicJsEngine.cs:line 280
+
+Message: n is not defined
+Name: ReferenceError
+Stack: ReferenceError: n is not defined
+    at f (temp.js:9)
+    at temp.js:16
+
+ToString(): ReferenceError: n is not defined
+
+message		n is not defined
+stack		ReferenceError: n is not defined
+    at f (temp.js:9)
+    at temp.js:16
+
+========================================================================================================
+
+3
+
+Data.Count: 0
+FunctionName: 
+HelpLink: 
+LineNumber: 17
+Message: Error: Ура!!!
+Name: Error
+Source: Jurassic
+SourcePath: temp.js
+StackTrace:    at global_temp_js(ScriptEngine , Scope , Object )
+   at Jurassic.Compiler.GlobalMethodGenerator.Execute(ScriptEngine engine)
+   at Jurassic.ScriptEngine.Execute(ScriptSource source)
+   at JavaScriptEngineSwitcher.Jurassic.JurassicJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jurassic\JurassicJsEngine.cs:line 280
+
+ToString(): Jurassic.JavaScriptException: Error: Ура!!!
+   at global_temp_js(ScriptEngine , Scope , Object )
+   at Jurassic.Compiler.GlobalMethodGenerator.Execute(ScriptEngine engine)
+   at Jurassic.ScriptEngine.Execute(ScriptSource source)
+   at JavaScriptEngineSwitcher.Jurassic.JurassicJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jurassic\JurassicJsEngine.cs:line 280
+
+Message: Ура!!!
+Name: Error
+Stack: Error: Ура!!!
+    at temp.js:17
+
+ToString(): Error: Ура!!!
+
+message		Ура!!!
+stack		Error: Ура!!!
+    at temp.js:17
+
+
+

@@ -1,0 +1,56 @@
+		private static string StringifyObject(JsValue objValue)
+		{
+			var sb = new StringBuilder();
+			StringifyObjectInternal(objValue, sb, string.Empty);
+
+			string result = sb.ToString();
+
+			return result;
+		}
+
+		private static void StringifyObjectInternal(JsValue objValue, StringBuilder sb, string indent)
+		{
+			JsValue propertyNames = objValue.GetOwnPropertyNames();
+			int propertyNameCount = propertyNames.GetProperty("length").ToInt32();
+
+			if (propertyNameCount > 0)
+			{
+				sb.Append(indent);
+				sb.AppendLine("{");
+
+				string newIndent = indent + "\t";
+
+				for (int propertyNameIndex = 0; propertyNameIndex < propertyNameCount; propertyNameIndex++)
+				{
+					string propertyName = propertyNames.GetIndexedProperty(JsValue.FromInt32(propertyNameIndex)).ToString();
+					JsValue property = objValue.GetProperty(propertyName);
+					JsValueType propertyType = property.ValueType;
+
+					sb.Append(newIndent);
+					sb.Append(propertyName);
+					sb.Append(": ");
+
+					if (propertyType == JsValueType.Object
+						|| propertyType == JsValueType.Array
+						|| propertyType == JsValueType.Error)
+					{
+						StringifyObjectInternal(property, sb, newIndent);
+					}
+					else if (propertyType == JsValueType.String)
+					{
+						sb.Append("\"");
+						sb.Append(property.ToString().Replace("\"", @"\"""));
+						sb.Append("\"");
+					}
+					else
+					{
+						sb.Append(property.ConvertToString().ToString());
+					}
+
+					sb.AppendLine(",");
+				}
+
+				sb.Append(indent);
+				sb.AppendLine("}");
+			}
+		}

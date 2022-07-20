@@ -1,0 +1,269 @@
+============================
+Jint.Parser.ParserException
+============================
+
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine("Column: " + scriptParserException.Column);
+			sb.AppendLine("Data.Count: " + scriptParserException.Data.Count);
+			sb.AppendLine("Description: " + scriptParserException.Description);
+			sb.AppendLine("HelpLink: " + scriptParserException.HelpLink);
+			sb.AppendLine("Index: " + scriptParserException.Index);
+			sb.AppendLine("LineNumber: " + scriptParserException.LineNumber);
+			sb.AppendLine("Message: " + scriptParserException.Message);
+			sb.AppendLine("Source: " + scriptParserException.Source);
+			sb.AppendLine("StackTrace: " + scriptParserException.StackTrace);
+			sb.AppendLine();
+			sb.AppendLine("ToString(): " + scriptParserException.ToString());
+
+			string output = sb.ToString();
+
+------------------------------------------------------------------------------------
+
+Column: 9
+Data.Count: 0
+Description: Unexpected token ILLEGAL
+HelpLink: 
+Index: 56
+LineNumber: 4
+Message: Line 4: Unexpected token ILLEGAL
+Source: temp.js
+StackTrace:    at Jint.Parser.JavaScriptParser.ThrowError(Token token, String messageFormat, Object[] arguments)
+   at Jint.Parser.JavaScriptParser.ScanPunctuator()
+   at Jint.Parser.JavaScriptParser.Advance()
+   at Jint.Parser.JavaScriptParser.Lex()
+   at Jint.Parser.JavaScriptParser.ParsePrimaryExpression()
+   at Jint.Parser.JavaScriptParser.ParseLeftHandSideExpressionAllowCall()
+   at Jint.Parser.JavaScriptParser.ParsePostfixExpression()
+   at Jint.Parser.JavaScriptParser.ParseUnaryExpression()
+   at Jint.Parser.JavaScriptParser.ParseBinaryExpression()
+   at Jint.Parser.JavaScriptParser.ParseConditionalExpression()
+   at Jint.Parser.JavaScriptParser.ParseAssignmentExpression()
+   at Jint.Parser.JavaScriptParser.ParseExpression()
+   at Jint.Parser.JavaScriptParser.ParseStatement()
+   at Jint.Parser.JavaScriptParser.ParseSourceElement()
+   at Jint.Parser.JavaScriptParser.ParseSourceElements()
+   at Jint.Parser.JavaScriptParser.ParseProgram()
+   at Jint.Parser.JavaScriptParser.Parse(String code, ParserOptions options)
+   at Jint.Engine.Execute(String source, ParserOptions parserOptions)
+   at JavaScriptEngineSwitcher.Jint.JintJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jint\JintJsEngine.cs:line 382
+
+ToString(): Jint.Parser.ParserException: Line 4: Unexpected token ILLEGAL
+   at Jint.Parser.JavaScriptParser.ThrowError(Token token, String messageFormat, Object[] arguments)
+   at Jint.Parser.JavaScriptParser.ScanPunctuator()
+   at Jint.Parser.JavaScriptParser.Advance()
+   at Jint.Parser.JavaScriptParser.Lex()
+   at Jint.Parser.JavaScriptParser.ParsePrimaryExpression()
+   at Jint.Parser.JavaScriptParser.ParseLeftHandSideExpressionAllowCall()
+   at Jint.Parser.JavaScriptParser.ParsePostfixExpression()
+   at Jint.Parser.JavaScriptParser.ParseUnaryExpression()
+   at Jint.Parser.JavaScriptParser.ParseBinaryExpression()
+   at Jint.Parser.JavaScriptParser.ParseConditionalExpression()
+   at Jint.Parser.JavaScriptParser.ParseAssignmentExpression()
+   at Jint.Parser.JavaScriptParser.ParseExpression()
+   at Jint.Parser.JavaScriptParser.ParseStatement()
+   at Jint.Parser.JavaScriptParser.ParseSourceElement()
+   at Jint.Parser.JavaScriptParser.ParseSourceElements()
+   at Jint.Parser.JavaScriptParser.ParseProgram()
+   at Jint.Parser.JavaScriptParser.Parse(String code, ParserOptions options)
+   at Jint.Engine.Execute(String source, ParserOptions parserOptions)
+   at JavaScriptEngineSwitcher.Jint.JintJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jint\JintJsEngine.cs:line 382
+
+================================
+Jint.Runtime.JavaScriptException
+================================
+
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine("CallStack: " + scriptRuntimeException.CallStack);
+			sb.AppendLine("Column: " + scriptRuntimeException.Column);
+			sb.AppendLine("Data.Count: " + scriptRuntimeException.Data.Count);
+			sb.AppendLine("HelpLink: " + scriptRuntimeException.HelpLink);
+			sb.AppendLine("LineNumber: " + scriptRuntimeException.LineNumber);
+			sb.AppendLine("Location.End.Column: " + scriptRuntimeException.Location.End.Column);
+			sb.AppendLine("Location.End.Line: " + scriptRuntimeException.Location.End.Line);
+			sb.AppendLine("Location.Source: " + scriptRuntimeException.Location.Source);
+			sb.AppendLine("Location.Start.Column: " + scriptRuntimeException.Location.Start.Column);
+			sb.AppendLine("Location.Start.Line: " + scriptRuntimeException.Location.Start.Line);
+			sb.AppendLine("Message: " + scriptRuntimeException.Message);
+			sb.AppendLine("Source: " + scriptRuntimeException.Source);
+			sb.AppendLine("StackTrace: " + scriptRuntimeException.StackTrace);
+			sb.AppendLine();
+			sb.AppendLine("ToString(): " + scriptRuntimeException.ToString());
+
+			if (scriptRuntimeException.Error.IsObject())
+			{
+				sb.AppendLine();
+
+				OriginalObjectInstance value = scriptRuntimeException.Error.AsObject();
+				var propertyNames = value.GetOwnProperties();
+
+				foreach (var propertyDescriptor in propertyNames)
+				{
+					sb.AppendLine(string.Format("{0}\t\t{1}", propertyDescriptor.Key, propertyDescriptor.Value.Value.AsString()));
+				}
+
+				sb.AppendLine();
+				sb.AppendLine("ToString(): " + value.ToString());
+			}
+
+			string output = sb.ToString();
+
+-------------------------------------------------------------------------------------
+
+1
+
+CallStack: 
+Column: 5
+Data.Count: 0
+HelpLink: 
+LineNumber: 9
+Location.End.Column: 9
+Location.End.Line: 9
+Location.Source: temp.js
+Location.Start.Column: 5
+Location.Start.Line: 9
+Message: n is not defined
+Source: Jint
+StackTrace:    at Jint.Engine.Execute(Program program)
+   at Jint.Engine.Execute(String source, ParserOptions parserOptions)
+   at JavaScriptEngineSwitcher.Jint.JintJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jint\JintJsEngine.cs:line 382
+
+ToString(): ReferenceError: n is not defined
+
+name		ReferenceError
+message		n is not defined
+callstack		
+
+ToString(): ReferenceError: n is not defined
+
+===============================================================================================================
+
+2
+
+CallStack: 
+Column: 3
+Data.Count: 0
+HelpLink: 
+LineNumber: 17
+Location.End.Column: 29
+Location.End.Line: 17
+Location.Source: temp.js
+Location.Start.Column: 3
+Location.Start.Line: 17
+Message: Ура!!!
+Source: Jint
+StackTrace:    at Jint.Engine.Execute(Program program)
+   at Jint.Engine.Execute(String source, ParserOptions parserOptions)
+   at JavaScriptEngineSwitcher.Jint.JintJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jint\JintJsEngine.cs:line 382
+
+ToString(): Error: Ура!!!
+
+name		Error
+message		Ура!!!
+callstack		
+
+ToString(): Error: Ура!!!
+
+============================================
+Jint.Runtime.RecursionDepthOverflowException
+============================================
+
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine("CallChain: " + scriptRecursionException.CallChain);
+			sb.AppendLine("CallExpressionReference: " + scriptRecursionException.CallExpressionReference);
+			sb.AppendLine("Data.Count: " + scriptRecursionException.Data.Count);
+			sb.AppendLine("HelpLink: " + scriptRecursionException.HelpLink);
+			sb.AppendLine("Message: " + scriptRecursionException.Message);
+			sb.AppendLine("Source: " + scriptRecursionException.Source);
+			sb.AppendLine("StackTrace" + scriptRecursionException.StackTrace);
+			sb.AppendLine();
+			sb.AppendLine("ToString(): " + scriptRecursionException.ToString());
+
+			string output = sb.ToString();
+
+---------------------------------------------
+
+CallChain: f->f->f->f
+CallExpressionReference: f
+Data.Count: 0
+HelpLink: 
+Message: The recursion is forbidden by script host.
+Source: Jint
+StackTrace   at Jint.Runtime.ExpressionInterpreter.EvaluateCallExpression(CallExpression callExpression)
+   at Jint.Engine.EvaluateExpression(Expression expression)
+   at Jint.Runtime.StatementInterpreter.ExecuteExpressionStatement(ExpressionStatement expressionStatement)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Runtime.StatementInterpreter.ExecuteStatementList(IEnumerable`1 statementList)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Native.Function.ScriptFunctionInstance.Call(JsValue thisArg, JsValue[] arguments)
+   at Jint.Runtime.ExpressionInterpreter.EvaluateCallExpression(CallExpression callExpression)
+   at Jint.Engine.EvaluateExpression(Expression expression)
+   at Jint.Runtime.StatementInterpreter.ExecuteExpressionStatement(ExpressionStatement expressionStatement)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Runtime.StatementInterpreter.ExecuteStatementList(IEnumerable`1 statementList)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Native.Function.ScriptFunctionInstance.Call(JsValue thisArg, JsValue[] arguments)
+   at Jint.Runtime.ExpressionInterpreter.EvaluateCallExpression(CallExpression callExpression)
+   at Jint.Engine.EvaluateExpression(Expression expression)
+   at Jint.Runtime.StatementInterpreter.ExecuteExpressionStatement(ExpressionStatement expressionStatement)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Runtime.StatementInterpreter.ExecuteStatementList(IEnumerable`1 statementList)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Native.Function.ScriptFunctionInstance.Call(JsValue thisArg, JsValue[] arguments)
+   at Jint.Runtime.ExpressionInterpreter.EvaluateCallExpression(CallExpression callExpression)
+   at Jint.Engine.EvaluateExpression(Expression expression)
+   at Jint.Runtime.StatementInterpreter.ExecuteExpressionStatement(ExpressionStatement expressionStatement)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Runtime.StatementInterpreter.ExecuteStatementList(IEnumerable`1 statementList)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Native.Function.ScriptFunctionInstance.Call(JsValue thisArg, JsValue[] arguments)
+   at Jint.Runtime.ExpressionInterpreter.EvaluateCallExpression(CallExpression callExpression)
+   at Jint.Engine.EvaluateExpression(Expression expression)
+   at Jint.Runtime.StatementInterpreter.ExecuteExpressionStatement(ExpressionStatement expressionStatement)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Runtime.StatementInterpreter.ExecuteStatementList(IEnumerable`1 statementList)
+   at Jint.Engine.Execute(Program program)
+   at Jint.Engine.Execute(String source, ParserOptions parserOptions)
+   at JavaScriptEngineSwitcher.Jint.JintJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jint\JintJsEngine.cs:line 355
+
+ToString(): Jint.Runtime.RecursionDepthOverflowException: The recursion is forbidden by script host.
+   at Jint.Runtime.ExpressionInterpreter.EvaluateCallExpression(CallExpression callExpression)
+   at Jint.Engine.EvaluateExpression(Expression expression)
+   at Jint.Runtime.StatementInterpreter.ExecuteExpressionStatement(ExpressionStatement expressionStatement)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Runtime.StatementInterpreter.ExecuteStatementList(IEnumerable`1 statementList)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Native.Function.ScriptFunctionInstance.Call(JsValue thisArg, JsValue[] arguments)
+   at Jint.Runtime.ExpressionInterpreter.EvaluateCallExpression(CallExpression callExpression)
+   at Jint.Engine.EvaluateExpression(Expression expression)
+   at Jint.Runtime.StatementInterpreter.ExecuteExpressionStatement(ExpressionStatement expressionStatement)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Runtime.StatementInterpreter.ExecuteStatementList(IEnumerable`1 statementList)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Native.Function.ScriptFunctionInstance.Call(JsValue thisArg, JsValue[] arguments)
+   at Jint.Runtime.ExpressionInterpreter.EvaluateCallExpression(CallExpression callExpression)
+   at Jint.Engine.EvaluateExpression(Expression expression)
+   at Jint.Runtime.StatementInterpreter.ExecuteExpressionStatement(ExpressionStatement expressionStatement)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Runtime.StatementInterpreter.ExecuteStatementList(IEnumerable`1 statementList)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Native.Function.ScriptFunctionInstance.Call(JsValue thisArg, JsValue[] arguments)
+   at Jint.Runtime.ExpressionInterpreter.EvaluateCallExpression(CallExpression callExpression)
+   at Jint.Engine.EvaluateExpression(Expression expression)
+   at Jint.Runtime.StatementInterpreter.ExecuteExpressionStatement(ExpressionStatement expressionStatement)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Runtime.StatementInterpreter.ExecuteStatementList(IEnumerable`1 statementList)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Native.Function.ScriptFunctionInstance.Call(JsValue thisArg, JsValue[] arguments)
+   at Jint.Runtime.ExpressionInterpreter.EvaluateCallExpression(CallExpression callExpression)
+   at Jint.Engine.EvaluateExpression(Expression expression)
+   at Jint.Runtime.StatementInterpreter.ExecuteExpressionStatement(ExpressionStatement expressionStatement)
+   at Jint.Engine.ExecuteStatement(Statement statement)
+   at Jint.Runtime.StatementInterpreter.ExecuteStatementList(IEnumerable`1 statementList)
+   at Jint.Engine.Execute(Program program)
+   at Jint.Engine.Execute(String source, ParserOptions parserOptions)
+   at JavaScriptEngineSwitcher.Jint.JintJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Jint\JintJsEngine.cs:line 355
+
+==============================================
+Jint.Runtime.StatementsCountOverflowException
+==============================================
+

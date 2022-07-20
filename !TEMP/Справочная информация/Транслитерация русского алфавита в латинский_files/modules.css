@@ -1,0 +1,63 @@
+div.ja-moduletable {
+	margin: 0px; padding: 0px;
+}
+div.moduletable {
+	margin: 0px; padding: 0px;
+}
+div.ja-moduletable-inner {
+	background: rgb(255, 255, 255); padding: 1.5em; border-top-color: rgb(230, 230, 230); border-top-width: 1px; border-top-style: solid;
+}
+div.moduletable-inner {
+	background: rgb(255, 255, 255); padding: 1.5em; border-top-color: rgb(230, 230, 230); border-top-width: 1px; border-top-style: solid;
+}
+div.ja-moduletable h3 {
+	margin: 0px 0px 0.5em; color: rgb(34, 34, 34); text-transform: uppercase; font-size: 1.25em;
+}
+div.moduletable h3 {
+	margin: 0px 0px 0.5em; color: rgb(34, 34, 34); text-transform: uppercase; font-size: 1.25em;
+}
+div.ja-moduletable .ja-box-ct {
+	padding: 0px;
+}
+div.moduletable .ja-box-ct {
+	padding: 0px;
+}
+#login-form p {
+	margin: 0px 0px 0.25em;
+}
+#login-form ul li {
+	background: url("../../images/ja_elastica/bullet.gif") no-repeat 2px 0.5em; overflow: hidden; padding-left: 12px;
+}
+#login-form label {
+	display: block;
+}
+#login-form #form-login-remember label {
+	display: inline;
+}
+div.bannergroup_text div.banneritem {
+	padding: 5px 0px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.mod-contrast .moduletable-inner {
+	background: rgb(34, 34, 34); color: rgb(255, 255, 255);
+}
+div.mod-contrast h3 {
+	color: rgb(255, 255, 255);
+}
+div.mod-contrast a {
+	color: rgb(255, 255, 255);
+}
+.contrast-blue .moduletable-inner {
+	background: rgb(68, 136, 187);
+}
+.contrast-red .moduletable-inner {
+	background: rgb(236, 83, 77); color: rgb(255, 255, 255);
+}
+.contrast-green .moduletable-inner {
+	background: rgb(156, 189, 90); color: rgb(255, 255, 255);
+}
+.contrast-violet .moduletable-inner {
+	background: rgb(167, 114, 174); color: rgb(255, 255, 255);
+}
+.moduletable_blank .moduletable-inner {
+	background: none; border: 0px currentColor; border-image: none; padding-right: 0px; padding-left: 0px;
+}

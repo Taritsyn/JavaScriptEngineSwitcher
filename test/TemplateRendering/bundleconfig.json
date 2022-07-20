@@ -1,0 +1,9 @@
+[
+	{
+		"outputFileName": "Files/template-rendering/lib/bundle.min.js",
+		"inputFiles": [
+			"Files/template-rendering/lib/handlebars.js",
+			"Files/template-rendering/lib/helpers.js"
+		]
+	}
+]

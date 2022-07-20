@@ -1,0 +1,213 @@
+.thumb {
+	overflow: hidden; margin-bottom: 20px; position: relative;
+}
+.thumb a {
+	border-radius: 3px 3px 0px 0px; display: block;
+}
+.thumb a img {
+	border-radius: 3px 3px 0px 0px; display: block;
+}
+.thumb a img {
+	width: 100%;
+}
+.thumb .info {
+	left: 0px; top: 0px; width: 100%; bottom: 0px; filter: alpha(opacity=0); position: absolute; opacity: 0; -webkit-transition: all .25s linear; transition: all .25s linear; -moz-transition: all .25s linear; -ms-transition: all .25s linear; -o-transition: all .25s linear;
+}
+.thumb:hover .info {
+	filter: none; opacity: 1;
+}
+.thumb .pattern {
+	pointer-events: none; background-color: rgba(0, 0, 0, 0.4);
+}
+.thumb .text {
+	background: rgba(0, 0, 0, 0.75); padding: 10px 0px; left: 0px; width: 100%; bottom: 0px; color: rgb(255, 255, 255); display: none; position: absolute;
+}
+.thumb:hover .text {
+	display: block;
+}
+.thumb .text strong {
+	padding: 0px 10px; line-height: 15px; display: block;
+}
+.thumb .text em {
+	padding: 0px 10px; line-height: 15px; display: block;
+}
+.thumb .text strong {
+	text-transform: uppercase; padding-bottom: 5px; font-size: 12px;
+}
+.thumb .text em {
+	line-height: 17px; font-size: 11px;
+}
+.thumb .text span {
+	background: url("img/sprite.png") no-repeat; display: inline-block;
+}
+.thumb .text em.date span {
+	background-position: -51px -19px; top: 3px; width: 14px; height: 17px; margin-right: 5px; position: relative;
+}
+.thumb .text a.link {
+	background: url("img/sprite.png") no-repeat -999px 0px; width: 17px; height: 17px; bottom: 10px; position: absolute;
+}
+.thumb .text a.fullsize {
+	background: url("img/sprite.png") no-repeat -999px 0px; width: 17px; height: 17px; bottom: 10px; position: absolute;
+}
+.thumb .text a.link {
+	background-position: -55px 0px; right: 35px;
+}
+.thumb .text a.fullsize {
+	background-position: 0px -15px; right: 10px; pointer-events: auto;
+}
+.thumb .button-fullsize {
+	background: url("img/sprite.png") no-repeat -64px -81px; margin: -32px 0px 0px -32px; left: 50%; top: 50%; width: 63px; height: 63px; display: block; filter: alpha(opacity=75); position: absolute; opacity: 0.75; pointer-events: none;
+}
+.thumb .button-link {
+	background: url("img/sprite.png") no-repeat -64px -81px; margin: -32px 0px 0px -32px; left: 50%; top: 50%; width: 63px; height: 63px; display: block; filter: alpha(opacity=75); position: absolute; opacity: 0.75; pointer-events: none;
+}
+.thumb .button-fullsize {
+	background-position: 0px -81px;
+}
+.thumb2 .pattern {
+	border-radius: 4px;
+}
+.thumb2 {
+	border-radius: 4px;
+}
+.thumb2 {
+	margin-bottom: 10px;
+}
+.fancybox-wrap {
+	margin: 0px; padding: 0px; border-radius: 2px !important; border: 0px currentColor; vertical-align: top;
+}
+.fancybox-skin {
+	margin: 0px; padding: 0px; border-radius: 2px !important; border: 0px currentColor; vertical-align: top;
+}
+.fancybox-outer {
+	margin: 0px; padding: 0px; border-radius: 2px !important; border: 0px currentColor; vertical-align: top;
+}
+.fancybox-inner {
+	margin: 0px; padding: 0px; border-radius: 2px !important; border: 0px currentColor; vertical-align: top;
+}
+.fancybox-image {
+	margin: 0px; padding: 0px; border-radius: 2px !important; border: 0px currentColor; vertical-align: top;
+}
+.fancybox-wrap iframe {
+	margin: 0px; padding: 0px; border-radius: 2px !important; border: 0px currentColor; vertical-align: top;
+}
+.fancybox-wrap object {
+	margin: 0px; padding: 0px; border-radius: 2px !important; border: 0px currentColor; vertical-align: top;
+}
+.fancybox-nav {
+	margin: 0px; padding: 0px; border-radius: 2px !important; border: 0px currentColor; vertical-align: top;
+}
+.fancybox-nav span {
+	margin: 0px; padding: 0px; border-radius: 2px !important; border: 0px currentColor; vertical-align: top;
+}
+.fancybox-tmp {
+	margin: 0px; padding: 0px; border-radius: 2px !important; border: 0px currentColor; vertical-align: top;
+}
+.fancybox-wrap {
+	left: 0px; top: 0px; position: absolute; z-index: 8020;
+}
+.fancybox-skin {
+	background: rgb(249, 249, 249); padding: 0px !important; border-radius: 4px; color: rgb(68, 68, 68); position: relative; box-shadow: 0px 5px 15px rgba(0,0,0,0.25); -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .25); text-shadow: none; -moz-border-radius: 4px; -webkit-border-radius: 4px; -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, .25);
+}
+.fancybox-opened {
+	z-index: 8030;
+}
+.fancybox-opened .fancybox-skin {
+	box-shadow: 0px 5px 15px rgba(0,0,0,0.25); -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .25); -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, .25);
+}
+.fancybox-outer {
+	position: relative;
+}
+.fancybox-inner {
+	position: relative;
+}
+.fancybox-inner {
+	overflow: hidden;
+}
+.fancybox-type-iframe .fancybox-inner {
+	-webkit-overflow-scrolling: touch;
+}
+.fancybox-error {
+	font: 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif; margin: 0px; padding: 15px; color: rgb(68, 68, 68); white-space: nowrap; font-size-adjust: none; font-stretch: normal;
+}
+.fancybox-image {
+	width: 100%; height: 100%; display: block;
+}
+.fancybox-iframe {
+	width: 100%; height: 100%; display: block;
+}
+.fancybox-image {
+	max-height: 100%; max-width: 100%;
+}
+#fancybox-loading {
+	background-image: url("img/sprite.png");
+}
+.fancybox-prev span {
+	background-image: url("img/sprite.png");
+}
+.fancybox-next span {
+	background-image: url("img/sprite.png");
+}
+#fancybox-loading {
+	background-position: -130px -109px; left: 50%; top: 50%; margin-top: -23px; margin-left: -23px; position: fixed; z-index: 8060; cursor: pointer; opacity: 0.8;
+}
+#fancybox-loading div {
+	background: url("img/loading.gif") no-repeat center; width: 46px; height: 46px;
+}
+.fancybox-close {
+	background-position: 0px 0px; top: -18px; width: 34px; height: 34px; right: -18px; position: absolute; z-index: 8040; cursor: pointer; background-image: url("img/X.png");
+}
+.fancybox-nav {
+	background: url("data:;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="); top: 0px; width: 40%; height: 100%; text-decoration: none; position: absolute; z-index: 8040; cursor: pointer; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.fancybox-prev {
+	left: 0px;
+}
+.fancybox-next {
+	right: 0px;
+}
+.fancybox-nav span {
+	top: 50%; width: 36px; height: 36px; margin-top: -18px; visibility: hidden; position: absolute; z-index: 8040; cursor: pointer;
+}
+.fancybox-nav:hover span {
+	visibility: visible;
+}
+.fancybox-prev span {
+	background-position: -140px -36px; left: 10px;
+}
+.fancybox-next span {
+	background-position: -140px -72px; right: 10px;
+}
+.fancybox-tmp {
+	left: -9999px; top: -9999px; visibility: hidden; position: absolute;
+}
+.fancybox-overlay {
+	background: url("data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAG0lEQVR42mIU4OHZwEAEYGIgEowqpI5CgAADAGiRAOzkX/wUAAAAAElFTkSuQmCC"); left: 0px; top: 0px; overflow: hidden; display: none; position: absolute; z-index: 8010;
+}
+.fancybox-overlay-fixed {
+	right: 0px; bottom: 0px; position: fixed;
+}
+.fancybox-title {
+	font: 13px/20px "Helvetica Neue", Helvetica, Arial, sans-serif; visibility: hidden; position: relative; z-index: 8050; font-size-adjust: none; font-stretch: normal; text-shadow: none;
+}
+.fancybox-opened .fancybox-title {
+	visibility: visible;
+}
+.fancybox-title-float-wrap {
+	text-align: center; right: 50%; bottom: 0px; margin-bottom: -35px; position: absolute; z-index: 8050;
+}
+.fancybox-title-float-wrap .child {
+	background: rgba(0, 0, 0, 0.8); padding: 2px 20px; border-radius: 15px; color: rgb(255, 255, 255); line-height: 24px; font-weight: bold; margin-right: -100%; display: inline-block; white-space: nowrap; text-shadow: 0 1px 2px #222; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+.fancybox-title-outside-wrap {
+	color: rgb(255, 255, 255); margin-top: 10px; position: relative;
+}
+.fancybox-title-inside-wrap {
+	padding-top: 10px;
+}
+.fancybox-title-over-wrap {
+	background: rgba(0, 0, 0, 0.8); padding: 10px; left: 0px; bottom: 0px; color: rgb(255, 255, 255); position: absolute;
+}
+.fancybox-lock {
+	margin-right: 0px !important;
+}

@@ -1,0 +1,11 @@
+		/// <summary>
+		/// Obtains the underlying memory storage used by an <c>ArrayBuffer</c>
+		/// </summary>
+		/// <param name="buffer">The ArrayBuffer's buffer. The lifetime of the buffer returned is the same as
+		/// the lifetime of the ArrayBuffer. The buffer pointer does not count as a reference to the ArrayBuffer
+		/// for the purpose of garbage collection.</param>
+		/// <param name="bufferLength">The number of bytes in the buffer</param>
+		public void GetArrayBufferStorage(out IntPtr buffer, out uint bufferLength)
+		{
+			JsErrorHelpers.ThrowIfError(NativeMethods.JsGetArrayBufferStorage(this, out buffer, out bufferLength));
+		}

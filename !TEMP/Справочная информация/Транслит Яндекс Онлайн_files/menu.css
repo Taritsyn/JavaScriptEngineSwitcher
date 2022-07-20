@@ -1,0 +1,2433 @@
+@font-face {
+	font-family: Flat-UI-Icons;
+	src: url(../fonts/Flat-UI-Icons.eot?#iefix) format("embedded-opentype"), url(../fonts/Flat-UI-Icons.woff) format("woff"), url(../fonts/Flat-UI-Icons.ttf) format("truetype"), url(../fonts/Flat-UI-Icons.svg#Flat-UI-Icons) format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+nav {
+	display: block;
+}
+.navbar {
+	display: none;
+}
+.sr-only {
+	margin: -1px; padding: 0px; border: 0px currentColor; width: 1px; height: 1px; overflow: hidden; position: absolute; cliptop: 0px; clipright: 0px; clipbottom: 0px; clipleft: 0px;
+}
+.collapse {
+	display: none;
+}
+.in.collapse {
+	display: block;
+}
+.collapsing {
+	height: 0px; overflow: hidden; position: relative; -webkit-transition: height 0.35s ease; transition: height 0.35s ease;
+}
+.nav {
+	list-style: none; padding-left: 0px; margin-bottom: 0px;
+}
+.nav::before {
+	display: table; content: " ";
+}
+.nav::after {
+	display: table; content: " ";
+}
+.nav::after {
+	clear: both;
+}
+.nav::before {
+	display: table; content: " ";
+}
+.nav::after {
+	display: table; content: " ";
+}
+.nav::after {
+	clear: both;
+}
+.nav > li {
+	display: block; position: relative;
+}
+.nav > li > a {
+	padding: 10px 15px; text-decoration: none; display: block; position: relative;
+}
+.nav > li .text_span {
+	padding: 10px 15px; text-decoration: none; display: block; position: relative;
+}
+.nav > li > a:hover {
+	text-decoration: none; background-color: rgb(238, 238, 238);
+}
+.nav > li > a:focus {
+	text-decoration: none; background-color: rgb(238, 238, 238);
+}
+.nav > li.disabled > a {
+	color: rgb(153, 153, 153);
+}
+.nav > li.disabled > a:hover {
+	color: rgb(153, 153, 153); text-decoration: none; cursor: not-allowed; background-color: transparent;
+}
+.nav > li.disabled > a:focus {
+	color: rgb(153, 153, 153); text-decoration: none; cursor: not-allowed; background-color: transparent;
+}
+.nav .open > a {
+	border-color: rgb(66, 139, 202); background-color: rgb(238, 238, 238);
+}
+.nav .open > a:hover {
+	border-color: rgb(66, 139, 202); background-color: rgb(238, 238, 238);
+}
+.nav .open > a:focus {
+	border-color: rgb(66, 139, 202); background-color: rgb(238, 238, 238);
+}
+.nav .nav-divider {
+	margin: 9px 0px; height: 1px; overflow: hidden; background-color: rgb(229, 229, 229);
+}
+.nav > li > a > img {
+	max-width: none;
+}
+.nav-tabs {
+	border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.nav-tabs > li {
+	margin-bottom: -1px; float: left;
+}
+.nav-tabs > li > a {
+	border-radius: 4px 4px 0px 0px; border: 1px solid transparent; line-height: 1.4285; margin-right: 2px;
+}
+.nav-tabs > li > a:hover {
+	border-color: rgb(238, 238, 238) rgb(238, 238, 238) rgb(221, 221, 221);
+}
+.nav-tabs > li.active > a {
+	border-width: 1px; border-style: solid; border-color: rgb(221, 221, 221) rgb(221, 221, 221) transparent; color: rgb(85, 85, 85); cursor: default; background-color: rgb(255, 255, 255);
+}
+.nav-tabs > li.active > a:hover {
+	border-width: 1px; border-style: solid; border-color: rgb(221, 221, 221) rgb(221, 221, 221) transparent; color: rgb(85, 85, 85); cursor: default; background-color: rgb(255, 255, 255);
+}
+.nav-tabs > li.active > a:focus {
+	border-width: 1px; border-style: solid; border-color: rgb(221, 221, 221) rgb(221, 221, 221) transparent; color: rgb(85, 85, 85); cursor: default; background-color: rgb(255, 255, 255);
+}
+.nav-justified.nav-tabs {
+	width: 100%; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+.nav-justified.nav-tabs > li {
+	float: none;
+}
+.nav-justified.nav-tabs > li > a {
+	text-align: center; margin-bottom: 5px;
+}
+.nav-justified.nav-tabs > .dropdown .dropdown-menu {
+	left: auto; top: auto;
+}
+.nav-justified.nav-tabs > li {
+	width: 1%; display: table-cell;
+}
+.nav-justified.nav-tabs > li > a {
+	margin-bottom: 0px;
+}
+.nav-justified.nav-tabs > li > a {
+	border-radius: 4px; margin-right: 0px;
+}
+.nav-justified.nav-tabs > .active > a {
+	border: 1px solid rgb(221, 221, 221);
+}
+.nav-justified.nav-tabs > .active > a:hover {
+	border: 1px solid rgb(221, 221, 221);
+}
+.nav-justified.nav-tabs > .active > a:focus {
+	border: 1px solid rgb(221, 221, 221);
+}
+.nav-justified.nav-tabs > li > a {
+	border-radius: 4px 4px 0px 0px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.nav-justified.nav-tabs > .active > a {
+	border-bottom-color: rgb(255, 255, 255);
+}
+.nav-justified.nav-tabs > .active > a:hover {
+	border-bottom-color: rgb(255, 255, 255);
+}
+.nav-justified.nav-tabs > .active > a:focus {
+	border-bottom-color: rgb(255, 255, 255);
+}
+.nav-pills > li {
+	float: left;
+}
+.nav-pills > li > a {
+	border-radius: 4px;
+}
+.nav-pills > li + li {
+	margin-left: 2px;
+}
+.nav-pills > li.active > a {
+	color: rgb(255, 255, 255); background-color: rgb(66, 139, 202);
+}
+.nav-pills > li.active > a:hover {
+	color: rgb(255, 255, 255); background-color: rgb(66, 139, 202);
+}
+.nav-pills > li.active > a:focus {
+	color: rgb(255, 255, 255); background-color: rgb(66, 139, 202);
+}
+.nav-stacked > li {
+	float: none;
+}
+.nav-stacked > li + li {
+	margin-top: 2px; margin-left: 0px;
+}
+.nav-justified {
+	width: 100%;
+}
+.nav-justified > li {
+	float: none;
+}
+.nav-justified > li > a {
+	text-align: center; margin-bottom: 5px;
+}
+.nav-justified > .dropdown .dropdown-menu {
+	left: auto; top: auto;
+}
+.nav-justified > li {
+	width: 1%; display: table-cell;
+}
+.nav-justified > li > a {
+	margin-bottom: 0px;
+}
+.nav-tabs-justified {
+	border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+.nav-tabs-justified > li > a {
+	border-radius: 4px; margin-right: 0px;
+}
+.nav-tabs-justified > .active > a {
+	border: 1px solid rgb(221, 221, 221);
+}
+.nav-tabs-justified > .active > a:hover {
+	border: 1px solid rgb(221, 221, 221);
+}
+.nav-tabs-justified > .active > a:focus {
+	border: 1px solid rgb(221, 221, 221);
+}
+.nav-tabs-justified > li > a {
+	border-radius: 4px 4px 0px 0px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.nav-tabs-justified > .active > a {
+	border-bottom-color: rgb(255, 255, 255);
+}
+.nav-tabs-justified > .active > a:hover {
+	border-bottom-color: rgb(255, 255, 255);
+}
+.nav-tabs-justified > .active > a:focus {
+	border-bottom-color: rgb(255, 255, 255);
+}
+.tab-content > .tab-pane {
+	display: none;
+}
+.tab-content > .active {
+	display: block;
+}
+.nav-tabs .dropdown-menu {
+	margin-top: -1px; border-top-left-radius: 0px; border-top-right-radius: 0px;
+}
+.navbar {
+	border: 1px solid transparent; margin-bottom: 20px; position: relative; min-height: 50px;
+}
+.navbar::before {
+	display: table; content: " ";
+}
+.navbar::after {
+	display: table; content: " ";
+}
+.navbar::after {
+	clear: both;
+}
+.navbar::before {
+	display: table; content: " ";
+}
+.navbar::after {
+	display: table; content: " ";
+}
+.navbar::after {
+	clear: both;
+}
+.navbar {
+	border-radius: 4px;
+}
+.navbar-header::after {
+	clear: both;
+}
+.navbar-header::after {
+	clear: both;
+}
+.navbar-header {
+	float: left;
+}
+.navbar-collapse {
+	padding-right: 15px; padding-left: 15px; border-top-color: transparent; border-top-width: 1px; border-top-style: solid; overflow-x: visible; max-height: 340px; box-shadow: inset 0px 1px 0px rgba(255,255,255,0.1); -webkit-overflow-scrolling: touch;
+}
+.navbar-collapse::before {
+	display: table; content: " ";
+}
+.navbar-collapse::after {
+	display: table; content: " ";
+}
+.navbar-collapse::after {
+	clear: both;
+}
+.navbar-collapse::before {
+	display: table; content: " ";
+}
+.navbar-collapse::after {
+	display: table; content: " ";
+}
+.navbar-collapse::after {
+	clear: both;
+}
+.in.navbar-collapse {
+	overflow-y: auto;
+}
+.navbar-collapse {
+	width: auto; border-top-color: currentColor; border-top-width: 0px; border-top-style: none; box-shadow: none;
+}
+.collapse.navbar-collapse {
+	height: auto !important; overflow: visible !important; padding-bottom: 0px; display: block !important;
+}
+.in.navbar-collapse {
+	overflow-y: visible;
+}
+.navbar-fixed-top .navbar-collapse {
+	padding-right: 0px; padding-left: 0px;
+}
+.navbar-static-top .navbar-collapse {
+	padding-right: 0px; padding-left: 0px;
+}
+.navbar-fixed-bottom .navbar-collapse {
+	padding-right: 0px; padding-left: 0px;
+}
+.container > .navbar-header {
+	margin-right: -15px; margin-left: -15px;
+}
+.container > .navbar-collapse {
+	margin-right: -15px; margin-left: -15px;
+}
+.container > .navbar-header {
+	margin-right: 0px; margin-left: 0px;
+}
+.container > .navbar-collapse {
+	margin-right: 0px; margin-left: 0px;
+}
+.navbar-static-top {
+	border-width: 0px 0px 1px; z-index: 1000;
+}
+.navbar-static-top {
+	border-radius: 0px;
+}
+.navbar-fixed-top {
+	left: 0px; right: 0px; position: fixed; z-index: 1030;
+}
+.navbar-fixed-bottom {
+	left: 0px; right: 0px; position: fixed; z-index: 1030;
+}
+.navbar-fixed-top {
+	border-radius: 0px;
+}
+.navbar-fixed-bottom {
+	border-radius: 0px;
+}
+.navbar-fixed-top {
+	border-width: 0px 0px 1px; top: 0px;
+}
+.navbar-fixed-bottom {
+	border-width: 1px 0px 0px; bottom: 0px; margin-bottom: 0px;
+}
+.navbar-brand {
+	padding: 15px; line-height: 20px; font-size: 18px; float: left;
+}
+.navbar-brand:hover {
+	text-decoration: none;
+}
+.navbar-brand:focus {
+	text-decoration: none;
+}
+.navbar > .container .navbar-brand {
+	margin-left: -15px;
+}
+.navbar-toggle {
+	padding: 9px 10px; border-radius: 4px; border: 1px solid transparent; margin-top: 8px; margin-right: 15px; margin-bottom: 8px; float: right; position: relative; background-image: none; background-color: transparent;
+}
+.navbar-toggle:hover {
+	border-radius: 4px; border: 1px solid transparent; margin-top: -1px; margin-right: -1px; float: right; position: relative; background-image: none; background-color: transparent;
+}
+.navbar-toggle .icon-bar {
+	border-radius: 1px; width: 22px; height: 2px; display: block;
+}
+.navbar-toggle .icon-bar + .icon-bar {
+	margin-top: 4px;
+}
+.navbar-toggle {
+	display: none;
+}
+.navbar-nav {
+	margin: 7.5px -15px;
+}
+.navbar-nav > li > a {
+	line-height: 20px; padding-top: 10px; padding-bottom: 10px;
+}
+.navbar-nav > li > .text_span {
+	color: rgb(89, 163, 252); line-height: 26px; padding-top: 10px; padding-bottom: 10px; font-size: 15px; font-weight: bold;
+}
+.navbar-nav .open .dropdown-menu {
+	border: 0px currentColor; width: auto; margin-top: 0px; float: none; position: static; box-shadow: none; background-color: transparent;
+}
+.navbar-nav .open .dropdown-menu > li > a {
+	padding: 5px 15px 5px 25px;
+}
+.navbar-nav .open .dropdown-menu .dropdown-header {
+	padding: 5px 15px 5px 25px;
+}
+.navbar-nav .open .dropdown-menu > li > a {
+	line-height: 20px;
+}
+.navbar-nav .open .dropdown-menu > li > a:hover {
+	background-image: none;
+}
+.navbar-nav .open .dropdown-menu > li > a:focus {
+	background-image: none;
+}
+.pix_header_button {
+	margin-bottom: 20px !important; display: inline-block;
+}
+.navbar-nav {
+	margin: 0px; float: left;
+}
+.navbar-nav > li {
+	float: left;
+}
+.navbar-nav > li > a {
+	padding-top: 15px; padding-bottom: 15px;
+}
+.navbar-nav > li > .text_span {
+	padding-top: 15px; padding-bottom: 15px;
+}
+:last-child.navbar-right.navbar-nav {
+	margin-right: -15px;
+}
+.navbar-left {
+	float: left !important;
+}
+.navbar-right {
+	float: right !important;
+}
+.navbar-form {
+	margin: 8px -15px; padding: 10px 15px; border-top-color: transparent; border-bottom-color: transparent; border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; box-shadow: inset 0px 1px 0px rgba(255,255,255,0.1), 0px 1px 0px rgba(255,255,255,0.1); -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.navbar-form .form-group {
+	margin-bottom: 0px; vertical-align: middle; display: inline-block;
+}
+.navbar-form .form-control {
+	display: inline-block;
+}
+.navbar-form select.form-control {
+	width: auto;
+}
+.navbar-form .radio {
+	padding-left: 0px; margin-top: 0px; margin-bottom: 0px; display: inline-block;
+}
+.navbar-form .checkbox {
+	padding-left: 0px; margin-top: 0px; margin-bottom: 0px; display: inline-block;
+}
+.navbar-form .radio input[type='radio'] {
+	margin-left: 0px; float: none;
+}
+.navbar-form .checkbox input[type='checkbox'] {
+	margin-left: 0px; float: none;
+}
+.navbar-form .form-group {
+	margin-bottom: 5px;
+}
+.navbar-form {
+	border: 0px currentColor; width: auto; padding-top: 0px; padding-bottom: 0px; margin-right: 0px; margin-left: 0px; box-shadow: none; -webkit-box-shadow: none;
+}
+:last-child.navbar-right.navbar-form {
+	margin-right: -15px;
+}
+.navbar-nav > li > .dropdown-menu {
+	margin-top: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px;
+}
+.navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
+	border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;
+}
+.pull-right.navbar-nav > li > .dropdown-menu {
+	left: auto; right: 0px;
+}
+.navbar-nav > li > .pull-right.dropdown-menu {
+	left: auto; right: 0px;
+}
+.navbar-btn {
+	margin-top: 8px; margin-bottom: 8px;
+}
+.btn-sm.navbar-btn {
+	margin-top: 10px; margin-bottom: 10px;
+}
+.btn-xs.navbar-btn {
+	margin-top: 14px; margin-bottom: 14px;
+}
+.navbar-text {
+	margin-top: 15px; margin-bottom: 15px;
+}
+.navbar-text {
+	margin-right: 15px; margin-left: 15px; float: left;
+}
+:last-child.navbar-right.navbar-text {
+	margin-right: 0px;
+}
+.navbar-default {
+	border-color: rgb(231, 231, 231); background-color: rgb(248, 248, 248);
+}
+.navbar-default .navbar-brand {
+	color: rgb(119, 119, 119);
+}
+.navbar-default .navbar-brand:hover {
+	color: rgb(94, 94, 94); background-color: transparent;
+}
+.navbar-default .navbar-brand:focus {
+	color: rgb(94, 94, 94); background-color: transparent;
+}
+.navbar-default .navbar-text {
+	color: rgb(119, 119, 119);
+}
+.navbar-default .navbar-nav > li > a {
+	color: rgb(119, 119, 119);
+}
+.navbar-default .navbar-nav > li > a:hover {
+	color: rgb(51, 51, 51); background-color: transparent;
+}
+.navbar-default .navbar-nav > li > a:focus {
+	color: rgb(51, 51, 51); background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a {
+	color: rgb(85, 85, 85); background-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-nav > .active > a:hover {
+	color: rgb(85, 85, 85); background-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-nav > .active > a:focus {
+	color: rgb(85, 85, 85); background-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-nav > .disabled > a {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-nav > .disabled > a:hover {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-nav > .disabled > a:focus {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-toggle {
+	border-color: rgb(221, 221, 221);
+}
+.navbar-default .navbar-toggle:hover {
+	background-color: rgb(221, 221, 221);
+}
+.navbar-default .navbar-toggle:focus {
+	background-color: rgb(221, 221, 221);
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: rgb(204, 204, 204);
+}
+.navbar-default .navbar-collapse {
+	border-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-form {
+	border-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-nav > .open > a {
+	color: rgb(85, 85, 85); background-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-nav > .open > a:hover {
+	color: rgb(85, 85, 85); background-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-nav > .open > a:focus {
+	color: rgb(85, 85, 85); background-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+	color: rgb(119, 119, 119);
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+	color: rgb(51, 51, 51); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+	color: rgb(51, 51, 51); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a {
+	color: rgb(85, 85, 85); background-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover {
+	color: rgb(85, 85, 85); background-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+	color: rgb(85, 85, 85); background-color: rgb(231, 231, 231);
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-link {
+	color: rgb(119, 119, 119);
+}
+.navbar-default .navbar-link:hover {
+	color: rgb(51, 51, 51);
+}
+.navbar-inverse {
+	border-color: rgb(8, 8, 8); background-color: rgb(34, 34, 34);
+}
+.navbar-inverse .navbar-brand {
+	color: rgb(153, 153, 153);
+}
+.navbar-inverse .navbar-brand:hover {
+	color: rgb(255, 255, 255); background-color: transparent;
+}
+.navbar-inverse .navbar-brand:focus {
+	color: rgb(255, 255, 255); background-color: transparent;
+}
+.navbar-inverse .navbar-text {
+	color: rgb(153, 153, 153);
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: rgb(153, 153, 153);
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+	color: rgb(255, 255, 255); background-color: transparent;
+}
+.navbar-inverse .navbar-nav > li > a:focus {
+	color: rgb(255, 255, 255); background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .active > a {
+	color: rgb(255, 255, 255); background-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav > .active > a:hover {
+	color: rgb(255, 255, 255); background-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav > .active > a:focus {
+	color: rgb(255, 255, 255); background-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav > .disabled > a {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .disabled > a:hover {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .disabled > a:focus {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-toggle {
+	border-color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-toggle:hover {
+	background-color: rgb(51, 51, 51);
+}
+.navbar-inverse .navbar-toggle:focus {
+	background-color: rgb(51, 51, 51);
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+	background-color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-collapse {
+	border-color: rgb(16, 16, 16);
+}
+.navbar-inverse .navbar-form {
+	border-color: rgb(16, 16, 16);
+}
+.navbar-inverse .navbar-nav > .open > a {
+	color: rgb(255, 255, 255); background-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav > .open > a:hover {
+	color: rgb(255, 255, 255); background-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav > .open > a:focus {
+	color: rgb(255, 255, 255); background-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
+	border-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+	background-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+	color: rgb(153, 153, 153);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+	color: rgb(255, 255, 255); background-color: transparent;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+	color: rgb(255, 255, 255); background-color: transparent;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a {
+	color: rgb(255, 255, 255); background-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover {
+	color: rgb(255, 255, 255); background-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+	color: rgb(255, 255, 255); background-color: rgb(8, 8, 8);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-link {
+	color: rgb(153, 153, 153);
+}
+.navbar-inverse .navbar-link:hover {
+	color: rgb(255, 255, 255);
+}
+[data-icon]::before {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-variant: normal; font-weight: normal; content: attr(data-icon); speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-triangle-up {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-triangle-up-small {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-triangle-right-large {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-triangle-left-large {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-triangle-down {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-info {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-alert {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-question {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-window {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-windows {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-arrow-right {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-arrow-left {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-loop {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-cmd {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-mic {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-triangle-down-small {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-check-inverted {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-heart {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-location {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-plus {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-check {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-cross {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-list {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-new {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-video {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-photo {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-volume {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-time {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-eye {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-chat {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-home {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-upload {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-search {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-user {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-mail {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-lock {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-power {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-star {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-calendar {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-gear {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-book {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-exit {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-trash {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-folder {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-bubble {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-cross-inverted {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-plus-inverted {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-export {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-radio-unchecked {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-radio-checked {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-checkbox-unchecked {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-checkbox-checked {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-flat {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-calendar-solid {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-star-2 {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-credit-card {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-clip {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-link {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-pause {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-play {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-tag {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-document {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-image {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-facebook {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-youtube {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-vimeo {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-twitter {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-stumbleupon {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-spotify {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-skype {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-pinterest {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-path {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-myspace {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-linkedin {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-googleplus {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-dribbble {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-blogger {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-behance {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-list-thumbnailed {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-list-small-thumbnails {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-list-numbered {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-list-large-thumbnails {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-list-columned {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-list-bulleted {
+	text-transform: none; font-family: "Flat-UI-Icons"; font-style: normal; font-variant: normal; font-weight: normal; display: inline-block; speak: none; -webkit-font-smoothing: antialiased;
+}
+.fui-triangle-up::before {
+	content: "\e000";
+}
+.fui-triangle-up-small::before {
+	content: "\e001";
+}
+.fui-triangle-right-large::before {
+	content: "\e002";
+}
+.fui-triangle-left-large::before {
+	content: "\e003";
+}
+.fui-triangle-down::before {
+	content: "\e004";
+}
+.fui-info::before {
+	content: "\e016";
+}
+.fui-alert::before {
+	content: "\e017";
+}
+.fui-question::before {
+	content: "\e018";
+}
+.fui-window::before {
+	content: "\e019";
+}
+.fui-windows::before {
+	content: "\e01a";
+}
+.fui-arrow-right::before {
+	content: "\e02c";
+}
+.fui-arrow-left::before {
+	content: "\e02d";
+}
+.fui-loop::before {
+	content: "\e02e";
+}
+.fui-cmd::before {
+	content: "\e02f";
+}
+.fui-mic::before {
+	content: "\e030";
+}
+.fui-triangle-down-small::before {
+	content: "\e005";
+}
+.fui-check-inverted::before {
+	content: "\e006";
+}
+.fui-heart::before {
+	content: "\e007";
+}
+.fui-location::before {
+	content: "\e008";
+}
+.fui-plus::before {
+	content: "\e009";
+}
+.fui-check::before {
+	content: "\e00a";
+}
+.fui-cross::before {
+	content: "\e00b";
+}
+.fui-list::before {
+	content: "\e00c";
+}
+.fui-new::before {
+	content: "\e00d";
+}
+.fui-video::before {
+	content: "\e00e";
+}
+.fui-photo::before {
+	content: "\e00f";
+}
+.fui-volume::before {
+	content: "\e010";
+}
+.fui-time::before {
+	content: "\e011";
+}
+.fui-eye::before {
+	content: "\e012";
+}
+.fui-chat::before {
+	content: "\e013";
+}
+.fui-home::before {
+	content: "\e015";
+}
+.fui-upload::before {
+	content: "\e01b";
+}
+.fui-search::before {
+	content: "\e01c";
+}
+.fui-user::before {
+	content: "\e01d";
+}
+.fui-mail::before {
+	content: "\e01e";
+}
+.fui-lock::before {
+	content: "\e01f";
+}
+.fui-power::before {
+	content: "\e020";
+}
+.fui-star::before {
+	content: "\e021";
+}
+.fui-calendar::before {
+	content: "\e023";
+}
+.fui-gear::before {
+	content: "\e024";
+}
+.fui-book::before {
+	content: "\e025";
+}
+.fui-exit::before {
+	content: "\e026";
+}
+.fui-trash::before {
+	content: "\e027";
+}
+.fui-folder::before {
+	content: "\e028";
+}
+.fui-bubble::before {
+	content: "\e029";
+}
+.fui-cross-inverted::before {
+	content: "\e02a";
+}
+.fui-plus-inverted::before {
+	content: "\e031";
+}
+.fui-export::before {
+	content: "\e014";
+}
+.fui-radio-unchecked::before {
+	content: "\e02b";
+}
+.fui-radio-checked::before {
+	content: "\e032";
+}
+.fui-checkbox-unchecked::before {
+	content: "\e033";
+}
+.fui-checkbox-checked::before {
+	content: "\e034";
+}
+.fui-flat::before {
+	content: "\e035";
+}
+.fui-calendar-solid::before {
+	content: "\e022";
+}
+.fui-star-2::before {
+	content: "\e036";
+}
+.fui-credit-card::before {
+	content: "\e037";
+}
+.fui-clip::before {
+	content: "\e038";
+}
+.fui-link::before {
+	content: "\e039";
+}
+.fui-pause::before {
+	content: "\e03b";
+}
+.fui-play::before {
+	content: "\e03c";
+}
+.fui-tag::before {
+	content: "\e03d";
+}
+.fui-document::before {
+	content: "\e03e";
+}
+.fui-image::before {
+	content: "\e03a";
+}
+.fui-facebook::before {
+	content: "\e03f";
+}
+.fui-youtube::before {
+	content: "\e040";
+}
+.fui-vimeo::before {
+	content: "\e041";
+}
+.fui-twitter::before {
+	content: "\e042";
+}
+.fui-stumbleupon::before {
+	content: "\e043";
+}
+.fui-spotify::before {
+	content: "\e044";
+}
+.fui-skype::before {
+	content: "\e045";
+}
+.fui-pinterest::before {
+	content: "\e046";
+}
+.fui-path::before {
+	content: "\e047";
+}
+.fui-myspace::before {
+	content: "\e048";
+}
+.fui-linkedin::before {
+	content: "\e049";
+}
+.fui-googleplus::before {
+	content: "\e04a";
+}
+.fui-dribbble::before {
+	content: "\e04c";
+}
+.fui-blogger::before {
+	content: "\e04d";
+}
+.fui-behance::before {
+	content: "\e04e";
+}
+.fui-list-thumbnailed::before {
+	content: "\e04b";
+}
+.fui-list-small-thumbnails::before {
+	content: "\e04f";
+}
+.fui-list-numbered::before {
+	content: "\e050";
+}
+.fui-list-large-thumbnails::before {
+	content: "\e051";
+}
+.fui-list-columned::before {
+	content: "\e052";
+}
+.fui-list-bulleted::before {
+	content: "\e053";
+}
+.dropdown-arrow-inverse {
+	border-top-color: rgb(52, 73, 94) !important; border-bottom-color: rgb(52, 73, 94) !important;
+}
+.page-header {
+	margin: 60px 0px 30px; padding-bottom: 14px; border-bottom-color: rgb(231, 233, 236); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.bottom-menu {
+	background: rgb(235, 237, 239); padding: 39px 0px 42px; color: rgb(188, 195, 202);
+}
+.bottom-menu .navbar-brand {
+	padding: 0px; font-size: 24px; margin-top: -4px;
+}
+.bottom-menu .title {
+	font-size: 13px; font-weight: 700; margin-top: 0px;
+}
+.bottom-menu a {
+	color: inherit;
+}
+.active .bottom-menu a {
+	color: rgb(26, 188, 156);
+}
+.bottom-menu a:hover {
+	color: rgb(26, 188, 156);
+}
+.bottom-menu a:focus {
+	color: rgb(26, 188, 156);
+}
+.bottom-menu .label {
+	vertical-align: middle;
+}
+.bottom-menu .badge {
+	vertical-align: middle;
+}
+.bottom-menu .bottom-links {
+	line-height: 1.286; font-size: 14px;
+}
+.bottom-menu .bottom-links::before {
+	display: table; content: " ";
+}
+.bottom-menu .bottom-icons::before {
+	display: table; content: " ";
+}
+.bottom-menu .bottom-links::after {
+	display: table; content: " ";
+}
+.bottom-menu .bottom-icons::after {
+	display: table; content: " ";
+}
+.bottom-menu .bottom-links::after {
+	clear: both;
+}
+.bottom-menu .bottom-icons::after {
+	clear: both;
+}
+.bottom-icons {
+	line-height: 1; font-size: 16px;
+}
+.bottom-menu-inverse {
+	color: rgb(103, 119, 134); background-color: rgb(52, 73, 94);
+}
+.bottom-menu-large {
+	padding-top: 60px; padding-bottom: 56px;
+}
+.bottom-menu-large .navbar-brand {
+	margin-top: -2px;
+}
+.bottom-menu-large .bottom-links li {
+	line-height: 22px; margin-right: 0px; float: none;
+}
+.bottom-menu-large .title {
+	margin-bottom: 10px;
+}
+.bottom-links {
+	list-style: none; margin: 0px; padding: 0px;
+}
+.bottom-icons {
+	list-style: none; margin: 0px; padding: 0px;
+}
+.bottom-links li {
+	margin: 0px 18px 0px 0px; float: left; display: block;
+}
+.bottom-icons li {
+	margin: 0px 18px 0px 0px; float: left; display: block;
+}
+.bottom-menu .navbar-brand {
+	margin-bottom: 30px;
+}
+.bottom-menu .bottom-links {
+	margin-bottom: 30px;
+}
+.bottom-menu .navbar-brand {
+	padding: 15px; float: none;
+}
+.bottom-menu .bottom-links li {
+	margin-bottom: 2px; float: none;
+}
+.bottom-menu [class*='span']:last-child .bottom-links {
+	margin-bottom: 0px;
+}
+.nav .dropdown-toggle .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154); border-top-width: 6px; border-right-width: 4px; border-left-width: 4px;
+}
+.nav-pills > li:first-child > a {
+	border-radius: 6px 0px 0px 6px; border-left-color: currentColor; border-left-width: medium; border-left-style: none;
+}
+.nav-pills > li:last-child > a {
+	border-radius: 0px 6px 6px 0px;
+}
+.nav-pills > li.active > a {
+	background-color: rgb(22, 160, 133);
+}
+.nav-pills > li.active > a:hover {
+	background-color: rgb(22, 160, 133);
+}
+.nav-pills > li {
+	float: none; display: block;
+}
+.nav-pills > li:first-child > a {
+	border-radius: 6px 6px 0px 0px;
+}
+.nav-pills > li:last-child > a {
+	border-radius: 0px 0px 6px 6px;
+}
+.nav-pills > li > a {
+	margin: 0px; padding: 12px 21px 13px; border-radius: 0px; color: rgb(255, 255, 255); line-height: 1; font-size: 16px; font-weight: 700; border-left-color: rgb(22, 160, 133); border-left-width: 2px; border-left-style: solid; background-color: rgb(26, 188, 156);
+}
+.nav-pills > li > a:hover {
+	background-color: rgb(72, 201, 176);
+}
+.nav-pills > li > a:focus {
+	background-color: rgb(72, 201, 176);
+}
+.nav-pills > li > a:active {
+	background-color: rgb(22, 160, 133);
+}
+.nav-pills > li > a {
+	border-left-color: currentColor; border-left-width: medium; border-left-style: none; display: block;
+}
+.nav-pills > li + li {
+	margin-left: 0px;
+}
+.nav-tabs {
+	margin-bottom: 20px; border-bottom-color: rgb(225, 228, 231); border-bottom-width: 2px;
+}
+.nav-append-content.nav-tabs {
+	margin-bottom: 0px; border-bottom-color: currentColor; border-bottom-width: medium; border-bottom-style: none;
+}
+.nav-append-content.nav-tabs > li:first-child.active::before {
+	left: 0px; width: 6px; height: 6px; bottom: -4px; border-left-color: rgb(225, 228, 231); border-left-width: 2px; border-left-style: solid; position: absolute; z-index: 2; content: ""; background-color: rgb(255, 255, 255);
+}
+.nav-tabs > li {
+	margin-bottom: -2px; position: relative;
+}
+.nav-tabs > li.active {
+	z-index: 2;
+}
+.nav-tabs > li.active > a {
+	border-width: 2px; border-color: rgb(225, 228, 231) rgb(225, 228, 231) rgb(255, 255, 255); color: rgb(127, 140, 154);
+}
+.nav-tabs > li.active > a:hover {
+	border-width: 2px; border-color: rgb(225, 228, 231) rgb(225, 228, 231) rgb(255, 255, 255); color: rgb(127, 140, 154);
+}
+.nav-tabs > li.active > a:focus {
+	border-width: 2px; border-color: rgb(225, 228, 231) rgb(225, 228, 231) rgb(255, 255, 255); color: rgb(127, 140, 154);
+}
+.nav-tabs > li.active .dropdown-toggle {
+	color: rgb(127, 140, 154);
+}
+.nav-tabs > li.active .dropdown-toggle:hover {
+	color: rgb(127, 140, 154);
+}
+.nav-tabs > li.active .dropdown-toggle:focus {
+	color: rgb(127, 140, 154);
+}
+.nav-tabs > li.active .dropdown-toggle .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154);
+}
+.nav-tabs > li.active .dropdown-toggle:hover .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154);
+}
+.nav-tabs > li.active .dropdown-toggle:focus .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154);
+}
+.nav-tabs > li.open a.dropdown-toggle {
+	border-color: rgb(225, 228, 231) rgb(225, 228, 231) transparent; color: rgb(127, 140, 154); background-color: rgb(243, 244, 245);
+}
+.nav-tabs > li.active.open a.dropdown-toggle {
+	border-color: rgb(225, 228, 231) rgb(225, 228, 231) transparent; color: rgb(127, 140, 154); background-color: rgb(243, 244, 245);
+}
+.nav-tabs > li.open a.dropdown-toggle:hover {
+	border-color: rgb(225, 228, 231) rgb(225, 228, 231) transparent; color: rgb(127, 140, 154); background-color: rgb(243, 244, 245);
+}
+.nav-tabs > li.active.open a.dropdown-toggle:hover {
+	border-color: rgb(225, 228, 231) rgb(225, 228, 231) transparent; color: rgb(127, 140, 154); background-color: rgb(243, 244, 245);
+}
+.nav-tabs > li.open a.dropdown-toggle .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154);
+}
+.nav-tabs > li.active.open a.dropdown-toggle .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154);
+}
+.nav-tabs > li.open a.dropdown-toggle:hover .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154);
+}
+.nav-tabs > li.active.open a.dropdown-toggle:hover .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154);
+}
+.nav-tabs > li.open .dropdown-menu {
+	margin-top: -2px;
+}
+.nav-tabs > li.active.open .dropdown-menu {
+	margin-top: -2px;
+}
+.nav-tabs > li.active.open {
+	z-index: 1003;
+}
+.nav-tabs > li > a {
+	border-width: 2px; padding: 7px 21px 8px; border-radius: 6px 6px 0px 0px; color: rgb(127, 140, 154); font-size: 14px; font-weight: 700; -webkit-transition: none; transition: none;
+}
+.nav-tabs > li > a:hover {
+	border-color: transparent; color: rgb(26, 188, 156); background-color: transparent;
+}
+.nav-tabs > li > a:focus {
+	border-color: transparent; color: rgb(26, 188, 156); background-color: transparent;
+}
+.nav-tabs > li .dropdown-toggle {
+	position: relative; z-index: 1002;
+}
+.nav-tabs > li .dropdown-toggle:hover .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.nav-tabs > li .dropdown-toggle:focus .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.nav-tabs > li .dropdown-menu {
+	border-radius: 0px 6px 6px; border: 2px solid rgb(225, 228, 231); margin-top: -10px;
+}
+.nav-tabs > li .dropdown-menu li:first-child > a {
+	border-radius: 0px 4px 0px 0px;
+}
+.nav-tabs > li .dropdown-menu li:last-child > a {
+	border-radius: 0px 0px 4px 4px;
+}
+.nav-tabs > li .dropdown-menu li a {
+	border-radius: 0px;
+}
+.nav-tabs > li .open .dropdown-toggle {
+	background-color: rgb(243, 244, 245);
+}
+.nav-tabs {
+	border-bottom-color: currentColor; border-bottom-width: medium; border-bottom-style: none;
+}
+.nav-tabs > li {
+	float: none; display: block;
+}
+.nav-tabs > li.active > a {
+	border: 2px solid rgb(26, 188, 156); color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.nav-tabs > li.active > a:hover {
+	border: 2px solid rgb(26, 188, 156); color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.nav-tabs > li.active > a:focus {
+	border: 2px solid rgb(26, 188, 156); color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.nav-tabs > li.active > a::before {
+	display: none;
+}
+.nav-tabs > li.active > a:hover::before {
+	display: none;
+}
+.nav-tabs > li.active > a:focus::before {
+	display: none;
+}
+.nav-tabs > li.active::before {
+	display: none;
+}
+.nav-tabs > li.active.dropdown > a {
+	color: rgb(255, 255, 255);
+}
+.nav-tabs > li.active.dropdown > a.dropdown-toggle {
+	color: rgb(255, 255, 255);
+}
+.nav-tabs > li.active.dropdown > a:hover {
+	color: rgb(255, 255, 255);
+}
+.nav-tabs > li.active.dropdown > a .caret {
+	border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);
+}
+.nav-tabs > li.active.dropdown > a.dropdown-toggle .caret {
+	border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);
+}
+.nav-tabs > li.active.dropdown > a:hover .caret {
+	border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);
+}
+.nav-tabs > li.open.active.dropdown > a {
+	border-radius: 4px 4px 0px 0px; color: rgb(127, 140, 154);
+}
+.nav-tabs > li.open.active.dropdown > a.dropdown-toggle {
+	border-radius: 4px 4px 0px 0px; color: rgb(127, 140, 154);
+}
+.nav-tabs > li.open.active.dropdown > a:hover {
+	border-radius: 4px 4px 0px 0px; color: rgb(127, 140, 154);
+}
+.nav-tabs > li.open.active.dropdown > a .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154);
+}
+.nav-tabs > li.open.active.dropdown > a.dropdown-toggle .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154);
+}
+.nav-tabs > li.open.active.dropdown > a:hover .caret {
+	border-top-color: rgb(127, 140, 154); border-bottom-color: rgb(127, 140, 154);
+}
+.nav-tabs > li > a {
+	padding: 10px 15px; border-radius: 4px; border: 2px solid rgb(225, 228, 231); margin-right: 0px; margin-bottom: 10px;
+}
+.nav-tabs > li > a:hover {
+	padding: 10px 15px; border-radius: 4px; border: 2px solid rgb(225, 228, 231); margin-right: 0px; margin-bottom: 10px;
+}
+.nav-tabs > li > a:focus {
+	padding: 10px 15px; border-radius: 4px; border: 2px solid rgb(225, 228, 231); margin-right: 0px; margin-bottom: 10px;
+}
+.tab-content {
+	padding: 20px 20px 5px; border-radius: 6px; border: 2px solid rgb(221, 221, 221); margin-bottom: 20px; position: relative; z-index: 1;
+}
+.nav-list {
+	padding-right: 13px; padding-left: 13px;
+}
+.nav-list .nav-header {
+	padding: 0px 13px; line-height: 1.538; font-weight: 700; margin-right: -13px; margin-left: -13px;
+}
+.nav-list > li {
+	margin-bottom: 3px;
+}
+.nav-list > li.active > a {
+	color: rgb(82, 100, 118); background-color: rgb(235, 237, 239);
+}
+.nav-list > li.active > a:hover {
+	color: rgb(82, 100, 118); background-color: rgb(235, 237, 239);
+}
+.nav-list > li.active > a:focus {
+	color: rgb(82, 100, 118); background-color: rgb(235, 237, 239);
+}
+.nav-list > li.divider {
+	margin: 13px -13px 17px 0px; height: 2px; border-bottom-color: currentColor; border-bottom-width: medium; border-bottom-style: none; background-color: rgb(235, 237, 239);
+}
+.nav-list > li > a {
+	padding: 6px 13px 8px; border-radius: 4px; line-height: 1.333; font-size: 15px; font-weight: 700; margin-right: -13px; margin-left: -13px; text-shadow: none;
+}
+.nav-list .pull-right.badge {
+	margin: 1px -4px -1px 0px;
+}
+.nav-header {
+	color: rgb(174, 182, 191); text-transform: uppercase; font-size: 13px;
+}
+.nav-list-vivid {
+	border-radius: 4px; padding-bottom: 2px; background-color: rgb(237, 239, 241);
+}
+.nav-list-vivid > li {
+	margin-bottom: 2px;
+}
+.nav-list-vivid > li.divider {
+	margin: 3px 0px 0px; background-color: transparent;
+}
+.nav-list-vivid > li.active > a {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.nav-list-vivid > li.active > a:hover {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.nav-list-vivid > li.active > a:focus {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.nav-list-vivid > li > a {
+	border-radius: 0px; color: rgb(82, 100, 118); font-size: 14px;
+}
+.nav-list-vivid > li > a:hover {
+	color: rgb(22, 160, 133);
+}
+.nav-list-vivid > li > a:focus {
+	color: rgb(22, 160, 133);
+}
+.nav-list-vivid :first-child.nav-header {
+	padding-top: 10px;
+}
+.navbar {
+	border-radius: 6px; border: currentColor; font-size: 16px; margin-bottom: 30px; min-height: 53px;
+}
+.navbar_no_margin {
+	margin-bottom: 0px;
+}
+.navbar-collapse {
+	padding-right: 21px; padding-left: 21px; box-shadow: none;
+}
+.navbar-collapse :first-child.navbar-left.navbar-nav {
+	margin-left: -21px;
+}
+.navbar-collapse :first-child.navbar-left.navbar-nav > li:first-child a {
+	border-top-left-radius: 6px; border-bottom-left-radius: 6px;
+}
+.navbar-collapse :last-child.navbar-right.navbar-nav {
+	margin-right: -21px;
+}
+.navbar > .container .navbar-collapse :last-child.navbar-right.navbar-nav {
+	margin-right: -36px;
+}
+.navbar-collapse :last-child.navbar-right.navbar-nav > :last-child.dropdown > a {
+	border-radius: 0px 6px 6px 0px;
+}
+.navbar-collapse :last-child.navbar-right.navbar-form {
+	margin-right: -17px;
+}
+.navbar-fixed-top .navbar-collapse :last-child.navbar-right.navbar-form {
+	margin-right: 0px;
+}
+.navbar-fixed-bottom .navbar-collapse :last-child.navbar-right.navbar-form {
+	margin-right: 0px;
+}
+.navbar-collapse :last-child.navbar-right.navbar-nav {
+	margin-bottom: 3px;
+}
+.navbar-static-top {
+	border-width: 0px; border-radius: 0px; z-index: 1000;
+}
+.navbar-fixed-top {
+	border-radius: 0px; z-index: 1030;
+}
+.navbar-fixed-bottom {
+	border-radius: 0px; z-index: 1030;
+}
+.navbar-fixed-top {
+	border-width: 0px;
+}
+.navbar-fixed-bottom {
+	border-width: 0px; margin-bottom: 0px;
+}
+.navbar-brand {
+	padding: 14px 21px; line-height: 1.042; font-size: 24px; font-weight: 700;
+}
+.navbar-brand > [class*='fui-'] {
+	line-height: 1.263; font-size: 19px; vertical-align: top;
+}
+.navbar > .container .navbar-brand {
+	margin-left: -21px;
+}
+.navbar-toggle {
+	margin: 0px 0px 0px 21px; padding: 0px 21px; border: currentColor; height: 53px; color: rgb(51, 51, 51); line-height: 53px;
+}
+.navbar-toggle::before {
+	color: rgb(51, 51, 51); font-family: "Flat-UI-Icons"; font-size: 22px; font-style: normal; font-weight: normal; content: "\e00c"; -webkit-transition: color 0.25s linear; transition: color 0.25s linear; -webkit-font-smoothing: antialiased;
+}
+.navbar-toggle:hover {
+	
+}
+.navbar-toggle:focus {
+	
+}
+.navbar-toggle:hover::before {
+	color: rgb(51, 51, 51);
+}
+.navbar-toggle:focus::before {
+	color: rgb(51, 51, 51);
+}
+.navbar-toggle .icon-bar {
+	display: none;
+}
+.navbar-toggle {
+	display: none;
+}
+.navbar-nav {
+	margin: 0px;
+}
+.navbar-nav > li > a {
+	padding: 15px 21px; line-height: 23px; font-size: 16px; font-weight: 700;
+}
+.navbar-nav .dropdown-toggle .caret {
+	border-width: 8px 6px 0px; margin-left: 12px; border-top-color: rgb(22, 160, 133); border-bottom-color: rgb(22, 160, 133);
+}
+.navbar-nav > li > a:hover {
+	background-color: transparent;
+}
+.navbar-nav > li > a:focus {
+	background-color: transparent;
+}
+.navbar-nav .open > a:focus {
+	background-color: transparent;
+}
+.navbar-nav .open > a:hover {
+	background-color: transparent;
+}
+.navbar-nav > li > a:hover .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-nav > li > a:focus .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-nav .open > a:focus .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-nav .open > a:hover .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-nav [class^='fui-'] {
+	top: 1px; line-height: 20px; position: relative;
+}
+.navbar-nav .visible-sm > [class^='fui-'] {
+	margin-left: 12px;
+}
+.navbar-nav .visible-xs > [class^='fui-'] {
+	margin-left: 12px;
+}
+.navbar-nav {
+	margin: 0px -21px;
+}
+.navbar-nav .open .dropdown-menu > li > a {
+	padding: 7px 15px 7px 31px !important;
+}
+.navbar-nav .open .dropdown-menu .dropdown-header {
+	padding: 7px 15px 7px 31px !important;
+}
+.navbar-nav .open .dropdown-menu > li > a {
+	line-height: 23px;
+}
+.navbar-nav > li > a {
+	padding-top: 7px; padding-bottom: 7px;
+}
+.navbar-input {
+	padding: 5px 10px; border-radius: 6px; height: 35px; line-height: 1.4; font-size: 13px;
+}
+select.navbar-input {
+	height: 35px; line-height: 35px;
+}
+textarea.navbar-input {
+	height: auto;
+}
+.navbar-form {
+	padding: 9px 19px; margin-top: 0px; margin-bottom: 0px; box-shadow: none; -webkit-box-shadow: none;
+}
+.navbar-form {
+	margin: 3px -21px; width: auto;
+}
+.navbar-nav + .navbar-left.navbar-form {
+	width: 260px;
+}
+:last-child.navbar-right.navbar-form {
+	width: 260px;
+}
+.navbar-form .form-control {
+	padding: 5px 10px; border-radius: 6px; height: 35px; line-height: 1.4; font-size: 13px;
+}
+.navbar-form .input-group-addon {
+	padding: 5px 10px; border-radius: 6px; height: 35px; line-height: 1.4; font-size: 13px;
+}
+.navbar-form .btn {
+	padding: 5px 10px; border-radius: 6px; height: 35px; line-height: 1.4; font-size: 13px;
+}
+select.navbar-form .form-control {
+	height: 35px; line-height: 35px;
+}
+select.navbar-form .input-group-addon {
+	height: 35px; line-height: 35px;
+}
+select.navbar-form .btn {
+	height: 35px; line-height: 35px;
+}
+textarea.navbar-form .form-control {
+	height: auto;
+}
+textarea.navbar-form .input-group-addon {
+	height: auto;
+}
+textarea.navbar-form .btn {
+	height: auto;
+}
+.navbar-form .input-group :first-child.form-control {
+	border-top-right-radius: 0px; border-bottom-right-radius: 0px;
+}
+.navbar-form :first-child.input-group-addon {
+	border-top-right-radius: 0px; border-bottom-right-radius: 0px;
+}
+.navbar-form :first-child.input-group-btn > .btn {
+	border-top-right-radius: 0px; border-bottom-right-radius: 0px;
+}
+.navbar-form :first-child.input-group-btn > .dropdown-toggle {
+	border-top-right-radius: 0px; border-bottom-right-radius: 0px;
+}
+.navbar-form :last-child.input-group-btn > :not(:last-child):not(.dropdown-toggle).btn {
+	border-top-right-radius: 0px; border-bottom-right-radius: 0px;
+}
+.navbar-form .input-group :last-child.form-control {
+	border-top-left-radius: 0px; border-bottom-left-radius: 0px;
+}
+.navbar-form :last-child.input-group-addon {
+	border-top-left-radius: 0px; border-bottom-left-radius: 0px;
+}
+.navbar-form :last-child.input-group-btn > .btn {
+	border-top-left-radius: 0px; border-bottom-left-radius: 0px;
+}
+.navbar-form :last-child.input-group-btn > .dropdown-toggle {
+	border-top-left-radius: 0px; border-bottom-left-radius: 0px;
+}
+.navbar-form :first-child.input-group-btn > :not(:first-child).btn {
+	border-top-left-radius: 0px; border-bottom-left-radius: 0px;
+}
+.navbar-form .form-control {
+	border-radius: 5px; font-size: 15px; display: table-cell;
+}
+.navbar-form .form-group + .btn {
+	border-radius: 5px; font-size: 15px; margin-left: 4px;
+}
+.navbar-form .form-group {
+	margin-bottom: 0px;
+}
+.navbar-form .form-group + .btn {
+	margin-top: 9px; margin-left: 0px;
+}
+.navbar-nav > li > .dropdown-menu {
+	border-radius: 4px; min-width: 100%;
+}
+.navbar-nav > li > .dropdown-menu {
+	display: none; -webkit-transition: all 0s; transition: all 0s;
+}
+.navbar-nav > li.open > .dropdown-menu {
+	margin-top: 0px !important; display: block;
+}
+.navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
+	border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;
+}
+.navbar-nav > .open > .dropdown-toggle {
+	background-color: transparent;
+}
+.navbar-nav > .open > .dropdown-toggle:focus {
+	background-color: transparent;
+}
+.navbar-nav > .open > .dropdown-toggle:hover {
+	background-color: transparent;
+}
+.navbar-text {
+	color: rgb(52, 73, 94); line-height: 1.438; padding-top: 15px; padding-bottom: 15px; font-size: 16px; margin-top: 0px; margin-bottom: 0px;
+}
+.navbar-text {
+	margin-right: 21px; margin-left: 21px; float: left;
+}
+:last-child.navbar-right.navbar-text {
+	margin-right: 0px;
+}
+.navbar-btn {
+	margin-top: 6px; margin-bottom: 6px;
+}
+.btn-sm.navbar-btn {
+	margin-top: 9px; margin-bottom: 8px;
+}
+.btn-xs.navbar-btn {
+	margin-top: 14px; margin-bottom: 14px;
+}
+.navbar-unread {
+	border-radius: 50%; top: 15px; width: 6px; height: 6px; text-align: center; right: 12px; color: rgb(255, 255, 255); line-height: 1; font-size: 0px; font-weight: 700; position: absolute; z-index: 10; background-color: rgb(26, 188, 156);
+}
+.navbar-new {
+	border-radius: 50%; top: 15px; width: 6px; height: 6px; text-align: center; right: 12px; color: rgb(255, 255, 255); line-height: 1; font-size: 0px; font-weight: 700; position: absolute; z-index: 10; background-color: rgb(26, 188, 156);
+}
+.navbar-unread {
+	margin: 0px 0px 0px 10px; float: right; position: static;
+}
+.navbar-new {
+	margin: 0px 0px 0px 10px; float: right; position: static;
+}
+.active .navbar-unread {
+	display: none; background-color: rgb(255, 255, 255);
+}
+.active .navbar-new {
+	display: none; background-color: rgb(255, 255, 255);
+}
+.navbar-new {
+	margin: -6px -10px; padding: 0px 1px; width: auto; height: 18px; line-height: 17px; font-size: 12px; min-width: 18px; background-color: rgb(231, 76, 60); -webkit-font-smoothing: subpixel-antialiased;
+}
+.navbar-default {
+	background-color: rgb(236, 240, 241);
+}
+.navbar-default .navbar-brand {
+	color: rgb(52, 73, 94);
+}
+.navbar-default .navbar-brand:hover {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-brand:focus {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-toggle::before {
+	color: rgb(52, 73, 94);
+}
+.navbar-default .navbar-toggle:hover {
+	background-color: transparent;
+}
+.navbar-default .navbar-toggle:focus {
+	background-color: transparent;
+}
+.navbar-default .navbar-toggle:hover::before {
+	color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-toggle:focus::before {
+	color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-collapse {
+	border-width: 2px; border-color: rgb(229, 233, 234);
+}
+.navbar-default .navbar-form {
+	border-width: 2px; border-color: rgb(229, 233, 234);
+}
+.navbar-default .navbar-nav > li > a {
+	color: rgb(52, 73, 94);
+}
+.navbar-default .navbar-nav > li > a:hover {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav > li > a:focus {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a:hover {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a:focus {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav > .disabled > a {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-nav > .disabled > a:hover {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-nav > .disabled > a:focus {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-nav > .dropdown > a .caret {
+	border-top-color: rgb(52, 73, 94); border-bottom-color: rgb(52, 73, 94);
+}
+.navbar-default .navbar-nav > .active > a .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-nav > .dropdown > a:hover .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-nav > .open > a {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav > .open > a:hover {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav > .open > a:focus {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav > .open > a .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-nav > .open > a:hover .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-nav > .open > a:focus .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+	color: rgb(52, 73, 94);
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+	color: rgb(204, 204, 204); background-color: transparent;
+}
+.navbar-default .navbar-form .form-control {
+	border-color: transparent;
+}
+.navbar-default .navbar-form .placeholder.form-control {
+	color: rgb(174, 182, 191);
+}
+.navbar-default .navbar-form .form-control:focus {
+	border-color: rgb(26, 188, 156); color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-form .input-group-btn .btn {
+	border-color: transparent; color: rgb(145, 155, 164);
+}
+.navbar-default .navbar-form .focus.input-group .form-control {
+	border-color: rgb(26, 188, 156); color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-form .focus.input-group .input-group-btn .btn {
+	border-color: rgb(26, 188, 156); color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-text {
+	color: rgb(52, 73, 94);
+}
+.navbar-default .navbar-text a {
+	color: rgb(52, 73, 94);
+}
+.navbar-default .navbar-text a:hover {
+	color: rgb(26, 188, 156);
+}
+.navbar-default .navbar-text a:focus {
+	color: rgb(26, 188, 156);
+}
+.navbar-inverse {
+	background-color: rgb(52, 73, 94);
+}
+.navbar-inverse .navbar-brand {
+	color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-brand:hover {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-inverse .navbar-brand:focus {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-inverse .navbar-toggle::before {
+	color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-toggle:hover {
+	background-color: transparent;
+}
+.navbar-inverse .navbar-toggle:focus {
+	background-color: transparent;
+}
+.navbar-inverse .navbar-toggle:hover::before {
+	color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-toggle:focus::before {
+	color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-collapse {
+	border-width: 2px; border-color: rgb(47, 65, 84);
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-inverse .navbar-nav > li > a:focus {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .active > a {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav > .active > a:hover {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav > .active > a:focus {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav > .disabled > a {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .disabled > a:hover {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .disabled > a:focus {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .dropdown > a:hover .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav > .dropdown > a:focus .caret {
+	border-top-color: rgb(26, 188, 156); border-bottom-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav > .open > a {
+	color: rgb(255, 255, 255); border-left-color: transparent; background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav > .open > a:hover {
+	color: rgb(255, 255, 255); border-left-color: transparent; background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav > .open > a:focus {
+	color: rgb(255, 255, 255); border-left-color: transparent; background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav > .open > a .caret {
+	border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-nav > .open > a:hover .caret {
+	border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-nav > .open > a:focus .caret {
+	border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-nav > .dropdown > a .caret {
+	border-top-color: rgb(75, 96, 117); border-bottom-color: rgb(75, 96, 117);
+}
+.navbar-inverse .navbar-nav > .open > .dropdown-arrow {
+	border-top-color: rgb(52, 73, 94); border-bottom-color: rgb(52, 73, 94);
+}
+.navbar-inverse .navbar-nav > .open > .dropdown-menu {
+	padding: 3px 4px; background-color: rgb(52, 73, 94);
+}
+.navbar-inverse .navbar-nav > .open > .dropdown-menu > li > a {
+	padding: 6px 9px; border-radius: 4px; color: rgb(225, 228, 231);
+}
+.navbar-inverse .navbar-nav > .open > .dropdown-menu > li > a:hover {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav > .open > .dropdown-menu > li > a:focus {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav > .open > .dropdown-menu > .divider {
+	height: 2px; margin-right: -4px; margin-left: -4px; background-color: rgb(47, 65, 84);
+}
+.navbar-inverse .navbar-nav > li > a {
+	border-left-width: 0px;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+	color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+	color: rgb(26, 188, 156); background-color: transparent;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+	color: rgb(68, 68, 68); background-color: transparent;
+}
+.navbar-inverse .navbar-nav .dropdown-menu .divider {
+	background-color: rgb(47, 65, 84);
+}
+.navbar-inverse .navbar-form .form-control {
+	border-color: transparent; color: rgb(83, 106, 129); background-color: rgb(41, 58, 74);
+}
+.navbar-inverse .navbar-form .placeholder.form-control {
+	color: rgb(83, 106, 129);
+}
+.navbar-inverse .navbar-form .form-control:focus {
+	border-color: rgb(26, 188, 156); color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form .btn {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form .btn:hover {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.navbar-inverse .navbar-form .hover.btn {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.navbar-inverse .navbar-form .btn:focus {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.navbar-inverse .navbar-form .btn:active {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.navbar-inverse .navbar-form .active.btn {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.open .navbar-inverse.dropdown-toggle .navbar-form .btn {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.navbar-inverse .navbar-form .btn:active {
+	background: rgb(22, 160, 133); border-color: rgb(22, 160, 133);
+}
+.navbar-inverse .navbar-form .active.btn {
+	background: rgb(22, 160, 133); border-color: rgb(22, 160, 133);
+}
+.open .navbar-inverse.dropdown-toggle .navbar-form .btn {
+	background: rgb(22, 160, 133); border-color: rgb(22, 160, 133);
+}
+.navbar-inverse .navbar-form .disabled.btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form [disabled].btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .navbar-form .btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form .disabled.btn:hover {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form [disabled].btn:hover {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .navbar-form .btn:hover {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form .hover.disabled.btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form [disabled].hover.btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .navbar-form .hover.btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form .disabled.btn:focus {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form [disabled].btn:focus {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .navbar-form .btn:focus {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form .disabled.btn:active {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form [disabled].btn:active {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .navbar-form .btn:active {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form .active.disabled.btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form [disabled].active.btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .navbar-form .active.btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form .input-group-btn .btn {
+	border-color: transparent; color: rgb(82, 106, 130); background-color: rgb(41, 58, 74);
+}
+.navbar-inverse .navbar-form .focus.input-group .form-control {
+	border-color: rgb(26, 188, 156); color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form .focus.input-group .input-group-btn .btn {
+	border-color: rgb(26, 188, 156); color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-form {
+	border-width: 2px 0px; border-color: rgb(47, 65, 84);
+}
+.navbar-inverse .navbar-text {
+	color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-text a {
+	color: rgb(255, 255, 255);
+}
+.navbar-inverse .navbar-text a:hover {
+	color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-text a:focus {
+	color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-btn {
+	color: rgb(255, 255, 255); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .navbar-btn:hover {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.navbar-inverse .hover.navbar-btn {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.navbar-inverse .navbar-btn:focus {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.navbar-inverse .navbar-btn:active {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.navbar-inverse .active.navbar-btn {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.open .navbar-inverse.dropdown-toggle .navbar-btn {
+	border-color: rgb(72, 201, 176); color: rgb(255, 255, 255); background-color: rgb(72, 201, 176);
+}
+.navbar-inverse .navbar-btn:active {
+	background: rgb(22, 160, 133); border-color: rgb(22, 160, 133);
+}
+.navbar-inverse .active.navbar-btn {
+	background: rgb(22, 160, 133); border-color: rgb(22, 160, 133);
+}
+.open .navbar-inverse.dropdown-toggle .navbar-btn {
+	background: rgb(22, 160, 133); border-color: rgb(22, 160, 133);
+}
+.navbar-inverse .disabled.navbar-btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse [disabled].navbar-btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .navbar-btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .disabled.navbar-btn:hover {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse [disabled].navbar-btn:hover {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .navbar-btn:hover {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .hover.disabled.navbar-btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse [disabled].hover.navbar-btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .hover.navbar-btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .disabled.navbar-btn:focus {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse [disabled].navbar-btn:focus {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .navbar-btn:focus {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .disabled.navbar-btn:active {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse [disabled].navbar-btn:active {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .navbar-btn:active {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse .active.disabled.navbar-btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-inverse [disabled].active.navbar-btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+fieldset[disabled] .navbar-inverse .active.navbar-btn {
+	border-color: rgb(26, 188, 156); background-color: rgb(26, 188, 156);
+}
+.navbar-embossed > .navbar-collapse {
+	border-radius: 6px; box-shadow: inset 0px -2px 0px rgba(0,0,0,0.15); -webkit-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+}
+.navbar-inverse.navbar-embossed .navbar-nav .active > a {
+	box-shadow: inset 0px -2px 0px rgba(0,0,0,0.15); -webkit-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+}
+.navbar-inverse.navbar-embossed .navbar-nav .open > a {
+	box-shadow: inset 0px -2px 0px rgba(0,0,0,0.15); -webkit-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+}
+.navbar-lg {
+	min-height: 76px;
+}
+.navbar-lg .navbar-brand {
+	line-height: 1; padding-top: 25px; padding-bottom: 26px;
+}
+.navbar-lg .navbar-brand > [class*='fui-'] {
+	line-height: 1; font-size: 24px;
+}
+.navbar-lg .navbar-nav > li > a {
+	line-height: 1.6; font-size: 15px;
+}
+.navbar-lg .navbar-nav > li > a {
+	padding-top: 26px; padding-bottom: 26px;
+}
+.navbar-lg .navbar-nav > li > .text_span {
+	padding-top: 26px; padding-bottom: 26px;
+}
+.navbar-left li:first-child a {
+	padding-left: 0px;
+}
+.right_socials {
+	text-align: right; float: right; display: inline-block; position: relative;
+}
+.navbar-lg .navbar-toggle {
+	height: 76px; line-height: 76px;
+}
+.navbar-lg .navbar-unread {
+	top: 28px;
+}
+.navbar-lg .navbar-new {
+	top: 28px;
+}
+.navbar-lg .navbar-form {
+	padding-top: 20.5px; padding-bottom: 20.5px;
+}
+.navbar-lg .navbar-text {
+	padding-top: 26.5px; padding-bottom: 26.5px;
+}
+.navbar-lg .navbar-btn {
+	margin-top: 18px; margin-bottom: 17px;
+}
+.navbar-lg .btn-sm.navbar-btn {
+	margin-top: 20px; margin-bottom: 20px;
+}
+.navbar-lg .btn-xs.navbar-btn {
+	margin-top: 25px; margin-bottom: 25px;
+}
+.pix_nav_1 {
+	margin: 0px !important; padding: 0px !important; top: 0px; line-height: 30px; position: relative;
+}
+.pix_nav_1 ul li {
+	margin: 0px !important;
+}
+.pix_nav_1 ul li a {
+	color: rgba(0, 0, 0, 0.5); -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -ms-transition: all 0.2s linear; -o-transition: all 0.2s linear;
+}
+.pix_nav_1 ul li a:hover {
+	opacity: 0.6;
+}
+.header_nav_1 {
+	padding: 0px !important; box-shadow: none;
+}
+.pix_nav_logo {
+	padding-top: 22px;
+}
+.navbar-center {
+	text-align: center; margin-right: auto; margin-left: auto; float: none; position: relative;
+}
+.navbar-center li {
+	text-align: center; float: none; display: inline-block;
+}

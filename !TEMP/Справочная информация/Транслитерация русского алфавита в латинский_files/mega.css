@@ -1,0 +1,228 @@
+.ja-megamenu {
+	margin: 0px; padding: 0px;
+}
+.ja-megamenu a.over {
+	
+}
+.ja-megamenu a.active {
+	
+}
+ul.megamenu {
+	margin: 10px;
+}
+ul.megamenu li {
+	overflow: visible;
+}
+.ja-megamenu ul.level0 {
+	margin: 0px; padding: 0px;
+}
+.ja-megamenu ul.level0 li.mega {
+	background: none; margin: 0px; padding: 0px; float: left; display: block;
+}
+.ja-megamenu ul.level0 li.mega a.mega {
+	margin: 0px; padding: 8px 15px; line-height: normal; font-weight: bold; text-decoration: none; display: block;
+}
+.ja-megamenu ul.level0 li.mega .has-image {
+	background-position: left top; padding-left: 25px; display: block; cursor: pointer; background-repeat: no-repeat;
+}
+.ja-megamenu ul.level0 li.mega span.menu-title {
+	display: block;
+}
+.ja-megamenu ul.level0 li.mega span.menu-desc {
+	font-size: 92%; font-weight: normal; display: block;
+}
+.ja-megamenu ul.level0 li.mega a img {
+	padding-right: 5px; float: left;
+}
+.ja-megamenu ul.level0 li.over {
+	
+}
+ul.level0 li.haschild-over {
+	
+}
+.ja-megamenu ul.level0 li.haschild a.mega span.menu-title {
+	background: url("../../images/jat3_plugin/arrow3.png") no-repeat left; padding-left: 12px; white-space: nowrap;
+}
+.ja-megamenu ul.level0 li.haschild-over a.mega span.menu-title {
+	background: url("../../images/jat3_plugin/arrow3.png") no-repeat left; padding-left: 12px; white-space: nowrap;
+}
+.ja-megamenu ul.level0 li.haschild a.mega span.menu-desc {
+	padding-left: 12px;
+}
+.ja-megamenu ul.level0 li.haschild-over a.mega span.menu-desc {
+	padding-left: 12px;
+}
+.ja-megamenu ul.level0 li.active {
+	
+}
+.ja-megamenu li.mega .childcontent {
+	height: auto; display: block; position: absolute;
+}
+.ja-megamenu li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.haschild-over li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.mega li.haschild-over li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.mega li.mega li.haschild-over li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.mega li.mega li.mega li.haschild-over li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.haschild-over li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega li.mega li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega li.mega li.mega li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.mega li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.haschild-over li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.mega li.haschild-over li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.mega li.mega li.haschild-over li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.mega li.mega li.mega li.haschild-over li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.haschild-over li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.haschild-over .right {
+	right: 0px;
+}
+.ja-megamenu li.mega li.haschild-over .right {
+	right: 12em;
+}
+.ja-megamenu li.mega li.mega li.haschild-over .right {
+	right: 12em;
+}
+.ja-megamenu li.mega li.mega li.mega li.haschild-over .right {
+	right: 12em;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.haschild-over .right {
+	right: 12em;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.mega li.haschild-over .right {
+	right: 12em;
+}
+.ja-megamenu ul.level1 li.mega {
+	float: none;
+}
+.ja-megamenu ul.level1 .childcontent {
+	margin: -2em 0px 0px;
+}
+.ja-megamenu .megacol {
+	float: left;
+}
+.ja-megamenu ul.level1 li.mega {
+	
+}
+.ja-megamenu ul.level1 li.first {
+	
+}
+.ja-megamenu ul.level1 li.mega a.mega {
+	background: none; padding: 8px 5px; border: 0px currentColor; border-image: none; font-weight: normal;
+}
+.ja-megamenu ul.level1 li.mega a.mega span.menu-title {
+	background: none; padding: 0px;
+}
+.ja-megamenu ul.level1 li.haschild {
+	background-position: 95%; padding: 0px; background-image: url("../../images/jat3_plugin/arrow.png"); background-repeat: no-repeat;
+}
+.ja-megamenu ul.level1 li.haschild-over {
+	background-position: 95%; padding: 0px; background-image: url("../../images/jat3_plugin/arrow.png"); background-repeat: no-repeat;
+}
+.ja-megamenu ul.level1 li.over {
+	
+}
+ul.level1 li.haschild-over {
+	
+}
+.ja-megamenu ul.level1 li.group {
+	background: none;
+}
+.ja-megamenu .childcontent {
+	z-index: 999;
+}
+.ja-megamenu .childcontent-inner {
+	background: rgb(255, 255, 255);
+}
+.ja-megamenu .level1 .childcontent-inner {
+	
+}
+.ja-megamenu .childcontent .ja-moduletable {
+	margin: 10px 0px; padding: 0px; line-height: 1.5;
+}
+.ja-megamenu .childcontent .ja-moduletable h3 {
+	background: none; text-transform: none; text-indent: 5px; margin-right: 10px; margin-left: 10px;
+}
+.ja-megamenu .childcontent .ja-moduletable .ja-box-ct {
+	padding: 0px 5px;
+}
+.ja-megamenu .childcontent .ja-moduletable a {
+	text-decoration: none;
+}
+.ja-megamenu .childcontent .ja-moduletable a:hover {
+	text-decoration: none;
+}
+.ja-megamenu .childcontent .ja-moduletable a:focus {
+	text-decoration: none;
+}
+.ja-megamenu .childcontent .ja-moduletable a:active {
+	text-decoration: none;
+}
+.ja-megamenu .childcontent .ja-moduletable ul:first-child {
+	margin-top: 0px !important;
+}
+.ja-megamenu .childcontent .ja-moduletable li {
+	margin-bottom: 5px;
+}
+.ja-megamenu .group {
+	
+}
+.ja-megamenu .group-title {
+	overflow: hidden;
+}
+.ja-megamenu .group-title .menu-title {
+	
+}
+.ja-megamenu .group-title .menu-desc {
+	padding-left: 0px !important;
+}
+.ja-megamenu .group-content .ja-moduletable {
+	margin: 10px;
+}
+.ja-megamenu .group-content ul.megamenu {
+	margin: 10px;
+}
+.ja-megamenu .childcontent ul.megamenu .ja-moduletable {
+	padding: 0px;
+}
+.ja-megamenu .childcontent ul.megamenu .ja-moduletable h3 {
+	margin-right: 0px; margin-left: 0px;
+}

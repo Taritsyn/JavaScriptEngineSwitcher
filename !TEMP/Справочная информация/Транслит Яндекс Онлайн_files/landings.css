@@ -1,0 +1,3372 @@
+iframe.c1 {
+	border: currentColor; width: 50px; height: 20px; overflow: hidden;
+}
+.videoWrapper {
+	height: 0px; padding-top: 25px; padding-bottom: 56.25%; position: relative;
+}
+.videoWrapper > iframe {
+	left: 0px; top: 0px; width: 100% !important; height: 100% !important; position: absolute;
+}
+.videoWrapper > .frameCover {
+	background: none; left: 0px; top: 0px; width: 100%; height: 100%; position: absolute;
+}
+.section_pointer {
+	display: none;
+}
+.social_button {
+	margin-left: 7px; float: right; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.social_button:hover {
+	opacity: 0.7;
+}
+.pixfort_normal_1 .header_style {
+	padding-top: 22px; padding-bottom: 15px; box-shadow: inset 0px -3px rgba(0,0,0,0.15); background-color: rgb(255, 255, 255);
+}
+.pixfort_normal_1 .fright {
+	float: right;
+}
+.pixfort_normal_1 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right;
+}
+.pixfort_normal_1 .slow_fade {
+	-webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_normal_1 .social_button {
+	margin-left: 7px; float: right; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_normal_1 .social_button:hover {
+	opacity: 0.7;
+}
+.pixfort_normal_1 .yt_button {
+	background: url("../images/social_icons/yt.png"); width: 32px; height: 32px; margin-left: 7px; float: right;
+}
+.pixfort_normal_1 .yt_button:hover {
+	background: url("../images/social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_normal_1 .twitter_button {
+	background: url("../images/social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 7px; float: right;
+}
+.pixfort_normal_1 .twitter_button:hover {
+	background: url("../images/social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_normal_1 .facebook_button {
+	background: url("../images/social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_normal_1 .facebook_button:hover {
+	background: url("../images/social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_normal_1 .page_style {
+	background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_normal_1 .context_style {
+	text-align: center;
+}
+.pixfort_normal_1 .title_style {
+	color: rgb(255, 255, 255); line-height: 100%; padding-top: 160px; font-size: 48px; font-weight: 700;
+}
+.pixfort_normal_1 .subtitle_style {
+	padding: 30px 0px; color: rgb(211, 211, 211); line-height: 150%; font-size: 18px; margin-right: auto; margin-left: auto; max-width: 640px;
+}
+.pixfort_normal_1 .email_subscribe {
+	background: rgba(0, 0, 0, 0.7); padding: 0px 15px; border-radius: 5px; height: 70px; text-align: left; display: inline-block; max-width: 470px;
+}
+.pixfort_normal_1 #contact_form input {
+	background: rgb(255, 255, 255); padding: 8px 10px; border-radius: 3px; top: 15px; width: 270px; color: rgb(0, 0, 0); font-size: 16px; font-weight: 400; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .subscribe_btn {
+	background: rgb(0, 174, 239); padding: 9px 14px; border-radius: 3px; border: currentColor; top: 15px; color: rgb(255, 255, 255); font-size: 14px; font-weight: 400; text-decoration: none; margin-left: 10px; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .subscribe_btn:hover {
+	background: rgb(0, 156, 227); border: currentColor; color: rgb(255, 255, 255);
+}
+.pixfort_normal_1 .note_st {
+	text-align: center; color: rgb(173, 216, 230); padding-top: 20px; padding-bottom: 80px; font-size: 13px;
+}
+.pixfort_normal_1 .coming_st {
+	width: 60%; text-align: center; margin-left: 20%; position: relative;
+}
+.pixfort_normal_1 .tit_style {
+	text-align: center; color: rgb(0, 0, 0); padding-top: 60px; font-size: 26px; font-weight: 700;
+}
+.pixfort_normal_1 .txt_style {
+	text-align: center; color: rgb(169, 169, 169); font-size: 18px;
+}
+.pixfort_normal_1 .video_style {
+	padding-top: 25px; padding-bottom: 55px;
+}
+.pixfort_normal_1 .adv_st {
+	background: rgb(247, 247, 247); padding: 30px 0px; box-shadow: inset 0px -3px #ddd;
+}
+.pixfort_normal_1 .onethird_style {
+	display: inline-block; position: relative;
+}
+.pixfort_normal_1 .circle {
+	padding: 15px; border-radius: 100%; border: 2px solid rgb(0, 174, 239); line-height: 0px; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .onethird_style:hover .circle {
+	border: 2px solid rgb(0, 174, 239);
+}
+.pixfort_normal_1 .comment_style {
+	width: 64%; font-size: 20px; margin-left: 10px; display: inline-block; position: relative; cursor: default;
+}
+.pixfort_normal_1 .c1_style {
+	color: rgb(34, 34, 34); font-weight: 700;
+}
+.pixfort_normal_1 .c2_style {
+	color: rgb(105, 105, 105); line-height: 30px; font-weight: 400;
+}
+.pixfort_normal_1 .gtext_style {
+	width: 95%; padding-top: 70px; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .t1_style {
+	color: rgb(0, 0, 0); line-height: 100%; font-size: 28px; font-weight: 500;
+}
+.pixfort_normal_1 .t2_style {
+	color: rgb(85, 85, 85); padding-bottom: 10px; font-size: 20px;
+}
+.pixfort_normal_1 .t3_style {
+	color: rgb(169, 169, 169); line-height: 25px; font-size: 16px;
+}
+.pixfort_normal_1 .img_style {
+	text-align: center; padding-top: 25px; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .logos_style {
+	background: rgb(255, 255, 255); padding: 30px 0px; text-align: center;
+}
+.pixfort_normal_1 .titres {
+	padding-bottom: 30px;
+}
+.pixfort_normal_1 .L1_style {
+	color: rgb(105, 105, 105); line-height: 100%; font-size: 24px; font-weight: 600;
+}
+.pixfort_normal_1 .L2_style {
+	color: rgb(169, 169, 169); line-height: 30px; padding-bottom: 50px; font-size: 16px;
+}
+.pixfort_normal_1 .logos_st {
+	display: inline-block; position: relative;
+}
+.pixfort_normal_1 .pad_bot {
+	padding-bottom: 30px;
+}
+.pixfort_normal_1 .envato_unbounce {
+	background: rgb(238, 238, 238); padding: 40px 0px; text-align: center; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid;
+}
+.pixfort_normal_1 .stbox {
+	display: inline-block; position: relative;
+}
+.pixfort_normal_1 .box_1 {
+	background: rgb(245, 245, 245); border-radius: 5px; width: 100%; margin-bottom: -5px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .box_2 {
+	background: rgb(245, 245, 245); border-radius: 5px; width: 100%; margin-bottom: -5px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .b_style img {
+	background: rgb(234, 219, 220); width: 14%; height: auto; margin-top: 25px; margin-right: 3%; margin-left: 3%; float: left; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .logo_style {
+	border-radius: 100%;
+}
+.pixfort_normal_1 .txt_style {
+	background: rgb(255, 255, 255); width: 74%; text-align: left; color: gray; padding-top: 20px; padding-right: 3%; padding-left: 3%; font-size: 14px; float: right; display: inline-block; position: relative; border-top-right-radius: 5px; border-bottom-right-radius: 5px;
+}
+.pixfort_normal_1 .txt {
+	padding-right: 10px;
+}
+.pixfort_normal_1 .stars_span {
+	top: -8px; position: relative;
+}
+.pixfort_normal_1 .env_st {
+	top: -5px; color: rgb(89, 163, 252); position: relative;
+}
+.pixfort_normal_1 .center_txt {
+	text-align: center; padding-bottom: 20px;
+}
+.pixfort_normal_1 .left_text_style {
+	text-align: center; padding-top: 80px; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .left_style {
+	width: 80%; text-align: center; color: rgb(169, 169, 169); padding-bottom: 20px; font-size: 16px; margin-left: 10%;
+}
+.pixfort_normal_1 .button_style {
+	text-decoration: none;
+}
+.pixfort_normal_1 .submit_st {
+	background: rgb(0, 174, 239); padding: 15px 5px; border-radius: 3px; border: currentColor; width: 200px; color: rgb(255, 255, 255); font-size: 16px; font-weight: 700; text-decoration: none; margin-right: auto; margin-left: auto; position: relative;
+}
+.pixfort_normal_1 .submit_st:hover {
+	background: rgb(0, 156, 227);
+}
+.pixfort_normal_1 .foot_st {
+	background: rgb(242, 242, 242); text-align: center;
+}
+.pixfort_normal_1 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .pixfort_st {
+	text-align: left; color: rgb(246, 129, 33); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_normal_1 .soc_icons {
+	background: rgba(0, 0, 0, 0.05); border-radius: 3px; padding-top: 10px; padding-bottom: 5px; padding-left: 5px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_1 {
+	background: rgb(0, 174, 239); border-radius: 2px; box-shadow: inset 0px -5px 0px 0px rgba(0,0,0,0.3) !important;
+}
+.confirm_page_1 .conf_img {
+	padding: 25px; border-radius: 100%; border: 2px solid rgb(255, 255, 255); line-height: 50px; margin-top: 15px; margin-bottom: 5px; display: inline-block;
+}
+.confirm_page_1 .conf_img {
+	width: 50px; height: 50px;
+}
+.pixfort_normal_1 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; font-size: 26px; font-weight: 600; position: relative; max-width: 100%;
+}
+.pixfort_normal_1 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.5); padding-top: 10px; padding-bottom: 30px; font-size: 16px; font-weight: 700;
+}
+.pixfort_normal_1 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_normal_1 .confirm_social {
+	text-align: center;
+}
+.pixfort_normal_1 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.2); padding: 10px 2px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_normal_1 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_normal_1 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_normal_1 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_corporate_2 .slow_fade {
+	-webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_corporate_2 .header_area {
+	padding-top: 35px; position: absolute; z-index: 2;
+}
+.pixfort_corporate_2 .yt_button {
+	background: url("../images/social_icons/yt.png"); width: 32px; height: 32px; margin-left: 7px; float: right;
+}
+.pixfort_corporate_2 .yt_button:hover {
+	background: url("../images/social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_corporate_2 .twitter_button {
+	background: url("../images/social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 7px; float: right;
+}
+.pixfort_corporate_2 .twitter_button:hover {
+	background: url("../images/social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_corporate_2 .facebook_button {
+	background: url("../images/social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_corporate_2 .facebook_button:hover {
+	background: url("../images/social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_corporate_2 .social_button {
+	margin-left: 7px; float: right; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_corporate_2 .social_button:hover {
+	opacity: 0.7;
+}
+.pixfort_corporate_2 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right; display: inline-block;
+}
+.pixfort_corporate_2 .page_style {
+	background: url("../images/2_corporate/bg.png") fixed no-repeat center / cover rgb(65, 74, 82); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_corporate_2 .context_style {
+	text-align: center;
+}
+.pixfort_corporate_2 .title_style {
+	color: rgb(255, 255, 255); line-height: 100%; padding-top: 185px; font-size: 44px; font-weight: 700;
+}
+.pixfort_corporate_2 .subtitle_style {
+	color: rgb(211, 211, 211); line-height: 30px; padding-top: 15px; padding-bottom: 20px; font-size: 18px; margin-left: 15%; max-width: 70%;
+}
+.pixfort_corporate_2 .contact_style {
+	text-align: center; margin-top: 15px; margin-bottom: 15px;
+}
+.pixfort_corporate_2 .contact_btn a {
+	background: rgb(89, 163, 252); padding: 13px 44px; border-radius: 3px; text-align: center; color: rgb(255, 255, 255); font-size: 18px; font-weight: 400; text-decoration: none; position: relative;
+}
+.pixfort_corporate_2 .contact_btn a:hover {
+	background: rgb(68, 138, 239); border-radius: 3px; text-align: center; color: rgb(255, 255, 255); font-size: 18px; font-weight: 400; position: relative;
+}
+.pixfort_corporate_2 .note_st {
+	text-align: center; color: rgb(173, 216, 230); padding-bottom: 200px; font-size: 13px;
+}
+.pixfort_corporate_2 .adv_st {
+	background: 0% 0% / cover rgb(239, 243, 246); padding: 45px 0px; text-align: center; border-bottom-color: rgb(223, 230, 236); border-bottom-width: 3px; border-bottom-style: solid; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_corporate_2 .head_style {
+	padding: 20px 0px; color: gray; font-size: 22px; font-weight: 700;
+}
+.pixfort_corporate_2 .c_style {
+	color: rgb(154, 161, 169); line-height: 150%; font-size: 14px; font-weight: 400;
+}
+.pixfort_corporate_2 .amazing_style {
+	background: 0% 0% / cover rgb(255, 255, 255); text-align: center; padding-bottom: 60px; position: relative; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_corporate_2 .gstyle {
+	width: 75%; margin-left: 13%; position: relative;
+}
+.pixfort_corporate_2 .t1_style {
+	text-align: center; color: rgb(51, 51, 51); line-height: 100%; padding-top: 50px; font-size: 28px; font-weight: 700;
+}
+.pixfort_corporate_2 .t2_style {
+	padding: 15px 0px; text-align: center; color: gray; font-size: 20px;
+}
+.pixfort_corporate_2 .t3_style {
+	text-align: center; color: rgb(169, 169, 169); line-height: 150%; padding-bottom: 50px; font-size: 16px;
+}
+.pixfort_corporate_2 .pub_st {
+	text-align: center; max-width: 87%;
+}
+.pixfort_corporate_2 .adv_style {
+	background: 0% 0% / cover rgb(239, 243, 246); padding-bottom: 70px; border-bottom-color: rgb(223, 230, 236); border-bottom-width: 3px; border-bottom-style: solid; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_corporate_2 .L1_style {
+	text-align: center; color: rgb(105, 105, 105); padding-top: 40px; font-size: 20px; font-weight: 700;
+}
+.pixfort_corporate_2 .L2_style {
+	text-align: center; color: rgb(169, 169, 169); padding-top: 10px; padding-bottom: 30px; font-size: 16px; font-weight: 400;
+}
+.pixfort_corporate_2 .just_st {
+	text-align: center;
+}
+.pixfort_corporate_2 .h_style {
+	top: 0px; color: rgb(89, 163, 252); font-size: 36px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 .cc_style {
+	width: 55%; text-align: left; color: gray; padding-left: 10px; font-size: 16px; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 .th1_style {
+	background: rgb(242, 242, 242); border-radius: 3px; width: 91%; overflow: hidden; margin-right: auto; margin-left: auto; border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-right-width: 1px; border-bottom-width: 1px; border-right-style: solid; border-bottom-style: solid;
+}
+.pixfort_corporate_2 .a_bloc1_style {
+	background: rgb(227, 227, 227); border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.pixfort_corporate_2 .a1_style {
+	text-align: center; color: gray; padding-top: 30px; font-size: 36px; font-weight: 700;
+}
+.pixfort_corporate_2 .a2_style {
+	text-align: center; color: gray; padding-bottom: 15px; font-size: 18px;
+}
+.pixfort_corporate_2 .a3_style {
+	text-align: center; color: gray; font-size: 16px;
+}
+.pixfort_corporate_2 .a3_style sup {
+	top: -10px; position: relative;
+}
+.pixfort_corporate_2 .fsc1 {
+	color: rgb(105, 105, 105); font-size: 36px;
+}
+.pixfort_corporate_2 .a_bloc3_style {
+	background: rgb(227, 227, 227); border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid; position: relative;
+}
+.pixfort_corporate_2 .subscribe_st {
+	padding: 20px 0px; height: 42px; text-align: center;
+}
+.pixfort_corporate_2 .subscribe_a a {
+	background: rgb(170, 170, 170); padding: 12px 30px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 700; text-decoration: none; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 .subscribe_a a:hover {
+	background: rgb(153, 153, 153); border: currentColor; color: rgb(255, 255, 255);
+}
+.pixfort_corporate_2 .th2_style {
+	background: rgb(89, 163, 252); border-radius: 3px; width: 91%; overflow: hidden; margin-right: auto; margin-left: auto; border-right-color: rgb(48, 126, 220); border-bottom-color: rgb(48, 126, 220); border-right-width: 1px; border-bottom-width: 1px; border-right-style: solid; border-bottom-style: solid;
+}
+.pixfort_corporate_2 .b_bloc1_style {
+	background: rgb(59, 137, 231); border-bottom-color: rgb(48, 126, 220); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.pixfort_corporate_2 .b1_style {
+	text-align: center; color: rgb(255, 255, 255); padding-top: 30px; font-size: 36px; font-weight: 700;
+}
+.pixfort_corporate_2 .b2_style {
+	text-align: center; color: rgb(211, 211, 211); padding-bottom: 15px; font-size: 18px;
+}
+.pixfort_corporate_2 .b3_style {
+	text-align: center; color: rgb(211, 211, 211); font-size: 16px;
+}
+.pixfort_corporate_2 .b3_style sup {
+	top: -10px; position: relative;
+}
+.pixfort_corporate_2 .fsc2 {
+	color: rgb(255, 255, 255); font-size: 36px;
+}
+.pixfort_corporate_2 .b_bloc3_style {
+	background: rgb(59, 137, 231); border-top-color: rgb(48, 126, 220); border-top-width: 1px; border-top-style: solid; position: relative;
+}
+.pixfort_corporate_2 .subscribe_b a {
+	background: rgb(89, 163, 252); padding: 12px 30px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 700; text-decoration: none; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 .subscribe_b a:hover {
+	background: rgb(68, 138, 239); color: rgb(255, 255, 255);
+}
+.pixfort_corporate_2 .logos_style {
+	background: rgb(239, 243, 246); padding: 40px 0px; text-align: center; border-top-color: rgb(223, 230, 236); border-top-width: 3px; border-top-style: solid;
+}
+.pixfort_corporate_2 .LL1_style {
+	text-align: center; color: rgb(105, 105, 105); font-size: 20px; font-weight: 700;
+}
+.pixfort_corporate_2 .LL2_style {
+	text-align: center; color: rgb(169, 169, 169); padding-top: 8px; padding-bottom: 25px; font-size: 16px; font-weight: 400;
+}
+.pixfort_corporate_2 .logos {
+	text-align: center; max-width: 86%;
+}
+.pixfort_corporate_2 .awesome_style {
+	background: rgb(89, 163, 252); text-align: center;
+}
+.pixfort_corporate_2 .h_awesome {
+	text-align: center; color: rgb(255, 255, 255); padding-top: 15px; font-size: 20px; font-weight: 700;
+}
+.pixfort_corporate_2 .txt_awesome {
+	padding: 10px 0px; width: 64%; text-align: center; color: rgb(255, 255, 255); line-height: 150%; font-size: 24px; font-style: italic; margin-left: 18%;
+}
+.pixfort_corporate_2 .via_st {
+	text-align: center; color: rgb(238, 238, 238); padding-bottom: 40px; font-size: 14px;
+}
+.pixfort_corporate_2 .top_3 {
+	top: -3px; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 .contact_section {
+	background: url("../images/2_corporate/map.png") fixed no-repeat 0% 0% / cover rgb(255, 255, 255); padding-bottom: 50px; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_corporate_2 .contact_zone {
+	text-align: left; margin-left: 20px;
+}
+.pixfort_corporate_2 .headtext_style {
+	color: rgb(255, 255, 255); padding-top: 60px; padding-bottom: 20px; font-size: 28px; font-weight: 700;
+}
+.pixfort_corporate_2 .subtext_style {
+	color: gray; padding-bottom: 20px; font-size: 14px;
+}
+.pixfort_corporate_2 .plan iframe {
+	width: 100%; height: 380px; text-align: left; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 #contact_form {
+	position: relative;
+}
+.pixfort_corporate_2 #contact_form input {
+	background: rgb(238, 238, 238); padding: 10px 0px 10px 10px; border-radius: 3px; width: 100% !important; color: rgb(68, 68, 68); font-size: 16px; font-weight: 400; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_corporate_2 #contact_form textarea {
+	background: rgb(238, 238, 238); padding: 10px 0px 10px 10px; border-radius: 3px; width: 100% !important; color: rgb(68, 68, 68); font-size: 16px; font-weight: 400; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_corporate_2 .contact_st {
+	width: 100% !important; float: left;
+}
+.pixfort_corporate_2 .text_area {
+	margin-bottom: 0px;
+}
+.pixfort_corporate_2 .submit_btn_landing {
+	background: rgb(89, 163, 252); border-width: medium medium 1px; border-style: none none solid; border-color: currentColor currentColor rgb(51, 51, 51); padding: 10px 0px; border-radius: 5px; width: 100% !important; text-align: center; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; text-decoration: none; margin-top: 15px; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 .submit_btn_landing:hover {
+	background: rgb(68, 138, 239); color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; text-decoration: none; border-bottom-color: rgb(51, 51, 51); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.pixfort_corporate_2 .foot_st {
+	background: rgb(242, 242, 242); text-align: center;
+}
+.pixfort_corporate_2 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 .pixfort_st {
+	text-align: left; color: rgb(17, 177, 194); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 .socbuttoms {
+	width: 100%; height: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_corporate_2 .soc_icons {
+	background: rgba(0, 0, 0, 0.1); padding: 10px 5px 5px; border-radius: 3px; margin-top: 15px; margin-bottom: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_2 {
+	background: url("../images/2_corporate/bg2.png") no-repeat center / cover; border-radius: 2px; width: 700px; max-width: 100%; box-shadow: inset 0px -5px 0px 0px rgba(0,0,0,0.3) !important; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.confirm_page_2 .conf_img {
+	padding: 25px; border-radius: 100%; border: 2px solid rgb(255, 255, 255); line-height: 50px; margin-top: 15px; margin-bottom: 5px; display: inline-block;
+}
+.confirm_page_2 .conf_img {
+	width: 50px; height: 50px;
+}
+.pixfort_corporate_2 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; padding-top: 40px; font-size: 26px; font-weight: 600; margin-right: auto; margin-left: auto; position: relative; max-width: 100%;
+}
+.pixfort_corporate_2 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.5); padding-top: 10px; padding-bottom: 30px; font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_corporate_2 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_corporate_2 .confirm_social {
+	text-align: center;
+}
+.pixfort_corporate_2 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.2); padding: 10px 6px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 170px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_corporate_2 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_corporate_2 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_corporate_2 .subscription-success {
+	border: 1px solid rgb(185, 236, 206) !important; font-size: 14px !important;
+}
+.pixfort_corporate_2 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_corporate_2 .subscription-error {
+	
+}
+.pixfort_corporate_2 .subscription-error {
+	background: rgb(255, 223, 223) !important; padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); color: rgb(255, 255, 255); font-weight: 400; margin-bottom: 10px; display: none; position: relative;
+}
+.pixfort_app_3 .slow_fade {
+	-webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_app_3 .header_style {
+	background: url("../images/3_app/bg.png") fixed no-repeat center / cover rgb(252, 247, 231); padding-top: 30px; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_app_3 .logo_st {
+	float: left;
+}
+.pixfort_app_3 .soc_st {
+	margin-right: 7px; float: right;
+}
+.pixfort_app_3 .left_part {
+	display: inline-block; position: relative;
+}
+.pixfort_app_3 .right_part {
+	display: inline-block; position: relative;
+}
+.pixfort_app_3 .social_span {
+	border-radius: 3px; padding-top: 5px; display: inline-block; position: relative;
+}
+.pixfort_app_3 .htext_style {
+	top: -5px; color: rgb(211, 211, 211); padding-right: 18px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_app_3 .hbloc_style {
+	text-align: left; padding-top: 100px; float: left; display: inline-block; max-width: 432px;
+}
+.pixfort_app_3 .title_style {
+	color: rgb(255, 255, 255); line-height: 100%; padding-top: 30px; font-size: 40px; font-weight: 700;
+}
+.pixfort_app_3 .txt_title {
+	color: rgb(250, 235, 215); line-height: 30px; padding-bottom: 10px; font-size: 18px;
+}
+.pixfort_app_3 .contact_btn a {
+	background: rgba(246, 129, 33, 0); padding: 12px 50px; border-radius: 3px; border: 3px solid rgb(255, 255, 255); color: rgb(255, 255, 255); font-size: 18px; font-weight: 700; text-decoration: none; display: inline-block; position: relative;
+}
+.pixfort_app_3 .contact_btn a:hover {
+	background: rgba(255, 255, 255, 1); border-radius: 3px; border: 3px solid rgb(255, 255, 255); color: rgb(255, 136, 51); font-size: 18px; font-weight: 700;
+}
+.pixfort_app_3 .log_st {
+	padding-top: 15px; padding-left: 30px;
+}
+.pixfort_app_3 .log_st:hover {
+	opacity: 0.5;
+}
+.pixfort_app_3 .phones_style {
+	margin-top: 110px; margin-right: 7px; display: inline-block; position: relative;
+}
+.pixfort_app_3 .phones {
+	width: 100%; height: 392px; vertical-align: bottom;
+}
+.pixfort_app_3 .cal_style {
+	background: 0% 0% / cover rgb(252, 247, 231); box-shadow: inset 0px -3px #eae2c8;
+}
+.pixfort_app_3 .pad_top {
+	padding-top: 20px;
+}
+.pixfort_app_3 .pad_down {
+	padding-bottom: 50px;
+}
+.pixfort_app_3 .bloc_st {
+	display: inline-block;
+}
+.pixfort_app_3 .ctext_style {
+	top: 30px; padding-left: 15px; display: inline-block; position: relative;
+}
+.pixfort_app_3 .calc_st {
+	color: rgb(0, 0, 0); font-size: 22px;
+}
+.pixfort_app_3 .calc_text {
+	top: -10px; color: rgb(105, 105, 105); line-height: 21px; font-size: 13px; position: relative; max-width: 225px;
+}
+.pixfort_app_3 .amazing_style {
+	background: 0% 0% / cover rgb(255, 255, 255); padding: 100px 0px;
+}
+.pixfort_app_3 .amazing {
+	text-align: left;
+}
+.pixfort_app_3 .amazing_img4_st {
+	width: 100%; height: 440px; display: inline-block; position: relative;
+}
+.pixfort_app_3 .img_st {
+	display: inline-block;
+}
+.pixfort_app_3 .img_st img {
+	text-align: center; display: inline-block; position: relative; max-width: 100%;
+}
+.pixfort_app_3 .amazing_text_style {
+	width: 100%; text-align: left; display: inline-block;
+}
+.pixfort_app_3 .amaz_tit {
+	color: rgb(51, 51, 51); line-height: 100%; padding-top: 10px; font-size: 28px; font-weight: 700;
+}
+.pixfort_app_3 .amaz_subtit {
+	color: gray; font-size: 20px;
+}
+.pixfort_app_3 .amaz_text {
+	color: rgb(169, 169, 169); line-height: 200%; font-size: 16px;
+}
+.pixfort_app_3 .suite {
+	top: -10px; text-align: left; display: inline-block; position: relative;
+}
+.pixfort_app_3 .img2_st {
+	padding-left: 25px; display: inline-block;
+}
+.pixfort_app_3 .img3_st {
+	display: inline-block;
+}
+.pixfort_app_3 .text2_style {
+	padding: 10px; top: -10px; display: inline-block; position: relative; max-width: 250px;
+}
+.pixfort_app_3 .tit2 {
+	color: rgb(51, 51, 51); font-size: 20px;
+}
+.pixfort_app_3 .txt_st {
+	color: gray; font-size: 14px;
+}
+.pixfort_app_3 .Designs_style {
+	background: 0% 0% / cover rgb(240, 241, 245); padding: 60px 0px;
+}
+.pixfort_app_3 .Designs_text_style {
+	padding-left: 25px; display: inline-block; max-width: 440px;
+}
+.pixfort_app_3 .colorful {
+	text-align: left;
+}
+.pixfort_app_3 .colorful_img4_st img {
+	width: 100%; height: 510px; display: inline-block; position: relative;
+}
+.pixfort_app_3 .services_style {
+	background: 0% 0% / cover rgb(255, 255, 255); padding: 70px 0px;
+}
+.pixfort_app_3 .gstyle {
+	width: 75%; margin-left: 13%; position: relative;
+}
+.pixfort_app_3 .t1_style {
+	text-align: center; color: rgb(51, 51, 51); line-height: 100%; padding-top: 50px; font-size: 28px; font-weight: 700;
+}
+.pixfort_app_3 .t2_style {
+	padding: 15px 0px; text-align: center; color: gray; font-size: 20px;
+}
+.pixfort_app_3 .t3_style {
+	text-align: center; color: rgb(169, 169, 169); line-height: 150%; padding-bottom: 50px; font-size: 16px;
+}
+.pixfort_app_3 .th1_style {
+	background: rgb(242, 242, 242); border-radius: 3px; width: 91%; overflow: hidden; margin-right: auto; margin-left: auto; border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-right-width: 1px; border-bottom-width: 1px; border-right-style: solid; border-bottom-style: solid;
+}
+.pixfort_app_3 .a_bloc1_style {
+	background: rgb(227, 227, 227); border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.pixfort_app_3 .a1_style {
+	text-align: center; color: gray; padding-top: 30px; font-size: 36px; font-weight: 700;
+}
+.pixfort_app_3 .a2_style {
+	text-align: center; color: gray; padding-bottom: 15px; font-size: 18px;
+}
+.pixfort_app_3 .a3_style {
+	text-align: center; color: gray; font-size: 16px;
+}
+.pixfort_app_3 .fsc1 {
+	color: rgb(105, 105, 105); font-size: 36px;
+}
+.pixfort_app_3 .subscribe_st {
+	padding: 20px 0px; height: 42px; text-align: center;
+}
+.pixfort_app_3 .subscribe_a a {
+	background: rgb(170, 170, 170); padding: 10px 35px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 700; text-decoration: none; display: inline-block; position: relative;
+}
+.pixfort_app_3 .subscribe_a a:hover {
+	background: rgb(153, 153, 153); border-radius: 3px; border: currentColor; color: rgb(255, 255, 255);
+}
+.pixfort_app_3 .a_bloc3_style {
+	background: rgb(227, 227, 227); border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid; position: relative;
+}
+.pixfort_app_3 .th2_style {
+	background: rgb(246, 129, 33); border-radius: 3px; width: 91%; overflow: hidden; margin-right: auto; margin-left: auto; border-right-color: rgb(223, 106, 10); border-bottom-color: rgb(223, 106, 10); border-right-width: 1px; border-bottom-width: 1px; border-right-style: solid; border-bottom-style: solid;
+}
+.pixfort_app_3 .b_bloc1_style {
+	background: rgb(223, 106, 10); border-bottom-color: rgb(223, 106, 10); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.pixfort_app_3 .b1_style {
+	text-align: center; color: rgb(255, 255, 255); padding-top: 30px; font-size: 36px; font-weight: 700;
+}
+.pixfort_app_3 .b2_style {
+	text-align: center; color: rgb(250, 235, 215); padding-bottom: 15px; font-size: 16px;
+}
+.pixfort_app_3 .b3_style {
+	text-align: center; color: rgb(250, 235, 215); font-size: 16px;
+}
+.pixfort_app_3 .b_bloc3_style {
+	background: rgb(223, 106, 10); border-top-color: rgb(223, 106, 10); border-top-width: 1px; border-top-style: solid; position: relative;
+}
+.pixfort_app_3 .fsc2 {
+	color: rgb(255, 255, 255); font-size: 36px;
+}
+.pixfort_app_3 .subscribe_b a {
+	background: rgb(246, 129, 33); padding: 10px 35px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 700; text-decoration: none; display: inline-block; position: relative;
+}
+.pixfort_app_3 .subscribe_b a:hover {
+	background: rgb(234, 109, 25); border-radius: 3px; border: currentColor; color: rgb(255, 255, 255);
+}
+.pixfort_app_3 .companies_style {
+	background: rgb(252, 247, 231); padding: 30px 0px; text-align: center;
+}
+.pixfort_app_3 .titres {
+	padding-bottom: 30px;
+}
+.pixfort_app_3 .gstyle {
+	position: relative; max-width: 745px;
+}
+.pixfort_app_3 .comp1_style {
+	text-align: center; color: rgb(105, 105, 105); font-size: 20px; font-weight: 700;
+}
+.pixfort_app_3 .comp2_style {
+	padding: 15px 0px; text-align: center; color: rgb(169, 169, 169); font-size: 16px;
+}
+.pixfort_app_3 .awesome_style {
+	background: rgb(246, 129, 33); text-align: center; padding-bottom: 40px;
+}
+.pixfort_app_3 .h_awesome {
+	text-align: center; color: rgb(255, 255, 255); padding-top: 15px; font-size: 20px;
+}
+.pixfort_app_3 .txt_awesome {
+	padding: 10px 0px; width: 64%; text-align: center; color: rgb(255, 255, 255); line-height: 150%; font-size: 24px; font-style: italic; margin-left: 18%;
+}
+.pixfort_app_3 .via_st {
+	top: -5px; text-align: center; color: rgb(238, 238, 238); font-size: 14px; position: relative;
+}
+.pixfort_app_3 .download_style {
+	background: url("../images/3_app/bg.png") fixed no-repeat center / cover rgb(255, 255, 255); padding: 30px 0px; text-align: center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_app_3 .h_download {
+	text-align: center; color: rgb(255, 255, 255); padding-top: 15px; font-size: 26px;
+}
+.pixfort_app_3 .txt_download {
+	color: rgb(255, 255, 255); line-height: 150%; font-size: 16px; margin-left: 30%; max-width: 40%;
+}
+.pixfort_app_3 .foot_st {
+	background: rgb(242, 242, 242); text-align: center;
+}
+.pixfort_app_3 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_app_3 .pixfort_st {
+	text-align: left; color: rgb(246, 129, 33); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_app_3 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_app_3 .socbuttos {
+	width: 100%; height: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_app_3 .soc_icons {
+	background: rgba(0, 0, 0, 0.1); padding: 10px 5px 5px; border-radius: 3px; margin-top: 15px; margin-bottom: 15px; float: right; display: inline-block; position: relative;
+}
+iframe.c1 {
+	border: currentColor; width: 50px; height: 20px; overflow: hidden;
+}
+.pixfort_real_estate_4 .slow_fade {
+	-webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_real_estate_4 .header_style {
+	background: rgb(255, 255, 255); padding-top: 25px; padding-bottom: 18px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid;
+}
+.pixfort_real_estate_4 .yt_button {
+	background: url("../images/Social_icons/yt.png"); width: 32px; height: 32px; margin-left: 7px; float: right;
+}
+.pixfort_real_estate_4 .yt_button:hover {
+	background: url("../images/Social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_real_estate_4 .twitter_button {
+	background: url("../images/Social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 7px; float: right;
+}
+.pixfort_real_estate_4 .twitter_button:hover {
+	background: url("../images/Social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_real_estate_4 .facebook_button {
+	background: url("../images/Social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_real_estate_4 .facebook_button:hover {
+	background: url("../images/Social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_real_estate_4 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right;
+}
+.pixfort_real_estate_4 .page_style {
+	background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_real_estate_4 .text_page {
+	text-align: center;
+}
+.pixfort_real_estate_4 .home_st {
+	padding: 60px 0px 40px;
+}
+.pixfort_real_estate_4 .start_style {
+	text-align: center; color: rgb(255, 255, 255); font-size: 48px; font-weight: 700;
+}
+.pixfort_real_estate_4 .txt_start {
+	text-align: center; color: rgb(211, 211, 211); line-height: 30px; font-size: 18px; margin-left: 14%; max-width: 72%;
+}
+.pixfort_real_estate_4 .gethouse_btn a {
+	background: rgb(138, 186, 86); padding: 15px 30px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; text-decoration: none; margin-bottom: 20px; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .gethouse_btn a:hover {
+	background: rgb(119, 177, 65); border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400;
+}
+.pixfort_real_estate_4 .note_st {
+	text-align: center; color: rgb(240, 255, 240); padding-bottom: 40px; font-size: 13px;
+}
+.pixfort_real_estate_4 .pad_top {
+	padding-top: 30px;
+}
+.pixfort_real_estate_4 .cal_style {
+	background: 0% 0% / cover rgb(243, 255, 230); box-shadow: inset 0px -3px #ddf2c7;
+}
+.pixfort_real_estate_4 .img_st {
+	display: inline-block;
+}
+.pixfort_real_estate_4 .ctext_style {
+	padding-bottom: 15px; padding-left: 15px; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .calc_st {
+	color: rgb(105, 105, 105); font-size: 16px; font-weight: 700;
+}
+.pixfort_real_estate_4 .calc_text {
+	top: -15px; color: rgb(169, 169, 169); font-size: 14px; position: relative; max-width: 192px;
+}
+.pixfort_real_estate_4 .Homes {
+	background: 0% 0% / cover rgb(255, 255, 255); padding-top: 50px;
+}
+.pixfort_real_estate_4 .title_homes {
+	text-align: center; color: rgb(0, 0, 0); font-size: 28px; font-weight: 700;
+}
+.pixfort_real_estate_4 .subtitle_homes {
+	text-align: center; color: rgb(169, 169, 169); line-height: 26px; padding-bottom: 15px; font-size: 16px; margin-left: 20%; max-width: 60%;
+}
+.pixfort_real_estate_4 .bloc_home {
+	background: rgb(243, 255, 230); border-radius: 3px; width: 100%; text-align: left; overflow: hidden; margin-bottom: 30px; border-bottom-color: rgb(221, 242, 199); border-bottom-width: 3px; border-bottom-style: solid; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .Home_photo {
+	width: 200px; height: 200px; float: left; display: inline-block;
+}
+.pixfort_real_estate_4 .Home_info {
+	width: 56%; text-align: left; padding-left: 4%; display: inline-block; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_real_estate_4 .tit_info {
+	color: rgb(105, 105, 105); line-height: 30%; padding-top: 30px; font-size: 18px; font-weight: 700;
+}
+.pixfort_real_estate_4 .txt_info {
+	color: rgb(169, 169, 169); font-size: 14px;
+}
+.pixfort_real_estate_4 .info1 {
+	line-height: 200%; font-size: 14px; font-weight: 700;
+}
+.pixfort_real_estate_4 .left40 {
+	padding-left: 40px;
+}
+.pixfort_real_estate_4 .left10 {
+	padding-left: 10px;
+}
+.pixfort_real_estate_4 .green {
+	color: rgb(138, 186, 86);
+}
+.pixfort_real_estate_4 .gris {
+	color: rgb(105, 105, 105);
+}
+.pixfort_real_estate_4 .info2 {
+	padding-top: 10px; padding-bottom: 10px; font-size: 14px; font-weight: bolder; position: relative;
+}
+.pixfort_real_estate_4 .contact_btn a {
+	background: rgb(138, 186, 86); padding: 5px 10px; border-radius: 2px; border: currentColor; color: rgb(255, 255, 255); font-size: 14px; font-weight: 400; text-decoration: none; margin-left: 10px; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .contact_btn a:hover {
+	background: rgb(119, 177, 65); border-radius: 2px; border: currentColor; color: rgb(255, 255, 255); font-size: 14px;
+}
+.pixfort_real_estate_4 .Designs_style {
+	background: 0% 0% / cover rgb(255, 255, 255); padding: 70px 0px;
+}
+.pixfort_real_estate_4 .homeplan_st {
+	text-align: center; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .img4_st {
+	width: 79%; height: auto; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .Designs_text_style {
+	text-align: left; padding-left: 25px; vertical-align: top; display: inline-block; position: relative; max-width: 435px;
+}
+.pixfort_real_estate_4 .amaz_tit {
+	color: rgb(0, 0, 0); line-height: 100%; font-size: 28px; font-weight: 400;
+}
+.pixfort_real_estate_4 .amaz_subtit {
+	color: rgb(85, 85, 85); font-size: 20px;
+}
+.pixfort_real_estate_4 .amaz_text {
+	top: -15px; color: rgb(169, 169, 169); line-height: 200%; font-size: 16px; position: relative;
+}
+.pixfort_real_estate_4 .contactus_btn a {
+	background: rgb(138, 186, 86); padding: 15px 30px; border-radius: 2px; border: currentColor; color: rgb(255, 255, 255); font-size: 18px; font-weight: 400; text-decoration: none; margin-top: -15px; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .contactus_btn a:hover {
+	background: rgb(119, 177, 65); border-radius: 2px; border: currentColor; color: rgb(255, 255, 255); font-size: 18px; font-weight: 400;
+}
+.pixfort_real_estate_4 .logos_style {
+	background: rgb(255, 255, 255); padding: 20px 0px; text-align: center;
+}
+.pixfort_real_estate_4 .titres {
+	padding-bottom: 30px;
+}
+.pixfort_real_estate_4 .L1_style {
+	color: rgb(105, 105, 105); font-size: 24px; font-weight: 400;
+}
+.pixfort_real_estate_4 .L2_style {
+	padding: 20px 0px; color: rgb(169, 169, 169); font-size: 18px;
+}
+.pixfort_real_estate_4 .logos_div {
+	padding-top: 20px; padding-bottom: 30px; display: inline-block;
+}
+.pixfort_real_estate_4 .logos_st {
+	display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .envato_unbounce {
+	background: rgb(243, 255, 230); padding: 40px 0px; text-align: center; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid;
+}
+.pixfort_real_estate_4 .L1_style {
+	color: rgb(105, 105, 105); padding-bottom: 10px; font-size: 20px; font-weight: 700;
+}
+.pixfort_real_estate_4 .L2_style {
+	padding: 20px 0px; color: rgb(169, 169, 169); font-size: 16px;
+}
+.pixfort_real_estate_4 .box_style {
+	background: rgb(245, 245, 245); border-radius: 5px; width: 100%; margin-top: 40px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .b_style img {
+	background: rgb(234, 219, 220); width: 14%; height: auto; margin-top: 25px; margin-right: 3%; margin-left: 3%; float: left; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .logo_style {
+	border-radius: 100%;
+}
+.pixfort_real_estate_4 .txt_style {
+	background: rgb(255, 255, 255); width: 72%; text-align: left; color: gray; padding-top: 20px; padding-right: 15px; padding-left: 20px; font-size: 14px; display: inline-block; position: relative; border-top-right-radius: 5px; border-bottom-right-radius: 5px;
+}
+.pixfort_real_estate_4 .txt {
+	width: 95%;
+}
+.pixfort_real_estate_4 .stars_div {
+	top: -8px; position: relative;
+}
+.pixfort_real_estate_4 .zoom img {
+	top: -3px; width: 35%; position: relative;
+}
+.pixfort_real_estate_4 .env_st {
+	top: -8px; color: rgb(89, 163, 252); position: relative;
+}
+.pixfort_real_estate_4 .contact_section {
+	background: url("../images/4_real_estate/bg.png") fixed no-repeat top / cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.no-margin-right {
+	padding-right: 0px; margin-right: 0px !important;
+}
+.no-margin-left {
+	padding-left: 0px; margin-left: 0px !important;
+}
+.pixfort_real_estate_4 .Contact_bloc {
+	background: rgba(186, 186, 86, 0.2); display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .text_input {
+	width: 76%; text-align: left; padding-left: 12%;
+}
+.pixfort_real_estate_4 .estate_text_input {
+	width: 76%; text-align: left; padding-left: 12%;
+}
+.pixfort_real_estate_4 .headtext_style {
+	color: rgb(255, 255, 255); padding-top: 55px; padding-bottom: 20px; font-size: 20px;
+}
+.pixfort_real_estate_4 .subtext_style {
+	width: 75%; color: rgb(255, 255, 224); padding-bottom: 14px; font-size: 14px;
+}
+.pixfort_real_estate_4 .style11 {
+	padding: 0px; margin-bottom: -8px; display: inline-block;
+}
+.pixfort_real_estate_4 .plan_st iframe {
+	width: 100%; overflow: hidden; display: block; position: relative; min-height: 525px;
+}
+.pixfort_real_estate_4 .submit_btn {
+	background: rgb(138, 186, 86); margin: 0px; padding: 15px 10px; border-radius: 5px; border: currentColor; width: 100%; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; position: relative;
+}
+.pixfort_real_estate_4 .submit_btn:hover {
+	background: rgb(119, 177, 65); margin: 0px; border-radius: 5px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400;
+}
+.pixfort_real_estate_4 .contact_st {
+	width: 100%; padding-bottom: 50px; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 #contact_form form {
+	position: relative;
+}
+.pixfort_real_estate_4 #contact_form input {
+	padding: 10px 0px 10px 10px; border-radius: 3px; width: 100%; height: 50px; color: rgb(0, 0, 0); font-size: 16px; font-weight: 400; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_real_estate_4 .foot_st {
+	background: rgb(242, 242, 242); text-align: center;
+}
+.pixfort_real_estate_4 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .pixfort_st {
+	text-align: left; color: rgb(246, 129, 33); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_real_estate_4 .soc_icons {
+	background: rgba(0, 0, 0, 0.05); border-radius: 3px; padding-top: 10px; padding-bottom: 5px; padding-left: 5px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_4 {
+	background: rgb(138, 186, 86); border-radius: 2px; width: 500px; max-width: 100%; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.3) !important;
+}
+.pixfort_real_estate_4 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; padding-top: 40px; font-size: 26px; font-weight: 600; margin-right: auto; margin-left: auto; position: relative; max-width: 100%;
+}
+.pixfort_real_estate_4 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.7); padding-top: 10px; padding-bottom: 30px; font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_real_estate_4 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_real_estate_4 .confirm_social {
+	text-align: center;
+}
+.pixfort_real_estate_4 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.2); padding: 10px 6px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_real_estate_4 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_real_estate_4 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_real_estate_4 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_hotel_5 iframe.c1 {
+	border: currentColor; width: 50px; height: 20px; overflow: hidden;
+}
+.pixfort_hotel_5 .header_style {
+	background: rgb(255, 255, 255); padding: 25px 0px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid;
+}
+.pixfort_hotel_5 .yt_button {
+	background: url("../images/Social_icons/yt.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_hotel_5 .yt_button:hover {
+	background: url("../images/Social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_hotel_5 .twitter_button {
+	background: url("../images/Social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_hotel_5 .twitter_button:hover {
+	background: url("../images/Social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_hotel_5 .facebook_button {
+	background: url("../images/Social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_hotel_5 .facebook_button:hover {
+	background: url("../images/Social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_hotel_5 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right;
+}
+.pixfort_hotel_5 .page_style {
+	background: url("../images/5_hotel/Bg.png") fixed no-repeat top / cover rgb(31, 51, 74); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_hotel_5 .text_page {
+	text-align: center;
+}
+.pixfort_hotel_5 .just_style {
+	text-align: center; color: rgb(169, 169, 169); padding-top: 110px; font-size: 48px; font-weight: 400;
+}
+.pixfort_hotel_5 .four_style {
+	text-align: center; color: rgb(255, 255, 255); font-size: 48px; font-weight: 700;
+}
+.pixfort_hotel_5 .red_segment {
+	margin: 25px auto; width: 60px; height: 5px; background-color: rgb(204, 51, 63);
+}
+.pixfort_hotel_5 .txt_start {
+	text-align: center; color: rgb(211, 211, 211); font-size: 18px; margin-right: auto; margin-left: auto; max-width: 65%;
+}
+.pixfort_hotel_5 .gethouse_btn a {
+	background: rgb(204, 51, 63); padding: 15px 30px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 18px; font-weight: 400; text-decoration: none; margin-top: 15px; margin-bottom: 20px; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .gethouse_btn a:hover {
+	background: rgb(194, 39, 49); border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 18px; font-weight: 400;
+}
+.pixfort_hotel_5 .note_st {
+	text-align: center; color: rgb(240, 255, 240); padding-bottom: 40px; font-size: 13px;
+}
+.pixfort_hotel_5 .cal_style {
+	background: 0% 0% / cover rgb(250, 245, 245); text-align: center; box-shadow: inset 0px -3px #eadbdc;
+}
+.pixfort_hotel_5 .pad_top {
+	padding-top: 35px;
+}
+.pixfort_hotel_5 .img_st {
+	top: -15px; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .ctext_style {
+	top: -10px; padding-bottom: 15px; padding-left: 15px; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .calc_st {
+	color: rgb(105, 105, 105); font-size: 16px; font-weight: 700;
+}
+.pixfort_hotel_5 .calc_text {
+	top: -10px; color: rgb(169, 169, 169); font-size: 14px; margin-right: auto; margin-left: auto; position: relative; max-width: 90%;
+}
+.pixfort_hotel_5 .Homes {
+	background: 0% 0% / cover rgb(255, 255, 255); padding: 50px 0px; text-align: center;
+}
+.pixfort_hotel_5 .title_homes {
+	text-align: center; color: rgb(0, 0, 0); font-size: 28px; font-weight: 700;
+}
+.pixfort_hotel_5 .subtitle_homes {
+	text-align: center; color: rgb(169, 169, 169); line-height: 26px; padding-bottom: 15px; font-size: 16px; margin-left: 20%; max-width: 60%;
+}
+.pixfort_hotel_5 .bg_Homes {
+	background: rgb(250, 245, 245); border-radius: 3px; border-bottom-color: rgb(234, 219, 220); border-bottom-width: 3px; border-bottom-style: solid; position: relative; max-width: 100%;
+}
+.pixfort_hotel_5 .img_homes_st {
+	width: 220px; height: 200px; text-align: center; overflow: hidden; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .img_homes_stimg img {
+	margin-right: -100%; margin-left: -100%;
+}
+.pixfort_hotel_5 .text_homes_style {
+	padding: 15px 0px; position: relative;
+}
+.pixfort_hotel_5 .calc_homes_st {
+	color: rgb(0, 0, 0); font-size: 18px; font-weight: 700;
+}
+.pixfort_hotel_5 .calc_homes_text {
+	color: rgb(169, 169, 169); font-size: 14px;
+}
+.pixfort_hotel_5 .perday_btn a {
+	background: rgb(204, 51, 63); padding: 5px 20px; border-radius: 2px; border: currentColor; color: rgb(255, 255, 255); font-size: 12px; font-weight: 400; text-decoration: none; margin-bottom: 20px; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .perday_btn a:hover {
+	background: rgb(194, 39, 49); border-radius: 2px; border: currentColor; color: rgb(255, 255, 255); font-size: 12px; font-weight: 400;
+}
+.pixfort_hotel_5 .box_Homes {
+	background: rgb(250, 245, 245); padding: 20px; border-radius: 3px !important; width: 58%; text-align: left; margin-top: 50px; margin-right: auto; margin-left: auto; box-shadow: inset 0px -3px rgba(0,0,0,0.1);
+}
+.pixfort_hotel_5 .box_text {
+	text-align: left; line-height: 100%; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .b1_homes_st {
+	text-align: left; color: rgb(0, 0, 0); font-size: 18px; font-weight: 400;
+}
+.pixfort_hotel_5 .b2_homes_st {
+	text-align: left; color: rgb(169, 169, 169); font-size: 14px; font-weight: 400; position: relative;
+}
+.pixfort_hotel_5 .Res_st {
+	text-align: left; margin-right: 0px; float: right; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .Reservation_btn a {
+	background: rgb(204, 51, 63); padding: 12px 30px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; text-decoration: none; margin-bottom: 20px; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .Reservation_btn a:hover {
+	background: rgb(194, 39, 49); color: rgb(255, 255, 255);
+}
+.pixfort_hotel_5 .logos_section {
+	background: url("../images/5_hotel/Bg.png") fixed no-repeat top / cover; padding: 40px 0px; text-align: center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_hotel_5 .logos_style img {
+	padding-bottom: 20px;
+}
+.pixfort_hotel_5 .L1_style {
+	text-align: center; color: rgb(255, 255, 255); font-size: 20px;
+}
+.pixfort_hotel_5 .L2_style {
+	text-align: center; color: rgb(169, 169, 169); padding-bottom: 20px; font-size: 16px;
+}
+.pixfort_hotel_5 .logos_st {
+	display: inline-block; position: relative; opacity: 1;
+}
+.pixfort_hotel_5 .New_Latest_Off {
+	background: rgb(255, 255, 255); padding: 50px 0px;
+}
+.pixfort_hotel_5 .N1_style {
+	text-align: left; color: rgb(0, 0, 0); font-size: 28px; font-weight: 700;
+}
+.pixfort_hotel_5 .N2_style {
+	text-align: left; color: rgb(169, 169, 169); line-height: 26px; font-size: 16px;
+}
+.pixfort_hotel_5 .video_style iframe {
+	width: 100%; height: 260px; text-align: center; padding-top: 25px; padding-bottom: 55px;
+}
+.pixfort_hotel_5 .envato_unbounce {
+	background: rgb(204, 51, 63); padding: 40px 0px; text-align: center; border-bottom-color: rgb(181, 35, 47); border-bottom-width: 3px; border-bottom-style: solid;
+}
+.pixfort_hotel_5 .L3_style {
+	text-align: center; color: rgb(211, 211, 211); padding-bottom: 20px; font-size: 16px;
+}
+.pixfort_hotel_5 .box_style {
+	background: rgb(250, 245, 245); border-radius: 5px; width: 100%; margin-top: 40px; border-bottom-color: rgb(201, 186, 186); border-bottom-width: 3px; border-bottom-style: solid; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .b_style img {
+	background: rgb(234, 219, 220); width: 14%; height: auto; margin-top: 20px; margin-left: 3%; float: left; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .logo_style {
+	border-radius: 100%;
+}
+.pixfort_hotel_5 .txt_style {
+	background: rgb(255, 255, 255); width: 80%; text-align: left; color: gray; padding-top: 20px; padding-left: 1%; font-size: 14px; float: right; display: inline-block; position: relative; border-top-right-radius: 5px; border-bottom-right-radius: 5px;
+}
+.pixfort_hotel_5 .txt {
+	width: 99%;
+}
+.pixfort_hotel_5 .testi_bottom {
+	top: -5px; position: relative;
+}
+.pixfort_hotel_5 .env_st {
+	top: -5px; color: rgb(89, 163, 252); position: relative;
+}
+.pixfort_hotel_5 .Room_Res {
+	background: rgb(255, 255, 255); padding: 50px 0px; text-align: center;
+}
+.pixfort_hotel_5 .Get_Room {
+	text-align: center; color: rgb(0, 0, 0); font-size: 28px;
+}
+.pixfort_hotel_5 .txt_Res {
+	color: gray; font-size: 14px; margin-right: auto; margin-left: auto; max-width: 370px;
+}
+.pixfort_hotel_5 .Res_btn a {
+	background: rgb(204, 51, 63); padding: 20px 45px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 18px; font-weight: 400; text-decoration: none; margin-bottom: 20px; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .Res_btn a:hover {
+	background: rgb(194, 39, 49); border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 18px; font-weight: 400;
+}
+.pixfort_hotel_5 .foot_st {
+	background: rgb(242, 242, 242); text-align: center;
+}
+.pixfort_hotel_5 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .pixfort_st {
+	text-align: left; color: rgb(204, 51, 63); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_hotel_5 .soc_icons {
+	background: rgba(0, 0, 0, 0.05); border-radius: 3px; padding-top: 10px; padding-bottom: 5px; padding-left: 5px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.pixfort_university_6 iframe.c1 {
+	border: currentColor; width: 50px; height: 20px; overflow: hidden;
+}
+.pixfort_university_6 .header_style {
+	background: rgb(255, 255, 255); padding: 20px 0px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid;
+}
+.pixfort_university_6 .uni_logo {
+	vertical-align: middle;
+}
+.pixfort_university_6 .yt_button {
+	background: url("../images/Social_icons/yt.png"); width: 32px; height: 32px; margin-left: 5px; float: right; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_university_6 .yt_button:hover {
+	background: url("../images/Social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_university_6 .twitter_button {
+	background: url("../images/Social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 5px; float: right; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_university_6 .twitter_button:hover {
+	background: url("../images/Social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_university_6 .facebook_button {
+	background: url("../images/Social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_university_6 .facebook_button:hover {
+	background: url("../images/Social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_university_6 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right; display: inline-block;
+}
+.pixfort_university_6 .page_style {
+	background: url("../images/6_university/bg.png") fixed no-repeat top / cover rgb(31, 51, 74); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_university_6 .text_page {
+	text-align: center; padding-top: 135px; margin-right: auto; margin-left: auto; position: relative;
+}
+.pixfort_university_6 .head_line {
+	text-align: center; color: rgb(255, 255, 255); line-height: 38px; font-size: 39px; font-weight: 600;
+}
+.pixfort_university_6 .head_line_2 {
+	color: rgb(169, 169, 169);
+}
+.pixfort_university_6 .tow_links {
+	text-align: center; padding-top: 30px;
+}
+.pixfort_university_6 .college_btn a {
+	background: rgb(124, 197, 118); border-radius: 3px; width: 160px; height: 35px; color: rgb(255, 255, 255); padding-top: 15px; font-size: 16px; text-decoration: none; margin-right: 5px; display: inline-block; position: relative; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_university_6 .college_btn a:hover {
+	background: rgb(96, 187, 90);
+}
+.pixfort_university_6 .join_btn a {
+	background: rgb(255, 114, 67); border-radius: 3px; width: 160px; height: 35px; color: rgb(255, 255, 255); padding-top: 15px; font-size: 16px; text-decoration: none; display: inline-block; position: relative; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_university_6 .join_btn a:hover {
+	background: rgb(242, 92, 51);
+}
+.pixfort_university_6 .note_st {
+	text-align: center; color: rgb(240, 255, 240); padding-top: 30px; padding-bottom: 80px; font-size: 13px;
+}
+.pixfort_university_6 .logos_sect {
+	background: 0% 0% / cover rgb(238, 238, 238); text-align: center;
+}
+.pixfort_university_6 .padd_updown {
+	padding: 30px 0px; text-align: center; position: relative;
+}
+.pixfort_university_6 .logos_width {
+	display: inline-block;
+}
+.pixfort_university_6 .logos_width img {
+	
+}
+.pixfort_university_6 .uni_life {
+	background: 0% 0% / cover rgb(255, 255, 255); text-align: left; padding-top: 40px;
+}
+.pixfort_university_6 .part_st {
+	position: relative;
+}
+.pixfort_university_6 .img_uni_st {
+	border-radius: 3px; width: 220px; height: 200px; text-align: center; overflow: hidden; display: inline-block; position: relative;
+}
+.pixfort_university_6 .img_uni_st img {
+	margin-right: -100%; margin-left: -100%;
+}
+.pixfort_university_6 .text_uni_style {
+	padding: 15px 0px; position: relative;
+}
+.pixfort_university_6 .uni_st {
+	color: rgb(0, 0, 0); font-size: 18px; font-weight: 700; margin-bottom: 10px;
+}
+.pixfort_university_6 .uni_text {
+	color: rgb(169, 169, 169); font-size: 14px; margin-bottom: 5px;
+}
+.pixfort_university_6 .link_1_btn a {
+	background: rgb(89, 163, 252); padding: 7px 25px 5px; border-radius: 3px; text-align: center; color: rgb(255, 255, 255); font-size: 12px; text-decoration: none; margin-bottom: 50px; float: right; display: inline-block; position: relative;
+}
+.pixfort_university_6 .link_1_btn a:hover {
+	background: rgb(68, 138, 239);
+}
+.pixfort_university_6 .link_2_btn a {
+	background: rgb(124, 197, 118); padding: 7px 25px 5px; border-radius: 3px; text-align: center; color: rgb(255, 255, 255); font-size: 12px; text-decoration: none; margin-bottom: 50px; float: right; display: inline-block; position: relative;
+}
+.pixfort_university_6 .link_2_btn a:hover {
+	background: rgb(96, 187, 90);
+}
+.pixfort_university_6 .link_3_btn a {
+	background: rgb(255, 114, 67); padding: 7px 25px 5px; border-radius: 3px; text-align: center; color: rgb(255, 255, 255); font-size: 12px; text-decoration: none; margin-bottom: 50px; float: right; display: inline-block; position: relative;
+}
+.pixfort_university_6 .link_3_btn a:hover {
+	background: rgb(242, 92, 51);
+}
+.pixfort_university_6 .link_4_btn a {
+	background: rgb(204, 51, 63); padding: 7px 25px 5px; border-radius: 3px; text-align: center; color: rgb(255, 255, 255); font-size: 12px; text-decoration: none; margin-bottom: 50px; float: right; display: inline-block; position: relative;
+}
+.pixfort_university_6 .link_4_btn a:hover {
+	background: rgb(194, 39, 49);
+}
+.pixfort_university_6 .join_us_section {
+	padding: 30px 0px;
+}
+.pixfort_university_6 .zone_left {
+	padding: 30px 0px; width: 100%; display: inline-block; position: relative;
+}
+.pixfort_university_6 .psingle_item {
+	margin-bottom: 10px; display: inline-block;
+}
+.pixfort_university_6 .icon_st img {
+	width: 25%; padding-top: 10px; float: left; display: inline-block; position: relative;
+}
+.pixfort_university_6 .text_st {
+	width: 68%; text-align: left; padding-bottom: 30px; padding-left: 15px; float: right; display: inline-block; position: relative;
+}
+.pixfort_university_6 .title_st {
+	color: rgb(0, 0, 0); line-height: 28px; font-size: 22px;
+}
+.pixfort_university_6 .subject_st {
+	width: 100%; color: rgb(169, 169, 169); line-height: 26px; font-size: 16px; display: inline-block;
+}
+.pixfort_university_6 .substyle {
+	background: rgb(235, 234, 234); border-radius: 3px; padding-top: 40px; padding-bottom: 5px;
+}
+.pixfort_university_6 .title-style {
+	color: rgb(0, 0, 0); font-size: 22px; margin-left: 20px;
+}
+.pixfort_university_6 .text-style {
+	color: rgb(169, 169, 169); font-size: 14px; margin-left: 20px; position: relative;
+}
+.pixfort_university_6 .send_btn .submit_btn {
+	background: rgb(124, 197, 118); padding: 10px 30px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; text-decoration: none; display: inline-block; position: relative; box-shadow: none; text-shadow: none;
+}
+.pixfort_university_6 .send_btn .submit_btn:hover {
+	background: rgb(96, 187, 90);
+}
+.pixfort_university_6 #contact_form {
+	color: rgb(0, 0, 0); font-size: 11px; margin-right: 20px; margin-left: 20px; position: relative;
+}
+.pixfort_university_6 #contact_form textarea {
+	background: rgb(255, 255, 255); border-radius: 3px; border: 1px solid rgb(204, 204, 204); width: 100%; height: 42px; color: rgb(0, 0, 0); padding-left: 10px; font-size: 14px; position: relative; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_university_6 #contact_form input {
+	background: rgb(255, 255, 255); border-radius: 3px; border: 1px solid rgb(204, 204, 204); width: 100%; height: 42px; color: rgb(0, 0, 0); padding-left: 10px; font-size: 14px; position: relative; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_university_6 .select_st select {
+	border-radius: 3px; width: 100%; height: 42px; padding-left: 10px; font-size: 15px;
+}
+.pixfort_university_6 .envato_unbounce {
+	background: rgb(245, 245, 245); padding: 40px 0px; text-align: center;
+}
+.pixfort_university_6 .L1_style {
+	text-align: center; color: gray; font-size: 20px;
+}
+.pixfort_university_6 .L3_style {
+	text-align: center; color: rgb(169, 169, 169); padding-bottom: 20px; font-size: 16px;
+}
+.pixfort_university_6 .box_style {
+	background: rgb(238, 238, 238); border-radius: 5px; width: 100%; margin-top: 40px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid; display: inline-block; position: relative;
+}
+.pixfort_university_6 .b_style img {
+	background: rgb(238, 238, 238); width: 14%; height: auto; margin-top: 20px; margin-left: 3%; float: left; display: inline-block; position: relative;
+}
+.pixfort_university_6 .logo_style {
+	border-radius: 100%;
+}
+.pixfort_university_6 .txt_style {
+	background: rgb(255, 255, 255); width: 80%; text-align: left; color: gray; padding-top: 20px; padding-left: 1%; font-size: 14px; float: right; display: inline-block; position: relative; border-top-right-radius: 5px; border-bottom-right-radius: 5px;
+}
+.pixfort_university_6 .txt_style_inner {
+	padding: 2px 10px;
+}
+.pixfort_university_6 .txt {
+	width: 99%;
+}
+.pixfort_university_6 .env_st {
+	top: -5px; color: rgb(124, 197, 118); position: relative;
+}
+.pixfort_university_6 .via_span {
+	top: -10px; position: relative;
+}
+.pixfort_university_6 .foot_st {
+	background: rgb(242, 242, 242); text-align: center;
+}
+.pixfort_university_6 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_university_6 .pixfort_st {
+	text-align: left; color: rgb(246, 129, 33); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_university_6 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_university_6 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_university_6 .soc_icons {
+	background: rgba(0, 0, 0, 0.1); padding: 10px 5px 5px; border-radius: 3px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_6 {
+	background: rgb(124, 197, 118); border-radius: 2px; width: 500px; max-width: 100%; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.3) !important;
+}
+.pixfort_university_6 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; padding-top: 40px; font-size: 26px; font-weight: 600; margin-right: auto; margin-left: auto; position: relative; max-width: 100%;
+}
+.pixfort_university_6 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.7); padding-top: 10px; padding-bottom: 30px; font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_university_6 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_university_6 .confirm_social {
+	text-align: center;
+}
+.pixfort_university_6 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.1); padding: 10px 10px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.1) !important;
+}
+.pixfort_university_6 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_university_6 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_university_6 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_shop_7 .header_style {
+	background: rgb(255, 255, 255); padding: 20px 0px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid;
+}
+.pixfort_shop_7 .shop_logo {
+	vertical-align: middle;
+}
+.pixfort_shop_7 .icons {
+	float: right; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .yt_button {
+	background: url("../images/Social_icons/yt.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_shop_7 .yt_button:hover {
+	background: url("../images/Social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_shop_7 .twitter_button {
+	background: url("../images/Social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_shop_7 .twitter_button:hover {
+	background: url("../images/Social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_shop_7 .facebook_button {
+	background: url("../images/Social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_shop_7 .facebook_button:hover {
+	background: url("../images/Social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_shop_7 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right; display: inline-block;
+}
+.pixfort_shop_7 .page_style {
+	background: url("../images/7_shop_products/bg.png") fixed no-repeat top / cover rgb(31, 51, 74); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_shop_7 .left_box {
+	text-align: left; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .discount {
+	color: rgb(255, 255, 255); padding-top: 110px; font-size: 40px; font-weight: 400;
+}
+.pixfort_shop_7 .segment {
+	margin: 25px 0px; width: 80px; height: 6px; background-color: rgb(89, 163, 252);
+}
+.pixfort_shop_7 .shop_text {
+	color: rgb(240, 255, 255); line-height: 32px; font-size: 20px; font-weight: 400; position: relative; max-width: 387px;
+}
+.pixfort_shop_7 .email_subscribe {
+	top: 15px; position: relative;
+}
+.pixfort_shop_7 #contact_form input {
+	background: rgb(255, 255, 255); padding: 14px 5px !important; border-radius: 3px; width: 280px; color: rgb(0, 0, 0); font-size: 14px; font-weight: 400; display: inline-block;
+}
+.pixfort_shop_7 .subscribe_btn {
+	margin: 0px 8px; padding: 14px 30px; border-radius: 3px; border: currentColor; text-align: center; color: rgb(255, 255, 255); font-size: 15px; font-weight: 400; text-decoration: none; display: inline-block;
+}
+.pixfort_shop_7 .subscribe_btn:hover {
+	border: currentColor; color: rgb(255, 255, 255);
+}
+.pixfort_shop_7 .note_st {
+	text-align: left; color: rgb(240, 255, 240); padding-bottom: 80px; font-size: 13px;
+}
+.pixfort_shop_7 .sold {
+	width: 98%; text-align: center; margin-top: 130px; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .center_img img {
+	text-align: center;
+}
+.pixfort_shop_7 .txt_sold {
+	display: inline-block;
+}
+.pixfort_shop_7 .s_per {
+	left: 17px; top: -130px; color: rgb(255, 255, 255); font-size: 50px; position: relative;
+}
+.pixfort_shop_7 .text_s {
+	left: 17px; top: -130px; color: rgb(255, 255, 255); font-size: 22px; position: relative;
+}
+.pixfort_shop_7 .logos_sect {
+	background: 0% 0% / cover rgb(238, 238, 238); text-align: center;
+}
+.pixfort_shop_7 .padd_updown {
+	padding: 30px 0px; text-align: center; position: relative;
+}
+.pixfort_shop_7 .logos_width {
+	display: inline-block;
+}
+.pixfort_shop_7 .logos_width img {
+	
+}
+.pixfort_shop_7 .new_story {
+	padding: 30px 0px;
+}
+.pixfort_shop_7 .zone_left {
+	padding: 20px 0px; width: 100%; display: inline-block; position: relative;
+}
+.icon-1_st {
+	border-radius: 45px; width: 90px; height: 90px; text-align: center; display: inline-block; position: relative;
+}
+.icon-2_st {
+	border-radius: 45px; width: 90px; height: 90px; text-align: center; display: inline-block; position: relative;
+}
+.icon-3_st {
+	border-radius: 45px; width: 90px; height: 90px; text-align: center; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .icon_st {
+	top: 22%; width: 50%; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .text_st {
+	text-align: left; margin-left: 10px; float: right; display: inline-block; position: relative; max-width: 76%;
+}
+.pixfort_shop_7 .title_st {
+	color: rgb(102, 105, 105); font-size: 22px;
+}
+.pixfort_shop_7 .subject_st {
+	top: -8px; color: rgb(169, 169, 169); line-height: 26px; font-size: 16px; position: relative;
+}
+.pixfort_shop_7 .pict_st img {
+	max-width: 470px;
+}
+.pixfort_shop_7 .discount_section {
+	background: rgb(246, 246, 246); padding: 60px 0px; text-align: center;
+}
+.pixfort_shop_7 .disco_1 {
+	background: url("../images/7_shop_products/1.png") no-repeat rgb(238, 238, 238); border-radius: 3px; width: 100%; height: auto; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .disco_2 {
+	background: url("../images/7_shop_products/2.png") no-repeat rgb(238, 238, 238); border-radius: 3px; width: 100%; height: auto; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .disco_3 {
+	background: url("../images/7_shop_products/3.png") no-repeat rgb(238, 238, 238); border-radius: 3px; width: 100%; height: auto; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .seg_dicount {
+	margin: 25px 0px; left: 20px; top: 5px; width: 60px; height: 5px; position: relative; background-color: rgb(89, 163, 252);
+}
+.pixfort_shop_7 .txt_1 {
+	left: 20px; top: 20px; text-align: left; color: rgb(255, 255, 255); font-size: 20px; position: relative;
+}
+.pixfort_shop_7 .txt_2 {
+	left: 20px; top: -10px; text-align: left; color: rgb(211, 211, 211); font-size: 16px; position: relative; max-width: 210px;
+}
+.pixfort_shop_7 .envato_unbounce {
+	background: rgb(255, 255, 255); text-align: center;
+}
+.pixfort_shop_7 .L1_style {
+	text-align: center; color: gray; line-height: 100%; padding-top: 30px; font-size: 20px;
+}
+.pixfort_shop_7 .L3_style {
+	text-align: center; color: rgb(169, 169, 169); font-size: 16px; margin-bottom: 60px;
+}
+.pixfort_shop_7 .box_st {
+	background: rgb(245, 245, 245); border-radius: 5px; margin-bottom: 20px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .b_style {
+	float: left; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .logo_style {
+	border-radius: 100%; height: auto; margin-top: 15px; margin-left: 10px;
+}
+.pixfort_shop_7 .txt_style {
+	background: rgb(238, 238, 238); padding: 10px; text-align: left; color: gray; font-size: 14px; float: right; display: inline-block; position: relative; max-width: 74%;
+}
+.pixfort_shop_7 .stars_st {
+	width: 30%;
+}
+.pixfort_shop_7 .env_st {
+	top: -2px; color: rgb(89, 163, 252); position: relative;
+}
+.pixfort_shop_7 .foot_st {
+	background: rgb(246, 246, 246); text-align: center;
+}
+.pixfort_shop_7 .bg_foot {
+	background: rgb(242, 242, 242); text-align: center;
+}
+.pixfort_shop_7 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .pixfort_st {
+	text-align: left; color: rgb(89, 163, 252); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .likes_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_shop_7 .socbuttons {
+	padding-bottom: 10px; display: inline;
+}
+.pixfort_shop_7 .soc_icons {
+	background: rgba(0, 0, 0, 0.1); border-radius: 3px; padding-top: 10px; padding-bottom: 5px; padding-left: 5px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_7 {
+	background: rgb(89, 163, 252); border-radius: 2px; box-shadow: inset 0px -5px 0px 0px rgba(0,0,0,0.3) !important;
+}
+.pixfort_shop_7 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; padding-top: 40px; font-size: 26px; font-weight: 600; position: relative; max-width: 100%;
+}
+.pixfort_shop_7 .sub_text {
+	padding: 10px 0px; text-align: center; color: rgba(255, 255, 255, 0.6); font-size: 15px;
+}
+.pixfort_shop_7 .code_text {
+	text-align: center; color: rgb(255, 255, 255); padding-top: 15px; padding-bottom: 10px; font-size: 22px;
+}
+.pixfort_shop_7 .code_text .box_div {
+	background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 3px; display: inline-block;
+}
+.pixfort_shop_7 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.9); padding-top: 10px; padding-bottom: 30px; font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_shop_7 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_shop_7 .confirm_social {
+	text-align: center;
+}
+.pixfort_shop_7 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.1); padding: 10px 6px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_shop_7 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_shop_7 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_shop_7 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_ecourse_8 .header_style {
+	background: rgb(103, 67, 151); padding: 25px 0px; box-shadow: inset 0px -3px rgba(0,0,0,0.15);
+}
+.pixfort_ecourse_8 .logo_padd_left {
+	
+}
+.pixfort_ecourse_8 .social_button {
+	margin-left: 7px; float: right; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_ecourse_8 .social_button:hover {
+	opacity: 0.7;
+}
+.pixfort_ecourse_8 .yt_button {
+	background: url("../images/Social_icons/yt.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_ecourse_8 .yt_button:hover {
+	background: url("../images/Social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_ecourse_8 .twitter_button {
+	background: url("../images/Social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_ecourse_8 .twitter_button:hover {
+	background: url("../images/Social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_ecourse_8 .facebook_button {
+	background: url("../images/Social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_ecourse_8 .facebook_button:hover {
+	background: url("../images/Social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_ecourse_8 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right; display: inline-block;
+}
+.pixfort_ecourse_8 .page_style {
+	background: url("../images/8_ecourse/bg.png") fixed no-repeat top / cover rgb(85, 81, 109); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_ecourse_8 .left_zone {
+	width: 100%; height: auto; padding-top: 60px; margin-bottom: 20px; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .video_style iframe {
+	width: 100%; height: 290px;
+}
+.pixfort_ecourse_8 .video_style object {
+	width: 100%; height: 290px;
+}
+.pixfort_ecourse_8 .video_style video {
+	width: 100%; height: 290px;
+}
+.pixfort_ecourse_8 .video_style embed {
+	width: 100%; height: 290px;
+}
+.pixfort_ecourse_8 .title_st {
+	text-align: left; color: rgb(255, 255, 255); padding-top: 20px; font-size: 24px;
+}
+.pixfort_ecourse_8 .txt_st {
+	text-align: left; color: rgb(190, 166, 221); line-height: 25px; font-size: 14px; max-width: 465px;
+}
+.pixfort_ecourse_8 .text_input {
+	background: rgba(0, 0, 0, 0.498039); width: 100%; padding-right: 20px; padding-left: 20px; float: right; display: inline-block; position: relative; box-sizing: border-box;
+}
+.pixfort_ecourse_8 .headtext_style {
+	color: rgb(255, 255, 255); line-height: 100%; padding-top: 60px; font-size: 26px;
+}
+.pixfort_ecourse_8 .segment {
+	background: rgb(103, 67, 151); margin: 25px 0px; width: 80px; height: 6px;
+}
+.pixfort_ecourse_8 .subtext_style {
+	color: rgb(230, 230, 250); line-height: 28px; padding-bottom: 14px; font-size: 18px; max-width: 320px;
+}
+.pixfort_ecourse_8 .subscribe_btn {
+	background: rgb(103, 67, 151); margin: 0px; padding: 10px; border-radius: 3px; border: currentColor; width: 100%; height: 48px; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; position: relative; text-shadow: none;
+}
+.pixfort_ecourse_8 .subscribe_btn:hover {
+	background: rgb(87, 51, 143); margin: 0px; padding: 10px; border-radius: 5px; border: currentColor; color: rgb(255, 255, 255); position: relative;
+}
+.pixfort_ecourse_8 .contact_st form {
+	width: 100%; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 #contact_form {
+	position: relative;
+}
+.pixfort_ecourse_8 #contact_form input {
+	border-radius: 3px; width: 100%; height: 48px; color: rgb(136, 136, 136); padding-right: 16px; padding-left: 16px; font-size: 16px; font-weight: 400; position: relative; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_ecourse_8 .note_st {
+	padding: 20px 0px; text-align: left; color: rgb(190, 166, 221); font-size: 13px;
+}
+.pixfort_ecourse_8 .logos_sect {
+	background: 0% 0% / cover rgb(246, 246, 246); text-align: center;
+}
+.pixfort_ecourse_8 .padd_updown {
+	padding: 30px 0px; text-align: center; position: relative;
+}
+.pixfort_ecourse_8 .logos_width {
+	display: inline-block;
+}
+.pixfort_ecourse_8 .logos_width img {
+	
+}
+.pixfort_ecourse_8 .bundle_section {
+	background: rgb(246, 246, 246); text-align: center;
+}
+.pixfort_ecourse_8 .bg_bundle {
+	background: rgb(255, 255, 255); border-top-color: rgb(221, 221, 221); border-right-color: rgb(221, 221, 221); border-left-color: rgb(221, 221, 221); border-top-width: 1px; border-right-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-left-radius: 3px; border-top-right-radius: 3px;
+}
+.pixfort_ecourse_8 .onethird_st {
+	text-align: center; display: inline-block; position: relative; max-width: 300px;
+}
+.pixfort_ecourse_8 .what_st {
+	color: rgb(103, 67, 151); line-height: 100%; padding-top: 40px; font-size: 20px; font-weight: 600;
+}
+.pixfort_ecourse_8 .great_st {
+	color: rgb(190, 166, 221); padding-bottom: 30px; font-size: 16px;
+}
+.pixfort_ecourse_8 .icon-1_st {
+	border-radius: 45px; width: 90px; height: 90px; text-align: center; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .icon-2_st {
+	border-radius: 45px; width: 90px; height: 90px; text-align: center; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .icon-3_st {
+	border-radius: 45px; width: 90px; height: 90px; text-align: center; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .icon_st {
+	top: 22%; width: 50%; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .T1 {
+	text-align: center; color: rgb(105, 105, 105); padding-top: 30px; font-size: 22px; font-weight: 600;
+}
+.pixfort_ecourse_8 .T2 {
+	width: 230px; text-align: center; color: rgb(169, 169, 169); line-height: 26px; font-size: 16px;
+}
+.pixfort_ecourse_8 .Quality_section {
+	background: rgb(246, 246, 246); text-align: center;
+}
+.pixfort_ecourse_8 .bg_Quality {
+	background: rgb(255, 255, 255); border-right-color: rgb(221, 221, 221); border-bottom-color: rgb(221, 221, 221); border-left-color: rgb(221, 221, 221); border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;
+}
+.pixfort_ecourse_8 .TT1 {
+	text-align: left; color: rgb(0, 0, 0); line-height: 150%; padding-top: 30px; font-size: 36px; font-weight: 600;
+}
+.pixfort_ecourse_8 .TT2 {
+	text-align: left; color: rgb(169, 169, 169); line-height: 26px; font-size: 16px;
+}
+.pixfort_ecourse_8 .text_zone {
+	left: 43px; width: 398px; margin-top: 100px; float: left; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .get_tut_btn a {
+	background: rgba(103, 67, 151, 0); padding: 12px 45px; border-radius: 3px; border: 2px solid rgb(103, 67, 151); color: rgb(103, 67, 151); font-size: 16px; font-weight: 700; text-decoration: none; margin-top: 15px; margin-bottom: 20px; float: left; display: inline-block; position: relative; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_ecourse_8 .get_tut_btn a:hover {
+	background: rgb(87, 51, 143); color: rgb(255, 255, 255);
+}
+.pixfort_ecourse_8 .picture_zone img {
+	width: 53%; margin-top: 30px; margin-bottom: 0px; vertical-align: bottom; float: right; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .features_section {
+	background: rgb(246, 246, 246); padding: 35px 0px;
+}
+.pixfort_ecourse_8 .feature_1 {
+	background: url("../images/8_ecourse/1.png") no-repeat right bottom rgb(255, 255, 255); border-radius: 3px; border: 1px solid rgb(221, 221, 221); width: 100%; height: auto; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .feature_2 {
+	background: url("../images/8_ecourse/2.png") no-repeat right bottom rgb(255, 255, 255); border-radius: 3px; border: 1px solid rgb(221, 221, 221); width: 100%; height: auto; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .feature_3 {
+	background: url("../images/8_ecourse/3.png") no-repeat right bottom rgb(255, 255, 255); border-radius: 3px; border: 1px solid rgb(221, 221, 221); width: 100%; height: auto; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .txt_1 {
+	text-align: left; color: rgb(0, 0, 0); padding-top: 25px; padding-left: 20px; font-size: 18px; font-weight: 700; position: relative;
+}
+.pixfort_ecourse_8 .txt_2 {
+	text-align: left; color: gray; line-height: 150%; padding-bottom: 34px; padding-left: 20px; font-size: 14px; position: relative; max-width: 150px;
+}
+.pixfort_ecourse_8 .envato_unbounce {
+	background: rgb(246, 246, 246); text-align: center;
+}
+.pixfort_ecourse_8 .cadre_st {
+	background: rgb(255, 255, 255); border-radius: 3px; border: 1px solid rgb(221, 221, 221); padding-top: 30px;
+}
+.pixfort_ecourse_8 .L1_style {
+	text-align: center; color: rgb(103, 67, 151); line-height: 100%; font-size: 20px;
+}
+.pixfort_ecourse_8 .L3_style {
+	text-align: center; color: rgb(169, 169, 169); font-size: 16px; margin-bottom: 60px;
+}
+.pixfort_ecourse_8 .box_1 {
+	background: rgb(249, 249, 249); border-radius: 5px; border: 1px solid rgb(238, 238, 238); margin-bottom: 20px; margin-left: 20px; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .box_2 {
+	background: rgb(249, 249, 249); border-radius: 5px; border: 1px solid rgb(238, 238, 238); margin-right: 20px; margin-bottom: 20px; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .b_style {
+	float: left; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .logo_style {
+	border-radius: 100%; height: auto; margin-top: 15px; margin-left: 10px;
+}
+.pixfort_ecourse_8 .txt_style {
+	padding: 10px; text-align: left; color: gray; font-size: 14px; float: right; display: inline-block; position: relative; max-width: 74%;
+}
+.pixfort_ecourse_8 .stars_st {
+	width: 30%;
+}
+.pixfort_ecourse_8 .env_st {
+	top: -2px; color: rgb(103, 67, 151); position: relative;
+}
+.pixfort_ecourse_8 .foot_st {
+	background: rgb(246, 246, 246); text-align: center;
+}
+.pixfort_ecourse_8 .bg_foot {
+	text-align: center;
+}
+.pixfort_ecourse_8 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .pixfort_st {
+	text-align: left; color: rgb(103, 67, 151); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_ecourse_8 .soc_icons {
+	background: rgba(0, 0, 0, 0.05); border-radius: 3px; padding-top: 10px; padding-bottom: 5px; padding-left: 5px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_8 {
+	background: rgb(103, 67, 151); border-radius: 2px; box-shadow: inset 0px -5px 0px 0px rgba(0,0,0,0.3) !important;
+}
+.pixfort_ecourse_8 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; padding-top: 40px; font-size: 26px; font-weight: 600; position: relative; max-width: 100%;
+}
+.pixfort_ecourse_8 .sub_text {
+	padding: 10px 0px; text-align: center; color: rgba(255, 255, 255, 0.6); font-size: 15px;
+}
+.pixfort_ecourse_8 .code_text {
+	text-align: center; color: rgb(255, 255, 255); padding-top: 15px; padding-bottom: 10px; font-size: 22px;
+}
+.pixfort_ecourse_8 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.4); padding-top: 10px; padding-bottom: 30px; font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_ecourse_8 .download_button {
+	background: rgb(255, 255, 255); padding: 10px 30px; border-radius: 3px; color: rgb(103, 67, 151); font-size: 16px; font-weight: 700; text-decoration: none; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_ecourse_8 .download_button:hover {
+	background: rgba(255, 255, 255, 0.9);
+}
+.pixfort_ecourse_8 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_ecourse_8 .confirm_social {
+	text-align: center;
+}
+.pixfort_ecourse_8 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.1); padding: 10px 6px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_ecourse_8 .confirm_gp {
+	padding: 0px 20px; top: 0px !important; position: relative;
+}
+.pixfort_ecourse_8 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_ecourse_8 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_ebook_9 .page_style {
+	background: url("../images/9_ebook/bg.png") fixed no-repeat bottom / cover rgb(125, 151, 151); padding-top: 60px; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_normal_1 .social_button {
+	margin-left: 7px; float: right; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_normal_1 .social_button:hover {
+	opacity: 0.7;
+}
+.pixfort_ebook_9 .logo {
+	padding-bottom: 90px; float: left;
+}
+.pixfort_ebook_9 .text_input {
+	width: 100%; padding-right: 50px; float: right; display: inline-block; position: relative; box-sizing: border-box;
+}
+.pixfort_ebook_9 .headtext_style {
+	color: rgb(255, 255, 255); line-height: 100%; padding-top: 60px; font-size: 26px;
+}
+.pixfort_ebook_9 .segment {
+	background: rgb(255, 42, 104); margin: 25px 0px; width: 80px; height: 6px;
+}
+.pixfort_ebook_9 .subtext_style {
+	color: rgb(230, 230, 250); padding-bottom: 20px; font-size: 18px; max-width: 357px;
+}
+.pixfort_ebook_9 .contact_st form {
+	width: 100%; display: inline-block; position: relative;
+}
+.pixfort_ebook_9 #contact_form {
+	position: relative;
+}
+.pixfort_ebook_9 #contact_form input {
+	border-radius: 3px; width: 100%; height: 48px; color: rgb(136, 136, 136); padding-right: 16px; padding-left: 16px; font-size: 16px; font-weight: 400; position: relative; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_ebook_9 .subscribe_btn {
+	margin: 0px; padding: 10px; border-radius: 3px; border: currentColor; width: 100%; height: 48px; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; position: relative;
+}
+.pixfort_ebook_9 .subscribe_btn:hover {
+	margin: 0px; padding: 10px; border-radius: 5px; border: currentColor; color: rgb(255, 255, 255); position: relative;
+}
+.pixfort_ebook_9 .book_pict {
+	height: auto; text-align: left; display: inline-block; position: relative; max-width: 100%;
+}
+.pixfort_ebook_9 .htext_style {
+	padding: 20px 0px; text-align: center; color: rgb(255, 255, 255); font-size: 14px;
+}
+.pixfort_ebook_9 .soc_logos {
+	text-align: center; margin-bottom: 50px;
+}
+.pixfort_ebook_9 .trees {
+	width: 100%; margin-right: auto; margin-bottom: -30px; margin-left: auto;
+}
+.pixfort_ebook_9 .chapters {
+	padding-top: 65px; padding-bottom: 30px; background-size: cover;
+}
+.pixfort_ebook_9 .title_chapter {
+	color: rgb(255, 255, 255); font-size: 22px; font-weight: 500;
+}
+.pixfort_ebook_9 .text_chapter {
+	color: rgb(255, 204, 255); font-size: 14px; font-weight: 400; display: inline-block;
+}
+.pixfort_ebook_9 .amazing_ebook {
+	background: rgb(255, 255, 255); padding: 70px 0px; text-align: center;
+}
+.pixfort_ebook_9 .TT1 {
+	text-align: left; color: rgb(0, 0, 0); line-height: 150%; font-size: 26px; font-weight: 600;
+}
+.pixfort_ebook_9 .TT2 {
+	text-align: left; color: gray; padding-bottom: 15px; font-size: 18px;
+}
+.pixfort_ebook_9 .TT3 {
+	text-align: left; color: rgb(169, 169, 169); padding-bottom: 30px; font-size: 16px; max-width: 95%;
+}
+.pixfort_ebook_9 .down_box {
+	padding: 10px 20px; border-radius: 3px; border: 2px solid rgb(238, 238, 238); text-align: left; float: left; display: inline-block; max-width: 70%;
+}
+.pixfort_ebook_9 .download_st {
+	color: gray; font-size: 16px;
+}
+.pixfort_ebook_9 .times_st {
+	color: rgb(255, 42, 104); font-size: 16px;
+}
+.pixfort_ebook_9 .video_style iframe {
+	width: 100%; margin-bottom: 0px; display: inline-block; position: relative;
+}
+.pixfort_ebook_9 .writers_section {
+	background: rgb(238, 238, 238); text-align: center; padding-top: 40px;
+}
+.pixfort_ebook_9 .title_st {
+	color: rgb(0, 0, 0); line-height: 100%; font-size: 20px; font-weight: 600;
+}
+.pixfort_ebook_9 .subtitle_st {
+	color: rgb(169, 169, 169); line-height: 100%; padding-bottom: 40px; font-size: 16px;
+}
+.pixfort_ebook_9 .b_style {
+	float: left; display: inline-block; position: relative;
+}
+.pixfort_ebook_9 .logo_style {
+	border-radius: 100%; border: 5px solid rgb(255, 255, 255); height: auto;
+}
+.pixfort_ebook_9 .author_text {
+	text-align: left; margin-left: 20px; display: inline-block; position: relative; max-width: 270px;
+}
+.pixfort_ebook_9 .name_st {
+	color: rgb(0, 0, 0); line-height: 100%; font-size: 22px; font-weight: 400;
+}
+.pixfort_ebook_9 .job_st {
+	color: rgb(255, 42, 104); line-height: 100%; padding-bottom: 10px; font-size: 12px; font-style: italic;
+}
+.pixfort_ebook_9 .details_st {
+	color: gray; font-size: 14px;
+}
+.pixfort_ebook_9 .icons_st {
+	background: rgb(255, 255, 255); padding: 5px 25px; border-radius: 3px; text-align: left; margin-bottom: 40px; display: inline-block; position: relative;
+}
+.pixfort_ebook_9 .yt_button {
+	background: url("../images/Social_icons/yt.png"); width: 32px; height: 32px; margin-left: 10px; float: right;
+}
+.pixfort_ebook_9 .yt_button:hover {
+	background: url("../images/Social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_ebook_9 .twitter_button {
+	background: url("../images/Social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 10px; float: right;
+}
+.pixfort_ebook_9 .twitter_button:hover {
+	background: url("../images/Social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_ebook_9 .facebook_button {
+	background: url("../images/Social_icons/facebook.png"); width: 32px; height: 32px; float: right;
+}
+.pixfort_ebook_9 .facebook_button:hover {
+	background: url("../images/Social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_ebook_9 .download_section {
+	background: rgb(255, 255, 255); padding: 40px 0px; text-align: center;
+}
+.pixfort_ebook_9 .down_title {
+	color: rgb(0, 0, 0); font-size: 28px;
+}
+.pixfort_ebook_9 .down_subtitle {
+	color: rgb(169, 169, 169); font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_ebook_9 .getebook_btn a {
+	background: rgb(255, 255, 255); padding: 15px 30px; border-radius: 3px; border: 3px solid rgb(255, 42, 104); color: rgb(255, 42, 104); font-size: 16px; font-weight: 700; text-decoration: none; margin-top: 15px; margin-bottom: 20px; display: inline-block; position: relative; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_ebook_9 .getebook_btn a:hover {
+	background: rgb(255, 42, 104); color: rgb(255, 255, 255);
+}
+.pixfort_ebook_9 .padd_updown {
+	text-align: center; padding-top: 40px; position: relative;
+}
+.pixfort_ebook_9 .logos_width {
+	display: inline-block;
+}
+.pixfort_ebook_9 .foot_st {
+	background: rgb(236, 236, 236); text-align: center;
+}
+.pixfort_ebook_9 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_ebook_9 .pixfort_st {
+	text-align: left; color: rgb(255, 42, 104); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_ebook_9 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_ebook_9 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_ebook_9 .soc_icons {
+	padding: 10px 5px 5px; border-radius: 3px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_9 {
+	border-radius: 2px; box-shadow: inset 0px -5px 0px 0px rgba(0,0,0,0.3) !important; background-size: cover;
+}
+.pixfort_ebook_9 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; padding-top: 40px; font-size: 26px; font-weight: 600; position: relative; max-width: 100%;
+}
+.pixfort_ebook_9 .sub_text {
+	padding: 10px 0px; text-align: center; color: rgba(255, 255, 255, 0.6); font-size: 15px;
+}
+.pixfort_ebook_9 .code_text {
+	text-align: center; color: rgb(255, 255, 255); padding-top: 15px; padding-bottom: 10px; font-size: 22px;
+}
+.pixfort_ebook_9 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.5); padding-top: 10px; padding-bottom: 30px; font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_ebook_9 .download_button {
+	background: rgb(255, 255, 255); padding: 10px 30px; border-radius: 3px; color: rgb(255, 42, 104); font-size: 16px; font-weight: 700; text-decoration: none; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_ebook_9 .download_button:hover {
+	background: rgba(255, 255, 255, 0.9);
+}
+.pixfort_ebook_9 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_ebook_9 .confirm_social {
+	text-align: center;
+}
+.pixfort_ebook_9 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.1); padding: 10px 10px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_ebook_9 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_ebook_9 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_ebook_9 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_business_10 .header_style {
+	background: rgb(255, 255, 255); padding: 25px 0px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid;
+}
+.pixfort_business_10 .yt_button {
+	background: url("../images/Social_icons/yt.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_business_10 .yt_button:hover {
+	background: url("../images/Social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_business_10 .twitter_button {
+	background: url("../images/Social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_business_10 .twitter_button:hover {
+	background: url("../images/Social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_business_10 .facebook_button {
+	background: url("../images/Social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_business_10 .facebook_button:hover {
+	background: url("../images/Social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_business_10 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right; display: inline-block;
+}
+.pixfort_business_10 .page_style {
+	background: url("../images/10_business/bg.png") fixed no-repeat top / cover rgb(85, 81, 109); padding-top: 80px; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_business_10 .text_zone {
+	width: 370px; float: left; display: inline-block; position: relative;
+}
+.pixfort_business_10 .TT1 {
+	color: rgb(0, 0, 0); line-height: 150%; font-size: 36px; font-weight: 600;
+}
+.pixfort_business_10 .segment {
+	background: rgb(91, 154, 104); margin: 10px 0px; width: 70px; height: 5px;
+}
+.pixfort_business_10 .TT2 {
+	color: rgb(47, 79, 79); line-height: 26px; padding-bottom: 20px; font-size: 16px; max-width: 370px;
+}
+.pixfort_business_10 .check_st {
+	text-align: left;
+}
+.pixfort_business_10 .carac_st {
+	top: -10px; line-height: 200%; font-size: 14px; font-style: italic; font-weight: 600; position: relative;
+}
+.pixfort_business_10 .apply_btn {
+	text-align: left;
+}
+.pixfort_business_10 .apply_btn a {
+	background: rgba(103, 67, 151, 0); padding: 12px 45px; border-radius: 3px; border: 2px solid rgb(91, 154, 104); color: rgb(91, 154, 104); font-size: 16px; font-weight: 700; text-decoration: none; margin-top: 35px; display: inline-block; position: relative; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_business_10 .apply_btn a:hover {
+	background: rgb(91, 154, 104); color: rgb(255, 255, 255);
+}
+.pixfort_business_10 .picture_zone img {
+	width: 53%; margin-top: 30px; margin-bottom: 0px; vertical-align: bottom; float: right; display: inline-block; position: relative;
+}
+.pixfort_business_10 .logos_sect {
+	background: 0% 0% / cover rgb(246, 246, 246); text-align: center;
+}
+.pixfort_business_10 .padd_updown {
+	padding: 30px 0px; text-align: center; position: relative;
+}
+.pixfort_business_10 .logos_width {
+	display: inline-block;
+}
+.pixfort_business_10 .bundle_section {
+	background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); text-align: center; padding-bottom: 50px;
+}
+.pixfort_business_10 .onethird_st {
+	text-align: center; display: inline-block; position: relative; max-width: 250px;
+}
+.pixfort_business_10 .what_st {
+	color: rgb(91, 154, 104); line-height: 100%; padding-top: 40px; font-size: 20px; font-weight: 600;
+}
+.pixfort_business_10 .great_st {
+	color: gray; padding-bottom: 30px; font-size: 16px;
+}
+.pixfort_business_10 .icons_style {
+	border-radius: 45px; width: 90px; height: 90px; text-align: center; display: inline-block; position: relative;
+}
+.pixfort_business_10 .icon_st {
+	top: 22%; width: 50%; display: inline-block; position: relative;
+}
+.pixfort_business_10 .T1 {
+	text-align: center; color: rgb(105, 105, 105); padding-top: 30px; font-size: 22px; font-weight: 500;
+}
+.pixfort_business_10 .T2 {
+	text-align: center; color: rgb(169, 169, 169); line-height: 26px; font-size: 16px;
+}
+.pixfort_business_10 .why_section {
+	background: rgb(245, 245, 245); padding: 50px 0px;
+}
+.pixfort_business_10 .left_zone {
+	width: 100%; padding-bottom: 30px; float: left; display: inline-block; position: relative;
+}
+.pixfort_business_10 .title_st {
+	text-align: left; color: rgb(0, 0, 0); padding-top: 25px; font-size: 26px;
+}
+.pixfort_business_10 .txt_st {
+	text-align: left; color: rgb(169, 169, 169); line-height: 150%; padding-bottom: 15px; font-size: 18px;
+}
+.pixfort_business_10 .video_style iframe {
+	width: 100%; height: 300px;
+}
+.pixfort_business_10 .video_style object {
+	width: 100%; height: 300px;
+}
+.pixfort_business_10 .video_style video {
+	width: 100%; height: 300px;
+}
+.pixfort_business_10 .video_style embed {
+	width: 100%; height: 300px;
+}
+.pixfort_business_10 .text_input {
+	background: rgb(255, 255, 255); padding: 4px 0px; border-radius: 3px; width: 100%; text-align: left; display: inline-block; position: relative;
+}
+.pixfort_business_10 .headtext_style {
+	padding: 30px 20px; text-align: left; color: rgb(0, 0, 0); line-height: 100%; font-size: 26px;
+}
+.pixfort_business_10 .subtext_style {
+	padding: 0px 20px 14px; text-align: left; color: rgb(169, 169, 169); line-height: 25px; font-size: 18px; max-width: 320px;
+}
+.pixfort_business_10 .subscribe_btn {
+	background: rgb(91, 154, 104); margin: 0px; padding: 10px; border-radius: 3px; border: currentColor; width: 100%; height: 48px; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; position: relative;
+}
+.pixfort_business_10 .subscribe_btn:hover {
+	background: rgb(69, 146, 83); margin: 0px; padding: 10px; color: rgb(255, 255, 255);
+}
+.pixfort_business_10 .contact_st form {
+	width: 100%; display: inline-block; position: relative;
+}
+.pixfort_business_10 #contact_form {
+	width: 100%; padding-right: 20px; padding-left: 20px; position: relative; box-sizing: border-box;
+}
+.pixfort_business_10 #contact_form input {
+	background: rgb(238, 238, 238); border-radius: 3px; width: 100%; height: 48px; color: rgb(136, 136, 136); padding-right: 16px; padding-left: 16px; font-size: 16px; font-weight: 400; position: relative; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_business_10 #contact_form textarea {
+	background: rgb(238, 238, 238); border-radius: 3px; width: 100%; height: 48px; color: rgb(136, 136, 136); padding-right: 16px; padding-left: 16px; font-size: 16px; font-weight: 400; position: relative; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_business_10 .note_st {
+	padding: 5px 20px 17px; text-align: left; color: rgb(187, 187, 187); font-size: 13px;
+}
+.pixfort_business_10 .envato_unbounce {
+	background: url("../images/10_business/bg.png") fixed no-repeat top / cover rgb(85, 81, 109); text-align: center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_business_10 .cadre_st {
+	padding-top: 50px; padding-bottom: 15px;
+}
+.pixfort_business_10 .L1_style {
+	text-align: center; color: rgb(91, 154, 104); line-height: 100%; font-size: 20px;
+}
+.pixfort_business_10 .L3_style {
+	text-align: center; color: rgb(169, 169, 169); font-size: 16px; margin-bottom: 40px;
+}
+.pixfort_business_10 .box_1 {
+	background: rgb(249, 249, 249); border-radius: 5px; border: 1px solid rgb(238, 238, 238); margin-bottom: 20px; margin-left: 20px; display: inline-block; position: relative;
+}
+.pixfort_business_10 .box_2 {
+	background: rgb(249, 249, 249); border-radius: 5px; border: 1px solid rgb(238, 238, 238); margin-right: 20px; margin-bottom: 20px; display: inline-block; position: relative;
+}
+.pixfort_business_10 .b_style {
+	float: left; display: inline-block; position: relative;
+}
+.pixfort_business_10 .logo_style {
+	border-radius: 100%; height: auto; margin-top: 15px; margin-left: 10px;
+}
+.pixfort_business_10 .txt_style {
+	padding: 10px; text-align: left; color: gray; font-size: 14px; float: right; display: inline-block; position: relative; max-width: 74%;
+}
+.pixfort_business_10 .stars_st {
+	width: 30%;
+}
+.pixfort_business_10 .env_st {
+	top: -2px; color: rgb(89, 163, 252); position: relative;
+}
+.pixfort_business_10 .foot_st {
+	background: rgb(246, 246, 246); text-align: center;
+}
+.pixfort_business_10 .bg_foot {
+	background: rgb(242, 242, 242); text-align: center;
+}
+.pixfort_business_10 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_business_10 .pixfort_st {
+	text-align: left; color: rgb(91, 154, 104); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_business_10 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_business_10 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_business_10 .soc_icons {
+	padding: 10px 5px 5px; border-radius: 3px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_10 {
+	background: rgb(91, 154, 104); border-radius: 2px; width: 500px; max-width: 100%; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.3) !important;
+}
+.pixfort_business_10 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; padding-top: 40px; font-size: 26px; font-weight: 600; margin-right: auto; margin-left: auto; position: relative; max-width: 100%;
+}
+.pixfort_business_10 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.7); padding-top: 10px; padding-bottom: 30px; font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_business_10 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_business_10 .confirm_social {
+	text-align: center;
+}
+.pixfort_business_10 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.2); padding: 10px 6px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_business_10 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_business_10 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_business_10 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_form_11 .header_style {
+	background: rgb(255, 255, 255); padding: 25px 0px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid;
+}
+.pixfort_form_11 .yt_button {
+	background: url("../images/Social_icons/yt.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_form_11 .yt_button:hover {
+	background: url("../images/Social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_form_11 .twitter_button {
+	background: url("../images/Social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_form_11 .twitter_button:hover {
+	background: url("../images/Social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_form_11 .facebook_button {
+	background: url("../images/Social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_form_11 .facebook_button:hover {
+	background: url("../images/Social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_form_11 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right; display: inline-block;
+}
+.pixfort_form_11 .why_section {
+	background: rgb(245, 245, 245); padding: 50px 0px;
+}
+.pixfort_form_11 .left_zone {
+	width: 100%; padding-bottom: 30px; float: left; display: inline-block; position: relative;
+}
+.pixfort_form_11 .title_st {
+	text-align: left; color: rgb(0, 0, 0); padding-top: 25px; font-size: 26px;
+}
+.pixfort_form_11 .txt_st {
+	text-align: left; color: rgb(169, 169, 169); line-height: 150%; padding-bottom: 15px; font-size: 18px;
+}
+.pixfort_form_11 .video_style iframe {
+	width: 100%; height: 300px;
+}
+.pixfort_form_11 .video_style object {
+	width: 100%; height: 300px;
+}
+.pixfort_form_11 .video_style video {
+	width: 100%; height: 300px;
+}
+.pixfort_form_11 .video_style embed {
+	width: 100%; height: 300px;
+}
+.pixfort_form_11 .text_input {
+	background: rgb(255, 255, 255); border-radius: 3px; width: 100%; text-align: left; display: inline-block; position: relative;
+}
+.pixfort_form_11 .headtext_style {
+	padding: 30px 20px; text-align: left; color: rgb(0, 0, 0); line-height: 100%; font-size: 26px;
+}
+.pixfort_form_11 .subtext_style {
+	padding: 0px 20px 14px; text-align: left; color: rgb(169, 169, 169); font-size: 18px; max-width: 320px;
+}
+.pixfort_form_11 .subscribe_btn {
+	background: rgb(91, 154, 104); margin: 0px; padding: 10px; border-radius: 3px; border: currentColor; width: 100%; height: 48px; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; position: relative;
+}
+.pixfort_form_11 .subscribe_btn:hover {
+	background: rgb(69, 146, 83); margin: 0px; padding: 10px; color: rgb(255, 255, 255);
+}
+.pixfort_form_11 .contact_st form {
+	width: 100%; display: inline-block; position: relative;
+}
+.pixfort_form_11 #contact_form {
+	width: 100%; padding-right: 20px; padding-left: 20px; position: relative; box-sizing: border-box;
+}
+.pixfort_form_11 #contact_form input {
+	background: rgb(238, 238, 238); border-radius: 3px; width: 100%; height: 48px; color: rgb(136, 136, 136); padding-right: 16px; padding-left: 16px; font-size: 16px; font-weight: 400; position: relative; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_form_11 .note_st {
+	padding: 5px 20px 17px; text-align: left; color: rgb(190, 166, 221); font-size: 13px;
+}
+.pixfort_form_11 .foot_st {
+	background: rgb(246, 246, 246); text-align: center;
+}
+.pixfort_form_11 .bg_foot {
+	background: rgb(242, 242, 242); text-align: center;
+}
+.pixfort_form_11 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_form_11 .pixfort_st {
+	text-align: left; color: rgb(91, 154, 104); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_form_11 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_form_11 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_form_11 .soc_icons {
+	padding: 10px 5px 5px; border-radius: 3px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_11 {
+	background: rgb(91, 154, 104); border-radius: 2px; width: 500px; max-width: 100%; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.3) !important;
+}
+.pixfort_form_11 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; padding-top: 40px; font-size: 26px; font-weight: 600; margin-right: auto; margin-left: auto; position: relative; max-width: 100%;
+}
+.pixfort_form_11 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.7); padding-top: 10px; padding-bottom: 30px; font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_form_11 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_form_11 .confirm_social {
+	text-align: center;
+}
+.pixfort_form_11 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.2); padding: 10px 6px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_form_11 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_form_11 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_form_11 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_subscribe_12 .header_style {
+	padding: 25px 0px; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.15); background-color: rgb(255, 255, 255);
+}
+.pixfort_subscribe_12 .fright {
+	float: right;
+}
+.pixfort_subscribe_12 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right;
+}
+.pixfort_subscribe_12 .yt_button {
+	background: url("../images/Social_icons/yt.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_subscribe_12 .yt_button:hover {
+	background: url("../images/Social_icons/youtube-hover.png"); float: right;
+}
+.pixfort_subscribe_12 .twitter_button {
+	background: url("../images/Social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_subscribe_12 .twitter_button:hover {
+	background: url("../images/Social_icons/twitter-hover.png"); float: right;
+}
+.pixfort_subscribe_12 .facebook_button {
+	background: url("../images/Social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_subscribe_12 .facebook_button:hover {
+	background: url("../images/Social_icons/facebook-hover.png"); float: right;
+}
+.pixfort_subscribe_12 .page_style {
+	background: rgb(234, 234, 234); text-align: center;
+}
+.pixfort_subscribe_12 .context_style {
+	padding: 30px 40px; border-radius: 4px; color: rgb(0, 0, 0); overflow: hidden; margin-top: 70px; margin-right: auto; margin-left: auto; position: relative; max-width: 70%; background-color: rgb(255, 255, 255);
+}
+.pixfort_subscribe_12 .title_style {
+	color: rgb(0, 0, 0); font-size: 26px; font-weight: 700; background-color: rgb(255, 255, 255);
+}
+.pixfort_subscribe_12 .subtitle_style {
+	padding: 20px 0px; color: rgb(169, 169, 169); font-size: 18px; margin-right: auto; margin-left: auto; max-width: 50%; background-color: rgb(255, 255, 255);
+}
+.pixfort_subscribe_12 .email_subscribe {
+	width: 75%; text-align: center; display: inline-block; position: relative;
+}
+.pixfort_subscribe_12 #contact_form input {
+	background: rgb(238, 238, 238); padding: 5px !important; border-radius: 3px; width: 66% !important; height: 36px; color: rgb(136, 136, 136); font-size: 16px; font-weight: 400; float: left; display: inline-block; position: relative;
+}
+.pixfort_subscribe_12 .subscribe_btn .subscribe_btn {
+	background: rgb(17, 177, 194); padding: 12px 30px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; text-decoration: none; float: right; display: inline-block; position: relative;
+}
+.pixfort_subscribe_12 .subscribe_btn .subscribe_btn:hover {
+	background: rgb(13, 165, 184); border: currentColor; color: rgb(255, 255, 255);
+}
+.pixfort_subscribe_12 .note_st {
+	top: -15px; text-align: left; color: rgb(211, 211, 211); font-size: 14px; position: relative;
+}
+.pixfort_subscribe_12 .coming_st {
+	width: 60%; text-align: center; margin-left: 20%; position: relative;
+}
+.pixfort_subscribe_12 .tit_style {
+	text-align: center; color: rgb(0, 0, 0); padding-top: 60px; font-size: 26px; font-weight: 700;
+}
+.pixfort_subscribe_12 .txt_style {
+	text-align: center; color: rgb(169, 169, 169); font-size: 18px;
+}
+.pixfort_subscribe_12 .video_style {
+	text-align: center; padding-top: 25px; padding-bottom: 55px; margin-right: auto; margin-left: auto; position: relative; max-height: 337px; max-width: 600px;
+}
+.pixfort_subscribe_12 .video_style iframe {
+	padding: 0px; width: 600px; height: 337px; text-align: center;
+}
+.pixfort_subscribe_12 .pad_30 {
+	padding-top: 30px;
+}
+.pixfort_subscribe_12 .foot_st {
+	background: rgb(255, 255, 255); text-align: center;
+}
+.pixfort_subscribe_12 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_subscribe_12 .pixfort_st {
+	text-align: left; color: rgb(17, 177, 194); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_subscribe_12 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_subscribe_12 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_subscribe_12 .soc_icons {
+	padding: 10px 5px 5px; border-radius: 3px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_12 {
+	background: rgb(17, 177, 194); border-radius: 2px; box-shadow: inset 0px -5px 0px 0px rgba(0,0,0,0.3) !important;
+}
+.confirm_page_12 .conf_img {
+	padding: 25px; border-radius: 100%; border: 2px solid rgb(255, 255, 255); line-height: 50px; margin-top: 15px; margin-bottom: 5px; display: inline-block;
+}
+.confirm_page_12 .conf_img {
+	width: 50px; height: 50px;
+}
+.pixfort_subscribe_12 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; font-size: 26px; font-weight: 600; position: relative; max-width: 100%;
+}
+.pixfort_subscribe_12 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.5); padding-top: 10px; padding-bottom: 30px; font-size: 16px; font-weight: 700;
+}
+.pixfort_subscribe_12 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_subscribe_12 .confirm_social {
+	text-align: center;
+}
+.pixfort_subscribe_12 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.2); padding: 10px 6px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_subscribe_12 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_subscribe_12 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_subscribe_12 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_gym_13 .slow_fade {
+	-webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_gym_13 .header_style {
+	background: rgb(255, 255, 255); padding: 20px 0px; box-shadow: inset 0px -3px rgba(0,0,0,0.1);
+}
+.pixfort_gym_13 .yt_button {
+	background: url("../images/social_icons/yt.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_gym_13 .yt_button:hover {
+	background: url("../images/social_icons/youtube-hover.png");
+}
+.pixfort_gym_13 .twitter_button {
+	background: url("../images/social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_gym_13 .twitter_button:hover {
+	background: url("../images/social_icons/twitter-hover.png");
+}
+.pixfort_gym_13 .facebook_button {
+	background: url("../images/social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right;
+}
+.pixfort_gym_13 .facebook_button:hover {
+	background: url("../images/social_icons/facebook-hover.png");
+}
+.pixfort_gym_13 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right; display: inline-block;
+}
+.pixfort_gym_13 .page_style {
+	background: url("../images/13_gym/bg.jpg") fixed no-repeat top / cover rgb(31, 51, 74); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_gym_13 .text_page {
+	text-align: center; padding-top: 140px; margin-right: auto; margin-left: auto; position: relative;
+}
+.pixfort_gym_13 .title {
+	text-align: center; color: rgb(255, 255, 255); font-size: 48px; font-weight: bolder;
+}
+.pixfort_gym_13 .subtitle {
+	text-align: center; color: rgb(211, 211, 211); font-size: 22px; font-weight: 400;
+}
+.pixfort_gym_13 .one_link {
+	text-align: center; padding-top: 30px;
+}
+.pixfort_gym_13 .start_btn a {
+	background: rgb(255, 136, 51); padding: 15px 30px 20px; border-radius: 3px; color: rgb(255, 255, 255); line-height: 30px; font-size: 18px; text-decoration: none; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .start_btn a:hover {
+	background: rgb(242, 114, 39);
+}
+.pixfort_gym_13 .note_st {
+	text-align: center; color: rgb(169, 169, 169); padding-top: 30px; font-size: 13px;
+}
+.pixfort_gym_13 .arrow_st {
+	padding: 20px 0px; text-align: center; animation: new_icon 1s linear 0 infinite alternate; -webkit-animation: new_icon 2s linear 0 infinite alternate;
+}
+.pixfort_gym_13 .logos_sect {
+	background: 0% 0% / cover rgb(238, 238, 238); text-align: center; padding-bottom: 20px;
+}
+.pixfort_gym_13 .text_logos {
+	color: gray; padding-top: 30px; font-size: 14px; font-weight: 700;
+}
+.pixfort_gym_13 .padd_updown {
+	padding: 30px 0px; text-align: center; position: relative;
+}
+.pixfort_gym_13 .logo_width {
+	max-width: 100%;
+}
+.pixfort_gym_13 .gym_life {
+	background: 0% 0% / cover rgb(255, 255, 255);
+}
+.pixfort_gym_13 .top_padding {
+	padding-top: 60px;
+}
+.pixfort_gym_13 .part_st {
+	text-align: center; position: relative;
+}
+.pixfort_gym_13 .logo_style {
+	border-radius: 100%; height: auto;
+}
+.pixfort_gym_13 .img_gym_st {
+	width: 220px; height: 200px; text-align: center; overflow: hidden; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .img_gym_st img {
+	margin-right: -100%; margin-left: -100%;
+}
+.pixfort_gym_13 .text_gym_style {
+	text-align: center; padding-top: 15px; position: relative;
+}
+.pixfort_gym_13 .gym_st {
+	color: rgb(0, 0, 0); font-size: 18px; font-weight: 700;
+}
+.pixfort_gym_13 .gym_text {
+	color: rgb(169, 169, 169); font-size: 14px; margin-right: auto; margin-left: auto; max-width: 200px;
+}
+.pixfort_gym_13 .link_1_btn a {
+	background: rgb(255, 136, 51); padding: 7px 25px 5px; border-radius: 3px; text-align: center; color: rgb(255, 255, 255); font-size: 12px; text-decoration: none; margin-bottom: 50px; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .link_1_btn a:hover {
+	background: rgb(242, 114, 39);
+}
+.pixfort_gym_13 .link_2_btn a {
+	background: rgb(255, 136, 51); padding: 7px 25px 5px; border-radius: 3px; text-align: center; color: rgb(255, 255, 255); font-size: 12px; text-decoration: none; margin-bottom: 50px; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .link_2_btn a:hover {
+	background: rgb(242, 114, 39);
+}
+.pixfort_gym_13 .link_3_btn a {
+	background: rgb(255, 136, 51); padding: 7px 25px 5px; border-radius: 3px; text-align: center; color: rgb(255, 255, 255); font-size: 12px; text-decoration: none; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .link_3_btn a:hover {
+	background: rgb(242, 114, 39);
+}
+.pixfort_gym_13 .column {
+	padding: 20px 0px;
+}
+.pixfort_gym_13 .join_us_section {
+	padding-top: 40px;
+}
+.pixfort_gym_13 .zone_left {
+	padding: 40px 0px 10px; width: 100%; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .icon_st img {
+	padding-top: 10px; float: left; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .text_st {
+	width: 70%; padding-bottom: 30px; padding-left: 40px; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .title_st {
+	color: rgb(0, 0, 0); line-height: 100%; padding-top: 10px; font-size: 22px;
+}
+.pixfort_gym_13 .subject_st {
+	top: -5px; width: 100%; color: rgb(169, 169, 169); line-height: 26px; font-size: 16px; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .pix_form_area {
+	border-radius: 3px; overflow: hidden;
+}
+.pixfort_gym_13 .substyle {
+	background: rgb(235, 234, 234); padding-top: 40px; padding-bottom: 5px;
+}
+.pixfort_gym_13 .title-style {
+	color: rgb(0, 0, 0); font-size: 22px; margin-left: 20px;
+}
+.pixfort_gym_13 .text-style {
+	color: rgb(169, 169, 169); font-size: 14px; margin-left: 20px; position: relative;
+}
+.pixfort_gym_13 .send_btn button {
+	background: rgb(255, 136, 51); padding: 10px 40px; border-radius: 3px; border: currentColor; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; text-decoration: none; display: inline-block; position: relative; text-shadow: none;
+}
+.pixfort_gym_13 .send_btn button:hover {
+	background: rgb(242, 114, 39);
+}
+.pixfort_gym_13 #contact_form {
+	color: rgb(0, 0, 0); font-size: 11px; margin-right: 20px; margin-left: 20px; position: relative;
+}
+.pixfort_gym_13 #contact_form input {
+	background: rgb(255, 255, 255); border-radius: 3px; border: 1px solid rgb(255, 255, 255); width: 100%; height: 44px; color: rgb(0, 0, 0); padding-left: 10px; font-size: 15px; position: relative; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_gym_13 .note_contact {
+	background: rgb(221, 221, 221); padding: 25px 20px; text-align: center; color: gray; font-size: 13px;
+}
+.pixfort_gym_13 .envato_unbounce {
+	background: rgb(245, 245, 245); padding: 40px 0px; text-align: center;
+}
+.pixfort_gym_13 .L1_style {
+	text-align: center; color: gray; font-size: 20px;
+}
+.pixfort_gym_13 .L3_style {
+	text-align: center; color: rgb(169, 169, 169); line-height: 30px; font-size: 16px;
+}
+.pixfort_gym_13 .box_style {
+	background: rgb(238, 238, 238); border-radius: 5px; width: 100%; margin-top: 40px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 3px; border-bottom-style: solid; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .b_style img {
+	background: rgb(238, 238, 238); width: 14%; height: auto; margin-top: 20px; margin-left: 3%; float: left; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .logo_style {
+	border-radius: 100%;
+}
+.pixfort_gym_13 .pix_testi_bottom {
+	top: -8px; position: relative;
+}
+.pixfort_gym_13 .txt_style {
+	background: rgb(255, 255, 255); width: 80%; text-align: left; color: gray; padding-left: 1%; font-size: 14px; float: right; display: inline-block; position: relative; border-top-right-radius: 5px; border-bottom-right-radius: 5px;
+}
+.pixfort_gym_13 .inner_txt_style {
+	padding: 20px 10px 10px;
+}
+.pixfort_gym_13 .txt {
+	width: 100%;
+}
+.pixfort_gym_13 .star_st {
+	width: 35%;
+}
+.pixfort_gym_13 .env_st {
+	top: -5px; color: rgb(255, 136, 51); position: relative;
+}
+.pixfort_gym_13 .foot_st {
+	background: rgb(236, 236, 236); text-align: center;
+}
+.pixfort_gym_13 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .pixfort_st {
+	text-align: left; color: rgb(246, 129, 33); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .likes_st {
+	padding: 25px 15px 0px; color: rgb(169, 169, 169); font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_gym_13 .soc_icons {
+	background: rgba(0, 0, 0, 0.1); padding: 10px 5px 5px; border-radius: 3px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_13 {
+	background: rgb(255, 136, 51); border-radius: 2px; box-shadow: inset 0px -5px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_gym_13 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; padding-top: 40px; font-size: 26px; font-weight: 600; position: relative; max-width: 100%;
+}
+.pixfort_gym_13 .sub_text {
+	padding: 10px 0px; text-align: center; color: rgba(255, 255, 255, 0.6); font-size: 15px;
+}
+.pixfort_gym_13 .code_text {
+	text-align: center; color: rgb(255, 255, 255); padding-top: 15px; padding-bottom: 10px; font-size: 22px;
+}
+.pixfort_gym_13 .code_text span {
+	background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 3px; display: inline-block;
+}
+.pixfort_gym_13 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.9); padding-top: 10px; padding-bottom: 30px; font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_gym_13 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_gym_13 .confirm_social {
+	text-align: center;
+}
+.pixfort_gym_13 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.1); padding: 10px 8px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_gym_13 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_gym_13 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_gym_13 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_gym_13 .page_style {
+	background-attachment: scroll;
+}
+.pixfort_agency_14 .slow_fade {
+	-webkit-transition: all .2s linear; -moz-transition: all .2s linear; -ms-transition: all .2s linear; -o-transition: all .2s linear;
+}
+.pixfort_agency_14 .page_style {
+	background: url("../images/14_agency/bg.png") no-repeat center / cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_agency_14 .text_page {
+	width: 85%; text-align: center; margin-right: auto; margin-left: auto; position: relative;
+}
+.pixfort_agency_14 .title {
+	text-align: center; color: rgb(0, 0, 0); padding-top: 300px; font-size: 48px; font-weight: 500;
+}
+.pixfort_agency_14 .green_segment {
+	margin: 25px auto; width: 60px; height: 5px; background-color: rgb(91, 154, 104);
+}
+.pixfort_agency_14 .subtitle {
+	text-align: center; color: rgb(105, 105, 105); font-size: 16px; font-weight: 400;
+}
+.pixfort_agency_14 .first_link {
+	text-align: center; padding-top: 30px; margin-bottom: 350px;
+}
+.pixfort_agency_14 .get_1_btn a {
+	padding: 20px 35px; border-radius: 3px; border: 2px solid rgb(91, 154, 104); text-align: center; color: rgb(77, 140, 90); font-size: 20px; font-weight: 700; text-decoration: none; display: inline-block; position: relative;
+}
+.pixfort_agency_14 .get_1_btn a:hover {
+	background: rgb(91, 154, 104); color: rgb(255, 255, 255);
+}
+.pixfort_agency_14 .agency_st {
+	background: 0% 0% / cover rgb(248, 248, 248);
+}
+.pixfort_agency_14 .top_padding {
+	padding-top: 60px;
+}
+.pixfort_agency_14 .part_st {
+	text-align: center; position: relative;
+}
+.pixfort_agency_14 .img_st {
+	padding: 20px; border-radius: 25px; border: 2px solid rgb(91, 154, 104); display: inline-block; position: relative;
+}
+.pixfort_agency_14 .text_agency_style {
+	padding: 15px 0px; position: relative;
+}
+.pixfort_agency_14 .agency_st {
+	color: rgb(105, 105, 105); font-size: 22px; font-weight: 500;
+}
+.pixfort_agency_14 .agency_text {
+	width: 80%; color: rgb(169, 169, 169); font-size: 16px; margin-right: auto; margin-left: auto;
+}
+.pixfort_agency_14 .logos_sect {
+	background: 0% 0% / cover rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); text-align: center; padding-bottom: 20px;
+}
+.pixfort_agency_14 .t1_logos {
+	text-align: center; color: rgb(91, 154, 104); padding-top: 50px; font-size: 20px; font-weight: 700;
+}
+.pixfort_agency_14 .t2_logos {
+	text-align: center; color: gray; line-height: 40px; font-size: 16px;
+}
+.pixfort_agency_14 .text_logos {
+	color: gray; padding-top: 30px; font-size: 14px; font-weight: 600;
+}
+.pixfort_agency_14 .padd_updown {
+	text-align: center; padding-top: 30px; padding-bottom: 60px; position: relative;
+}
+.pixfort_agency_14 .logo_width {
+	max-width: 100%;
+}
+.pixfort_agency_14 .envato_unbounce {
+	background: rgb(245, 245, 245); padding: 40px 0px; text-align: center; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.pixfort_agency_14 .L1_style {
+	text-align: center; color: rgb(91, 154, 104); padding-bottom: 10px; font-size: 22px; font-weight: 600;
+}
+.pixfort_agency_14 .L2_style {
+	text-align: center; color: rgb(169, 169, 169); font-size: 16px;
+}
+.pixfort_agency_14 .box_style {
+	background: rgb(255, 255, 255); border-radius: 5px; width: 100%; margin-top: 40px; display: inline-block; position: relative;
+}
+.pixfort_agency_14 .b_style img {
+	background: rgb(238, 238, 238); width: 14%; height: auto; margin-top: 20px; margin-left: 3%; float: left; display: inline-block; position: relative;
+}
+.pixfort_agency_14 .logo_style {
+	border-radius: 100%;
+}
+.pixfort_agency_14 .pix_testi_bottom {
+	top: -8px; position: relative;
+}
+.pixfort_agency_14 .txt_style {
+	background: rgb(255, 255, 255); width: 80%; text-align: left; color: gray; padding-left: 1%; font-size: 14px; float: right; display: inline-block; position: relative; border-top-right-radius: 5px; border-bottom-right-radius: 5px;
+}
+.pixfort_agency_14 .inner_txt_style {
+	padding: 20px 10px 10px;
+}
+.pixfort_agency_14 .txt {
+	width: 90%;
+}
+.pixfort_agency_14 .star_st {
+	width: 35%;
+}
+.pixfort_agency_14 .env_st {
+	top: -5px; color: rgb(91, 154, 104); position: relative;
+}
+.pixfort_agency_14 .foot_st {
+	background: rgb(255, 255, 255); text-align: center;
+}
+.pixfort_agency_14 .f1_style {
+	text-align: center; color: rgb(91, 154, 104); padding-top: 60px; font-size: 26px; font-weight: 500;
+}
+.pixfort_agency_14 .f2_style {
+	padding: 30px 0px; width: 60%; text-align: center; color: rgb(169, 169, 169); font-size: 16px; margin-right: auto; margin-left: auto;
+}
+.pixfort_agency_14 .rights_st {
+	text-align: center; color: rgb(169, 169, 169); font-size: 14px;
+}
+.pixfort_agency_14 .second_link {
+	text-align: center; padding-bottom: 40px;
+}
+.pixfort_agency_14 .get_2_btn a {
+	background: rgb(255, 255, 255); padding: 20px 35px; border-radius: 3px; border: 2px solid rgb(91, 154, 104); text-align: center; color: rgb(77, 140, 90); font-size: 20px; font-weight: 700; text-decoration: none; display: inline-block; position: relative;
+}
+.pixfort_agency_14 .get_2_btn a:hover {
+	background: rgb(91, 154, 104); color: rgb(255, 255, 255);
+}
+.pixfort_agency_14 .pixfort_st {
+	text-align: left; color: rgb(91, 154, 104); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_agency_14 .yt_button {
+	background: url("../images/social_icons/yt.png"); width: 32px; height: 32px; margin-left: 5px; display: inline-block;
+}
+.pixfort_agency_14 .yt_button:hover {
+	background: url("../images/social_icons/youtube-hover.png");
+}
+.pixfort_agency_14 .twitter_button {
+	background: url("../images/social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 5px; display: inline-block;
+}
+.pixfort_agency_14 .twitter_button:hover {
+	background: url("../images/social_icons/twitter-hover.png");
+}
+.pixfort_agency_14 .facebook_button {
+	background: url("../images/social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; display: inline-block;
+}
+.pixfort_agency_14 .facebook_button:hover {
+	background: url("../images/social_icons/facebook-hover.png");
+}
+.pixfort_agency_14 .center_btn {
+	padding: 30px 0px; text-align: center;
+}
+.pixfort_party_15 .page_style {
+	background: url("../images/15_party/bg.png") fixed no-repeat top / cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_party_15 .img_width {
+	width: 100%;
+}
+.pixfort_party_15 .text_page {
+	width: 85%; text-align: center; padding-top: 30px; margin-right: auto; margin-left: auto; position: relative;
+}
+.pixfort_party_15 .title {
+	text-align: center; color: rgb(255, 255, 255); font-size: 28px; font-weight: 600; margin-top: -100px;
+}
+.pixfort_party_15 .subtitle {
+	text-align: center; color: gray; font-size: 20px; font-style: italic; font-weight: 400;
+}
+.pixfort_party_15 .soc_icons_1 {
+	background: rgba(0, 0, 0, 0.25); margin: 25px auto; padding: 10px 15px 5px; border-radius: 3px; width: 220px; text-align: center; position: relative;
+}
+.pixfort_party_15 .logos_sect {
+	background: 0% 0% / cover rgb(34, 32, 34); border: 2px solid rgb(51, 51, 51); text-align: center;
+}
+.pixfort_party_15 .padd_updown {
+	padding: 50px 0px; text-align: center; position: relative;
+}
+.pixfort_party_15 .logos_width {
+	display: inline-block; max-width: 100%;
+}
+.pixfort_party_15 .subscribe {
+	background: rgb(25, 25, 25);
+}
+.pixfort_party_15 .style {
+	text-align: center; position: relative;
+}
+.pixfort_party_15 .text_input {
+	background: rgba(0, 0, 0, 0.15); margin: 70px auto; padding: 40px 20px 20px; border: 1px solid rgb(41, 41, 41); text-align: center; position: relative; max-width: 450px; box-sizing: border-box;
+}
+.pixfort_party_15 .headtext_style {
+	color: rgb(255, 255, 255); line-height: 100%; font-size: 26px;
+}
+.pixfort_party_15 .segment {
+	background: rgb(28, 143, 245); margin: 25px auto; width: 80px; height: 6px;
+}
+.pixfort_party_15 .subtext_style {
+	color: gray; padding-bottom: 14px; font-size: 18px; margin-right: auto; margin-left: auto; max-width: 320px;
+}
+.pixfort_party_15 .subscribe_btn {
+	margin: 0px; padding: 10px; border-radius: 3px; border: currentColor; width: 100%; height: 48px; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; position: relative;
+}
+.pixfort_party_15 .subscribe_btn:hover {
+	margin: 0px; padding: 10px; border-radius: 5px; border: currentColor; color: rgb(255, 255, 255); position: relative;
+}
+.pixfort_party_15 .contact_st form {
+	width: 100%; display: inline-block; position: relative;
+}
+.pixfort_party_15 #contact_form {
+	position: relative;
+}
+.pixfort_party_15 #contact_form input {
+	border-radius: 3px; width: 100%; height: 48px; color: rgb(136, 136, 136); padding-right: 16px; padding-left: 16px; font-size: 16px; font-weight: 400; position: relative; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_party_15 .foot_st {
+	background: rgb(21, 21, 21); text-align: center;
+}
+.pixfort_party_15 .rights_st {
+	text-align: left; color: rgb(169, 169, 169); padding-top: 25px; font-size: 14px; display: inline-block; position: relative;
+}
+.pixfort_party_15 .pixfort_st {
+	text-align: left; color: rgb(28, 143, 245); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_party_15 .likes_st {
+	color: rgb(169, 169, 169); padding-top: 25px; padding-right: 15px; font-size: 14px; float: right; display: inline-block; position: relative;
+}
+.pixfort_party_15 .socbuttons {
+	width: 100%; overflow: hidden; padding-bottom: 10px; display: inline-block; position: relative;
+}
+.pixfort_party_15 .soc_icons {
+	background: rgba(0, 0, 0, 0); padding: 10px 5px 5px; border-radius: 3px; margin-top: 15px; float: right; display: inline-block; position: relative;
+}
+.confirm_page {
+	height: auto; display: none;
+}
+.confirm_page_15 {
+	background: rgb(34, 34, 34); border-radius: 0px !important; box-shadow: inset 0px -5px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_party_15 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; padding-top: 40px; font-size: 26px; font-weight: 600; position: relative; max-width: 100%;
+}
+.pixfort_party_15 .sub_text {
+	padding: 10px 0px; text-align: center; color: rgba(255, 255, 255, 0.6); font-size: 15px;
+}
+.pixfort_party_15 .code_text {
+	text-align: center; color: rgb(255, 255, 255); padding-top: 15px; padding-bottom: 10px; font-size: 22px;
+}
+.pixfort_party_15 .code_text span {
+	background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 3px; display: inline-block;
+}
+.pixfort_party_15 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.9); line-height: 25px; padding-top: 10px; padding-bottom: 30px; font-size: 16px; margin-right: auto; margin-left: auto; max-width: 400px;
+}
+.pixfort_party_15 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_party_15 .confirm_social {
+	text-align: center;
+}
+.pixfort_party_15 .confirm_social .confirm_social_box {
+	background: rgba(255, 255, 255, 0.2); padding: 10px 8px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_party_15 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}
+.pixfort_party_15 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_party_15 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_party_15 .page_style {
+	background-attachment: scroll;
+}
+.pixfort_subscribe_19 .div_center {
+	text-align: center !important; margin-right: auto !important; margin-left: auto !important;
+}
+.pixfort_subscribe_19 .htext_style {
+	color: rgb(169, 169, 169); padding-top: 5px; font-size: 14px; margin-right: 15px; float: right;
+}
+.pixfort_subscribe_19 .yt_button {
+	background: url("../images/Social_icons/yt.png"); width: 32px; height: 32px; margin-left: 5px; float: right; position: relative;
+}
+.pixfort_subscribe_19 .yt_button:hover {
+	background: url("../images/Social_icons/youtube-hover.png");
+}
+.pixfort_subscribe_19 .twitter_button {
+	background: url("../images/Social_icons/twitter.png"); width: 32px; height: 32px; margin-left: 5px; float: right; position: relative;
+}
+.pixfort_subscribe_19 .twitter_button:hover {
+	background: url("../images/Social_icons/twitter-hover.png");
+}
+.pixfort_subscribe_19 .facebook_button {
+	background: url("../images/Social_icons/facebook.png"); width: 32px; height: 32px; margin-left: 5px; float: right; position: relative;
+}
+.pixfort_subscribe_19 .facebook_button:hover {
+	background: url("../images/Social_icons/facebook-hover.png");
+}
+.pixfort_subscribe_19 .page_style {
+	background: 0% 0% / cover rgb(234, 234, 234); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
+}
+.pixfort_subscribe_19 .bande {
+	background: url("../images/19_new_subscribe/pattern-subscribe.png"); width: 100%; height: 15px; position: relative;
+}
+.pixfort_subscribe_19 .marge {
+	padding: 30px 40px;
+}
+.pixfort_subscribe_19 .coming_soon {
+	background: rgb(255, 255, 255); margin: 80px auto; width: 90%; text-align: center; position: relative;
+}
+.pixfort_subscribe_19 .img_st {
+	float: left;
+}
+.pixfort_subscribe_19 .main_content {
+	padding-top: 100px;
+}
+.pixfort_subscribe_19 .title {
+	text-align: center; color: rgb(0, 0, 0); font-size: 26px; font-weight: 600;
+}
+.pixfort_subscribe_19 .subtitle {
+	text-align: center; color: rgb(169, 169, 169); font-size: 16px; font-weight: 400;
+}
+.pixfort_subscribe_19 .note_st {
+	padding: 5px 0px; text-align: center; color: rgb(169, 169, 169); font-size: 13px;
+}
+.pixfort_subscribe_19 .espace {
+	top: -10px; position: relative;
+}
+.pixfort_subscribe_19 .subscribe_btn {
+	background: rgb(17, 177, 194); margin: 0px; padding: 10px; border-radius: 3px; border: currentColor; width: 100%; height: 48px; color: rgb(255, 255, 255); font-size: 16px; font-weight: 400; position: relative;
+}
+.pixfort_subscribe_19 .subscribe_btn:hover {
+	background: rgb(13, 165, 184); margin: 0px; padding: 10px; border-radius: 5px; border: currentColor; color: rgb(255, 255, 255); position: relative;
+}
+.pixfort_subscribe_19 .contact_st form {
+	width: 50%; text-align: center; display: inline-block; position: relative;
+}
+.pixfort_subscribe_19 #contact_form {
+	position: relative;
+}
+.pixfort_subscribe_19 #contact_form input {
+	background: rgb(238, 238, 238); border-radius: 3px; width: 100%; height: 48px; color: rgb(136, 136, 136); padding-right: 16px; padding-left: 16px; font-size: 16px; font-weight: 400; position: relative; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.pixfort_subscribe_19 .foot_st {
+	background: rgb(17, 177, 194); text-align: center; margin-right: auto; margin-left: auto; max-width: 860px;
+}
+.pixfort_subscribe_19 .rights_st {
+	padding: 25px 0px; text-align: left; color: rgb(255, 255, 255); font-size: 14px; margin-left: 40px; display: inline-block; position: relative;
+}
+.pixfort_subscribe_19 .pixfort_st {
+	text-align: left; color: rgb(255, 255, 255); font-size: 14px; font-weight: 700; display: inline-block; position: relative;
+}
+.pixfort_subscribe_19 .soc_icons {
+	padding-right: 15px; margin-top: 25px; float: right; display: inline-block; position: relative;
+}
+.pixfort_subscribe_19 .success {
+	background: rgb(207, 255, 245); padding: 10px; border-radius: 5px; border: 1px solid rgb(185, 236, 206); font-weight: 400; margin-bottom: 10px;
+}
+.pixfort_subscribe_19 .error {
+	background: rgb(255, 223, 223); padding: 10px; border-radius: 5px; border: 1px solid rgb(255, 202, 202); font-weight: 400; margin-bottom: 10px;
+}
+.confirm_page_19 {
+	background: rgb(17, 177, 194); border-radius: 2px; box-shadow: inset 0px -5px 0px 0px rgba(0,0,0,0.3) !important;
+}
+.confirm_page_19 .conf_img {
+	padding: 25px; border-radius: 100%; border: 2px solid rgb(255, 255, 255); line-height: 50px; margin-top: 15px; margin-bottom: 5px; display: inline-block;
+}
+.confirm_page_19 .conf_img {
+	width: 50px; height: 50px;
+}
+.pixfort_subscribe_19 .confirm_header {
+	width: 500px; text-align: center; color: rgb(255, 255, 255); line-height: 35px; font-size: 26px; font-weight: 600; position: relative; max-width: 100%;
+}
+.pixfort_subscribe_19 .confirm_text {
+	text-align: center; color: rgba(255, 255, 255, 0.5); padding-top: 10px; padding-bottom: 30px; font-size: 16px; font-weight: 700;
+}
+.pixfort_subscribe_19 .confirm_logo {
+	padding: 20px; text-align: center;
+}
+.pixfort_subscribe_19 .confirm_social {
+	text-align: center;
+}
+.pixfort_subscribe_19 .confirm_social .confirm_social_box {
+	background: rgba(0, 0, 0, 0.2); padding: 10px 6px 0px; border-radius: 3px; margin-right: auto; margin-bottom: 30px; margin-left: auto; display: inline-block; box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2) !important;
+}
+.pixfort_subscribe_19 .confirm_gp {
+	padding: 0px 20px; top: -15px !important; position: relative;
+}

@@ -1,0 +1,9 @@
+Unhandled Exception: System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at BenchmarkDotNet.Reports.Summary.GetConfiguredOrdererOrDefaultOne(IEnumerable`1 configs)
+   at BenchmarkDotNet.Reports.Summary..ctor(String title, ImmutableArray`1 reports, HostEnvironmentInfo hostEnvironmentInfo, String resultsDirectoryPath, TimeSpan totalTime, ImmutableArray`1 validationErrors)
+   at BenchmarkDotNet.Running.BenchmarkRunnerClean.Run(BenchmarkRunInfo benchmarkRunInfo, Dictionary`2 buildResults, IResolver resolver, ILogger logger, List`1 artifactsToCleanup, String rootArtifactsFolderPath, StartedClock& runChronometer)
+   at BenchmarkDotNet.Running.BenchmarkRunnerClean.Run(BenchmarkRunInfo[] benchmarkRunInfos)
+   at BenchmarkDotNet.Running.BenchmarkSwitcher.RunWithDirtyAssemblyResolveHelper(String[] args, IConfig config)
+   at BenchmarkDotNet.Running.BenchmarkSwitcher.Run(String[] args, IConfig config)
+   at JavaScriptEngineSwitcher.Benchmarks.Program.Main(String[] args)

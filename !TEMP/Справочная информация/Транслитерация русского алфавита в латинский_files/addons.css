@@ -1,0 +1,315 @@
+html {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+body {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+div {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+span {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+applet {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+object {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+iframe {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+h1 {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+h2 {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+h3 {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+h4 {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+h5 {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+h6 {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+p {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+blockquote {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+pre {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+a {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+abbr {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+acronym {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+address {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+big {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+cite {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+code {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+del {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+dfn {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+em {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+img {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+ins {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+kbd {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+q {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+s {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+samp {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+small {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+strike {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+strong {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+sub {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+sup {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+tt {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+var {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+b {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+u {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+i {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+center {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+dl {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+dt {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+dd {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+ol {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+ul {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+li {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+fieldset {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+form {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+label {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+legend {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+table {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+caption {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+tbody {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+tfoot {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+thead {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+tr {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+th {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+td {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+article {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+aside {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+canvas {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+details {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+embed {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+figure {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+figcaption {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+footer {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+header {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+hgroup {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+menu {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+nav {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+output {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+ruby {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+section {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+summary {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+time {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+mark {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+audio {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+video {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+ul {
+	list-style: none;
+}
+table {
+	border-collapse: collapse; border-spacing: 0;
+}
+:focus {
+	
+}
+.clearfix::after {
+	height: 0px; line-height: 0; clear: both; display: block; visibility: hidden; content: ".";
+}
+.clearfix {
+	display: inline-block;
+}
+html[xmlns] .clearfix {
+	display: block;
+}
+* html .clearfix {
+	height: 1%;
+}
+.clear {
+	clear: both;
+}
+.divider {
+	clear: both;
+}
+.no-display {
+	display: none !important;
+}
+.nowrap {
+	white-space: nowrap !important;
+}
+.nobr {
+	white-space: nowrap !important;
+}
+.no-border {
+	border: 0px currentColor !important; border-image: none !important;
+}
+.no-padding {
+	padding: 0px !important;
+}
+.no-margin {
+	margin: 0px !important;
+}
+.v-top {
+	vertical-align: top;
+}
+.v-middle {
+	vertical-align: middle;
+}
+.v-bottom {
+	vertical-align: bottom;
+}
+.a-left {
+	text-align: left;
+}
+.a-center {
+	text-align: center;
+}
+.a-right {
+	text-align: right;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.auto-width {
+	width: auto;
+}

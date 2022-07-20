@@ -1,0 +1,45 @@
+.ja-masonry {
+	width: 100% !important; float: none !important;
+}
+.grid-single {
+	width: 100% !important; float: none !important;
+}
+.grid-double {
+	width: 100% !important; float: none !important;
+}
+.grid-triple {
+	width: 100% !important; float: none !important;
+}
+.grid-quadruple {
+	width: 100% !important; float: none !important;
+}
+#ja-header .main {
+	width: 100% !important; float: none !important;
+}
+#ja-content {
+	width: 100% !important; float: none !important;
+}
+.item {
+	width: 100% !important; float: none !important;
+}
+#contact-form dl dd input.required {
+	width: 90% !important;
+}
+#contact-form dl dd textarea.required {
+	width: 90% !important;
+}
+.mobile-meeting-website {
+	display: inline-block !important;
+}
+.normal-meeting-website {
+	display: none !important;
+}
+.welcome-arrow-block {
+	width: 100% !important;
+}
+.video-with-description {
+	width: 100% !important; margin-right: 0px !important;
+}
+.img-blocks.teasing-works {
+	flex-wrap: wrap !important;
+}

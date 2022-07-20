@@ -1,0 +1,18 @@
+		/// <summary>
+		/// Creates a Javascript ArrayBuffer object to access external memory
+		/// </summary>
+		/// <remarks>Requires an active script context.</remarks>
+		/// <param name="data">A pointer to the external memory</param>
+		/// <param name="byteLength">The number of bytes in the external memory</param>
+		/// <param name="finalizeCallback">A callback for when the object is finalized. May be null.</param>
+		/// <param name="callbackState">User provided state that will be passed back to finalizeCallback</param>
+		/// <returns>The new ArrayBuffer object</returns>
+		public static JsValue CreateExternalArrayBuffer(IntPtr data, uint byteLength,
+			JsObjectFinalizeCallback finalizeCallback, IntPtr callbackState)
+		{
+			JsValue reference;
+			JsErrorHelpers.ThrowIfError(NativeMethods.JsCreateExternalArrayBuffer(data, byteLength,
+				finalizeCallback, callbackState, out reference));
+
+			return reference;
+		}

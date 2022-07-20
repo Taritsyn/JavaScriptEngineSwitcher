@@ -1,0 +1,721 @@
+@import url( stylesheet.css );
+body {
+	line-height: 1.6; font-family: Helvetica, Arial, sans-serif;
+}
+body#bd {
+	background: rgb(240, 240, 240); color: rgb(51, 51, 51); font-size: 10px;
+}
+body.fs1 #ja-wrapper {
+	font-size: 1em;
+}
+body.fs2 #ja-wrapper {
+	font-size: 1.1em;
+}
+body.fs3 #ja-wrapper {
+	font-size: 1.2em;
+}
+body.fs4 #ja-wrapper {
+	font-size: 1.3em;
+}
+body.fs5 #ja-wrapper {
+	font-size: 1.4em;
+}
+body.fs6 #ja-wrapper {
+	font-size: 1.5em;
+}
+a {
+	color: rgb(236, 83, 77); text-decoration: none;
+}
+a:hover {
+	color: rgb(51, 51, 51); text-decoration: none;
+}
+a:active {
+	color: rgb(51, 51, 51); text-decoration: none;
+}
+a:focus {
+	color: rgb(51, 51, 51); text-decoration: none;
+}
+p.readmore {
+	
+}
+p.readmore a {
+	background: url("../../images/ja_elastica/readmore-bg.png") no-repeat right top; padding: 0px 1.5em 0px 1em; color: rgb(255, 255, 255); text-transform: uppercase; line-height: 30px; font-size: 0.85em; float: left; display: block;
+}
+p.readmore a:hover {
+	background-position: right bottom;
+}
+p.readmore a:active {
+	background-position: right bottom;
+}
+p.readmore a:focus {
+	background-position: right bottom;
+}
+.ja-content p {
+	margin: 1em 0px;
+}
+.ja-content pre {
+	margin: 1em 0px;
+}
+.ja-content blockquote {
+	margin: 1em 0px;
+}
+.ja-content h1 {
+	margin: 1em 0px;
+}
+.ja-content h2 {
+	margin: 1em 0px;
+}
+.ja-content h3 {
+	margin: 1em 0px;
+}
+.ja-content h4 {
+	margin: 1em 0px;
+}
+.ja-content h5 {
+	margin: 1em 0px;
+}
+.ja-content h6 {
+	margin: 1em 0px;
+}
+.ja-content ol {
+	margin: 1em 0px;
+}
+.ja-content ul {
+	margin: 1em 0px;
+}
+.ja-content dl {
+	margin: 1em 0px;
+}
+h1 {
+	font-size: 2.2em;
+}
+h2 {
+	font-size: 1.8em;
+}
+h3 {
+	font-size: 1.5em;
+}
+h4 {
+	text-transform: uppercase; font-size: 1em;
+}
+h5 {
+	font-size: 1em;
+}
+.contentheading {
+	color: rgb(51, 51, 51); font-family: TeXGyreAdventorBold, Arial, sans-serif; font-weight: normal;
+}
+.componentheading {
+	color: rgb(51, 51, 51); font-family: TeXGyreAdventorBold, Arial, sans-serif; font-weight: normal;
+}
+h1 {
+	color: rgb(51, 51, 51); font-family: TeXGyreAdventorBold, Arial, sans-serif; font-weight: normal;
+}
+h2 {
+	color: rgb(51, 51, 51); font-family: TeXGyreAdventorBold, Arial, sans-serif; font-weight: normal;
+}
+h3 {
+	color: rgb(51, 51, 51); font-family: TeXGyreAdventorBold, Arial, sans-serif; font-weight: normal;
+}
+h4 {
+	color: rgb(51, 51, 51); font-family: TeXGyreAdventorBold, Arial, sans-serif; font-weight: normal;
+}
+h5 {
+	color: rgb(51, 51, 51); font-family: TeXGyreAdventorBold, Arial, sans-serif; font-weight: normal;
+}
+h1.componentheading {
+	margin: 0px 0px 1em; font-weight: normal;
+}
+h2.componentheading {
+	margin: 0px 0px 1em; font-weight: normal;
+}
+.componentheading {
+	margin: 0px 0px 1em; font-weight: normal;
+}
+h1.contentheading {
+	margin: 0px 0px 1em; padding: 0px; font-weight: normal;
+}
+h2.contentheading {
+	margin: 0px 0px 1em; padding: 0px; font-weight: normal;
+}
+.contentheading {
+	margin: 0px 0px 1em; padding: 0px; font-weight: normal;
+}
+.contentheading {
+	font-size: 2.25em;
+}
+.blog-featured .contentheading {
+	font-size: 1.75em;
+}
+.contentheading a {
+	color: rgb(51, 51, 51); text-decoration: none;
+}
+.contentheading a:hover {
+	
+}
+.contentheading a:active {
+	
+}
+.contentheading a:focus {
+	
+}
+.jitem-title {
+	font-size: 110%; font-weight: bold;
+}
+ul li {
+	background: url("../../images/ja_elastica/bullet.png") no-repeat 15px 8px; line-height: 160%; overflow: hidden; padding-left: 30px; margin-bottom: 5px;
+}
+ol li {
+	line-height: 180%; margin-left: 30px;
+}
+dt {
+	font-weight: bold;
+}
+dd {
+	margin-left: 15px;
+}
+hr {
+	border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid;
+}
+img {
+	
+}
+img[align=left] {
+	margin: 0px 10px 10px 0px;
+}
+input {
+	padding: 3px; font-family: Helvetica, Arial, sans-serif; font-size: 1em;
+}
+select {
+	padding: 3px; font-family: Helvetica, Arial, sans-serif; font-size: 1em;
+}
+textarea {
+	padding: 3px; font-family: Helvetica, Arial, sans-serif; font-size: 1em;
+}
+.inputbox {
+	padding: 3px; font-family: Helvetica, Arial, sans-serif; font-size: 1em;
+}
+input[type='checkbox'] {
+	border: 0px currentColor; border-image: none;
+}
+input[type='radio'] {
+	border: 0px currentColor; border-image: none;
+}
+.inputbox {
+	background: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); border-image: none; color: rgb(51, 51, 51);
+}
+.inputbox:hover {
+	background: rgb(255, 255, 255);
+}
+.inputbox:focus {
+	background: rgb(255, 255, 255);
+}
+.button {
+	background: rgb(236, 83, 77); padding: 3px 10px; border: 1px solid rgb(236, 83, 77); border-image: none; color: rgb(255, 255, 255);
+}
+.btn {
+	background: rgb(236, 83, 77); padding: 3px 10px; border: 1px solid rgb(236, 83, 77); border-image: none; color: rgb(255, 255, 255);
+}
+button.validate {
+	background: rgb(236, 83, 77); padding: 3px 10px; border: 1px solid rgb(236, 83, 77); border-image: none; color: rgb(255, 255, 255);
+}
+a.btn {
+	padding: 5px 10px 4px;
+}
+.button:hover {
+	background: rgb(34, 34, 34); border: 1px solid rgb(34, 34, 34); border-image: none; color: rgb(255, 255, 255);
+}
+.button:focus {
+	background: rgb(34, 34, 34); border: 1px solid rgb(34, 34, 34); border-image: none; color: rgb(255, 255, 255);
+}
+.btn:hover {
+	background: rgb(34, 34, 34); border: 1px solid rgb(34, 34, 34); border-image: none; color: rgb(255, 255, 255);
+}
+.btnss:focus {
+	background: rgb(34, 34, 34); border: 1px solid rgb(34, 34, 34); border-image: none; color: rgb(255, 255, 255);
+}
+button.validate:hover {
+	background: rgb(34, 34, 34); border: 1px solid rgb(34, 34, 34); border-image: none; color: rgb(255, 255, 255);
+}
+button.validate:focus {
+	background: rgb(34, 34, 34); border: 1px solid rgb(34, 34, 34); border-image: none; color: rgb(255, 255, 255);
+}
+.login_form label {
+	padding-right: 10px;
+}
+.login label {
+	padding-right: 10px;
+}
+form#searchForm {
+	border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid;
+}
+.searchintro {
+	border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.results h4 {
+	text-transform: none; font-size: 110%;
+}
+.search fieldset {
+	margin: 15px 0px; padding: 10px; border: 1px solid rgb(204, 204, 204); border-image: none;
+}
+.search legend {
+	line-height: 1.2; font-size: 100%; font-weight: bolder; margin-left: 10px;
+}
+div.search {
+	overflow: hidden;
+}
+#component-contact #emailForm {
+	border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid;
+}
+#contact-slider {
+	border-bottom-color: rgb(226, 226, 181); border-bottom-width: 1px; border-bottom-style: solid; float: none;
+}
+#contact-slider .title {
+	margin: 0px; padding: 8px 10px; border-top-color: rgb(226, 226, 181); border-right-color: rgb(226, 226, 181); border-left-color: rgb(226, 226, 181); border-top-width: 1px; border-right-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-left-style: solid;
+}
+#contact-slider .jpane-toggler-down {
+	background: rgb(51, 51, 51);
+}
+#contact-slider .jpane-toggler-down a {
+	color: rgb(255, 255, 255);
+}
+#contact-slider dt.closed {
+	background: rgb(255, 255, 204);
+}
+#contact-slider .content {
+	padding: 8px 10px; border: 1px solid rgb(226, 226, 181); border-image: none;
+}
+#contact-slider .contact-image {
+	margin: 15px 0px; float: right;
+}
+#contact-form dl dd input.required {
+	width: 60% !important;
+}
+#contact-form dl dd textarea.required {
+	width: 60% !important;
+}
+.contact-image img {
+	float: left;
+}
+.contact .jicons-icons {
+	margin: 0px 5px 0px 0px; float: left;
+}
+#adminForm fieldset {
+	padding: 10px; border: 1px solid rgb(204, 204, 204); border-image: none; margin-bottom: 20px;
+}
+#adminForm fieldset legend {
+	padding: 0px 5px;
+}
+.item-page {
+	background: rgb(255, 255, 255); border-top-color: rgb(230, 230, 230); border-top-width: 1px; border-top-style: solid; position: relative;
+}
+.cat-children {
+	background: rgb(255, 255, 255); border-top-color: rgb(230, 230, 230); border-top-width: 1px; border-top-style: solid; position: relative;
+}
+.com_content .archive {
+	background: rgb(255, 255, 255); border-top-color: rgb(230, 230, 230); border-top-width: 1px; border-top-style: solid; position: relative;
+}
+.items-leading .leading .contentpaneopen {
+	background: rgb(255, 255, 255); border-top-color: rgb(230, 230, 230); border-top-width: 1px; border-top-style: solid; position: relative;
+}
+.items-row .item .contentpaneopen {
+	background: rgb(255, 255, 255); border-top-color: rgb(230, 230, 230); border-top-width: 1px; border-top-style: solid; position: relative;
+}
+.item-page {
+	margin-bottom: 1em;
+}
+.items-leading {
+	
+}
+.items-row {
+	
+}
+.item {
+	
+}
+.article-tools {
+	margin: -1em 0px 2em; padding: 0px; color: rgb(153, 153, 153); font-size: 0.87em;
+}
+dl.article-info {
+	margin: 0px; padding: 0px; width: 100%;
+}
+dl.article-info dd {
+	margin: 0px; padding: 0px 5px 0px 0px;
+}
+dl.article-info dt {
+	margin: 0px; padding: 0px 5px 0px 0px;
+}
+dl.article-info a {
+	color: rgb(51, 51, 51); border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: solid;
+}
+dd.parent-category-name {
+	
+}
+dd.category-name {
+	
+}
+dd.create {
+	padding-right: 5px;
+}
+dd.createdby {
+	padding-right: 5px;
+}
+dd.hits {
+	padding-right: 5px;
+}
+dl.article-info span {
+	color: rgb(51, 51, 51);
+}
+dl.article-info dt.article-info-term {
+	display: none;
+}
+p.article-url {
+	margin: 10px 0px 0px;
+}
+p.modifydate {
+	margin: 1em 0px 0px;
+}
+.contentdescription {
+	padding: 1em; display: block;
+}
+.contentdescription p {
+	margin: 0px;
+}
+ul.actions {
+	margin: 0px; padding: 0px; float: right;
+}
+ul.actions li {
+	display: inline-block;
+}
+ul.actions li img {
+	margin: 0px 5px 0px 0px; border: 0px currentColor; border-image: none;
+}
+.cat-children {
+	margin: 1em 0px; padding: 1.5em;
+}
+.cat-children h3 {
+	margin: 0px;
+}
+.cat-children ul {
+	
+}
+.cat-children ul li {
+	background: none; padding: 1em 0px; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid;
+}
+.cat-children ul li span.jitem-title {
+	
+}
+.cat-children ul li span.jitem-title a {
+	
+}
+.com_content .archive {
+	padding: 1.5em;
+}
+ul#archive-items > li {
+	background: none;
+}
+.img_caption {
+	margin: 1em 0px; width: auto !important; max-width: 100% !important;
+}
+p.img_caption {
+	width: auto; color: rgb(153, 153, 153); text-transform: uppercase; max-width: 100%;
+}
+thead tr th {
+	background: rgb(51, 51, 51); padding: 5px; color: rgb(255, 255, 255);
+}
+thead tr th a {
+	color: rgb(255, 255, 255);
+}
+thead tr th a:hover {
+	color: rgb(255, 255, 255);
+}
+thead tr th a:focus {
+	color: rgb(255, 255, 255);
+}
+thead tr th a:active {
+	color: rgb(255, 255, 255);
+}
+.cat-list-row1 {
+	padding: 5px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.cat-list-row12 {
+	padding: 5px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+tr.cat-list-row1 td {
+	padding: 5px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+tr.cat-list-row2 td {
+	padding: 5px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.cat-list-row1:hover {
+	background: rgb(255, 255, 204);
+}
+.cat-list-row2:hover {
+	background: rgb(255, 255, 204);
+}
+.cat-list-row2 {
+	background-color: rgb(246, 246, 246);
+}
+tr.cat-list-row2 td {
+	background-color: rgb(246, 246, 246);
+}
+table.contenttoc {
+	border: 1px solid rgb(204, 204, 204); border-image: none;
+}
+table.contenttoc td {
+	border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+table.contenttoc th {
+	background: rgb(246, 246, 246); text-transform: uppercase; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+form#poll {
+	font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+dl.poll {
+	border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+table.pollstableborder td {
+	background: rgb(246, 246, 246); padding: 5px !important; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+table.pollstableborder tr.sectiontableentry0 td {
+	background: rgb(255, 255, 255); font-weight: normal;
+}
+table.pollstableborder tr.sectiontableentry1 td {
+	background: rgb(255, 255, 255); font-weight: normal;
+}
+.pagination li span {
+	line-height: 20px;
+}
+.pagination li strong {
+	line-height: 20px;
+}
+.items-more {
+	border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.items-more h3 {
+	font-size: 125%;
+}
+#ja-main {
+	float: none;
+}
+ja-content {
+	float: none;
+}
+#ja-container .main {
+	padding: 0px;
+}
+#ja-content {
+	
+}
+#ja-content-main {
+	background: rgb(255, 255, 255); margin: 1em 1em 0px; padding: 1.5em; border-top-color: rgb(230, 230, 230); border-top-width: 1px; border-top-style: solid;
+}
+.com_content #ja-content-main {
+	background: none; padding: 0px; border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+#ja-header {
+	background: rgb(34, 34, 34); color: rgb(255, 255, 255); margin-bottom: 1em;
+}
+#ja-header .main {
+	padding: 0px;
+}
+#ja-header .main-inner1 {
+	background: rgb(68, 68, 68);
+}
+h1.logo {
+	margin: 0px; line-height: 1; font-size: 2em;
+}
+div.logo-text h1 {
+	margin: 0px; line-height: 1; font-size: 2em;
+}
+h1.logo {
+	background: rgb(236, 83, 77); width: auto; height: 70px; font-size: 1em; float: left; z-index: 12;
+}
+h1.logo a {
+	background: none; padding: 20px 0.5em; width: auto; height: auto; text-align: center; font-size: 2em; display: block;
+}
+h1.logo a img {
+	max-width: 100%;
+}
+div.logo-text {
+	background: rgb(236, 83, 77); margin: 0px; padding: 0px 1em; height: 70px;
+}
+div.logo-text h1 {
+	letter-spacing: 3px; font-size: 2em; font-weight: normal; margin-top: 0.5em;
+}
+div.logo-text h1 a {
+	color: rgb(255, 255, 255); text-transform: uppercase; text-decoration: none;
+}
+p.site-slogan {
+	margin: 3px 0px 0px; padding: 0px; color: rgb(255, 255, 255); font-size: 0.87em; display: block;
+}
+#ja-top {
+	width: auto; height: 70px; border-left-color: rgb(102, 102, 102); border-left-width: 1px; border-left-style: dotted; float: right; position: relative; z-index: 999;
+}
+#ja-search {
+	padding: 0px; height: 31px; border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: dotted; position: static;
+}
+#ja-search .search-btn {
+	background: url("../../images/magnifier/magnifier.svg") no-repeat center; width: 25px; height: 32px; text-indent: -1000em; float: left; display: block;
+}
+#ja-search:hover .search-btn {
+	
+}
+#ja-search form.search {
+	width: 242px; padding-top: 5px; float: left;
+}
+#ja-search .inputbox {
+	background: rgb(68, 68, 68); margin: 0px; padding: 4px 0px; border: 1px solid rgb(68, 68, 68); border-image: none; width: 100%; color: rgb(204, 204, 204); text-indent: 0px;
+}
+#ja-social {
+	height: 35px; float: left;
+}
+#ja-social ul {
+	padding-top: 5px; padding-right: 0px; padding-left: 5px !important; display: block;
+}
+#ja-social ul li {
+	margin: 0px; padding: 0px; height: 30px; text-indent: -1000em; border-right-color: rgb(68, 68, 68); border-right-width: 1px; border-right-style: solid; float: left;
+}
+#ja-social ul li a {
+	border-width: 7px 5px; border-style: solid; border-color: transparent; height: 16px; display: block;
+}
+#ja-social ul li a:hover {
+	background-color: rgb(236, 83, 77);
+}
+#ja-mainnav {
+	float: left;
+}
+#ja-navhelper .main {
+	text-transform: uppercase;
+}
+.ja-breadcrums {
+	text-indent: 10px;
+}
+.ja-links {
+	padding-right: 10px;
+}
+.ja-links li {
+	padding: 0px 10px;
+}
+#ja-container ul.menu li {
+	background: url("../../images/ja_elastica/bullet-c.png") no-repeat 0.02em 1em; padding: 0px 1em; border-top-color: rgb(238, 238, 238); border-top-width: 1px; border-top-style: solid;
+}
+#ja-container ul.menu li:first-child {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+#ja-container ul.menu li a {
+	padding: 0.5em 0px; color: rgb(102, 102, 102);
+}
+#ja-container ul.menu li a:hover {
+	color: rgb(51, 51, 51);
+}
+#ja-container ul.menu li a:active {
+	color: rgb(51, 51, 51);
+}
+#ja-container ul.menu li a:focus {
+	color: rgb(51, 51, 51);
+}
+#ja-container ul.menu li.active > a {
+	color: rgb(236, 83, 77); font-weight: bold;
+}
+#ja-container ul.menu li a img {
+	margin-right: 3px;
+}
+#ja-container ul.menu li ul {
+	margin: 0px -1em; border-top-color: rgb(238, 238, 238); border-top-width: 1px; border-top-style: solid;
+}
+#ja-container ul.menu li li {
+	background: none !important; padding: 0px; margin-left: 1em;
+}
+#ja-container ul.menu li li a {
+	text-indent: 10px; font-weight: normal;
+}
+#ja-footer {
+	padding: 2em 0px; color: rgb(153, 153, 153); font-size: 0.9em;
+}
+#ja-footer .main {
+	text-align: center;
+}
+#ja-footer .inner {
+	padding: 0px;
+}
+#ja-footer .custom {
+	padding: 1em 2em;
+}
+#ja-footer small {
+	font-size: 1em;
+}
+#ja-footer a {
+	color: rgb(153, 153, 153); border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+#ja-footer a {
+	color: rgb(153, 153, 153); border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;
+}
+#ja-footer a:hover {
+	color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51);
+}
+#ja-footer a:active {
+	color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51);
+}
+#ja-footer a:focus {
+	color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51);
+}
+.t3-logo a {
+	margin-top: 1em; border-bottom-color: currentColor !important; border-bottom-width: 0px !important; border-bottom-style: none !important;
+}
+.t3-logo-sm a {
+	margin-top: 1em; border-bottom-color: currentColor !important; border-bottom-width: 0px !important; border-bottom-style: none !important;
+}
+#ja-banner {
+	border-top-color: rgb(238, 238, 238); border-top-width: 1px; border-top-style: solid;
+}
+div.ja-innerdiv {
+	border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+div.ja-innerdiv h4 {
+	text-transform: uppercase; font-family: Helvetica, Arial, sans-serif; font-size: 92%; font-weight: normal;
+}
+a.ja-icon-video {
+	background: url("../../images/ja_elastica/icon-youtube.gif") no-repeat 5px 8px rgb(255, 255, 255); padding: 5px 5px 5px 43px; border: 1px solid rgb(204, 204, 204); border-image: none; top: 8px; width: 35px; right: 10px; color: rgb(102, 102, 102); font-weight: bold; text-decoration: none; display: block; position: absolute;
+}
+a.ja-icon-video span {
+	color: rgb(102, 102, 102);
+}
+a.ja-icon-video:hover {
+	border-color: rgb(221, 221, 221); text-decoration: none;
+}
+a.ja-icon-video:focus {
+	border-color: rgb(221, 221, 221); text-decoration: none;
+}
+a.ja-icon-video:active {
+	border-color: rgb(221, 221, 221); text-decoration: none;
+}
+a.ja-icon-video:hover span {
+	color: rgb(15, 133, 216);
+}
+#ja-absolute .main {
+	left: 1px; top: 1px; width: auto; height: auto; position: fixed; z-index: 99999;
+}
+#ja-absolute .main a {
+	background: url("../../images/ja_elastica/joomla15.png") no-repeat left top rgb(255, 255, 255); width: 91px; height: 99px; text-indent: -9999px; overflow: hidden; display: block;
+}
+#ja-absolute .main a:hover {
+	background-position: left bottom; text-decoration: none;
+}
+#ja-absolute .main a:focus {
+	background-position: left bottom; text-decoration: none;
+}
+#ja-extra-col-loading {
+	background: url("../../images/ja_elastica/loading.gif") no-repeat 0px 0px; margin: 50px auto 0px; width: 32px; height: 32px; text-indent: -999em;
+}
+.banneritem {
+	margin-bottom: 1em;
+}
+.syntaxhighlighter .bar .toolbar .item {
+	width: 16px !important;
+}
+#ja-content-main p {
+	text-align: justify;
+}
+.ja-moduletable.ja-masonry.moduletable.masonry-brick p {
+	text-align: justify;
+}

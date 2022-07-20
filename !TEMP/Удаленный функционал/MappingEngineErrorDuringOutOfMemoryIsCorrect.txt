@@ -1,0 +1,32 @@
+		[Fact]
+		public void MappingEngineErrorDuringOutOfMemoryIsCorrect()
+		{
+			// Arrange
+			IJsEngine jsEngine = null;
+			JsEngineException exception = null;
+
+			// Act
+			try
+			{
+				jsEngine = new ChakraCoreJsEngine(
+					new ChakraCoreSettings
+					{
+						MemoryLimit = new UIntPtr(640 * 1024),
+						DisableFatalOnOOM = true
+					}
+				);
+			}
+			catch (JsEngineException e)
+			{
+				exception = e;
+			}
+			finally
+			{
+				jsEngine?.Dispose();
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Engine error", exception.Category);
+			Assert.Equal("Out of memory.", exception.Description);
+		}

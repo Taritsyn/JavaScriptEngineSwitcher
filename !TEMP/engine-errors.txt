@@ -1,0 +1,167 @@
+Runtime_SassCompilerNotLoaded
+
+During loading of Sass-compiler error has occurred.
+
+Most likely it happened, because failed to load the native implementation of the LibSass library. Therefore, you need to choose and install the most appropriate NuGet package(s) for your platform. The following packages are available:
+
+* LibSassHost.Native.win-x86
+* LibSassHost.Native.win-x64
+* LibSassHost.Native.debian-x64
+* LibSassHost.Native.osx-x64
+
+			catch (DllNotFoundException e)
+			{
+				if (e.Message.IndexOf("'" + DllName.Chakra + "'", StringComparison.OrdinalIgnoreCase) != -1)
+				{
+					throw new WrapperEngineLoadException(
+						string.Format(CommonStrings.Engine_EdgeJsEngineNotLoaded, e.Message),
+						_engineModeName
+					);
+				}
+
+				throw;
+			}
+
+Engine_EdgeJsEngineNotLoaded
+
+Failed to load a Chakra Edge JsRT JavaScript engine. Try to install the Windows 10 with Edge browser.
+See more details:
+
+{0}
+
+			catch (DllNotFoundException e)
+			{
+				if (e.Message.IndexOf("'" + DllName.JScript9 + "'", StringComparison.OrdinalIgnoreCase) != -1)
+				{
+					throw new WrapperEngineLoadException(
+						string.Format(CommonStrings.Engine_IeJsEngineNotLoaded,
+							_engineModeName, LOWER_IE_VERSION, e.Message),
+						_engineModeName
+					);
+				}
+
+				throw;
+			}
+
+Engine_IeJsEngineNotLoaded
+
+Failed to load a {0} JavaScript engine. Try to install the Internet Explorer {1} or higher.
+See more details:
+
+{2}
+
+Runtime_JsEngineNotLoaded
+
+During loading of {0} error has occurred.	
+See more details:
+
+{1}
+
+Engines_ClearScriptV8AssemblyFileNotFound
+
+Failed to load the ClearScriptV8 assembly, because the '{0}' file does not exist. It is possible, that you have not installed the JavaScriptEngineSwitcher.V8.Native.win-{1} package.
+
+
+Unable to load DLL 'ChakraCore': The specified procedure could not be found. (Exception from HRESULT: 0x8007007F)
+
+				"Failed to initialise ClearScript V8. This is most likely caused by the native libraries " +
+				"(ClearScriptV8-64.dll and v8-x64.dll) missing from your app's Bin directory, or the " +
+				"Visual C++ runtime not being installed. Please ensure your app is referencing the " +
+				"JavaScriptEngineSwitcher.V8 NuGet package, and refer to the ReactJS.NET site for more" +
+				"debugging tips.\n\n" +
+"More details: " + innerException.Message;
+
+				"Failed to initialise VroomJs. This is most likely caused by the native library " +
+				"(libVroomJsNative.so) being out of date or your system lacking a compatible version of " +
+				"V8. Please run Mono with the `MONO_LOG_LEVEL=debug` environment variable for " +
+				"more debugging information, and refer to the ReactJS.NET Mono documentation at " +
+				"http://reactjs.net/guides/mono.html for further debugging hints.\n\n " +
+"More details: " + innerMessage;
+
+Engine_JsEngineNotLoaded
+
+Problem
+Reason
+Solution
+
+Engine_JsEngineNotLoaded_Problem
+Engine_JsEngineNotLoaded_Reason
+
+Failed to create instance of the MsieJsEngine.
+
+Failed to create instance of the MsieJsEngine in {0} mode.
+Most likely it happened, because the `{0}` assembly was not registered in your system.
+
+
+TypeLoadException
+	DllNotFoundException
+	EntryPointNotFoundException
+
+NET Full
+Windows		Unable to load DLL 'ChakraCore': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+
+NET Core
+Windows 	Unable to load DLL 'ChakraCore': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Linux		Unable to load DLL 'ChakraCore': The specified module could not be found.
+ (Exception from HRESULT: 0x8007007E)
+OSX			Unable to load DLL 'ChakraCore': The specified module could not be found.
+ (Exception from HRESULT: 0x8007007E)
+
+Mono
+Windows	ChakraCore
+Linux	ChakraCore
+OSX		ChakraCore
+
+Failed to create instance of the VroomJsEngine.
+
+==================================================================
+
+VroomJsNative
+
+Failed to create instance of the VroomJsEngine. 
+
+==================================================================
+
+Unable to load DLL 'VroomJsNative': The specified module or one of its dependencies could not be found.
+ (Exception from HRESULT: 0x8007007E)
+
+Failed to create instance of the VroomJsEngine. 
+
+==================================================================
+
+VroomJsNative
+
+Failed to create instance of the VroomJsEngine. 
+
+==================================================================
+
+Unable to load DLL 'VroomJsNative': The specified module or one of its dependencies could not be found.
+ (Exception from HRESULT: 0x8007007E)
+
+
+Unhandled Exception: System.TypeLoadException: Cannot load V8 interface assembly. Load failure information for v8-base-ia32.dll:
+C:\temp\TestV8\TestV8\bin\Release\v8-base-ia32.dll: The specified module could not be found
+   at Microsoft.ClearScript.V8.V8Proxy.LoadNativeLibrary(String baseFileName)
+   at Microsoft.ClearScript.V8.V8Proxy.LoadAssembly()
+   at Microsoft.ClearScript.V8.V8Proxy.GetAssembly()
+   at Microsoft.ClearScript.V8.V8Proxy.GetImplType(Type type)
+   at Microsoft.ClearScript.V8.V8Proxy.CreateImpl[T](Object[] args)
+   at Microsoft.ClearScript.V8.V8IsolateProxy.Create(String name, V8RuntimeConstraints constraints, Boolean enableDebugging, Boolean enableRemoteDebugging, Int32 debugPort)
+   at Microsoft.ClearScript.V8.V8Runtime..ctor(String name, V8RuntimeConstraints constraints, V8RuntimeFlags flags, Int32 debugPort)
+   at Microsoft.ClearScript.V8.V8ScriptEngine..ctor(V8Runtime runtime, String name, V8RuntimeConstraints constraints, V8ScriptEngineFlags flags, Int32 debugPort)
+   at JavaScriptEngineSwitcher.V8.V8JsEngine..ctor(V8Settings settings)
+   at TestV8.Program.Main(String[] args) in c:\temp\TestV8\TestV8\Program.cs:line 18
+
+throw new TypeLoadException("Cannot find " + name + " implementation type in V8 interface assembly.");
+
+var message = MiscHelpers.FormatInvariant("Cannot load V8 interface assembly. Load failure information for {0}:{1}", fileName, messageBuilder);
+
+
+string assemblyFileName
+
+FileNotFoundException
+
+fileExtension
+
+
+System.DllNotFoundException: “Не удается загрузить DLL ”csfml-audio-2“: Не найден указанный модуль. (Исключение из HRESULT: 0x8007007E)”

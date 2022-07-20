@@ -1,0 +1,99 @@
+body.fs1 #ja-wrapper {
+	font-size: 1.1em !important;
+}
+body.fs2 #ja-wrapper {
+	font-size: 1.2em !important;
+}
+body.fs3 #ja-wrapper {
+	font-size: 1.3em !important;
+}
+body.fs4 #ja-wrapper {
+	font-size: 1.4em !important;
+}
+body.fs5 #ja-wrapper {
+	font-size: 1.5em !important;
+}
+body.fs6 #ja-wrapper {
+	font-size: 1.6em !important;
+}
+.main {
+	
+}
+.item {
+	width: 100% !important; float: none;
+}
+.cols-1 .item {
+	width: 100% !important;
+}
+.cols-2 .item {
+	width: 100% !important;
+}
+.cols-3 .item {
+	width: 100% !important;
+}
+.cols-4 .item {
+	width: 100% !important;
+}
+.cols-5 .item {
+	width: 100% !important;
+}
+#ja-header {
+	
+}
+#ja-main {
+	width: 1200px;
+}
+#ja-footer {
+	
+}
+#ja-mainnav {
+	
+}
+#ja-menu-button {
+	display: none;
+}
+.mobile-meeting-website {
+	display: none !important;
+}
+.normal-meeting-website {
+	display: inline-block !important;
+}
+#ja-search + #toolbar {
+	
+}
+#channels-icon {
+	display: block;
+}
+#channels-icons-popup {
+	background: rgb(236, 83, 77); top: 70px; width: 232px; right: 0px; display: none; position: absolute;
+}
+#channels-icon:hover #channels-icons-popup {
+	display: block !important;
+}
+.active#channels-icon #channels-icons-popup {
+	display: block !important;
+}
+#channels-icons {
+	display: none;
+}
+#ja-search form.search {
+	width: 70px;
+}
+#ja-search form.search #mod-search-searchword {
+	width: 65px;
+}
+.welcome-arrow-block {
+	width: 33%;
+}
+#channels-icon span {
+	padding: 11px 6px !important;
+}
+#channels-icons a {
+	padding: 11px 6px !important;
+}
+#identification a {
+	padding: 11px 6px !important;
+}
+#other-language-link a {
+	padding: 10px 6px 12px !important;
+}

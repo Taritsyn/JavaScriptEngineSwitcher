@@ -1,0 +1,10 @@
+#if !NET452
+using Jering.Javascript.NodeJS;
+
+#endif
+
+#if !NET452
+				// Prevents creation of a new process after errors occur in JS code
+				StaticNodeJSService.Configure<OutOfProcessNodeJSServiceOptions>(options => options.NumProcessRetries = 0);
+
+#endif

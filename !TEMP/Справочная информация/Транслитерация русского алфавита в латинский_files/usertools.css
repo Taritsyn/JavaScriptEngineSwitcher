@@ -1,0 +1,105 @@
+#ja-cpanel-wrapper {
+	top: 0px; right: 15px; font-size: 12px; position: fixed; z-index: 1000;
+}
+#ja-cpanel a {
+	color: rgb(0, 0, 0);
+}
+#ja-cpanel {
+	top: -1000px; right: 0px; border-top-color: currentColor; border-top-width: 0px; border-top-style: none; position: absolute;
+}
+#ja-cpanel-main {
+	background: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); border-image: none; width: 300px; color: rgb(0, 0, 0); font-size: 92%; margin-top: -3px; margin-right: -1px;
+}
+#ja-cpanel-main h3 {
+	background: rgb(247, 247, 247); margin: 0px; padding: 5px 10px; text-transform: uppercase; clear: both; font-size: 90%; border-top-color: rgb(221, 221, 221); border-bottom-color: rgb(221, 221, 221); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid;
+}
+#ja-cpanel-main h3:first-child {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+#ja-cpanel-main ul {
+	margin: 0px; padding: 10px; width: auto; clear: both;
+}
+#ja-cpanel-main ul li {
+	padding: 2px 0px; width: 45%; margin-right: 10px; float: left; background-image: none;
+}
+.ja-box-usertools {
+	background: rgb(255, 255, 255);
+}
+.ja-cpanel-tools {
+	max-height: 400px;
+}
+a#ja-cpanel-toggle {
+	background: rgb(51, 51, 51); padding: 0px 10px; top: 0px; right: 0px; color: rgb(204, 204, 204); text-transform: uppercase; line-height: 24px; font-size: 10px; display: block; position: absolute;
+}
+a#ja-cpanel-toggle:hover {
+	text-decoration: none;
+}
+a#ja-cpanel-toggle:active {
+	text-decoration: none;
+}
+a#ja-cpanel-toggle:focus {
+	text-decoration: none;
+}
+a#ja-cpanel-toggle:hover {
+	background: rgb(0, 102, 153); color: rgb(255, 255, 255);
+}
+.open#ja-cpanel-toggle {
+	background: rgb(0, 102, 153); color: rgb(255, 255, 255);
+}
+.open#ja-cpanel-toggle {
+	
+}
+#ja-cpanel-main ul.ja-usertools-font {
+	background: url("../../images/jat3_plugin/font-tool.gif") no-repeat center rgb(255, 255, 255); width: 65px; height: 20px;
+}
+#ja-cpanel-main ul.ja-usertools-font li {
+	margin: 0px; width: 33%; height: 20px; float: left; cursor: pointer;
+}
+#ja-cpanel-main ul.ja-usertools-font li a {
+	width: 100%; height: 20px; display: block;
+}
+#ja-cpanel-main ul.ja-usertools-font li a span {
+	top: -1000px; position: absolute;
+}
+.ja-cpanel-head {
+	clear: right; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid; display: block;
+}
+.ja-cpanel-head a {
+	padding: 6px 10px 3px; border-right-color: rgb(204, 204, 204); border-right-width: 1px; border-right-style: solid; display: inline-block;
+}
+.ja-cpanel-head a.first {
+	background: url("../../images/jat3_plugin/t3_logo_light_sm.png") no-repeat 10px 9px; padding-left: 50px;
+}
+.ja-cpanel-head a:hover {
+	text-decoration: none; background-color: rgb(247, 247, 247);
+}
+.ja-cpanel-head a:active {
+	text-decoration: none; background-color: rgb(247, 247, 247);
+}
+.ja-cpanel-head a:focus {
+	text-decoration: none; background-color: rgb(247, 247, 247);
+}
+.ja-cpanel-action {
+	background: rgb(204, 204, 204); padding: 10px 15px; overflow: hidden; clear: both;
+}
+.ja-cpanel-action a {
+	padding: 2px; float: left;
+}
+.ja-cpanel-action a.button {
+	background: rgb(51, 51, 51); padding: 2px 10px; border: 1px solid rgb(51, 51, 51); border-image: none; color: rgb(255, 255, 255) !important; font-weight: bold; margin-right: 10px; display: inline-block;
+}
+.ja-cpanel-action a.ja-cpanel-video {
+	float: right;
+}
+.ja-cpanel-action a.button span {
+	
+}
+.ja-cpanel-action a.button:hover {
+	border: 1px solid rgb(221, 221, 221); border-image: none; text-decoration: none;
+}
+.ja-cpanel-action a.button:active {
+	border: 1px solid rgb(221, 221, 221); border-image: none; text-decoration: none;
+}
+.ja-cpanel-action a.button:focus {
+	border: 1px solid rgb(221, 221, 221); border-image: none; text-decoration: none;
+}

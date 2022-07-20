@@ -1,0 +1,24 @@
+#ja-cpanel {
+	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, .5); -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .5);
+}
+.ja-cpanel-tools {
+	-ms-overflow-y: scroll;
+}
+a#ja-cpanel-toggle {
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.5); text-shadow: 0px 1px 1px rgba(0,0,0,0.9); -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .5); -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+}
+.open#ja-cpanel-toggle {
+	box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none;
+}
+.ja-cpanel-action {
+	box-shadow: 0px -1px 3px rgba(0,0,0,0.5); -moz-box-shadow: 0 -1px 3px rgba(0, 0, 0, .5); -webkit-box-shadow: 0 -1px 3px rgba(0, 0, 0, .5);
+}
+.ja-cpanel-action a.button {
+	box-shadow: 0px 0px 3px rgba(0,0,0,0.8); -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .8); -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .8);
+}
+.ja-cpanel-action a.button:hover {
+	box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none;
+}
+a.ja-cpanel-video {
+	border-radius: 5px; box-shadow: 0px 0px 3px rgba(0,0,0,0.2); -moz-border-radius: 5px; -webkit-border-radius: 5px; -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .2); -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+}

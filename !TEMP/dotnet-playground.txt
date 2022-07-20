@@ -1,0 +1,31 @@
+using System;
+
+using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.V8;
+					
+public class Program
+{
+		static Program()
+		{
+			JsEngineSwitcher.Current.EngineFactories
+				.AddV8()
+				;
+		}
+	
+	public static void Main()
+	{
+			const string expression = "7 * 8 - 20";
+			IJsEngineSwitcher switcher = JsEngineSwitcher.Current;
+		
+			using (var engine = switcher.CreateEngine("V8JsEngine"))
+			{
+				int result = engine.Evaluate<int>(expression);
+
+				Console.WriteLine(engine.Name);
+				Console.WriteLine(expression + " = " + result);
+				Console.WriteLine();
+				Console.WriteLine("==============================");
+				Console.WriteLine();
+			}
+	}
+}

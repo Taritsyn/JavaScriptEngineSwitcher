@@ -1,0 +1,7 @@
+			Type staticProxyType = typeof(OriginalContext)
+				.GetTypeInfo()
+				.Assembly
+				.GetType("NiL.JS.Core.Interop.StaticProxy")
+				;
+			var processedValue = (OriginalValue)Activator.CreateInstance(staticProxyType,
+				new object[] { _jsContext.GlobalContext, type, true });

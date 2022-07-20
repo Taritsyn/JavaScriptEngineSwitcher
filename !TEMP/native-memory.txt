@@ -1,0 +1,5 @@
+<PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.12.0" />
+
+using BenchmarkDotNet.Diagnostics.Windows.Configs;
+
+[NativeMemoryProfiler]

@@ -1,0 +1,219 @@
+JavaScriptEngineSwitcher.Core
+=============================
+
+Добавить в класс `JsEngineFactoryCollection` свойство `Count` и метод `GetRegisteredEngineFactories`.
+
+
+JavaScriptEngineSwitcher.ChakraCore
+===================================
+
+1. Увеличить размер стека по умолчанию.
+2. Заинлайнить метод `CanHaveReferences`.
+
+
+
+        /// <summary>
+        /// Gets or sets the engine's void result export value.
+        /// </summary>
+        /// <remarks>
+        /// Some script languages expect every subroutine call to return a value. When script code
+        /// written in such a language invokes a host method that explicitly returns no value (such
+        /// as a C#
+        /// <see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/void">void</see>
+        /// method), the script engine returns the value of this property as a dummy result. The
+        /// default value is <see cref="VoidResult.Value"/>.
+        /// </remarks>
+        public object VoidResultValue { get; set; } = VoidResult.Value;
+
+JavaScriptEngineSwitcher.V8
+===========================
+
+Разобраться с этими интеропными штуками
+
+namespace Microsoft.ClearScript.V8
+{
+    /// <summary>
+    /// Defines options for V8 runtime behavior in response to a violation.
+    /// </summary>
+    /// <seealso cref="V8Runtime.MaxHeapSize"/>
+    /// <seealso cref="V8ScriptEngine.MaxRuntimeHeapSize"/>
+    public enum V8RuntimeViolationPolicy
+    {
+        /// <summary>
+        /// Specifies that the runtime is to interrupt script execution and throw a managed
+        /// exception. Additionally, further script execution is to be blocked until the host sets
+        /// the exceeded limit to a new value. This is the default behavior and the most effective
+        /// option for preventing process termination.
+        /// </summary>
+        Interrupt,
+
+        /// <summary>
+        /// Specifies that the runtime is to throw a script exception and disable monitoring until
+        /// the host sets the exceeded limit to a new value. This option is less effective at
+        /// preventing process termination than <see cref="Interrupt"/>, but it is more friendly to
+        /// asynchronous JavaScript, which relies on post-error processing for mechanisms such as
+        /// <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</see>
+        /// rejection.
+        /// </summary>
+        Exception
+    }
+}
+
+        /// <summary>
+        /// Gets or sets the V8 runtime's behavior in response to a violation of the maximum heap size.
+        /// </summary>
+        public V8RuntimeViolationPolicy RuntimeHeapSizeViolationPolicy
+        {
+            get
+            {
+                VerifyNotDisposed();
+                return proxy.DisableIsolateHeapSizeViolationInterrupt ? V8RuntimeViolationPolicy.Exception : V8RuntimeViolationPolicy.Interrupt;
+            }
+
+            set
+            {
+                VerifyNotDisposed();
+                switch (value)
+                {
+                    case V8RuntimeViolationPolicy.Interrupt:
+                        proxy.DisableIsolateHeapSizeViolationInterrupt = false;
+                        return;
+
+                    case V8RuntimeViolationPolicy.Exception:
+                        proxy.DisableIsolateHeapSizeViolationInterrupt = true;
+                        return;
+
+                    default:
+                        throw new ArgumentException(MiscHelpers.FormatInvariant("Invalid {0} value", nameof(V8RuntimeViolationPolicy)), nameof(value));
+                }
+            }
+        }
+
+        [TestMethod, TestCategory("V8ScriptEngine")]
+        public void V8ScriptEngine_RuntimeHeapSizeViolationPolicy()
+        {
+            const int limit = 4 * 1024 * 1024;
+            const string code = @"
+                x = {};
+                for (var i = 0; true; ++i) {
+                    x = { next: x };
+                    if ((i % 20000) === 0) EngineInternal.checkpoint();
+                }
+            ";
+
+            engine.MaxRuntimeHeapSize = (UIntPtr)limit;
+            engine.RuntimeHeapSizeViolationPolicy = V8RuntimeViolationPolicy.Interrupt;
+
+            TestUtil.AssertException<ScriptEngineException>(() =>
+            {
+                try
+                {
+                    engine.Execute(code);
+                }
+                catch (ScriptEngineException exception)
+                {
+                    Assert.IsTrue(exception.IsFatal);
+                    Assert.IsNull(exception.ScriptException);
+                    Assert.AreEqual("The V8 runtime has exceeded its memory limit", exception.Message);
+                    throw;
+                }
+            });
+
+            Assert.AreEqual((UIntPtr)limit, engine.MaxRuntimeHeapSize);
+
+            engine.MaxRuntimeHeapSize = UIntPtr.Zero;
+            engine.Execute("delete x");
+            engine.CollectGarbage(true);
+
+            engine.MaxRuntimeHeapSize = (UIntPtr)limit;
+            engine.RuntimeHeapSizeViolationPolicy = V8RuntimeViolationPolicy.Exception;
+
+            TestUtil.AssertException<ScriptEngineException>(() =>
+            {
+                try
+                {
+                    engine.Execute(code);
+                }
+                catch (ScriptEngineException exception)
+                {
+                    Assert.IsFalse(exception.IsFatal);
+                    Assert.IsNotNull(exception.ScriptException);
+                    Assert.AreEqual("Error: The V8 runtime has exceeded its memory limit", exception.Message);
+                    throw;
+                }
+            });
+
+            Assert.AreEqual(UIntPtr.Zero, engine.MaxRuntimeHeapSize);
+        }
+
+        [TestMethod, TestCategory("V8ScriptEngine")]
+        public void V8ScriptEngine_RuntimeHeapSizeViolationPolicy_Async()
+        {
+            const int limit = 4 * 1024 * 1024;
+            const string code = @"(async function() {
+                x = {};
+                for (var i = 0; true; ++i) {
+                    x = { next: x };
+                    if ((i % 20000) === 0) EngineInternal.checkpoint();
+                }
+            })()";
+
+            engine.Dispose();
+            engine = new V8ScriptEngine(V8ScriptEngineFlags.EnableTaskPromiseConversion);
+
+            engine.MaxRuntimeHeapSize = (UIntPtr)limit;
+            engine.RuntimeHeapSizeViolationPolicy = V8RuntimeViolationPolicy.Interrupt;
+
+            TestUtil.AssertException<ScriptEngineException>(() =>
+            {
+                Func<Task> test = async () =>
+                {
+                    try
+                    {
+                        await (Task)engine.Evaluate(code);
+                    }
+                    catch (ScriptEngineException exception)
+                    {
+                        Assert.IsTrue(exception.IsFatal);
+                        Assert.IsNull(exception.ScriptException);
+                        Assert.AreEqual("The V8 runtime has exceeded its memory limit", exception.Message);
+                        throw;
+                    }
+                };
+
+                test().Wait();
+            });
+
+            Assert.AreEqual((UIntPtr)limit, engine.MaxRuntimeHeapSize);
+
+            engine.MaxRuntimeHeapSize = UIntPtr.Zero;
+            engine.Execute("delete x");
+            engine.CollectGarbage(true);
+
+            engine.MaxRuntimeHeapSize = (UIntPtr)limit;
+            engine.RuntimeHeapSizeViolationPolicy = V8RuntimeViolationPolicy.Exception;
+
+            TestUtil.AssertException<ScriptEngineException>(() =>
+            {
+                Func<Task> test = async () =>
+                {
+                    try
+                    {
+                        await (Task)engine.Evaluate(code);
+                    }
+                    catch (ScriptEngineException exception)
+                    {
+                        Assert.IsFalse(exception.IsFatal);
+                        Assert.IsNotNull(exception.ScriptException);
+                        Assert.AreEqual("Error: The V8 runtime has exceeded its memory limit", exception.Message);
+                        throw;
+                    }
+                };
+
+                test().Wait();
+            });
+
+            Assert.AreEqual(UIntPtr.Zero, engine.MaxRuntimeHeapSize);
+        }
+
+

@@ -1,0 +1,12 @@
+git diff > chakracore-patch.txt
+git apply --reject --ignore-whitespace chakracore-patch.txt 2> apply-chakracore-patch.log
+
+
+
+
+
+
+
+
+
+

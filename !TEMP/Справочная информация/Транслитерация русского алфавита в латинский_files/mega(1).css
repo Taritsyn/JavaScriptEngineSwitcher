@@ -1,0 +1,249 @@
+.ja-megamenu {
+	
+}
+.ja-megamenu a.over {
+	
+}
+.ja-megamenu a.active {
+	
+}
+ul.megamenu {
+	margin: 1em;
+}
+ul.megamenu li {
+	
+}
+.ja-megamenu ul.level0 {
+	
+}
+.ja-megamenu ul.level0 li.mega {
+	height: 70px;
+}
+.ja-megamenu ul.level0 li.mega a.mega {
+	padding: 0px 1em; height: 70px; color: rgb(255, 255, 255); text-transform: uppercase; overflow: auto; font-weight: bold;
+}
+.ja-megamenu ul.level0 li.mega .has-image {
+	
+}
+.ja-megamenu ul.level0 li.mega span.menu-title {
+	font-size: 1.25em; margin-top: 1.25em;
+}
+.ja-megamenu ul.level0 li.mega span.menu-desc {
+	text-transform: none; font-size: 0.87em; margin-top: 2px;
+}
+.ja-megamenu ul.level0 li.mega a img {
+	padding-right: 5px; float: left;
+}
+.ja-megamenu ul.level0 li.over {
+	background: rgb(34, 34, 34);
+}
+ul.level0 li.haschild-over {
+	background: rgb(34, 34, 34);
+}
+.ja-megamenu ul.level0 li.haschild a.mega span.menu-title {
+	background: none; padding-left: 0px;
+}
+.ja-megamenu ul.level0 li.haschild-over a.mega span.menu-title {
+	background: none; padding-left: 0px;
+}
+.ja-megamenu ul.level0 li.haschild a.mega span.menu-desc {
+	padding-left: 0px;
+}
+.ja-megamenu ul.level0 li.haschild-over a.mega span.menu-desc {
+	padding-left: 0px;
+}
+.ja-megamenu ul.level0 li.active {
+	background: rgb(240, 240, 240);
+}
+.ja-megamenu ul.level0 li.active a.mega {
+	color: rgb(51, 51, 51);
+}
+.ja-megamenu li.mega .childcontent {
+	height: auto; display: block; position: absolute;
+}
+.ja-megamenu li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.haschild-over li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.mega li.haschild-over li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.mega li.mega li.haschild-over li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.mega li.mega li.mega li.haschild-over li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.haschild-over li.mega .childcontent {
+	left: -999em;
+}
+.ja-megamenu li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega li.mega li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega li.mega li.mega li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.mega li.haschild-over .childcontent {
+	left: auto;
+}
+.ja-megamenu li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.haschild-over li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.mega li.haschild-over li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.mega li.mega li.haschild-over li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.mega li.mega li.mega li.haschild-over li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.haschild-over li.mega .right {
+	right: auto;
+}
+.ja-megamenu li.haschild-over .right {
+	right: 0px;
+}
+.ja-megamenu li.mega li.haschild-over .right {
+	right: 12em;
+}
+.ja-megamenu li.mega li.mega li.haschild-over .right {
+	right: 12em;
+}
+.ja-megamenu li.mega li.mega li.mega li.haschild-over .right {
+	right: 12em;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.haschild-over .right {
+	right: 12em;
+}
+.ja-megamenu li.mega li.mega li.mega li.mega li.mega li.haschild-over .right {
+	right: 12em;
+}
+.ja-megamenu ul.level1 li.mega {
+	float: none;
+}
+.ja-megamenu ul.level1 .childcontent {
+	margin: -2em 0px 0px 160px;
+}
+.ja-megamenu .megacol {
+	float: left;
+}
+.ja-megamenu ul.level1 li.mega {
+	padding: 0px; height: auto; border-top-color: rgb(51, 51, 51); border-top-width: 1px; border-top-style: solid;
+}
+.ja-megamenu ul.level1 li.first {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+.ja-megamenu ul.level1 li.mega a.mega {
+	background: url("../../images/ja_elastica/bullet.png") no-repeat left 1.35em; padding: 1em; border: 0px currentColor; border-image: none; height: auto; color: rgb(204, 204, 204); text-transform: none; font-weight: normal;
+}
+.ja-megamenu ul.level1 li.mega a.mega span.menu-title {
+	background: none; padding: 0px; font-size: 1em; margin-top: 0px;
+}
+.ja-megamenu ul.level1 li.haschild {
+	background-position: 95%; padding: 0px; background-image: url("../../images/ja_elastica/arrow.png"); background-repeat: no-repeat;
+}
+.ja-megamenu ul.level1 li.haschild-over {
+	background-position: 95%; padding: 0px; background-image: url("../../images/ja_elastica/arrow.png"); background-repeat: no-repeat;
+}
+.ja-megamenu ul.level1 li.over {
+	
+}
+ul.level1 li.haschild-over {
+	
+}
+.ja-megamenu ul.level1 li.over > a.mega {
+	background: url("../../images/ja_elastica/bullet-d.png") no-repeat left 1.35em; color: rgb(255, 255, 255);
+}
+ul.level1 li.haschild-over > a.mega {
+	background: url("../../images/ja_elastica/bullet-d.png") no-repeat left 1.35em; color: rgb(255, 255, 255);
+}
+.ja-megamenu ul.level1 li.active {
+	background: none;
+}
+.ja-megamenu ul.level1 li.active a.mega {
+	background: url("../../images/ja_elastica/bullet-d.png") no-repeat left 1.35em; color: rgb(255, 255, 255);
+}
+.ja-megamenu ul.level1 li.group {
+	background: none;
+}
+.ja-megamenu .childcontent {
+	z-index: 999;
+}
+.ja-megamenu .childcontent-inner {
+	background: rgb(34, 34, 34);
+}
+.ja-megamenu .level1 .childcontent-inner {
+	border: 1px solid rgb(68, 68, 68); border-image: none;
+}
+.ja-megamenu .childcontent .ja-moduletable {
+	margin: 0px; padding: 0px; width: auto !important; line-height: 1.5;
+}
+.ja-megamenu .childcontent .moduletable-inner {
+	background: rgb(34, 34, 34); margin: 1em 0px 0px; padding: 0px; width: auto; color: rgb(204, 204, 204); line-height: 1.5; border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+.ja-megamenu .childcontent .ja-moduletable h3 {
+	background: none; text-transform: none; text-indent: 5px; margin-right: 10px; margin-left: 10px;
+}
+.ja-megamenu .childcontent .ja-moduletable .ja-box-ct {
+	padding: 0px;
+}
+.ja-megamenu .childcontent .ja-moduletable a {
+	text-decoration: none;
+}
+.ja-megamenu .childcontent .ja-moduletable a:hover {
+	color: rgb(204, 204, 204); text-decoration: none;
+}
+.ja-megamenu .childcontent .ja-moduletable a:focus {
+	color: rgb(204, 204, 204); text-decoration: none;
+}
+.ja-megamenu .childcontent .ja-moduletable a:active {
+	color: rgb(204, 204, 204); text-decoration: none;
+}
+.ja-megamenu .childcontent .ja-moduletable ul:first-child {
+	margin-top: 0px !important;
+}
+.ja-megamenu .childcontent .ja-moduletable li {
+	margin-bottom: 5px;
+}
+.ja-megamenu .group {
+	
+}
+.ja-megamenu .group-title {
+	background: rgb(102, 102, 102); padding: 1em; overflow: hidden;
+}
+.ja-megamenu .group-title a.mega {
+	padding: 0px !important; color: rgb(255, 255, 255) !important; background-image: none !important;
+}
+.ja-megamenu .group-title .menu-title {
+	text-transform: uppercase; font-weight: bold;
+}
+.ja-megamenu .group-title .menu-desc {
+	padding-left: 0px !important;
+}
+.ja-megamenu .group-content .ja-moduletable {
+	margin: 10px;
+}
+.ja-megamenu .group-content ul.megamenu {
+	margin: 10px;
+}
+.ja-megamenu .childcontent ul.megamenu .ja-moduletable {
+	padding: 0px;
+}
+.ja-megamenu .childcontent ul.megamenu .ja-moduletable h3 {
+	margin-right: 0px; margin-left: 0px;
+}

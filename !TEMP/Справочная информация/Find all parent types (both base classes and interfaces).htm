@@ -1,0 +1,1688 @@
+﻿<!DOCTYPE HTML>
+<!-- saved from url=(0098)https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces -->
+<!DOCTYPE html PUBLIC "" ""><HTML itemtype="http://schema.org/QAPage" 
+itemscope=""><HEAD><META content="IE=11.0000" http-equiv="X-UA-Compatible">
+ <TITLE>c# - Find all parent types (both base classes and interfaces) - Stack 
+Overflow</TITLE>     
+<META http-equiv="Content-Type" content="text/html; charset=utf-8"><LINK href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d" 
+rel="shortcut icon">     <LINK href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a" 
+rel="apple-touch-icon image_src">     <LINK title="Stack Overflow" href="/opensearch.xml" 
+rel="search" type="application/opensearchdescription+xml">     
+<META content="website" property="og:type">     
+<META name="twitter:card" content="summary">         
+<META name="twitter:domain" content="stackoverflow.com">     
+<META content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded" 
+property="og:image" itemprop="image primaryImageOfPage">     
+<META name="twitter:title" content="Find all parent types (both base classes and interfaces)" 
+property="og:title" itemprop="title name">     
+<META name="twitter:description" content="I want to be able to find all parent types (base classes and interfaces) for a specific type.&#10;&#10;EG if i have &#10;&#10;class A : B, C { }&#10;class B : D { }&#10;interface C : E { }&#10;class D { }&#10;interface E { }&#10;i w..." 
+property="og:description" itemprop="description">     
+<META content="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces" 
+property="og:url">     <LINK href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces" 
+rel="canonical">             
+<SCRIPT src="Find%20all%20parent%20types%20(both%20base%20classes%20and%20interfaces)_files/jquery.min.js"></SCRIPT>
+     
+<SCRIPT src="Find%20all%20parent%20types%20(both%20base%20classes%20and%20interfaces)_files/stub.en.js"></SCRIPT>
+     <LINK href="Find%20all%20parent%20types%20(both%20base%20classes%20and%20interfaces)_files/all.css" 
+rel="stylesheet" type="text/css">             <LINK title="Feed for question 'Find all parent types (both base classes and interfaces)'" 
+href="/feeds/question/8868119" rel="alternate" type="application/atom+xml">      
+       
+<META name="twitter:app:country" content="US">             
+<META name="twitter:app:name:iphone" content="Stack Exchange iOS">             
+<META name="twitter:app:id:iphone" content="871299723">             
+<META name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces"> 
+            
+<META name="twitter:app:name:ipad" content="Stack Exchange iOS">             
+<META name="twitter:app:id:ipad" content="871299723">             
+<META name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces"> 
+            
+<META name="twitter:app:name:googleplay" content="Stack Exchange Android">       
+      
+<META name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces"> 
+            
+<META name="twitter:app:id:googleplay" content="com.stackexchange.marvin">       
+  
+<SCRIPT>
+        
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:8868119});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '8868119');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+            });
+        </SCRIPT>
+     
+<SCRIPT>
+        StackExchange.init({"locale":"en","serverTime":1510909417,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"67bdf45a48fa1036a78de4588c1cd764","tid":"f84155c7-a6f4-02d6-c43b-cc2624ea92c5","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"canSeeNewHeaderDesign":true,"ab":{"job_search_status":{"v":"required_job_status_2","g":1}}},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"topBar":{"showNewFeatureNotice":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"c4623cc35d3d","js/moderator.en.js":"b85ebba71ba7","js/full-anon.en.js":"5c1771e44a70","js/full.en.js":"73c610050b40","js/wmd.en.js":"1fb7111669d8","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"70afd1576a6d","js/help.en.js":"f9152eb55343","js/tageditor.en.js":"9c6df10dabc4","js/tageditornew.en.js":"3be7df8a3724","js/inline-tag-editing.en.js":"3e63a01fd39b","js/revisions.en.js":"8f22ba768cac","js/review.en.js":"c01f9f086819","js/tagsuggestions.en.js":"78eee7c19ab2","js/post-validation.en.js":"164e6d28a39c","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"abbbf15865e5","js/keyboard-shortcuts.en.js":"b409a33f9db0","js/external-editor.en.js":"b46c950d6c5a","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"b46c950d6c5a","js/snippet-javascript.en.js":"4ceca4bd1d0a","js/snippet-javascript-codemirror.en.js":"a6a765f1125c"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </SCRIPT>
+         
+<SCRIPT>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </SCRIPT>
+     <NOSCRIPT 
+id="noscript-css">&lt;style&gt;body,.top-bar{margin-top:1.9em}&lt;/style&gt;</NOSCRIPT> 
+<META name="GENERATOR" content="MSHTML 11.00.10570.1001"></HEAD> 
+<BODY class="question-page new-topbar">
+<SCRIPT src="Find%20all%20parent%20types%20(both%20base%20classes%20and%20interfaces)_files/185901-159836282584097.js" async=""></SCRIPT>
+     
+<DIV id="notify-container"></DIV>
+<DIV id="custom-header"></DIV><HEADER class="top-bar js-top-bar _fixed">
+<DIV class="-container">
+<DIV class="-main"><A class="-logo js-gps-track" href="https://stackoverflow.com/" 
+data-gps-track="top_nav.click({is_current:false, location:2, destination:8})"><SPAN 
+class="-img">Stack Overflow</SPAN>                 </A>                 <NAV 
+class="navigation" role="navigation" aria-label="site navigation">
+<OL class="-list">
+  <LI class="-item _current"><A class="-link js-gps-track" id="nav-questions" 
+  href="https://stackoverflow.com/questions" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</A> 
+      </LI>
+  <LI class="-item"><A class="-link js-gps-track" id="nav-jobs" href="https://stackoverflow.com/jobs?med=site-ui&amp;ref=jobs-tab" 
+  data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Developer 
+  Jobs</A>     </LI>
+  <LI class="-item"><A class="-link js-gps-track" id="nav-tags" href="https://stackoverflow.com/tags" 
+  data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</A> 
+      </LI>
+  <LI class="-item"><A class="-link js-gps-track" id="nav-users" href="https://stackoverflow.com/users" 
+  data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</A> 
+      </LI></OL></NAV></DIV>
+<FORM class="searchbar" id="search" role="search" action="/search" method="get" 
+autocomplete="off"><INPUT name="q" tabindex="1" class="f-input js-search-field" type="text" maxlength="240" placeholder="Search…" value="" autocomplete="off"> 
+                <BUTTON class="btn-topbar-primary js-search-submit" aria-label="Search..." 
+type="submit"><svg xmlns="http://www.w3.org/2000/svg" 
+class="svg-icon iconSearch" aria-hidden="true" viewBox="0 0 18 18" width="18" 
+height="18"><path d="M 12.86 11.32 L 18 16.5 L 16.5 18 l -5.18 -5.14 v -0.35 a 7 7 0 1 1 1.19 -1.19 h 0.35 Z M 7 12 A 5 5 0 1 0 7 2 a 5 5 0 0 0 0 10 Z" 
+/></svg></BUTTON>             </FORM>
+<DIV class="-actions"><NAV class="secondary-nav">
+<DIV class="-dialog-container js-topbar-dialog-corral">
+<DIV class="topbar-dialog siteSwitcher-dialog dno">
+<DIV class="header">
+<H3><A href="https://stackoverflow.com/">current community</A>             
+</H3></DIV>
+<DIV class="modal-content current-site-container">
+<UL class="current-site">
+  <LI>
+  <DIV class="related-links"><A class="js-gps-track" href="https://stackoverflow.com/help" 
+  data-gps-track="site_switcher.click({ item_type:14 })">help</A>                
+       <A class="js-gps-track" href="https://chat.stackoverflow.com/" 
+  data-gps-track="site_switcher.click({ item_type:6 })">chat</A>             
+  </DIV><A class="current-site-link site-link js-gps-track" href="https://stackoverflow.com/" 
+  data-gps-track="site_switcher.click({ item_type:3 })" data-id="1">
+  <DIV title="Stack Overflow" 
+  class="favicon favicon-stackoverflow site-icon"></DIV>        Stack Overflow   
+    </A></LI>
+  <LI class="related-site">
+  <DIV class="L-shaped-icon-container"><SPAN class="L-shaped-icon"></SPAN>     
+  </DIV><A class="site-link js-gps-track" href="https://meta.stackoverflow.com/" 
+  data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })" 
+  data-id="552">
+  <DIV title="Meta Stack Overflow" class="favicon favicon-stackoverflowmeta site-icon"></DIV> 
+         Meta Stack Overflow     </A></LI></UL></DIV>
+<DIV class="header" id="your-communities-header">
+<H3>your communities            </H3></DIV>
+<DIV class="modal-content" id="your-communities-section">
+<DIV class="call-to-login"><A class="login-link js-gps-track" href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" 
+data-gps-track="site_switcher.click({ item_type:10 })">Sign up</A> or <A class="login-link js-gps-track" 
+href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f8868119%2ffind-all-parent-types-both-base-classes-and-interfaces" 
+data-gps-track="site_switcher.click({ item_type:11 })">log in</A> to customize 
+your list.                 </DIV></DIV>
+<DIV class="header">
+<H3><A href="https://stackexchange.com/sites">more stack exchange 
+communities</A>             </H3><A class="fr" href="https://stackoverflow.blog/">company 
+blog</A>         </DIV>
+<DIV class="modal-content">
+<DIV class="child-content"></DIV></DIV></DIV>
+<DIV class="topbar-dialog help-dialog js-help-dialog dno">
+<DIV class="modal-content">
+<UL>
+  <LI><A class="js-gps-track" href="https://stackoverflow.com/tour" 
+  data-gps-track="help_popup.click({ item_type:1 })">                            
+  Tour                             <SPAN class="item-summary">                   
+               Start here for a quick overview of the site                       
+        </SPAN></A></LI>
+  <LI><A class="js-gps-track" href="https://stackoverflow.com/help" 
+  data-gps-track="help_popup.click({ item_type:4 })">                        
+  Help Center                         <SPAN class="item-summary">                
+              Detailed answers to any questions you might have                   
+        </SPAN></A></LI>
+  <LI><A class="js-gps-track" href="https://meta.stackoverflow.com/" 
+  data-gps-track="help_popup.click({ item_type:2 })">                            
+      Meta                                 <SPAN class="item-summary">           
+                           Discuss the workings and policies of this site        
+                           </SPAN></A></LI>
+  <LI><A class="js-gps-track" href="https://stackoverflow.com/company/about" 
+  data-gps-track="help_popup.click({ item_type:6 })">                            
+      About Us                                 <SPAN class="item-summary">       
+                               Learn more about Stack Overflow the company       
+                            </SPAN></A></LI>
+  <LI><A class="js-gps-track" href="https://www.stackoverflowbusiness.com/?ref=topbar_help" 
+  data-gps-track="help_popup.click({ item_type:7 })">                            
+      Business                                 <SPAN class="item-summary">       
+                               Learn more about hiring developers or posting ads 
+  with us                                 </SPAN></A></LI></UL></DIV></DIV></DIV>
+<OL class="-list">
+  <LI class="-item"><A title="Recent inbox messages" class="-link js-inbox-button" 
+  href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#"><svg 
+  xmlns="http://www.w3.org/2000/svg" class="svg-icon iconInbox" aria-hidden="true" 
+  viewBox="0 0 20 18" width="20" height="18"><path d="M 15.19 1 H 4.63 c -0.85 0 -1.6 0.54 -1.85 1.35 L 0 10.79 V 15 c 0 1.1 0.9 2 2 2 h 16 a 2 2 0 0 0 2 -2 v -4.21 l -2.87 -8.44 A 2 2 0 0 0 15.19 1 Z m -0.28 10 l -2 2 h -6 l -2 -2 H 1.96 L 4.4 3.68 A 1 1 0 0 1 5.35 3 h 9.12 a 1 1 0 0 1 0.95 0.68 L 17.86 11 h -2.95 Z" 
+  /></svg>             <SPAN class="indicator-badge js-unread-count _important" 
+  style="display: none;"></SPAN>         </A>     </LI>
+  <LI class="-item"><A title="Recent achievements: reputation, badges, and privileges earned" 
+  class="-link js-achievements-button" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#" 
+  data-unread-class="_highlighted-positive"><svg xmlns="http://www.w3.org/2000/svg" 
+  class="svg-icon iconAchievements" aria-hidden="true" viewBox="0 0 18 18" 
+  width="18" height="18"><path d="M 15 2 V 1 H 3 v 1 H 0 v 4 c 0 1.6 1.4 3 3 3 v 1 c 0.4 1.5 3 2.6 5 3 v 2 H 5 s -1 1.5 -1 2 h 10 c 0 -0.4 -1 -2 -1 -2 h -3 v -2 c 2 -0.4 4.6 -1.5 5 -3 V 9 c 1.6 -0.2 3 -1.4 3 -3 V 2 h -3 Z M 3 7 c -0.5 0 -1 -0.5 -1 -1 V 4 h 1 v 3 Z m 8.4 2.5 L 9 8 L 6.6 9.4 l 1 -2.7 L 5 5 h 3 l 1 -2.7 L 10 5 h 2.8 l -2.3 1.8 l 1 2.7 h -0.1 Z M 16 6 c 0 0.5 -0.5 1 -1 1 V 4 h 1 v 2 Z" 
+  /></svg>             <SPAN class="indicator-badge js-unread-count _positive" 
+  style="display: none;"></SPAN>         </A>     </LI>
+  <LI class="-item"><A title="Help Center and other resources" class="-link js-help-button" 
+  href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#"><svg 
+  xmlns="http://www.w3.org/2000/svg" class="svg-icon iconHelp" 
+  aria-hidden="true" viewBox="0 0 18 18" width="18" height="18"><path d="M 9 1 a 8 8 0 1 0 0 16 A 8 8 0 0 0 9 1 Z m 0.81 12.13 c -0.02 0.71 -0.55 1.15 -1.24 1.13 c -0.66 -0.02 -1.17 -0.49 -1.15 -1.2 c 0.02 -0.72 0.56 -1.18 1.22 -1.16 c 0.7 0.03 1.2 0.51 1.17 1.23 Z M 11.77 8 a 5.8 5.8 0 0 1 -1.02 0.91 l -0.53 0.37 c -0.26 0.2 -0.42 0.43 -0.5 0.69 a 4 4 0 0 0 -0.09 0.75 c 0 0.05 -0.03 0.16 -0.18 0.16 H 7.88 c -0.16 0 -0.18 -0.1 -0.18 -0.15 c 0.03 -0.66 0.12 -1.21 0.4 -1.66 a 5.29 5.29 0 0 1 1.43 -1.22 c 0.16 -0.12 0.28 -0.25 0.38 -0.39 a 1.34 1.34 0 0 0 0.02 -1.71 c -0.24 -0.31 -0.51 -0.46 -1.03 -0.46 c -0.51 0 -0.8 0.26 -1.02 0.6 c -0.21 0.33 -0.18 0.73 -0.18 1.1 H 5.75 c 0 -1.38 0.35 -2.25 1.1 -2.76 c 0.52 -0.35 1.17 -0.5 1.93 -0.5 c 1 0 1.79 0.18 2.49 0.71 c 0.64 0.5 0.98 1.18 0.98 2.12 c 0 0.57 -0.2 1.05 -0.48 1.44 Z" 
+  /></svg>     </A></LI>
+  <LI class="-item"><A title="A list of all 171 Stack Exchange sites" class="-link js-site-switcher-button js-gps-track" 
+  href="https://stackexchange.com/" data-gps-track="site_switcher.show"><svg 
+  xmlns="http://www.w3.org/2000/svg" class="svg-icon iconStackExchange" 
+  aria-hidden="true" viewBox="0 0 18 18" width="18" height="18"><path d="M 1 13 c 0 1.1 0.9 2 2 2 h 8 v 3 l 3 -3 h 1 a 2 2 0 0 0 2 -2 v -2 H 1 v 2 Z M 15 1 H 3 a 2 2 0 0 0 -2 2 v 2 h 16 V 3 a 2 2 0 0 0 -2 -2 Z M 1 6 h 16 v 4 H 1 V 6 Z" 
+  /></svg>         </A>     </LI></OL></NAV>
+<DIV class="-ctas"><A class="login-link btn-clear" href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f8868119%2ffind-all-parent-types-both-base-classes-and-interfaces" 
+rel="nofollow">Log In</A>                     <A class="login-link btn-topbar-primary" 
+href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" 
+rel="nofollow">Sign Up</A>         </DIV></DIV></DIV></HEADER>
+<SCRIPT>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+        StackExchange.scrollPadding.setPaddingTop(60, 10);     </SCRIPT>
+     
+<DIV class="container _full ">
+<DIV class="snippet-hidden" id="content">
+<DIV itemtype="http://schema.org/Question" itemscope=""><LINK href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a" 
+itemprop="image"> 
+<DIV class="s-hero hero-container">
+<DIV class="-container g-row jc-sp-between ai-center">
+<DIV class="g-col6">
+<H1 class="-title">Learn, Share, Build</H1>
+<P class="-paragraph">Each month, over 50 million developers come to Stack 
+Overflow to learn, share their knowledge, and build their careers.</P>
+<P class="-paragraph">Join the world’s largest developer community.</P></DIV>
+<DIV class="s-signup _hero g-col5">
+<DIV class="-social" id="openid-buttons">
+<DIV class="major-provider btn _block _medium _google" data-oauthversion="2.0" 
+data-oauthserver="https://accounts.google.com/o/oauth2/auth" data-provider="google"><svg 
+xmlns="http://www.w3.org/2000/svg" class="svg-icon native iconGoogle" 
+aria-hidden="true" viewBox="0 0 18 18" width="18" height="18"><g><path fill="#4285f4" 
+d="M 16.51 8 H 8.98 v 3 h 4.3 c -0.18 1 -0.74 1.48 -1.6 2.04 v 2.01 h 2.6 a 7.8 7.8 0 0 0 2.38 -5.88 c 0 -0.57 -0.05 -0.66 -0.15 -1.18 Z" 
+/><path fill="#34a853" d="M 8.98 17 c 2.16 0 3.97 -0.72 5.3 -1.94 l -2.6 -2 a 4.8 4.8 0 0 1 -7.18 -2.54 H 1.83 v 2.07 A 8 8 0 0 0 8.98 17 Z" 
+/><path fill="#fbbc05" d="M 4.5 10.52 a 4.8 4.8 0 0 1 0 -3.04 V 5.41 H 1.83 a 8 8 0 0 0 0 7.18 l 2.67 -2.07 Z" 
+/><path fill="#ea4335" d="M 8.98 4.18 c 1.17 0 2.23 0.4 3.06 1.2 l 2.3 -2.3 A 8 8 0 0 0 1.83 5.4 L 4.5 7.49 a 4.77 4.77 0 0 1 4.48 -3.3 Z" 
+/></g></svg>                                                Google               
+      </DIV>
+<DIV class="major-provider btn _block _medium _facebook" data-oauthversion="2.0" 
+data-oauthserver="https://www.facebook.com/v2.0/dialog/oauth" data-provider="facebook"><svg 
+xmlns="http://www.w3.org/2000/svg" class="svg-icon iconFacebook" aria-hidden="true" 
+viewBox="0 0 18 18" width="18" height="18"><path fill="#3c5a96" d="M 16.12 1 H 1.88 C 1.4 1 1 1.4 1 1.88 v 14.24 c 0 0.48 0.4 0.88 0.88 0.88 h 7.67 v -6.2 H 7.46 V 8.4 h 2.09 V 6.61 c 0 -2.07 1.26 -3.2 3.1 -3.2 c 0.88 0 1.64 0.07 1.87 0.1 v 2.16 h -1.29 c -1 0 -1.19 0.48 -1.19 1.18 V 8.4 h 2.39 l -0.31 2.42 h -2.08 V 17 h 4.08 c 0.48 0 0.88 -0.4 0.88 -0.88 V 1.88 c 0 -0.48 -0.4 -0.88 -0.88 -0.88" 
+/></svg>                        Facebook                     </DIV></DIV><SMALL 
+class="-divider text-centered">or</SMALL>
+<FORM id="login-form" action="/users/signup?ssrc=hero&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f8868119%2ffind-all-parent-types-both-base-classes-and-interfaces" 
+method="POST"><INPUT name="fkey" type="hidden" value="67bdf45a48fa1036a78de4588c1cd764"> 
+                <INPUT name="ssrc" type="hidden">                 <INPUT name="oauth_version" id="oauth_version" type="hidden"> 
+                <INPUT name="oauth_server" id="oauth_server" type="hidden">      
+               
+<DIV id="se-login-fields"><INPUT name="legalLinksShown" type="hidden" value="1"> 
+                        
+<DIV class="input-group">
+<DIV class="g-row"><LABEL class="g-col -fill" for="display-name">Display 
+name</LABEL>
+<DIV class="g-col"><INPUT name="inline-display-name" class="f-input" id="display-name" type="text" placeholder="J. Doe" value="" data-error-at="left center" data-error-my="right top"> 
+                                </DIV></DIV></DIV>
+<DIV class="input-group">
+<DIV class="g-row"><LABEL class="g-col -fill" for="email">Email address</LABEL>
+<DIV class="g-col"><INPUT name="inline-email" class="f-input" id="email" type="email" maxlength="100" placeholder="you@example.com" value="" data-error-at="left center" data-error-my="right top"> 
+                                </DIV></DIV></DIV>
+<DIV class="input-group">
+<DIV class="g-row"><LABEL class="g-col -fill" for="password">Password</LABEL>
+<DIV class="g-col"><INPUT name="inline-password" class="js-inline-signup f-input" id="password" type="password" placeholder="********" value="" data-error-at="left center" data-error-my="right top"> 
+                                </DIV></DIV></DIV>
+<DIV class="button-group g-row ai-center jc-sp-between"><INPUT name="submit-button" class="btn-outlined -white _medium _block" id="submit-button" type="button" value="Sign Up"><SMALL 
+class="g-col -policy js-terms">By registering, you agree to the <A name="privacy" 
+class="-link" href="https://stackexchange.com/legal/privacy-policy" target="_blank">privacy 
+policy</A> and <A name="tos" class="-link" href="https://stackexchange.com/legal/terms-of-service" 
+target="_blank">terms of service</A>.</SMALL></DIV></DIV></FORM>
+<SCRIPT>
+                StackExchange.ready(function () {
+                    StackExchange.InlineAuth.init();
+                })
+            </SCRIPT>
+         </DIV><A title="dismiss" class="js-dismiss -dismiss" id="close" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#"><svg 
+xmlns="http://www.w3.org/2000/svg" class="svg-icon iconClear" aria-hidden="true" 
+viewBox="0 0 18 18" width="18" height="18"><path d="M 15 4.41 L 13.59 3 L 9 7.59 L 4.41 3 L 3 4.41 L 7.59 9 L 3 13.59 L 4.41 15 L 9 10.41 L 13.59 15 L 15 13.59 L 10.41 9 Z" 
+/></svg></A>     </DIV></DIV>
+<SCRIPT>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 7;
+        } else if ($("body").hasClass("question-page")) {
+            location = 7;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;
+        } else if ($("body").hasClass("home-page")) {
+            location = 6;
+        }
+        
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        
+        $('.hero-container #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+
+            if ($(this).hasClass("js-hero-mini-disabled")) {
+                $(".hero-container").fadeOut("fast");
+                return false;
+            }
+
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $(".hero-container").fadeOut("fast", function () {
+                        $(".hero-container").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</SCRIPT>
+    
+<DIV class="inner-content">
+<DIV id="question-header">
+<H1 itemprop="name"><A class="question-hyperlink" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces">Find 
+all parent types (both base classes and interfaces)</A></H1>
+<DIV class="aside-cta" role="navigation" aria-label="ask new question"><A class="btn-outlined" 
+href="https://stackoverflow.com/questions/ask">Ask Question</A> </DIV></DIV>
+<DIV id="mainbar" role="main" aria-label="question and answers">
+<DIV class="question" id="question" data-questionid="8868119">
+<DIV class="everyonelovesstackoverflow" id="dfp-tlb"></DIV>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD class="votecell">
+      <DIV class="vote"><INPUT name="_id_" type="hidden" value="8868119">        
+       <A title="This question shows research effort; it is useful and clear" 
+      class="vote-up-off">up vote</A><SPAN class="vote-count-post " itemprop="upvoteCount">9</SPAN><A 
+      title="This question does not show any research effort; it is unclear or not useful" 
+      class="vote-down-off">down vote</A><A class="star-off" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#">favorite</A>
+      <DIV class="favoritecount"><B>3</B></DIV></DIV></TD>
+    <TD class="postcell">
+      <DIV>
+      <DIV class="post-text" itemprop="text">
+      <P>I want to be able to find all parent types (base classes and 
+      interfaces) for a specific type.</P>
+      <P>EG if i have </P>
+<PRE><CODE>class A : B, C { }
+class B : D { }
+interface C : E { }
+class D { }
+interface E { }
+</CODE></PRE>
+      <P>i want to see that A <EM>is</EM> B C D and E and Object</P>
+      <P>Whats the best way to do this? is there a reflection method to do this 
+      or do i need to make myself something. </P>
+      <P>====EDIT====</P>
+      <P>So something like this?</P>
+<PRE><CODE>public static IEnumerable&lt;Type&gt; ParentTypes(this Type type)
+    {
+        foreach (Type i in type.GetInterfaces())
+        {
+            yield return i;
+            foreach (Type t in i.ParentTypes())
+            {
+                yield return t;
+            }
+        }
+
+        if (type.BaseType != null)
+        {
+            yield return type.BaseType;
+            foreach (Type b in type.BaseType.ParentTypes())
+            {
+                yield return b;
+            }
+        }
+    }
+</CODE></PRE>
+      <P>I was kinda hoping i didn't have to do it myself but oh well.</P></DIV>
+      <DIV class="post-taglist"><A title="show questions tagged 'c#'" class="post-tag" 
+      href="https://stackoverflow.com/questions/tagged/c%23" rel="tag">c#</A> <A 
+      title="show questions tagged '.net'" class="post-tag" href="https://stackoverflow.com/questions/tagged/.net" 
+      rel="tag">.net</A>     </DIV>
+      <TABLE class="fw">
+        <TBODY>
+        <TR>
+          <TD class="vt">
+            <DIV class="post-menu"><A title="short permalink to this question" 
+            class="short-link" id="link-post-8868119" href="https://stackoverflow.com/q/8868119">share</A><SPAN 
+            class="lsep">|</SPAN><A title="" class="suggest-edit-post" href="https://stackoverflow.com/posts/8868119/edit">improve 
+            this question</A></DIV></TD>
+          <TD align="right" class="post-signature">
+            <DIV class="user-info ">
+            <DIV class="user-action-time"><A title="show all edits to this post" 
+            href="https://stackoverflow.com/posts/8868119/revisions">edited 
+            <SPAN title="2012-01-15 07:21:15Z" class="relativetime">Jan 15 '12 
+            at 7:21</SPAN></A>     </DIV>
+            <DIV class="user-gravatar32"></DIV>
+            <DIV class="user-details">
+            <DIV class="-flair"></DIV></DIV></DIV></TD>
+          <TD class="post-signature owner">
+            <DIV class="user-info ">
+            <DIV class="user-action-time">        asked <SPAN title="2012-01-15 07:08:30Z" 
+            class="relativetime">Jan 15 '12 at 7:08</SPAN>     </DIV>
+            <DIV class="user-gravatar32"><A href="https://stackoverflow.com/users/1070291/luke-mcgregor">
+            <DIV class="gravatar-wrapper-32"><IMG width="32" height="32" alt="" 
+            src="Find%20all%20parent%20types%20(both%20base%20classes%20and%20interfaces)_files/46e93e55b8f4f652201516c2f7bf3323.png"></DIV></A> 
+                </DIV>
+            <DIV class="user-details"><A href="https://stackoverflow.com/users/1070291/luke-mcgregor">Luke 
+            McGregor</A>         
+            <DIV class="-flair"><SPAN title="reputation score 20,872" class="reputation-score" 
+            dir="ltr">20.9k</SPAN><SPAN title="9 gold badges"><SPAN class="badge1"></SPAN><SPAN 
+            class="badgecount">9</SPAN></SPAN><SPAN 
+            title="82 silver badges"><SPAN class="badge2"></SPAN><SPAN class="badgecount">82</SPAN></SPAN><SPAN 
+            title="136 bronze badges"><SPAN class="badge3"></SPAN><SPAN class="badgecount">136</SPAN></SPAN> 
+                    </DIV></DIV></DIV></TD></TR></TBODY></TABLE></DIV></TD></TR>
+  <TR>
+    <TD class="votecell"></TD>
+    <TD>
+      <DIV class="comments js-comments-container  dno" id="comments-8868119">
+      <TABLE>
+        <TBODY class="js-comments-list" data-addlink-disabled="true" 
+        data-comments-unavailable="false" data-cansee="true" data-canpost="false" 
+        data-remaining-comments-count="0">
+        <TR>
+          <TD></TD>
+          <TD></TD></TR></TBODY></TABLE></DIV>
+      <DIV id="comments-link-8868119" data-anon="true" data-rep="50"><A title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments." 
+      class="js-add-link comments-link disabled-link ">add a comment</A><SPAN 
+      class="js-link-separator dno">&nbsp;|&nbsp;</SPAN>             <A title="expand to show all comments on this post" 
+      class="js-show-link comments-link dno" onclick="" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#"></A> 
+              </DIV></TD></TR></TBODY></TABLE></DIV>
+<DIV id="answers"><A name="tab-top"></A>                 
+<DIV id="answers-header">
+<DIV class="subheader answers-subheader">
+<H2>                                5 Answers                                 
+<SPAN style="display: none;" itemprop="answerCount">5</SPAN>                     
+    </H2>
+<DIV>
+<DIV id="tabs"><A title="Answers with the latest activity first" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces?answertab=active#tab-top" 
+data-shortcut="A" data-value="active" data-nav-xhref="">            active</A>   
+      <A title="Answers in the order they were provided" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces?answertab=oldest#tab-top" 
+data-shortcut="O" data-value="oldest" data-nav-xhref="">            oldest</A>   
+      <A title="Answers with the highest score first" class="youarehere" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces?answertab=votes#tab-top" 
+data-shortcut="V" data-value="votes" data-nav-xhref="">            votes</A> 
+</DIV></DIV></DIV></DIV><A name="18375526"></A> 
+<DIV class="answer accepted-answer" id="answer-18375526" itemtype="http://schema.org/Answer" 
+itemscope="" itemprop="acceptedAnswer" data-answerid="18375526">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD class="votecell">
+      <DIV class="vote"><INPUT name="_id_" type="hidden" value="18375526">       
+        <A title="This answer is useful" class="vote-up-off">up vote</A><SPAN 
+      class="vote-count-post " itemprop="upvoteCount">19</SPAN><A title="This answer is not useful" 
+      class="vote-down-off">down vote</A><SPAN title="loading when this answer was accepted..." 
+      class="vote-accepted-on load-accepted-answer-date">accepted</SPAN></DIV></TD>
+    <TD class="answercell">
+      <DIV class="post-text" itemprop="text">
+      <P>More general solution:</P>
+<PRE><CODE>public static bool InheritsFrom(this Type type, Type baseType)
+{
+    // null does not have base type
+    if (type == null)
+    {
+        return false;
+    }
+
+    // only interface can have null base type
+    if (baseType == null)
+    {
+        return type.IsInterface;
+    }
+
+    // check implemented interfaces
+    if (baseType.IsInterface)
+    {
+        return type.GetInterfaces().Contains(baseType);
+    }
+
+    // check all base types
+    var currentType = type;
+    while (currentType != null)
+    {
+        if (currentType.BaseType == baseType)
+        {
+            return true;
+        }
+
+        currentType = currentType.BaseType;
+    }
+
+    return false;
+}
+</CODE></PRE>
+      <P>Or to actually get all parent types:</P>
+<PRE><CODE>public static IEnumerable&lt;Type&gt; GetParentTypes(this Type type)
+{
+    // is there any base type?
+    if ((type == null) || (type.BaseType == null))
+    {
+        yield break;
+    }
+
+    // return all implemented or inherited interfaces
+    foreach (var i in type.GetInterfaces())
+    {
+        yield return i;
+    }
+
+    // return all inherited types
+    var currentBaseType = type.BaseType;
+    while (currentBaseType != null)
+    {
+        yield return currentBaseType;
+        currentBaseType= currentBaseType.BaseType;
+    }
+}
+</CODE></PRE></DIV>
+      <TABLE class="fw">
+        <TBODY>
+        <TR>
+          <TD class="vt">
+            <DIV class="post-menu"><A title="short permalink to this answer" 
+            class="short-link" id="link-post-18375526" href="https://stackoverflow.com/a/18375526">share</A><SPAN 
+            class="lsep">|</SPAN><A title="" class="suggest-edit-post" href="https://stackoverflow.com/posts/18375526/edit">improve 
+            this answer</A></DIV></TD>
+          <TD align="right" class="post-signature">
+            <DIV class="user-info ">
+            <DIV class="user-action-time"><A title="show all edits to this post" 
+            href="https://stackoverflow.com/posts/18375526/revisions">edited 
+            <SPAN title="2013-08-22 08:57:24Z" class="relativetime">Aug 22 '13 
+            at 8:57</SPAN></A>     </DIV>
+            <DIV class="user-gravatar32"></DIV>
+            <DIV class="user-details">
+            <DIV class="-flair"></DIV></DIV></DIV></TD>
+          <TD align="right" class="post-signature">
+            <DIV class="user-info ">
+            <DIV class="user-action-time">        answered <SPAN title="2013-08-22 08:42:59Z" 
+            class="relativetime">Aug 22 '13 at 8:42</SPAN>     </DIV>
+            <DIV class="user-gravatar32"><A href="https://stackoverflow.com/users/2683311/sergii-bogomolov">
+            <DIV class="gravatar-wrapper-32"><IMG width="32" height="32" alt="" 
+            src="Find%20all%20parent%20types%20(both%20base%20classes%20and%20interfaces)_files/6d2d92cece6a6eea6769ea1df88fb786.png"></DIV></A> 
+                </DIV>
+            <DIV class="user-details"><A href="https://stackoverflow.com/users/2683311/sergii-bogomolov">Sergii 
+            Bogomolov</A>         
+            <DIV class="-flair"><SPAN title="reputation score " class="reputation-score" 
+            dir="ltr">335</SPAN><SPAN title="2 silver badges"><SPAN class="badge2"></SPAN><SPAN 
+            class="badgecount">2</SPAN></SPAN><SPAN 
+            title="7 bronze badges"><SPAN class="badge3"></SPAN><SPAN class="badgecount">7</SPAN></SPAN> 
+                    </DIV></DIV></DIV></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD class="votecell"></TD>
+    <TD>
+      <DIV class="comments js-comments-container  dno" id="comments-18375526">
+      <TABLE>
+        <TBODY class="js-comments-list" data-addlink-disabled="true" 
+        data-comments-unavailable="false" data-cansee="true" data-canpost="false" 
+        data-remaining-comments-count="0">
+        <TR>
+          <TD></TD>
+          <TD></TD></TR></TBODY></TABLE></DIV>
+      <DIV id="comments-link-18375526" data-anon="true" data-rep="50"><A title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+      class="js-add-link comments-link disabled-link ">add a comment</A><SPAN 
+      class="js-link-separator dno">&nbsp;|&nbsp;</SPAN>             <A title="expand to show all comments on this post" 
+      class="js-show-link comments-link dno" onclick="" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#"></A> 
+              </DIV></TD></TR></TBODY></TABLE></DIV>
+<DIV class="everyonelovesstackoverflow" id="dfp-mlb"></DIV><A 
+name="8868132"></A> 
+<DIV class="answer" id="answer-8868132" itemtype="http://schema.org/Answer" 
+itemscope="" data-answerid="8868132">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD class="votecell">
+      <DIV class="vote"><INPUT name="_id_" type="hidden" value="8868132">        
+       <A title="This answer is useful" class="vote-up-off">up vote</A><SPAN 
+      class="vote-count-post " itemprop="upvoteCount">6</SPAN><A title="This answer is not useful" 
+      class="vote-down-off">down vote</A></DIV></TD>
+    <TD class="answercell">
+      <DIV class="post-text" itemprop="text">
+      <P>To get the interfaces implemented by a type, use <A href="http://msdn.microsoft.com/en-us/library/system.type.getinterfaces.aspx"><CODE>Type.GetInterfaces</CODE></A>. 
+      To see its class-hierarchy, you can use <A href="http://msdn.microsoft.com/en-us/library/system.type.basetype.aspx"><CODE>Type.BaseType</CODE></A> 
+      iteratively until you hit a <CODE>null</CODE>-reference (typically this 
+      will happen after you hit <CODE>System.Object</CODE>, but not necessarily 
+      - for example, an interface-type's base type will directly be 
+<CODE>null</CODE>).</P></DIV>
+      <TABLE class="fw">
+        <TBODY>
+        <TR>
+          <TD class="vt">
+            <DIV class="post-menu"><A title="short permalink to this answer" 
+            class="short-link" id="link-post-8868132" href="https://stackoverflow.com/a/8868132">share</A><SPAN 
+            class="lsep">|</SPAN><A title="" class="suggest-edit-post" href="https://stackoverflow.com/posts/8868132/edit">improve 
+            this answer</A></DIV></TD>
+          <TD align="right" class="post-signature">
+            <DIV class="user-info user-hover">
+            <DIV class="user-action-time">        answered <SPAN title="2012-01-15 07:11:05Z" 
+            class="relativetime">Jan 15 '12 at 7:11</SPAN>     </DIV>
+            <DIV class="user-gravatar32"><A href="https://stackoverflow.com/users/412770/ani">
+            <DIV class="gravatar-wrapper-32"><IMG width="32" height="32" alt="" 
+            src="Find%20all%20parent%20types%20(both%20base%20classes%20and%20interfaces)_files/bd32d371f1a7ece94fe52a078ea9eee1.png"></DIV></A> 
+                </DIV>
+            <DIV class="user-details"><A href="https://stackoverflow.com/users/412770/ani">Ani</A> 
+                    
+            <DIV class="-flair"><SPAN title="reputation score 82,403" class="reputation-score" 
+            dir="ltr">82.4k</SPAN><SPAN title="12 gold badges"><SPAN class="badge1"></SPAN><SPAN 
+            class="badgecount">12</SPAN></SPAN><SPAN 
+            title="192 silver badges"><SPAN class="badge2"></SPAN><SPAN class="badgecount">192</SPAN></SPAN><SPAN 
+            title="266 bronze badges"><SPAN class="badge3"></SPAN><SPAN class="badgecount">266</SPAN></SPAN> 
+                    </DIV></DIV></DIV></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD class="votecell"></TD>
+    <TD>
+      <DIV class="comments js-comments-container  dno" id="comments-8868132">
+      <TABLE>
+        <TBODY class="js-comments-list" data-addlink-disabled="true" 
+        data-comments-unavailable="false" data-cansee="true" data-canpost="false" 
+        data-remaining-comments-count="0">
+        <TR>
+          <TD></TD>
+          <TD></TD></TR></TBODY></TABLE></DIV>
+      <DIV id="comments-link-8868132" data-anon="true" data-rep="50"><A title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+      class="js-add-link comments-link disabled-link ">add a comment</A><SPAN 
+      class="js-link-separator dno">&nbsp;|&nbsp;</SPAN>             <A title="expand to show all comments on this post" 
+      class="js-show-link comments-link dno" onclick="" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#"></A> 
+              </DIV></TD></TR></TBODY></TABLE></DIV><A name="15514201"></A> 
+<DIV class="answer" id="answer-15514201" itemtype="http://schema.org/Answer" 
+itemscope="" data-answerid="15514201">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD class="votecell">
+      <DIV class="vote"><INPUT name="_id_" type="hidden" value="15514201">       
+        <A title="This answer is useful" class="vote-up-off">up vote</A><SPAN 
+      class="vote-count-post " itemprop="upvoteCount">5</SPAN><A title="This answer is not useful" 
+      class="vote-down-off">down vote</A></DIV></TD>
+    <TD class="answercell">
+      <DIV class="post-text" itemprop="text">
+      <P>A C# extension method for the lazy:</P>
+<PRE><CODE>/// &lt;summary&gt;
+/// Extension method to check the entire inheritance hierarchy of a
+/// type to see whether the given base type is inherited.
+/// &lt;/summary&gt;
+/// &lt;param name="t"&gt;The Type object this method was called on&lt;/param&gt;
+/// &lt;param name="baseType"&gt;The base type to look for in the 
+/// inheritance hierarchy&lt;/param&gt;
+/// &lt;returns&gt;True if baseType is found somewhere in the inheritance 
+/// hierarchy, false if not&lt;/returns&gt;
+public static bool InheritsFrom(this Type t, Type baseType)
+{
+    Type cur = t.BaseType;
+
+    while (cur != null)
+    {
+        if (cur.Equals(baseType))
+        {
+            return true;
+        }
+
+        cur = cur.BaseType;
+    }
+
+    return false;
+}
+</CODE></PRE></DIV>
+      <TABLE class="fw">
+        <TBODY>
+        <TR>
+          <TD class="vt">
+            <DIV class="post-menu"><A title="short permalink to this answer" 
+            class="short-link" id="link-post-15514201" href="https://stackoverflow.com/a/15514201">share</A><SPAN 
+            class="lsep">|</SPAN><A title="" class="suggest-edit-post" href="https://stackoverflow.com/posts/15514201/edit">improve 
+            this answer</A></DIV></TD>
+          <TD align="right" class="post-signature">
+            <DIV class="user-info user-hover">
+            <DIV class="user-action-time">        answered <SPAN title="2013-03-20 02:29:11Z" 
+            class="relativetime">Mar 20 '13 at 2:29</SPAN>     </DIV>
+            <DIV class="user-gravatar32"><A href="https://stackoverflow.com/users/327/luke">
+            <DIV class="gravatar-wrapper-32"><IMG width="32" height="32" alt="" 
+            src="Find%20all%20parent%20types%20(both%20base%20classes%20and%20interfaces)_files/d3b16c0d3aeedfa07263452f25c4e650.jpeg"></DIV></A> 
+                </DIV>
+            <DIV class="user-details"><A href="https://stackoverflow.com/users/327/luke">Luke</A> 
+                    
+            <DIV class="-flair"><SPAN title="reputation score " class="reputation-score" 
+            dir="ltr">8,995</SPAN><SPAN title="20 gold badges"><SPAN class="badge1"></SPAN><SPAN 
+            class="badgecount">20</SPAN></SPAN><SPAN 
+            title="75 silver badges"><SPAN class="badge2"></SPAN><SPAN class="badgecount">75</SPAN></SPAN><SPAN 
+            title="97 bronze badges"><SPAN class="badge3"></SPAN><SPAN class="badgecount">97</SPAN></SPAN> 
+                    </DIV></DIV></DIV></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD class="votecell"></TD>
+    <TD>
+      <DIV class="comments js-comments-container  dno" id="comments-15514201">
+      <TABLE>
+        <TBODY class="js-comments-list" data-addlink-disabled="true" 
+        data-comments-unavailable="false" data-cansee="true" data-canpost="false" 
+        data-remaining-comments-count="0">
+        <TR>
+          <TD></TD>
+          <TD></TD></TR></TBODY></TABLE></DIV>
+      <DIV id="comments-link-15514201" data-anon="true" data-rep="50"><A title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+      class="js-add-link comments-link disabled-link ">add a comment</A><SPAN 
+      class="js-link-separator dno">&nbsp;|&nbsp;</SPAN>             <A title="expand to show all comments on this post" 
+      class="js-show-link comments-link dno" onclick="" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#"></A> 
+              </DIV></TD></TR></TBODY></TABLE></DIV><A name="8868137"></A> 
+<DIV class="answer" id="answer-8868137" itemtype="http://schema.org/Answer" 
+itemscope="" data-answerid="8868137">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD class="votecell">
+      <DIV class="vote"><INPUT name="_id_" type="hidden" value="8868137">        
+       <A title="This answer is useful" class="vote-up-off">up vote</A><SPAN 
+      class="vote-count-post " itemprop="upvoteCount">2</SPAN><A title="This answer is not useful" 
+      class="vote-down-off">down vote</A></DIV></TD>
+    <TD class="answercell">
+      <DIV class="post-text" itemprop="text">
+      <P>For interfaces, <CODE>typeof(A).GetInterfaces()</CODE> (documented 
+      here: <A href="http://msdn.microsoft.com/en-us/library/system.type.getinterfaces.aspx" 
+      rel="nofollow">http://msdn.microsoft.com/en-us/library/system.type.getinterfaces.aspx</A>).</P>
+      <P>For base class, <CODE>typeof(A).BaseType</CODE> (documented here: <A 
+      href="http://msdn.microsoft.com/en-us/library/system.type.basetype.aspx" 
+      rel="nofollow">http://msdn.microsoft.com/en-us/library/system.type.basetype.aspx</A>).</P>
+      <P>Call recursively, wash, rinse, repeat.</P></DIV>
+      <TABLE class="fw">
+        <TBODY>
+        <TR>
+          <TD class="vt">
+            <DIV class="post-menu"><A title="short permalink to this answer" 
+            class="short-link" id="link-post-8868137" href="https://stackoverflow.com/a/8868137">share</A><SPAN 
+            class="lsep">|</SPAN><A title="" class="suggest-edit-post" href="https://stackoverflow.com/posts/8868137/edit">improve 
+            this answer</A></DIV></TD>
+          <TD align="right" class="post-signature">
+            <DIV class="user-info user-hover">
+            <DIV class="user-action-time">        answered <SPAN title="2012-01-15 07:12:42Z" 
+            class="relativetime">Jan 15 '12 at 7:12</SPAN>     </DIV>
+            <DIV class="user-gravatar32"><A href="https://stackoverflow.com/users/571563/chris-shain">
+            <DIV class="gravatar-wrapper-32"><IMG width="32" height="32" alt="" 
+            src="Find%20all%20parent%20types%20(both%20base%20classes%20and%20interfaces)_files/ce5650bd7433e6f5bd0164a309b69608.png"></DIV></A> 
+                </DIV>
+            <DIV class="user-details"><A href="https://stackoverflow.com/users/571563/chris-shain">Chris 
+            Shain</A>         
+            <DIV class="-flair"><SPAN title="reputation score 42,553" class="reputation-score" 
+            dir="ltr">42.6k</SPAN><SPAN title="3 gold badges"><SPAN class="badge1"></SPAN><SPAN 
+            class="badgecount">3</SPAN></SPAN><SPAN 
+            title="73 silver badges"><SPAN class="badge2"></SPAN><SPAN class="badgecount">73</SPAN></SPAN><SPAN 
+            title="111 bronze badges"><SPAN class="badge3"></SPAN><SPAN class="badgecount">111</SPAN></SPAN> 
+                    </DIV></DIV></DIV></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD class="votecell"></TD>
+    <TD>
+      <DIV class="comments js-comments-container  dno" id="comments-8868137">
+      <TABLE>
+        <TBODY class="js-comments-list" data-addlink-disabled="true" 
+        data-comments-unavailable="false" data-cansee="true" data-canpost="false" 
+        data-remaining-comments-count="0">
+        <TR>
+          <TD></TD>
+          <TD></TD></TR></TBODY></TABLE></DIV>
+      <DIV id="comments-link-8868137" data-anon="true" data-rep="50"><A title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+      class="js-add-link comments-link disabled-link ">add a comment</A><SPAN 
+      class="js-link-separator dno">&nbsp;|&nbsp;</SPAN>             <A title="expand to show all comments on this post" 
+      class="js-show-link comments-link dno" onclick="" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#"></A> 
+              </DIV></TD></TR></TBODY></TABLE></DIV><A name="26528937"></A> 
+<DIV class="answer" id="answer-26528937" itemtype="http://schema.org/Answer" 
+itemscope="" data-answerid="26528937">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD class="votecell">
+      <DIV class="vote"><INPUT name="_id_" type="hidden" value="26528937">       
+        <A title="This answer is useful" class="vote-up-off">up vote</A><SPAN 
+      class="vote-count-post " itemprop="upvoteCount">1</SPAN><A title="This answer is not useful" 
+      class="vote-down-off">down vote</A></DIV></TD>
+    <TD class="answercell">
+      <DIV class="post-text" itemprop="text">
+<PRE><CODE>public static bool IsSubclassOfTypeOrInterface(this Type type, Type ofTypeOrInterface)
+{
+    if (type == null)
+    {
+        throw new ArgumentNullException("type");
+    }
+    if (ofTypeOrInterface == null)
+    {
+        throw new ArgumentNullException("ofTypeOrInterface");
+    }
+
+    return ofTypeOrInterface.IsInterface
+               ? type.GetInterfaces().Contains(ofTypeOrInterface)
+               : type.IsSubclassOf(ofTypeOrInterface);
+}
+</CODE></PRE></DIV>
+      <TABLE class="fw">
+        <TBODY>
+        <TR>
+          <TD class="vt">
+            <DIV class="post-menu"><A title="short permalink to this answer" 
+            class="short-link" id="link-post-26528937" href="https://stackoverflow.com/a/26528937">share</A><SPAN 
+            class="lsep">|</SPAN><A title="" class="suggest-edit-post" href="https://stackoverflow.com/posts/26528937/edit">improve 
+            this answer</A></DIV></TD>
+          <TD align="right" class="post-signature">
+            <DIV class="user-info ">
+            <DIV class="user-action-time">        answered <SPAN title="2014-10-23 13:12:50Z" 
+            class="relativetime">Oct 23 '14 at 13:12</SPAN>     </DIV>
+            <DIV class="user-gravatar32"><A href="https://stackoverflow.com/users/355264/net-prog">
+            <DIV class="gravatar-wrapper-32"><IMG width="32" height="32" alt="" 
+            src="Find%20all%20parent%20types%20(both%20base%20classes%20and%20interfaces)_files/d7c90c1dd3221dccbdcbbfe89c98e8d7.jpeg"></DIV></A> 
+                </DIV>
+            <DIV class="user-details"><A href="https://stackoverflow.com/users/355264/net-prog">net_prog</A> 
+                    
+            <DIV class="-flair"><SPAN title="reputation score " class="reputation-score" 
+            dir="ltr">4,937</SPAN><SPAN title="9 gold badges"><SPAN class="badge1"></SPAN><SPAN 
+            class="badgecount">9</SPAN></SPAN><SPAN 
+            title="42 silver badges"><SPAN class="badge2"></SPAN><SPAN class="badgecount">42</SPAN></SPAN><SPAN 
+            title="63 bronze badges"><SPAN class="badge3"></SPAN><SPAN class="badgecount">63</SPAN></SPAN> 
+                    </DIV></DIV></DIV></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD class="votecell"></TD>
+    <TD>
+      <DIV class="comments js-comments-container  dno" id="comments-26528937">
+      <TABLE>
+        <TBODY class="js-comments-list" data-addlink-disabled="true" 
+        data-comments-unavailable="false" data-cansee="true" data-canpost="false" 
+        data-remaining-comments-count="0">
+        <TR>
+          <TD></TD>
+          <TD></TD></TR></TBODY></TABLE></DIV>
+      <DIV id="comments-link-26528937" data-anon="true" data-rep="50"><A title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+      class="js-add-link comments-link disabled-link ">add a comment</A><SPAN 
+      class="js-link-separator dno">&nbsp;|&nbsp;</SPAN>             <A title="expand to show all comments on this post" 
+      class="js-show-link comments-link dno" onclick="" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#"></A> 
+              </DIV></TD></TR></TBODY></TABLE></DIV><A name="new-answer"></A>          
+               
+<FORM class="post-form" id="post-form" action="/questions/8868119/answer/submit" 
+method="post"><INPUT id="post-id" type="hidden" value="8868119">                 
+            
+<INPUT name="qualityBanWarningShown" id="qualityBanWarningShown" type="hidden" value="false"> 
+                            <INPUT name="referrer" type="hidden">                
+             
+<H2 class="space">Your Answer</H2>
+<SCRIPT>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </SCRIPT>
+     
+<SCRIPT>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.settings.snippets.snippetsEnabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                StackExchange.prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });
+</SCRIPT>
+ 
+<DIV class="post-editor js-post-editor" id="post-editor">
+<DIV style="position: relative;">
+<DIV class="wmd-container">
+<DIV class="wmd-button-bar" 
+id="wmd-button-bar"></DIV><TEXTAREA name="post-text" tabindex="101" class="wmd-input" id="wmd-input" rows="15" cols="92" data-min-length=""></TEXTAREA> 
+        </DIV></DIV>
+<DIV class="fl" style="height: 24px; margin-top: 8px;">&nbsp;</DIV>
+<DIV class="draft-saved community-option fl" id="draft-saved" style="height: 24px; margin-top: 8px; display: none;">draft 
+saved</DIV>
+<DIV class="draft-discarded community-option fl" id="draft-discarded" style="height: 24px; margin-top: 8px; display: none;">draft 
+discarded</DIV>
+<DIV class="wmd-preview" id="wmd-preview"></DIV>
+<DIV></DIV>
+<DIV class="edit-block"><INPUT name="fkey" id="fkey" type="hidden" value="67bdf45a48fa1036a78de4588c1cd764"> 
+        <INPUT name="author" id="author" type="text">     </DIV></DIV>
+<DIV style="position: relative;">
+<DIV class="form-item dno new-post-login">
+<DIV class="new-login-form">
+<DIV class="new-login-left">
+<H3>Sign up or <A id="login-link" href="https://stackoverflow.com/users/login?ssrc=question_page&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f8868119%2ffind-all-parent-types-both-base-classes-and-interfaces%23new-answer">log 
+in</A></H3>
+<SCRIPT>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </SCRIPT>
+                         
+<DIV class="preferred-login google-login">
+<P><SPAN class="icon"></SPAN><SPAN>Sign up using Google</SPAN></P></DIV>
+<DIV class="preferred-login facebook-login">
+<P><SPAN class="icon"></SPAN><SPAN>Sign up using Facebook</SPAN></P></DIV>
+<DIV class="preferred-login stackexchange-login">
+<P><SPAN class="icon"></SPAN><SPAN>Sign up using Email and 
+Password</SPAN></P></DIV></DIV><INPUT name="manual-openid" class="manual-openid" type="hidden"> 
+                    <INPUT name="use-facebook" class="use-facebook" type="hidden" value="false"> 
+                    
+<INPUT name="use-google" class="use-google" type="hidden" value="false">         
+            
+<INPUT class="submit-openid" style="display: none;" type="button" value="Submit"> 
+                    
+<DIV class="new-login-right">
+<H3>Post as a guest</H3>
+<DIV class="form-item">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD class="vm">
+      <DIV><LABEL 
+for="display-name">Name</LABEL><INPUT name="display-name" tabindex="105" id="display-name" type="text" size="30" maxlength="30"> 
+                      </DIV>
+      <DIV><LABEL for="m-address">Email</LABEL><INPUT name="m-address" tabindex="106" id="m-address" type="email" size="30" maxlength="100" placeholder="required, but never shown" value=""> 
+                      </DIV></TD></TR></TBODY></TABLE></DIV></DIV></DIV></DIV>
+<SCRIPT>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'https%3a%2f%2fstackoverflow.com%2fquestions%2f8868119%2ffind-all-parent-types-both-base-classes-and-interfaces%23new-answer', 'question_page');
+                    }
+                );
+            </SCRIPT>
+             <NOSCRIPT>                        &lt;h3&gt;Post as a 
+guest&lt;/h3&gt;    &lt;div class="form-item"&gt;        &lt;table&gt;        
+&lt;tr&gt;                    &lt;td class="vm"&gt;                &lt;div&gt;   
+                 &lt;label for="display-name"&gt;Name&lt;/label&gt;              
+      &lt;input id="display-name" name="display-name" type="text" size="30" 
+maxlength="30" value="" tabindex="105"&gt;                &lt;/div&gt;           
+     &lt;div&gt;                    &lt;label 
+for="m-address"&gt;Email&lt;/label&gt;                    &lt;input 
+id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" 
+tabindex="106" placeholder="required, but never shown" /&gt;                
+&lt;/div&gt;            &lt;/td&gt;        &lt;/tr&gt;        &lt;/table&gt;    
+&lt;/div&gt;             </NOSCRIPT>                             </DIV>
+<DIV class="form-submit cbt"><INPUT tabindex="110" id="submit-button" type="submit" value="Post Your Answer"> 
+                                    <A class="btn-clear discard-answer dno" 
+href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#">discard</A> 
+<P class="privacy-policy-agreement">By posting your answer, you agree to the <A 
+name="privacy" href="https://stackexchange.com/legal/privacy-policy" target="_blank">privacy 
+policy</A> and <A name="tos" href="https://stackexchange.com/legal/terms-of-service" 
+target="_blank">terms of service</A>.</P><INPUT name="legalLinksShown" type="hidden" value="1"> 
+                               </DIV></FORM>
+<H2 class="bottom-notice" data-loc="1">Not the answer you're looking for?        
+                    Browse other questions tagged <A title="show questions tagged 'c#'" 
+class="post-tag" href="https://stackoverflow.com/questions/tagged/c%23" rel="tag">c#</A> 
+<A title="show questions tagged '.net'" class="post-tag" href="https://stackoverflow.com/questions/tagged/.net" 
+rel="tag">.net</A>  or <A href="https://stackoverflow.com/questions/ask">ask 
+your own question</A>.                        </H2></DIV></DIV>
+<DIV class="show-votes" id="sidebar" role="complementary" aria-label="sidebar">
+<DIV class="module question-stats">
+<TABLE id="qinfo">
+  <TBODY>
+  <TR>
+    <TD>
+      <P class="label-key">asked</P></TD>
+    <TD style="padding-left: 10px;">
+      <P title="2012-01-15 07:08:30Z" class="label-key"><B>5 years, 10 months 
+      ago</B></P></TD></TR>
+  <TR>
+    <TD>
+      <P class="label-key">viewed</P></TD>
+    <TD style="padding-left: 10px;">
+      <P class="label-key"><B>14,411 times</B>                                 
+      </P></TD></TR>
+  <TR>
+    <TD>
+      <P class="label-key">active</P></TD>
+    <TD style="padding-left: 10px;">
+      <P class="label-key"><B><A title="2014-10-23 13:12:50Z" class="lastactivity-link" 
+      href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces?lastactivity">3 
+      years ago</A></B></P></TD></TR></TBODY></TABLE></DIV>
+<DIV class="everyonelovesstackoverflow" id="dfp-tsb"></DIV>
+<DIV id="hireme"></DIV>
+<SCRIPT>var clc={options:{svc:'dfp'}};</SCRIPT>
+ 
+<SCRIPT>;window.clc=window.clc||{},window.clc.init=window.clc.init||function(a){var b=window,c=b.document;try{if("function"!=typeof[].indexOf||!window.addEventListener||!a.allowed)return;var d=new RegExp(a.allowed);if(!d.test(location.hostname))return;if(b.clc.options)for(var e in b.clc.options)a[e]=b.clc.options[e];b.clc.cmd="undefined"==typeof b.clc.cmd?[]:b.clc.cmd,b.clc.autoload=b.clc.autoload||function(){"function"==typeof b.clc.load?b.clc.load():b.clc.cmd.push(function(a){a.load()})};var f=a.wv;if(c.hidden&&f)return void c.addEventListener("visibilitychange",function b(){c.hidden||(window.clc.init(a),c.removeEventListener("visibilitychange",b))});b.clc.options=a,a.al&&b.clc.autoload();var g=/Trident/i.test(navigator.userAgent)?a.lib.replace(/(\.min)?\.js(\?v=[0-9a-fA-F]+)?$/,".ie$1.js$2"):a.lib,h=c.createElement("script");h.async=!0,h.src=g,c.body.appendChild(h)}catch(a){}},window.clc.loadDisplayAds=window.clc.loadDisplayAds||function(){function a(b){b.style.height=b.style.maxHeight=b.style.minHeight="auto",b.style.display="IFRAME"===b.tagName?"none":"block",[].forEach.call(b.children,a)}function b(a){new Image().src="https://"+e+"/stalled.gif?"+a}var c=window,d=c.document,e="clc.stackoverflow.com",f={slots:{lb:[[728,90]],mlb:[[728,90]],sb:[[300,250],[300,600]],"tag-sponsorship":[[730,135]]},ids:{"dfp-tlb":"lb","dfp-mlb":"mlb","dfp-tsb":"sb","dfp-tag":"tag-sponsorship","clc-tlb":"lb","clc-mlb":"mlb","clc-tsb":"sb"}},g=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?"tag-pages":"question-pages",h=location.hostname;/^clc\./.test(location.hostname)&&(h="test/dev.stackoverflow.com");var i=[4385506061,4386578282,4386579572];return function(e){var j=(e&&0<e.length?e:Object.keys(f.ids)).map(function(a){return d.getElementById(a)}).filter(function(a){return!!a&&/^\s*$/.test(a.innerHTML)}).map(function(a){return a.id});if(0!==j.length){c.googletag=c.googletag||{},c.googletag.cmd=c.googletag.cmd||[],c.googletag.cmd.push(function(){var e=c.googletag,k=d.createElement("div");k.className="adsbox",k.id="clc-abd",k.style.position="absolute",k.style.pointerEvents="none",k.innerHTML="&nbsp;",d.body.appendChild(k);var l=e.pubads();l.enableSingleRequest(),l.addEventListener("slotRenderEnded",function(c){var e=c.serviceName,f=c.slot,g=c.lineItemId;try{var h=f.getSlotElementId(),j=[];h||j.push("id=0");var k=d.getElementById(h);if(!h||k?k.hasAttribute("data-clc-stalled")&&j.push("st=1"):j.push("el=0"),0!==j.length)return void b(j.join("&"));-1===i.indexOf(g)?k.setAttribute("data-clc-prefilled","true"):a(k),k.setAttribute("data-clc-ready","true")}catch(a){var l=d.getElementById("dfp-tsb")||d.getElementById("clc-tsb");l&&l.setAttribute("data-clc-ready","true"),b("e=1")}});var m=c.dfp_targeting||{};m&&Object.keys(m).forEach(function(a){l.setTargeting(a,m[a])});for(var n=0,o=j;n<o.length;n++){var p=o[n],q=f.ids[p],r=f.slots[q],s="/"+"248424177"+"/"+h+"/"+q+"/"+g,t=e.defineSlot(s,r,p);("tag-sponsorship"===q||"sb"==q)&&t.setCollapseEmptyDiv(!0,!0),t.addService(l),!1}e.enableServices();for(var p,u=0,v=j;u<v.length;u++)p=v[u],e.display(p)});var k=d.createElement("script");k.async=!0,k.src="https://www.googletagservices.com/tag/js/gpt.js",document.body.appendChild(k)}}}(),window.clc.init.call(null, {"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=8568e707d3cc","style":"https://cdn.sstatic.net/clc/styles/clc.min.css?v=b18b3a2258df","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false,"ga":false});</SCRIPT>
+            
+<SCRIPT>
+window.clc_request='AvwD5BaaLdUIAAAAABdRhwACAAAAAgAAAAAJAAAAfGMjfC5uZXR8AMd6RlFnYjFoh9s';                    clc.autoload();
+                var dfp_targeting={Registered:['false'],'so-tag':['c_sharp','.net']};                                    clc.loadDisplayAds();
+            </SCRIPT>
+             
+<DIV style="margin-bottom: 10px;">
+<SCRIPT>
+    StackExchange.ready(function () {
+        StackExchange.newsletterAd.init();
+    });
+</SCRIPT>
+ 
+<DIV id="newsletter-ad">
+<P id="newsletter-ad-header">Get the <B>weekly newsletter!</B> In it, you'll 
+get:</P>
+<UL>
+  <LI>The week's top questions and answers</LI>
+  <LI>Important community announcements</LI>
+  <LI>Questions that need answers</LI></UL>
+<DIV id="newsletter-signup-container"><INPUT id="newsletter-signup" type="button" value="Sign up for the newsletter"></DIV>
+<P id="newsletter-preview-container">see an <A id="newsletter-preview" href="https://stackexchange.com/newsletters/newsletter?site=stackoverflow.com">example 
+newsletter</A></P>
+<DIV class="dno">
+<P class="privacy-policy-agreement">By subscribing, you agree to the <A name="privacy" 
+href="https://stackexchange.com/legal/privacy-policy" target="_blank">privacy 
+policy</A> and <A name="tos" href="https://stackexchange.com/legal/terms-of-service" 
+target="_blank">terms of service</A>.</P><INPUT name="legalLinksShown" type="hidden" value="1"> 
+    </DIV></DIV></DIV>
+<DIV class="module sidebar-linked">
+<H4 id="h-linked">Linked</H4>
+<DIV class="linked" data-tracker="lq=1">
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/37385138">
+<DIV class="answer-votes answered-accepted default">0</DIV></A>	 <A class="question-hyperlink" 
+href="https://stackoverflow.com/questions/37385138/find-shared-type-among-set-of-values?noredirect=1">Find 
+shared type among set of values</A> </DIV></DIV></DIV>
+<DIV class="module sidebar-related">
+<H4 id="h-related">Related</H4>
+<DIV class="related js-gps-related-questions" data-tracker="rq=1">
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/26733">
+<DIV class="answer-votes answered-accepted large">395</DIV></A><A class="question-hyperlink" 
+href="https://stackoverflow.com/questions/26733/getting-all-types-that-implement-an-interface">Getting 
+all types that implement an interface</A></DIV>
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/79693">
+<DIV class="answer-votes large">202</DIV></A><A class="question-hyperlink" href="https://stackoverflow.com/questions/79693/getting-all-types-in-a-namespace-via-reflection">Getting 
+all types in a namespace via reflection</A></DIV>
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/503263">
+<DIV class="answer-votes answered-accepted large">171</DIV></A><A class="question-hyperlink" 
+href="https://stackoverflow.com/questions/503263/how-to-determine-if-a-type-implements-a-specific-generic-interface-type">How 
+to determine if a type implements a specific generic interface type</A></DIV>
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/557340">
+<DIV class="answer-votes answered-accepted large">501</DIV></A><A class="question-hyperlink" 
+href="https://stackoverflow.com/questions/557340/how-to-get-the-type-of-t-from-a-member-of-a-generic-class-or-method">How 
+to get the type of T from a member of a generic class or method?</A></DIV>
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/974598">
+<DIV class="answer-votes answered-accepted large">173</DIV></A><A class="question-hyperlink" 
+href="https://stackoverflow.com/questions/974598/find-all-controls-in-wpf-window-by-type">Find 
+all controls in WPF Window by type</A></DIV>
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/1266422">
+<DIV class="answer-votes default">65</DIV></A><A class="question-hyperlink" 
+href="https://stackoverflow.com/questions/1266422/why-can-static-classes-not-implement-interfaces">Why 
+can static classes not implement interfaces?</A></DIV>
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/2211153">
+<DIV class="answer-votes answered-accepted default">4</DIV></A><A class="question-hyperlink" 
+href="https://stackoverflow.com/questions/2211153/c-sharp-what-should-i-use-an-interface-abstract-class-or-both">C# 
+- What should I use, an Interface, Abstract class, or Both?</A></DIV>
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/4922714">
+<DIV class="answer-votes answered-accepted large">297</DIV></A><A class="question-hyperlink" 
+href="https://stackoverflow.com/questions/4922714/why-are-c-sharp-4-optional-parameters-defined-on-interface-not-enforced-on-imple">Why 
+are C# 4 optional parameters defined on interface not enforced on implementing 
+class?</A></DIV>
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/5568076">
+<DIV class="answer-votes answered-accepted default">0</DIV></A><A class="question-hyperlink" 
+href="https://stackoverflow.com/questions/5568076/interface-unboxing-for-complex-types">Interface 
+unboxing for complex Types</A></DIV>
+<DIV class="spacer"><A title="Vote score (upvotes - downvotes)" href="https://stackoverflow.com/q/46028300">
+<DIV class="answer-votes answered-accepted default">2</DIV></A><A class="question-hyperlink" 
+href="https://stackoverflow.com/questions/46028300/instantiate-all-classes-that-implement-an-instance-of-a-generic-interface">Instantiate 
+all classes that implement an instance of a generic 
+interface</A></DIV></DIV></DIV>
+<DIV class="module tex2jax_ignore" id="hot-network-questions">
+<H4><A class="js-gps-track" href="https://stackexchange.com/questions?tab=hot" 
+data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">          
+  Hot Network Questions         </A>     </H4>
+<UL>
+  <LI>
+  <DIV title="English Language Learners Stack Exchange" class="favicon favicon-ell"></DIV><A 
+  class="js-gps-track" href="https://ell.stackexchange.com/questions/147328/is-it-grammatical-to-say-according-to-the-law-instead-of-according-the-law" 
+  data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Is it grammatical to say "according to the law" instead of 
+  "according the law"?                 </A>             </LI>
+  <LI>
+  <DIV title="Programming Puzzles &amp; Code Golf Stack Exchange" class="favicon favicon-codegolf"></DIV><A 
+  class="js-gps-track" href="https://codegolf.stackexchange.com/questions/148049/clearing-the-most-significant-bit-from-an-integer" 
+  data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Clearing the most significant bit from an integer           
+        </A>             </LI>
+  <LI>
+  <DIV title="Interpersonal Skills Stack Exchange" class="favicon favicon-interpersonal"></DIV><A 
+  class="js-gps-track" href="https://interpersonal.stackexchange.com/questions/6814/apologizing-when-youve-hurt-a-strangers-feelings-badly" 
+  data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Apologizing when you've hurt a stranger's feelings badly    
+               </A>             </LI>
+  <LI>
+  <DIV title="Mathematics Stack Exchange" class="favicon favicon-math"></DIV><A 
+  class="js-gps-track" href="https://math.stackexchange.com/questions/2518341/area-of-a-square-inside-a-square-created-by-connecting-point-opposite-midpoint" 
+  data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Area of a square inside a square created by connecting 
+  point-opposite midpoint                 </A>             </LI>
+  <LI>
+  <DIV title="Aviation Stack Exchange" class="favicon favicon-aviation"></DIV><A 
+  class="js-gps-track" href="https://aviation.stackexchange.com/questions/45834/how-do-commercial-pilots-keep-situational-awareness-of-their-current-call-sign" 
+  data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     How do commercial pilots keep situational awareness of 
+  their current call sign?                 </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Mathematics Stack Exchange" class="favicon favicon-math"></DIV><A 
+  class="js-gps-track" href="https://math.stackexchange.com/questions/2523391/why-must-be-the-additive-and-multiplicative-identities-in-a-field-be-different" 
+  data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Why must be the additive and multiplicative identities in a 
+  field be different?                 </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Politics Stack Exchange" class="favicon favicon-politics"></DIV><A 
+  class="js-gps-track" href="https://politics.stackexchange.com/questions/26145/why-is-communism-considered-as-evil-like-fascism-and-nazism-in-the-united-stat" 
+  data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Why is communism considered as evil (like fascism and 
+  nazism) in the United States?                 </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="MathOverflow" class="favicon favicon-mathoverflow"></DIV><A class="js-gps-track" 
+  href="https://mathoverflow.net/questions/286197/why-arent-proceedings-from-icm-2014-on-mathscinet" 
+  data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Why aren't proceedings from ICM 2014 on mathscinet?         
+          </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Music: Practice &amp; Theory Stack Exchange" class="favicon favicon-music"></DIV><A 
+  class="js-gps-track" href="https://music.stackexchange.com/questions/63743/why-you-need-a-rest-here-in-this-score" 
+  data-gps-track="site.switch({ item_type:11, target_site:240 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Why you need a rest here in this score?                 
+  </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Writers Stack Exchange" class="favicon favicon-writers"></DIV><A 
+  class="js-gps-track" href="https://writers.stackexchange.com/questions/31479/want-to-write-have-ideas-no-story-telling-techniques-or-experience-feeling-lo" 
+  data-gps-track="site.switch({ item_type:11, target_site:166 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Want to write, have ideas, no story telling techniques or 
+  experience, feeling lost?                 </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Mathematics Stack Exchange" class="favicon favicon-math"></DIV><A 
+  class="js-gps-track" href="https://math.stackexchange.com/questions/2524248/intersection-of-power-set-and-power-set-of-power-set" 
+  data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Intersection of Power set and Power set of power set.       
+            </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Programming Puzzles &amp; Code Golf Stack Exchange" class="favicon favicon-codegolf"></DIV><A 
+  class="js-gps-track" href="https://codegolf.stackexchange.com/questions/148181/is-my-barcode-valid" 
+  data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Is my barcode valid?                 </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Science Fiction &amp; Fantasy Stack Exchange" class="favicon favicon-scifi"></DIV><A 
+  class="js-gps-track" href="https://scifi.stackexchange.com/questions/174318/where-was-green-squadron-at-the-battle-of-yavin-and-the-battle-of-scarif" 
+  data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Where was green squadron at the Battle of Yavin and the 
+  Battle of Scarif?                 </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Interpersonal Skills Stack Exchange" class="favicon favicon-interpersonal"></DIV><A 
+  class="js-gps-track" href="https://interpersonal.stackexchange.com/questions/6588/what-to-do-if-you-are-accidentally-following-someone" 
+  data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     What to do if you are accidentally following someone?       
+            </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Academia Stack Exchange" class="favicon favicon-academia"></DIV><A 
+  class="js-gps-track" href="https://academia.stackexchange.com/questions/99025/how-to-properly-address-an-unsolved-problem-that-is-very-hard-to-solve-in-mathem" 
+  data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     How to properly address an unsolved problem that is very 
+  hard to solve in mathematical thesis?                 </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Programming Puzzles &amp; Code Golf Stack Exchange" class="favicon favicon-codegolf"></DIV><A 
+  class="js-gps-track" href="https://codegolf.stackexchange.com/questions/148302/print-three-columns-vertically-separated-by-spaces" 
+  data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Print three columns vertically separated by space(s)        
+           </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Game Development Stack Exchange" 
+  class="favicon favicon-gamedev"></DIV><A class="js-gps-track" href="https://gamedev.stackexchange.com/questions/150987/what-is-the-difference-between-a-hud-and-a-gui-in-a-game" 
+  data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     What is the difference between a HUD and a GUI in a game?   
+                </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Puzzling Stack Exchange" class="favicon favicon-puzzling"></DIV><A 
+  class="js-gps-track" href="https://puzzling.stackexchange.com/questions/56995/help-poor-tom-now" 
+  data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Help Poor Tom Now!                 </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Super User" class="favicon favicon-superuser"></DIV><A class="js-gps-track" 
+  href="https://superuser.com/questions/1269195/does-a-cpu-keep-its-processing-speed-after-years-of-use" 
+  data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Does a CPU keep its processing speed after years of use?    
+               </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Seasoned Advice" class="favicon favicon-cooking"></DIV><A class="js-gps-track" 
+  href="https://cooking.stackexchange.com/questions/85636/why-drain-soaked-rice" 
+  data-gps-track="site.switch({ item_type:11, target_site:49 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Why drain soaked rice?                 </A>             
+  </LI>
+  <LI class="dno js-hidden">
+  <DIV title="The Great Outdoors Stack Exchange" class="favicon favicon-outdoors"></DIV><A 
+  class="js-gps-track" href="https://outdoors.stackexchange.com/questions/17555/can-i-safely-eat-grass" 
+  data-gps-track="site.switch({ item_type:11, target_site:395 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Can I safely eat grass?                 </A>             
+  </LI>
+  <LI class="dno js-hidden">
+  <DIV title="Pets Stack Exchange" class="favicon favicon-pets"></DIV><A class="js-gps-track" 
+  href="https://pets.stackexchange.com/questions/18810/i-cant-afford-vet-treatment-what-are-my-options" 
+  data-gps-track="site.switch({ item_type:11, target_site:518 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     I can't afford vet treatment, what are my options?          
+         </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="The Great Outdoors Stack Exchange" class="favicon favicon-outdoors"></DIV><A 
+  class="js-gps-track" href="https://outdoors.stackexchange.com/questions/17620/what-are-the-benefits-of-learning-to-climb-outdoor-rather-than-indoor" 
+  data-gps-track="site.switch({ item_type:11, target_site:395 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     What are the benefits of learning to climb outdoor, rather 
+  than indoor?                 </A>             </LI>
+  <LI class="dno js-hidden">
+  <DIV title="User Experience Stack Exchange" 
+  class="favicon favicon-ux"></DIV><A class="js-gps-track" href="https://ux.stackexchange.com/questions/113496/is-capturing-known-keyboard-shortcuts-such-as-f5-a-bad-ux" 
+  data-gps-track="site.switch({ item_type:11, target_site:102 }); posts_hot_network.click({ item_type:2, location:11 })"> 
+                     Is capturing known keyboard shortcuts such as F5 a bad UX?  
+                 </A>             </LI></UL><A class="show-more js-show-more js-gps-track" 
+href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#" 
+data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">          
+  more hot questions         </A> </DIV></DIV>
+<DIV id="feed-link">
+<DIV id="feed-link-text"><A title="feed of this question and its answers" href="https://stackoverflow.com/feeds/question/8868119"><svg 
+xmlns="http://www.w3.org/2000/svg" class="svg-icon iconRss" aria-hidden="true" 
+viewBox="0 0 18 18" width="18" height="18"><path d="M 1 3 c 0 -1.1 0.9 -2 2 -2 h 12 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 H 3 a 2 2 0 0 1 -2 -2 V 3 Z m 14.5 12 C 15.5 8.1 9.9 2.5 3 2.5 V 5 a 10 10 0 0 1 10 10 h 2.5 Z m -5 0 A 7.5 7.5 0 0 0 3 7.5 V 10 a 5 5 0 0 1 5 5 h 2.5 Z m -5 0 A 2.5 2.5 0 0 0 3 12.5 V 15 h 2.5 Z" 
+/></svg>            question feed         </A>     </DIV></DIV></DIV>
+<SCRIPT>
+StackExchange.ready(function(){$.get('/posts/8868119/ivc/f6f6');});
+</SCRIPT>
+ <NOSCRIPT>    &lt;div&gt;&lt;img src="/posts/8868119/ivc/f6f6" class="dno" 
+alt="" width="0" height="0"&gt;&lt;/div&gt; </NOSCRIPT>
+<DIV id="prettify-lang" 
+style="display: none;">lang-cs</DIV></DIV></DIV></DIV><FOOTER class="s-footer js-footer" 
+id="footer" role="contentinfo">
+<DIV class="-container">
+<DIV class="g-row">
+<DIV class="-logo"><A href="https://stackoverflow.com/"><svg xmlns="http://www.w3.org/2000/svg" 
+class="svg-icon native iconLogo" aria-hidden="true" viewBox="0 0 150 30" width="150" 
+height="30"><g><path fill="#222426" d="M 33.9 18.6 l -1.7 -0.2 c -1.3 -0.1 -1.9 -0.6 -1.9 -1.6 c 0 -1.1 0.8 -1.8 2.4 -1.8 c 1.1 0 2.1 0.3 2.8 0.8 l 1 -1 c -1 -0.8 -2.3 -1.1 -3.8 -1.1 c -2.3 0 -3.9 1.2 -3.9 3.1 c 0 1.8 1.1 2.7 3.2 2.9 l 1.8 0.2 c 1.2 0.1 1.8 0.6 1.8 1.6 c 0 1.3 -1.1 1.9 -2.8 1.9 c -1.3 0 -2.5 -0.3 -3.3 -1.2 l -1 1 c 1.2 1.1 2.6 1.5 4.4 1.5 c 2.6 0 4.3 -1.2 4.3 -3.2 c -0.2 -2 -1.5 -2.7 -3.3 -2.9 Z m 13.3 -4.8 c -1.7 0 -2.8 0.3 -3.7 1.5 l 1 1 c 0.6 -0.9 1.3 -1.2 2.7 -1.2 c 1.9 0 2.7 0.8 2.7 2.3 v 1 h -3.2 c -2.4 0 -3.7 1.2 -3.7 3.1 c 0 0.8 0.3 1.6 0.8 2.2 c 0.7 0.7 1.5 1 3 1 c 1.4 0 2.2 -0.3 3.1 -1.1 v 1 h 1.6 v -7.2 c -0.1 -2.4 -1.5 -3.6 -4.3 -3.6 Z m 2.7 7 c 0 0.9 -0.2 1.5 -0.5 1.8 c -0.7 0.6 -1.5 0.7 -2.4 0.7 c -1.7 0 -2.4 -0.6 -2.4 -1.8 c 0 -1.2 0.8 -1.9 2.4 -1.9 h 3 l -0.1 1.2 Z m 7.6 -5.6 c 1 0 1.6 0.3 2.4 1.2 l 1 -1 c -1.1 -1.2 -2 -1.6 -3.5 -1.6 c -2.7 0 -4.7 1.8 -4.7 5.5 c 0 3.6 2 5.5 4.7 5.5 c 1.5 0 2.4 -0.4 3.5 -1.6 l -1.1 -1 c -0.8 0.9 -1.4 1.2 -2.4 1.2 s -1.9 -0.4 -2.5 -1.2 c -0.5 -0.7 -0.7 -1.5 -0.7 -2.9 c 0 -1.3 0.2 -2.2 0.7 -2.9 c 0.7 -0.8 1.6 -1.2 2.6 -1.2 Z m 13.4 -1.3 H 69 l -4.8 4.7 V 9.1 h -1.6 v 15.4 h 1.6 v -3.9 l 1.9 -1.9 l 3.6 5.8 h 1.9 l -4.4 -6.9 l 3.7 -3.7 Z m 7.3 -0.33 c -1.6 0 -2.7 0.6 -3.4 1.4 c -1 1 -1.3 2.3 -1.3 4.3 s 0.3 3.3 1.3 4.3 c 0.7 0.7 1.8 1.4 3.4 1.4 c 1.6 0 2.8 -0.6 3.4 -1.4 c 1 -1 1.3 -2.3 1.3 -4.3 s -0.3 -3.3 -1.3 -4.3 c -0.6 -0.8 -1.7 -1.4 -3.4 -1.4 Z m 1.3 8.3 c -0.3 0.3 -0.7 0.5 -1.3 0.5 c -0.6 0 -1 -0.2 -1.3 -0.5 c -0.6 -0.6 -0.6 -1.6 -0.6 -2.7 c 0 -1.2 0.1 -2.1 0.6 -2.7 c 0.3 -0.3 0.7 -0.5 1.3 -0.5 c 0.6 0 1 0.2 1.3 0.5 c 0.6 0.6 0.6 1.5 0.6 2.7 c 0.1 1.2 0 2.2 -0.6 2.7 Z m 10.8 -8.2 l -2.2 6.9 l -2.3 -6.9 h -2.9 l 4.1 11.1 h 2.2 l 4.1 -11.1 h -3 Z m 7.6 -0.1 c -2.9 0 -4.8 2 -4.8 5.7 c 0 4.5 2.5 5.7 5.1 5.7 c 2 0 3.1 -0.6 4.2 -1.7 l -1.7 -1.6 c -0.7 0.7 -1.3 1 -2.5 1 c -1.6 0 -2.4 -1 -2.4 -2.5 h 6.9 v -1.2 c 0 -3.2 -1.7 -5.4 -4.8 -5.4 Z m -2.1 4.6 c 0 -0.5 0.1 -0.8 0.3 -1.2 c 0.3 -0.7 0.9 -1.2 1.9 -1.2 c 0.9 0 1.6 0.5 1.9 1.2 c 0.2 0.4 0.2 0.7 0.3 1.2 h -4.4 Z m 11 -3.4 v -1.1 h -2.7 v 11.1 h 2.8 v -6.7 c 0 -1.4 0.9 -2 1.8 -2 c 0.7 0 1 0.2 1.5 0.7 l 2.1 -2.1 c -0.8 -0.8 -1.5 -1 -2.6 -1 c -1.3 -0.1 -2.3 0.4 -2.9 1.1 Z m 6.3 -2.3 v 12.3 h 2.8 v -8.8 h 2 v -2.1 h -2 v -1.2 c 0 -0.6 0.3 -1 1 -1 h 1.1 v -2.3 h -1.6 c -2.3 0 -3.3 1.6 -3.3 3.1 Z m 16.2 1.1 c -1.6 0 -2.7 0.6 -3.4 1.4 c -1 1 -1.3 2.3 -1.3 4.3 s 0.3 3.3 1.3 4.3 c 0.7 0.7 1.8 1.4 3.4 1.4 c 1.6 0 2.8 -0.6 3.4 -1.4 c 1 -1 1.3 -2.3 1.3 -4.3 s -0.3 -3.3 -1.3 -4.3 c -0.6 -0.8 -1.8 -1.4 -3.4 -1.4 Z m 1.3 8.3 c -0.3 0.3 -0.7 0.5 -1.3 0.5 c -0.6 0 -1 -0.2 -1.3 -0.5 c -0.6 -0.6 -0.6 -1.6 -0.6 -2.7 c 0 -1.2 0.1 -2.1 0.6 -2.7 c 0.3 -0.3 0.7 -0.5 1.3 -0.5 c 0.6 0 1 0.2 1.3 0.5 c 0.6 0.6 0.6 1.5 0.6 2.7 c 0 1.2 0 2.2 -0.6 2.7 Z m 16.5 -8.2 l -1.8 6.9 l -2.3 -6.9 h -2 l -2.3 6.9 l -1.8 -6.9 H 134 l 3.4 11.1 h 2.3 l 2.3 -7 l 2.3 7 h 2.3 l 3.4 -11.1 h -2.9 Z m -25.1 7.7 V 9.27 h -2.8 v 12.3 c 0 1.6 1 3.2 3.2 3.2 h 1.6 v -2.3 h -1 c -0.7 0 -1 -0.4 -1 -1.1 Z M 41.3 15.6 l 1.4 -1.4 h -3 v -3.5 h -1.6 v 11.1 c 0 1.6 0.9 2.9 2.7 2.9 h 1.1 v -1.3 h -0.8 c -1 0 -1.5 -0.6 -1.5 -1.6 v -6.1 h 1.7 v -0.1 Z" 
+/><path fill="#bcbbbb" d="M 21 27 v -8 h 3 v 11 H 0 V 19 h 3 v 8 Z" /><path 
+fill="#f48024" d="M 5.4 19.1 l 13.56 1.96 l 0.17 -2.38 l -13.26 -2.55 l -0.47 2.97 Z m 1.8 -6.8 l 12 5.6 l 1.1 -2.4 l -12 -5.6 l -1.1 2.4 Z m 3.4 -5.9 l 10.2 8.5 l 1.7 -2 l -10.2 -8.5 l -1.7 2 Z M 17.1 0.2 L 15 1.8 l 7.9 10.6 l 2.1 -1.6 L 17.1 0.2 Z M 5 25 h 14 v -3 H 5 v 3 Z" 
+/></g></svg></A>                     </DIV><NAV class="-nav js-category _visible" 
+data-name="default">
+<H5 class="-title"><A class="js-gps-track" href="https://stackoverflow.com/" 
+data-gps-track="footer.click({ location: 2, link: 15})">Stack Overflow</A></H5>
+<UL class="-list">
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackoverflow.com/questions" 
+  data-gps-track="footer.click({ location: 2, link: 16})">Questions</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackoverflow.com/jobs" 
+  data-gps-track="footer.click({ location: 2, link: 17})">Jobs</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackoverflow.com/jobs/directory/developer-jobs" 
+  data-gps-track="footer.click({ location: 2, link: 11})">Developer Jobs 
+  Directory</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackoverflow.com/jobs/salary" 
+  data-gps-track="footer.click({ location: 2, link: 28})">Salary 
+  Calculator</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackoverflow.com/help" 
+  data-gps-track="footer.click({ location: 2, link: 3 })">Help</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" onclick='StackExchange.switchMobile("on")' 
+  data-gps-track="footer.click({ location: 2, link: 12 })">Mobile</A></LI></UL></NAV><NAV 
+class="-nav js-category _visible" data-name="default">
+<H5 class="-title"><A class="js-gps-track" href="https://www.stackoverflowbusiness.com/?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-business-category" 
+data-gps-track="footer.click({ location: 2, link: 19 })">Stack Overflow<BR> 
+Business</A></H5>
+<UL class="-list">
+  <LI class="-item"><A class="js-gps-track -link" href="https://www.stackoverflowbusiness.com/talent?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-talent" 
+  data-gps-track="footer.click({ location: 2, link: 20 })">Talent</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://www.stackoverflowbusiness.com/advertise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-advertise" 
+  data-gps-track="footer.click({ location: 2, link: 21 })">Ads</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://www.stackoverflowbusiness.com/enterprise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-enterprise" 
+  data-gps-track="footer.click({ location: 2, link: 22 })">Enterprise</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://www.stackoverflowbusiness.com/insights?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-insights" 
+  data-gps-track="footer.click({ location: 2, link: 23 })">Insights</A></LI></UL></NAV><NAV 
+class="-nav js-category _visible" data-name="default">
+<H5 class="-title"><A class="js-gps-track" href="https://stackoverflow.com/company/about" 
+data-gps-track="footer.click({ location: 2, link: 1 })">Company</A></H5>
+<UL class="-list">
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackoverflow.com/company/about" 
+  data-gps-track="footer.click({ location: 2, link: 1 })">About</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackoverflow.com/company/press" 
+  data-gps-track="footer.click({ location: 2, link: 27 })">Press</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackoverflow.com/company/work-here" 
+  data-gps-track="footer.click({ location: 2, link: 9 })">Work Here</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackexchange.com/legal" 
+  data-gps-track="footer.click({ location: 2, link: 7 })">Legal</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackexchange.com/legal/privacy-policy" 
+  data-gps-track="footer.click({ location: 2, link: 8 })">Privacy 
+Policy</A></LI>
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackoverflow.com/company/contact" 
+  data-gps-track="footer.click({ location: 2, link: 13 })">Contact 
+Us</A></LI></UL></NAV>
+<DIV class="-network g-row"><A class="-back-trigger js-back" href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#"><svg 
+xmlns="http://www.w3.org/2000/svg" class="svg-icon iconArrowLeftAlt" 
+aria-hidden="true" viewBox="0 0 18 18" width="18" height="18"><path d="M 10.58 16 L 12 14.59 L 6.4 9 L 12 3.41 L 10.57 2 l -7 7 Z" 
+/></svg></A>                     
+<DIV>
+<H5 class="-title"><A href="https://stackexchange.com/">Stack Exchange<BR> 
+Network</A></H5>
+<UL class="-list">
+  <LI class="-item"><A class="-link _expandable js-category-trigger js-gps-track" 
+  href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#" 
+  data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Technology">Technology</A></LI>
+  <LI class="-item"><A class="-link _expandable js-category-trigger js-gps-track" 
+  href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#" 
+  data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Life / Arts">Life 
+  / Arts</A></LI>
+  <LI class="-item"><A class="-link _expandable js-category-trigger js-gps-track" 
+  href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#" 
+  data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Culture / Recreation">Culture 
+  / Recreation</A></LI>
+  <LI class="-item"><A class="-link _expandable js-category-trigger js-gps-track" 
+  href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#" 
+  data-gps-track="footer.click({ location: 2, link: 24 })" 
+  data-target="Science">Science</A></LI>
+  <LI class="-item"><A class="-link _expandable js-category-trigger js-gps-track" 
+  href="https://stackoverflow.com/questions/8868119/find-all-parent-types-both-base-classes-and-interfaces#" 
+  data-gps-track="footer.click({ location: 2, link: 24 })" 
+  data-target="Other">Other</A></LI></UL></DIV></DIV><NAV class="-nav js-category" 
+data-name="Technology">
+<UL class="-list">
+  <LI class="-item"><A title="professional and enthusiast programmers" class="-link js-gps-track" 
+  href="https://stackoverflow.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Stack 
+  Overflow</A></LI>
+  <LI class="-item"><A title="system and network administrators" class="-link js-gps-track" 
+  href="https://serverfault.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Server 
+  Fault</A></LI>
+  <LI class="-item"><A title="computer enthusiasts and power users" class="-link js-gps-track" 
+  href="https://superuser.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Super 
+  User</A></LI>
+  <LI class="-item"><A title="power users of web applications" class="-link js-gps-track" 
+  href="https://webapps.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Web 
+  Applications</A></LI>
+  <LI class="-item"><A title="Ubuntu users and developers" class="-link js-gps-track" 
+  href="https://askubuntu.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Ask 
+  Ubuntu</A></LI>
+  <LI class="-item"><A title="pro webmasters" class="-link js-gps-track" href="https://webmasters.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Webmasters</A></LI>
+  <LI class="-item"><A title="professional and independent game developers" 
+  class="-link js-gps-track" href="https://gamedev.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Game 
+  Development</A></LI></UL></NAV><NAV class="-nav js-category" data-name="Technology">
+<UL class="-list">
+  <LI class="-item"><A title="users of TeX, LaTeX, ConTeXt, and related typesetting systems" 
+  class="-link js-gps-track" href="https://tex.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">TeX - LaTeX</A></LI>
+  <LI class="-item"><A title="professionals, academics, and students working within the systems development life cycle" 
+  class="-link js-gps-track" href="https://softwareengineering.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Software 
+  Engineering</A></LI>
+  <LI class="-item"><A title="users of Linux, FreeBSD and other Un*x-like operating systems" 
+  class="-link js-gps-track" href="https://unix.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Unix &amp; 
+  Linux</A></LI>
+  <LI class="-item"><A title="power users of Apple hardware and software" class="-link js-gps-track" 
+  href="https://apple.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Ask 
+  Different (Apple)</A></LI>
+  <LI class="-item"><A title="WordPress developers and administrators" class="-link js-gps-track" 
+  href="https://wordpress.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">WordPress 
+  Development</A></LI>
+  <LI class="-item"><A title="cartographers, geographers and GIS professionals" 
+  class="-link js-gps-track" href="https://gis.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Geographic 
+  Information Systems</A></LI>
+  <LI class="-item"><A title="electronics and electrical engineering professionals, students, and enthusiasts" 
+  class="-link js-gps-track" href="https://electronics.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Electrical 
+  Engineering</A></LI></UL></NAV><NAV class="-nav js-category" data-name="Technology">
+<UL class="-list">
+  <LI class="-item"><A title="enthusiasts and power users of the Android operating system" 
+  class="-link js-gps-track" href="https://android.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Android 
+  Enthusiasts</A></LI>
+  <LI class="-item"><A title="information security professionals" class="-link js-gps-track" 
+  href="https://security.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Information 
+  Security</A></LI>
+  <LI class="-item"><A title="database professionals who wish to improve their database skills and learn from others in the community" 
+  class="-link js-gps-track" href="https://dba.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Database 
+  Administrators</A></LI>
+  <LI class="-item"><A title="Drupal developers and administrators" class="-link js-gps-track" 
+  href="https://drupal.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Drupal 
+  Answers</A></LI>
+  <LI class="-item"><A title="SharePoint enthusiasts" class="-link js-gps-track" 
+  href="https://sharepoint.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">SharePoint</A></LI>
+  <LI class="-item"><A title="user experience researchers and experts" class="-link js-gps-track" 
+  href="https://ux.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">User 
+  Experience</A></LI>
+  <LI class="-item"><A title="users of Wolfram Mathematica" class="-link js-gps-track" 
+  href="https://mathematica.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Mathematica</A></LI></UL></NAV><NAV 
+class="-nav js-category" data-name="Technology">
+<UL class="-list">
+  <LI class="-item"><A title="Salesforce administrators, implementation experts, developers and anybody in-between" 
+  class="-link js-gps-track" href="https://salesforce.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Salesforce</A></LI>
+  <LI class="-item"><A title="administrators, end users, developers and designers for ExpressionEngine® CMS" 
+  class="-link js-gps-track" href="https://expressionengine.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">ExpressionEngine® 
+  Answers</A></LI>
+  <LI class="-item"><A title="programadores profissionais e entusiastas" class="-link js-gps-track" 
+  href="https://pt.stackoverflow.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Stack 
+  Overflow em Português</A></LI>
+  <LI class="-item"><A title="people who use Blender to create 3D graphics, animations, or games" 
+  class="-link js-gps-track" href="https://blender.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Blender</A></LI>
+  <LI class="-item"><A title="network engineers" class="-link js-gps-track" 
+  href="https://networkengineering.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Network 
+  Engineering</A></LI>
+  <LI class="-item"><A title="software developers, mathematicians and others interested in cryptography" 
+  class="-link js-gps-track" href="https://crypto.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Cryptography</A></LI>
+  <LI class="-item"><A title="peer programmer code reviews" class="-link js-gps-track" 
+  href="https://codereview.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Code 
+  Review</A></LI></UL></NAV><NAV class="-nav js-category" data-name="Technology">
+<UL class="-list">
+  <LI class="-item"><A title="users of the Magento e-Commerce platform" class="-link js-gps-track" 
+  href="https://magento.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Magento</A></LI>
+  <LI class="-item"><A title="people seeking specific software recommendations" 
+  class="-link js-gps-track" href="https://softwarerecs.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Software 
+  Recommendations</A></LI>
+  <LI class="-item"><A title="practitioners of the art and science of signal, image and video processing" 
+  class="-link js-gps-track" href="https://dsp.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Signal 
+  Processing</A></LI>
+  <LI class="-item"><A title="those using, extending or developing Emacs" class="-link js-gps-track" 
+  href="https://emacs.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Emacs</A></LI>
+  <LI class="-item"><A title="users and developers of hardware and software for Raspberry Pi" 
+  class="-link js-gps-track" href="https://raspberrypi.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Raspberry Pi</A></LI>
+  <LI class="-item"><A title="программистов" class="-link js-gps-track" href="https://ru.stackoverflow.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Stack Overflow на 
+  русском</A></LI>
+  <LI class="-item"><A title="programming puzzle enthusiasts and code golfers" 
+  class="-link js-gps-track" href="https://codegolf.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Programming Puzzles 
+  &amp; Code Golf</A></LI></UL></NAV><NAV class="-nav js-category" data-name="Technology">
+<UL class="-list">
+  <LI class="-item"><A title="programadores y profesionales de la informática" 
+  class="-link js-gps-track" href="https://es.stackoverflow.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Stack Overflow en 
+  español</A></LI>
+  <LI class="-item"><A title="users of Ethereum, the decentralized application platform and smart contract enabled blockchain" 
+  class="-link js-gps-track" href="https://ethereum.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Ethereum</A></LI>
+  <LI class="-item"><A title="Data science professionals, Machine Learning specialists, and those interested in learning more about the field" 
+  class="-link js-gps-track" href="https://datascience.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Data Science</A></LI>
+  <LI class="-item"><A title="developers of open-source hardware and software that is compatible with Arduino" 
+  class="-link js-gps-track" href="https://arduino.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Arduino</A></LI>
+  <LI class="-item"><A title="Bitcoin crypto-currency enthusiasts" class="-link js-gps-track" 
+  href="https://bitcoin.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Bitcoin</A></LI>
+  <LI class="-item"><A class="-link js-gps-track" href="https://stackexchange.com/sites#technology" 
+  data-gps-track="footer.click({ location: 4, link: 26 })"><STRONG>              
+                more (26)                         </STRONG>                     
+  </A>                 </LI></UL></NAV><NAV class="-nav js-category" data-name="Life / Arts">
+<UL class="-list">
+  <LI class="-item"><A title="professional, enthusiast and amateur photographers" 
+  class="-link js-gps-track" href="https://photo.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Photography</A></LI>
+  <LI class="-item"><A title="science fiction and fantasy enthusiasts" class="-link js-gps-track" 
+  href="https://scifi.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Science 
+  Fiction &amp; Fantasy</A></LI>
+  <LI class="-item"><A title="Graphic Design professionals, students, and enthusiasts" 
+  class="-link js-gps-track" href="https://graphicdesign.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Graphic 
+  Design</A></LI>
+  <LI class="-item"><A title="movie and tv enthusiasts" class="-link js-gps-track" 
+  href="https://movies.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Movies 
+  &amp; TV</A></LI>
+  <LI class="-item"><A title="musicians, students, and enthusiasts" class="-link js-gps-track" 
+  href="https://music.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Music: 
+  Practice &amp; Theory</A></LI>
+  <LI class="-item"><A title="writers/artists using science, geography and culture to construct imaginary worlds and settings" 
+  class="-link js-gps-track" href="https://worldbuilding.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Worldbuilding</A></LI>
+  <LI class="-item"><A title="professional and amateur chefs" class="-link js-gps-track" 
+  href="https://cooking.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Seasoned 
+  Advice (cooking)</A></LI></UL></NAV><NAV class="-nav js-category" data-name="Life / Arts">
+<UL class="-list">
+  <LI class="-item"><A title="contractors and serious DIYers" class="-link js-gps-track" 
+  href="https://diy.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Home 
+  Improvement</A></LI>
+  <LI class="-item"><A title="people who want to be financially literate" class="-link js-gps-track" 
+  href="https://money.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Personal 
+  Finance &amp; Money</A></LI>
+  <LI class="-item"><A title="academics and those enrolled in higher education" 
+  class="-link js-gps-track" href="https://academia.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Academia</A></LI>
+  <LI class="-item"><A title="legal professionals, students, and others with experience or interest in law" 
+  class="-link js-gps-track" href="https://law.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Law</A></LI>
+  <LI class="-item"><A class="-link js-gps-track" href="https://stackexchange.com/sites#lifearts" 
+  data-gps-track="footer.click({ location: 4, link: 26 })"><STRONG>              
+                more (16)                         </STRONG>                     
+  </A>                 </LI></UL></NAV><NAV class="-nav js-category" data-name="Culture / Recreation">
+<UL class="-list">
+  <LI class="-item"><A title="linguists, etymologists, and serious English language enthusiasts" 
+  class="-link js-gps-track" href="https://english.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">English Language 
+  &amp; Usage</A></LI>
+  <LI class="-item"><A title="scientific skepticism" class="-link js-gps-track" 
+  href="https://skeptics.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Skeptics</A></LI>
+  <LI class="-item"><A title="those who base their lives on Jewish law and tradition and anyone interested in learning more" 
+  class="-link js-gps-track" href="https://judaism.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Mi Yodeya 
+  (Judaism)</A></LI>
+  <LI class="-item"><A title="road warriors and seasoned travelers" class="-link js-gps-track" 
+  href="https://travel.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Travel</A></LI>
+  <LI class="-item"><A title="committed Christians, experts in Christianity and those interested in learning more" 
+  class="-link js-gps-track" href="https://christianity.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Christianity</A></LI>
+  <LI class="-item"><A title="speakers of other languages learning English" 
+  class="-link js-gps-track" href="https://ell.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">English Language 
+  Learners</A></LI>
+  <LI class="-item"><A title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language" 
+  class="-link js-gps-track" href="https://japanese.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Japanese 
+  Language</A></LI></UL></NAV><NAV class="-nav js-category" data-name="Culture / Recreation">
+<UL class="-list">
+  <LI class="-item"><A title="passionate videogamers on all platforms" class="-link js-gps-track" 
+  href="https://gaming.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Arqade 
+  (gaming)</A></LI>
+  <LI class="-item"><A title="people who build and repair bicycles, people who train cycling, or commute on bicycles" 
+  class="-link js-gps-track" href="https://bicycles.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Bicycles</A></LI>
+  <LI class="-item"><A title="gamemasters and players of tabletop, paper-and-pencil role-playing games" 
+  class="-link js-gps-track" href="https://rpg.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Role-playing 
+  Games</A></LI>
+  <LI class="-item"><A title="anime and manga fans" class="-link js-gps-track" 
+  href="https://anime.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Anime 
+  &amp; Manga</A></LI>
+  <LI class="-item"><A title="those who create, solve, and study puzzles" class="-link js-gps-track" 
+  href="https://puzzling.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Puzzling</A></LI>
+  <LI class="-item"><A title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles" 
+  class="-link js-gps-track" href="https://mechanics.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Motor Vehicle 
+  Maintenance &amp; Repair</A></LI>
+  <LI class="-item"><A class="-link js-gps-track" href="https://stackexchange.com/sites#culturerecreation" 
+  data-gps-track="footer.click({ location: 4, link: 26 })"><STRONG>              
+                more (32)                         </STRONG>                     
+  </A>                 </LI></UL></NAV><NAV class="-nav js-category" data-name="Science">
+<UL class="-list">
+  <LI class="-item"><A title="professional mathematicians" class="-link js-gps-track" 
+  href="https://mathoverflow.net/" data-gps-track="footer.click({ location: 4, link: 25 })">MathOverflow</A></LI>
+  <LI class="-item"><A title="people studying math at any level and professionals in related fields" 
+  class="-link js-gps-track" href="https://math.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Mathematics</A></LI>
+  <LI class="-item"><A title="people interested in statistics, machine learning, data analysis, data mining, and data visualization" 
+  class="-link js-gps-track" href="https://stats.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Cross Validated 
+  (stats)</A></LI>
+  <LI class="-item"><A title="theoretical computer scientists and researchers in related fields" 
+  class="-link js-gps-track" href="https://cstheory.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Theoretical Computer 
+  Science</A></LI>
+  <LI class="-item"><A title="active researchers, academics and students of physics" 
+  class="-link js-gps-track" href="https://physics.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Physics</A></LI>
+  <LI class="-item"><A title="scientists, academics, teachers and students" 
+  class="-link js-gps-track" href="https://chemistry.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Chemistry</A></LI>
+  <LI class="-item"><A title="biology researchers, academics, and students" 
+  class="-link js-gps-track" href="https://biology.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Biology</A></LI></UL></NAV><NAV 
+class="-nav js-category" data-name="Science">
+<UL class="-list">
+  <LI class="-item"><A title="students, researchers and practitioners of computer science" 
+  class="-link js-gps-track" href="https://cs.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Computer 
+  Science</A></LI>
+  <LI class="-item"><A title="those interested in the study of the fundamental nature of knowledge, reality, and existence" 
+  class="-link js-gps-track" href="https://philosophy.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Philosophy</A></LI>
+  <LI class="-item"><A class="-link js-gps-track" href="https://stackexchange.com/sites#science" 
+  data-gps-track="footer.click({ location: 4, link: 26 })"><STRONG>              
+                more (10)                         </STRONG>                     
+  </A>                 </LI></UL></NAV><NAV class="-nav js-category" data-name="Other">
+<UL class="-list">
+  <LI class="-item"><A title="meta-discussion of the Stack Exchange family of Q&amp;A websites" 
+  class="-link js-gps-track" href="https://meta.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Meta Stack 
+  Exchange</A></LI>
+  <LI class="-item"><A title="apps, scripts, and development with the Stack Exchange API" 
+  class="-link js-gps-track" href="https://stackapps.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Stack 
+  Apps</A></LI>
+  <LI class="-item"><A title="programmatic interaction with Stack Exchange sites" 
+  class="-link js-gps-track" href="https://api.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">API</A></LI>
+  <LI class="-item"><A title="querying Stack Exchange data using SQL" class="-link js-gps-track" 
+  href="https://data.stackexchange.com/" data-gps-track="footer.click({ location: 4, link: 25 })">Data</A></LI>
+  <LI class="-item"><A title="proposing new sites in the Stack Exchange network" 
+  class="-link js-gps-track" href="https://area51.stackexchange.com/" 
+  data-gps-track="footer.click({ location: 4, link: 25 })">Area 
+51</A></LI></UL></NAV>
+<DIV class="-copyright g-row jc-end">
+<DIV class="g-column jc-sp-between">
+<UL class="-list">
+  <LI class="-item"><A class="js-gps-track -link" href="https://stackoverflow.blog/?blb=1" 
+  data-gps-track="footer.click({ location: 2, link:4 })">Blog</A></LI>
+  <LI class="-item"><A class="-link" href="https://www.facebook.com/officialstackoverflow/">Facebook</A></LI>
+  <LI class="-item"><A class="-link" 
+  href="https://twitter.com/stackoverflow">Twitter</A></LI>
+  <LI class="-item"><A class="-link" href="https://linkedin.com/company/stack-overflow">LinkedIn</A></LI></UL>
+<DIV>
+<P>                                site design / logo © 2017 Stack Exchange Inc; 
+user contributions licensed under <A class="-link" href="https://creativecommons.org/licenses/by-sa/3.0/" 
+rel="license">cc by-sa 3.0</A>                                with <A class="-link" 
+href="https://stackoverflow.blog/2009/06/25/attribution-required/" 
+rel="license">attribution required</A>.                                 <SPAN 
+id="svnrev">rev&nbsp;2017.11.16.27769</SPAN>                             
+</P></DIV></DIV></DIV></DIV></DIV></FOOTER><NOSCRIPT>        &lt;div 
+id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled       
+     &lt;img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" 
+class="dno"&gt;        &lt;/div&gt;     </NOSCRIPT>     
+<SCRIPT>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-5620270-1');
+                ga('create', 'UA-5620270-59', {name: 'pageData', sampleRate: 5 });
+                ga('set', 'dimension2', '|c#|.net|');
+                ga('pageData.set', 'dimension2', '|c#|.net|');
+                ga('send', 'pageview');
+                ga('pageData.send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </SCRIPT>
+                         
+<SCRIPT type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </SCRIPT>
+     </BODY></HTML>

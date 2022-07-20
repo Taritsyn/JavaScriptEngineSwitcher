@@ -1,0 +1,36 @@
+.main {
+	max-width: 1440px !important;
+}
+#ja-main {
+	width: 1200px; float: left;
+}
+#ja-extra-col {
+	float: right; display: block !important;
+}
+.mobile-meeting-website {
+	display: none !important;
+}
+.normal-meeting-website {
+	display: inline-block !important;
+}
+#ja-search form.search {
+	width: 275px;
+}
+#ja-search form.search #mod-search-searchword {
+	width: 100%;
+}
+#toolbar {
+	min-width: 309px;
+}
+#channels-icon {
+	display: none;
+}
+#channels-icons-popup {
+	display: none;
+}
+#channels-icons {
+	display: block;
+}
+.welcome-arrow-block {
+	width: 33%;
+}

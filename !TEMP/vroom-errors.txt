@@ -1,0 +1,87 @@
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine("Column: " + scriptException.Column);
+			sb.AppendLine("Data.Count: " + scriptException.Data.Count);
+			sb.AppendLine("HelpLink: " + scriptException.HelpLink);
+			if (scriptException.InnerException != null)
+			{
+				sb.AppendLine("InnerException.GetType().FullName: " + scriptException.InnerException.GetType().FullName);
+			}
+			sb.AppendLine("Line: " + scriptException.Line);
+			sb.AppendLine("Message: " + scriptException.Message);
+			sb.AppendLine("Resource: " + scriptException.Resource);
+			sb.AppendLine("Source: " + scriptException.Source);
+			sb.AppendLine("StackTrace: " + scriptException.StackTrace);
+			sb.AppendLine("Type: " + scriptException.Type);
+			sb.AppendLine();
+			sb.AppendLine("ToString(): " + scriptException.ToString());
+
+			VroomJs.JsObject value = scriptException.NativeException;
+			if (value != null)
+			{
+				sb.AppendLine();
+
+				foreach (string propertyName in value.GetDynamicMemberNames())
+				{
+					sb.AppendLine(propertyName);
+				}
+			}
+
+			string output = sb.ToString();
+
+------------------------------------------------------------------------------------------------
+
+1
+
+Column: 9
+Data.Count: 0
+HelpLink: 
+Line: 4
+Message: temp.js: Uncaught SyntaxError: Unexpected token ILLEGAL at line: 4 column: 9.
+Resource: temp.js
+Source: VroomJs
+StackTrace:    at VroomJs.JsContext.Execute(String code, String name)
+   at JavaScriptEngineSwitcher.Vroom.VroomJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Vroom\VroomJsEngine.cs:line 246
+Type: SyntaxError
+
+ToString(): VroomJs.JsSyntaxError: temp.js: Uncaught SyntaxError: Unexpected token ILLEGAL at line: 4 column: 9.
+   at VroomJs.JsContext.Execute(String code, String name)
+   at JavaScriptEngineSwitcher.Vroom.VroomJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Vroom\VroomJsEngine.cs:line 246
+
+==================================================================================================
+
+2
+
+Column: 6
+Data.Count: 0
+HelpLink: 
+Line: 9
+Message: temp.js: Uncaught ReferenceError: n is not defined at line: 9 column: 6.
+Resource: temp.js
+Source: VroomJs
+StackTrace:    at VroomJs.JsContext.Execute(String code, String name)
+   at JavaScriptEngineSwitcher.Vroom.VroomJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Vroom\VroomJsEngine.cs:line 246
+Type: ReferenceError
+
+ToString(): VroomJs.JsException: temp.js: Uncaught ReferenceError: n is not defined at line: 9 column: 6.
+   at VroomJs.JsContext.Execute(String code, String name)
+   at JavaScriptEngineSwitcher.Vroom.VroomJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Vroom\VroomJsEngine.cs:line 246
+
+=================================================================================================
+
+3
+
+Column: 10
+Data.Count: 0
+HelpLink: 
+Line: 17
+Message: temp.js: Uncaught Error: Ура!!! at line: 17 column: 10.
+Resource: temp.js
+Source: VroomJs
+StackTrace:    at VroomJs.JsContext.Execute(String code, String name)
+   at JavaScriptEngineSwitcher.Vroom.VroomJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Vroom\VroomJsEngine.cs:line 246
+Type: Error
+
+ToString(): VroomJs.JsException: temp.js: Uncaught Error: Ура!!! at line: 17 column: 10.
+   at VroomJs.JsContext.Execute(String code, String name)
+   at JavaScriptEngineSwitcher.Vroom.VroomJsEngine.InnerExecute(String code, String documentName) in C:\Projects\JavaScriptEngineSwitcher\src\JavaScriptEngineSwitcher.Vroom\VroomJsEngine.cs:line 246
+
