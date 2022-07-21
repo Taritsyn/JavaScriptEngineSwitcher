@@ -48,7 +48,7 @@ $variable1 + _variable2 - @variable3;";
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Compilation error", exception.Category);
-			Assert.Equal("Unexpected token ILLEGAL", exception.Description);
+			Assert.Equal("Unexpected token @", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("variables.js", exception.DocumentName);
 			Assert.Equal(3, exception.LineNumber);
@@ -90,7 +90,7 @@ $variable1 + -variable2 - variable3;";
 			Assert.Equal(5, exception.LineNumber);
 			Assert.Equal(1, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
-			Assert.Equal("   at Global code (variables.js:5:1)", exception.CallStack);
+			Assert.Equal("   at Global code (variables.js:5:15)", exception.CallStack);
 		}
 
 		[Fact]
@@ -173,10 +173,10 @@ factorial(0);";
 			Assert.Equal("Error", exception.Type);
 			Assert.Equal("factorial.js", exception.DocumentName);
 			Assert.Equal(3, exception.LineNumber);
-			Assert.Equal(3, exception.ColumnNumber);
+			Assert.Equal(9, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
 			Assert.Equal(
-				"   at factorial (factorial.js:3:3)" + Environment.NewLine +
+				"   at factorial (factorial.js:3:9)" + Environment.NewLine +
 				"   at Global code (factorial.js:10:1)",
 				exception.CallStack
 			);

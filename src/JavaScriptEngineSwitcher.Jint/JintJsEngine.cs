@@ -7,6 +7,7 @@ using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
 using OriginalDebuggerEventHandler = Jint.Runtime.Debugger.DebugHandler.DebugEventHandler;
 using OriginalDebuggerStatementHandlingMode = Jint.Runtime.Debugger.DebuggerStatementHandling;
 using OriginalEngine = Jint.Engine;
+using OriginalErrorPosition = Esprima.Position;
 using OriginalExecutionCanceledException = Jint.Runtime.ExecutionCanceledException;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
@@ -51,7 +52,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2038";
+		private const string EngineVersion = "3.0.0 Beta 2039";
 
 		/// <summary>
 		/// Jint JS engine
@@ -248,11 +249,12 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				var originalJavaScriptException = (OriginalJavaScriptException)originalRuntimeException;
 				documentName = originalJavaScriptException.Location.Source;
-				lineNumber = originalJavaScriptException.LineNumber;
-				columnNumber = originalJavaScriptException.Column + 1;
+				OriginalErrorPosition errorPosition = originalJavaScriptException.Location.Start;
+				lineNumber = errorPosition.Line;
+				columnNumber = errorPosition.Column + 1;
 
 				ErrorLocationItem[] callStackItems = JintJsErrorHelpers.ParseErrorLocation(
-					originalJavaScriptException.StackTrace);
+					originalJavaScriptException.JavaScriptStackTrace);
 				if (callStackItems.Length > 0)
 				{
 					JintJsErrorHelpers.FixErrorLocationItems(callStackItems);
@@ -708,19 +710,24 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				lock (_executionSynchronizer)
 				{
-					if (_debuggerStepCallback != null)
+					if (_jsEngine != null)
 					{
-						_jsEngine.DebugHandler.Step -= _debuggerStepCallback;
-						_debuggerStepCallback = null;
+						if (_debuggerStepCallback != null)
+						{
+							_jsEngine.DebugHandler.Step -= _debuggerStepCallback;
+						}
+
+						if (_debuggerBreakCallback != null)
+						{
+							_jsEngine.DebugHandler.Break -= _debuggerBreakCallback;
+						}
+
+						_jsEngine.Dispose();
+						_jsEngine = null;
 					}
 
-					if (_debuggerBreakCallback != null)
-					{
-						_jsEngine.DebugHandler.Break -= _debuggerBreakCallback;
-						_debuggerBreakCallback = null;
-					}
-
-					_jsEngine = null;
+					_debuggerStepCallback = null;
+					_debuggerBreakCallback = null;
 					_cancellationConstraint = null;
 
 					if (_cancellationTokenSource != null)

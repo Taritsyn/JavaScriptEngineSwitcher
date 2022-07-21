@@ -178,7 +178,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 	return getFullName(firstName, lastName);
 })(getFullName);";
 			string targetOutput = "ReferenceError: middleName is not defined" + Environment.NewLine +
-				"   at getFullName (get-full-name.js:2:2)" + Environment.NewLine +
+				"   at getFullName (get-full-name.js:2:35)" + Environment.NewLine +
 				"   at Anonymous function (get-full-name.js:12:9)" + Environment.NewLine +
 				"   at Global code (get-full-name.js:13:2)"
 				;
