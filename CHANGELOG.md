@@ -1,6 +1,14 @@
 Change log
 ==========
 
+## v3.19.0 - July 21, 2022
+ * Fixed a [error #102](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/102) “Resources should conform to correct ICU standard for naming”. Special thanks to [Tim Heuer](https://github.com/timheuer)
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 3.0.0 Beta 2039
+   * No longer supports a .NET Framework 4.6.1
+   * Added support of .NET Framework 4.6.2
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.0.9
+
 ## v3.18.4 - June 29, 2022
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.3.1 (support of V8 version 10.3.174.17)
 

@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for JS Engine Switcher: Node v3.18.2
+                    README file for JS Engine Switcher: Node v3.19.0
 
    --------------------------------------------------------------------------------
 
@@ -18,11 +18,6 @@
    This package does not contain the `node.exe`. Therefore, you need to install the
    Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path`
    environment variable (automatically done by the official installer).
-
-   =============
-   RELEASE NOTES
-   =============
-   Jering.Javascript.NodeJS was updated to version 6.3.1.
 
    =============
    DOCUMENTATION

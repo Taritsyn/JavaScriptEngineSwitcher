@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: MS Dependency Injection</Product>
-    <VersionPrefix>3.3.0</VersionPrefix>
+    <VersionPrefix>3.19.0</VersionPrefix>
     <TargetFrameworks>net45;netstandard1.3;netstandard2.0</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
@@ -19,7 +19,6 @@
     <Description>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</Description>
     <PackageTags>$(PackageCommonTags);DI</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Extensions_MsDependencyInjection_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

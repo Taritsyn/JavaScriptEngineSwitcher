@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Vroom</Product>
-    <VersionPrefix>3.3.0</VersionPrefix>
+    <VersionPrefix>3.19.0</VersionPrefix>
     <TargetFrameworks>net40-client;net45;net471;netstandard1.6;netstandard2.0</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
@@ -23,7 +23,7 @@
 For correct working of the VroomJs on Windows require the Visual C++ Redistributable for Visual Studio 2012 and Microsoft Visual C++ 2015 Redistributable.</Description>
     <PackageTags>$(PackageCommonTags);VroomJs;V8</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Fixed a error #102 “Resources should conform to correct ICU standard for naming”.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed a error #102 “Resources should conform to correct ICU standard for naming”. Special thanks to Tim Heuer.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                   README file for JS Engine Switcher: MSIE v3.12.6
+                   README file for JS Engine Switcher: MSIE v3.19.0
 
    --------------------------------------------------------------------------------
 
@@ -21,7 +21,7 @@
    =============
    1. MSIE JavaScript Engine was updated to version 3.0.9;
    2. Fixed a error #102 “Resources should conform to correct ICU standard for
-      naming”.
+      naming”. Special thanks to Tim Heuer.
 
    =============
    DOCUMENTATION

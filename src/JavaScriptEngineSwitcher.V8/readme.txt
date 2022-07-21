@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for JS Engine Switcher: V8 v3.18.4
+                    README file for JS Engine Switcher: V8 v3.19.0
 
    --------------------------------------------------------------------------------
 
@@ -31,7 +31,8 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #102 “Resources should conform to correct ICU standard for naming”.
+   Fixed a error #102 “Resources should conform to correct ICU standard for
+   naming”. Special thanks to Tim Heuer.
 
    =============
    DOCUMENTATION
