@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.19.1 - August 28, 2022
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2040
+
 ## v3.19.0 - July 21, 2022
  * Fixed a [error #102](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/102) “Resources should conform to correct ICU standard for naming”. Special thanks to [Tim Heuer](https://github.com/timheuer)
  * In JavaScriptEngineSwitcher.Jint:
