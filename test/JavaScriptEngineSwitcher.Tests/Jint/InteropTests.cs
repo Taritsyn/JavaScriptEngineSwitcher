@@ -217,7 +217,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.StartsWith("Could not find file '", exception.Message);
 		}
 
-		/*[Fact]
+		[Fact]
 		public void MappingCompilationErrorDuringRecursiveExecutionOfFilesIsCorrect()
 		{
 			// Arrange
@@ -248,11 +248,11 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Compilation error", exception.Category);
-			Assert.Equal("Unexpected token ILLEGAL", exception.Description);
+			Assert.Equal("Unexpected number", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("second-file.js", exception.DocumentName);
 			Assert.Equal(1, exception.LineNumber);
-			Assert.Equal(6, exception.ColumnNumber);
+			Assert.Equal(8, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
 		}
 
@@ -332,7 +332,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("File '" + directoryPath + "/second-file.jsx' not exist.", exception.Message);
-		}*/
+		}
 
 		#endregion
 

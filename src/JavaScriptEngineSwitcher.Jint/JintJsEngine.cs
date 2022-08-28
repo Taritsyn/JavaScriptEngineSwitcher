@@ -15,7 +15,6 @@ using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
 using OriginalParsedScript = Esprima.Ast.Script;
 using OriginalParser = Esprima.JavaScriptParser;
 using OriginalParserException = Esprima.ParserException;
-using OriginalParserOptions = Esprima.ParserOptions;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalRuntimeException = Jint.Runtime.JintException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
@@ -52,7 +51,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2039";
+		private const string EngineVersion = "3.0.0 Beta 2040";
 
 		/// <summary>
 		/// Jint JS engine
@@ -152,22 +151,6 @@ namespace JavaScriptEngineSwitcher.Jint
 			}
 		}
 
-
-		/// <summary>
-		/// Creates a Esprima .NET parser options with document name and special settings for the Jint
-		/// </summary>
-		/// <param name="documentName">Document name</param>
-		/// <returns>Esprima .NET parser options with document name and special settings for the Jint</returns>
-		private static OriginalParserOptions CreateParserOptions(string documentName)
-		{
-			var parserOptions = new OriginalParserOptions(documentName)
-			{
-				AdaptRegexp = true,
-				Tolerant = true
-			};
-
-			return parserOptions;
-		}
 
 		#region Mapping
 
@@ -367,12 +350,11 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			OriginalParsedScript parsedScript;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
-			OriginalParserOptions parserOptions = CreateParserOptions(uniqueDocumentName);
 
 			try
 			{
-				var parser = new OriginalParser(code, parserOptions);
-				parsedScript = parser.ParseScript();
+				var parser = new OriginalParser();
+				parsedScript = parser.ParseScript(code, uniqueDocumentName);
 			}
 			catch (OriginalParserException e)
 			{
@@ -391,7 +373,6 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			object result;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
-			OriginalParserOptions parserOptions = CreateParserOptions(uniqueDocumentName);
 
 			lock (_executionSynchronizer)
 			{
@@ -399,7 +380,7 @@ namespace JavaScriptEngineSwitcher.Jint
 
 				try
 				{
-					resultValue = _jsEngine.Evaluate(expression, parserOptions);
+					resultValue = _jsEngine.Evaluate(expression, uniqueDocumentName);
 				}
 				catch (OriginalParserException e)
 				{
@@ -440,13 +421,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		protected override void InnerExecute(string code, string documentName)
 		{
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
-			OriginalParserOptions parserOptions = CreateParserOptions(uniqueDocumentName);
 
 			lock (_executionSynchronizer)
 			{
 				try
 				{
-					_jsEngine.Execute(code, parserOptions);
+					_jsEngine.Execute(code, uniqueDocumentName);
 				}
 				catch (OriginalParserException e)
 				{
