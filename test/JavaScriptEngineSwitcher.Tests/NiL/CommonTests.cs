@@ -1,4 +1,4 @@
-﻿#if !NET452
+﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
 using System;
 
 using Xunit;
@@ -170,9 +170,12 @@ factorial(0);";
 			Assert.Equal("The value must be greater than or equal to zero.", exception.Description);
 			Assert.Equal("Error", exception.Type);
 			Assert.Empty(exception.DocumentName);
-			Assert.Equal(0, exception.LineNumber);
-			Assert.Equal(0, exception.ColumnNumber);
-			Assert.Empty(exception.SourceFragment);
+			Assert.Equal(3, exception.LineNumber);
+			Assert.Equal(3, exception.ColumnNumber);
+			Assert.Equal(
+				"		throw new Error(\"The value must be greater than or equal to zero.\");",
+				exception.SourceFragment
+			);
 			Assert.Empty(exception.CallStack);
 		}
 

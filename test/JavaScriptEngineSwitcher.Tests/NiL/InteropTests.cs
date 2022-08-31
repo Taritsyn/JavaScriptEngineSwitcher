@@ -1,4 +1,4 @@
-﻿#if !NET452
+﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
 using System;
 
 using Xunit;
@@ -11,6 +11,19 @@ namespace JavaScriptEngineSwitcher.Tests.NiL
 		{
 			get { return "NiLJsEngine"; }
 		}
+
+
+		#region Embedding of objects
+
+		#region Delegates
+
+		[Fact]
+		public override void CallingOfEmbeddedDelegateWithMissingParameter()
+		{ }
+
+		#endregion
+
+		#endregion
 
 
 		#region Embedding of types

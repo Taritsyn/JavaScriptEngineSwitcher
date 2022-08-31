@@ -10,8 +10,8 @@ using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-using JavaScriptEngineSwitcher.NiL;
 #if NET461 || NETCOREAPP3_1_OR_GREATER
+using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.V8;
 #endif
 
@@ -161,6 +161,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			});
 			EmbedAndUseHostObjects(createJsEngine);
 		}
+#if NET461 || NETCOREAPP3_1_OR_GREATER
 
 		[Benchmark]
 		public void NiL()
@@ -168,7 +169,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
 			EmbedAndUseHostObjects(createJsEngine);
 		}
-#if NET461 || NETCOREAPP3_1_OR_GREATER
 
 		[Benchmark]
 		public void V8()
