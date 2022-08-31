@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.20.0 - August 31, 2022
+ * In JavaScriptEngineSwitcher.NiL:
+   * NiL.JS was updated to version 2.5.1591
+   * No longer supports a .NET Standard
+
 ## v3.19.1 - August 28, 2022
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2040
 
