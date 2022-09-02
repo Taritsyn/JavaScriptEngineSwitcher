@@ -24,6 +24,8 @@ using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
 using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
 using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
 
+using JavaScriptEngineSwitcher.NiL.Helpers;
+
 namespace JavaScriptEngineSwitcher.NiL
 {
 	/// <summary>
@@ -206,12 +208,35 @@ namespace JavaScriptEngineSwitcher.NiL
 						lineNumber = codeCoordinates.Line;
 						columnNumber = codeCoordinates.Column;
 					}
-					sourceFragment = TextHelpers.GetTextFragment(sourceCode, lineNumber, columnNumber);
-					message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty,
-						lineNumber, columnNumber, sourceFragment);
 
-					wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+					sourceFragment = TextHelpers.GetTextFragment(sourceCode, lineNumber, columnNumber);
+					string callStack = string.Empty;
+					ErrorLocationItem[] callStackItems = NiLJsErrorHelpers.ParseErrorLocation(
+						originalException.StackTrace);
+					if (callStackItems.Length > 0)
+					{
+						NiLJsErrorHelpers.FixErrorLocationItems(callStackItems);
+
+						ErrorLocationItem firstCallStackItem = callStackItems[0];
+						firstCallStackItem.SourceFragment = sourceFragment;
+
+						callStack = JsErrorHelpers.StringifyErrorLocationItems(callStackItems, true);
+						string callStackWithSourceFragment = JsErrorHelpers.StringifyErrorLocationItems(
+							callStackItems);
+						message = JsErrorHelpers.GenerateScriptErrorMessage(type, description,
+							callStackWithSourceFragment);
+					}
+					else
+					{
+						message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty,
+							lineNumber, columnNumber, sourceFragment);
+					}
+
+					var wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
 						originalException);
+					wrapperRuntimeException.CallStack = callStack;
+
+					wrapperScriptException = wrapperRuntimeException;
 				}
 				wrapperScriptException.Type = type;
 				wrapperScriptException.LineNumber = lineNumber;

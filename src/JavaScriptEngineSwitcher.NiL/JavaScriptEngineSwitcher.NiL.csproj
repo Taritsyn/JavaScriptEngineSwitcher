@@ -19,8 +19,7 @@
     <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1591).</Description>
     <PackageTags>$(PackageCommonTags);NiL</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>1. NiL.JS was updated to version 2.5.1591;
-2. No longer supports a .NET Standard.</PackageReleaseNotes>
+    <PackageReleaseNotes>JS run-time exception now contains a script call stack.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

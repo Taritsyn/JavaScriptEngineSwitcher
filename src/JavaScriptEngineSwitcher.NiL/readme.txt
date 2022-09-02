@@ -17,8 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   1. NiL.JS was updated to version 2.5.1591;
-   2. No longer supports a .NET Standard.
+   JS run-time exception now contains a script call stack.
 
    =============
    DOCUMENTATION

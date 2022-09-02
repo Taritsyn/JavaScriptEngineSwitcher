@@ -88,7 +88,7 @@ $variable1 + -variable2 - variable3;";
 			Assert.Equal(5, exception.LineNumber);
 			Assert.Equal(15, exception.ColumnNumber);
 			Assert.Equal("$variable1 + -variable2 - variable3;", exception.SourceFragment);
-			Assert.Empty(exception.CallStack);
+			Assert.Equal("   at Global code (5:15)", exception.CallStack);
 		}
 
 		[Fact]
@@ -176,7 +176,11 @@ factorial(0);";
 				"		throw new Error(\"The value must be greater than or equal to zero.\");",
 				exception.SourceFragment
 			);
-			Assert.Empty(exception.CallStack);
+			Assert.Equal(
+				"   at factorial (3:3)" + Environment.NewLine +
+				"   at Global code (10:1)",
+				exception.CallStack
+			);
 		}
 
 		#endregion
@@ -231,7 +235,9 @@ var foo = 'Browser's bar';";
 	foo(a, b);
 })(foo);";
 			string targetOutput = "ReferenceError: Variable \"bar\" is not defined" + Environment.NewLine +
-				"   at 4:3 -> 		bar();"
+				"   at foo (4:3) -> 		bar();" + Environment.NewLine +
+				"   at Anonymous function (12:2)" + Environment.NewLine +
+				"   at Global code (8:1)"
 				;
 
 			JsRuntimeException exception = null;
