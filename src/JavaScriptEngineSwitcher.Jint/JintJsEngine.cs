@@ -15,6 +15,7 @@ using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
 using OriginalParsedScript = Esprima.Ast.Script;
 using OriginalParser = Esprima.JavaScriptParser;
 using OriginalParserException = Esprima.ParserException;
+using OriginalParserOptions = Esprima.ParserOptions;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalRuntimeException = Jint.Runtime.JintException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
@@ -59,6 +60,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		private OriginalEngine _jsEngine;
 
 		/// <summary>
+		/// Esprima .NET JS parser
+		/// </summary>
+		/// <remarks>Used for pre-compilation of scripts.</remarks>
+		private OriginalParser _jsParser;
+
+		/// <summary>
 		/// Token source for canceling of script execution
 		/// </summary>
 		private CancellationTokenSource _cancellationTokenSource;
@@ -79,9 +86,14 @@ namespace JavaScriptEngineSwitcher.Jint
 		private OriginalDebuggerEventHandler _debuggerStepCallback;
 
 		/// <summary>
-		/// Synchronizer of code execution
+		/// Synchronizer of script execution
 		/// </summary>
 		private readonly object _executionSynchronizer = new object();
+
+		/// <summary>
+		/// Synchronizer of script pre-compilation
+		/// </summary>
+		private readonly object _precompilationSynchronizer = new object();
 
 		/// <summary>
 		/// Unique document name manager
@@ -351,14 +363,21 @@ namespace JavaScriptEngineSwitcher.Jint
 			OriginalParsedScript parsedScript;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
-			try
+			lock (_precompilationSynchronizer)
 			{
-				var parser = new OriginalParser();
-				parsedScript = parser.ParseScript(code, uniqueDocumentName);
-			}
-			catch (OriginalParserException e)
-			{
-				throw WrapParserException(e);
+				if (_jsParser == null)
+				{
+					_jsParser = new OriginalParser(OriginalParserOptions.Default);
+				}
+
+				try
+				{
+					parsedScript = _jsParser.ParseScript(code, uniqueDocumentName);
+				}
+				catch (OriginalParserException e)
+				{
+					throw WrapParserException(e);
+				}
 			}
 
 			return new JintPrecompiledScript(parsedScript);
@@ -706,6 +725,7 @@ namespace JavaScriptEngineSwitcher.Jint
 						_jsEngine = null;
 					}
 
+					_jsParser = null;
 					_debuggerStepCallback = null;
 					_debuggerBreakCallback = null;
 					_cancellationConstraint = null;

@@ -18,7 +18,8 @@
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version 3.0.0 Beta 2040.
+   Now only one instance of JS parser per engine is used during pre-compilation of
+   scripts.
 
    =============
    DOCUMENTATION
