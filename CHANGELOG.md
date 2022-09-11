@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.20.1 - September 11, 2022
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2041
+ * In JavaScriptEngineSwitcher.NiL:
+   * NiL.JS was updated to version 2.5.1600
+   * JS run-time exception now contains a script call stack
+
 ## v3.20.0 - August 31, 2022
  * In JavaScriptEngineSwitcher.NiL:
    * NiL.JS was updated to version 2.5.1591
