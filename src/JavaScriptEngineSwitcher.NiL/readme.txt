@@ -12,12 +12,13 @@
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the
-   NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1591).
+   NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1600).
 
    =============
    RELEASE NOTES
    =============
-   JS run-time exception now contains a script call stack.
+   1. NiL.JS was updated to version 2.5.1600;
+   2. JS run-time exception now contains a script call stack.
 
    =============
    DOCUMENTATION

@@ -19,7 +19,25 @@ namespace JavaScriptEngineSwitcher.Tests.NiL
 
 		[Fact]
 		public override void CallingOfEmbeddedDelegateWithMissingParameter()
-		{ }
+		{
+			// Arrange
+			var sumFunc = new Func<int, int, int>((a, b) => a + b);
+
+			const string input = "sum(678)";
+			const int targetOutput = 678;
+
+			// Act
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("sum", sumFunc);
+				output = jsEngine.Evaluate<int>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
 
 		#endregion
 
