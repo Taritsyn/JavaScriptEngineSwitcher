@@ -171,7 +171,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Equal("ReferenceError", exception.Type);
 			Assert.Equal("math.js", exception.DocumentName);
 			Assert.Equal(10, exception.LineNumber);
-			Assert.Equal(4, exception.ColumnNumber);
+			Assert.Equal(14, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
 			Assert.Equal(
 				"   at sum (math.js:10:14)" + Environment.NewLine +

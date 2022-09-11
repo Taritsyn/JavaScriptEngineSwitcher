@@ -3,7 +3,6 @@ using System.Threading;
 
 using Jint;
 using IOriginalPrimitiveInstance = Jint.Native.IPrimitiveInstance;
-using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
 using OriginalDebuggerEventHandler = Jint.Runtime.Debugger.DebugHandler.DebugEventHandler;
 using OriginalDebuggerStatementHandlingMode = Jint.Runtime.Debugger.DebuggerStatementHandling;
 using OriginalEngine = Jint.Engine;
@@ -13,9 +12,7 @@ using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
 using OriginalParsedScript = Esprima.Ast.Script;
-using OriginalParser = Esprima.JavaScriptParser;
 using OriginalParserException = Esprima.ParserException;
-using OriginalParserOptions = Esprima.ParserOptions;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalRuntimeException = Jint.Runtime.JintException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
@@ -52,18 +49,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2040";
+		private const string EngineVersion = "3.0.0 Beta 2041";
 
 		/// <summary>
 		/// Jint JS engine
 		/// </summary>
 		private OriginalEngine _jsEngine;
-
-		/// <summary>
-		/// Esprima .NET JS parser
-		/// </summary>
-		/// <remarks>Used for pre-compilation of scripts.</remarks>
-		private OriginalParser _jsParser;
 
 		/// <summary>
 		/// Token source for canceling of script execution
@@ -73,7 +64,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Constraint for canceling of script execution
 		/// </summary>
-		private OriginalCancellationConstraint _cancellationConstraint;
+		private CustomCancellationConstraint _cancellationConstraint;
 
 		/// <summary>
 		/// Debugger break callback
@@ -89,11 +80,6 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// Synchronizer of script execution
 		/// </summary>
 		private readonly object _executionSynchronizer = new object();
-
-		/// <summary>
-		/// Synchronizer of script pre-compilation
-		/// </summary>
-		private readonly object _precompilationSynchronizer = new object();
 
 		/// <summary>
 		/// Unique document name manager
@@ -116,7 +102,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		public JintJsEngine(JintSettings settings)
 		{
 			_cancellationTokenSource = new CancellationTokenSource();
-			_cancellationConstraint = new OriginalCancellationConstraint(_cancellationTokenSource.Token);
+			_cancellationConstraint = new CustomCancellationConstraint(_cancellationTokenSource.Token);
 
 			JintSettings jintSettings = settings ?? new JintSettings();
 			_debuggerBreakCallback = jintSettings.DebuggerBreakCallback;
@@ -128,7 +114,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				_jsEngine = new OriginalEngine(options => {
 					options
-						.WithoutConstraint(c => c is OriginalCancellationConstraint)
+						.WithoutConstraint(c => c is CustomCancellationConstraint)
 						.Constraint(_cancellationConstraint)
 						.DebuggerStatementHandling(debuggerStatementHandlingMode)
 						.DebugMode(jintSettings.EnableDebugging)
@@ -206,7 +192,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			string description = originalParserException.Description;
 			string type = JsErrorType.Syntax;
-			string documentName = originalParserException.SourceText;
+			string documentName = originalParserException.SourceLocation ?? string.Empty;
 			int lineNumber = originalParserException.LineNumber;
 			int columnNumber = originalParserException.Column;
 			string message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName, lineNumber,
@@ -363,21 +349,13 @@ namespace JavaScriptEngineSwitcher.Jint
 			OriginalParsedScript parsedScript;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
-			lock (_precompilationSynchronizer)
+			try
 			{
-				if (_jsParser == null)
-				{
-					_jsParser = new OriginalParser(OriginalParserOptions.Default);
-				}
-
-				try
-				{
-					parsedScript = _jsParser.ParseScript(code, uniqueDocumentName);
-				}
-				catch (OriginalParserException e)
-				{
-					throw WrapParserException(e);
-				}
+				parsedScript = OriginalEngine.PrepareScript(code, uniqueDocumentName);
+			}
+			catch (OriginalParserException e)
+			{
+				throw WrapParserException(e);
 			}
 
 			return new JintPrecompiledScript(parsedScript);
@@ -725,7 +703,6 @@ namespace JavaScriptEngineSwitcher.Jint
 						_jsEngine = null;
 					}
 
-					_jsParser = null;
 					_debuggerStepCallback = null;
 					_debuggerBreakCallback = null;
 					_cancellationConstraint = null;

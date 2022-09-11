@@ -88,7 +88,7 @@ $variable1 + -variable2 - variable3;";
 			Assert.Equal("ReferenceError", exception.Type);
 			Assert.Equal("variables.js", exception.DocumentName);
 			Assert.Equal(5, exception.LineNumber);
-			Assert.Equal(1, exception.ColumnNumber);
+			Assert.Equal(15, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
 			Assert.Equal("   at Global code (variables.js:5:15)", exception.CallStack);
 		}
