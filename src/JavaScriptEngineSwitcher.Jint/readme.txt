@@ -18,7 +18,7 @@
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version 3.0.0 Beta 2041.
+   Implementation of script interruption has been refactored.
 
    =============
    DOCUMENTATION

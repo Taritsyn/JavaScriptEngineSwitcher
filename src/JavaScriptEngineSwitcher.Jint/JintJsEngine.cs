@@ -3,6 +3,7 @@ using System.Threading;
 
 using Jint;
 using IOriginalPrimitiveInstance = Jint.Native.IPrimitiveInstance;
+using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
 using OriginalDebuggerEventHandler = Jint.Runtime.Debugger.DebugHandler.DebugEventHandler;
 using OriginalDebuggerStatementHandlingMode = Jint.Runtime.Debugger.DebuggerStatementHandling;
 using OriginalEngine = Jint.Engine;
@@ -64,7 +65,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Constraint for canceling of script execution
 		/// </summary>
-		private CustomCancellationConstraint _cancellationConstraint;
+		private OriginalCancellationConstraint _cancellationConstraint;
 
 		/// <summary>
 		/// Debugger break callback
@@ -102,7 +103,6 @@ namespace JavaScriptEngineSwitcher.Jint
 		public JintJsEngine(JintSettings settings)
 		{
 			_cancellationTokenSource = new CancellationTokenSource();
-			_cancellationConstraint = new CustomCancellationConstraint(_cancellationTokenSource.Token);
 
 			JintSettings jintSettings = settings ?? new JintSettings();
 			_debuggerBreakCallback = jintSettings.DebuggerBreakCallback;
@@ -114,8 +114,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				_jsEngine = new OriginalEngine(options => {
 					options
-						.WithoutConstraint(c => c is CustomCancellationConstraint)
-						.Constraint(_cancellationConstraint)
+						.CancellationToken(_cancellationTokenSource.Token)
 						.DebuggerStatementHandling(debuggerStatementHandlingMode)
 						.DebugMode(jintSettings.EnableDebugging)
 						.LimitMemory(jintSettings.MemoryLimit)
@@ -134,6 +133,7 @@ namespace JavaScriptEngineSwitcher.Jint
 
 					options.AddObjectConverter(new UndefinedConverter());
 				});
+				_cancellationConstraint = _jsEngine.FindConstraint<OriginalCancellationConstraint>();
 				if (_debuggerBreakCallback != null)
 				{
 					_jsEngine.DebugHandler.Break += _debuggerBreakCallback;
