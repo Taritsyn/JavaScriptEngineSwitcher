@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: V8 for OS X (x64)</Product>
-    <VersionPrefix>3.18.4</VersionPrefix>
+    <VersionPrefix>3.20.2</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 

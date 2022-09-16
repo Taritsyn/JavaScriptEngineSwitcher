@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.20.2 - September 16, 2022
+ * In JavaScriptEngineSwitcher.Jint the implementation of script interruption has been refactored
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.3.2 (support of V8 version 10.5.218.8)
+   * In configuration settings of the V8 JS engine was added one new property - `DisableDynamicBinding` (default `false`)
+
 ## v3.20.1 - September 11, 2022
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2041
  * In JavaScriptEngineSwitcher.NiL:
