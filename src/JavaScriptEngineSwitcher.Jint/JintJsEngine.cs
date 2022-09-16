@@ -292,7 +292,9 @@ namespace JavaScriptEngineSwitcher.Jint
 			}
 			else if (originalRuntimeException is OriginalExecutionCanceledException)
 			{
+				_cancellationTokenSource.Dispose();
 				_cancellationTokenSource = new CancellationTokenSource();
+
 				_cancellationConstraint.Reset(_cancellationTokenSource.Token);
 
 				type = JsErrorType.Common;
