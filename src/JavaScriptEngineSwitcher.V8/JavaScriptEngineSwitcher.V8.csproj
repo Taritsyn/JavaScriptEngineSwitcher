@@ -30,7 +30,8 @@ This package does not contain the native ClearScript.V8 assemblies. Therefore, y
  * Microsoft.ClearScript.V8.Native.osx-arm64</Description>
     <PackageTags>$(PackageCommonTags);V8;ClearScript</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Fixed a error #102 “Resources should conform to correct ICU standard for naming”. Special thanks to Tim Heuer.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Microsoft ClearScript.V8 was updated to version 7.3.2;
+2. In configuration settings of the V8 JS engine was added one new property - `DisableDynamicBinding` (default `false`).</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

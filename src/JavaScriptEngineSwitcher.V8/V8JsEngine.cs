@@ -130,6 +130,7 @@ namespace JavaScriptEngineSwitcher.V8
 			{
 				_jsEngine = new OriginalEngine(constraints, flags, debugPort)
 				{
+					DisableDynamicBinding = v8Settings.DisableDynamicBinding,
 					MaxRuntimeHeapSize = v8Settings.MaxHeapSize,
 					RuntimeHeapSizeSampleInterval = v8Settings.HeapSizeSampleInterval,
 					MaxRuntimeStackUsage = v8Settings.MaxStackUsage

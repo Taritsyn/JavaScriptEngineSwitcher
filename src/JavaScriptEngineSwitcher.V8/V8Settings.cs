@@ -19,6 +19,41 @@ namespace JavaScriptEngineSwitcher.V8
 		}
 
 		/// <summary>
+		/// Gets or sets a TCP port on which to listen for a debugger connection
+		/// </summary>
+		public ushort DebugPort
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets a flag for whether to disable dynamic method binding
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// When this property is set to <c>true</c>, the script engine bypasses the default method
+		/// binding algorithm and uses reflection-based method binding instead. This approach
+		/// abandons support for generic type inference and other features, but it avoids engaging
+		/// the dynamic infrastructure.
+		/// </para>
+		/// </remarks>
+		public bool DisableDynamicBinding
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets a flag for whether to disable global members
+		/// </summary>
+		public bool DisableGlobalMembers
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to enable script debugging features
 		/// (allows a TCP-based debugging)
 		/// </summary>
@@ -34,24 +69,6 @@ namespace JavaScriptEngineSwitcher.V8
 		/// property is false.
 		/// </summary>
 		public bool EnableRemoteDebugging
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets a TCP port on which to listen for a debugger connection
-		/// </summary>
-		public ushort DebugPort
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets a flag for whether to disable global members
-		/// </summary>
-		public bool DisableGlobalMembers
 		{
 			get;
 			set;
@@ -195,10 +212,11 @@ namespace JavaScriptEngineSwitcher.V8
 		public V8Settings()
 		{
 			AwaitDebuggerAndPauseOnStart = false;
+			DebugPort = 9222;
+			DisableDynamicBinding = false;
+			DisableGlobalMembers = false;
 			EnableDebugging = false;
 			EnableRemoteDebugging = false;
-			DebugPort = 9222;
-			DisableGlobalMembers = false;
 			HeapExpansionMultiplier = 0;
 			HeapSizeSampleInterval = TimeSpan.Zero;
 			MaxArrayBufferAllocation = ulong.MaxValue;

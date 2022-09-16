@@ -31,8 +31,9 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #102 “Resources should conform to correct ICU standard for
-   naming”. Special thanks to Tim Heuer.
+   1. Microsoft ClearScript.V8 was updated to version 7.3.2;
+   2. In configuration settings of the V8 JS engine was added one new property -
+      `DisableDynamicBinding` (default `false`).
 
    =============
    DOCUMENTATION

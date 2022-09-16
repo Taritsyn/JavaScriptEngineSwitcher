@@ -151,9 +151,13 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		}
 
 		[Benchmark]
-		public void V8()
+		[Arguments(false)]
+		[Arguments(true)]
+		public void V8(bool disableDynamicBinding)
 		{
-			Func<IJsEngine> createJsEngine = () => new V8JsEngine();
+			Func<IJsEngine> createJsEngine = () => new V8JsEngine(
+				new V8Settings { DisableDynamicBinding = disableDynamicBinding }
+			);
 			EmbedAndUseHostTypes(createJsEngine);
 		}
 #endif
