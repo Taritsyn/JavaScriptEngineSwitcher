@@ -16,7 +16,7 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version 7.3.1).
+    <Description>JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version 7.3.2).
 
 This package does not contain the native ClearScript.V8 assemblies. Therefore, you need to choose and install the most appropriate package(s) for your platform. The following packages are available:
 
@@ -37,7 +37,7 @@ This package does not contain the native ClearScript.V8 assemblies. Therefore, y
     <Reference Condition=" '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net471' " Include="Microsoft.CSharp" Pack="false" />
 
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
-    <PackageReference Include="Microsoft.ClearScript.V8" Version="7.3.1" />
+    <PackageReference Include="Microsoft.ClearScript.V8" Version="7.3.2" />
     <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />

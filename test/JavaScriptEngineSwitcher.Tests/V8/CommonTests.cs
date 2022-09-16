@@ -229,7 +229,7 @@ for (var i = 0; i < 10000; i++) {
 			const string input = @"var arr = [];
 var obj = {};
 var foo = 'Browser's bar';";
-			string targetOutput = "SyntaxError: Unexpected identifier" + Environment.NewLine +
+			string targetOutput = "SyntaxError: Unexpected identifier 's'" + Environment.NewLine +
 				"   at variables.js:3:20 -> var foo = 'Browser's bar';"
 				;
 
