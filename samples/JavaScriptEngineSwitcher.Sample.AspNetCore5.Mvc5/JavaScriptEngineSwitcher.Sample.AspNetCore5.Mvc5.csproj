@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Sample ASP.NET Core 5.0 MVC 5 Site</Product>
-    <VersionPrefix>3.20.2</VersionPrefix>
+    <VersionPrefix>3.20.3</VersionPrefix>
     <TargetFramework>net5.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
