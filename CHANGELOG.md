@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.20.5 - October 12, 2022
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version of October 7, 2022
+ * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of September 20, 2022
+
 ## v3.20.4 - September 30, 2022
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.3.4 (support of V8 version 10.6.194.14)
 
