@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.Msie;
-using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 using JavaScriptEngineSwitcher.Vroom;
 
@@ -58,7 +57,6 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1
 				{
 					options.EngineMode = JsEngineMode.ChakraIeJsRt;
 				})
-				.AddNiL()
 				.AddVroom()
 				;
 

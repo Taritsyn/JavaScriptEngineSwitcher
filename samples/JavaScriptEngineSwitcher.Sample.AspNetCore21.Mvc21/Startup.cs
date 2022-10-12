@@ -11,7 +11,6 @@ using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-using JavaScriptEngineSwitcher.NiL;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 using JavaScriptEngineSwitcher.Vroom;
 
@@ -64,7 +63,6 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21
 				{
 					options.EngineMode = JsEngineMode.ChakraIeJsRt;
 				})
-				.AddNiL()
 				.AddVroom()
 				;
 

@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="3.1.29" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="3.1.30" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="6.0.9" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="6.0.10" />
   </ItemGroup>
 
 </Project>

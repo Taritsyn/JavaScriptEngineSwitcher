@@ -31,8 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a error #102 “Resources should conform to correct ICU standard for
-   naming”. Special thanks to Tim Heuer.
+   ChakraCore was updated to version of October 7, 2022.
 
    =============
    DOCUMENTATION
