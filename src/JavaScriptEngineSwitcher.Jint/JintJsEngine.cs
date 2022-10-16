@@ -50,7 +50,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2041";
+		private const string EngineVersion = "3.0.0 Beta 2042";
 
 		/// <summary>
 		/// Jint JS engine
