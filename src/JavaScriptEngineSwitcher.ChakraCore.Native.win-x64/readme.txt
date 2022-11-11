@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-        README file for JS Engine Switcher: ChakraCore for Windows x64 v3.20.5
+        README file for JS Engine Switcher: ChakraCore for Windows x64 v3.20.6
 
    --------------------------------------------------------------------------------
 
@@ -12,13 +12,13 @@
    DESCRIPTION
    ===========
    This package complements the JavaScriptEngineSwitcher.ChakraCore package and
-   contains the native implementation of ChakraCore version of October 7, 2022
+   contains the native implementation of ChakraCore version of November 9, 2022
    for Windows (x64).
 
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version of October 7, 2022.
+   ChakraCore was updated to version of November 9, 2022.
 
    =============
    DOCUMENTATION

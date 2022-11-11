@@ -31,7 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version of October 7, 2022.
+   ChakraCore was updated to version of November 9, 2022.
 
    =============
    DOCUMENTATION

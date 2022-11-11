@@ -31,7 +31,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>ChakraCore was updated to version of October 7, 2022.</PackageReleaseNotes>
+    <PackageReleaseNotes>ChakraCore was updated to version of November 9, 2022.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
