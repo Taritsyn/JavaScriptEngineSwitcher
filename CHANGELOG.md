@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.20.6 - November 11, 2022
+ * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version of November 9, 2022
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2043
+
 ## v3.20.5 - October 12, 2022
  * In JavaScriptEngineSwitcher.ChakraCore added support of ChakraCore version of October 7, 2022
  * In JavaScriptEngineSwitcher.Jurassic added support of Jurassic version of September 20, 2022
