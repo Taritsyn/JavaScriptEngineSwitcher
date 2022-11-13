@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: V8 for Windows (x86)</Product>
-    <VersionPrefix>3.20.4</VersionPrefix>
+    <VersionPrefix>3.20.7</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
