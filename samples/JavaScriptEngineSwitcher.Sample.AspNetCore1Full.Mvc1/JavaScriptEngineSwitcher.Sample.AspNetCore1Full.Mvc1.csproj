@@ -7,31 +7,32 @@
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <PreserveCompilationContext>true</PreserveCompilationContext>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.0.5" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.0.2" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" Version="3.20.6" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" Version="3.20.6" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.20.6" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.20.6" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-arm64" Version="7.3.5" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.3.5" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x86" Version="7.3.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" VersionOverride="1.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" VersionOverride="1.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" VersionOverride="1.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" VersionOverride="1.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" VersionOverride="1.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" VersionOverride="1.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" VersionOverride="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" VersionOverride="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging" VersionOverride="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" VersionOverride="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" VersionOverride="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" VersionOverride="1.0.2" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-arm64" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x86" />
 
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
