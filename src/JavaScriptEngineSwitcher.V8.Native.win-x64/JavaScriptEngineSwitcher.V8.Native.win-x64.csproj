@@ -14,7 +14,7 @@
     <Description>This package is deprecated. Instead, it is recommended to use a 'Microsoft.ClearScript.V8.Native.win-x64' package.</Description>
     <PackageTags>$(PackageCommonTags);V8;ClearScript;Windows;x64</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Microsoft ClearScript.V8 was updated to version 7.3.5 (support of V8 version 10.7.193.22).</PackageReleaseNotes>
+    <PackageReleaseNotes>Microsoft ClearScript.V8 was updated to version 7.3.6 (support of V8 version 10.8.168.24).</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
