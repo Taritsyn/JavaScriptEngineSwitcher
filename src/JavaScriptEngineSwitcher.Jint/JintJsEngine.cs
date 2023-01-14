@@ -50,7 +50,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2044";
+		private const string EngineVersion = "3.0.0 Beta 2045";
 
 		/// <summary>
 		/// Jint JS engine
@@ -76,6 +76,11 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// Debugger step callback
 		/// </summary>
 		private OriginalDebuggerEventHandler _debuggerStepCallback;
+
+		/// <summary>
+		/// Flag for whether to allow run the script in strict mode
+		/// </summary>
+		private bool _strictMode;
 
 		/// <summary>
 		/// Synchronizer of script execution
@@ -142,6 +147,7 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					_jsEngine.DebugHandler.Step += _debuggerStepCallback;
 				}
+				_strictMode = settings.StrictMode;
 			}
 			catch (Exception e)
 			{
@@ -353,7 +359,7 @@ namespace JavaScriptEngineSwitcher.Jint
 
 			try
 			{
-				parsedScript = OriginalEngine.PrepareScript(code, uniqueDocumentName);
+				parsedScript = OriginalEngine.PrepareScript(code, uniqueDocumentName, _strictMode);
 			}
 			catch (OriginalParserException e)
 			{
