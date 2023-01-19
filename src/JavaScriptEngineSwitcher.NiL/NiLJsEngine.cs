@@ -41,7 +41,7 @@ namespace JavaScriptEngineSwitcher.NiL
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "2.5.1600";
+		private const string EngineVersion = "2.5.1623";
 
 		/// <summary>
 		/// Regular expression for working with the syntax error message
@@ -201,7 +201,7 @@ namespace JavaScriptEngineSwitcher.NiL
 				}
 				else
 				{
-					string sourceCode = originalException.Code;
+					string sourceCode = originalException.SourceCode;
 					OriginalCodeCoordinates codeCoordinates = originalException.CodeCoordinates;
 					if (codeCoordinates != null)
 					{
