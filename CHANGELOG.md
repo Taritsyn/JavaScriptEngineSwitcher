@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.20.9 - January 19, 2022
+ * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2046
+ * In JavaScriptEngineSwitcher.NiL:
+   * NiL.JS was updated to version 2.5.1623
+   * Added support of .NET 7.0
+
 ## v3.20.8 - December 20, 2022
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2044
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.3.6 (support of V8 version 10.8.168.24)

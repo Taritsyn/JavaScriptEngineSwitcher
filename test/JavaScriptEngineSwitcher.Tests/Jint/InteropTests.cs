@@ -20,47 +20,6 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 		#region Embedding of objects
 
-		#region Objects with fields
-
-		[Fact]
-		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithFieldsIsCorrect()
-		{
-			// Arrange
-			var product = new Product
-			{
-				Name = "Red T-shirt",
-				Description = string.Empty,
-				Price = 995.00
-			};
-
-			const string updateCode = "product.Price *= 1.15;";
-
-			const string input1 = "product.Name";
-			const string targetOutput1 = "Red T-shirt";
-
-			const string input2 = "product.Price";
-			const double targetOutput2 = 1144.25;
-
-			// Act
-			string output1;
-			double output2;
-
-			using (var jsEngine = CreateJsEngine())
-			{
-				jsEngine.EmbedHostObject("product", product);
-				jsEngine.Execute(updateCode);
-
-				output1 = jsEngine.Evaluate<string>(input1);
-				output2 = jsEngine.Evaluate<double>(input2);
-			}
-
-			// Assert
-			Assert.Equal(targetOutput1, output1);
-			Assert.Equal(targetOutput2, output2);
-		}
-
-		#endregion
-
 		#region Delegates
 
 		[Fact]
@@ -335,45 +294,6 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		}
 
 		#endregion
-
-		#endregion
-
-		#endregion
-
-
-		#region Embedding of types
-
-		#region Types with methods
-
-		#if NET471
-		[Fact]
-		public override void EmbeddingOfBuiltinReferenceTypeWithMethodsIsCorrect()
-		{
-			// Arrange
-			Type mathType = typeof(Math);
-
-			const string input1 = "Math2.Max(5.37, 5.56)";
-			const double targetOutput1 = 5.56;
-
-			const string input2 = "Math2.Log10(23)";
-			const double targetOutput2 = 1.36172783601759;
-
-			// Act
-			double output1;
-			double output2;
-
-			using (var jsEngine = CreateJsEngine())
-			{
-				jsEngine.EmbedHostType("Math2", mathType);
-				output1 = Math.Round(jsEngine.Evaluate<double>(input1), 2);
-				output2 = Math.Round(jsEngine.Evaluate<double>(input2), 14);
-			}
-
-			// Assert
-			Assert.Equal(targetOutput1, output1);
-			Assert.Equal(targetOutput2, output2);
-		}
-		#endif
 
 		#endregion
 
