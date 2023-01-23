@@ -1,7 +1,10 @@
 Change log
 ==========
 
-## v3.20.9 - January 19, 2022
+## v3.20.10 - January 23, 2023
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.3.7 (support of V8 version 10.9.194.10)
+
+## v3.20.9 - January 19, 2023
  * In JavaScriptEngineSwitcher.Jint added support of Jint version 3.0.0 Beta 2046
  * In JavaScriptEngineSwitcher.NiL:
    * NiL.JS was updated to version 2.5.1623
