@@ -22,7 +22,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		#region Mapping of errors
 
 		[Fact]
-		public void MappingCompilationErrorDuringRecursiveEvaluationOfFilesIsCorrect()
+		public void MappingCompilationErrorDuringRecursiveEvaluationOfFiles()
 		{
 			// Arrange
 			const string directoryPath = "Files/recursive-evaluation/compilation-error";
@@ -64,7 +64,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringRecursiveEvaluationOfFilesIsCorrect()
+		public void MappingRuntimeErrorDuringRecursiveEvaluationOfFiles()
 		{
 			// Arrange
 			const string directoryPath = "Files/recursive-evaluation/runtime-error";
@@ -112,7 +112,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		}
 
 		[Fact]
-		public void MappingHostErrorDuringRecursiveEvaluationOfFilesIsCorrect()
+		public void MappingHostErrorDuringRecursiveEvaluationOfFiles()
 		{
 			// Arrange
 			const string directoryPath = "Files/recursive-evaluation/host-error";
@@ -160,7 +160,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		}
 
 		[Fact]
-		public void MappingCompilationErrorDuringRecursiveExecutionOfFilesIsCorrect()
+		public void MappingCompilationErrorDuringRecursiveExecutionOfFiles()
 		{
 			// Arrange
 			const string directoryPath = "Files/recursive-execution/compilation-error";
@@ -199,7 +199,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringRecursiveExecutionOfFilesIsCorrect()
+		public void MappingRuntimeErrorDuringRecursiveExecutionOfFiles()
 		{
 			// Arrange
 			const string directoryPath = "Files/recursive-execution/runtime-error";
@@ -244,7 +244,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		}
 
 		[Fact]
-		public void MappingHostErrorDuringRecursiveExecutionOfFilesIsCorrect()
+		public void MappingHostErrorDuringRecursiveExecutionOfFiles()
 		{
 			// Arrange
 			const string directoryPath = "Files/recursive-execution/host-error";

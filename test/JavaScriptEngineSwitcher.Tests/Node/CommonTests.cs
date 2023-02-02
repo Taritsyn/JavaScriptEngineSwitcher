@@ -19,11 +19,11 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 		#region Evaluation of scripts
 
 		[Fact]
-		public override void EvaluationOfExpressionWithUndefinedResultIsCorrect()
+		public override void EvaluationOfExpressionWithUndefinedResult()
 		{ }
 
 		[Fact]
-		public override void EvaluationOfExpressionWithNullResultIsCorrect()
+		public override void EvaluationOfExpressionWithNullResult()
 		{
 			// Arrange
 			const string input = "null";
@@ -46,7 +46,7 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 		#region Calling of functions
 
 		[Fact]
-		public override void CallingOfFunctionWithoutParametersIsCorrect()
+		public override void CallingOfFunctionWithoutParameters()
 		{
 			// Arrange
 			const string functionCode = @"function hooray() {
@@ -68,11 +68,11 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 		}
 
 		[Fact]
-		public override void CallingOfFunctionWithUndefinedResultIsCorrect()
+		public override void CallingOfFunctionWithUndefinedResult()
 		{ }
 
 		[Fact]
-		public override void CallingOfFunctionWithNullResultIsCorrect()
+		public override void CallingOfFunctionWithNullResult()
 		{
 			// Arrange
 			const string functionCode = @"function testNull(value) {
@@ -99,7 +99,7 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 		}
 
 		[Fact]
-		public override void CallingOfFunctionWithManyParametersIsCorrect()
+		public override void CallingOfFunctionWithManyParameters()
 		{ }
 
 		#endregion
@@ -107,11 +107,11 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 		#region Getting, setting and removing variables
 
 		[Fact]
-		public override void SettingAndGettingVariableWithUndefinedValueIsCorrect()
+		public override void SettingAndGettingVariableWithUndefinedValue()
 		{ }
 
 		[Fact]
-		public override void SettingAndGettingVariableWithNullValueIsCorrect()
+		public override void SettingAndGettingVariableWithNullValue()
 		{
 			// Arrange
 			const string variableName = "myVar2";
@@ -141,7 +141,7 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 		#region Mapping of errors
 
 		[Fact]
-		public void MappingCompilationErrorDuringEvaluationOfExpressionIsCorrect()
+		public void MappingCompilationErrorDuringEvaluationOfExpression()
 		{
 			// Arrange
 			const string input = @"var $variable1 = 611;
@@ -177,7 +177,7 @@ $variable1 + _variable2 - @variable3;";
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringEvaluationOfExpressionIsCorrect()
+		public void MappingRuntimeErrorDuringEvaluationOfExpression()
 		{
 			// Arrange
 			const string input = @"var $variable1 = 611;
@@ -214,7 +214,7 @@ $variable1 + -variable2 - variable3;";
 		}
 
 		[Fact]
-		public void MappingCompilationErrorDuringExecutionOfCodeIsCorrect()
+		public void MappingCompilationErrorDuringExecutionOfCode()
 		{
 			// Arrange
 			const string input = @"function factorial(value) {
@@ -256,7 +256,7 @@ factorial(0);";
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringExecutionOfCodeIsCorrect()
+		public void MappingRuntimeErrorDuringExecutionOfCode()
 		{
 			// Arrange
 			const string input = @"function factorial(value) {
@@ -306,7 +306,7 @@ factorial(0);";
 		}
 
 		[Fact]
-		public void MappingTimeoutErrorDuringExecutionOfCodeIsCorrect()
+		public void MappingTimeoutErrorDuringExecutionOfCode()
 		{
 			// Arrange
 			const string input = @"while (true);";
@@ -348,7 +348,7 @@ factorial(0);";
 		#region Generation of error messages
 
 		[Fact]
-		public void GenerationOfCompilationErrorMessageIsCorrect()
+		public void GenerationOfCompilationErrorMessage()
 		{
 			// Arrange
 			const string input = @"var arr = [];
@@ -378,7 +378,7 @@ var foo = 'Browser's bar';";
 		}
 
 		[Fact]
-		public void GenerationOfRuntimeErrorMessageIsCorrect()
+		public void GenerationOfRuntimeErrorMessage()
 		{
 			// Arrange
 			const string input = @"function foo(x, y) {

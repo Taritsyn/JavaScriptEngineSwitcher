@@ -7,7 +7,7 @@ namespace JavaScriptEngineSwitcher.Tests
 	public class ValidationTests
 	{
 		[Fact]
-		public void NameFormatIsCorrect()
+		public void CheckingOfCorrectNameFormat()
 		{
 			// Arrange
 
@@ -29,7 +29,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public void NameFormatIsWrong()
+		public void CheckingOfWrongNameFormat()
 		{
 			// Arrange
 
@@ -49,7 +49,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public void DocumentNameFormatIsCorrect()
+		public void CheckingOfCorrectDocumentNameFormat()
 		{
 			// Arrange
 
@@ -73,7 +73,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public void DocumentNameFormatIsWrong()
+		public void CheckingOfWrongDocumentNameFormat()
 		{
 			// Arrange
 

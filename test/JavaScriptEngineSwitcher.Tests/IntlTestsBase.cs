@@ -5,7 +5,7 @@ namespace JavaScriptEngineSwitcher.Tests
 	public abstract class IntlTestsBase : TestsBase
 	{
 		[Fact]
-		public virtual void DateTimeFormatConstructorIsSupported()
+		public virtual void SupportsDateTimeFormatConstructor()
 		{
 			// Arrange
 			const string functionCode = @"function formatDate(value, locale) {

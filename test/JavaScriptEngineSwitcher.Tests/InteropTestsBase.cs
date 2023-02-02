@@ -22,7 +22,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		#region Objects with fields
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithFieldsIsCorrect()
+		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithFields()
 		{
 			// Arrange
 			var date = new Date(2015, 12, 29);
@@ -59,7 +59,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeWithFieldsIsCorrect()
+		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeWithFields()
 		{
 			// Arrange
 			var product = new Product
@@ -101,7 +101,7 @@ product.Price *= 1.15;";
 		#region Objects with properties
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfBuiltinValueTypeWithPropertiesIsCorrect()
+		public virtual void EmbeddingOfInstanceOfBuiltinValueTypeWithProperties()
 		{
 			// Arrange
 			var timeSpan = new TimeSpan(4840780000000);
@@ -142,7 +142,7 @@ product.Price *= 1.15;";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfBuiltinReferenceTypeWithPropertiesIsCorrect()
+		public virtual void EmbeddingOfInstanceOfBuiltinReferenceTypeWithProperties()
 		{
 			// Arrange
 			var uri = new Uri("https://github.com/Taritsyn/MsieJavaScriptEngine");
@@ -177,7 +177,7 @@ product.Price *= 1.15;";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithPropertiesIsCorrect()
+		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithProperties()
 		{
 			// Arrange
 			var temperature = new Temperature(-17.3, TemperatureUnits.Celsius);
@@ -212,7 +212,7 @@ product.Price *= 1.15;";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeWithPropertiesIsCorrect()
+		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeWithProperties()
 		{
 			// Arrange
 			var person = new Person("Vanya", "Ivanov");
@@ -244,7 +244,7 @@ person.Patronymic = null;";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfAnonymousTypeWithPropertiesIsCorrect()
+		public virtual void EmbeddingOfInstanceOfAnonymousTypeWithProperties()
 		{
 			// Arrange
 			var person = new
@@ -312,7 +312,7 @@ person.Patronymic = null;";
 		#region Objects with methods
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfBuiltinValueTypeWithMethodsIsCorrect()
+		public virtual void EmbeddingOfInstanceOfBuiltinValueTypeWithMethods()
 		{
 			// Arrange
 			var color = Color.FromArgb(84, 139, 212);
@@ -347,7 +347,7 @@ person.Patronymic = null;";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfBuiltinReferenceTypeWithMethodIsCorrect()
+		public virtual void EmbeddingOfInstanceOfBuiltinReferenceTypeWithMethod()
 		{
 			// Arrange
 			var random = new Random();
@@ -369,7 +369,7 @@ person.Patronymic = null;";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithMethodsIsCorrect()
+		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithMethods()
 		{
 			// Arrange
 			var programmerDayDate = new Date(2015, 9, 13);
@@ -398,7 +398,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeWithMethodIsCorrect()
+		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeWithMethod()
 		{
 			// Arrange
 			var fileManager = new FileManager();
@@ -421,7 +421,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void CallingOfMethodOfCustomReferenceTypeWithInterfaceParameterIsCorrect()
+		public virtual void CallingOfMethodOfCustomReferenceTypeWithInterfaceParameter()
 		{
 			// Arrange
 			var animalTrainer = new AnimalTrainer();
@@ -457,7 +457,7 @@ smileDay.GetDayOfYear();";
 		#region Delegates
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfDelegateWithoutParametersIsCorrect()
+		public virtual void EmbeddingOfInstanceOfDelegateWithoutParameters()
 		{
 			// Arrange
 			var generateRandomStringFunc = new Func<string>(() =>
@@ -496,7 +496,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfDelegateWithOneParameterIsCorrect()
+		public virtual void EmbeddingOfInstanceOfDelegateWithOneParameter()
 		{
 			// Arrange
 			var squareFunc = new Func<int, int>(a => a * a);
@@ -518,7 +518,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfDelegateWithTwoParametersIsCorrect()
+		public virtual void EmbeddingOfInstanceOfDelegateWithTwoParameters()
 		{
 			// Arrange
 			var sumFunc = new Func<double, double, double>((a, b) => a + b);
@@ -540,7 +540,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfInstanceOfDelegateWithoutResultIsCorrect()
+		public virtual void EmbeddingOfInstanceOfDelegateWithoutResult()
 		{
 			// Arrange
 			var logBuilder = new StringBuilder();
@@ -661,7 +661,7 @@ smileDay.GetDayOfYear();";
 		#region Recursive calls
 
 		[Fact]
-		public virtual void RecursiveEvaluationOfFilesIsCorrect()
+		public virtual void RecursiveEvaluationOfFiles()
 		{
 			// Arrange
 			const string directoryPath = "Files/recursive-evaluation/no-error";
@@ -690,7 +690,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void RecursiveExecutionOfFilesIsCorrect()
+		public virtual void RecursiveExecutionOfFiles()
 		{
 			// Arrange
 			const string directoryPath = "Files/recursive-execution/no-error";
@@ -720,7 +720,7 @@ smileDay.GetDayOfYear();";
 		#region Removal
 
 		[Fact]
-		public virtual void RemovingOfEmbeddedInstanceOfCustomReferenceTypeIsCorrect()
+		public virtual void RemovingOfEmbeddedInstanceOfCustomReferenceType()
 		{
 			// Arrange
 			var person = new Person("Vasya", "Pupkin");
@@ -756,7 +756,7 @@ smileDay.GetDayOfYear();";
 		#region Creating of instances
 
 		[Fact]
-		public virtual void CreatingAnInstanceOfEmbeddedBuiltinValueTypeIsCorrect()
+		public virtual void CreatingAnInstanceOfEmbeddedBuiltinValueType()
 		{
 			// Arrange
 			Type pointType = typeof(Point);
@@ -778,7 +778,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void CreatingAnInstanceOfEmbeddedBuiltinReferenceTypeIsCorrect()
+		public virtual void CreatingAnInstanceOfEmbeddedBuiltinReferenceType()
 		{
 			// Arrange
 			Type uriType = typeof(Uri);
@@ -804,7 +804,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void CreatingAnInstanceOfEmbeddedCustomValueTypeIsCorrect()
+		public virtual void CreatingAnInstanceOfEmbeddedCustomValueType()
 		{
 			// Arrange
 			Type point3DType = typeof(Point3D);
@@ -826,7 +826,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void CreatingAnInstanceOfEmbeddedCustomReferenceTypeIsCorrect()
+		public virtual void CreatingAnInstanceOfEmbeddedCustomReferenceType()
 		{
 			// Arrange
 			Type personType = typeof(Person);
@@ -852,7 +852,7 @@ smileDay.GetDayOfYear();";
 		#region Types with constants
 
 		[Fact]
-		public virtual void EmbeddingOfBuiltinReferenceTypeWithConstantsIsCorrect()
+		public virtual void EmbeddingOfBuiltinReferenceTypeWithConstants()
 		{
 			// Arrange
 			Type mathType = typeof(Math);
@@ -881,7 +881,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfCustomValueTypeWithConstantsIsCorrect()
+		public virtual void EmbeddingOfCustomValueTypeWithConstants()
 		{
 			// Arrange
 			Type predefinedStringsType = typeof(PredefinedStrings);
@@ -916,7 +916,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfCustomReferenceTypeWithConstantIsCorrect()
+		public virtual void EmbeddingOfCustomReferenceTypeWithConstant()
 		{
 			// Arrange
 			Type base64EncoderType = typeof(Base64Encoder);
@@ -942,7 +942,7 @@ smileDay.GetDayOfYear();";
 		#region Types with fields
 
 		[Fact]
-		public virtual void EmbeddingOfBuiltinValueTypeWithFieldIsCorrect()
+		public virtual void EmbeddingOfBuiltinValueTypeWithField()
 		{
 			// Arrange
 			Type guidType = typeof(Guid);
@@ -964,7 +964,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfBuiltinReferenceTypeWithFieldIsCorrect()
+		public virtual void EmbeddingOfBuiltinReferenceTypeWithField()
 		{
 			// Arrange
 			Type bitConverterType = typeof(BitConverter);
@@ -986,7 +986,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfCustomValueTypeWithFieldIsCorrect()
+		public virtual void EmbeddingOfCustomValueTypeWithField()
 		{
 			// Arrange
 			Type point3DType = typeof(Point3D);
@@ -1008,7 +1008,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfCustomReferenceTypeWithFieldIsCorrect()
+		public virtual void EmbeddingOfCustomReferenceTypeWithField()
 		{
 			// Arrange
 			Type defaultLoggerType = typeof(DefaultLogger);
@@ -1039,7 +1039,7 @@ smileDay.GetDayOfYear();";
 		#region Types with properties
 
 		[Fact]
-		public virtual void EmbeddingOfBuiltinValueTypeWithPropertyIsCorrect()
+		public virtual void EmbeddingOfBuiltinValueTypeWithProperty()
 		{
 			// Arrange
 			Type colorType = typeof(Color);
@@ -1061,7 +1061,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfBuiltinReferenceTypeWithPropertyIsCorrect()
+		public virtual void EmbeddingOfBuiltinReferenceTypeWithProperty()
 		{
 			// Arrange
 			Type environmentType = typeof(Environment);
@@ -1083,7 +1083,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfCustomValueTypeWithPropertyIsCorrect()
+		public virtual void EmbeddingOfCustomValueTypeWithProperty()
 		{
 			// Arrange
 			Type dateType = typeof(Date);
@@ -1116,7 +1116,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfCustomReferenceTypeWithPropertyIsCorrect()
+		public virtual void EmbeddingOfCustomReferenceTypeWithProperty()
 		{
 			// Arrange
 			Type bundleTableType = typeof(BundleTable);
@@ -1145,7 +1145,7 @@ smileDay.GetDayOfYear();";
 		#region Types with methods
 
 		[Fact]
-		public virtual void EmbeddingOfBuiltinValueTypeWithMethodIsCorrect()
+		public virtual void EmbeddingOfBuiltinValueTypeWithMethod()
 		{
 			// Arrange
 			Type dateTimeType = typeof(DateTime);
@@ -1167,7 +1167,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfBuiltinReferenceTypeWithMethodsIsCorrect()
+		public virtual void EmbeddingOfBuiltinReferenceTypeWithMethods()
 		{
 			// Arrange
 			Type mathType = typeof(Math);
@@ -1195,7 +1195,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfCustomValueTypeWithMethodIsCorrect()
+		public virtual void EmbeddingOfCustomValueTypeWithMethod()
 		{
 			// Arrange
 			var dateType = typeof(Date);
@@ -1217,7 +1217,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddingOfCustomReferenceTypeWithMethodIsCorrect()
+		public virtual void EmbeddingOfCustomReferenceTypeWithMethod()
 		{
 			// Arrange
 			Type base64EncoderType = typeof(Base64Encoder);
@@ -1243,7 +1243,7 @@ smileDay.GetDayOfYear();";
 		#region Removal
 
 		[Fact]
-		public virtual void RemovingOfEmbeddedCustomReferenceTypeIsCorrect()
+		public virtual void RemovingOfEmbeddedCustomReferenceType()
 		{
 			// Arrange
 			Type personType = typeof(Person);

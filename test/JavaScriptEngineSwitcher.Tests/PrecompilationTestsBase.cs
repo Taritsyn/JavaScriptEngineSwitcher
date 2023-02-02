@@ -12,7 +12,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		#region Execution of precompiled scripts
 
 		[Fact]
-		public virtual void ExecutionOfPrecompiledCodeIsCorrect()
+		public virtual void ExecutionOfPrecompiledCode()
 		{
 			// Arrange
 			const string libraryCode = @"function declensionOfNumerals(number, titles) {
@@ -84,7 +84,7 @@ function declinationOfSeconds(number) {
 		}
 
 		[Fact]
-		public virtual void ExecutionOfPrecompiledFileIsCorrect()
+		public virtual void ExecutionOfPrecompiledFile()
 		{
 			// Arrange
 			const string filePath = "Files/declination-of-minutes.js";
@@ -134,7 +134,7 @@ function declinationOfSeconds(number) {
 		}
 
 		[Fact]
-		public virtual void ExecutionOfPrecompiledResourceByNameAndTypeIsCorrect()
+		public virtual void ExecutionOfPrecompiledResourceByNameAndType()
 		{
 			// Arrange
 			const string resourceName = "Resources.declination-of-hours.js";
@@ -184,7 +184,7 @@ function declinationOfSeconds(number) {
 		}
 
 		[Fact]
-		public virtual void ExecutionOfPrecompiledResourceByNameAndAssemblyIsCorrect()
+		public virtual void ExecutionOfPrecompiledResourceByNameAndAssembly()
 		{
 			// Arrange
 			const string resourceName = "JavaScriptEngineSwitcher.Tests.Resources.declination-of-days.js";

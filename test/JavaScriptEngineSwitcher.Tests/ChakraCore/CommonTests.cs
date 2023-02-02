@@ -20,7 +20,7 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 		#region Mapping of errors
 
 		[Fact]
-		public void MappingCompilationErrorDuringEvaluationOfExpressionIsCorrect()
+		public void MappingCompilationErrorDuringEvaluationOfExpression()
 		{
 			// Arrange
 			const string input = @"var $variable1 = 611;
@@ -56,7 +56,7 @@ $variable1 + _variable2 - @variable3;";
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringEvaluationOfExpressionIsCorrect()
+		public void MappingRuntimeErrorDuringEvaluationOfExpression()
 		{
 			// Arrange
 			const string input = @"var $variable1 = 611;
@@ -93,7 +93,7 @@ $variable1 + -variable2 - variable3;";
 		}
 
 		[Fact]
-		public void MappingCompilationErrorDuringExecutionOfCodeIsCorrect()
+		public void MappingCompilationErrorDuringExecutionOfCode()
 		{
 			// Arrange
 			const string input = @"function factorial(value) {
@@ -135,7 +135,7 @@ factorial(0);";
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringExecutionOfCodeIsCorrect()
+		public void MappingRuntimeErrorDuringExecutionOfCode()
 		{
 			// Arrange
 			const string input = @"function factorial(value) {
@@ -185,7 +185,7 @@ factorial(0);";
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringOutOfMemoryIsCorrect()
+		public void MappingRuntimeErrorDuringOutOfMemory()
 		{
 			// Arrange
 			const string input = @"var arr = [];
@@ -221,7 +221,7 @@ for (var i = 0; i < 10000; i++) {
 		}
 
 		[Fact]
-		public void MappingEngineLoadErrorDuringOutOfMemoryIsCorrect()
+		public void MappingEngineLoadErrorDuringOutOfMemory()
 		{
 			// Arrange
 			IJsEngine jsEngine = null;
@@ -257,7 +257,7 @@ for (var i = 0; i < 10000; i++) {
 		#region Generation of error messages
 
 		[Fact]
-		public void GenerationOfCompilationErrorMessageIsCorrect()
+		public void GenerationOfCompilationErrorMessage()
 		{
 			// Arrange
 			const string input = @"var arr = [];
@@ -287,7 +287,7 @@ var foo = 'Browser's bar';";
 		}
 
 		[Fact]
-		public void GenerationOfRuntimeErrorMessageIsCorrect()
+		public void GenerationOfRuntimeErrorMessage()
 		{
 			// Arrange
 			const string input = @"function foo(x, y) {

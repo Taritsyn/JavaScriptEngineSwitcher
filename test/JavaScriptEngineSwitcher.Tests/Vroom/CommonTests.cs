@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.Tests.Vroom
 		#region Evaluation of code
 
 		[Fact]
-		public override void EvaluationOfExpressionWithUndefinedResultIsCorrect()
+		public override void EvaluationOfExpressionWithUndefinedResult()
 		{ }
 
 		#endregion
@@ -25,7 +25,7 @@ namespace JavaScriptEngineSwitcher.Tests.Vroom
 		#region Calling of functions
 
 		[Fact]
-		public override void CallingOfFunctionWithUndefinedResultIsCorrect()
+		public override void CallingOfFunctionWithUndefinedResult()
 		{ }
 
 		#endregion
@@ -33,7 +33,7 @@ namespace JavaScriptEngineSwitcher.Tests.Vroom
 		#region Getting, setting and removing variables
 
 		[Fact]
-		public override void SettingAndGettingVariableWithUndefinedValueIsCorrect()
+		public override void SettingAndGettingVariableWithUndefinedValue()
 		{ }
 
 		#endregion
@@ -43,7 +43,7 @@ namespace JavaScriptEngineSwitcher.Tests.Vroom
 		#region Mapping of errors
 
 		[Fact]
-		public void MappingCompilationErrorDuringEvaluationOfExpressionIsCorrect()
+		public void MappingCompilationErrorDuringEvaluationOfExpression()
 		{
 			// Arrange
 			const string input = @"var $variable1 = 611;
@@ -79,7 +79,7 @@ $variable1 + _variable2 - @variable3;";
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringEvaluationOfExpressionIsCorrect()
+		public void MappingRuntimeErrorDuringEvaluationOfExpression()
 		{
 			// Arrange
 			const string input = @"var $variable1 = 611;
@@ -116,7 +116,7 @@ $variable1 + -variable2 - variable3;";
 		}
 
 		[Fact]
-		public void MappingCompilationErrorDuringExecutionOfCodeIsCorrect()
+		public void MappingCompilationErrorDuringExecutionOfCode()
 		{
 			// Arrange
 			const string input = @"function factorial(value) {
@@ -158,7 +158,7 @@ factorial(0);";
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringExecutionOfCodeIsCorrect()
+		public void MappingRuntimeErrorDuringExecutionOfCode()
 		{
 			// Arrange
 			const string input = @"function factorial(value) {
@@ -205,7 +205,7 @@ factorial(0);";
 		#region Generation of error messages
 
 		[Fact]
-		public void GenerationOfCompilationErrorMessageIsCorrect()
+		public void GenerationOfCompilationErrorMessage()
 		{
 			// Arrange
 			const string input = @"var arr = [];
@@ -235,7 +235,7 @@ var foo = 'Browser's bar';";
 		}
 
 		[Fact]
-		public void GenerationOfRuntimeErrorMessageIsCorrect()
+		public void GenerationOfRuntimeErrorMessage()
 		{
 			// Arrange
 			const string input = @"function foo(x, y) {

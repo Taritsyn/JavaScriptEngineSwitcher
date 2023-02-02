@@ -7,7 +7,7 @@ namespace JavaScriptEngineSwitcher.Tests
 	public class ErrorFormattingTests
 	{
 		[Fact]
-		public void GettingSourceFragmentFromLineIsCorrect()
+		public void GettingSourceFragmentFromLine()
 		{
 			// Arrange
 			const string input1 = "";

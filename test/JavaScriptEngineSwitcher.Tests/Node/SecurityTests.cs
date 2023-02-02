@@ -12,7 +12,7 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 
 
 		[Fact]
-		public void AccessToProcessIsRestricted()
+		public void AccessingToProcess()
 		{
 			// Arrange
 			const string input1 = @"typeof process === 'undefined';";

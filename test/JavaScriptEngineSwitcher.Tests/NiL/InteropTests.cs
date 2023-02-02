@@ -49,7 +49,7 @@ namespace JavaScriptEngineSwitcher.Tests.NiL
 		#region Types with methods
 
 		[Fact]
-		public override void EmbeddingOfBuiltinReferenceTypeWithMethodsIsCorrect()
+		public override void EmbeddingOfBuiltinReferenceTypeWithMethods()
 		{
 			// Arrange
 			Type mathType = typeof(Math);

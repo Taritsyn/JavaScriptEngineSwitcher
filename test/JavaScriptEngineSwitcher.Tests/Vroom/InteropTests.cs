@@ -12,36 +12,36 @@
 
 		#region Objects with fields
 
-		public override void EmbeddingOfInstanceOfCustomValueTypeWithFieldsIsCorrect()
+		public override void EmbeddingOfInstanceOfCustomValueTypeWithFields()
 		{ }
 
-		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithFieldsIsCorrect()
+		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithFields()
 		{ }
 
 		#endregion
 
 		#region Objects with methods
 
-		public override void EmbeddingOfInstanceOfBuiltinReferenceTypeWithMethodIsCorrect()
+		public override void EmbeddingOfInstanceOfBuiltinReferenceTypeWithMethod()
 		{ }
 
-		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithMethodIsCorrect()
+		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithMethod()
 		{ }
 
 		#endregion
 
 		#region Delegates
 
-		public override void EmbeddingOfInstanceOfDelegateWithoutParametersIsCorrect()
+		public override void EmbeddingOfInstanceOfDelegateWithoutParameters()
 		{ }
 
-		public override void EmbeddingOfInstanceOfDelegateWithOneParameterIsCorrect()
+		public override void EmbeddingOfInstanceOfDelegateWithOneParameter()
 		{ }
 
-		public override void EmbeddingOfInstanceOfDelegateWithTwoParametersIsCorrect()
+		public override void EmbeddingOfInstanceOfDelegateWithTwoParameters()
 		{ }
 
-		public override void EmbeddingOfInstanceOfDelegateWithoutResultIsCorrect()
+		public override void EmbeddingOfInstanceOfDelegateWithoutResult()
 		{ }
 
 		public override void EmbeddedInstanceOfDelegateHasFunctionPrototype()
@@ -57,10 +57,10 @@
 
 		#region Recursive calls
 
-		public override void RecursiveExecutionOfFilesIsCorrect()
+		public override void RecursiveExecutionOfFiles()
 		{ }
 
-		public override void RecursiveEvaluationOfFilesIsCorrect()
+		public override void RecursiveEvaluationOfFiles()
 		{ }
 
 		#endregion
@@ -72,17 +72,17 @@
 
 		#region Types with fields
 
-		public override void EmbeddingOfBuiltinValueTypeWithFieldIsCorrect()
+		public override void EmbeddingOfBuiltinValueTypeWithField()
 		{ }
 
-		public override void EmbeddingOfCustomReferenceTypeWithFieldIsCorrect()
+		public override void EmbeddingOfCustomReferenceTypeWithField()
 		{ }
 
 		#endregion
 
 		#region Types with methods
 
-		public override void EmbeddingOfBuiltinReferenceTypeWithMethodsIsCorrect()
+		public override void EmbeddingOfBuiltinReferenceTypeWithMethods()
 		{ }
 
 		#endregion

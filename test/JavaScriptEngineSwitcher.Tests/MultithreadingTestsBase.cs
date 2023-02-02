@@ -7,7 +7,7 @@ namespace JavaScriptEngineSwitcher.Tests
 	public abstract class MultithreadingTestsBase : TestsBase
 	{
 		[Fact]
-		public virtual void ExecutionOfCodeFromDifferentThreadsIsCorrect()
+		public virtual void ExecutionOfCodeFromDifferentThreads()
 		{
 			// Arrange
 			const string variableName = "foo";

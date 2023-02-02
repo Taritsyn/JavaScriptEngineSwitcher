@@ -11,7 +11,7 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 
 		#region Object methods
 
-		public override void ObjectCreateMethodIsSupported()
+		public override void SupportsObjectCreateMethod()
 		{ }
 
 		#endregion

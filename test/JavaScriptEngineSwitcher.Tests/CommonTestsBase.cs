@@ -13,7 +13,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		#region Creation of engines
 
 		[Fact]
-		public virtual void CreationOfEngineWithoutDisposingIsCorrect()
+		public virtual void CreationOfEngineWithoutDisposing()
 		{
 			IJsEngine jsEngine = CreateJsEngine();
 			jsEngine.Execute("var a = 1 + 1;");
@@ -24,7 +24,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		#region Evaluation of scripts
 
 		[Fact]
-		public virtual void EvaluationOfExpressionWithUndefinedResultIsCorrect()
+		public virtual void EvaluationOfExpressionWithUndefinedResult()
 		{
 			// Arrange
 			const string input = "undefined";
@@ -43,7 +43,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void EvaluationOfExpressionWithNullResultIsCorrect()
+		public virtual void EvaluationOfExpressionWithNullResult()
 		{
 			// Arrange
 			const string input = "null";
@@ -62,7 +62,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void EvaluationOfExpressionWithBooleanResultIsCorrect()
+		public virtual void EvaluationOfExpressionWithBooleanResult()
 		{
 			// Arrange
 			const string input1 = "7 > 5";
@@ -87,7 +87,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void EvaluationOfExpressionWithIntegerResultIsCorrect()
+		public virtual void EvaluationOfExpressionWithIntegerResult()
 		{
 			// Arrange
 			const string input = "7 * 8 - 20";
@@ -106,7 +106,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void EvaluationOfExpressionWithDoubleResultIsCorrect()
+		public virtual void EvaluationOfExpressionWithDoubleResult()
 		{
 			// Arrange
 			const string input = "Math.PI + 0.22";
@@ -125,7 +125,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void EvaluationOfExpressionWithStringResultIsCorrect()
+		public virtual void EvaluationOfExpressionWithStringResult()
 		{
 			// Arrange
 			const string input = "'Hello, ' + \"Vasya\" + '?';";
@@ -144,7 +144,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void EvaluationOfExpressionWithUnicodeStringResultIsCorrect()
+		public virtual void EvaluationOfExpressionWithUnicodeStringResult()
 		{
 			// Arrange
 			const string input = "'Привет, ' + \"Вася\" + '?';";
@@ -167,7 +167,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		#region Execution of scripts
 
 		[Fact]
-		public virtual void ExecutionOfCodeIsCorrect()
+		public virtual void ExecutionOfCode()
 		{
 			// Arrange
 			const string functionCode = @"function add(num1, num2) {
@@ -190,7 +190,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void ExecutionOfFileIsCorrect()
+		public virtual void ExecutionOfFile()
 		{
 			// Arrange
 			const string filePath = "Files/square.js";
@@ -211,7 +211,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void ExecutionOfResourceByNameAndTypeIsCorrect()
+		public virtual void ExecutionOfResourceByNameAndType()
 		{
 			// Arrange
 			const string resourceName = "Resources.cube.js";
@@ -232,7 +232,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void ExecutionOfResourceByNameAndAssemblyIsCorrect()
+		public virtual void ExecutionOfResourceByNameAndAssembly()
 		{
 			// Arrange
 			const string resourceName = "JavaScriptEngineSwitcher.Tests.Resources.power.js";
@@ -257,7 +257,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		#region Calling of functions
 
 		[Fact]
-		public virtual void CallingOfFunctionWithoutParametersIsCorrect()
+		public virtual void CallingOfFunctionWithoutParameters()
 		{
 			// Arrange
 			const string functionCode = @"function hooray() {
@@ -279,7 +279,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithUndefinedResultIsCorrect()
+		public virtual void CallingOfFunctionWithUndefinedResult()
 		{
 			// Arrange
 			const string functionCode = @"function testUndefined(value) {
@@ -305,7 +305,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithNullResultIsCorrect()
+		public virtual void CallingOfFunctionWithNullResult()
 		{
 			// Arrange
 			const string functionCode = @"function testNull(value) {
@@ -331,7 +331,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithBooleanResultIsCorrect()
+		public virtual void CallingOfFunctionWithBooleanResult()
 		{
 			// Arrange
 			const string functionCode = @"function inverse(value) {
@@ -354,7 +354,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithIntegerResultIsCorrect()
+		public virtual void CallingOfFunctionWithIntegerResult()
 		{
 			// Arrange
 			const string functionCode = @"function negate(value) {
@@ -377,7 +377,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithDoubleResultIsCorrect()
+		public virtual void CallingOfFunctionWithDoubleResult()
 		{
 			// Arrange
 			const string functionCode = @"function triple(value) {
@@ -400,7 +400,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithStringResultIsCorrect()
+		public virtual void CallingOfFunctionWithStringResult()
 		{
 			// Arrange
 			const string functionCode = @"function greeting(name) {
@@ -423,7 +423,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithUnicodeStringResultIsCorrect()
+		public virtual void CallingOfFunctionWithUnicodeStringResult()
 		{
 			// Arrange
 			const string functionCode = @"function privet(name) {
@@ -446,7 +446,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithManyParametersIsCorrect()
+		public virtual void CallingOfFunctionWithManyParameters()
 		{
 			// Arrange
 			const string functionCode = @"function determineArgumentsTypes() {
@@ -480,7 +480,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithManyParametersAndBooleanResultIsCorrect()
+		public virtual void CallingOfFunctionWithManyParametersAndBooleanResult()
 		{
 			// Arrange
 			const string functionCode = @"function and() {
@@ -518,7 +518,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithManyParametersAndIntegerResultIsCorrect()
+		public virtual void CallingOfFunctionWithManyParametersAndIntegerResult()
 		{
 			// Arrange
 			const string functionCode = @"function sum() {
@@ -548,7 +548,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithManyParametersAndDoubleResultIsCorrect()
+		public virtual void CallingOfFunctionWithManyParametersAndDoubleResult()
 		{
 			// Arrange
 			const string functionCode = @"function sum() {
@@ -578,7 +578,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithManyParametersAndStringResultIsCorrect()
+		public virtual void CallingOfFunctionWithManyParametersAndStringResult()
 		{
 			// Arrange
 			const string functionCode = @"function concatenate() {
@@ -608,7 +608,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithManyParametersAndUnicodeStringResultIsCorrect()
+		public virtual void CallingOfFunctionWithManyParametersAndUnicodeStringResult()
 		{
 			// Arrange
 			const string functionCode = @"function obedinit() {
@@ -638,7 +638,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void CallingOfFunctionWithNameContainingUnicodeCharactersIsCorrect()
+		public virtual void CallingOfFunctionWithNameContainingUnicodeCharacters()
 		{
 			// Arrange
 			const string functionCode = @"function сумма(число1, число2) {
@@ -665,7 +665,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		#region Getting, setting and removing variables
 
 		[Fact]
-		public virtual void SettingAndGettingVariableWithUndefinedValueIsCorrect()
+		public virtual void SettingAndGettingVariableWithUndefinedValue()
 		{
 			// Arrange
 			const string variableName = "myVar1";
@@ -688,7 +688,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void SettingAndGettingVariableWithNullValueIsCorrect()
+		public virtual void SettingAndGettingVariableWithNullValue()
 		{
 			// Arrange
 			const string variableName = "myVar2";
@@ -711,7 +711,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void SettingAndGettingVariableWithBooleanValueIsCorrect()
+		public virtual void SettingAndGettingVariableWithBooleanValue()
 		{
 			// Arrange
 			const string variableName = "isVisible";
@@ -745,7 +745,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void SettingAndGettingVariableWithIntegerValueIsCorrect()
+		public virtual void SettingAndGettingVariableWithIntegerValue()
 		{
 			// Arrange
 			const string variableName = "amount";
@@ -779,7 +779,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void SettingAndGettingVariableWithDoubleValueIsCorrect()
+		public virtual void SettingAndGettingVariableWithDoubleValue()
 		{
 			// Arrange
 			const string variableName = "price";
@@ -813,7 +813,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void SettingAndGettingVariableWithStringValueIsCorrect()
+		public virtual void SettingAndGettingVariableWithStringValue()
 		{
 			// Arrange
 			const string variableName = "word";
@@ -847,7 +847,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void SettingAndGettingVariableWithUnicodeStringValueIsCorrect()
+		public virtual void SettingAndGettingVariableWithUnicodeStringValue()
 		{
 			// Arrange
 			const string variableName = "slovo";
@@ -881,7 +881,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void SettingAndGettingVariableWithNameContainingUnicodeCharactersIsCorrect()
+		public virtual void SettingAndGettingVariableWithNameContainingUnicodeCharacters()
 		{
 			// Arrange
 			const string variableName = "слово";
@@ -915,7 +915,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void RemovingVariableIsCorrect()
+		public virtual void RemovingVariable()
 		{
 			// Arrange
 			const string variableName = "price";
@@ -939,7 +939,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
-		public virtual void RemovingVariableWithNameContainingUnicodeCharactersIsCorrect()
+		public virtual void RemovingVariableWithNameContainingUnicodeCharacters()
 		{
 			// Arrange
 			const string variableName = "цена";
@@ -967,7 +967,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		#region Script interruption
 
 		[Fact]
-		public virtual void ScriptInterruptionIsCorrect()
+		public virtual void ScriptInterruption()
 		{
 			// Arrange
 			const string sleepyСode = @"function sleep(millisecondsTimeout) {
@@ -1030,7 +1030,7 @@ sleep(5000);";
 		#region Garbage collection
 
 		[Fact]
-		public virtual void GarbageCollectionIsCorrect()
+		public virtual void GarbageCollection()
 		{
 			// Arrange
 			const string input = @"arr = []; for (i = 0; i < 1000000; i++) { arr.push(arr); }";

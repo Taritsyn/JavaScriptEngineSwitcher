@@ -19,7 +19,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 		#region Mapping of errors
 
 		[Fact]
-		public void MappingCompilationErrorDuringPrecompilationOfCodeIsCorrect()
+		public void MappingCompilationErrorDuringPrecompilationOfCode()
 		{
 			// Arrange
 			const string input = @"function guid() {
@@ -64,7 +64,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringExecutionOfPrecompiledCodeIsCorrect()
+		public void MappingRuntimeErrorDuringExecutionOfPrecompiledCode()
 		{
 			// Arrange
 			const string input = @"function getItem(items, itemIndex) {
@@ -117,7 +117,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 		#region Generation of error messages
 
 		[Fact]
-		public void GenerationOfCompilationErrorMessageIsCorrect()
+		public void GenerationOfCompilationErrorMessage()
 		{
 			// Arrange
 			const string input = @"function makeId(length) {
@@ -158,7 +158,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 		}
 
 		[Fact]
-		public void GenerationOfRuntimeErrorMessageIsCorrect()
+		public void GenerationOfRuntimeErrorMessage()
 		{
 			// Arrange
 			const string input = @"function getFullName(firstName, lastName) {

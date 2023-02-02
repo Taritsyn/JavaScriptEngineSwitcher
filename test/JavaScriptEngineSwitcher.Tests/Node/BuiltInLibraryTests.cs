@@ -14,7 +14,7 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 
 
 		[Fact]
-		public void RequireFunctionIsAvailable()
+		public void AccessingToRequireFunction()
 		{
 			// Arrange
 			var withoutBuiltinLibrary = new NodeSettings { UseBuiltinLibrary = false };
@@ -42,7 +42,7 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 		}
 
 		[Fact]
-		public void FileReadingIsCorrect()
+		public void ReadingOfFile()
 		{
 			// Arrange
 			const string input = @"let fs = require('fs');

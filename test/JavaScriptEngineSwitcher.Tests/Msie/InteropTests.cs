@@ -32,7 +32,7 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 		#region Mapping of errors
 
 		[Fact]
-		public void MappingRuntimeErrorDuringRecursiveEvaluationOfFilesIsCorrect()
+		public void MappingRuntimeErrorDuringRecursiveEvaluationOfFiles()
 		{
 			// Arrange
 			const string directoryPath = "Files/recursive-evaluation/runtime-error";

@@ -15,7 +15,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 
 		#region Objects with properties
 
-		public override void EmbeddingOfInstanceOfAnonymousTypeWithPropertiesIsCorrect()
+		public override void EmbeddingOfInstanceOfAnonymousTypeWithProperties()
 		{ }
 
 		#endregion
@@ -51,13 +51,13 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 
 		#region Types with constants
 
-		public override void EmbeddingOfBuiltinReferenceTypeWithConstantsIsCorrect()
+		public override void EmbeddingOfBuiltinReferenceTypeWithConstants()
 		{ }
 
-		public override void EmbeddingOfCustomValueTypeWithConstantsIsCorrect()
+		public override void EmbeddingOfCustomValueTypeWithConstants()
 		{ }
 
-		public override void EmbeddingOfCustomReferenceTypeWithConstantIsCorrect()
+		public override void EmbeddingOfCustomReferenceTypeWithConstant()
 		{ }
 
 		#endregion

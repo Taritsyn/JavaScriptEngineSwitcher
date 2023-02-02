@@ -7,7 +7,7 @@ namespace JavaScriptEngineSwitcher.Tests
 		#region Promises
 
 		[Fact]
-		public virtual void ExecutionOfPromisesIsCorrect()
+		public virtual void SupportsPromises()
 		{
 			// Arrange
 			const string input = @"var output = '',
