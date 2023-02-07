@@ -17,16 +17,6 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 
 		#region Embedding of objects
 
-		#region Delegates
-
-#if !NETCOREAPP
-		[Fact]
-		public override void EmbeddedInstanceOfDelegateHasFunctionPrototype()
-		{ }
-#endif
-
-		#endregion
-
 		#region Recursive calls
 
 		#region Mapping of errors
