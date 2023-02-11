@@ -15,9 +15,9 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 	/// time.
 	/// </para>
 	/// <para>
-	/// NOTE: A JavaScriptRuntime, unlike other objects in the Chakra hosting API, is not
+	/// NOTE: A <c>JsRuntime</c>, unlike other objects in the Chakra hosting API, is not
 	/// garbage collected since it contains the garbage collected heap itself. A runtime will
-	/// continue to exist until Dispose is called.
+	/// continue to exist until <c>Dispose</c> is called.
 	/// </para>
 	/// </remarks>
 	internal struct JsRuntime : IDisposable
@@ -121,7 +121,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// Creates a new runtime
 		/// </summary>
 		/// <param name="attributes">The attributes of the runtime to be created</param>
-		/// <param name="threadServiceCallback">The thread service for the runtime. Can be null</param>
+		/// <param name="threadServiceCallback">The thread service for the runtime. Can be <c>null</c></param>
 		/// <returns>The runtime created</returns>
 		public static JsRuntime Create(JsRuntimeAttributes attributes, JsThreadServiceCallback threadServiceCallback)
 		{
@@ -147,7 +147,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// Registering a memory allocation callback will cause the runtime to call back to the host
 		/// whenever it acquires memory from, or releases memory to, the OS. The callback routine is
 		/// called before the runtime memory manager allocates a block of memory. The allocation will
-		/// be rejected if the callback returns false. The runtime memory manager will also invoke the
+		/// be rejected if the callback returns <c>false</c>. The runtime memory manager will also invoke the
 		/// callback routine after freeing a block of memory, as well as after allocation failures.
 		/// </para>
 		/// <para>

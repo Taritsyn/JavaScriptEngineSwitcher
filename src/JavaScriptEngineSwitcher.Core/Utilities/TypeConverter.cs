@@ -50,7 +50,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <typeparam name="T">The type to convert the value to</typeparam>
 		/// <param name="value">The value to convert</param>
 		/// <param name="convertedValue">The value that has been converted to the target type</param>
-		/// <returns>Result of conversion (true - success; false - failure)</returns>
+		/// <returns>Result of conversion (<c>true</c> - success; <c>false</c> - failure)</returns>
 		public static bool TryConvertToType<T>(object value, out T convertedValue)
 		{
 			object resultValue;
@@ -68,7 +68,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <param name="value">The value to convert</param>
 		/// <param name="targetType">The type to convert the value to</param>
 		/// <param name="convertedValue">The value that has been converted to the target type</param>
-		/// <returns>Result of conversion (true - success; false - failure)</returns>
+		/// <returns>Result of conversion (<c>true</c> - success; <c>false</c> - failure)</returns>
 		public static bool TryConvertToType(object value, Type targetType, out object convertedValue)
 		{
 			bool result = ConvertObjectToType(value, targetType, false, out convertedValue);

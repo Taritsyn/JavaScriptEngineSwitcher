@@ -1,12 +1,12 @@
 ﻿namespace JavaScriptEngineSwitcher.Core
 {
 	/// <summary>
-	/// Represents an JS <code>undefined</code> type
+	/// Represents an JS <c>undefined</c> type
 	/// </summary>
 	public sealed class Undefined
 	{
 		/// <summary>
-		/// Gets a one and only <code>undefined</code> instance
+		/// Gets a one and only <c>undefined</c> instance
 		/// </summary>
 		public static readonly Undefined Value = new Undefined();
 

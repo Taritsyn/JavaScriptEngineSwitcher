@@ -14,10 +14,10 @@ namespace JavaScriptEngineSwitcher.Node
 	{
 		/// <summary>
 		/// Adds a instance of <see cref="NodeJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source)
 		{
 			if (source == null)
@@ -32,11 +32,11 @@ namespace JavaScriptEngineSwitcher.Node
 
 		/// <summary>
 		/// Adds a instance of <see cref="NodeJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="service">Node JS service</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			INodeJSService service)
 		{
@@ -57,11 +57,11 @@ namespace JavaScriptEngineSwitcher.Node
 
 		/// <summary>
 		/// Adds a instance of <see cref="NodeJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="services">The services available in the application</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			IServiceCollection services)
 		{
@@ -82,11 +82,11 @@ namespace JavaScriptEngineSwitcher.Node
 
 		/// <summary>
 		/// Adds a instance of <see cref="NodeJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="configure">The delegate to configure the provided <see cref="NodeSettings"/></param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			Action<NodeSettings> configure)
 		{
@@ -110,11 +110,11 @@ namespace JavaScriptEngineSwitcher.Node
 
 		/// <summary>
 		/// Adds a instance of <see cref="NodeJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="settings">Settings of the Node JS engine</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			NodeSettings settings)
 		{
@@ -135,12 +135,12 @@ namespace JavaScriptEngineSwitcher.Node
 
 		/// <summary>
 		/// Adds a instance of <see cref="NodeJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="service">Node JS service</param>
 		/// <param name="configure">The delegate to configure the provided <see cref="NodeSettings"/></param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			INodeJSService service, Action<NodeSettings> configure)
 		{
@@ -169,12 +169,12 @@ namespace JavaScriptEngineSwitcher.Node
 
 		/// <summary>
 		/// Adds a instance of <see cref="NodeJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="service">Node JS service</param>
 		/// <param name="settings">Settings of the Node JS engine</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			INodeJSService service, NodeSettings settings)
 		{
@@ -200,12 +200,12 @@ namespace JavaScriptEngineSwitcher.Node
 
 		/// <summary>
 		/// Adds a instance of <see cref="NodeJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="services">The services available in the application</param>
 		/// <param name="configure">The delegate to configure the provided <see cref="NodeSettings"/></param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			IServiceCollection services, Action<NodeSettings> configure)
 		{
@@ -234,12 +234,12 @@ namespace JavaScriptEngineSwitcher.Node
 
 		/// <summary>
 		/// Adds a instance of <see cref="NodeJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="services">The services available in the application</param>
 		/// <param name="settings">Settings of the Node JS engine</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			IServiceCollection services, NodeSettings settings)
 		{

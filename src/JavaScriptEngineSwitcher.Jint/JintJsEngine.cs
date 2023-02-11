@@ -645,41 +645,26 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		#region IJsEngine implementation
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
 		public override string Name
 		{
 			get { return EngineName; }
 		}
 
-		/// <summary>
-		/// Gets a version of original JS engine
-		/// </summary>
 		public override string Version
 		{
 			get { return EngineVersion; }
 		}
 
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports script pre-compilation
-		/// </summary>
 		public override bool SupportsScriptPrecompilation
 		{
 			get { return true; }
 		}
 
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports script interruption
-		/// </summary>
 		public override bool SupportsScriptInterruption
 		{
 			get { return true; }
 		}
 
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports garbage collection
-		/// </summary>
 		public override bool SupportsGarbageCollection
 		{
 			get { return false; }

@@ -23,7 +23,7 @@
 		InvalidArgument,
 
 		/// <summary>
-		/// An argument to a hosting API was null in a context where null is not allowed
+		/// An argument to a hosting API was <c>null</c> in a context where <c>null</c> is not allowed
 		/// </summary>
 		NullArgument,
 
@@ -125,19 +125,21 @@
 		InObjectBeforeCollectCallback,
 
 		/// <summary>
-		/// Object cannot be unwrapped to IInspectable pointer
+		/// Object cannot be unwrapped to <c>IInspectable</c> pointer
 		/// </summary>
 		ObjectNotInspectable,
 
 		/// <summary>
 		/// A hosting API that operates on symbol property ids but was called with a non-symbol property id.
-		/// The error code is returned by JsGetSymbolFromPropertyId if the function is called with non-symbol property id.
+		/// The error code is returned by <c>JsGetSymbolFromPropertyId</c> if the function is called with non-symbol
+		/// property id.
 		/// </summary>
 		PropertyNotSymbol,
 
 		/// <summary>
 		/// A hosting API that operates on string property ids but was called with a non-string property id.
-		/// The error code is returned by existing JsGetPropertyNamefromId if the function is called with non-string property id.
+		/// The error code is returned by existing <c>JsGetPropertyNamefromId</c> if the function is called with
+		/// non-string property id.
 		/// </summary>
 		PropertyNotString,
 
@@ -147,17 +149,17 @@
 		InvalidContext,
 
 		/// <summary>
-		/// The Module HostInfoKind provided was invalid
+		/// The Module <c>HostInfoKind</c> provided was invalid
 		/// </summary>
 		InvalidModuleHostInfoKind,
 
 		/// <summary>
-		/// Module was parsed already when JsParseModuleSource is called
+		/// Module was parsed already when <c>JsParseModuleSource</c> is called
 		/// </summary>
 		ModuleParsed,
 
 		/// <summary>
-		/// Argument passed to JsCreateWeakReference is a primitive that is not managed by the GC.
+		/// Argument passed to <c>JsCreateWeakReference</c> is a primitive that is not managed by the GC.
 		/// No weak reference is required, the value will never be collected.
 		/// </summary>
 		NoWeakRefRequired,
@@ -216,7 +218,7 @@
 		ScriptTerminated,
 
 		/// <summary>
-		/// A script was terminated because it tried to use <c>eval</c> or <c>function</c> and eval
+		/// A script was terminated because it tried to use <c>eval</c> or <c>Function</c> and <c>eval</c>
 		/// was disabled
 		/// </summary>
 		ScriptEvalDisabled,

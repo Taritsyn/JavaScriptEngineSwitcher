@@ -31,7 +31,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <summary>
 		/// Determines whether the current runtime is Mono
 		/// </summary>
-		/// <returns>true if the runtime is Mono; otherwise, false</returns>
+		/// <returns><c>true</c> if the runtime is Mono; otherwise, <c>false</c></returns>
 		public static bool IsMonoRuntime()
 		{
 			return _isMonoRuntime;
@@ -40,7 +40,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <summary>
 		/// Determines whether the current process is a 64-bit process
 		/// </summary>
-		/// <returns>true if the process is 64-bit; otherwise, false</returns>
+		/// <returns><c>true</c> if the process is 64-bit; otherwise, <c>false</c></returns>
 		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
 		public static bool Is64BitProcess()
 		{
@@ -59,7 +59,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <param name="resourceName">The case-sensitive resource name without the namespace of the specified type</param>
 		/// <param name="type">The type, that determines the assembly and whose namespace is used to scope
 		/// the resource name</param>
-		/// <returns>Сontent of the embedded resource as string</returns>
+		/// <returns>Content of the embedded resource as string</returns>
 		public static string GetResourceAsString(string resourceName, Type type)
 		{
 			if (resourceName == null)
@@ -102,7 +102,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// </summary>
 		/// <param name="resourceName">The case-sensitive resource name</param>
 		/// <param name="assembly">The assembly, which contains the embedded resource</param>
-		/// <returns>Сontent of the embedded resource as string</returns>
+		/// <returns>Content of the embedded resource as string</returns>
 		public static string GetResourceAsString(string resourceName, Assembly assembly)
 		{
 			if (resourceName == null)

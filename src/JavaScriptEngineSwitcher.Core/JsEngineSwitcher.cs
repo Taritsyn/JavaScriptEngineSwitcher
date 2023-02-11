@@ -71,18 +71,14 @@ namespace JavaScriptEngineSwitcher.Core
 
 		#region IJsEngineSwitcher implementation
 
-		/// <summary>
-		/// Gets or sets a name of default JS engine
-		/// </summary>
+		/// <inheritdoc/>
 		public string DefaultEngineName
 		{
 			get;
 			set;
 		}
 
-		/// <summary>
-		/// Gets a collection of JS engine factories
-		/// </summary>
+		/// <inheritdoc/>
 		public JsEngineFactoryCollection EngineFactories
 		{
 			get;
@@ -90,11 +86,7 @@ namespace JavaScriptEngineSwitcher.Core
 		}
 
 
-		/// <summary>
-		/// Creates a instance of JS engine
-		/// </summary>
-		/// <param name="name">JS engine name</param>
-		/// <returns>JS engine</returns>
+		/// <inheritdoc/>
 		public IJsEngine CreateEngine(string name)
 		{
 			IJsEngine engine;
@@ -113,10 +105,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return engine;
 		}
 
-		/// <summary>
-		/// Creates a instance of default JS engine
-		/// </summary>
-		/// <returns>JS engine</returns>
+		/// <inheritdoc/>
 		public IJsEngine CreateDefaultEngine()
 		{
 			string defaultJsEngineName = DefaultEngineName;

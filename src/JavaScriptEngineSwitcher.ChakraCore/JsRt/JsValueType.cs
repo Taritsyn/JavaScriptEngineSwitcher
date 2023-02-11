@@ -1,7 +1,7 @@
 ﻿namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 {
 	/// <summary>
-	/// The JavaScript type of a JavaScriptValue
+	/// The JavaScript type of a JavaScript value
 	/// </summary>
 	internal enum JsValueType
 	{
@@ -16,47 +16,47 @@
 		Null = 1,
 
 		/// <summary>
-		/// The value is a JavaScript number value
+		/// The value is a JavaScript <c>Number</c> value
 		/// </summary>
 		Number = 2,
 
 		/// <summary>
-		/// The value is a JavaScript string value
+		/// The value is a JavaScript <c>String</c> value
 		/// </summary>
 		String = 3,
 
 		/// <summary>
-		/// The value is a JavaScript Boolean value
+		/// The value is a JavaScript <c>Boolean</c> value
 		/// </summary>
 		Boolean = 4,
 
 		/// <summary>
-		/// The value is a JavaScript object value
+		/// The value is a JavaScript <c>Object</c> value
 		/// </summary>
 		Object = 5,
 
 		/// <summary>
-		/// The value is a JavaScript function object value
+		/// The value is a JavaScript <c>Function</c> object value
 		/// </summary>
 		Function = 6,
 
 		/// <summary>
-		/// The value is a JavaScript error object value
+		/// The value is a JavaScript <c>Error</c> object value
 		/// </summary>
 		Error = 7,
 
 		/// <summary>
-		/// The value is a JavaScript array object value
+		/// The value is a JavaScript <c>Array</c> object value
 		/// </summary>
 		Array = 8,
 
 		/// <summary>
-		/// The value is a JavaScript array object value
+		/// The value is a JavaScript <c>Symbol</c> object value
 		/// </summary>
 		Symbol = 9,
 
 		/// <summary>
-		/// The value is a JavaScript ArrayBuffer object value
+		/// The value is a JavaScript <c>ArrayBuffer</c> object value
 		/// </summary>
 		ArrayBuffer = 10,
 
@@ -66,7 +66,7 @@
 		TypedArray = 11,
 
 		/// <summary>
-		/// The value is a JavaScript DataView object value
+		/// The value is a JavaScript <c>DataView</c> object value
 		/// </summary>
 		DataView = 12
 	}

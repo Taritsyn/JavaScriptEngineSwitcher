@@ -12,7 +12,7 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 		/// </summary>
 		/// <param name="source">Instance of <see cref="String"/></param>
 		/// <param name="value">The string without quotes to seek</param>
-		/// <returns>true if the quoted value occurs within this string; otherwise, false</returns>
+		/// <returns><c>true</c> if the quoted value occurs within this string; otherwise, <c>false</c></returns>
 		public static bool ContainsQuotedValue(this string source, string value)
 		{
 			if (source == null)
@@ -89,7 +89,7 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 		/// <param name="result">When this method returns, contains the character from the string,
 		/// if the receiving succeeded, or null character if the receiving failed.
 		/// The receiving fails if the index out of bounds.</param>
-		/// <returns>true if the character was received successfully; otherwise, false</returns>
+		/// <returns><c>true</c> if the character was received successfully; otherwise, <c>false</c></returns>
 		internal static bool TryGetChar(this string source, int index, out char result)
 		{
 			if (source == null)

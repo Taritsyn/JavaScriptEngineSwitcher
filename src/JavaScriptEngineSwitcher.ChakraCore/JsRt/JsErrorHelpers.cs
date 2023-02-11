@@ -163,7 +163,7 @@
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript error object
+		/// Creates a new JavaScript <c>Error</c> object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -179,7 +179,7 @@
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript RangeError error object
+		/// Creates a new JavaScript <c>RangeError</c> error object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -195,7 +195,7 @@
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript ReferenceError error object
+		/// Creates a new JavaScript <c>ReferenceError</c> error object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -211,7 +211,7 @@
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript SyntaxError error object
+		/// Creates a new JavaScript <c>SyntaxError</c> error object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -227,7 +227,7 @@
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript TypeError error object
+		/// Creates a new JavaScript <c>TypeError</c> error object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -243,7 +243,7 @@
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript URIError error object
+		/// Creates a new JavaScript <c>URIError</c> error object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.

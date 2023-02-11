@@ -235,7 +235,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				set;
 			}
 
-			/// TODO: In future will need to change type to <code>double</code>
+			/// TODO: In future will need to change type to <c>double</c>
 			public ushort CompatibilityScore
 			{
 				get;

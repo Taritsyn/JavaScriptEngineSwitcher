@@ -7,7 +7,7 @@ using JavaScriptEngineSwitcher.Core;
 namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 {
 	/// <summary>
-	/// Extension methods for adding the JS engine switcher in an <see cref="IServiceCollection" />
+	/// Extension methods for adding the JS engine switcher in an <see cref="IServiceCollection"/>
 	/// </summary>
 	public static class JsEngineSwitcherServiceCollectionExtensions
 	{
@@ -15,7 +15,7 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 		/// Adds a default instance of JS engine switcher to <see cref="IServiceCollection"/>
 		/// </summary>
 		/// <param name="services">The services available in the application</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services)
 		{
 			return AddJsEngineSwitcher(services, (IJsEngineSwitcher)null);
@@ -26,7 +26,7 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 		/// </summary>
 		/// <param name="services">The services available in the application</param>
 		/// <param name="engineSwitcher">Instance of JS engine switcher</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services,
 			IJsEngineSwitcher engineSwitcher)
 		{
@@ -52,7 +52,7 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 		/// </summary>
 		/// <param name="services">The services available in the application</param>
 		/// <param name="configure">The <see cref="IJsEngineSwitcher"/> which need to be configured</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services,
 			Action<IJsEngineSwitcher> configure)
 		{
@@ -65,7 +65,7 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 		/// <param name="services">The services available in the application</param>
 		/// <param name="engineSwitcher">Instance of JS engine switcher</param>
 		/// <param name="configure">The <see cref="IJsEngineSwitcher"/> which need to be configured</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services,
 			IJsEngineSwitcher engineSwitcher, Action<IJsEngineSwitcher> configure)
 		{

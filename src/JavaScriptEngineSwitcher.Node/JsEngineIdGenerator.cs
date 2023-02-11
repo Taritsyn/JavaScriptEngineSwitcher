@@ -8,9 +8,9 @@ namespace JavaScriptEngineSwitcher.Node
 		// Base32 encoding - in ascii sort order for easy text based sorting
 		private static readonly char[] _encode32Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUV".ToCharArray();
 
-		// Seed the _lastId for this application instance with
+		// Seed the `_lastId` for this application instance with
 		// the number of 100-nanosecond intervals that have elapsed since 12:00:00 midnight, January 1, 0001
-		// for a roughly increasing _lastId over restarts
+		// for a roughly increasing `_lastId` over restarts
 		private static long _lastId = DateTime.UtcNow.Ticks;
 
 
@@ -37,7 +37,7 @@ namespace JavaScriptEngineSwitcher.Node
 			buffer[1] = encode32Chars[(id >> 55) & 31];
 			buffer[0] = encode32Chars[(id >> 60) & 31];
 
-			// string ctor overload that takes char*
+			// string `ctor` overload that takes `char*`
 			return new string(buffer, 0, 13);
 		}
 	}

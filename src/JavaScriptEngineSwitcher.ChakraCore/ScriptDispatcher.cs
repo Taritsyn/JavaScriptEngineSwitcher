@@ -56,7 +56,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// Constructs an instance of script dispatcher
 		/// </summary>
 		/// <param name="maxStackSize">The maximum stack size, in bytes, to be used by the thread,
-		/// or 0 to use the default maximum stack size specified in the header for the executable.</param>
+		/// or <c>0</c> to use the default maximum stack size specified in the header for the executable.</param>
 		public ScriptDispatcher(int maxStackSize)
 		{
 			_thread = new Thread(StartThread, maxStackSize)
@@ -150,7 +150,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		/// <summary>
 		/// Runs a specified delegate on the thread with modified stack size,
-		/// and returns its result as an <typeparamref name="T" />.
+		/// and returns its result as an <typeparamref name="T"/>.
 		/// Blocks until the invocation of delegate is completed.
 		/// </summary>
 		/// <typeparam name="T">The type of the return value of the method,
@@ -257,7 +257,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 			/// <summary>
 			/// Gets a exception, that occurred during the invocation of delegate.
-			/// If no exception has occurred, this will be null.
+			/// If no exception has occurred, this will be <c>null</c>.
 			/// </summary>
 			public Exception Exception
 			{

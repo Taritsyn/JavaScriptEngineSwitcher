@@ -7,7 +7,7 @@
 	/// by debuggable script contexts</param>
 	/// <param name="value">The script returned</param>
 	/// <param name="parseAttributes">Attribute mask for parsing the script</param>
-	/// <returns>true if the operation succeeded, false otherwise</returns>
+	/// <returns><c>true</c> if the operation succeeded, <c>false</c> otherwise</returns>
 	internal delegate bool JsSerializedLoadScriptCallback(JsSourceContext sourceContext,
 		out JsValue value, out JsParseScriptAttributes parseAttributes);
 }

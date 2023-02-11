@@ -38,7 +38,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// Gets a factory by JS engine name
 		/// </summary>
 		/// <param name="engineName">Name of JS engine</param>
-		/// <returns>Instance of corresponding JS engine factory or null if factory is not found</returns>
+		/// <returns>Instance of corresponding JS engine factory or <c>null</c> if factory is not found</returns>
 		public IJsEngineFactory Get(string engineName)
 		{
 			if (_factories.ContainsKey(engineName))

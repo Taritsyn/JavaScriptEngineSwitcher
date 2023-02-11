@@ -40,9 +40,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// Gets a name associated with the property ID
 		/// </summary>
 		/// <remarks>
-		/// <para>
 		/// Requires an active script context.
-		/// </para>
 		/// </remarks>
 		public string Name
 		{

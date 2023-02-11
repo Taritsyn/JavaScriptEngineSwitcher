@@ -11,10 +11,10 @@ namespace JavaScriptEngineSwitcher.V8
 	{
 		/// <summary>
 		/// Adds a instance of <see cref="V8JsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddV8(this JsEngineFactoryCollection source)
 		{
 			if (source == null)
@@ -27,11 +27,11 @@ namespace JavaScriptEngineSwitcher.V8
 
 		/// <summary>
 		/// Adds a instance of <see cref="V8JsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="configure">The delegate to configure the provided <see cref="V8Settings"/></param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddV8(this JsEngineFactoryCollection source,
 			Action<V8Settings> configure)
 		{
@@ -53,11 +53,11 @@ namespace JavaScriptEngineSwitcher.V8
 
 		/// <summary>
 		/// Adds a instance of <see cref="V8JsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="settings">Settings of the V8 JS engine</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddV8(this JsEngineFactoryCollection source,
 			V8Settings settings)
 		{

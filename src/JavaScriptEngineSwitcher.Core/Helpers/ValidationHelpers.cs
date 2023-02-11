@@ -46,7 +46,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// Checks whether supports a .NET type
 		/// </summary>
 		/// <param name="type">.NET type</param>
-		/// <returns>Result of check (true - is supported; false - is not supported)</returns>
+		/// <returns>Result of check (<c>true</c> - is supported; <c>false</c> - is not supported)</returns>
 		public static bool IsSupportedType(Type type)
 		{
 			bool result = _supportedTypes.Contains(type);
@@ -58,7 +58,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// Checks whether .NET type is primitive
 		/// </summary>
 		/// <param name="type">.NET type</param>
-		/// <returns>Result of check (true - is primitive; false - is not primitive)</returns>
+		/// <returns>Result of check (<c>true</c> - is primitive; <c>false</c> - is not primitive)</returns>
 		public static bool IsPrimitiveType(Type type)
 		{
 			TypeCode typeCode = type.GetTypeCode();
@@ -71,7 +71,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// Checks a format of the name
 		/// </summary>
 		/// <param name="name">The name</param>
-		/// <returns>Result of check (true - correct format; false - wrong format)</returns>
+		/// <returns>Result of check (<c>true</c> - correct format; <c>false</c> - wrong format)</returns>
 		public static bool CheckNameFormat(string name)
 		{
 			return _jsNameRegex.IsMatch(name);
@@ -81,7 +81,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// Checks a format of the document name
 		/// </summary>
 		/// <param name="name">The document name</param>
-		/// <returns>Result of check (true - correct format; false - wrong format)</returns>
+		/// <returns>Result of check (<c>true</c> - correct format; <c>false</c> - wrong format)</returns>
 		public static bool CheckDocumentNameFormat(string name)
 		{
 			return _documentNameRegex.IsMatch(name);

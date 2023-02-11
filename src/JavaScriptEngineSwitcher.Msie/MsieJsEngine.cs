@@ -452,41 +452,26 @@ namespace JavaScriptEngineSwitcher.Msie
 
 		#region IJsEngine implementation
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
 		public override string Name
 		{
 			get { return EngineName; }
 		}
 
-		/// <summary>
-		/// Gets a version of original JS engine
-		/// </summary>
 		public override string Version
 		{
 			get { return _engineVersion; }
 		}
 
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports script pre-сompilation
-		/// </summary>
 		public override bool SupportsScriptPrecompilation
 		{
 			get { return _jsEngine.SupportsScriptPrecompilation; }
 		}
 
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports script interruption
-		/// </summary>
 		public override bool SupportsScriptInterruption
 		{
 			get { return true; }
 		}
 
-		/// <summary>
-		/// Gets a value that indicates if the JS engine supports garbage collection
-		/// </summary>
 		public override bool SupportsGarbageCollection
 		{
 			get { return true; }

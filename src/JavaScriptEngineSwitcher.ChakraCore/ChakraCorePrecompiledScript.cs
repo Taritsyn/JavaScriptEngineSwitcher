@@ -113,7 +113,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// by debuggable script contexts</param>
 		/// <param name="value">The script returned</param>
 		/// <param name="parseAttributes">Attribute mask for parsing the script</param>
-		/// <returns>true if the operation succeeded, false otherwise</returns>
+		/// <returns><c>true</c> if the operation succeeded, <c>false</c> otherwise</returns>
 		private bool LoadScriptSourceCode(JsSourceContext sourceContext, out JsValue value,
 			out JsParseScriptAttributes parseAttributes)
 		{
@@ -149,9 +149,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 		#region IPrecompiledScript implementation
 
-		/// <summary>
-		/// Gets a name of JS engine for which the pre-compiled script was created
-		/// </summary>
+		/// <inheritdoc/>
 		public string EngineName
 		{
 			get { return ChakraCoreJsEngine.EngineName; }

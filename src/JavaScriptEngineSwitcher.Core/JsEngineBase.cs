@@ -97,16 +97,19 @@ namespace JavaScriptEngineSwitcher.Core
 
 		#region IJsEngine implementation
 
+		/// <inheritdoc/>
 		public abstract string Name
 		{
 			get;
 		}
 
+		/// <inheritdoc/>
 		public abstract string Version
 		{
 			get;
 		}
 
+		/// <inheritdoc/>
 		public virtual bool SupportsScriptPrecompilation
 		{
 			get
@@ -115,6 +118,7 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 		}
 
+		/// <inheritdoc/>
 		public virtual bool SupportsScriptInterruption
 		{
 			get
@@ -123,6 +127,7 @@ namespace JavaScriptEngineSwitcher.Core
 			}
 		}
 
+		/// <inheritdoc/>
 		public virtual bool SupportsGarbageCollection
 		{
 			get
@@ -132,6 +137,7 @@ namespace JavaScriptEngineSwitcher.Core
 		}
 
 
+		/// <inheritdoc/>
 		public virtual IPrecompiledScript Precompile(string code)
 		{
 			VerifyNotDisposed();
@@ -155,6 +161,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerPrecompile(code);
 		}
 
+		/// <inheritdoc/>
 		public virtual IPrecompiledScript Precompile(string code, string documentName)
 		{
 			VerifyNotDisposed();
@@ -187,6 +194,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerPrecompile(code, documentName);
 		}
 
+		/// <inheritdoc/>
 		public virtual IPrecompiledScript PrecompileFile(string path, Encoding encoding = null)
 		{
 			VerifyNotDisposed();
@@ -227,6 +235,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerPrecompile(code, path);
 		}
 
+		/// <inheritdoc/>
 		public virtual IPrecompiledScript PrecompileResource(string resourceName, Type type)
 		{
 			VerifyNotDisposed();
@@ -283,6 +292,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerPrecompile(code, resourceName);
 		}
 
+		/// <inheritdoc/>
 		public virtual IPrecompiledScript PrecompileResource(string resourceName, Assembly assembly)
 		{
 			VerifyNotDisposed();
@@ -331,6 +341,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerPrecompile(code, resourceName);
 		}
 
+		/// <inheritdoc/>
 		public virtual object Evaluate(string expression)
 		{
 			VerifyNotDisposed();
@@ -354,6 +365,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerEvaluate(expression);
 		}
 
+		/// <inheritdoc/>
 		public virtual object Evaluate(string expression, string documentName)
 		{
 			VerifyNotDisposed();
@@ -386,6 +398,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerEvaluate(expression, documentName);
 		}
 
+		/// <inheritdoc/>
 		public virtual T Evaluate<T>(string expression)
 		{
 			VerifyNotDisposed();
@@ -418,6 +431,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerEvaluate<T>(expression);
 		}
 
+		/// <inheritdoc/>
 		public virtual T Evaluate<T>(string expression, string documentName)
 		{
 			VerifyNotDisposed();
@@ -459,6 +473,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerEvaluate<T>(expression, documentName);
 		}
 
+		/// <inheritdoc/>
 		public virtual void Execute(string code)
 		{
 			VerifyNotDisposed();
@@ -482,6 +497,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerExecute(code);
 		}
 
+		/// <inheritdoc/>
 		public virtual void Execute(string code, string documentName)
 		{
 			VerifyNotDisposed();
@@ -514,6 +530,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerExecute(code, documentName);
 		}
 
+		/// <inheritdoc/>
 		public virtual void Execute(IPrecompiledScript precompiledScript)
 		{
 			VerifyNotDisposed();
@@ -538,6 +555,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerExecute(precompiledScript);
 		}
 
+		/// <inheritdoc/>
 		public virtual void ExecuteFile(string path, Encoding encoding = null)
 		{
 			VerifyNotDisposed();
@@ -578,6 +596,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerExecute(code, path);
 		}
 
+		/// <inheritdoc/>
 		public virtual void ExecuteResource(string resourceName, Type type)
 		{
 			VerifyNotDisposed();
@@ -634,6 +653,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerExecute(code, resourceName);
 		}
 
+		/// <inheritdoc/>
 		public virtual void ExecuteResource(string resourceName, Assembly assembly)
 		{
 			VerifyNotDisposed();
@@ -682,6 +702,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerExecute(code, resourceName);
 		}
 
+		/// <inheritdoc/>
 		public virtual object CallFunction(string functionName, params object[] args)
 		{
 			VerifyNotDisposed();
@@ -736,6 +757,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerCallFunction(functionName, args);
 		}
 
+		/// <inheritdoc/>
 		public virtual T CallFunction<T>(string functionName, params object[] args)
 		{
 			VerifyNotDisposed();
@@ -799,6 +821,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerCallFunction<T>(functionName, args);
 		}
 
+		/// <inheritdoc/>
 		public virtual bool HasVariable(string variableName)
 		{
 			VerifyNotDisposed();
@@ -830,6 +853,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerHasVariable(variableName);
 		}
 
+		/// <inheritdoc/>
 		public virtual object GetVariableValue(string variableName)
 		{
 			VerifyNotDisposed();
@@ -861,6 +885,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerGetVariableValue(variableName);
 		}
 
+		/// <inheritdoc/>
 		public virtual T GetVariableValue<T>(string variableName)
 		{
 			VerifyNotDisposed();
@@ -901,6 +926,7 @@ namespace JavaScriptEngineSwitcher.Core
 			return InnerGetVariableValue<T>(variableName);
 		}
 
+		/// <inheritdoc/>
 		public virtual void SetVariableValue(string variableName, object value)
 		{
 			VerifyNotDisposed();
@@ -946,6 +972,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerSetVariableValue(variableName, value);
 		}
 
+		/// <inheritdoc/>
 		public virtual void RemoveVariable(string variableName)
 		{
 			VerifyNotDisposed();
@@ -977,6 +1004,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerRemoveVariable(variableName);
 		}
 
+		/// <inheritdoc/>
 		public virtual void EmbedHostObject(string itemName, object value)
 		{
 			VerifyNotDisposed();
@@ -1028,6 +1056,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerEmbedHostObject(itemName, value);
 		}
 
+		/// <inheritdoc/>
 		public virtual void EmbedHostType(string itemName, Type type)
 		{
 			VerifyNotDisposed();
@@ -1075,6 +1104,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerEmbedHostType(itemName, type);
 		}
 
+		/// <inheritdoc/>
 		public virtual void Interrupt()
 		{
 			VerifyNotDisposed();
@@ -1082,6 +1112,7 @@ namespace JavaScriptEngineSwitcher.Core
 			InnerInterrupt();
 		}
 
+		/// <inheritdoc/>
 		public virtual void CollectGarbage()
 		{
 			VerifyNotDisposed();

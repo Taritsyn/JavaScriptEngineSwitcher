@@ -39,7 +39,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
-		/// Gets or sets a flag for whether to disable calls of <code>eval</code> function
+		/// Gets or sets a flag for whether to disable calls of <c>eval</c> function
 		/// </summary>
 		public bool DisableEval
 		{
@@ -67,7 +67,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
-		/// Gets or sets a flag for whether to disable Failfast fatal error on OOM
+		/// Gets or sets a flag for whether to disable <c>Failfast</c> fatal error on OOM
 		/// </summary>
 		public bool DisableFatalOnOOM
 		{
@@ -98,9 +98,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// Gets or sets a maximum stack size in bytes
 		/// </summary>
 		/// <remarks>
-		/// <para>Set a <code>0</code> to use the default maximum stack size specified in the header
+		/// Set a <c>0</c> to use the default maximum stack size specified in the header
 		/// for the executable.
-		/// </para>
 		/// </remarks>
 		public int MaxStackSize
 		{

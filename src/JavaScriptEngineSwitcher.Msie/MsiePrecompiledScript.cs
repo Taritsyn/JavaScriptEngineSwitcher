@@ -31,9 +31,7 @@ namespace JavaScriptEngineSwitcher.Msie
 
 		#region IPrecompiledScript implementation
 
-		/// <summary>
-		/// Gets a name of JS engine for which the pre-compiled script was created
-		/// </summary>
+		/// <inheritdoc/>
 		public string EngineName
 		{
 			get { return MsieJsEngine.EngineName; }

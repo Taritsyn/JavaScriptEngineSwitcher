@@ -16,8 +16,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 	/// The JavaScript value
 	/// </summary>
 	/// <remarks>
-	/// The JavaScript value is one of the following types of values: Undefined, Null, Boolean,
-	/// String, Number, or Object.
+	/// The JavaScript value is one of the following types of values: <c>undefined</c>, <c>null</c>, <c>Boolean</c>,
+	/// <c>String</c>, <c>Number</c>, or <c>Object</c>.
 	/// </remarks>
 	internal struct JsValue
 	{
@@ -382,8 +382,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <remarks>
 		/// Requires an active script context.
 		/// </remarks>
-		/// <param name="data">External data that the object will represent. May be null.</param>
-		/// <param name="finalizer">The callback for when the object is finalized. May be null.</param>
+		/// <param name="data">External data that the object will represent. May be <c>null</c>.</param>
+		/// <param name="finalizer">The callback for when the object is finalized. May be <c>null</c>.</param>
 		/// <returns>The new <c>Object</c></returns>
 		public static JsValue CreateExternalObject(IntPtr data, JsFinalizeCallback finalizer)
 		{
@@ -470,7 +470,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript error object
+		/// Creates a new JavaScript <c>Error</c> object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -486,7 +486,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript RangeError error object
+		/// Creates a new JavaScript <c>RangeError</c> error object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -502,7 +502,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript ReferenceError error object
+		/// Creates a new JavaScript <c>ReferenceError</c> error object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -518,7 +518,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript SyntaxError error object
+		/// Creates a new JavaScript <c>SyntaxError</c> error object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -534,7 +534,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript TypeError error object
+		/// Creates a new JavaScript <c>TypeError</c> error object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -550,7 +550,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		}
 
 		/// <summary>
-		/// Creates a new JavaScript URIError error object
+		/// Creates a new JavaScript <c>URIError</c> error object
 		/// </summary>
 		/// <remarks>
 		/// Requires an active script context.
@@ -570,8 +570,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </summary>
 		/// <remarks>
 		/// This only needs to be called on objects that are not going to be stored somewhere on
-		/// the stack. Calling AddRef ensures that the JavaScript object the value refers to will not be freed
-		/// until Release is called
+		/// the stack. Calling <c>AddRef</c> ensures that the JavaScript object the value refers to will not be freed
+		/// until <c>Release</c> is called
 		/// </remarks>
 		/// <returns>The object's new reference count</returns>
 		public uint AddRef()
@@ -586,7 +586,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// Releases a reference to the object
 		/// </summary>
 		/// <remarks>
-		/// Removes a reference that was created by AddRef.
+		/// Removes a reference that was created by <c>AddRef</c>.
 		/// </remarks>
 		/// <returns>The object's new reference count</returns>
 		public uint Release()
@@ -617,7 +617,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </summary>
 		/// <remarks>
 		/// <para>
-		/// This function retrieves the value of a Number value. It will fail with
+		/// This function retrieves the value of a <c>Number</c> value. It will fail with
 		/// <c>InvalidArgument</c> if the type of the value is not <c>Number</c>.
 		/// </para>
 		/// <para>
@@ -638,7 +638,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </summary>
 		/// <remarks>
 		/// <para>
-		/// This function retrieves the value of a Number value. It will fail with
+		/// This function retrieves the value of a <c>Number</c> value. It will fail with
 		/// <c>InvalidArgument</c> if the type of the value is not <c>Number</c>.
 		/// </para>
 		/// <para>
@@ -990,7 +990,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </summary>
 		/// <remarks>
 		/// <para>
-		/// This function is equivalent to the "==" operator in JavaScript.
+		/// This function is equivalent to the <c>==</c> operator in JavaScript.
 		/// </para>
 		/// <para>
 		/// Requires an active script context.
@@ -1011,7 +1011,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// </summary>
 		/// <remarks>
 		/// <para>
-		/// This function is equivalent to the "===" operator in JavaScript.
+		/// This function is equivalent to the <c>===</c> operator in JavaScript.
 		/// </para>
 		/// <para>
 		/// Requires an active script context.
@@ -1034,7 +1034,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// Requires an active script context.
 		/// </remarks>
 		/// <param name="arguments">The arguments to the call</param>
-		/// <returns>The <c>Value</c> returned from the function invocation, if any</returns>
+		/// <returns>The JavaScript value returned from the function invocation, if any</returns>
 		public JsValue CallFunction(params JsValue[] arguments)
 		{
 			JsValue returnReference;
@@ -1056,7 +1056,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// Requires an active script context.
 		/// </remarks>
 		/// <param name="arguments">The arguments to the call</param>
-		/// <returns>The <c>Value</c> returned from the function invocation</returns>
+		/// <returns>The JavaScript value returned from the function invocation</returns>
 		public JsValue ConstructObject(params JsValue[] arguments)
 		{
 			JsValue returnReference;

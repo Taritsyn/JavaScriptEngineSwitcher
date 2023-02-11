@@ -51,9 +51,8 @@ namespace JavaScriptEngineSwitcher.Msie
 		/// Gets or sets a maximum stack size in bytes
 		/// </summary>
 		/// <remarks>
-		/// <para>Set a <code>0</code> to use the default maximum stack size specified in the header
+		/// Set a <c>0</c> to use the default maximum stack size specified in the header
 		/// for the executable.
-		/// </para>
 		/// </remarks>
 		public int MaxStackSize
 		{

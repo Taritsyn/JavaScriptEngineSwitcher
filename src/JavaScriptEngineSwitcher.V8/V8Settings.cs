@@ -9,9 +9,11 @@ namespace JavaScriptEngineSwitcher.V8
 	{
 		/// <summary>
 		/// Gets or sets a flag for whether to the script engine is to wait for a debugger connection
-		/// and schedule a pause before executing the first line of application script code.
-		/// This property is ignored if value of the <see cref="EnableDebugging"/> property is false.
+		/// and schedule a pause before executing the first line of application script code
 		/// </summary>
+		/// <remarks>
+		/// This property is ignored if value of the <see cref="EnableDebugging"/> property is <c>false</c>.
+		/// </remarks>
 		public bool AwaitDebuggerAndPauseOnStart
 		{
 			get;
@@ -31,12 +33,10 @@ namespace JavaScriptEngineSwitcher.V8
 		/// Gets or sets a flag for whether to disable dynamic method binding
 		/// </summary>
 		/// <remarks>
-		/// <para>
 		/// When this property is set to <c>true</c>, the script engine bypasses the default method
 		/// binding algorithm and uses reflection-based method binding instead. This approach
 		/// abandons support for generic type inference and other features, but it avoids engaging
 		/// the dynamic infrastructure.
-		/// </para>
 		/// </remarks>
 		public bool DisableDynamicBinding
 		{
@@ -64,10 +64,12 @@ namespace JavaScriptEngineSwitcher.V8
 		}
 
 		/// <summary>
-		/// Gets or sets a flag for whether to enable remote script debugging.
-		/// This property is ignored if value of the <see cref="EnableDebugging"/>
-		/// property is false.
+		/// Gets or sets a flag for whether to enable remote script debugging
 		/// </summary>
+		/// <remarks>
+		/// This property is ignored if value of the <see cref="EnableDebugging"/>
+		/// property is <c>false</c>.
+		/// </remarks>
 		public bool EnableRemoteDebugging
 		{
 			get;
@@ -78,15 +80,13 @@ namespace JavaScriptEngineSwitcher.V8
 		/// Gets or sets a heap expansion multiplier
 		/// </summary>
 		/// <remarks>
-		/// <para>
-		/// When set to a value greater than 1, this property enables on-demand heap expansion,
+		/// When set to a value greater than <c>1</c>, this property enables on-demand heap expansion,
 		/// which automatically increases the maximum heap size by the specified multiplier
 		/// whenever the script engine is close to exceeding the current limit. Note that a buggy
 		/// or malicious script can still cause an application to fail by exhausting its address
 		/// space or total available memory. On-demand heap expansion is recommended for use in
 		/// conjunction with heap size monitoring (see <see cref="MaxHeapSize"/> property to help
 		/// contain runaway scripts).
-		/// </para>
 		/// </remarks>
 		public double HeapExpansionMultiplier
 		{
@@ -98,10 +98,8 @@ namespace JavaScriptEngineSwitcher.V8
 		/// Gets or sets a minimum time interval between consecutive heap size samples
 		/// </summary>
 		/// <remarks>
-		/// <para>
 		/// This property is effective only when heap size monitoring is enabled (see
 		/// <see cref="MaxHeapSize"/> property)
-		/// </para>
 		/// </remarks>
 		public TimeSpan HeapSizeSampleInterval
 		{
@@ -110,12 +108,12 @@ namespace JavaScriptEngineSwitcher.V8
 		}
 
 		/// <summary>
-		/// Gets or sets a maximum amount of <code>ArrayBuffer</code> memory the runtime may allocate
+		/// Gets or sets a maximum amount of <c>ArrayBuffer</c> memory the runtime may allocate
 		/// </summary>
 		/// <remarks>
-		/// This property is specified in bytes. <code>ArrayBuffer</code> memory is allocated outside
+		/// This property is specified in bytes. <c>ArrayBuffer</c> memory is allocated outside
 		/// the runtime's heap and released when its garbage collector reclaims the corresponding
-		/// JavaScript <code>ArrayBuffer</code> object. Leave this property at its default value to
+		/// JavaScript <c>ArrayBuffer</c> object. Leave this property at its default value to
 		/// enforce no limit.
 		/// </remarks>
 		public ulong MaxArrayBufferAllocation
@@ -155,7 +153,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// an exception.
 		/// </para>
 		/// <para>
-		/// Note that <code>ArrayBuffer</code> memory is allocated outside the runtime's heap and is
+		/// Note that <c>ArrayBuffer</c> memory is allocated outside the runtime's heap and is
 		/// therefore not tracked by heap size monitoring. See <see cref="MaxArrayBufferAllocation"/>
 		/// property for additional information.
 		/// </para>

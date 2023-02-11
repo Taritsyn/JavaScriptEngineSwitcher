@@ -16,7 +16,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 		/// Gets a value indicating whether the specified type is one of the numeric types
 		/// </summary>
 		/// <param name="type">The type</param>
-		/// <returns>true if the specified type is one of the numeric types; otherwise, false</returns>
+		/// <returns><c>true</c> if the specified type is one of the numeric types; otherwise, <c>false</c></returns>
 		public static bool IsNumericType(Type type)
 		{
 			TypeCode typeCode = type.GetTypeCode();

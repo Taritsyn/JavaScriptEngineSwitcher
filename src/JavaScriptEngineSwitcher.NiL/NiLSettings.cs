@@ -28,7 +28,7 @@ namespace JavaScriptEngineSwitcher.NiL
 		}
 
 		/// <summary>
-		/// Gets or sets a local time zone for the <code>Date</code> objects in the script
+		/// Gets or sets a local time zone for the <c>Date</c> objects in the script
 		/// </summary>
 		public TimeZoneInfo LocalTimeZone
 		{

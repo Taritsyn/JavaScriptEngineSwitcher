@@ -32,9 +32,7 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		#region IJsEngineFactory implementation
 
-		/// <summary>
-		/// Gets a name of JS engine
-		/// </summary>
+		/// <inheritdoc/>
 		public string EngineName
 		{
 			get { return JintJsEngine.EngineName; }

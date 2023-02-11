@@ -27,7 +27,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		AllowScriptInterrupt = 0x00000002,
 
 		/// <summary>
-		/// Host will call Idle, so enable idle processing. Otherwise, the runtime will manage
+		/// Host will call <c>Idle</c>, so enable idle processing. Otherwise, the runtime will manage
 		/// memory slightly more aggressively.
 		/// </summary>
 		EnableIdleProcessing = 0x00000004,
@@ -38,7 +38,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		DisableNativeCodeGeneration = 0x00000008,
 
 		/// <summary>
-		/// Using Eval or Function constructor will throw an exception
+		/// Using <c>eval</c> or <c>Function</c> constructor will throw an exception
 		/// </summary>
 		[SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Eval is a valid function name.")]
 		DisableEval = 0x00000010,

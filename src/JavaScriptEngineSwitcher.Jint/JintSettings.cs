@@ -10,7 +10,7 @@ namespace JavaScriptEngineSwitcher.Jint
 	public sealed class JintSettings
 	{
 		/// <summary>
-		/// Gets or sets a flag for whether to allow the <code>debugger</code> statement
+		/// Gets or sets a flag for whether to allow the <c>debugger</c> statement
 		/// to be called in a script
 		/// </summary>
 		[Obsolete("Use a `DebuggerStatementHandlingMode` property")]
@@ -30,7 +30,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 		/// <summary>
-		/// Gets or sets a handling mode for script <code>debugger</code> statements
+		/// Gets or sets a handling mode for script <c>debugger</c> statements
 		/// </summary>
 		public JsDebuggerStatementHandlingMode DebuggerStatementHandlingMode
 		{
@@ -57,7 +57,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 		/// <summary>
-		/// Gets or sets a local time zone for the <code>Date</code> objects in the script
+		/// Gets or sets a local time zone for the <c>Date</c> objects in the script
 		/// </summary>
 		public TimeZoneInfo LocalTimeZone
 		{
@@ -76,8 +76,8 @@ namespace JavaScriptEngineSwitcher.Jint
 
 		/// <summary>
 		/// Gets or sets a maximum allowed depth of recursion:
-		///    -1 - recursion without limits;
-		///     N - one scope function can be called no more than N times.
+		///    <c>-1</c> - recursion without limits;
+		///     <c>N</c> - one scope function can be called no more than <c>N</c> times.
 		/// </summary>
 		public int MaxRecursionDepth
 		{
@@ -104,10 +104,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 		/// <summary>
-		/// Gets or sets a timeout interval for regular expressions.
-		/// If the value of this property is null, then the value of regular expression
-		/// timeout interval are taken from the <see cref="TimeoutInterval"/> property.
+		/// Gets or sets a timeout interval for regular expressions
 		/// </summary>
+		/// <remarks>
+		/// If the value of this property is <c>null</c>, then the value of regular expression
+		/// timeout interval are taken from the <see cref="TimeoutInterval"/> property.
+		/// </remarks>
 		public TimeSpan? RegexTimeoutInterval
 		{
 			get;

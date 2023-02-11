@@ -314,10 +314,10 @@ namespace JavaScriptEngineSwitcher.Core
 		T CallFunction<T>(string functionName, params object[] args);
 
 		/// <summary>
-		/// Сhecks for the existence of a variable
+		/// Checks for the existence of a variable
 		/// </summary>
 		/// <param name="variableName">Variable name</param>
-		/// <returns>Result of check (true - exists; false - not exists</returns>
+		/// <returns>Result of check (<c>true</c> - exists; <c>false</c> - not exists</returns>
 		/// <exception cref="ObjectDisposedException"/>
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
@@ -376,9 +376,11 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <summary>
 		/// Embeds a host object to script code
 		/// </summary>
+		/// <remarks>
+		/// Allows to embed instances of simple classes (or structures) and delegates.
+		/// </remarks>
 		/// <param name="itemName">The name for the new global variable or function that will represent the object</param>
 		/// <param name="value">The object to expose</param>
-		/// <remarks>Allows to embed instances of simple classes (or structures) and delegates.</remarks>
 		/// <exception cref="ObjectDisposedException"/>
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>
@@ -388,12 +390,12 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <summary>
 		/// Embeds a host type to script code
 		/// </summary>
-		/// <param name="itemName">The name for the new global variable that will represent the type</param>
-		/// <param name="type">The type to expose</param>
 		/// <remarks>
 		/// Host types are exposed to script code in the form of objects whose properties and
 		/// methods are bound to the type's static members.
 		/// </remarks>
+		/// <param name="itemName">The name for the new global variable that will represent the type</param>
+		/// <param name="type">The type to expose</param>
 		/// <exception cref="ObjectDisposedException"/>
 		/// <exception cref="ArgumentNullException"/>
 		/// <exception cref="ArgumentException"/>

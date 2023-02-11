@@ -11,10 +11,10 @@ namespace JavaScriptEngineSwitcher.Vroom
 	{
 		/// <summary>
 		/// Adds a instance of <see cref="VroomJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddVroom(this JsEngineFactoryCollection source)
 		{
 			if (source == null)
@@ -27,11 +27,11 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		/// <summary>
 		/// Adds a instance of <see cref="VroomJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="configure">The delegate to configure the provided <see cref="VroomSettings"/></param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddVroom(this JsEngineFactoryCollection source,
 			Action<VroomSettings> configure)
 		{
@@ -53,11 +53,11 @@ namespace JavaScriptEngineSwitcher.Vroom
 
 		/// <summary>
 		/// Adds a instance of <see cref="VroomJsEngineFactory"/> to
-		/// the specified <see cref="JsEngineFactoryCollection" />
+		/// the specified <see cref="JsEngineFactoryCollection"/>
 		/// </summary>
-		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection" /></param>
+		/// <param name="source">Instance of <see cref="JsEngineFactoryCollection"/></param>
 		/// <param name="settings">Settings of the Vroom JS engine</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection" /></returns>
+		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddVroom(this JsEngineFactoryCollection source,
 			VroomSettings settings)
 		{

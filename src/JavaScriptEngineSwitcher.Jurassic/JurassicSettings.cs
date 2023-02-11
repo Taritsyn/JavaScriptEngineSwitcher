@@ -12,9 +12,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// that are passed or returned to script code, to script arrays
 		/// </summary>
 		/// <remarks>
-		/// <para>This property does not allow the embedding of host collections by
+		/// This property does not allow the embedding of host collections by
 		/// using a <see cref="JavaScriptEngineSwitcher.Core.IJsEngine.EmbedHostObject"/>
-		/// method, it only affects the internal mechanisms of the Jurassic library.</para>
+		/// method, it only affects the internal mechanisms of the Jurassic library.
 		/// </remarks>
 		public bool EnableHostCollectionsEmbeddingByValue
 		{
