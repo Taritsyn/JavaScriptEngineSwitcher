@@ -33,7 +33,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt.Embedding
 		/// <summary>
 		/// Flag indicating whether this object is disposed
 		/// </summary>
-		private readonly InterlockedStatedFlag _disposedFlag = new InterlockedStatedFlag();
+		private InterlockedStatedFlag _disposedFlag = new InterlockedStatedFlag();
 
 		/// <summary>
 		/// Gets a host type

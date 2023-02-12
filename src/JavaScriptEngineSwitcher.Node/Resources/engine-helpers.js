@@ -36,7 +36,7 @@ module.exports = {
 		callback(null);
 	},
 
-	removeСontext: (callback, engineId) => {
+	removeContext: (callback, engineId) => {
 		contexts.delete(engineId);
 		callback(null);
 	},

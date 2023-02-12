@@ -588,7 +588,7 @@ namespace JavaScriptEngineSwitcher.Node
 		{
 			if (_disposedFlag.Set())
 			{
-				InvokeEngineHelper("removeСontext", new[] { _engineId });
+				InvokeEngineHelper("removeContext", new[] { _engineId });
 				_jsService = null;
 			}
 		}

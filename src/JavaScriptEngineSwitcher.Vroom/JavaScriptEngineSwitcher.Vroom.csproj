@@ -65,7 +65,7 @@ For correct working of the VroomJs on Windows require the Visual C++ Redistribut
     </Content>
   </ItemGroup>
 
-  <Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
+  <Target Name="ConvertResxToCs" BeforeTargets="BeforeCompile">
     <ResxToCsTask InputDirectory="./Resources/" Namespace="$(RootNamespace).Resources" InternalAccessModifier="true" />
   </Target>
 

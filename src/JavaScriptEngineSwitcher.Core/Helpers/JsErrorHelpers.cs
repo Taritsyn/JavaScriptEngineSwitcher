@@ -40,11 +40,6 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				@"(?: -> (?<sourceFragment>[^\n\r]+))?$");
 
 		/// <summary>
-		/// Regular expression for working with a line break
-		/// </summary>
-		private static readonly Regex _lineBreakRegex = new Regex("\r\n|\n|\r");
-
-		/// <summary>
 		/// Parses a string representation of the script error location to produce an array of
 		/// <see cref="ErrorLocationItem"/> instances
 		/// </summary>

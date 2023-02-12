@@ -338,7 +338,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Сannot execute a '{0}' file, because it is empty."
+		/// Looks up a localized string similar to "Cannot execute a '{0}' file, because it is empty."
 		/// </summary>
 		public static string Usage_CannotExecuteEmptyFile
 		{
@@ -346,7 +346,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Сannot execute a '{0}' resource, because it is empty."
+		/// Looks up a localized string similar to "Cannot execute a '{0}' resource, because it is empty."
 		/// </summary>
 		public static string Usage_CannotExecuteEmptyResource
 		{
@@ -354,7 +354,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Сannot execute a pre-compiled script, because it was created for another JS engine with name `{0}`."
+		/// Looks up a localized string similar to "Cannot execute a pre-compiled script, because it was created for another JS engine with name `{0}`."
 		/// </summary>
 		public static string Usage_CannotExecutePrecompiledScriptForAnotherJsEngine
 		{
@@ -362,7 +362,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Сannot pre-compile a '{0}' file, because it is empty."
+		/// Looks up a localized string similar to "Cannot pre-compile a '{0}' file, because it is empty."
 		/// </summary>
 		public static string Usage_CannotPrecompileEmptyFile
 		{
@@ -370,7 +370,7 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Сannot pre-compile a '{0}' resource, because it is empty."
+		/// Looks up a localized string similar to "Cannot pre-compile a '{0}' resource, because it is empty."
 		/// </summary>
 		public static string Usage_CannotPrecompileEmptyResource
 		{

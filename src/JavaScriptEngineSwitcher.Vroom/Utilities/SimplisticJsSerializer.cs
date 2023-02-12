@@ -15,10 +15,7 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 	/// </summary>
 	internal static class SimplisticJsSerializer
 	{
-		private static bool JsEncodeAmpersand
-		{
-			get { return true; }
-		}
+		private const bool JsEncodeAmpersand = true;
 
 
 		/// <summary>
