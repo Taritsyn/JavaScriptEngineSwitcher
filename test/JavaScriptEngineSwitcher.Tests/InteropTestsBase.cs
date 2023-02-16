@@ -421,7 +421,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void CallingOfMethodOfCustomReferenceTypeWithInterfaceParameter()
+		public virtual void EmbeddingOfInstancesOfCustomReferenceTypesAndCallingOfMethodOfWithInterfaceParameter()
 		{
 			// Arrange
 			var animalTrainer = new AnimalTrainer();
@@ -450,6 +450,28 @@ smileDay.GetDayOfYear();";
 			// Assert
 			Assert.Equal(targetOutput1, output1);
 			Assert.Equal(targetOutput2, output2);
+		}
+
+		[Fact]
+		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			var cat = new Cat();
+
+			const string input = "cat.GetType();";
+			string targetOutput = typeof(Cat).FullName;
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("cat", cat);
+				output = jsEngine.Evaluate<string>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
@@ -586,7 +608,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void EmbeddedInstanceOfDelegateHasFunctionPrototype()
+		public virtual void EmbeddingOfInstanceOfDelegateAndCheckingItsPrototype()
 		{
 			// Arrange
 			var someFunc = new Func<int>(() => 42);
@@ -607,7 +629,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void CallingOfEmbeddedDelegateWithMissingParameter()
+		public virtual void EmbeddingOfInstanceOfDelegateAndCallingItWithMissingParameter()
 		{
 			// Arrange
 			var sumFunc = new Func<int, int, int>((a, b) => a + b);
@@ -635,7 +657,7 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
-		public virtual void CallingOfEmbeddedDelegateWithExtraParameter()
+		public virtual void EmbeddingOfInstanceOfDelegateAndCallingItWithExtraParameter()
 		{
 			// Arrange
 			var sumFunc = new Func<int, int, int>((a, b) => a + b);
@@ -650,6 +672,29 @@ smileDay.GetDayOfYear();";
 			{
 				jsEngine.EmbedHostObject("sum", sumFunc);
 				output = jsEngine.Evaluate<int>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public virtual void EmbeddingOfInstanceOfDelegateAndGettingItsMethodProperty()
+		{
+			// Arrange
+			var cat = new Cat();
+			var cryFunc = new Func<string>(cat.Cry);
+
+			const string input = "cry.Method;";
+			string targetOutput = "undefined";
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("cry", cryFunc);
+				output = jsEngine.Evaluate<string>(input);
 			}
 
 			// Assert
@@ -840,6 +885,49 @@ smileDay.GetDayOfYear();";
 			using (var jsEngine = CreateJsEngine())
 			{
 				jsEngine.EmbedHostType("Person", personType);
+				output = jsEngine.Evaluate<string>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public virtual void CreatingAnInstanceOfEmbeddedBuiltinExceptionAndGettingItsTargetSiteProperty()
+		{
+			// Arrange
+			Type invalidOperationExceptionType = typeof(InvalidOperationException);
+
+			const string input = "new InvalidOperationError(\"A terrible thing happened!\").TargetSite;";
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostType("InvalidOperationError", invalidOperationExceptionType);
+				output = jsEngine.Evaluate<string>(input);
+			}
+
+			// Assert
+			Assert.Null(output);
+		}
+
+		[Fact]
+		public virtual void CreatingAnInstanceOfEmbeddedCustomExceptionAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			Type loginFailedExceptionType = typeof(LoginFailedException);
+
+			const string input = "new LoginFailedError(\"Wrong password entered!\").GetType();";
+			string targetOutput = loginFailedExceptionType.FullName;
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostType("LoginFailedError", loginFailedExceptionType);
 				output = jsEngine.Evaluate<string>(input);
 			}
 

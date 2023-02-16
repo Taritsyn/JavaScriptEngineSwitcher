@@ -7,6 +7,7 @@ using Xunit;
 using JavaScriptEngineSwitcher.Core;
 
 using JavaScriptEngineSwitcher.Tests.Interop;
+using JavaScriptEngineSwitcher.Tests.Interop.Animals;
 
 namespace JavaScriptEngineSwitcher.Tests.Jint
 {
@@ -20,10 +21,44 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 		#region Embedding of objects
 
+		#region Objects with methods
+
+		[Fact]
+		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			var cat = new Cat();
+
+			const string input = "cat.GetType();";
+
+			// Act
+			JsRuntimeException exception = null;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				try
+				{
+					jsEngine.EmbedHostObject("cat", cat);
+					jsEngine.Evaluate<string>(input);
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Property 'GetType' of object is not a function", exception.Description);
+		}
+
+		#endregion
+
 		#region Delegates
 
 		[Fact]
-		public override void CallingOfEmbeddedDelegateWithMissingParameter()
+		public override void EmbeddingOfInstanceOfDelegateAndCallingItWithMissingParameter()
 		{
 			// Arrange
 			var sumFunc = new Func<int, int, int>((a, b) => a + b);
@@ -294,6 +329,45 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		}
 
 		#endregion
+
+		#endregion
+
+		#endregion
+
+
+		#region Embedding of types
+
+		#region Creating of instances
+
+		[Fact]
+		public override void CreatingAnInstanceOfEmbeddedCustomExceptionAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			Type loginFailedExceptionType = typeof(LoginFailedException);
+
+			const string input = "new LoginFailedError(\"Wrong password entered!\").GetType();";
+
+			// Act
+			JsRuntimeException exception = null;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				try
+				{
+					jsEngine.EmbedHostType("LoginFailedError", loginFailedExceptionType);
+					jsEngine.Evaluate<string>(input);
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Property 'GetType' of object is not a function", exception.Description);
+		}
 
 		#endregion
 

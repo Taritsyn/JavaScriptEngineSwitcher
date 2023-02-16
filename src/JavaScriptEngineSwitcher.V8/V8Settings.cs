@@ -8,6 +8,20 @@ namespace JavaScriptEngineSwitcher.V8
 	public sealed class V8Settings
 	{
 		/// <summary>
+		/// Gets or sets a flag for whether to allow the usage of reflection API in the script code
+		/// </summary>
+		/// <remarks>
+		/// This affects <see cref="Object.GetType"/>, <see cref="Exception.GetType"/>,
+		/// <see cref="Exception.TargetSite"/> and <see cref="Delegate.Method"/>.
+		/// By default, any attempt to access these members from the script code will throw an exception.
+		/// </remarks>
+		public bool AllowReflection
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to the script engine is to wait for a debugger connection
 		/// and schedule a pause before executing the first line of application script code
 		/// </summary>
@@ -209,6 +223,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// </summary>
 		public V8Settings()
 		{
+			AllowReflection = false;
 			AwaitDebuggerAndPauseOnStart = false;
 			DebugPort = 9222;
 			DisableDynamicBinding = false;

@@ -31,7 +31,8 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 7.3.7.
+   In configuration settings of the V8 JS engine was added one new property -
+   `AllowReflection` (default `false`).
 
    =============
    DOCUMENTATION

@@ -44,13 +44,16 @@
 		public override void EmbeddingOfInstanceOfDelegateWithoutResult()
 		{ }
 
-		public override void EmbeddedInstanceOfDelegateHasFunctionPrototype()
+		public override void EmbeddingOfInstanceOfDelegateAndCheckingItsPrototype()
 		{ }
 
-		public override void CallingOfEmbeddedDelegateWithMissingParameter()
+		public override void EmbeddingOfInstanceOfDelegateAndCallingItWithMissingParameter()
 		{ }
 
-		public override void CallingOfEmbeddedDelegateWithExtraParameter()
+		public override void EmbeddingOfInstanceOfDelegateAndCallingItWithExtraParameter()
+		{ }
+
+		public override void EmbeddingOfInstanceOfDelegateAndGettingItsMethodProperty()
 		{ }
 
 		#endregion

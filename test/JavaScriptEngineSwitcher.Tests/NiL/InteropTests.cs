@@ -3,6 +3,10 @@ using System;
 
 using Xunit;
 
+using JavaScriptEngineSwitcher.Core;
+
+using JavaScriptEngineSwitcher.Tests.Interop.Animals;
+
 namespace JavaScriptEngineSwitcher.Tests.NiL
 {
 	public class InteropTests : InteropTestsBase
@@ -15,10 +19,44 @@ namespace JavaScriptEngineSwitcher.Tests.NiL
 
 		#region Embedding of objects
 
+		#region Objects with methods
+
+		[Fact]
+		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			var cat = new Cat();
+
+			const string input = @"cat.GetType();";
+
+			// Act
+			JsRuntimeException exception = null;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				try
+				{
+					jsEngine.EmbedHostObject("cat", cat);
+					jsEngine.Evaluate<string>(input);
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("cat.GetType is not a function", exception.Description);
+		}
+
+		#endregion
+
 		#region Delegates
 
 		[Fact]
-		public override void CallingOfEmbeddedDelegateWithMissingParameter()
+		public override void EmbeddingOfInstanceOfDelegateAndCallingItWithMissingParameter()
 		{
 			// Arrange
 			var sumFunc = new Func<int, int, int>((a, b) => a + b);
@@ -45,6 +83,32 @@ namespace JavaScriptEngineSwitcher.Tests.NiL
 
 
 		#region Embedding of types
+
+		#region Creating of instances
+
+		[Fact]
+		public override void CreatingAnInstanceOfEmbeddedBuiltinExceptionAndGettingItsTargetSiteProperty()
+		{
+			// Arrange
+			Type invalidOperationExceptionType = typeof(InvalidOperationException);
+
+			const string input = "new InvalidOperationError(\"A terrible thing happened!\").TargetSite;";
+
+			// Act
+			string output;
+			const string targetOutput = "undefined";
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostType("InvalidOperationError", invalidOperationExceptionType);
+				output = jsEngine.Evaluate<string>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		#endregion
 
 		#region Types with methods
 
