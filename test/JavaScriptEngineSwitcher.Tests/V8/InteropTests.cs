@@ -23,47 +23,52 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 
 		#region Objects with methods
 
+		public override void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			static string TestAllowReflectionSetting(bool allowReflection)
+			{
+				var date = new Date();
+
+				const string input = "date.GetType();";
+
+				using (var jsEngine = new V8JsEngine(new V8Settings { AllowReflection = allowReflection }))
+				{
+					jsEngine.EmbedHostObject("date", date);
+					return jsEngine.Evaluate<string>(input);
+				}
+			}
+
+			// Act and Assert
+			Assert.Equal(typeof(Date).FullName, TestAllowReflectionSetting(true));
+
+			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Use of reflection is prohibited in this script engine", exception.Description);
+		}
+
 		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
-			var reflectionAllowedSettings = new V8Settings { AllowReflection = true };
-			var reflectionDisallowedSettings = new V8Settings { AllowReflection = false };
-
-			var cat = new Cat();
-
-			const string itemName = "cat";
-			const string input = "cat.GetType();";
-
-			// Act
-			string output1;
-
-			using (var jsEngine1 = new V8JsEngine(reflectionAllowedSettings))
+			static string TestAllowReflectionSetting(bool allowReflection)
 			{
-				jsEngine1.EmbedHostObject(itemName, cat);
-				output1 = jsEngine1.Evaluate<string>(input);
-			}
+				var cat = new Cat();
 
-			JsRuntimeException exception2 = null;
+				const string input = "cat.GetType();";
 
-			using (var jsEngine2 = new V8JsEngine(reflectionDisallowedSettings))
-			{
-				try
+				using (var jsEngine = new V8JsEngine(new V8Settings { AllowReflection = allowReflection }))
 				{
-					jsEngine2.EmbedHostObject(itemName, cat);
-					jsEngine2.Evaluate<string>(input);
-				}
-				catch (JsRuntimeException e)
-				{
-					exception2 = e;
+					jsEngine.EmbedHostObject("cat", cat);
+					return jsEngine.Evaluate<string>(input);
 				}
 			}
 
-			// Assert
-			Assert.Equal(typeof(Cat).FullName, output1);
+			// Act and Assert
+			Assert.Equal(typeof(Cat).FullName, TestAllowReflectionSetting(true));
 
-			Assert.NotNull(exception2);
-			Assert.Equal("Runtime error", exception2.Category);
-			Assert.Equal("Use of reflection is prohibited in this script engine", exception2.Description);
+			JsRuntimeException exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Use of reflection is prohibited in this script engine", exception.Description);
 		}
 
 #		endregion
@@ -76,45 +81,26 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		public override void EmbeddingOfInstanceOfDelegateAndGettingItsMethodProperty()
 		{
 			// Arrange
-			var reflectionAllowedSettings = new V8Settings { AllowReflection = true };
-			var reflectionDisallowedSettings = new V8Settings { AllowReflection = false };
-
-			var cat = new Cat();
-			var cryFunc = new Func<string>(cat.Cry);
-
-			const string itemName = "cry";
-			const string input = "cry.Method;";
-
-			// Act
-			string output1;
-
-			using (var jsEngine1 = new V8JsEngine(reflectionAllowedSettings))
+			static string TestAllowReflectionSetting(bool allowReflection)
 			{
-				jsEngine1.EmbedHostObject(itemName, cryFunc);
-				output1 = jsEngine1.Evaluate<string>(input);
-			}
+				var cat = new Cat();
+				var cryFunc = new Func<string>(cat.Cry);
 
-			JsRuntimeException exception2 = null;
+				const string input = "cry.Method;";
 
-			using (var jsEngine2 = new V8JsEngine(reflectionDisallowedSettings))
-			{
-				try
+				using (var jsEngine = new V8JsEngine(new V8Settings { AllowReflection = allowReflection }))
 				{
-					jsEngine2.EmbedHostObject(itemName, cryFunc);
-					jsEngine2.Evaluate<string>(input);
-				}
-				catch (JsRuntimeException e)
-				{
-					exception2 = e;
+					jsEngine.EmbedHostObject("cry", cryFunc);
+					return jsEngine.Evaluate<string>(input);
 				}
 			}
 
-			// Assert
-			Assert.Equal("System.String Cry()", output1);
+			// Act and Assert
+			Assert.Equal("System.String Cry()", TestAllowReflectionSetting(true));
 
-			Assert.NotNull(exception2);
-			Assert.Equal("Runtime error", exception2.Category);
-			Assert.Equal("Use of reflection is prohibited in this script engine", exception2.Description);
+			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Use of reflection is prohibited in this script engine", exception.Description);
 		}
 
 		#endregion
@@ -129,85 +115,47 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		public override void CreatingAnInstanceOfEmbeddedBuiltinExceptionAndGettingItsTargetSiteProperty()
 		{
 			// Arrange
-			var reflectionAllowedSettings = new V8Settings { AllowReflection = true };
-			var reflectionDisallowedSettings = new V8Settings { AllowReflection = false };
-
-			Type invalidOperationExceptionType = typeof(InvalidOperationException);
-			const string itemName = "InvalidOperationError";
-			const string input = "new InvalidOperationError(\"A terrible thing happened!\").TargetSite;";
-
-			// Act
-			string output1;
-
-			using (var jsEngine1 = new V8JsEngine(reflectionAllowedSettings))
+			static string TestAllowReflectionSetting(bool allowReflection)
 			{
-				jsEngine1.EmbedHostType(itemName, invalidOperationExceptionType);
-				output1 = jsEngine1.Evaluate<string>(input);
-			}
+				Type invalidOperationExceptionType = typeof(InvalidOperationException);
+				const string input = "new InvalidOperationError(\"A terrible thing happened!\").TargetSite;";
 
-			JsRuntimeException exception2 = null;
-
-			using (var jsEngine2 = new V8JsEngine(reflectionDisallowedSettings))
-			{
-				try
+				using (var jsEngine = new V8JsEngine(new V8Settings { AllowReflection = allowReflection }))
 				{
-					jsEngine2.EmbedHostType(itemName, invalidOperationExceptionType);
-					jsEngine2.Evaluate<string>(input);
-				}
-				catch (JsRuntimeException e)
-				{
-					exception2 = e;
+					jsEngine.EmbedHostType("InvalidOperationError", invalidOperationExceptionType);
+					return jsEngine.Evaluate<string>(input);
 				}
 			}
 
-			// Assert
-			Assert.Null(output1);
+			// Act and Assert
+			Assert.Null(TestAllowReflectionSetting(true));
 
-			Assert.NotNull(exception2);
-			Assert.Equal("Runtime error", exception2.Category);
-			Assert.Equal("Use of reflection is prohibited in this script engine", exception2.Description);
+			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Use of reflection is prohibited in this script engine", exception.Description);
 		}
 
 		public override void CreatingAnInstanceOfEmbeddedCustomExceptionAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
-			var reflectionAllowedSettings = new V8Settings { AllowReflection = true };
-			var reflectionDisallowedSettings = new V8Settings { AllowReflection = false };
-
-			Type loginFailedExceptionType = typeof(LoginFailedException);
-			const string itemName = "LoginFailedError";
-			const string input = "new LoginFailedError(\"Wrong password entered!\").GetType();";
-
-			// Act
-			string output1;
-
-			using (var jsEngine1 = new V8JsEngine(reflectionAllowedSettings))
+			static string TestAllowReflectionSetting(bool allowReflection)
 			{
-				jsEngine1.EmbedHostType(itemName, loginFailedExceptionType);
-				output1 = jsEngine1.Evaluate<string>(input);
-			}
+				Type loginFailedExceptionType = typeof(LoginFailedException);
+				const string input = "new LoginFailedError(\"Wrong password entered!\").GetType();";
 
-			JsRuntimeException exception2 = null;
-
-			using (var jsEngine2 = new V8JsEngine(reflectionDisallowedSettings))
-			{
-				try
+				using (var jsEngine = new V8JsEngine(new V8Settings { AllowReflection = allowReflection }))
 				{
-					jsEngine2.EmbedHostType(itemName, loginFailedExceptionType);
-					jsEngine2.Evaluate<string>(input);
-				}
-				catch (JsRuntimeException e)
-				{
-					exception2 = e;
+					jsEngine.EmbedHostType("LoginFailedError", loginFailedExceptionType);
+					return jsEngine.Evaluate<string>(input);
 				}
 			}
 
-			// Assert
-			Assert.Equal(typeof(LoginFailedException).FullName, output1);
+			// Act and Assert
+			Assert.Equal(typeof(LoginFailedException).FullName, TestAllowReflectionSetting(true));
 
-			Assert.NotNull(exception2);
-			Assert.Equal("Runtime error", exception2.Category);
-			Assert.Equal("Use of reflection is prohibited in this script engine", exception2.Description);
+			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Use of reflection is prohibited in this script engine", exception.Description);
 		}
 
 		#endregion

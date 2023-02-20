@@ -453,6 +453,28 @@ smileDay.GetDayOfYear();";
 		}
 
 		[Fact]
+		public virtual void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			var date = new Date();
+
+			const string input = "date.GetType();";
+			string targetOutput = typeof(Date).FullName;
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("date", date);
+				output = jsEngine.Evaluate<string>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange

@@ -5,6 +5,7 @@ using System.IO;
 using Xunit;
 
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Jint;
 
 using JavaScriptEngineSwitcher.Tests.Interop;
 using JavaScriptEngineSwitcher.Tests.Interop.Animals;
@@ -24,31 +25,51 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		#region Objects with methods
 
 		[Fact]
-		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
+		public override void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
-			var cat = new Cat();
-
-			const string input = "cat.GetType();";
-
-			// Act
-			JsRuntimeException exception = null;
-
-			using (var jsEngine = CreateJsEngine())
+			static string TestAllowReflectionSetting(bool allowReflection)
 			{
-				try
+				var date = new Date();
+
+				const string input = "date.GetType();";
+
+				using (var jsEngine = new JintJsEngine(new JintSettings { AllowReflection = allowReflection }))
 				{
-					jsEngine.EmbedHostObject("cat", cat);
-					jsEngine.Evaluate<string>(input);
-				}
-				catch (JsRuntimeException e)
-				{
-					exception = e;
+					jsEngine.EmbedHostObject("date", date);
+					return jsEngine.Evaluate<string>(input);
 				}
 			}
 
-			// Assert
-			Assert.NotNull(exception);
+			// Act and Assert
+			Assert.Equal(typeof(Date).FullName, TestAllowReflectionSetting(true));
+
+			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Property 'GetType' of object is not a function", exception.Description);
+		}
+
+		[Fact]
+		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			static string TestAllowReflectionSetting(bool allowReflection)
+			{
+				var cat = new Cat();
+
+				const string input = "cat.GetType();";
+
+				using (var jsEngine = new JintJsEngine(new JintSettings { AllowReflection = allowReflection }))
+				{
+					jsEngine.EmbedHostObject("cat", cat);
+					return jsEngine.Evaluate<string>(input);
+				}
+			}
+
+			// Act and Assert
+			Assert.Equal(typeof(Cat).FullName, TestAllowReflectionSetting(true));
+
+			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Property 'GetType' of object is not a function", exception.Description);
 		}
@@ -343,28 +364,23 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		public override void CreatingAnInstanceOfEmbeddedCustomExceptionAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
-			Type loginFailedExceptionType = typeof(LoginFailedException);
-
-			const string input = "new LoginFailedError(\"Wrong password entered!\").GetType();";
-
-			// Act
-			JsRuntimeException exception = null;
-
-			using (var jsEngine = CreateJsEngine())
+			static string TestAllowReflectionSetting(bool allowReflection)
 			{
-				try
+				Type loginFailedExceptionType = typeof(LoginFailedException);
+
+				const string input = "new LoginFailedError(\"Wrong password entered!\").GetType();";
+
+				using (var jsEngine = new JintJsEngine(new JintSettings { AllowReflection = allowReflection }))
 				{
 					jsEngine.EmbedHostType("LoginFailedError", loginFailedExceptionType);
-					jsEngine.Evaluate<string>(input);
-				}
-				catch (JsRuntimeException e)
-				{
-					exception = e;
+					return jsEngine.Evaluate<string>(input);
 				}
 			}
 
-			// Assert
-			Assert.NotNull(exception);
+			// Act and Assert
+			Assert.Equal(typeof(LoginFailedException).FullName, TestAllowReflectionSetting(true));
+
+			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Property 'GetType' of object is not a function", exception.Description);
 		}

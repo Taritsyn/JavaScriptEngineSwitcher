@@ -18,6 +18,7 @@ using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverf
 using OriginalRuntimeException = Jint.Runtime.JintException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
 using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
+using OriginalTypeResolver = Jint.Runtime.Interop.TypeResolver;
 using OriginalTypes = Jint.Runtime.Types;
 using OriginalValue = Jint.Native.JsValue;
 
@@ -118,6 +119,12 @@ namespace JavaScriptEngineSwitcher.Jint
 			try
 			{
 				_jsEngine = new OriginalEngine(options => {
+					if (jintSettings.AllowReflection)
+					{
+						options.SetTypeResolver(new OriginalTypeResolver());
+						options.Interop.AllowGetType = true;
+					}
+
 					options
 						.CancellationToken(_cancellationTokenSource.Token)
 						.DebuggerStatementHandling(debuggerStatementHandlingMode)

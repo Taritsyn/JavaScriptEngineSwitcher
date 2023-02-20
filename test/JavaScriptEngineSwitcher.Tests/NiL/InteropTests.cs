@@ -5,6 +5,7 @@ using Xunit;
 
 using JavaScriptEngineSwitcher.Core;
 
+using JavaScriptEngineSwitcher.Tests.Interop;
 using JavaScriptEngineSwitcher.Tests.Interop.Animals;
 
 namespace JavaScriptEngineSwitcher.Tests.NiL
@@ -20,6 +21,36 @@ namespace JavaScriptEngineSwitcher.Tests.NiL
 		#region Embedding of objects
 
 		#region Objects with methods
+
+		[Fact]
+		public override void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			var date = new Date();
+
+			const string input = "date.GetType();";
+
+			// Act
+			JsRuntimeException exception = null;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				try
+				{
+					jsEngine.EmbedHostObject("date", date);
+					jsEngine.Evaluate<string>(input);
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("date.GetType is not a function", exception.Description);
+		}
 
 		[Fact]
 		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()

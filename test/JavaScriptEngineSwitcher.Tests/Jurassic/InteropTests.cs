@@ -25,6 +25,27 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 
 		#region Objects with methods
 
+		public override void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			var date = new Date();
+
+			const string input = "date.GetType();";
+			string targetOutput = typeof(Date).FullName;
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("date", date);
+				output = jsEngine.Evaluate(input).ToString();
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
 		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange

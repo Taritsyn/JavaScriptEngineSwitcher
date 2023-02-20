@@ -10,6 +10,18 @@ namespace JavaScriptEngineSwitcher.Jint
 	public sealed class JintSettings
 	{
 		/// <summary>
+		/// Gets or sets a flag for whether to allow the usage of reflection API in the script code
+		/// </summary>
+		/// <remarks>
+		/// This affects <see cref="Object.GetType"/> and <see cref="Exception.GetType"/>.
+		/// </remarks>
+		public bool AllowReflection
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to allow the <c>debugger</c> statement
 		/// to be called in a script
 		/// </summary>
@@ -150,6 +162,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// </summary>
 		public JintSettings()
 		{
+			AllowReflection = false;
 			DebuggerBreakCallback = null;
 			DebuggerStatementHandlingMode = JsDebuggerStatementHandlingMode.Ignore;
 			DebuggerStepCallback = null;
