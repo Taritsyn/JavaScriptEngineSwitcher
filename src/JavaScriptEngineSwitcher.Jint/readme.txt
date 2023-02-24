@@ -13,13 +13,14 @@
    ===========
    JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the
    Jint JavaScript Engine (http://github.com/sebastienros/jint) version
-   3.0.0 Beta 2046).
+   3.0.0 Beta 2047).
 
    =============
    RELEASE NOTES
    =============
-   In configuration settings of the Jint JS engine was added one new property -
-   `AllowReflection` (default `false`).
+   1. Jint was updated to version 3.0.0 Beta 2047;
+   2. In configuration settings of the Jint JS engine was added one new property -
+      `AllowReflection` (default `false`).
 
    =============
    DOCUMENTATION

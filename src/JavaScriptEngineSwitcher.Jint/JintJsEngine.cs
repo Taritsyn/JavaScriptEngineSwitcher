@@ -51,7 +51,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2046";
+		private const string EngineVersion = "3.0.0 Beta 2047";
 
 		/// <summary>
 		/// Jint JS engine
@@ -119,11 +119,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			try
 			{
 				_jsEngine = new OriginalEngine(options => {
-					if (jintSettings.AllowReflection)
-					{
-						options.SetTypeResolver(new OriginalTypeResolver());
-						options.Interop.AllowGetType = true;
-					}
+					options.Interop.AllowGetType = jintSettings.AllowReflection;
 
 					options
 						.CancellationToken(_cancellationTokenSource.Token)
