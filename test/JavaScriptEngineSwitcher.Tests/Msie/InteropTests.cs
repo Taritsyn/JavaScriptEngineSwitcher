@@ -4,6 +4,10 @@ using System.IO;
 using Xunit;
 
 using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Msie;
+
+using JavaScriptEngineSwitcher.Tests.Interop;
+using JavaScriptEngineSwitcher.Tests.Interop.Animals;
 
 namespace JavaScriptEngineSwitcher.Tests.Msie
 {
@@ -15,7 +19,93 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 		}
 
 
+		private IJsEngine CreateJsEngine(bool allowReflection)
+		{
+			var jsEngine = new MsieJsEngine(new MsieSettings
+			{
+				AllowReflection = allowReflection,
+				EngineMode = JsEngineMode.ChakraIeJsRt
+			});
+
+			return jsEngine;
+		}
+
 		#region Embedding of objects
+
+		#region Objects with methods
+
+		[Fact]
+		public override void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			string TestAllowReflectionSetting(bool allowReflection)
+			{
+				var date = new Date();
+
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
+				{
+					jsEngine.EmbedHostObject("date", date);
+					return jsEngine.Evaluate<string>("date.GetType();");
+				}
+			}
+
+			// Act and Assert
+			Assert.Equal(typeof(Date).FullName, TestAllowReflectionSetting(true));
+
+			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Object doesn't support property or method 'GetType'", exception.Description);
+		}
+
+		[Fact]
+		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			string TestAllowReflectionSetting(bool allowReflection)
+			{
+				var cat = new Cat();
+
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
+				{
+					jsEngine.EmbedHostObject("cat", cat);
+					return jsEngine.Evaluate<string>("cat.GetType();");
+				}
+			}
+
+			// Act and Assert
+			Assert.Equal(typeof(Cat).FullName, TestAllowReflectionSetting(true));
+
+			JsRuntimeException exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Object doesn't support property or method 'GetType'", exception.Description);
+		}
+
+		#endregion
+
+		#region Delegates
+
+		[Fact]
+		public override void EmbeddingOfInstanceOfDelegateAndGettingItsMethodProperty()
+		{
+			// Arrange
+			string TestAllowReflectionSetting(bool allowReflection)
+			{
+				var cat = new Cat();
+				var cryFunc = new Func<string>(cat.Cry);
+
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
+				{
+					jsEngine.EmbedHostObject("cry", cryFunc);
+					return jsEngine.Evaluate<string>("cry.Method;");
+				}
+			}
+
+			// Act and Assert
+			Assert.Equal("undefined", TestAllowReflectionSetting(true));
+			Assert.Equal("undefined", TestAllowReflectionSetting(false));
+		}
+
+		#endregion
 
 		#region Recursive calls
 
@@ -70,6 +160,58 @@ namespace JavaScriptEngineSwitcher.Tests.Msie
 		}
 
 		#endregion
+
+		#endregion
+
+		#endregion
+
+
+		#region Embedding of types
+
+		#region Creating of instances
+
+		[Fact]
+		public override void CreatingAnInstanceOfEmbeddedBuiltinExceptionAndGettingItsTargetSiteProperty()
+		{
+			// Arrange
+			string TestAllowReflectionSetting(bool allowReflection)
+			{
+				Type invalidOperationExceptionType = typeof(InvalidOperationException);
+
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
+				{
+					jsEngine.EmbedHostType("InvalidOperationError", invalidOperationExceptionType);
+					return jsEngine.Evaluate<string>("new InvalidOperationError(\"A terrible thing happened!\").TargetSite;");
+				}
+			}
+
+			// Act and Assert
+			Assert.Null(TestAllowReflectionSetting(true));
+			Assert.Equal("undefined", TestAllowReflectionSetting(false));
+		}
+
+		[Fact]
+		public override void CreatingAnInstanceOfEmbeddedCustomExceptionAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			string TestAllowReflectionSetting(bool allowReflection)
+			{
+				Type loginFailedExceptionType = typeof(LoginFailedException);
+
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
+				{
+					jsEngine.EmbedHostType("LoginFailedError", loginFailedExceptionType);
+					return jsEngine.Evaluate<string>("new LoginFailedError(\"Wrong password entered!\").GetType();");
+				}
+			}
+
+			// Act and Assert
+			Assert.Equal(typeof(LoginFailedException).FullName, TestAllowReflectionSetting(true));
+
+			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Object doesn't support property or method 'GetType'", exception.Description);
+		}
 
 		#endregion
 

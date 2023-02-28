@@ -20,6 +20,16 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		}
 
 
+		private IJsEngine CreateJsEngine(bool allowReflection)
+		{
+			var jsEngine = new JintJsEngine(new JintSettings
+			{
+				AllowReflection = allowReflection
+			});
+
+			return jsEngine;
+		}
+
 		#region Embedding of objects
 
 		#region Objects with methods
@@ -28,16 +38,14 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		public override void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
-			static string TestAllowReflectionSetting(bool allowReflection)
+			string TestAllowReflectionSetting(bool allowReflection)
 			{
 				var date = new Date();
 
-				const string input = "date.GetType();";
-
-				using (var jsEngine = new JintJsEngine(new JintSettings { AllowReflection = allowReflection }))
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
 				{
 					jsEngine.EmbedHostObject("date", date);
-					return jsEngine.Evaluate<string>(input);
+					return jsEngine.Evaluate<string>("date.GetType();");
 				}
 			}
 
@@ -53,16 +61,14 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
-			static string TestAllowReflectionSetting(bool allowReflection)
+			string TestAllowReflectionSetting(bool allowReflection)
 			{
 				var cat = new Cat();
 
-				const string input = "cat.GetType();";
-
-				using (var jsEngine = new JintJsEngine(new JintSettings { AllowReflection = allowReflection }))
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
 				{
 					jsEngine.EmbedHostObject("cat", cat);
-					return jsEngine.Evaluate<string>(input);
+					return jsEngine.Evaluate<string>("cat.GetType();");
 				}
 			}
 
@@ -98,6 +104,27 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 			// Assert
 			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public override void EmbeddingOfInstanceOfDelegateAndGettingItsMethodProperty()
+		{
+			// Arrange
+			string TestAllowReflectionSetting(bool allowReflection)
+			{
+				var cat = new Cat();
+				var cryFunc = new Func<string>(cat.Cry);
+
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
+				{
+					jsEngine.EmbedHostObject("cry", cryFunc);
+					return jsEngine.Evaluate<string>("cry.Method;");
+				}
+			}
+
+			// Act and Assert
+			Assert.Equal("undefined", TestAllowReflectionSetting(true));
+			Assert.Equal("undefined", TestAllowReflectionSetting(false));
 		}
 
 		#endregion
@@ -361,19 +388,37 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		#region Creating of instances
 
 		[Fact]
+		public override void CreatingAnInstanceOfEmbeddedBuiltinExceptionAndGettingItsTargetSiteProperty()
+		{
+			// Arrange
+			string TestAllowReflectionSetting(bool allowReflection)
+			{
+				Type invalidOperationExceptionType = typeof(InvalidOperationException);
+
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
+				{
+					jsEngine.EmbedHostType("InvalidOperationError", invalidOperationExceptionType);
+					return jsEngine.Evaluate<string>("new InvalidOperationError(\"A terrible thing happened!\").TargetSite;");
+				}
+			}
+
+			// Act and Assert
+			Assert.Null(TestAllowReflectionSetting(true));
+			Assert.Null(TestAllowReflectionSetting(false));
+		}
+
+		[Fact]
 		public override void CreatingAnInstanceOfEmbeddedCustomExceptionAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
-			static string TestAllowReflectionSetting(bool allowReflection)
+			string TestAllowReflectionSetting(bool allowReflection)
 			{
 				Type loginFailedExceptionType = typeof(LoginFailedException);
 
-				const string input = "new LoginFailedError(\"Wrong password entered!\").GetType();";
-
-				using (var jsEngine = new JintJsEngine(new JintSettings { AllowReflection = allowReflection }))
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
 				{
 					jsEngine.EmbedHostType("LoginFailedError", loginFailedExceptionType);
-					return jsEngine.Evaluate<string>(input);
+					return jsEngine.Evaluate<string>("new LoginFailedError(\"Wrong password entered!\").GetType();");
 				}
 			}
 

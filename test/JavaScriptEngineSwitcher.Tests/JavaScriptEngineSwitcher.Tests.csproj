@@ -15,7 +15,6 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.3.2" />
     <PackageReference Include="xunit" VersionOverride="2.4.2" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" />
@@ -54,10 +53,12 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' Or '$(TargetFramework)' == 'netcoreapp2.1' ">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.3.2" />
     <PackageReference Include="xunit.runner.visualstudio" VersionOverride="2.4.3" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net452' And '$(TargetFramework)' != 'netcoreapp2.1' ">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.5.0" />
     <PackageReference Include="xunit.runner.visualstudio" VersionOverride="2.4.5" />
   </ItemGroup>
 

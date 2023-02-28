@@ -19,6 +19,16 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		}
 
 
+		private IJsEngine CreateJsEngine(bool allowReflection)
+		{
+			var jsEngine = new V8JsEngine(new V8Settings
+			{
+				AllowReflection = allowReflection
+			});
+
+			return jsEngine;
+		}
+
 		#region Embedding of objects
 
 		#region Objects with methods
@@ -26,16 +36,14 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		public override void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
-			static string TestAllowReflectionSetting(bool allowReflection)
+			string TestAllowReflectionSetting(bool allowReflection)
 			{
 				var date = new Date();
 
-				const string input = "date.GetType();";
-
-				using (var jsEngine = new V8JsEngine(new V8Settings { AllowReflection = allowReflection }))
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
 				{
 					jsEngine.EmbedHostObject("date", date);
-					return jsEngine.Evaluate<string>(input);
+					return jsEngine.Evaluate<string>("date.GetType();");
 				}
 			}
 
@@ -50,16 +58,14 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
-			static string TestAllowReflectionSetting(bool allowReflection)
+			string TestAllowReflectionSetting(bool allowReflection)
 			{
 				var cat = new Cat();
 
-				const string input = "cat.GetType();";
-
-				using (var jsEngine = new V8JsEngine(new V8Settings { AllowReflection = allowReflection }))
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
 				{
 					jsEngine.EmbedHostObject("cat", cat);
-					return jsEngine.Evaluate<string>(input);
+					return jsEngine.Evaluate<string>("cat.GetType();");
 				}
 			}
 
@@ -71,7 +77,7 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 			Assert.Equal("Use of reflection is prohibited in this script engine", exception.Description);
 		}
 
-#		endregion
+		#endregion
 
 		#region Delegates
 
@@ -81,17 +87,15 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		public override void EmbeddingOfInstanceOfDelegateAndGettingItsMethodProperty()
 		{
 			// Arrange
-			static string TestAllowReflectionSetting(bool allowReflection)
+			string TestAllowReflectionSetting(bool allowReflection)
 			{
 				var cat = new Cat();
 				var cryFunc = new Func<string>(cat.Cry);
 
-				const string input = "cry.Method;";
-
-				using (var jsEngine = new V8JsEngine(new V8Settings { AllowReflection = allowReflection }))
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
 				{
 					jsEngine.EmbedHostObject("cry", cryFunc);
-					return jsEngine.Evaluate<string>(input);
+					return jsEngine.Evaluate<string>("cry.Method;");
 				}
 			}
 
@@ -115,15 +119,14 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		public override void CreatingAnInstanceOfEmbeddedBuiltinExceptionAndGettingItsTargetSiteProperty()
 		{
 			// Arrange
-			static string TestAllowReflectionSetting(bool allowReflection)
+			string TestAllowReflectionSetting(bool allowReflection)
 			{
 				Type invalidOperationExceptionType = typeof(InvalidOperationException);
-				const string input = "new InvalidOperationError(\"A terrible thing happened!\").TargetSite;";
 
-				using (var jsEngine = new V8JsEngine(new V8Settings { AllowReflection = allowReflection }))
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
 				{
 					jsEngine.EmbedHostType("InvalidOperationError", invalidOperationExceptionType);
-					return jsEngine.Evaluate<string>(input);
+					return jsEngine.Evaluate<string>("new InvalidOperationError(\"A terrible thing happened!\").TargetSite;");
 				}
 			}
 
@@ -138,15 +141,14 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		public override void CreatingAnInstanceOfEmbeddedCustomExceptionAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
-			static string TestAllowReflectionSetting(bool allowReflection)
+			string TestAllowReflectionSetting(bool allowReflection)
 			{
 				Type loginFailedExceptionType = typeof(LoginFailedException);
-				const string input = "new LoginFailedError(\"Wrong password entered!\").GetType();";
 
-				using (var jsEngine = new V8JsEngine(new V8Settings { AllowReflection = allowReflection }))
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
 				{
 					jsEngine.EmbedHostType("LoginFailedError", loginFailedExceptionType);
-					return jsEngine.Evaluate<string>(input);
+					return jsEngine.Evaluate<string>("new LoginFailedError(\"Wrong password entered!\").GetType();");
 				}
 			}
 

@@ -19,7 +19,9 @@
    =============
    RELEASE NOTES
    =============
-   MSIE JavaScript Engine was updated to version 3.1.0.
+   1. MSIE JavaScript Engine was updated to version 3.2.1;
+   2. In configuration settings of the MSIE JS engine was added one new property -
+      `AllowReflection` (default `false`).
 
    =============
    DOCUMENTATION

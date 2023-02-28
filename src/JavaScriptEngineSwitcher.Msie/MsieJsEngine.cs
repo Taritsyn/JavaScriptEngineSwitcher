@@ -76,6 +76,7 @@ namespace JavaScriptEngineSwitcher.Msie
 			{
 				_jsEngine = new OriginalEngine(new OriginalEngineSettings
 				{
+					AllowReflection = msieSettings.AllowReflection,
 					EnableDebugging = msieSettings.EnableDebugging,
 					EngineMode = Utils.GetEnumFromOtherEnum<JsEngineMode, OriginalEngineMode>(
 						msieSettings.EngineMode),
