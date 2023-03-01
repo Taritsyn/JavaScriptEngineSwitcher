@@ -12,6 +12,19 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 	/// </summary>
 	internal static class ReflectionHelpers
 	{
+		private static readonly PropertyInfo[] _disallowedProperties =
+		{
+			typeof(Delegate).GetProperty("Method"),
+			typeof(Exception).GetProperty("TargetSite")
+		};
+
+		private static readonly MethodInfo[] _disallowedMethods =
+		{
+			typeof(object).GetMethod("GetType"),
+			typeof(Exception).GetMethod("GetType")
+		};
+
+
 		public static BindingFlags GetDefaultBindingFlags(bool instance)
 		{
 			BindingFlags bindingFlags = BindingFlags.Public;
@@ -25,6 +38,20 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			}
 
 			return bindingFlags;
+		}
+
+		public static bool IsAllowedProperty(PropertyInfo property)
+		{
+			bool isAllowed = !_disallowedProperties.Contains(property, MemberComparer<PropertyInfo>.Instance);
+
+			return isAllowed;
+		}
+
+		public static bool IsAllowedMethod(MethodInfo method)
+		{
+			bool isAllowed = !_disallowedMethods.Contains(method, MemberComparer<MethodInfo>.Instance);
+
+			return isAllowed;
 		}
 
 		public static bool IsFullyFledgedMethod(MethodInfo method)
@@ -220,6 +247,38 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			return true;
 		}
 
+
+		private sealed class MemberComparer<T> : EqualityComparer<T>
+			where T : MemberInfo
+		{
+			public static MemberComparer<T> Instance { get; } = new MemberComparer<T>();
+
+
+			private MemberComparer()
+			{ }
+
+
+			#region MemberComparer overrides
+
+			public override bool Equals(T x, T y)
+			{
+				return x.Module == y.Module
+#if !NETSTANDARD1_3
+					&& x.MetadataToken == y.MetadataToken
+#else
+					&& x.DeclaringType == y.DeclaringType
+					&& x.Name == y.Name
+#endif
+					;
+			}
+
+			public override int GetHashCode(T obj)
+			{
+				return obj != null ? obj.GetHashCode() : 0;
+			}
+
+			#endregion
+		}
 
 		private sealed class MethodWithMetadata
 		{

@@ -29,6 +29,19 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 
 #endif
 		/// <summary>
+		/// Gets or sets a flag for whether to allow the usage of reflection API in the script code
+		/// </summary>
+		/// <remarks>
+		/// This affects <see cref="Object.GetType"/>, <c>Exception.GetType</c>,
+		/// <c>Exception.TargetSite</c> and <c>Delegate.Method</c>.
+		/// </remarks>
+		public bool AllowReflection
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to disable any background work (such as garbage collection)
 		/// on background threads
 		/// </summary>
@@ -136,6 +149,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			bool is64BitProcess = Utils.Is64BitProcess();
 
+			AllowReflection = false;
 			DisableBackgroundWork = false;
 			DisableEval = false;
 			DisableExecutablePageAllocation = false;

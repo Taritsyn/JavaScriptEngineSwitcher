@@ -73,7 +73,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Type mapper
 		/// </summary>
-		private TypeMapper _typeMapper = new TypeMapper();
+		private TypeMapper _typeMapper;
 
 		/// <summary>
 		/// Callback for continuation of promise
@@ -148,6 +148,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 				attributes |= JsRuntimeAttributes.EnableExperimentalFeatures;
 			}
 
+			_typeMapper = new TypeMapper(chakraCoreSettings.AllowReflection);
 #if NETSTANDARD1_3
 			_dispatcher = new ScriptDispatcher();
 #else

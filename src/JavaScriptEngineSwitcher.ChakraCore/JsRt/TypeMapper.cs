@@ -32,6 +32,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		private const string ExternalObjectPropertyName = "_JavaScriptEngineSwitcher_externalObject";
 
 		/// <summary>
+		/// Flag for whether to allow the usage of reflection API in the script code
+		/// </summary>
+		private readonly bool _allowReflection;
+
+		/// <summary>
 		/// Storage for lazy-initialized embedded objects
 		/// </summary>
 		private ConcurrentDictionary<EmbeddedObjectKey, Lazy<EmbeddedObject>> _lazyEmbeddedObjects;
@@ -80,8 +85,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <summary>
 		/// Constructs an instance of type mapper
 		/// </summary>
-		public TypeMapper()
-		{ }
+		/// <param name="allowReflection">Flag for whether to allow the usage of reflection API in the script code</param>
+		public TypeMapper(bool allowReflection)
+		{
+			_allowReflection = allowReflection;
+		}
 
 
 		/// <summary>
@@ -604,6 +612,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 			foreach (PropertyInfo property in properties)
 			{
+				if (!IsAvailableProperty(property))
+				{
+					continue;
+				}
+
 				string propertyName = property.Name;
 
 				JsValue descriptorValue = JsValue.CreateObject();
@@ -732,14 +745,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 			string typeName = type.FullName;
 			BindingFlags defaultBindingFlags = ReflectionHelpers.GetDefaultBindingFlags(instance);
-			IEnumerable<MethodInfo> methods = type.GetMethods(defaultBindingFlags)
-				.Where(ReflectionHelpers.IsFullyFledgedMethod);
-			IEnumerable<IGrouping<string, MethodInfo>> methodGroups = methods.GroupBy(m => m.Name);
+			MethodInfo[] methods = type.GetMethods(defaultBindingFlags);
+			Dictionary<string, List<MethodInfo>> availableMethodGroups = GetAvailableMethodGroups(methods);
 
-			foreach (IGrouping<string, MethodInfo> methodGroup in methodGroups)
+			foreach (KeyValuePair<string, List<MethodInfo>> methodGroup in availableMethodGroups)
 			{
 				string methodName = methodGroup.Key;
-				MethodInfo[] methodCandidates = methodGroup.ToArray();
+				MethodInfo[] methodCandidates = methodGroup.Value.ToArray();
 
 				JsNativeFunction nativeFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 				{
@@ -806,6 +818,55 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsValue methodValue = JsValue.CreateFunction(nativeFunction);
 				typeValue.SetProperty(methodName, methodValue, true);
 			}
+		}
+
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private bool IsAvailableProperty(PropertyInfo property)
+		{
+			if (_allowReflection)
+			{
+				return true;
+			}
+
+			bool isAvailable = ReflectionHelpers.IsAllowedProperty(property);
+
+			return isAvailable;
+		}
+
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private Dictionary<string, List<MethodInfo>> GetAvailableMethodGroups(MethodInfo[] methods)
+		{
+			int methodCount = methods.Length;
+			if (methodCount == 0)
+			{
+				return new Dictionary<string, List<MethodInfo>>();
+			}
+
+			var availableMethodGroups = new Dictionary<string, List<MethodInfo>>(methodCount);
+
+			foreach (MethodInfo method in methods)
+			{
+				if (!ReflectionHelpers.IsFullyFledgedMethod(method)
+					|| (!_allowReflection && !ReflectionHelpers.IsAllowedMethod(method)))
+				{
+					continue;
+				}
+
+				string methodName = method.Name;
+				List<MethodInfo> methodGroup;
+
+				if (availableMethodGroups.TryGetValue(methodName, out methodGroup))
+				{
+					methodGroup.Add(method);
+				}
+				else
+				{
+					methodGroup = new List<MethodInfo> { method };
+					availableMethodGroups.Add(methodName, methodGroup);
+				}
+			}
+
+			return availableMethodGroups;
 		}
 
 		private object[] GetHostItemMemberArguments(JsValue[] args, int maxArgCount = -1)

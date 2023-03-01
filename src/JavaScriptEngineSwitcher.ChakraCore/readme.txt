@@ -31,7 +31,8 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version of November 9, 2022.
+   In configuration settings of the ChakraCore JS engine was added one new
+   property - `AllowReflection` (default `false`).
 
    =============
    DOCUMENTATION
