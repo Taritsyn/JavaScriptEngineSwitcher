@@ -35,11 +35,6 @@ namespace JavaScriptEngineSwitcher.Node
 		private const string ENGINE_HELPERS_RESOURCE_NAME = "JavaScriptEngineSwitcher.Node.Resources.engine-helpers.js";
 
 		/// <summary>
-		/// Name of file, which identifies the generated function call
-		/// </summary>
-		private const string GENERATED_FUNCTION_CALL_FILE_NAME = "JavaScriptEngineSwitcher.Node.Resources.generated-function-call.js";
-
-		/// <summary>
 		/// Name of JS engine
 		/// </summary>
 		public const string EngineName = "NodeJsEngine";
@@ -305,7 +300,7 @@ namespace JavaScriptEngineSwitcher.Node
 					{
 						string errorLocation = message.Substring(messageWithTypeLength);
 						errorLocationItems = NodeJsErrorHelpers.ParseErrorLocation(errorLocation);
-						errorLocationItems = FilterErrorLocationItems(errorLocationItems);
+						errorLocationItems = NodeJsErrorHelpers.FilterErrorLocationItems(errorLocationItems);
 
 						if (errorLocationItems.Length > 0)
 						{
@@ -348,41 +343,6 @@ namespace JavaScriptEngineSwitcher.Node
 			wrapperException.Description = description;
 
 			return wrapperException;
-		}
-
-		/// <summary>
-		/// Filters a error location items
-		/// </summary>
-		/// <param name="errorLocationItems">An array of <see cref="ErrorLocationItem"/> instances</param>
-		private static ErrorLocationItem[] FilterErrorLocationItems(ErrorLocationItem[] errorLocationItems)
-		{
-			if (errorLocationItems.Length == 0)
-			{
-				return errorLocationItems;
-			}
-
-			int excessErrorLocationItemIndex = 0;
-
-			foreach (ErrorLocationItem item in errorLocationItems)
-			{
-				string documentName = item.DocumentName;
-				string functionName = item.FunctionName;
-
-				if (documentName == "node:vm"
-					|| documentName == "vm.js"
-					|| documentName == GENERATED_FUNCTION_CALL_FILE_NAME
-					|| (documentName == "anonymous" && functionName == "callFunction"))
-				{
-					break;
-				}
-
-				excessErrorLocationItemIndex++;
-			}
-
-			var processedErrorLocationItems = new ErrorLocationItem[excessErrorLocationItemIndex];
-			Array.Copy(errorLocationItems, processedErrorLocationItems, excessErrorLocationItemIndex);
-
-			return processedErrorLocationItems;
 		}
 
 		#endregion

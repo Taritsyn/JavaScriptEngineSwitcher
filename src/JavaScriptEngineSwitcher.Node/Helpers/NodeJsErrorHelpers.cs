@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -15,6 +16,11 @@ namespace JavaScriptEngineSwitcher.Node.Helpers
 	internal static class NodeJsErrorHelpers
 	{
 		#region Error location
+
+		/// <summary>
+		/// Name of file, which identifies the generated function call
+		/// </summary>
+		private const string GeneratedFunctionCallDocumentName = "JavaScriptEngineSwitcher.Node.Resources.generated-function-call.js";
 
 		/// <summary>
 		/// Pattern for working with document names with coordinates
@@ -125,6 +131,48 @@ namespace JavaScriptEngineSwitcher.Node.Helpers
 			}
 
 			return columnCount;
+		}
+
+		/// <summary>
+		/// Filters a error location items
+		/// </summary>
+		/// <param name="errorLocationItems">An array of <see cref="ErrorLocationItem"/> instances</param>
+		public static ErrorLocationItem[] FilterErrorLocationItems(ErrorLocationItem[] errorLocationItems)
+		{
+			int itemCount = errorLocationItems.Length;
+			if (itemCount == 0)
+			{
+				return errorLocationItems;
+			}
+
+			int itemIndex = 0;
+
+			while (itemIndex < itemCount)
+			{
+				ErrorLocationItem item = errorLocationItems[itemIndex];
+				string documentName = item.DocumentName;
+				string functionName = item.FunctionName;
+
+				if (documentName == "node:vm"
+					|| documentName == "vm.js"
+					|| documentName == GeneratedFunctionCallDocumentName
+					|| (documentName == "anonymous" && functionName == "callFunction"))
+				{
+					break;
+				}
+
+				itemIndex++;
+			}
+
+			if (itemIndex == itemCount)
+			{
+				return errorLocationItems;
+			}
+
+			var processedErrorLocationItems = new ErrorLocationItem[itemIndex];
+			Array.Copy(errorLocationItems, processedErrorLocationItems, itemIndex);
+
+			return processedErrorLocationItems;
 		}
 
 		#endregion
