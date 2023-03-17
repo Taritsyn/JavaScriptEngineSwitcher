@@ -45,6 +45,10 @@
     <PackageReference Include="Microsoft.ClearScript.V8.Native.osx-x64" />
   </ItemGroup>
 
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'net7.0' ">
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Topaz/JavaScriptEngineSwitcher.Topaz.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Resources/russian-translit.js" />
   </ItemGroup>

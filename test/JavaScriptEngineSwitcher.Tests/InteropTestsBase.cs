@@ -1123,7 +1123,9 @@ smileDay.GetDayOfYear();";
 			// Arrange
 			Type defaultLoggerType = typeof(DefaultLogger);
 			Type throwExceptionLoggerType = typeof(ThrowExceptionLogger);
-			const string updateCode = "DefaultLogger.Current = new ThrowExceptionLogger();";
+			const string updateCode = @"var oldLogger = DefaultLogger.Current;
+DefaultLogger.Current = new ThrowExceptionLogger();";
+			const string rollbackCode = "DefaultLogger.Current = oldLogger;";
 
 			const string input = "DefaultLogger.Current.ToString()";
 			const string targetOutput = "[throw exception logger]";
@@ -1135,9 +1137,13 @@ smileDay.GetDayOfYear();";
 			{
 				jsEngine.EmbedHostType("DefaultLogger", defaultLoggerType);
 				jsEngine.EmbedHostType("ThrowExceptionLogger", throwExceptionLoggerType);
-				jsEngine.Execute(updateCode);
 
-				output = jsEngine.Evaluate<string>(input);
+				lock (DefaultLogger.SyncRoot)
+				{
+					jsEngine.Execute(updateCode);
+					output = jsEngine.Evaluate<string>(input);
+					jsEngine.Execute(rollbackCode);
+				}
 			}
 
 			// Assert
@@ -1230,7 +1236,9 @@ smileDay.GetDayOfYear();";
 		{
 			// Arrange
 			Type bundleTableType = typeof(BundleTable);
-			const string updateCode = "BundleTable.EnableOptimizations = false;";
+			const string updateCode = @"var oldEnableOptimizationsValue = BundleTable.EnableOptimizations;
+BundleTable.EnableOptimizations = false;";
+			const string rollbackCode = "BundleTable.EnableOptimizations = oldEnableOptimizationsValue;";
 
 			const string input = "BundleTable.EnableOptimizations";
 			const bool targetOutput = false;
@@ -1241,9 +1249,13 @@ smileDay.GetDayOfYear();";
 			using (var jsEngine = CreateJsEngine())
 			{
 				jsEngine.EmbedHostType("BundleTable", bundleTableType);
-				jsEngine.Execute(updateCode);
 
-				output = jsEngine.Evaluate<bool>(input);
+				lock (BundleTable.SyncRoot)
+				{
+					jsEngine.Execute(updateCode);
+					output = jsEngine.Evaluate<bool>(input);
+					jsEngine.Execute(rollbackCode);
+				}
 			}
 
 			// Assert

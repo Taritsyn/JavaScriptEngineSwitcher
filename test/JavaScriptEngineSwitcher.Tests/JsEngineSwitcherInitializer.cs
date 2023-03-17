@@ -16,6 +16,9 @@ using JavaScriptEngineSwitcher.NiL;
 #if !NET452
 using JavaScriptEngineSwitcher.Node;
 #endif
+#if NET6_0_OR_GREATER
+using JavaScriptEngineSwitcher.Topaz;
+#endif
 #if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.V8;
 #endif
@@ -51,6 +54,9 @@ namespace JavaScriptEngineSwitcher.Tests
 #endif
 #if !NET452
 					.AddNode()
+#endif
+#if NET6_0_OR_GREATER
+					.AddTopaz()
 #endif
 #if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER
 					.AddV8()

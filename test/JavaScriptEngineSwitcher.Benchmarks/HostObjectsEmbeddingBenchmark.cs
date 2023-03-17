@@ -12,6 +12,11 @@ using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 #if NET461 || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.NiL;
+#endif
+#if NET6_0_OR_GREATER
+using JavaScriptEngineSwitcher.Topaz;
+#endif
+#if NET461 || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.V8;
 #endif
 
@@ -169,6 +174,17 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
 			EmbedAndUseHostObjects(createJsEngine);
 		}
+#endif
+#if NET6_0_OR_GREATER
+
+		[Benchmark]
+		public void Topaz()
+		{
+			Func<IJsEngine> createJsEngine = () => new TopazJsEngine();
+			EmbedAndUseHostObjects(createJsEngine);
+		}
+#endif
+#if NET461 || NETCOREAPP3_1_OR_GREATER
 
 		[Benchmark]
 		[Arguments(false)]

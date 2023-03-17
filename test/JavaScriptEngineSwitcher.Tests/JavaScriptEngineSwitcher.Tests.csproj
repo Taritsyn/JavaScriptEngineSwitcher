@@ -92,6 +92,10 @@
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.NiL/JavaScriptEngineSwitcher.NiL.csproj" />
   </ItemGroup>
 
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'net7.0' ">
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Topaz/JavaScriptEngineSwitcher.Topaz.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Resources/*.js" />
   </ItemGroup>
