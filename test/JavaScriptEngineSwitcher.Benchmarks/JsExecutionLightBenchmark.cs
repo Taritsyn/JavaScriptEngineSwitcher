@@ -18,6 +18,9 @@ using JavaScriptEngineSwitcher.Node;
 using JavaScriptEngineSwitcher.V8;
 #endif
 using JavaScriptEngineSwitcher.Vroom;
+#if NET461 || NETCOREAPP3_1_OR_GREATER
+using JavaScriptEngineSwitcher.Yantra;
+#endif
 
 namespace JavaScriptEngineSwitcher.Benchmarks
 {
@@ -293,5 +296,14 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new VroomJsEngine();
 			TransliterateStrings(createJsEngine, false);
 		}
+#if NET461 || NETCOREAPP3_1_OR_GREATER
+
+		[Benchmark]
+		public void Yantra()
+		{
+			Func<IJsEngine> createJsEngine = () => new YantraJsEngine();
+			TransliterateStrings(createJsEngine, false);
+		}
+#endif
 	}
 }

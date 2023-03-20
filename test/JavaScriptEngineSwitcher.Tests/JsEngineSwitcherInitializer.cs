@@ -20,6 +20,9 @@ using JavaScriptEngineSwitcher.Node;
 using JavaScriptEngineSwitcher.V8;
 #endif
 using JavaScriptEngineSwitcher.Vroom;
+#if NET471 || NETCOREAPP3_1_OR_GREATER
+using JavaScriptEngineSwitcher.Yantra;
+#endif
 
 namespace JavaScriptEngineSwitcher.Tests
 {
@@ -56,6 +59,9 @@ namespace JavaScriptEngineSwitcher.Tests
 					.AddV8()
 #endif
 					.AddVroom()
+#if NET471 || NETCOREAPP3_1_OR_GREATER
+					.AddYantra()
+#endif
 					;
 			}
 		}

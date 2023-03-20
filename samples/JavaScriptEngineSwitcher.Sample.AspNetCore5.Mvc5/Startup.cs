@@ -16,6 +16,7 @@ using JavaScriptEngineSwitcher.Node;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Vroom;
+using JavaScriptEngineSwitcher.Yantra;
 
 namespace JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5
 {
@@ -73,6 +74,7 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5
 				.AddNode(services)
 				.AddV8()
 				.AddVroom()
+				.AddYantra()
 				;
 
 			services.Configure<MvcOptions>(options =>

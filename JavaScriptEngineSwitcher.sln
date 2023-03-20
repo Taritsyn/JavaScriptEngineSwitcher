@@ -30,14 +30,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "licenses", "licenses", "{4A
 		Licenses\chakra-core-license.txt = Licenses\chakra-core-license.txt
 		Licenses\chakra-samples-license.txt = Licenses\chakra-samples-license.txt
 		Licenses\clearscript-license.txt = Licenses\clearscript-license.txt
+		Licenses\jering-javascript-nodejs-license.txt = Licenses\jering-javascript-nodejs-license.txt
 		Licenses\jint-license.txt = Licenses\jint-license.txt
 		Licenses\jsrt-dotnet-license.txt = Licenses\jsrt-dotnet-license.txt
 		Licenses\jurassic-license.txt = Licenses\jurassic-license.txt
+		Licenses\microsoft-dotnet-arcade-sdk-license.txt = Licenses\microsoft-dotnet-arcade-sdk-license.txt
 		Licenses\msie-javascript-engine-license.txt = Licenses\msie-javascript-engine-license.txt
 		Licenses\nil-license.txt = Licenses\nil-license.txt
+		Licenses\nodejs-license.txt = Licenses\nodejs-license.txt
 		Licenses\polyfills-for-old-dot-net-license.txt = Licenses\polyfills-for-old-dot-net-license.txt
 		Licenses\v8-license.txt = Licenses\v8-license.txt
 		Licenses\vroomjs-core-license.txt = Licenses\vroomjs-core-license.txt
+		Licenses\yantra-license.txt = Licenses\yantra-license.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0C281F46-F1D2-4A1C-8560-375EDA65D680}"
@@ -93,6 +97,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.NiL", "src\JavaScriptEngineSwitcher.NiL\JavaScriptEngineSwitcher.NiL.csproj", "{F0BF7975-2E8A-4EC8-8DAA-760A4302F419}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Node", "src\JavaScriptEngineSwitcher.Node\JavaScriptEngineSwitcher.Node.csproj", "{89F9DDDD-5236-4D9A-99E4-3C1358B81149}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Yantra", "src\JavaScriptEngineSwitcher.Yantra\JavaScriptEngineSwitcher.Yantra.csproj", "{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Benchmarks", "test\JavaScriptEngineSwitcher.Benchmarks\JavaScriptEngineSwitcher.Benchmarks.csproj", "{24A8F6A6-EA4E-43A6-A2D7-E1916F8CB4EE}"
 EndProject
@@ -252,6 +258,10 @@ Global
 		{923B1463-910F-4542-8E68-29F36A9DB508}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{923B1463-910F-4542-8E68-29F36A9DB508}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{923B1463-910F-4542-8E68-29F36A9DB508}.Release|Any CPU.Build.0 = Release|Any CPU
+		{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -291,6 +301,7 @@ Global
 		{189376C9-49DA-4A12-9C78-CE39E8EC7731} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{58321699-3715-4CA7-8036-A9F26E4C93F3} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
 		{923B1463-910F-4542-8E68-29F36A9DB508} = {E5989CB5-AACE-4D35-A8EE-26942F140DA3}
+		{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB} = {0C281F46-F1D2-4A1C-8560-375EDA65D680}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8184BE59-ACBC-4CD1-9419-D59A0FAC6131}

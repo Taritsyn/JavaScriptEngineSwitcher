@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{19575E10-6B8E-4CF0-B7D2-898FFF47E157}"
 	ProjectSection(SolutionItems) = preProject
@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "licenses", "licenses", "{4A
 		Licenses\polyfills-for-old-dot-net-license.txt = Licenses\polyfills-for-old-dot-net-license.txt
 		Licenses\v8-license.txt = Licenses\v8-license.txt
 		Licenses\vroomjs-core-license.txt = Licenses\vroomjs-core-license.txt
+		Licenses\yantra-license.txt = Licenses\yantra-license.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0C281F46-F1D2-4A1C-8560-375EDA65D680}"
@@ -86,6 +87,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.NiL", "src\JavaScriptEngineSwitcher.NiL\JavaScriptEngineSwitcher.NiL.csproj", "{F0BF7975-2E8A-4EC8-8DAA-760A4302F419}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Node", "src\JavaScriptEngineSwitcher.Node\JavaScriptEngineSwitcher.Node.csproj", "{89F9DDDD-5236-4D9A-99E4-3C1358B81149}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Yantra", "src\JavaScriptEngineSwitcher.Yantra\JavaScriptEngineSwitcher.Yantra.csproj", "{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptEngineSwitcher.Benchmarks", "test\JavaScriptEngineSwitcher.Benchmarks\JavaScriptEngineSwitcher.Benchmarks.csproj", "{24A8F6A6-EA4E-43A6-A2D7-E1916F8CB4EE}"
 EndProject
@@ -185,6 +188,10 @@ Global
 		{E95FDEF6-18A0-4E26-8FDF-B4B590E6EDAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E95FDEF6-18A0-4E26-8FDF-B4B590E6EDAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E95FDEF6-18A0-4E26-8FDF-B4B590E6EDAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -212,6 +219,7 @@ Global
 		{89F9DDDD-5236-4D9A-99E4-3C1358B81149} = {0C281F46-F1D2-4A1C-8560-375EDA65D680}
 		{24A8F6A6-EA4E-43A6-A2D7-E1916F8CB4EE} = {53B43213-2E66-42C2-8476-600A2FD2DA75}
 		{E95FDEF6-18A0-4E26-8FDF-B4B590E6EDAF} = {53B43213-2E66-42C2-8476-600A2FD2DA75}
+		{897E4EFA-C8F5-4980-BBD0-2EA7B920B2EB} = {0C281F46-F1D2-4A1C-8560-375EDA65D680}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8184BE59-ACBC-4CD1-9419-D59A0FAC6131}

@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Product>JS Engine Switcher: Yantra</Product>
+    <VersionPrefix>3.20.10</VersionPrefix>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <Import Project="../../build/common.props" />
+  <Import Project="../../build/nuget-for-dotnet-lib.props" />
+
+  <PropertyGroup>
+    <Description>JavaScriptEngineSwitcher.Yantra contains adapter `YantraJsEngine` (wrapper for the Yantra JavaScript Engine (https://yantrajs.com) version 1.2.112).</Description>
+    <PackageTags>$(PackageCommonTags);Yantra;YantraJS</PackageTags>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Yantra_Logo128x128.png</PackageIconFullPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="YantraJS.Core" Version="1.2.112" />
+
+    <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../Licenses/yantra-license.txt">
+      <PackagePath>yantra-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
+
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
+
+</Project>

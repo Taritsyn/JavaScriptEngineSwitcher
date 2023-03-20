@@ -11,6 +11,7 @@ using JavaScriptEngineSwitcher.Node;
 using JavaScriptEngineSwitcher.Sample.Logic.Services;
 using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Vroom;
+using JavaScriptEngineSwitcher.Yantra;
 
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
@@ -46,6 +47,7 @@ services.AddJsEngineSwitcher(options =>
 	.AddNode(services)
 	.AddV8()
 	.AddVroom()
+	.AddYantra()
 	;
 
 services.Configure<MvcOptions>(options =>

@@ -14,7 +14,6 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.4" />
     <PackageReference Include="BuildBundlerMinifier" VersionOverride="3.2.449" PrivateAssets="All" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" />
@@ -33,6 +32,15 @@
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Node/JavaScriptEngineSwitcher.Node.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.V8/JavaScriptEngineSwitcher.V8.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Yantra/JavaScriptEngineSwitcher.Yantra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.3" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
+    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.5" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
