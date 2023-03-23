@@ -52,7 +52,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		}
 
 		/// <summary>
-		/// Gets or sets a flag for whether to disable calls of <c>eval</c> function
+		/// Gets or sets a flag for whether to disable calls of <c>eval</c> function with custom code
+		/// and <c>Function</c> constructors taking function code as string
 		/// </summary>
 		public bool DisableEval
 		{

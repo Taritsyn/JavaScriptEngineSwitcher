@@ -60,6 +60,16 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 		/// <summary>
+		/// Gets or sets a flag for whether to disable calls of <c>eval</c> function with custom code
+		/// and <c>Function</c> constructors taking function code as string
+		/// </summary>
+		public bool DisableEval
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to enable debug mode
 		/// </summary>
 		public bool EnableDebugging
@@ -166,6 +176,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			DebuggerBreakCallback = null;
 			DebuggerStatementHandlingMode = JsDebuggerStatementHandlingMode.Ignore;
 			DebuggerStepCallback = null;
+			DisableEval = false;
 			EnableDebugging = false;
 			LocalTimeZone = TimeZoneInfo.Local;
 			MaxArraySize = uint.MaxValue;

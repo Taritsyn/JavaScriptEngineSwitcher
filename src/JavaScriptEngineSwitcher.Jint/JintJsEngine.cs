@@ -125,6 +125,7 @@ namespace JavaScriptEngineSwitcher.Jint
 						.CancellationToken(_cancellationTokenSource.Token)
 						.DebuggerStatementHandling(debuggerStatementHandlingMode)
 						.DebugMode(jintSettings.EnableDebugging)
+						.DisableStringCompilation(jintSettings.DisableEval)
 						.LimitMemory(jintSettings.MemoryLimit)
 						.LimitRecursion(jintSettings.MaxRecursionDepth)
 						.LocalTimeZone(jintSettings.LocalTimeZone ?? TimeZoneInfo.Local)

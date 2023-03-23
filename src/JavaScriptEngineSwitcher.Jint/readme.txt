@@ -19,8 +19,8 @@
    RELEASE NOTES
    =============
    1. Jint was updated to version 3.0.0 Beta 2048;
-   2. In configuration settings of the Jint JS engine was added one new property -
-      `AllowReflection` (default `false`).
+   2. In configuration settings of the Jint JS engine was added two new properties:
+      `AllowReflection` (default `false`) and `DisableEval` (default `false`).
 
    =============
    DOCUMENTATION
