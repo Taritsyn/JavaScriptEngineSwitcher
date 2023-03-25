@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
@@ -118,17 +120,22 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		}
 
 		/// <summary>
+		/// Makes a mapping of array items from the host type to a script type
+		/// </summary>
+		/// <param name="args">The source array</param>
+		/// <returns>The mapped array</returns>
+		private static object[] MapToScriptType(object[] args)
+		{
+			return args.Select(MapToScriptType).ToArray();
+		}
+
+		/// <summary>
 		/// Makes a mapping of value from the script type to a host type
 		/// </summary>
 		/// <param name="value">The source value</param>
 		/// <returns>The mapped value</returns>
 		private static object MapToHostType(object value)
 		{
-			if (value is OriginalConcatenatedString)
-			{
-				return value.ToString();
-			}
-
 			if (value is OriginalNull)
 			{
 				return null;
@@ -139,7 +146,63 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				return Undefined.Value;
 			}
 
+			if (value is OriginalConcatenatedString)
+			{
+				return value.ToString();
+			}
+
 			return value;
+		}
+
+		/// <summary>
+		/// Makes a mapping of value from the script type to a host type
+		/// </summary>
+		/// <typeparam name="T">The type to convert the value to</typeparam>
+		/// <param name="engine">Original JS engine</param>
+		/// <param name="value">The source value</param>
+		/// <returns>The mapped value</returns>
+		private static T MapToHostType<T>(OriginalEngine engine, object value)
+		{
+			if (value is OriginalNull)
+			{
+				return TypeConverter.ConvertToType<T>(null);
+			}
+
+			if (typeof(T) == typeof(Undefined))
+			{
+				if (value is OriginalUndefined)
+				{
+					return (T)(object)Undefined.Value;
+				}
+				else
+				{
+					throw new InvalidOperationException(
+						string.Format(CoreStrings.Common_CannotConvertObjectToType, value.GetType(), typeof(T))
+					);
+				}
+			}
+
+			T result;
+
+			try
+			{
+				result = OriginalTypeConverter.ConvertTo<T>(engine, value);
+			}
+			catch (OriginalJavaScriptException e)
+			{
+				throw new InvalidOperationException(e.ErrorMessage, e);
+			}
+			catch (ArgumentException e)
+			{
+				if (typeof(T) == typeof(string) && value != null)
+				{
+					return (T)(object)value.ToString();
+				}
+
+				throw new InvalidOperationException(e.Message, e);
+			}
+
+			return result;
 		}
 
 		private static WrapperCompilationException WrapSyntaxException(
@@ -164,7 +227,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			return wrapperCompilationException;
 		}
 
-		private WrapperException WrapJavaScriptException(
+		private static WrapperException WrapJavaScriptException(OriginalEngine engine,
 			OriginalJavaScriptException originalJavaScriptException)
 		{
 			WrapperException wrapperException;
@@ -176,7 +239,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			int lineNumber = originalJavaScriptException.LineNumber;
 			string callStack = string.Empty;
 
-			object errorObject = originalJavaScriptException.GetErrorObject(_jsEngine);
+			object errorObject = originalJavaScriptException.GetErrorObject(engine);
 			var errorValue = errorObject as OriginalErrorInstance;
 			if (errorValue != null)
 			{
@@ -266,6 +329,80 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		#endregion
 
+		/// <summary>
+		/// Evaluates an expression without converting its result to a host type
+		/// </summary>
+		/// <param name="engine">Original JS engine</param>
+		/// <param name="expression">JS expression</param>
+		/// <param name="uniqueDocumentName">Unique document name</param>
+		/// <returns>Result of the expression not converted to a host type</returns>
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private static object InnerEvaluateWithoutResultConversion(OriginalEngine engine, string expression,
+			string uniqueDocumentName)
+		{
+			object result;
+
+			try
+			{
+				var source = new OriginalStringScriptSource(expression, uniqueDocumentName);
+				result = engine.Evaluate(source);
+			}
+			catch (OriginalJavaScriptException e)
+			{
+				throw WrapJavaScriptException(engine, e);
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Calls a function without converting its result to a host type
+		/// </summary>
+		/// <param name="engine">Original JS engine</param>
+		/// <param name="functionName">Function name</param>
+		/// <param name="args">Function arguments converted to a script type</param>
+		/// <returns>Result of the function execution not converted to a host type</returns>
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private static object InnerCallFunctionWithoutResultConversion(OriginalEngine engine, string functionName,
+			params object[] args)
+		{
+			object result;
+
+			try
+			{
+				result = engine.CallGlobalFunction(functionName, args);
+			}
+			catch (OriginalJavaScriptException e)
+			{
+				throw WrapJavaScriptException(engine, e);
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Gets a value of variable without converting it to a host type
+		/// </summary>
+		/// <param name="engine">Original JS engine</param>
+		/// <param name="variableName">Variable name</param>
+		/// <returns>Value of variable not converted to a host type</returns>
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private static object InnerGetVariableValueWithoutResultConversion(OriginalEngine engine, string variableName)
+		{
+			object result;
+
+			try
+			{
+				result = engine.GetGlobalValue(variableName);
+			}
+			catch (OriginalJavaScriptException e)
+			{
+				throw WrapJavaScriptException(engine, e);
+			}
+
+			return result;
+		}
+
 		#region JsEngineBase overrides
 
 		protected override IPrecompiledScript InnerPrecompile(string code)
@@ -301,23 +438,15 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override object InnerEvaluate(string expression, string documentName)
 		{
-			object result;
+			object resultValue;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
 			lock (_executionSynchronizer)
 			{
-				try
-				{
-					var source = new OriginalStringScriptSource(expression, uniqueDocumentName);
-					result = _jsEngine.Evaluate(source);
-				}
-				catch (OriginalJavaScriptException e)
-				{
-					throw WrapJavaScriptException(e);
-				}
+				resultValue = InnerEvaluateWithoutResultConversion(_jsEngine, expression, uniqueDocumentName);
 			}
 
-			result = MapToHostType(result);
+			object result = MapToHostType(resultValue);
 
 			return result;
 		}
@@ -329,9 +458,16 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override T InnerEvaluate<T>(string expression, string documentName)
 		{
-			object result = InnerEvaluate(expression, documentName);
+			T result;
+			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
 
-			return OriginalTypeConverter.ConvertTo<T>(_jsEngine, result);
+			lock (_executionSynchronizer)
+			{
+				object resultValue = InnerEvaluateWithoutResultConversion(_jsEngine, expression, uniqueDocumentName);
+				result = MapToHostType<T>(_jsEngine, resultValue);
+			}
+
+			return result;
 		}
 
 		protected override void InnerExecute(string code)
@@ -352,7 +488,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJavaScriptException e)
 				{
-					throw WrapJavaScriptException(e);
+					throw WrapJavaScriptException(_jsEngine, e);
 				}
 			}
 		}
@@ -377,48 +513,38 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJavaScriptException e)
 				{
-					throw WrapJavaScriptException(e);
+					throw WrapJavaScriptException(_jsEngine, e);
 				}
 			}
 		}
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
-			int argumentCount = args.Length;
-			var processedArgs = new object[argumentCount];
-
-			if (argumentCount > 0)
-			{
-				for (int argumentIndex = 0; argumentIndex < argumentCount; argumentIndex++)
-				{
-					processedArgs[argumentIndex] = MapToScriptType(args[argumentIndex]);
-				}
-			}
-
-			object result;
+			object resultValue;
+			object[] processedArgs = MapToScriptType(args);
 
 			lock (_executionSynchronizer)
 			{
-				try
-				{
-					result = _jsEngine.CallGlobalFunction(functionName, processedArgs);
-				}
-				catch (OriginalJavaScriptException e)
-				{
-					throw WrapJavaScriptException(e);
-				}
+				resultValue = InnerCallFunctionWithoutResultConversion(_jsEngine, functionName, processedArgs);
 			}
 
-			result = MapToHostType(result);
+			object result = MapToHostType(resultValue);
 
 			return result;
 		}
 
 		protected override T InnerCallFunction<T>(string functionName, params object[] args)
 		{
-			object result = InnerCallFunction(functionName, args);
+			T result;
+			object[] processedArgs = MapToScriptType(args);
 
-			return OriginalTypeConverter.ConvertTo<T>(_jsEngine, result);
+			lock (_executionSynchronizer)
+			{
+				object resultValue = InnerCallFunctionWithoutResultConversion(_jsEngine, functionName, processedArgs);
+				result = MapToHostType<T>(_jsEngine, resultValue);
+			}
+
+			return result;
 		}
 
 		protected override bool InnerHasVariable(string variableName)
@@ -440,30 +566,29 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 		protected override object InnerGetVariableValue(string variableName)
 		{
-			object result;
+			object resultValue;
 
 			lock (_executionSynchronizer)
 			{
-				try
-				{
-					result = _jsEngine.GetGlobalValue(variableName);
-				}
-				catch (OriginalJavaScriptException e)
-				{
-					throw WrapJavaScriptException(e);
-				}
+				resultValue = InnerGetVariableValueWithoutResultConversion(_jsEngine, variableName);
 			}
 
-			result = MapToHostType(result);
+			object result = MapToHostType(resultValue);
 
 			return result;
 		}
 
 		protected override T InnerGetVariableValue<T>(string variableName)
 		{
-			object result = InnerGetVariableValue(variableName);
+			T result;
 
-			return OriginalTypeConverter.ConvertTo<T>(_jsEngine, result);
+			lock (_executionSynchronizer)
+			{
+				object resultValue = InnerGetVariableValueWithoutResultConversion(_jsEngine, variableName);
+				result = MapToHostType<T>(_jsEngine, resultValue);
+			}
+
+			return result;
 		}
 
 		protected override void InnerSetVariableValue(string variableName, object value)
@@ -478,7 +603,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJavaScriptException e)
 				{
-					throw WrapJavaScriptException(e);
+					throw WrapJavaScriptException(_jsEngine, e);
 				}
 			}
 		}
@@ -508,7 +633,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJavaScriptException e)
 				{
-					throw WrapJavaScriptException(e);
+					throw WrapJavaScriptException(_jsEngine, e);
 				}
 			}
 		}
@@ -523,7 +648,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJavaScriptException e)
 				{
-					throw WrapJavaScriptException(e);
+					throw WrapJavaScriptException(_jsEngine, e);
 				}
 			}
 		}
@@ -782,7 +907,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJavaScriptException e)
 				{
-					throw WrapJavaScriptException(e);
+					throw WrapJavaScriptException(_jsEngine, e);
 				}
 				catch (FileNotFoundException)
 				{
@@ -845,7 +970,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJavaScriptException e)
 				{
-					throw WrapJavaScriptException(e);
+					throw WrapJavaScriptException(_jsEngine, e);
 				}
 				catch (NullReferenceException)
 				{
@@ -901,7 +1026,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				}
 				catch (OriginalJavaScriptException e)
 				{
-					throw WrapJavaScriptException(e);
+					throw WrapJavaScriptException(_jsEngine, e);
 				}
 				catch (NullReferenceException)
 				{

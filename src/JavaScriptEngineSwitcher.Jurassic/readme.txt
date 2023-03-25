@@ -18,7 +18,7 @@
    =============
    RELEASE NOTES
    =============
-   Jurassic was updated to version of September 20, 2022.
+   Improved a conversion of results to a host types.
 
    =============
    DOCUMENTATION

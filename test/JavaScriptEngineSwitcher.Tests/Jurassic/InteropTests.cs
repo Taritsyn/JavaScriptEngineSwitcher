@@ -2,9 +2,6 @@
 
 using Xunit;
 
-using JavaScriptEngineSwitcher.Tests.Interop;
-using JavaScriptEngineSwitcher.Tests.Interop.Animals;
-
 namespace JavaScriptEngineSwitcher.Tests.Jurassic
 {
 	public class InteropTests : InteropTestsBase
@@ -20,52 +17,6 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 
 		public override void EmbeddingOfInstanceOfAnonymousTypeWithProperties()
 		{ }
-
-		#endregion
-
-		#region Objects with methods
-
-		public override void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
-		{
-			// Arrange
-			var date = new Date();
-
-			const string input = "date.GetType();";
-			string targetOutput = typeof(Date).FullName;
-
-			// Act
-			string output;
-
-			using (var jsEngine = CreateJsEngine())
-			{
-				jsEngine.EmbedHostObject("date", date);
-				output = jsEngine.Evaluate(input).ToString();
-			}
-
-			// Assert
-			Assert.Equal(targetOutput, output);
-		}
-
-		public override void EmbeddingOfInstanceOfCustomReferenceTypeAndCallingOfItsGetTypeMethod()
-		{
-			// Arrange
-			var cat = new Cat();
-
-			const string input = "cat.GetType();";
-			string targetOutput = typeof(Cat).FullName;
-
-			// Act
-			string output;
-
-			using (var jsEngine = CreateJsEngine())
-			{
-				jsEngine.EmbedHostObject("cat", cat);
-				output = jsEngine.Evaluate(input).ToString();
-			}
-
-			// Assert
-			Assert.Equal(targetOutput, output);
-		}
 
 		#endregion
 
@@ -92,80 +43,12 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 			Assert.Equal(targetOutput, output);
 		}
 
-		public override void EmbeddingOfInstanceOfDelegateAndGettingItsMethodProperty()
-		{
-			// Arrange
-			var cat = new Cat();
-			var cryFunc = new Func<string>(cat.Cry);
-
-			const string input = "cry.Method;";
-			string targetOutput = "undefined";
-
-			// Act
-			string output;
-
-			using (var jsEngine = CreateJsEngine())
-			{
-				jsEngine.EmbedHostObject("cry", cryFunc);
-				output = jsEngine.Evaluate(input).ToString();
-			}
-
-			// Assert
-			Assert.Equal(targetOutput, output);
-		}
-
 		#endregion
 
 		#endregion
 
 
 		#region Embedding of types
-
-		#region Creating of instances
-
-		public override void CreatingAnInstanceOfEmbeddedBuiltinExceptionAndGettingItsTargetSiteProperty()
-		{
-			// Arrange
-			Type invalidOperationExceptionType = typeof(InvalidOperationException);
-
-			const string input = "new InvalidOperationError(\"A terrible thing happened!\").TargetSite;";
-
-			// Act
-			string output;
-			const string targetOutput = "undefined";
-
-			using (var jsEngine = CreateJsEngine())
-			{
-				jsEngine.EmbedHostType("InvalidOperationError", invalidOperationExceptionType);
-				output = jsEngine.Evaluate<string>(input);
-			}
-
-			// Assert
-			Assert.Equal(targetOutput, output);
-		}
-
-		public override void CreatingAnInstanceOfEmbeddedCustomExceptionAndCallingOfItsGetTypeMethod()
-		{
-			// Arrange
-			Type loginFailedExceptionType = typeof(LoginFailedException);
-
-			const string input = "new LoginFailedError(\"Wrong password entered!\").GetType();";
-			string targetOutput = loginFailedExceptionType.FullName;
-
-			// Act
-			string output;
-
-			using (var jsEngine = CreateJsEngine())
-			{
-				jsEngine.EmbedHostType("LoginFailedError", loginFailedExceptionType);
-				output = jsEngine.Evaluate(input).ToString();
-			}
-
-			// Assert
-			Assert.Equal(targetOutput, output);
-		}
-
-		#endregion
 
 		#region Types with constants
 
