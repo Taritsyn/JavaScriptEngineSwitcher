@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Yantra</Product>
     <VersionPrefix>3.20.10</VersionPrefix>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
@@ -14,13 +14,13 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Yantra contains adapter `YantraJsEngine` (wrapper for the Yantra JavaScript Engine (https://yantrajs.com) version 1.2.112).</Description>
+    <Description>JavaScriptEngineSwitcher.Yantra contains adapter `YantraJsEngine` (wrapper for the Yantra JavaScript Engine (https://yantrajs.com) version 1.2.117).</Description>
     <PackageTags>$(PackageCommonTags);Yantra;YantraJS</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Yantra_Logo128x128.png</PackageIconFullPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="YantraJS.Core" Version="1.2.112" />
+    <PackageReference Include="YantraJS.Core" Version="1.2.117" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
