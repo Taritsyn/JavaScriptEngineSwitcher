@@ -168,7 +168,9 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				return TypeConverter.ConvertToType<T>(null);
 			}
 
-			if (typeof(T) == typeof(Undefined))
+			Type targetType = typeof(T);
+
+			if (targetType == typeof(Undefined))
 			{
 				if (value is OriginalUndefined)
 				{
@@ -177,7 +179,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				else
 				{
 					throw new InvalidOperationException(
-						string.Format(CoreStrings.Common_CannotConvertObjectToType, value.GetType(), typeof(T))
+						string.Format(CoreStrings.Common_CannotConvertObjectToType, value.GetType(), targetType)
 					);
 				}
 			}
@@ -194,7 +196,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			}
 			catch (ArgumentException e)
 			{
-				if (typeof(T) == typeof(string) && value != null)
+				if (targetType == typeof(string) && value != null)
 				{
 					return (T)(object)value.ToString();
 				}

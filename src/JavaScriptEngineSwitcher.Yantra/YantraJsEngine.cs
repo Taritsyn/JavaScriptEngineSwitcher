@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 using YantraJS.Core;
@@ -12,6 +13,7 @@ using OriginalClrType = YantraJS.Core.Clr.ClrType;
 using OriginalContext = YantraJS.Core.JSContext;
 using OriginalException = YantraJS.Core.JSException;
 using OriginalFunction = YantraJS.Core.JSFunction;
+using OriginalTypeConverter = YantraJS.Utils.TypeConverter;
 using OriginalUndefined = YantraJS.Core.JSUndefined;
 using OriginalValue = YantraJS.Core.JSValue;
 
@@ -20,6 +22,7 @@ using JavaScriptEngineSwitcher.Core.Constants;
 using JavaScriptEngineSwitcher.Core.Helpers;
 using JavaScriptEngineSwitcher.Core.Utilities;
 
+using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
 using WrapperException = JavaScriptEngineSwitcher.Core.JsException;
 using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
@@ -94,7 +97,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 				return OriginalUndefined.Value;
 			}
 
-			return value.Marshal();
+			return OriginalTypeConverter.FromBasic(value);
 		}
 
 		/// <summary>
@@ -134,7 +137,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 			}
 			else if (value.IsString)
 			{
-				result = value.AsStringOrDefault();
+				result = value.ToString();
 			}
 			else
 			{
@@ -145,13 +148,51 @@ namespace JavaScriptEngineSwitcher.Yantra
 		}
 
 		/// <summary>
-		/// Makes a mapping of array itemp from the script type to a host type
+		/// Makes a mapping of value from the script type to a host type
 		/// </summary>
-		/// <param name="args">The source array</param>
-		/// <returns>The mapped array</returns>
-		private static object[] MapToHostType(OriginalValue[] args)
+		/// <typeparam name="T">The type to convert the value to</typeparam>
+		/// <param name="value">The source value</param>
+		/// <returns>The mapped value</returns>
+		private static T MapToHostType<T>(OriginalValue value)
 		{
-			return args.Select(MapToHostType).ToArray();
+			if (value.IsNull)
+			{
+				return TypeConverter.ConvertToType<T>(null);
+			}
+
+			Type targetType = typeof(T);
+
+			if (targetType == typeof(Undefined))
+			{
+				if (value.IsUndefined)
+				{
+					return (T)(object)Undefined.Value;
+				}
+				else
+				{
+					throw new InvalidOperationException(
+						string.Format(CoreStrings.Common_CannotConvertObjectToType, value.GetType(), targetType)
+					);
+				}
+			}
+
+			T result;
+
+			if (!value.ConvertTo<T>(out result))
+			{
+				if (targetType == typeof(string))
+				{
+					result = (T)(object)value.ToString();
+				}
+				else
+				{
+					throw new InvalidOperationException(
+						string.Format(CoreStrings.Common_CannotConvertObjectToType, value.GetType(), targetType)
+					);
+				}
+			}
+
+			return result;
 		}
 
 		private static OriginalFunction CreateEmbeddedFunction(Delegate del)
@@ -306,24 +347,14 @@ namespace JavaScriptEngineSwitcher.Yantra
 
 		#endregion
 
-		#region JsEngineBase overrides
-
-		protected override IPrecompiledScript InnerPrecompile(string code)
-		{
-			throw new NotSupportedException();
-		}
-
-		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
-		{
-			throw new NotSupportedException();
-		}
-
-		protected override object InnerEvaluate(string expression)
-		{
-			return InnerEvaluate(expression, null);
-		}
-
-		protected override object InnerEvaluate(string expression, string documentName)
+		/// <summary>
+		/// Evaluates an expression without converting its result to a host type
+		/// </summary>
+		/// <param name="expression">JS expression</param>
+		/// <param name="documentName">Document name</param>
+		/// <returns>Result of the expression not converted to a host type</returns>
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private OriginalValue InnerEvaluateWithoutResultConversion(string expression, string documentName)
 		{
 			OriginalValue resultValue;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(documentName);
@@ -346,6 +377,87 @@ namespace JavaScriptEngineSwitcher.Yantra
 				throw originalException;
 			}
 
+			return resultValue;
+		}
+
+		/// <summary>
+		/// Calls a function without converting its result to a host type
+		/// </summary>
+		/// <param name="functionName">Function name</param>
+		/// <param name="args">Function arguments</param>
+		/// <returns>Result of the function execution not converted to a host type</returns>
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private OriginalValue InnerCallFunctionWithoutResultConversion(string functionName, params object[] args)
+		{
+			OriginalValue resultValue;
+			OriginalValue[] processedArgs = MapToScriptType(args);
+
+			try
+			{
+				lock (_executionSynchronizer)
+				{
+					resultValue = _jsContext.InvokeMethod(functionName, new OriginalArguments(_jsContext, processedArgs));
+				}
+			}
+			catch (OriginalException e)
+			{
+				throw WrapJsException(e);
+			}
+			catch (Exception e) when ((e is TargetInvocationException || e is WrapperException)
+				&& e.InnerException != null)
+			{
+				OriginalException originalException = OriginalException.From(e.InnerException);
+				throw originalException;
+			}
+
+			return resultValue;
+		}
+
+		/// <summary>
+		/// Gets a value of variable without converting it to a host type
+		/// </summary>
+		/// <param name="variableName">Variable name</param>
+		/// <returns>Value of variable not converted to a host type</returns>
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private OriginalValue InnerGetVariableValueWithoutResultConversion(string variableName)
+		{
+			OriginalValue variableValue;
+
+			try
+			{
+				lock (_executionSynchronizer)
+				{
+					variableValue = _jsContext[variableName];
+				}
+			}
+			catch (OriginalException e)
+			{
+				throw WrapJsException(e);
+			}
+
+			return variableValue;
+		}
+
+		#region JsEngineBase overrides
+
+		protected override IPrecompiledScript InnerPrecompile(string code)
+		{
+			throw new NotSupportedException();
+		}
+
+		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
+		{
+			throw new NotSupportedException();
+		}
+
+		protected override object InnerEvaluate(string expression)
+		{
+			return InnerEvaluate(expression, null);
+		}
+
+		protected override object InnerEvaluate(string expression, string documentName)
+		{
+			OriginalValue resultValue = InnerEvaluateWithoutResultConversion(expression, documentName);
 			object result = MapToHostType(resultValue);
 
 			return result;
@@ -358,9 +470,10 @@ namespace JavaScriptEngineSwitcher.Yantra
 
 		protected override T InnerEvaluate<T>(string expression, string documentName)
 		{
-			object result = InnerEvaluate(expression, documentName);
+			OriginalValue resultValue = InnerEvaluateWithoutResultConversion(expression, documentName);
+			T result = MapToHostType<T>(resultValue);
 
-			return TypeConverter.ConvertToType<T>(result);
+			return result;
 		}
 
 		protected override void InnerExecute(string code)
@@ -398,27 +511,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 
 		protected override object InnerCallFunction(string functionName, params object[] args)
 		{
-			OriginalValue resultValue;
-			OriginalValue[] processedArgs = MapToScriptType(args);
-
-			try
-			{
-				lock (_executionSynchronizer)
-				{
-					resultValue = _jsContext.InvokeMethod(functionName, new OriginalArguments(_jsContext, processedArgs));
-				}
-			}
-			catch (OriginalException e)
-			{
-				throw WrapJsException(e);
-			}
-			catch (Exception e) when ((e is TargetInvocationException || e is WrapperException)
-				&& e.InnerException != null)
-			{
-				OriginalException originalException = OriginalException.From(e.InnerException);
-				throw originalException;
-			}
-
+			OriginalValue resultValue = InnerCallFunctionWithoutResultConversion(functionName, args);
 			object result = MapToHostType(resultValue);
 
 			return result;
@@ -426,27 +519,30 @@ namespace JavaScriptEngineSwitcher.Yantra
 
 		protected override T InnerCallFunction<T>(string functionName, params object[] args)
 		{
-			object result = InnerCallFunction(functionName, args);
+			OriginalValue resultValue = InnerCallFunctionWithoutResultConversion(functionName, args);
+			T result = MapToHostType<T>(resultValue);
 
-			return TypeConverter.ConvertToType<T>(result);
+			return result;
 		}
 
 		protected override bool InnerHasVariable(string variableName)
 		{
 			bool result;
 
-			lock (_executionSynchronizer)
+			try
 			{
-				try
-				{
-					OriginalValue variableValue = _jsContext[variableName];
+				OriginalValue variableValue;
 
-					result = !variableValue.IsUndefined;
-				}
-				catch (OriginalException)
+				lock (_executionSynchronizer)
 				{
-					result = false;
+					variableValue = _jsContext[variableName];
 				}
+
+				result = !variableValue.IsUndefined;
+			}
+			catch (OriginalException)
+			{
+				result = false;
 			}
 
 			return result;
@@ -454,20 +550,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 
 		protected override object InnerGetVariableValue(string variableName)
 		{
-			OriginalValue variableValue;
-
-			try
-			{
-				lock (_executionSynchronizer)
-				{
-					variableValue = _jsContext[variableName];
-				}
-			}
-			catch (OriginalException e)
-			{
-				throw WrapJsException(e);
-			}
-
+			OriginalValue variableValue = InnerGetVariableValueWithoutResultConversion(variableName);
 			object result = MapToHostType(variableValue);
 
 			return result;
@@ -475,9 +558,10 @@ namespace JavaScriptEngineSwitcher.Yantra
 
 		protected override T InnerGetVariableValue<T>(string variableName)
 		{
-			object result = InnerGetVariableValue(variableName);
+			OriginalValue variableValue = InnerGetVariableValueWithoutResultConversion(variableName);
+			T result = MapToHostType<T>(variableValue);
 
-			return TypeConverter.ConvertToType<T>(result);
+			return result;
 		}
 
 		protected override void InnerSetVariableValue(string variableName, object value)
