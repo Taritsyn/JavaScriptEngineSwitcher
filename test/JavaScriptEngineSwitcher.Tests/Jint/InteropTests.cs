@@ -426,7 +426,11 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 			// Act and Assert
 			Assert.Null(TestAllowReflectionSetting(true));
+#if NET471
 			Assert.Null(TestAllowReflectionSetting(false));
+#else
+			Assert.Equal("undefined", TestAllowReflectionSetting(false));
+#endif
 		}
 
 		[Fact]
@@ -446,10 +450,14 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 			// Act and Assert
 			Assert.Equal(typeof(LoginFailedException).FullName, TestAllowReflectionSetting(true));
+#if NET471
+			Assert.Equal(typeof(LoginFailedException).FullName, TestAllowReflectionSetting(false));
+#else
 
 			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Property 'GetType' of object is not a function", exception.Description);
+#endif
 		}
 
 		#endregion
@@ -474,13 +482,8 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			}
 
 			// Act and Assert
-			var exception1 = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
-			Assert.Equal("Runtime error", exception1.Category);
-			Assert.Equal("Property 'GetType' of object is not a function", exception1.Description);
-
-			var exception2 = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
-			Assert.Equal("Runtime error", exception2.Category);
-			Assert.Equal("Property 'GetType' of object is not a function", exception2.Description);
+			Assert.Equal(dateTimeTypeName, TestAllowReflectionSetting(true));
+			Assert.Equal(dateTimeTypeName, TestAllowReflectionSetting(false));
 		}
 
 		[Fact]

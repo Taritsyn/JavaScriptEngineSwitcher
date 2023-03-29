@@ -13,7 +13,8 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// Gets or sets a flag for whether to allow the usage of reflection API in the script code
 		/// </summary>
 		/// <remarks>
-		/// This affects <see cref="Object.GetType"/> and <see cref="Exception.GetType"/>.
+		/// This affects <see cref="Object.GetType"/>, <c>Exception.GetType</c>,
+		/// <c>Exception.TargetSite</c> and <c>Delegate.Method</c>.
 		/// </remarks>
 		public bool AllowReflection
 		{

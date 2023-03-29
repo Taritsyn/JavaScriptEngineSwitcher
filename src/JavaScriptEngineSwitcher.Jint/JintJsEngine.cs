@@ -119,7 +119,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			try
 			{
 				_jsEngine = new OriginalEngine(options => {
-					options.Interop.AllowGetType = jintSettings.AllowReflection;
+					options.Interop.AllowGetType = true;
 					options.Interop.AllowSystemReflection = true;
 
 					options
@@ -142,6 +142,8 @@ namespace JavaScriptEngineSwitcher.Jint
 					}
 
 					options.AddObjectConverter(new UndefinedConverter());
+					options.SetTypeResolver(jintSettings.AllowReflection ?
+						CustomTypeResolvers.AllowingReflection : CustomTypeResolvers.DisallowingReflection);
 				});
 				_cancellationConstraint = _jsEngine.FindConstraint<OriginalCancellationConstraint>();
 				if (_debuggerBreakCallback != null)
