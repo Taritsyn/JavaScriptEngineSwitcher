@@ -41,7 +41,7 @@ namespace JavaScriptEngineSwitcher.NiL
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "2.5.1650";
+		private const string EngineVersion = "2.5.1655";
 
 		/// <summary>
 		/// Regular expression for working with the syntax error message
@@ -116,7 +116,7 @@ namespace JavaScriptEngineSwitcher.NiL
 				return OriginalValue.Undefined;
 			}
 
-			return OriginalValue.Marshal(value);
+			return OriginalContext.CurrentGlobalContext.ProxyValue(value);
 		}
 
 		/// <summary>
@@ -478,7 +478,7 @@ namespace JavaScriptEngineSwitcher.NiL
 
 		protected override void InnerEmbedHostObject(string itemName, object value)
 		{
-			OriginalValue processedValue = OriginalValue.Marshal(value);
+			OriginalValue processedValue = _jsContext.GlobalContext.ProxyValue(value);
 
 			try
 			{
