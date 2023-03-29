@@ -120,6 +120,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				_jsEngine = new OriginalEngine(options => {
 					options.Interop.AllowGetType = jintSettings.AllowReflection;
+					options.Interop.AllowSystemReflection = true;
 
 					options
 						.CancellationToken(_cancellationTokenSource.Token)

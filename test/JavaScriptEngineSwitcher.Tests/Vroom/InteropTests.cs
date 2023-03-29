@@ -28,6 +28,9 @@
 		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithMethod()
 		{ }
 
+		public override void EmbeddingOfInstanceOfAssemblyTypeAndCallingOfItsCreateInstanceMethod()
+		{ }
+
 		#endregion
 
 		#region Delegates
@@ -86,6 +89,12 @@
 		#region Types with methods
 
 		public override void EmbeddingOfBuiltinReferenceTypeWithMethods()
+		{ }
+
+		public override void EmbeddingOfTypeAndCallingOfItsGetTypeMethod()
+		{ }
+
+		public override void EmbeddingOfAssemblyTypeAndCallingOfItsLoadMethod()
 		{ }
 
 		#endregion

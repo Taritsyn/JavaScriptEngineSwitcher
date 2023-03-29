@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 using Xunit;
@@ -489,6 +490,29 @@ smileDay.GetDayOfYear();";
 			using (var jsEngine = CreateJsEngine())
 			{
 				jsEngine.EmbedHostObject("cat", cat);
+				output = jsEngine.Evaluate<string>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public virtual void EmbeddingOfInstanceOfAssemblyTypeAndCallingOfItsCreateInstanceMethod()
+		{
+			// Arrange
+			Assembly assembly = this.GetType().Assembly;
+			string personTypeName = typeof(Person).FullName;
+
+			string input = string.Format("assembly.CreateInstance(\"{0}\");", personTypeName);
+			const string targetOutput = "{FirstName=,LastName=}";
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("assembly", assembly);
 				output = jsEngine.Evaluate<string>(input);
 			}
 
@@ -1353,6 +1377,52 @@ BundleTable.EnableOptimizations = false;";
 			using (var jsEngine = CreateJsEngine())
 			{
 				jsEngine.EmbedHostType("Base64Encoder", base64EncoderType);
+				output = jsEngine.Evaluate<string>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public virtual void EmbeddingOfTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			Type type = typeof(Type);
+			string dateTimeTypeName = typeof(DateTime).FullName;
+
+			string input = string.Format("Type.GetType(\"{0}\");", dateTimeTypeName);
+			string targetOutput = dateTimeTypeName;
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostType("Type", type);
+				output = jsEngine.Evaluate<string>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public virtual void EmbeddingOfAssemblyTypeAndCallingOfItsLoadMethod()
+		{
+			// Arrange
+			Type assemblyType = typeof(Assembly);
+			const string reflectionEmitAssemblyName = "System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+			string input = string.Format("Assembly.Load(\"{0}\");", reflectionEmitAssemblyName);
+			const string targetOutput = reflectionEmitAssemblyName;
+
+			// Act
+			string output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostType("Assembly", assemblyType);
 				output = jsEngine.Evaluate<string>(input);
 			}
 

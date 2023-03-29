@@ -508,6 +508,10 @@ product.Price *= 1.15;";
 			Assert.Equal(targetOutput2, output2);
 		}
 
+		[Fact]
+		public override void EmbeddingOfTypeAndCallingOfItsGetTypeMethod()
+		{ }
+
 		#endregion
 
 		#endregion

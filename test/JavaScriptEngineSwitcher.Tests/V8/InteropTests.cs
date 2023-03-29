@@ -1,5 +1,6 @@
 ﻿#if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER
 using System;
+using System.Reflection;
 
 using Xunit;
 
@@ -75,6 +76,26 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 			JsRuntimeException exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Use of reflection is prohibited in this script engine", exception.Description);
+		}
+
+		public override void EmbeddingOfInstanceOfAssemblyTypeAndCallingOfItsCreateInstanceMethod()
+		{
+			// Arrange
+			string TestAllowReflectionSetting(bool allowReflection)
+			{
+				Assembly assembly = this.GetType().Assembly;
+				string personTypeName = typeof(Person).FullName;
+
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
+				{
+					jsEngine.EmbedHostObject("assembly", assembly);
+					return jsEngine.Evaluate<string>("assembly.CreateInstance(\"" + personTypeName + "\");");
+				}
+			}
+
+			// Act and Assert
+			Assert.Equal("{FirstName=,LastName=}", TestAllowReflectionSetting(true));
+			Assert.Equal("{FirstName=,LastName=}", TestAllowReflectionSetting(false));
 		}
 
 		#endregion
@@ -158,6 +179,52 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Use of reflection is prohibited in this script engine", exception.Description);
+		}
+
+		#endregion
+
+		#region Types with methods
+
+		public override void EmbeddingOfTypeAndCallingOfItsGetTypeMethod()
+		{
+			// Arrange
+			string dateTimeTypeName = typeof(DateTime).FullName;
+
+			string TestAllowReflectionSetting(bool allowReflection)
+			{
+				Type type = typeof(Type);
+
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
+				{
+					jsEngine.EmbedHostType("Type", type);
+					return jsEngine.Evaluate<string>("Type.GetType(\"" + dateTimeTypeName + "\");");
+				}
+			}
+
+			// Act and Assert
+			Assert.Equal(dateTimeTypeName, TestAllowReflectionSetting(true));
+			Assert.Equal(dateTimeTypeName, TestAllowReflectionSetting(false));
+		}
+
+		public override void EmbeddingOfAssemblyTypeAndCallingOfItsLoadMethod()
+		{
+			// Arrange
+			const string reflectionEmitAssemblyName = "System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+			string TestAllowReflectionSetting(bool allowReflection)
+			{
+				Type assemblyType = typeof(Assembly);
+
+				using (var jsEngine = CreateJsEngine(allowReflection: allowReflection))
+				{
+					jsEngine.EmbedHostType("Assembly", assemblyType);
+					return jsEngine.Evaluate<string>("Assembly.Load(\"" + reflectionEmitAssemblyName + "\");");
+				}
+			}
+
+			// Act and Assert
+			Assert.Equal(reflectionEmitAssemblyName, TestAllowReflectionSetting(true));
+			Assert.Equal(reflectionEmitAssemblyName, TestAllowReflectionSetting(false));
 		}
 
 		#endregion
