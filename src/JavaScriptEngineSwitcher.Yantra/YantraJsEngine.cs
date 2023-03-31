@@ -11,8 +11,10 @@ using OriginalClrMemberNamingConvention = YantraJS.Core.Clr.ClrMemberNamingConve
 using OriginalClrProxy = YantraJS.Core.Clr.ClrProxy;
 using OriginalClrType = YantraJS.Core.Clr.ClrType;
 using OriginalContext = YantraJS.Core.JSContext;
+using OriginalDate = YantraJS.Core.JSDate;
 using OriginalException = YantraJS.Core.JSException;
 using OriginalFunction = YantraJS.Core.JSFunction;
+using OriginalJsonObject = YantraJS.Core.JSJSON;
 using OriginalTypeConverter = YantraJS.Utils.TypeConverter;
 using OriginalUndefined = YantraJS.Core.JSUndefined;
 using OriginalValue = YantraJS.Core.JSValue;
@@ -60,6 +62,11 @@ namespace JavaScriptEngineSwitcher.Yantra
 		private OriginalContext _jsContext;
 
 		/// <summary>
+		/// JS debugging console callback
+		/// </summary>
+		private YantraJsConsoleCallback _consoleCallback;
+
+		/// <summary>
 		/// Synchronizer of code execution
 		/// </summary>
 		private readonly object _executionSynchronizer = new object();
@@ -75,11 +82,35 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// Constructs an instance of adapter for the Yantra JS engine
 		/// </summary>
 		public YantraJsEngine()
+			: this(new YantraSettings())
+		{ }
+
+		/// <summary>
+		/// Constructs an instance of adapter for the Yantra JS engine
+		/// </summary>
+		/// <param name="settings">Settings of the Yantra JS engine</param>
+		public YantraJsEngine(YantraSettings settings)
 		{
-			_jsContext = new OriginalContext()
+			YantraSettings yantraSettings = settings ?? new YantraSettings();
+			_consoleCallback = yantraSettings.ConsoleCallback;
+
+			try
 			{
-				ClrMemberNamingConvention = OriginalClrMemberNamingConvention.Declared
-			};
+				_jsContext = new OriginalContext()
+				{
+					ClrMemberNamingConvention = OriginalClrMemberNamingConvention.Declared,
+					Debugger = yantraSettings.Debugger
+				};
+
+				if (_consoleCallback != null)
+				{
+					_jsContext.ConsoleEvent += OnConsoleWrite;
+				}
+			}
+			catch (Exception e)
+			{
+				throw JsErrorHelpers.WrapEngineLoadException(e, EngineName, EngineVersion, true);
+			}
 		}
 
 
@@ -138,6 +169,21 @@ namespace JavaScriptEngineSwitcher.Yantra
 			else if (value.IsString)
 			{
 				result = value.ToString();
+			}
+			else if (value is OriginalDate)
+			{
+				var jsDate = (OriginalDate)value;
+				result = jsDate.DateTime;
+			}
+			else if (value is OriginalClrProxy)
+			{
+				var clrProxy = (OriginalClrProxy)value;
+				result = clrProxy.Target;
+			}
+			else if (value is OriginalClrType)
+			{
+				var clrType = (OriginalClrType)value;
+				result = clrType.Type;
 			}
 			else
 			{
@@ -201,7 +247,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 			{
 				MethodInfo method = del.GetMethodInfo();
 				ParameterInfo[] parameters = method.GetParameters();
-				object[] processedArgs = GetHostDelegateArguments(args.ToArray(), parameters.Length);
+				object[] processedArgs = GetHostDelegateArguments(args, parameters.Length);
 
 				ReflectionHelpers.FixArgumentTypes(ref processedArgs, parameters);
 
@@ -231,28 +277,21 @@ namespace JavaScriptEngineSwitcher.Yantra
 			return originalFunction;
 		}
 
-		private static object[] GetHostDelegateArguments(OriginalValue[] args, int maxArgCount)
+		private static object[] GetHostDelegateArguments(in OriginalArguments args, int maxArgCount)
 		{
-			if (args == null)
-			{
-				throw new ArgumentNullException(nameof(args));
-			}
-
 			int argCount = args.Length;
-			int processedArgCount = argCount > maxArgCount ? maxArgCount : argCount;
-			object[] processedArgs;
-
-			if (processedArgCount > 0)
+			if (argCount == 0)
 			{
-				processedArgs = args
-					.Take(processedArgCount)
-					.Select(MapToHostType)
-					.ToArray()
-					;
+				return new object[0];
 			}
-			else
+
+			int processedArgCount = Math.Min(argCount, maxArgCount);
+			var processedArgs = new object[processedArgCount];
+
+			for (int argIndex = 0; argIndex < processedArgCount; argIndex++)
 			{
-				processedArgs = new object[0];
+				OriginalValue arg = args.GetAt(argIndex);
+				processedArgs[argIndex] = MapToHostType(arg);
 			}
 
 			return processedArgs;
@@ -343,6 +382,43 @@ namespace JavaScriptEngineSwitcher.Yantra
 			wrapperException.Description = description;
 
 			return wrapperException;
+		}
+
+		private void OnConsoleWrite(OriginalContext context, string type, in OriginalArguments args)
+		{
+			int argCount = args.Length;
+			var processedArgs = new object[argCount];
+
+			for (int argIndex = 0; argIndex < argCount; argIndex++)
+			{
+				OriginalValue arg = args.GetAt(argIndex);
+				object processedArg = MapToHostType(arg);
+
+				if (processedArg is OriginalValue)
+				{
+					if (arg.IsFunction)
+					{
+						var jsFunction = (OriginalFunction)arg;
+						processedArg = string.Format("[Function: {0}]", jsFunction.name);
+					}
+					else if (arg.IsSymbol)
+					{
+						processedArg = string.Format("Symbol({0})", arg.ToString());
+					}
+					else if (arg.IsObject || arg.IsArray)
+					{
+						processedArg = OriginalJsonObject.Stringify(arg);
+					}
+					else
+					{
+						processedArg = arg.ToString();
+					}
+				}
+
+				processedArgs[argIndex] = processedArg;
+			}
+
+			_consoleCallback?.Invoke(type, processedArgs);
 		}
 
 		#endregion
@@ -688,6 +764,12 @@ namespace JavaScriptEngineSwitcher.Yantra
 				{
 					if (_jsContext != null)
 					{
+						if (_consoleCallback != null)
+						{
+							_jsContext.ConsoleEvent -= OnConsoleWrite;
+							_consoleCallback = null;
+						}
+
 						_jsContext.Dispose();
 						_jsContext = null;
 					}
