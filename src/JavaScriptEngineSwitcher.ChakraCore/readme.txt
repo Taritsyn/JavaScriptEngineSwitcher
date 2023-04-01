@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2022 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2023 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -31,8 +31,9 @@
    =============
    RELEASE NOTES
    =============
-   In configuration settings of the ChakraCore JS engine was added one new
-   property - `AllowReflection` (default `false`).
+   1. ChakraCore was updated to version of January 26, 2023;
+   2. In configuration settings of the ChakraCore JS engine was added one new
+      property - `AllowReflection` (default `false`).
 
    =============
    DOCUMENTATION
