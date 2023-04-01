@@ -47,7 +47,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.2.121";
+		private const string EngineVersion = "1.2.129";
 
 		/// <summary>
 		/// Regular expression for working with the error message
@@ -148,7 +148,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// <returns>The mapped value</returns>
 		private static object MapToHostType(OriginalValue value)
 		{
-			object result;
+			object result = value;
 
 			if (value.IsNull)
 			{
@@ -170,24 +170,23 @@ namespace JavaScriptEngineSwitcher.Yantra
 			{
 				result = value.ToString();
 			}
-			else if (value is OriginalDate)
-			{
-				var jsDate = (OriginalDate)value;
-				result = jsDate.DateTime;
-			}
-			else if (value is OriginalClrProxy)
-			{
-				var clrProxy = (OriginalClrProxy)value;
-				result = clrProxy.Target;
-			}
-			else if (value is OriginalClrType)
+			else if (value.IsFunction && value is OriginalClrType)
 			{
 				var clrType = (OriginalClrType)value;
 				result = clrType.Type;
 			}
-			else
+			else if (value.IsObject)
 			{
-				result = value;
+				if (value is OriginalDate)
+				{
+					var jsDate = (OriginalDate)value;
+					result = jsDate.DateTime;
+				}
+				else if (value is OriginalClrProxy)
+				{
+					var clrProxy = (OriginalClrProxy)value;
+					result = clrProxy.Target;
+				}
 			}
 
 			return result;
@@ -396,16 +395,16 @@ namespace JavaScriptEngineSwitcher.Yantra
 
 				if (processedArg is OriginalValue)
 				{
-					if (arg.IsFunction)
+					if (arg.IsSymbol)
+					{
+						processedArg = string.Format("Symbol({0})", arg.ToString());
+					}
+					else if (arg.IsFunction)
 					{
 						var jsFunction = (OriginalFunction)arg;
 						processedArg = string.Format("[Function: {0}]", jsFunction.name);
 					}
-					else if (arg.IsSymbol)
-					{
-						processedArg = string.Format("Symbol({0})", arg.ToString());
-					}
-					else if (arg.IsObject || arg.IsArray)
+					else if (arg.IsObject)
 					{
 						processedArg = OriginalJsonObject.Stringify(arg);
 					}
