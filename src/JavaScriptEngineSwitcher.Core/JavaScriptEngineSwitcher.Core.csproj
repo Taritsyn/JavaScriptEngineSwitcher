@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Core</Product>
-    <VersionPrefix>3.19.0</VersionPrefix>
+    <VersionPrefix>3.21.0</VersionPrefix>
     <TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
@@ -21,7 +21,6 @@
     <Description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines (ChakraCore, Jint, Jurassic, MSIE JavaScript Engine for .NET, NiL.JS, Jering.Javascript.NodeJS, Microsoft ClearScript.V8, VroomJs and YantraJS). This library allows you to quickly and easily switch to using of another JavaScript engine.</Description>
     <PackageTags>$(PackageCommonTags)</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Core_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Fixed a error #102 “Resources should conform to correct ICU standard for naming”. Special thanks to Tim Heuer.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

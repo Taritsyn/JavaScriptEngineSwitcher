@@ -1,7 +1,7 @@
 {
   "name": "jsengineswitcher.sample.aspnet4.mvc4",
   "private": true,
-  "version": "3.20.10",
+  "version": "3.21.0",
   "devDependencies": {
     "gulp": "4.0.2",
     "del": "5.1.0",

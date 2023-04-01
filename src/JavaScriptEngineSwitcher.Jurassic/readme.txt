@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                  README file for JS Engine Switcher: Jurassic v3.20.5
+                  README file for JS Engine Switcher: Jurassic v3.21.0
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2022 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2023 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========

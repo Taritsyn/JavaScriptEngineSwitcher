@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                   README file for JS Engine Switcher: Vroom v3.19.0
+                   README file for JS Engine Switcher: Vroom v3.21.0
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2022 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2023 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -18,12 +18,6 @@
    For correct working of the VroomJs on Windows require the Visual C++
    Redistributable for Visual Studio 2012 and the Microsoft Visual C++ 2015
    Redistributable.
-
-   =============
-   RELEASE NOTES
-   =============
-   Fixed a error #102 “Resources should conform to correct ICU standard for
-   naming”. Special thanks to Tim Heuer.
 
    ====================
    POST-INSTALL ACTIONS

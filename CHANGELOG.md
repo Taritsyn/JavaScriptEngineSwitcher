@@ -1,6 +1,23 @@
 Change log
 ==========
 
+## v3.21.0 - April 1, 2023
+ * Added a module based on the [YantraJS](https://yantrajs.com). Special thanks to [Akash Kava](https://github.com/ackava)
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version of January 26, 2023
+   * In configuration settings of the ChakraCore JS engine was added one new property - `AllowReflection` (default `false`)
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 3.0.0 Beta 2048
+   * In configuration settings of the Jint JS engine was added two new properties: `AllowReflection` (default `false`) and `DisableEval` (default `false`)
+ * In JavaScriptEngineSwitcher.Jurassic improved a conversion of results to a host types
+ * In JavaScriptEngineSwitcher.Msie:
+   * MSIE JavaScript Engine was updated to version 3.2.1
+   * In configuration settings of the MSIE JS engine was added one new property - `AllowReflection` (default `false`)
+ * In JavaScriptEngineSwitcher.NiL added support of NiL.JS version 2.5.1661
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.4.0 (support of V8 version 11.1.277.14)
+   * In configuration settings of the V8 JS engine was added one new property - `AllowReflection` (default `false`)
+
 ## v3.20.10 - January 23, 2023
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.3.7 (support of V8 version 10.9.194.10)
 

@@ -1,7 +1,7 @@
 JavaScript Engine Switcher [![NuGet version](http://img.shields.io/nuget/v/JavaScriptEngineSwitcher.Core.svg)](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Core/)  [![Download count](https://img.shields.io/nuget/dt/JavaScriptEngineSwitcher.Core.svg)](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Core/)
 ==========================
 
-JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([ChakraCore](https://github.com/chakra-core/ChakraCore), [Jering.Javascript.NodeJS](https://github.com/JeringTech/Javascript.NodeJS), [Jint](https://github.com/sebastienros/jint), [Jurassic](https://github.com/paulbartrum/jurassic), [MSIE JavaScript Engine for .NET](https://github.com/Taritsyn/MsieJavaScriptEngine), [NiL.JS](https://github.com/nilproject/NiL.JS), [Microsoft ClearScript.V8](https://github.com/Microsoft/ClearScript) and [VroomJs](https://github.com/pauldotknopf/vroomjs-core)).
+JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([ChakraCore](https://github.com/chakra-core/ChakraCore), [Jint](https://github.com/sebastienros/jint), [Jurassic](https://github.com/paulbartrum/jurassic), [MSIE JavaScript Engine for .NET](https://github.com/Taritsyn/MsieJavaScriptEngine), [NiL.JS](https://github.com/nilproject/NiL.JS), [Jering.Javascript.NodeJS](https://github.com/JeringTech/Javascript.NodeJS), [Microsoft ClearScript.V8](https://github.com/Microsoft/ClearScript), [VroomJs](https://github.com/pauldotknopf/vroomjs-core) and [YantraJS](https://yantrajs.com)).
 This library allows you to quickly and easily switch to using of another JavaScript engine.
 
 The supported .NET types are as follows:
@@ -42,6 +42,7 @@ This library can be installed through NuGet:
    * [Microsoft ClearScript.V8 for OS X (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.osx-x64)
    * [Microsoft ClearScript.V8 for OS X (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.osx-arm64)
  * [JS Engine Switcher: Vroom](http://nuget.org/packages/JavaScriptEngineSwitcher.Vroom) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Framework 4.7.1, .NET Standard 1.6 and .NET Standard 2.0)
+ * [JS Engine Switcher: Yantra](http://nuget.org/packages/JavaScriptEngineSwitcher.Yantra) (supports .NET Standard 2.0 and .NET Standard 2.1)
 
 If you have used the JavaScript Engine Switcher version 2.X, then I recommend to first read [“How to upgrade applications to version 3.X”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/How-to-upgrade-applications-to-version-3.X) section of the documentation.
 
