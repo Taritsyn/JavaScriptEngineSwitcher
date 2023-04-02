@@ -63,7 +63,7 @@ console.log('Страница в Википедии:', wikipediaPageUrl);";
 				;
 
 			// Act
-			using (var jsEngine = CreateJsEngine(logger.Log))
+			using (var jsEngine = CreateJsEngine(consoleCallback: logger.Log))
 			{
 				jsEngine.EmbedHostType("favoriteSchoolSubject", favoriteSchoolSubject);
 				jsEngine.EmbedHostObject("wikipediaPageUrl", wikipediaPageUrl);
@@ -93,12 +93,12 @@ console.info('Everything is going according to plan.');
 console.info(driveLetter, 'drive has been formatted successfully!');";
 
 			// Act
-			JsRuntimeException exception = null;
 			IJsEngine jsEngine = null;
+			JsRuntimeException exception = null;
 
 			try
 			{
-				jsEngine = CreateJsEngine(logger.Log);
+				jsEngine = CreateJsEngine(consoleCallback: logger.Log);
 				jsEngine.Execute(input);
 			}
 			catch (JsRuntimeException e)
@@ -128,13 +128,13 @@ console.info(driveLetter, 'drive has been formatted successfully!');";
 			const string input = @"console.warn('Watch out, the doors are closing!');
 console.warn('Watch yourself,', 'be careful!');
 console.warn('It is forbidden to watch!');";
-			string targetOutput = "warn:	Watch out, the doors are closing!" + Environment.NewLine +
-				"warn:	Watch yourself, be careful!" + Environment.NewLine +
-				"warn:	It is forbidden to watch!" + Environment.NewLine
+			string targetOutput = "warn: Watch out, the doors are closing!" + Environment.NewLine +
+				"warn: Watch yourself, be careful!" + Environment.NewLine +
+				"warn: It is forbidden to watch!" + Environment.NewLine
 				;
 
 			// Act
-			using (var jsEngine = CreateJsEngine(logger.Log))
+			using (var jsEngine = CreateJsEngine(consoleCallback: logger.Log))
 			{
 				jsEngine.Execute(input);
 			}
@@ -156,10 +156,10 @@ console.warn('It is forbidden to watch!');";
 			var logger = new StringLogger(sb);
 
 			const string input = @"console.error('A terrible thing happened!');";
-			string targetOutput = "error:	A terrible thing happened!" + Environment.NewLine;
+			string targetOutput = "error: A terrible thing happened!" + Environment.NewLine;
 
 			// Act
-			using (var jsEngine = CreateJsEngine(logger.Log))
+			using (var jsEngine = CreateJsEngine(consoleCallback: logger.Log))
 			{
 				jsEngine.Execute(input);
 			}
@@ -188,8 +188,7 @@ console.warn('It is forbidden to watch!');";
 			{
 				if (type != "log")
 				{
-					_buffer.Append(type);
-					_buffer.Append(":	");
+					_buffer.AppendFormat("{0}: ", type);
 				}
 
 				for (int argIndex = 0; argIndex < args.Length; argIndex++)

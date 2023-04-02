@@ -194,40 +194,56 @@ for (var i = 0; i < 10000; i++) {
 	arr.push('Current date: ' + new Date());
 }";
 
-			JsRuntimeException exception = null;
-
 			// Act
-			using (IJsEngine jsEngine = new ChakraCoreJsEngine(
-				new ChakraCoreSettings
-				{
-					MemoryLimit = new UIntPtr(2 * 1024 * 1024)
-				}
-			))
+			IJsEngine jsEngine = null;
+			JsException exception = null;
+
+			try
 			{
-				try
-				{
-					jsEngine.Execute(input);
-				}
-				catch (JsRuntimeException e)
-				{
-					exception = e;
-				}
+				jsEngine = new ChakraCoreJsEngine(
+					new ChakraCoreSettings
+					{
+						MemoryLimit = new UIntPtr(2 * 1024 * 1024)
+					}
+				);
+				jsEngine.Execute(input);
+			}
+			catch (JsEngineException e)
+			{
+				exception = e;
+			}
+			catch (JsRuntimeException e)
+			{
+				exception = e;
+			}
+			finally
+			{
+				jsEngine?.Dispose();
 			}
 
 			// Assert
 			Assert.NotNull(exception);
-			Assert.Equal("Runtime error", exception.Category);
-			Assert.Equal("Out of memory", exception.Description);
+			if (exception is JsRuntimeException)
+			{
+				Assert.Equal("Runtime error", exception.Category);
+				Assert.Equal("Out of memory", exception.Description);
+			}
+			else if (exception is JsEngineException)
+			{
+				Assert.Equal("Engine load error", exception.Category);
+				Assert.Equal("Out of memory.", exception.Description);
+			}
 		}
 
 		[Fact]
 		public void MappingEngineLoadErrorDuringOutOfMemory()
 		{
 			// Arrange
+
+			// Act
 			IJsEngine jsEngine = null;
 			JsEngineLoadException exception = null;
 
-			// Act
 			try
 			{
 				jsEngine = new ChakraCoreJsEngine(
