@@ -47,7 +47,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.2.129";
+		private const string EngineVersion = "1.2.143";
 
 		/// <summary>
 		/// Regular expression for working with the error message
@@ -172,15 +172,13 @@ namespace JavaScriptEngineSwitcher.Yantra
 			}
 			else if (value.IsFunction && value is OriginalClrType)
 			{
-				var clrType = (OriginalClrType)value;
-				result = clrType.Type;
+				result = value.ForceConvert(typeof(Type));
 			}
 			else if (value.IsObject)
 			{
 				if (value is OriginalDate)
 				{
-					var jsDate = (OriginalDate)value;
-					result = jsDate.DateTime;
+					result = value.ForceConvert(typeof(DateTime));
 				}
 				else if (value is OriginalClrProxy)
 				{

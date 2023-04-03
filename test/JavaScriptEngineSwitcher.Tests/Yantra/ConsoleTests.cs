@@ -1,5 +1,6 @@
 ﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
 using System;
+using System.Globalization;
 using System.Text;
 
 using Xunit;
@@ -55,7 +56,7 @@ console.log('Функция для расчета подоходного нал�
 console.log('Папа у Васи силен в', favoriteSchoolSubject);
 console.log('Страница в Википедии:', wikipediaPageUrl);";
 			string targetOutput = "undefined null {\"city\":\"Тамбов\",\"street\":\"Магистральная\"," +
-				"\"houseNumber\":\"41к7\",\"apartmentNumber\":115} [\"Мурзик\",\"Шарик\"] True 698426795 22000,82 " +
+				"\"houseNumber\":\"41к7\",\"apartmentNumber\":115} [\"Мурзик\",\"Шарик\"] True 698426795 22000.82 " +
 				"Василий Пупкин Symbol(id) 1990-03-14T21:00:00.0000000Z" + Environment.NewLine +
 				"Функция для расчета подоходного налога: [Function: calculateIncomeTax]" + Environment.NewLine +
 				"Папа у Васи силен в System.Math" + Environment.NewLine +
@@ -198,17 +199,26 @@ console.warn('It is forbidden to watch!');";
 						_buffer.Append(" ");
 					}
 
-					object arg = args[argIndex];
-					if (arg is DateTime)
-					{
-						var dateTime = (DateTime)arg;
-						DateTime universalDateTime = dateTime.ToUniversalTime();
+					object arg = args[argIndex] ?? "null";
+					var formattableArg = arg as IFormattable;
 
-						_buffer.Append(universalDateTime.ToString("O"));
+					if (formattableArg != null)
+					{
+						if (formattableArg is DateTime)
+						{
+							var dateTime = (DateTime)formattableArg;
+							DateTime universalDateTime = dateTime.ToUniversalTime();
+
+							_buffer.Append(universalDateTime.ToString("O", CultureInfo.InvariantCulture));
+						}
+						else
+						{
+							_buffer.Append(formattableArg.ToString("G", CultureInfo.InvariantCulture));
+						}
 					}
 					else
 					{
-						_buffer.Append(arg != null ? arg.ToString() : "null");
+						_buffer.Append(arg.ToString());
 					}
 				}
 

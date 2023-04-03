@@ -14,13 +14,14 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Yantra contains adapter `YantraJsEngine` (wrapper for the Yantra JavaScript Engine (https://yantrajs.com) version 1.2.129).</Description>
+    <Description>JavaScriptEngineSwitcher.Yantra contains adapter `YantraJsEngine` (wrapper for the Yantra JavaScript Engine (https://yantrajs.com) version 1.2.143).</Description>
     <PackageTags>$(PackageCommonTags);Yantra;YantraJS</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Yantra_Logo128x128.png</PackageIconFullPath>
+    <PackageReleaseNotes>YantraJS was updated to version 1.2.143.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="YantraJS.Core" Version="1.2.129" />
+    <PackageReference Include="YantraJS.Core" Version="1.2.143" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
