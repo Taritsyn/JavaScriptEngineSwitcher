@@ -21,12 +21,11 @@
     <Description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .NET (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge Legacy on the machine.</Description>
     <PackageTags>$(PackageCommonTags);MSIE;IE;Chakra</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>1. MSIE JavaScript Engine was updated to version 3.2.1;
-2. In configuration settings of the MSIE JS engine was added one new property - `AllowReflection` (default `false`).</PackageReleaseNotes>
+    <PackageReleaseNotes>MSIE JavaScript Engine was updated to version 3.2.2.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MsieJavaScriptEngine" Version="3.2.1" />
+    <PackageReference Include="MsieJavaScriptEngine" Version="3.2.2" />
     <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
