@@ -1,6 +1,14 @@
 Change log
 ==========
 
+## v3.21.1 - April 11, 2023
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 3.0.0 Beta 2049
+   * Added support of .NET 6
+ * In JavaScriptEngineSwitcher.Msie added support of MSIE JavaScript Engine version 3.2.2
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.4.1 (support of V8 version 11.2.214.13)
+ * In JavaScriptEngineSwitcher.Yantra added support of YantraJS version 1.2.160
+
 ## v3.21.0 - April 1, 2023
  * Added a module based on the [YantraJS](https://yantrajs.com). Special thanks to [Akash Kava](https://github.com/ackava)
  * In JavaScriptEngineSwitcher.ChakraCore:
