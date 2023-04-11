@@ -47,7 +47,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.2.143";
+		private const string EngineVersion = "1.2.160";
 
 		/// <summary>
 		/// Regular expression for working with the error message
