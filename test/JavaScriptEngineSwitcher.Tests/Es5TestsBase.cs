@@ -394,18 +394,25 @@ engines.forEach(function(value, index, array) {{
 		public virtual void SupportsFunctionBindMethod()
 		{
 			// Arrange
-			const string initCode = @"var a = 5,
-	module = {
-		a: 12,
-		getA: function() { return this.a; }
-	},
-	getA = module.getA
+			const string initCode = @"var A = (function () {
+		function A(a) {
+			this.a = a;
+		}
+
+		A.prototype.getA = function() {
+			return this.a;
+		};
+
+		return A;
+	})(),
+	a = new A(5),
+	otherContext = { a: 12 }
 	;";
 
-			const string input1 = "getA();";
+			const string input1 = "a.getA();";
 			const int targetOutput1 = 5;
 
-			const string input2 = "getA.bind(module)();";
+			const string input2 = "a.getA.bind(otherContext)();";
 			const int targetOutput2 = 12;
 
 			// Act

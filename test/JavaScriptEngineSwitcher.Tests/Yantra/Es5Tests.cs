@@ -9,15 +9,6 @@ namespace JavaScriptEngineSwitcher.Tests.Yantra
 		{
 			get { return "YantraJsEngine"; }
 		}
-
-
-		#region Function methods
-
-		[Fact]
-		public override void SupportsFunctionBindMethod()
-		{ }
-
-		#endregion
 	}
 }
 #endif
