@@ -98,7 +98,7 @@ namespace JavaScriptEngineSwitcher.Node
 			return StaticNodeJSService.TryInvokeFromCacheAsync(moduleCacheIdentifier, exportName, args, cancellationToken);
 		}
 
-		public void MoveToNewProcess()
+		public ValueTask MoveToNewProcessAsync()
 		{
 			throw new NotSupportedException();
 		}

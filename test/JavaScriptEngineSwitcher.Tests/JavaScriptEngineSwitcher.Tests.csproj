@@ -85,11 +85,11 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net452' ">
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jint/JavaScriptEngineSwitcher.Jint.csproj" />
-    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Node/JavaScriptEngineSwitcher.Node.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net452' And '$(TargetFramework)' != 'netcoreapp2.1' ">
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.NiL/JavaScriptEngineSwitcher.NiL.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Node/JavaScriptEngineSwitcher.Node.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Yantra/JavaScriptEngineSwitcher.Yantra.csproj" />
   </ItemGroup>
 

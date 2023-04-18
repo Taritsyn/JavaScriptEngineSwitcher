@@ -12,8 +12,6 @@ using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
 #if NET471 || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.NiL;
-#endif
-#if !NET452
 using JavaScriptEngineSwitcher.Node;
 #endif
 #if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER
@@ -51,8 +49,6 @@ namespace JavaScriptEngineSwitcher.Tests
 					})
 #if NET471 || NETCOREAPP3_1_OR_GREATER
 					.AddNiL()
-#endif
-#if !NET452
 					.AddNode()
 #endif
 #if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER

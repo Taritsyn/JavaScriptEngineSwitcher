@@ -1,4 +1,4 @@
-﻿#if !NET452
+﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
 using Xunit;
 
 namespace JavaScriptEngineSwitcher.Tests.Node
