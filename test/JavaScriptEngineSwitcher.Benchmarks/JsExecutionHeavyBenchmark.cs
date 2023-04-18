@@ -18,6 +18,9 @@ using JavaScriptEngineSwitcher.Node;
 using JavaScriptEngineSwitcher.V8;
 #endif
 using JavaScriptEngineSwitcher.Vroom;
+#if NET461 || NETCOREAPP3_1_OR_GREATER
+using JavaScriptEngineSwitcher.Yantra;
+#endif
 
 namespace JavaScriptEngineSwitcher.Benchmarks
 {
@@ -85,7 +88,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			string librariesDirectoryPath = Path.Combine(filesDirectoryPath, "lib");
 			string contentDirectoryPath = Path.Combine(filesDirectoryPath, "content");
 
-			_libraryCode = File.ReadAllText(Path.Combine(librariesDirectoryPath, "bundle.min.js"));
+			_libraryCode = File.ReadAllText(Path.Combine(librariesDirectoryPath, LibraryFileName));
 
 			foreach (ContentItem item in _contentItems)
 			{
@@ -259,6 +262,15 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new VroomJsEngine();
 			RenderTemplates(createJsEngine, false);
 		}
+#if NET461 || NETCOREAPP3_1_OR_GREATER
+
+		[Benchmark]
+		public void Yantra()
+		{
+			Func<IJsEngine> createJsEngine = () => new YantraJsEngine();
+			RenderTemplates(createJsEngine, false);
+		}
+#endif
 
 		#region Internal types
 
