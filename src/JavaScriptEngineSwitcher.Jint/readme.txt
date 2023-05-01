@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-               README file for JS Engine Switcher: Jint v3.21.1 Preview
+                   README file for JS Engine Switcher: Jint v3.21.1
 
    --------------------------------------------------------------------------------
 
@@ -18,8 +18,9 @@
    =============
    RELEASE NOTES
    =============
-   In configuration settings of the Jint JS engine was added one new property -
-   `MaxJsonParseDepth` (default `64`).
+   1. The package is no longer marked as a prerelease;
+   2. In configuration settings of the Jint JS engine was added one new property -
+      `MaxJsonParseDepth` (default `64`).
 
    =============
    DOCUMENTATION
