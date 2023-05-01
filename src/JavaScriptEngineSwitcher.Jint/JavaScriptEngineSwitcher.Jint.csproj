@@ -21,8 +21,7 @@
     <Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 2049).</Description>
     <PackageTags>$(PackageCommonTags);Jint</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>1. Jint was updated to version 3.0.0 Beta 2049;
-2. Added support of .NET 6.</PackageReleaseNotes>
+    <PackageReleaseNotes>In configuration settings of the Jint JS engine was added one new property - `MaxJsonParseDepth` (default `64`).</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

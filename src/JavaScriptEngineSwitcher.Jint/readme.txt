@@ -18,8 +18,8 @@
    =============
    RELEASE NOTES
    =============
-   1. Jint was updated to version 3.0.0 Beta 2049;
-   2. Added support of .NET 6.
+   In configuration settings of the Jint JS engine was added one new property -
+   `MaxJsonParseDepth` (default `64`).
 
    =============
    DOCUMENTATION

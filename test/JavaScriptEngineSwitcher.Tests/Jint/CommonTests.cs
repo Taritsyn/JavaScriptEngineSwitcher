@@ -251,6 +251,63 @@ for (var i = 0; i < 10000; i++) {
 		}
 
 		[Fact]
+		public void MappingRuntimeErrorDuringMaxJsonParseDepthReached()
+		{
+			// Arrange
+			const string input = @"var data = '{\n' +
+	'	""menu"": {\n' +
+	'		""id"": ""file"",\n' +
+	'		""value"": ""File"",\n' +
+	'		""popup"": {\n' +
+	'			""menuItem"": [\n' +
+	'				{ ""value"": ""New"", ""onclick"": ""CreateNewDoc()"" },\n' +
+	'				{ ""value"": ""Open"", ""onclick"": ""OpenDoc()"" },\n' +
+	'				{ ""value"": ""Close"", ""onclick"": ""CloseDoc()"" }\n' +
+	'			]\n' +
+	'		}\n' +
+	'	}\n' +
+	'}'
+	;
+
+JSON.parse(data);";
+
+			JsRuntimeException exception = null;
+
+			// Act
+			using (var jsEngine = new JintJsEngine(
+				new JintSettings
+				{
+					MaxJsonParseDepth = 4
+				}
+			))
+			{
+				try
+				{
+					jsEngine.Execute(input, "menu.js");
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Max. depth level of JSON reached at position 82", exception.Description);
+			Assert.Equal("SyntaxError", exception.Type);
+			Assert.Equal("menu.js", exception.DocumentName);
+			Assert.Equal(16, exception.LineNumber);
+			Assert.Equal(1, exception.ColumnNumber);
+			Assert.Empty(exception.SourceFragment);
+			Assert.Equal(
+				"   at Global code (parse menu.js:16:12)" + Environment.NewLine +
+				"   at Global code (menu.js:16:1)",
+				exception.CallStack
+			);
+		}
+
+		[Fact]
 		public void MappingRuntimeErrorDuringRecursionDepthOverflow()
 		{
 			// Arrange

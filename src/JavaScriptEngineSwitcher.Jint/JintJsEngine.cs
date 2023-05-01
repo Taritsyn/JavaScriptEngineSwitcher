@@ -131,6 +131,7 @@ namespace JavaScriptEngineSwitcher.Jint
 						.LimitRecursion(jintSettings.MaxRecursionDepth)
 						.LocalTimeZone(jintSettings.LocalTimeZone ?? TimeZoneInfo.Local)
 						.MaxArraySize(jintSettings.MaxArraySize)
+						.MaxJsonParseDepth(jintSettings.MaxJsonParseDepth)
 						.MaxStatements(jintSettings.MaxStatements)
 						.Strict(jintSettings.StrictMode)
 						.TimeoutInterval(jintSettings.TimeoutInterval)

@@ -98,6 +98,15 @@ namespace JavaScriptEngineSwitcher.Jint
 		}
 
 		/// <summary>
+		/// Gets or sets a maximum depth allowed when parsing JSON data using the <c>JSON.parse</c> static method
+		/// </summary>
+		public int MaxJsonParseDepth
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a maximum allowed depth of recursion:
 		///    <c>-1</c> - recursion without limits;
 		///     <c>N</c> - one scope function can be called no more than <c>N</c> times.
@@ -181,6 +190,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			EnableDebugging = false;
 			LocalTimeZone = TimeZoneInfo.Local;
 			MaxArraySize = uint.MaxValue;
+			MaxJsonParseDepth = 64;
 			MaxRecursionDepth = -1;
 			MaxStatements = 0;
 			MemoryLimit = 0;
