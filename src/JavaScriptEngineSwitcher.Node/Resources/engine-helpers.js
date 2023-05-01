@@ -17,7 +17,7 @@ function getContext(engineId) {
 	if (!contexts.has(engineId)) {
 		throw new UsageError("JavaScriptEngineSwitcher.Node module cannot work correctly " +
 			"when the Node JS service is configured to work in the multi-process mode of " +
-			"Jering.Javascript.NodeJS library (https://github.com/JeringTech/Javascript.NodeJS#concurrency), " +
+			"Jering.Javascript.NodeJS library (https://github.com/JeringTech/Javascript.NodeJS#enabling-multi-process-concurrency), " +
 			"because in this mode it is not possible to store a state of JS engine."
 		);
 	}

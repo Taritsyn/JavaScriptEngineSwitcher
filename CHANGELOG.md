@@ -1,6 +1,14 @@
 Change log
 ==========
 
+## v3.21.2 - May 1, 2023
+ * In JavaScriptEngineSwitcher.Jint:
+   * The package is no longer marked as a prerelease
+   * In configuration settings of the Jint JS engine was added one new property - `MaxJsonParseDepth` (default `64`)
+ * In JavaScriptEngineSwitcher.Node:
+   * Jering.Javascript.NodeJS was updated to version 7.0.0 Beta 4
+   * Added support of .NET 7
+
 ## v3.21.1 - April 11, 2023
  * In JavaScriptEngineSwitcher.Jint:
    * Jint was updated to version 3.0.0 Beta 2049
