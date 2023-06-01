@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.21.3 - June 1, 2023
+ * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.4.2 (support of V8 version 11.4.183.17)
+ * In JavaScriptEngineSwitcher.Yantra added support of YantraJS version 1.2.163
+
 ## v3.21.2 - May 1, 2023
  * In JavaScriptEngineSwitcher.Jint:
    * The package is no longer marked as a prerelease
