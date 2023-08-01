@@ -13,14 +13,12 @@
    ===========
    JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the
    Jint JavaScript Engine (http://github.com/sebastienros/jint) version
-   3.0.0 Beta 2049).
+   3.0.0 Beta 2050).
 
    =============
    RELEASE NOTES
    =============
-   1. The package is no longer marked as a prerelease;
-   2. In configuration settings of the Jint JS engine was added one new property -
-      `MaxJsonParseDepth` (default `64`).
+   Jint was updated to version 3.0.0 Beta 2050.
 
    =============
    DOCUMENTATION
