@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.21.4 - August 3, 2023
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.0.0 Beta 2050
+ * In JavaScriptEngineSwitcher.NiL added support for the NiL.JS version 2.5.1665
+ * In JavaScriptEngineSwitcher.Node added support for the Jering.Javascript.NodeJS version 7.0.0 Beta 5
+ * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.179
+
 ## v3.21.3 - June 1, 2023
  * In JavaScriptEngineSwitcher.V8 added support of Microsoft ClearScript.V8 version 7.4.2 (support of V8 version 11.4.183.17)
  * In JavaScriptEngineSwitcher.Yantra added support of YantraJS version 1.2.163

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Logic for Samples</Product>
-    <VersionPrefix>3.21.3</VersionPrefix>
+    <VersionPrefix>3.21.4</VersionPrefix>
     <TargetFrameworks>net40;net451;net471;netstandard1.6;netstandard2.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
@@ -44,11 +44,11 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="6.0.16" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="6.0.20" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="7.0.5" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="7.0.9" />
   </ItemGroup>
 
 </Project>
