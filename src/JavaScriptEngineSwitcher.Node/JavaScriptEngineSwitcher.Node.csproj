@@ -18,17 +18,16 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS) version 7.0.0 Beta 4).
+    <Description>JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS) version 7.0.0 Beta 5).
 
 This package does not contain the `node.exe`. Therefore, you need to install the Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path` environment variable (automatically done by the official installer).</Description>
     <PackageTags>$(PackageCommonTags);Node.js;Jering.Javascript.NodeJS</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>1. Jering.Javascript.NodeJS was updated to version 7.0.0 Beta 4;
-2. Added support of .NET 7.</PackageReleaseNotes>
+    <PackageReleaseNotes>Jering.Javascript.NodeJS was updated to version 7.0.0 Beta 5.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jering.Javascript.NodeJS" Version="7.0.0-beta.4" />
+    <PackageReference Include="Jering.Javascript.NodeJS" Version="7.0.0-beta.5" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>

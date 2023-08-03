@@ -27,8 +27,16 @@ function getContext(engineId) {
 
 module.exports = {
 	addContext: (callback, engineId, useBuiltinLibrary) => {
-		let sandboxPrototype = useBuiltinLibrary ? global : null;
-		let sandbox = Object.create(sandboxPrototype);
+		let sandbox;
+		if (useBuiltinLibrary) {
+			sandbox = Object.create(global);
+			if (typeof sandbox['require'] === 'undefined') {
+				sandbox['require'] = require;
+			}
+		}
+		else {
+			sandbox = Object.create(null);
+		}
 
 		let context = vm.createContext(sandbox);
 		contexts.set(engineId, context);
