@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
-    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.5" />
+    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.7" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
