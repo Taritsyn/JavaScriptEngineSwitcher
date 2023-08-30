@@ -58,7 +58,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net452' And '$(TargetFramework)' != 'netcoreapp2.1' ">
-    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.7.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.7.2" />
     <PackageReference Include="xunit.runner.visualstudio" VersionOverride="2.4.5" />
   </ItemGroup>
 
