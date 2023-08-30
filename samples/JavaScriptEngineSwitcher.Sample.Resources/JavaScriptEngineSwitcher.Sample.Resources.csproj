@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Resources for Samples</Product>
-    <VersionPrefix>3.21.5</VersionPrefix>
+    <VersionPrefix>3.21.6</VersionPrefix>
     <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
