@@ -10,15 +10,15 @@ using JavaScriptEngineSwitcher.Core.Utilities;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-#if NET461 || NETCOREAPP3_1_OR_GREATER
+#if NET48 || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.NiL;
 #endif
 using JavaScriptEngineSwitcher.Node;
-#if NET461 || NETCOREAPP3_1_OR_GREATER
+#if NET48 || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.V8;
 #endif
 using JavaScriptEngineSwitcher.Vroom;
-#if NET461 || NETCOREAPP3_1_OR_GREATER
+#if NET48 || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.Yantra;
 #endif
 
@@ -217,7 +217,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new JurassicJsEngine();
 			TransliterateStrings(createJsEngine, withPrecompilation);
 		}
-#if NET461
+#if NET48
 
 		[Benchmark]
 		public void MsieClassic()
@@ -262,7 +262,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			});
 			TransliterateStrings(createJsEngine, withPrecompilation);
 		}
-#if NET461 || NETCOREAPP3_1_OR_GREATER
+#if NET48 || NETCOREAPP3_1_OR_GREATER
 
 		[Benchmark]
 		public void NiL()
@@ -278,7 +278,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new NodeJsEngine();
 			TransliterateStrings(createJsEngine, false);
 		}
-#if NET461 || NETCOREAPP3_1_OR_GREATER
+#if NET48 || NETCOREAPP3_1_OR_GREATER
 
 		[Benchmark]
 		[Arguments(false)]
@@ -296,7 +296,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new VroomJsEngine();
 			TransliterateStrings(createJsEngine, false);
 		}
-#if NET461 || NETCOREAPP3_1_OR_GREATER
+#if NET48 || NETCOREAPP3_1_OR_GREATER
 
 		[Benchmark]
 		public void Yantra()
