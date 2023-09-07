@@ -427,7 +427,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 			// Act and Assert
 			Assert.Null(TestAllowReflectionSetting(true));
-#if NET48
+#if NET471
 			Assert.Null(TestAllowReflectionSetting(false));
 #else
 			Assert.Equal("undefined", TestAllowReflectionSetting(false));
@@ -451,7 +451,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 			// Act and Assert
 			Assert.Equal(typeof(LoginFailedException).FullName, TestAllowReflectionSetting(true));
-#if NET48
+#if NET471
 			Assert.Equal(typeof(LoginFailedException).FullName, TestAllowReflectionSetting(false));
 #else
 

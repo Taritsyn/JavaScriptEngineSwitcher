@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Benchmarks</Product>
     <VersionPrefix>3.22.0</VersionPrefix>
-    <TargetFrameworks>net48;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net461;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
@@ -35,15 +35,15 @@
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Yantra/JavaScriptEngineSwitcher.Yantra.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
     <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.3" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' != 'net48' ">
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
     <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.7" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' != 'net48' ">
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" />
     <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-arm" />
