@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.23.0 - September 8, 2023
+ * In JavaScriptEngineSwitcher.NiL:
+   * NiL.JS was updated to version 2.5.1673
+   * Restored support for .NET Framework 4.6.1
+
 ## v3.22.0 - September 5, 2023
  * In JavaScriptEngineSwitcher.NiL:
    * NiL.JS was updated to version 2.5.1672
