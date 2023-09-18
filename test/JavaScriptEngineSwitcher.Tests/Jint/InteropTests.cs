@@ -10,7 +10,6 @@ using JavaScriptEngineSwitcher.Jint;
 
 using JavaScriptEngineSwitcher.Tests.Interop;
 using JavaScriptEngineSwitcher.Tests.Interop.Animals;
-using JavaScriptEngineSwitcher.Tests.Interop.Logging;
 
 namespace JavaScriptEngineSwitcher.Tests.Jint
 {
@@ -459,43 +458,6 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Property 'GetType' of object is not a function", exception.Description);
 #endif
-		}
-
-		#endregion
-
-		#region Types with fields
-
-		[Fact]
-		public override void EmbeddingOfCustomReferenceTypeWithField()
-		{
-			// Arrange
-			Type defaultLoggerType = typeof(DefaultLogger);
-			Type throwExceptionLoggerType = typeof(ThrowExceptionLogger);
-			const string updateCode = @"var oldLogger = DefaultLogger.Current;
-DefaultLogger.Current = new ThrowExceptionLogger();";
-			const string rollbackCode = "DefaultLogger.Current = oldLogger;";
-
-			const string input = "DefaultLogger.Current";
-			const string targetOutput = "[throw exception logger]";
-
-			// Act
-			string output;
-
-			using (var jsEngine = CreateJsEngine())
-			{
-				jsEngine.EmbedHostType("DefaultLogger", defaultLoggerType);
-				jsEngine.EmbedHostType("ThrowExceptionLogger", throwExceptionLoggerType);
-
-				lock (DefaultLogger.SyncRoot)
-				{
-					jsEngine.Execute(updateCode);
-					output = jsEngine.Evaluate<string>(input);
-					jsEngine.Execute(rollbackCode);
-				}
-			}
-
-			// Assert
-			Assert.Equal(targetOutput, output);
 		}
 
 		#endregion
