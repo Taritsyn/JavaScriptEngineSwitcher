@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.23.1 - September 19, 2023
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.0.0 Beta 2052
+ * In JavaScriptEngineSwitcher.Node added support for the Jering.Javascript.NodeJS version 7.0.0
+ * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.188
+
 ## v3.23.0 - September 8, 2023
  * In JavaScriptEngineSwitcher.NiL:
    * NiL.JS was updated to version 2.5.1673
