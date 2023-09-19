@@ -39,7 +39,7 @@ This package does not contain the native ClearScript.V8 assemblies. Therefore, y
 
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
     <PackageReference Include="Microsoft.ClearScript.V8" Version="7.4.3" />
-    <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
+    <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha7" PrivateAssets="All" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>

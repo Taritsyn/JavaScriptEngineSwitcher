@@ -21,7 +21,7 @@ namespace JavaScriptEngineSwitcher.Sample.Resources
 		private static Lazy<ResourceManager> _resourceManager =
 			new Lazy<ResourceManager>(() => new ResourceManager(
 				"JavaScriptEngineSwitcher.Sample.Resources.EvaluationStrings",
-#if NET40
+#if NET20 || NET30 || NET35 || NET40
 				typeof(EvaluationStrings).Assembly
 #else
 				typeof(EvaluationStrings).GetTypeInfo().Assembly

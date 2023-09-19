@@ -37,7 +37,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
 
   <ItemGroup>
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
-    <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
+    <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha7" PrivateAssets="All" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
