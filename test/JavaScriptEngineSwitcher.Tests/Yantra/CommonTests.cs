@@ -181,6 +181,45 @@ factorial(0);";
 			);
 		}
 
+		[Fact]
+		public void MappingRuntimeErrorDuringStackOverflow()
+		{
+			// Arrange
+			const string input = @"var i = 0;
+
+function recursive() {
+	i++;
+	recursive();
+}
+
+recursive();";
+
+			JsRuntimeException exception = null;
+
+			// Act
+			using (var jsEngine = CreateJsEngine())
+			{
+				try
+				{
+					jsEngine.Execute(input, "recursive.js");
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Maximum call stack size exceeded", exception.Description);
+			Assert.Equal("RangeError", exception.Type);
+			Assert.Equal("recursive.js", exception.DocumentName);
+			Assert.Equal(5, exception.LineNumber);
+			Assert.Equal(1, exception.ColumnNumber);
+			Assert.Empty(exception.SourceFragment);
+		}
+
 		#endregion
 
 		#region Generation of error messages
