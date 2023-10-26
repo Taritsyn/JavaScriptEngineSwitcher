@@ -41,7 +41,7 @@ namespace JavaScriptEngineSwitcher.NiL
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "2.5.1673";
+		private const string EngineVersion = "2.5.1674";
 
 		/// <summary>
 		/// Regular expression for working with the syntax error message
