@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Benchmarks</Product>
-    <VersionPrefix>3.23.2</VersionPrefix>
+    <VersionPrefix>3.23.3</VersionPrefix>
     <TargetFrameworks>net461;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
-    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.9" />
+    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.10" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
