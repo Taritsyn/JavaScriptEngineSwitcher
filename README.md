@@ -62,14 +62,16 @@ If you use the JavaScript Engine Switcher in some project, please send me a mess
  * [Autoprefixer Host for .NET](https://github.com/Taritsyn/AutoprefixerHost) by Andrey Taritsyn
  * [Bundle Transformer](https://github.com/Taritsyn/BundleTransformer) by Andrey Taritsyn
  * [Cruncher](https://github.com/JimBobSquarePants/Cruncher) by James South
+ * [Dart Sass Host for .NET](https://github.com/Taritsyn/DartSassHost) by Andrey Taritsyn
  * [E.F.F.C JavaScriptEngineSwitcher Extention Lib](https://github.com/redwolf0817/EFFC.JavaScriptEngineSwitcher.Extention) by ItTrending
  * [GFMParserSample.Net](https://github.com/mad4-red/GFMParserSample.Net)
  * [JSPool](http://dan.cx/projects/jspool) by Daniel Lo Nigro
- * [MediaGetCore](https://github.com/XuPeiYao/MediaGetCore) by Xu Pei-Yao
  * [ProteanCMS](https://github.com/Eonic/ProteanCMS) by Trevor Spink
  * [QSI](https://github.com/chequer-io/qsi)
  * [ReactJS.NET](http://reactjs.net/) by Daniel Lo Nigro
+ * [SSR.Net](https://github.com/knowit/SSR.Net)
  * [Statiq Framework](https://statiq.dev/framework) (formerly known as [Wyam](http://wyam.io/))
  * [T1.Scripts](http://nuget.org/packages/T1.Scripts)
  * [VIEApps.Services.Base](https://github.com/vieapps/Services.Base)
+ * [YouTubeStreamsExtractor](https://github.com/tmk907/YouTubeStreamsExtractor)
  * [zxcvbn.net](https://github.com/darcythomas/zxcvbn.net) by Darcy Thomas
