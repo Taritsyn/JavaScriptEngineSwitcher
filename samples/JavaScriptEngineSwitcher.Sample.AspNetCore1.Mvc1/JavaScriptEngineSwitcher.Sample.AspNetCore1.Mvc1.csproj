@@ -7,6 +7,7 @@
     <RuntimeFrameworkVersion>1.0.16</RuntimeFrameworkVersion>
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);NU1903</NoWarn>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <IsPackable>false</IsPackable>
@@ -38,6 +39,7 @@
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Msie/JavaScriptEngineSwitcher.Msie.csproj" />
+    <ProjectReference Include="../JavaScriptEngineSwitcher.Sample.AspNetCore.Infrastructure/JavaScriptEngineSwitcher.Sample.AspNetCore.Infrastructure.csproj" />
     <ProjectReference Include="../JavaScriptEngineSwitcher.Sample.Logic/JavaScriptEngineSwitcher.Sample.Logic.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
   </ItemGroup>

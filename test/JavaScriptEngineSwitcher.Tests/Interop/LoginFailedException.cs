@@ -25,6 +25,7 @@ namespace JavaScriptEngineSwitcher.Tests.Interop
 		public LoginFailedException(string message, Exception innerException)
 			: base(message, innerException)
 		{ }
+#if !NET8_0_OR_GREATER
 
 		protected LoginFailedException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
@@ -46,5 +47,6 @@ namespace JavaScriptEngineSwitcher.Tests.Interop
 			base.GetObjectData(info, context);
 			info.AddValue("UserName", this._userName);
 		}
+#endif
 	}
 }

@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <Product>JS Engine Switcher: Sample ASP.NET Core 8.0 MVC 8 Site</Product>
+    <VersionPrefix>3.23.4</VersionPrefix>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Exe</OutputType>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <Import Project="../../build/common.props" />
+
+  <ItemGroup>
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-arm" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-arm64" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-x64" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.osx-arm64" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.osx-x64" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-arm64" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x86" />
+
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jint/JavaScriptEngineSwitcher.Jint.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Jurassic/JavaScriptEngineSwitcher.Jurassic.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Msie/JavaScriptEngineSwitcher.Msie.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.NiL/JavaScriptEngineSwitcher.NiL.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Node/JavaScriptEngineSwitcher.Node.csproj" />
+    <ProjectReference Include="../JavaScriptEngineSwitcher.Sample.AspNetCore.Infrastructure/JavaScriptEngineSwitcher.Sample.AspNetCore.Infrastructure.csproj" />
+    <ProjectReference Include="../JavaScriptEngineSwitcher.Sample.Logic/JavaScriptEngineSwitcher.Sample.Logic.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.V8/JavaScriptEngineSwitcher.V8.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
+    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Yantra/JavaScriptEngineSwitcher.Yantra.csproj" />
+  </ItemGroup>
+
+  <Target Name="NodePackageInstallation" BeforeTargets="BeforeBuild;BeforeClean">
+    <Exec Command="npm install" ConsoleToMsBuild="true" />
+  </Target>
+  <Target Name="BowerPackagesInstallation" AfterTargets="AfterBuild">
+    <Exec Command="bower install" ConsoleToMsBuild="true" />
+  </Target>
+  <Target Name="GulpClean" AfterTargets="AfterClean">
+    <Exec Command="gulp cleanBuildedAssets" ConsoleToMsBuild="true" />
+  </Target>
+  <Target Name="GulpBuild" AfterTargets="BowerPackagesInstallation">
+    <Exec Command="gulp buildAssets" ConsoleToMsBuild="true" />
+  </Target>
+  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
+    <Exec Command="npm install" />
+    <Exec Command="bower install" />
+    <Exec Command="gulp" />
+  </Target>
+
+</Project>
