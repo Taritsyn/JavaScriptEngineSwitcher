@@ -19,7 +19,7 @@
    =============
    RELEASE NOTES
    =============
-   MSIE JavaScript Engine was updated to version 3.2.2.
+   MSIE JavaScript Engine was updated to version 3.2.3.
 
    =============
    DOCUMENTATION
