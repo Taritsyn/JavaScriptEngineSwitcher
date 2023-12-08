@@ -1,5 +1,4 @@
-﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
-using Xunit;
+﻿using Xunit;
 
 namespace JavaScriptEngineSwitcher.Tests.Yantra
 {
@@ -11,4 +10,3 @@ namespace JavaScriptEngineSwitcher.Tests.Yantra
 		}
 	}
 }
-#endif

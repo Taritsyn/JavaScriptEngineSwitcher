@@ -1,5 +1,4 @@
-﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
-namespace JavaScriptEngineSwitcher.Tests.Node
+﻿namespace JavaScriptEngineSwitcher.Tests.Node
 {
 	public class MultithreadingTests : MultithreadingTestsBase
 	{
@@ -9,4 +8,3 @@ namespace JavaScriptEngineSwitcher.Tests.Node
 		}
 	}
 }
-#endif

@@ -1,5 +1,4 @@
-﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
-using System;
+﻿using System;
 
 using Xunit;
 
@@ -176,4 +175,3 @@ namespace JavaScriptEngineSwitcher.Tests.NiL
 		#endregion
 	}
 }
-#endif

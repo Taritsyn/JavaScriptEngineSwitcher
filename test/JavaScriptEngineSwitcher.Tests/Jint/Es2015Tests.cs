@@ -1,5 +1,4 @@
-﻿#if !NET452
-namespace JavaScriptEngineSwitcher.Tests.Jint
+﻿namespace JavaScriptEngineSwitcher.Tests.Jint
 {
 	public class Es2015Tests : Es2015TestsBase
 	{
@@ -9,4 +8,3 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		}
 	}
 }
-#endif

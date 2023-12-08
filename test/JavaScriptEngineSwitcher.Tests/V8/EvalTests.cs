@@ -1,5 +1,4 @@
-﻿#if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER
-namespace JavaScriptEngineSwitcher.Tests.V8
+﻿namespace JavaScriptEngineSwitcher.Tests.V8
 {
 	public class EvalTests : EvalTestsBase
 	{
@@ -9,4 +8,3 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		}
 	}
 }
-#endif

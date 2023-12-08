@@ -1,5 +1,4 @@
-﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
-using Xunit;
+﻿using Xunit;
 
 namespace JavaScriptEngineSwitcher.Tests.Node
 {
@@ -39,4 +38,3 @@ typeof process === 'undefined';";
 		}
 	}
 }
-#endif

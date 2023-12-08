@@ -1,5 +1,4 @@
-﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
-namespace JavaScriptEngineSwitcher.Tests.NiL
+﻿namespace JavaScriptEngineSwitcher.Tests.NiL
 {
 	public class PrecompilationTests : PrecompilationTestsBase
 	{
@@ -9,4 +8,3 @@ namespace JavaScriptEngineSwitcher.Tests.NiL
 		}
 	}
 }
-#endif

@@ -1,5 +1,4 @@
-﻿#if !NET452
-using System;
+﻿using System;
 
 using Xunit;
 
@@ -208,4 +207,3 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		#endregion
 	}
 }
-#endif

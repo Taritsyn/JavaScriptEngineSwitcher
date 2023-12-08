@@ -1,5 +1,4 @@
-﻿#if !NET452
-using Xunit;
+﻿using Xunit;
 
 namespace JavaScriptEngineSwitcher.Tests.Jint
 {
@@ -11,4 +10,3 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		}
 	}
 }
-#endif

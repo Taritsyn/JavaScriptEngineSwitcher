@@ -10,17 +10,11 @@ using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-#if NET461 || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.NiL;
-#endif
 using JavaScriptEngineSwitcher.Node;
-#if NET461 || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.V8;
-#endif
 using JavaScriptEngineSwitcher.Vroom;
-#if NET461 || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.Yantra;
-#endif
 
 namespace JavaScriptEngineSwitcher.Benchmarks
 {
@@ -182,7 +176,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new JurassicJsEngine();
 			RenderTemplates(createJsEngine, withPrecompilation);
 		}
-#if NET461
+#if NET462
 
 		[Benchmark]
 		public void MsieClassic()
@@ -228,7 +222,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			});
 			RenderTemplates(createJsEngine, withPrecompilation);
 		}
-#if NET461 || NETCOREAPP3_1_OR_GREATER
 
 		[Benchmark]
 		public void NiL()
@@ -236,7 +229,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
 			RenderTemplates(createJsEngine, false);
 		}
-#endif
 
 		[Benchmark]
 		public void Node()
@@ -244,7 +236,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new NodeJsEngine();
 			RenderTemplates(createJsEngine, false);
 		}
-#if NET461 || NETCOREAPP3_1_OR_GREATER
 
 		[Benchmark]
 		[Arguments(false)]
@@ -254,7 +245,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new V8JsEngine();
 			RenderTemplates(createJsEngine, withPrecompilation);
 		}
-#endif
 
 		[Benchmark]
 		public void Vroom()
@@ -262,7 +252,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new VroomJsEngine();
 			RenderTemplates(createJsEngine, false);
 		}
-#if NET461 || NETCOREAPP3_1_OR_GREATER
 
 		[Benchmark]
 		public void Yantra()
@@ -270,7 +259,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new YantraJsEngine();
 			RenderTemplates(createJsEngine, false);
 		}
-#endif
 
 		#region Internal types
 

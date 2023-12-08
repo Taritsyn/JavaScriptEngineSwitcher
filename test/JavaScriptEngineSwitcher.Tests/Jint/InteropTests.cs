@@ -1,5 +1,4 @@
-﻿#if !NET452
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
 
@@ -426,7 +425,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 			// Act and Assert
 			Assert.Null(TestAllowReflectionSetting(true));
-#if NET471
+#if NETFRAMEWORK
 			Assert.Null(TestAllowReflectionSetting(false));
 #else
 			Assert.Equal("undefined", TestAllowReflectionSetting(false));
@@ -450,7 +449,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 
 			// Act and Assert
 			Assert.Equal(typeof(LoginFailedException).FullName, TestAllowReflectionSetting(true));
-#if NET471
+#if NETFRAMEWORK
 			Assert.Equal(typeof(LoginFailedException).FullName, TestAllowReflectionSetting(false));
 #else
 
@@ -513,4 +512,3 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 		#endregion
 	}
 }
-#endif

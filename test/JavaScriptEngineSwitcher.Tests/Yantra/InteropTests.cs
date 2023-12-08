@@ -1,5 +1,4 @@
-﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
-using System;
+﻿using System;
 using System.IO;
 
 using Xunit;
@@ -517,4 +516,3 @@ product.Price *= 1.15;";
 		#endregion
 	}
 }
-#endif

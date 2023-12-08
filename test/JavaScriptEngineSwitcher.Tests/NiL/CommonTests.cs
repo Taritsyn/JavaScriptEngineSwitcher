@@ -1,5 +1,4 @@
-﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
-using System;
+﻿using System;
 
 using Xunit;
 
@@ -264,4 +263,3 @@ var foo = 'Browser's bar';";
 		#endregion
 	}
 }
-#endif

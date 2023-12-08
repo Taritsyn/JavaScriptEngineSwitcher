@@ -1,5 +1,4 @@
-﻿#if NETFRAMEWORK || NETCOREAPP3_1_OR_GREATER
-using System;
+﻿using System;
 
 using Xunit;
 
@@ -209,4 +208,3 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 		#endregion
 	}
 }
-#endif

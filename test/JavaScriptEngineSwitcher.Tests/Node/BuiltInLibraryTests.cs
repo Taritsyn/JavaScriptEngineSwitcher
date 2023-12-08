@@ -1,5 +1,4 @@
-﻿#if NET471 || NETCOREAPP3_1_OR_GREATER
-using Xunit;
+﻿using Xunit;
 
 using JavaScriptEngineSwitcher.Node;
 
@@ -62,4 +61,3 @@ fs.readFileSync('Files/link.txt', 'utf8')";
 		}
 	}
 }
-#endif
