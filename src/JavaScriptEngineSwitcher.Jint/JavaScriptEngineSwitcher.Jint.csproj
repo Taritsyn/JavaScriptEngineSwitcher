@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Jint</Product>
     <VersionPrefix>3.23.4</VersionPrefix>
-    <TargetFrameworks>net462;netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>net462;netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591;NU5104</NoWarn>
@@ -17,15 +17,16 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 2056).</Description>
+    <Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.0 Beta 2057).</Description>
     <PackageTags>$(PackageCommonTags);Jint</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>Jint was updated to version 3.0.0 Beta 2056.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Jint was updated to version 3.0.0 Beta 2057;
+2. Added support for .NET 8.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
-    <PackageReference Include="Jint" Version="3.0.0-beta-2056" />
+    <PackageReference Include="Jint" Version="3.0.0-beta-2057" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
