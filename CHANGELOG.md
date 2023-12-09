@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## v3.23.5 - December 9, 2023
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 3.0.0 Beta 2057
+   * Added support for .NET 8
+ * In JavaScriptEngineSwitcher.Msie added support for the MSIE JavaScript Engine version 3.2.3
+ * In JavaScriptEngineSwitcher.NiL added support for the NiL.JS version 2.5.1677
+
 ## v3.23.4 - November 11, 2023
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.0.0 Beta 2055
  * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.206
