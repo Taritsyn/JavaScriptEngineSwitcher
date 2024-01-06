@@ -2,7 +2,7 @@
 using System.Threading;
 
 using Jint;
-using IOriginalPrimitiveInstance = Jint.Native.IPrimitiveInstance;
+using IOriginalPrimitive = Jint.Native.IJsPrimitive;
 using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
 using OriginalDebuggerEventHandler = Jint.Runtime.Debugger.DebugHandler.DebugEventHandler;
 using OriginalDebuggerStatementHandlingMode = Jint.Runtime.Debugger.DebuggerStatementHandling;
@@ -18,7 +18,6 @@ using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverf
 using OriginalRuntimeException = Jint.Runtime.JintException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
 using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
-using OriginalTypeResolver = Jint.Runtime.Interop.TypeResolver;
 using OriginalTypes = Jint.Runtime.Types;
 using OriginalValue = Jint.Native.JsValue;
 
@@ -51,7 +50,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.0 Beta 2058";
+		private const string EngineVersion = "3.0.0 Beta 2059";
 
 		/// <summary>
 		/// Jint JS engine
@@ -146,14 +145,14 @@ namespace JavaScriptEngineSwitcher.Jint
 					options.SetTypeResolver(jintSettings.AllowReflection ?
 						CustomTypeResolvers.AllowingReflection : CustomTypeResolvers.DisallowingReflection);
 				});
-				_cancellationConstraint = _jsEngine.FindConstraint<OriginalCancellationConstraint>();
+				_cancellationConstraint = _jsEngine.Constraints.Find<OriginalCancellationConstraint>();
 				if (_debuggerBreakCallback != null)
 				{
-					_jsEngine.DebugHandler.Break += _debuggerBreakCallback;
+					_jsEngine.Debugger.Break += _debuggerBreakCallback;
 				}
 				if (_debuggerStepCallback != null)
 				{
-					_jsEngine.DebugHandler.Step += _debuggerStepCallback;
+					_jsEngine.Debugger.Step += _debuggerStepCallback;
 				}
 				_strictMode = settings.StrictMode;
 			}
@@ -189,7 +188,7 @@ namespace JavaScriptEngineSwitcher.Jint
 					return Undefined.Value;
 
 				case OriginalTypes.Object:
-					if (!(value is IOriginalPrimitiveInstance))
+					if (!(value is IOriginalPrimitive))
 					{
 						return value;
 					}
@@ -692,12 +691,12 @@ namespace JavaScriptEngineSwitcher.Jint
 					{
 						if (_debuggerStepCallback != null)
 						{
-							_jsEngine.DebugHandler.Step -= _debuggerStepCallback;
+							_jsEngine.Debugger.Step -= _debuggerStepCallback;
 						}
 
 						if (_debuggerBreakCallback != null)
 						{
-							_jsEngine.DebugHandler.Break -= _debuggerBreakCallback;
+							_jsEngine.Debugger.Break -= _debuggerBreakCallback;
 						}
 
 						_jsEngine.Dispose();
