@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.23.6 - January 6, 2024
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.0.0 Beta 2059
+
 ## v3.23.5 - December 9, 2023
  * In JavaScriptEngineSwitcher.Jint:
    * Jint was updated to version 3.0.0 Beta 2057
