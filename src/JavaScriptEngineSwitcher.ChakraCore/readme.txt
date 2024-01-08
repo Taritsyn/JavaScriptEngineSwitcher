@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: ChakraCore v3.21.0
+                README file for JS Engine Switcher: ChakraCore v3.23.7
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2023 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2024 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
