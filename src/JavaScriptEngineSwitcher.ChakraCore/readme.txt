@@ -31,9 +31,8 @@
    =============
    RELEASE NOTES
    =============
-   1. ChakraCore was updated to version of January 26, 2023;
-   2. In configuration settings of the ChakraCore JS engine was added one new
-      property - `AllowReflection` (default `false`).
+   Fixed a error that occurred in the `ReflectionHelpers.IsAllowedProperty` method
+   when running on .NET Core 1.0.
 
    =============
    DOCUMENTATION

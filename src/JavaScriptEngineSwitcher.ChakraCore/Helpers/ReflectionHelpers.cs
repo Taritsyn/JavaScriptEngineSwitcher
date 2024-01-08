@@ -262,6 +262,15 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 			public override bool Equals(T x, T y)
 			{
+				if (x == null && y == null)
+				{
+					return true;
+				}
+				else if (x == null || y == null)
+				{
+					return false;
+				}
+
 				return x.Module == y.Module
 #if !NETSTANDARD1_3
 					&& x.MetadataToken == y.MetadataToken

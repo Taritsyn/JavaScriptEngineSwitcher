@@ -31,8 +31,7 @@ This package does not contain the native implementations of ChakraCore. Therefor
  * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>1. ChakraCore was updated to version of January 26, 2023;
-2. In configuration settings of the ChakraCore JS engine was added one new property - `AllowReflection` (default `false`).</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed a error that occurred in the `ReflectionHelpers.IsAllowedProperty` method when running on .NET Core 1.0.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
