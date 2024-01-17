@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.23.8 - January 17, 2024
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.0.0 RC 1
+
 ## v3.23.7 - January 8, 2024
  * In JavaScriptEngineSwitcher.ChakraCore fixed a error that occurred in the `ReflectionHelpers.IsAllowedProperty` method when running on .NET Core 1.0
  * In JavaScriptEngineSwitcher.Msie added support for the MSIE JavaScript Engine version 3.2.4
