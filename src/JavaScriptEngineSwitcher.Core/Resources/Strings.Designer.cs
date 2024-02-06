@@ -138,11 +138,27 @@ namespace JavaScriptEngineSwitcher.Core.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "Assigning an instance of the JS engine switcher to the `Current` property of `JsEngineSwitcher`..."
+		/// </summary>
+		public static string Configuration_AssigningToJsEngineSwitcherCurrentPropertyForbidden
+		{
+			get { return GetString("Configuration_AssigningToJsEngineSwitcherCurrentPropertyForbidden"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "Name of default JavaScript engine not specified."
 		/// </summary>
 		public static string Configuration_DefaultJsEngineNameNotSpecified
 		{
 			get { return GetString("Configuration_DefaultJsEngineNameNotSpecified"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Getting an instance of the JS engine switcher from the `Current` property of `JsEngineSwitcher`..."
+		/// </summary>
+		public static string Configuration_GettingFromJsEngineSwitcherCurrentPropertyForbidden
+		{
+			get { return GetString("Configuration_GettingFromJsEngineSwitcherCurrentPropertyForbidden"); }
 		}
 
 		/// <summary>

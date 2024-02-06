@@ -12,21 +12,32 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 	public static class JsEngineSwitcherServiceCollectionExtensions
 	{
 		/// <summary>
-		/// Adds a default instance of JS engine switcher to <see cref="IServiceCollection"/>
+		/// Adds a default instance of the JS engine switcher to the <see cref="IServiceCollection"/>
 		/// </summary>
 		/// <param name="services">The services available in the application</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
+		/// <returns>Instance of the <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services)
 		{
-			return AddJsEngineSwitcher(services, (IJsEngineSwitcher)null);
+			if (services == null)
+			{
+				throw new ArgumentNullException(nameof(services));
+			}
+
+			var options = new JsEngineSwitcherOptions();
+
+			IJsEngineSwitcher engineSwitcher = CreateJsEngineSwitcher(options);
+			ApplyOptionsToJsEngineSwitcher(engineSwitcher, options);
+			RegisterJsEngineSwitcher(services, engineSwitcher, options);
+
+			return engineSwitcher.EngineFactories;
 		}
 
 		/// <summary>
-		/// Adds a specified instance of JS engine switcher to <see cref="IServiceCollection"/>
+		/// Adds a specified instance of the JS engine switcher to the <see cref="IServiceCollection"/>
 		/// </summary>
 		/// <param name="services">The services available in the application</param>
-		/// <param name="engineSwitcher">Instance of JS engine switcher</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
+		/// <param name="engineSwitcher">Instance of the JS engine switcher</param>
+		/// <returns>Instance of the <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services,
 			IJsEngineSwitcher engineSwitcher)
 		{
@@ -35,39 +46,28 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 				throw new ArgumentNullException(nameof(services));
 			}
 
-			// Set the current instance of JS engine switcher
-			JsEngineSwitcher.Current = engineSwitcher;
+			if (engineSwitcher == null)
+			{
+				throw new ArgumentNullException(nameof(engineSwitcher));
+			}
 
-			// Get the current instance of JS engine switcher
-			IJsEngineSwitcher currentEngineSwitcher = JsEngineSwitcher.Current;
+			var options = new JsEngineSwitcherOptions();
 
-			// Register the current instance of JS engine switcher as a service
-			services.AddSingleton(currentEngineSwitcher);
+			IJsEngineSwitcher currentEngineSwitcher = GetJsEngineSwitcher(engineSwitcher, options);
+			ApplyOptionsToJsEngineSwitcher(currentEngineSwitcher, options);
+			RegisterJsEngineSwitcher(services, currentEngineSwitcher, options);
 
 			return currentEngineSwitcher.EngineFactories;
 		}
 
 		/// <summary>
-		/// Adds a default instance of JS engine switcher to <see cref="IServiceCollection"/>
+		/// Adds a default instance of the JS engine switcher to the <see cref="IServiceCollection"/>
 		/// </summary>
 		/// <param name="services">The services available in the application</param>
-		/// <param name="configure">The <see cref="IJsEngineSwitcher"/> which need to be configured</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
+		/// <param name="configure">The <see cref="JsEngineSwitcherOptions"/> which need to be configured</param>
+		/// <returns>Instance of the <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services,
-			Action<IJsEngineSwitcher> configure)
-		{
-			return AddJsEngineSwitcher(services, null, configure);
-		}
-
-		/// <summary>
-		/// Adds a specified instance of JS engine switcher to <see cref="IServiceCollection"/>
-		/// </summary>
-		/// <param name="services">The services available in the application</param>
-		/// <param name="engineSwitcher">Instance of JS engine switcher</param>
-		/// <param name="configure">The <see cref="IJsEngineSwitcher"/> which need to be configured</param>
-		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
-		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services,
-			IJsEngineSwitcher engineSwitcher, Action<IJsEngineSwitcher> configure)
+			Action<JsEngineSwitcherOptions> configure)
 		{
 			if (services == null)
 			{
@@ -79,17 +79,116 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 				throw new ArgumentNullException(nameof(configure));
 			}
 
-			// Set the current instance of JS engine switcher
-			JsEngineSwitcher.Current = engineSwitcher;
+			var options = new JsEngineSwitcherOptions();
+			configure(options);
 
-			// Get and configure the current instance of JS engine switcher
-			IJsEngineSwitcher currentEngineSwitcher = JsEngineSwitcher.Current;
-			configure(currentEngineSwitcher);
+			IJsEngineSwitcher engineSwitcher = CreateJsEngineSwitcher(options);
+			ApplyOptionsToJsEngineSwitcher(engineSwitcher, options);
+			RegisterJsEngineSwitcher(services, engineSwitcher, options);
 
-			// Register the current instance of JS engine switcher as a service
-			services.AddSingleton(currentEngineSwitcher);
+			return engineSwitcher.EngineFactories;
+		}
+
+		/// <summary>
+		/// Adds a specified instance of the JS engine switcher to <see cref="IServiceCollection"/>
+		/// </summary>
+		/// <param name="services">The services available in the application</param>
+		/// <param name="engineSwitcher">Instance of the JS engine switcher</param>
+		/// <param name="configure">The <see cref="JsEngineSwitcherOptions"/> which need to be configured</param>
+		/// <returns>Instance of the <see cref="JsEngineFactoryCollection"/></returns>
+		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services,
+			IJsEngineSwitcher engineSwitcher, Action<JsEngineSwitcherOptions> configure)
+		{
+			if (services == null)
+			{
+				throw new ArgumentNullException(nameof(services));
+			}
+
+			if (engineSwitcher == null)
+			{
+				throw new ArgumentNullException(nameof(engineSwitcher));
+			}
+
+			if (configure == null)
+			{
+				throw new ArgumentNullException(nameof(configure));
+			}
+
+			var options = new JsEngineSwitcherOptions();
+			configure(options);
+
+			IJsEngineSwitcher currentEngineSwitcher = GetJsEngineSwitcher(engineSwitcher, options);
+			ApplyOptionsToJsEngineSwitcher(currentEngineSwitcher, options);
+			RegisterJsEngineSwitcher(services, currentEngineSwitcher, options);
 
 			return currentEngineSwitcher.EngineFactories;
 		}
+
+		#region Helper methods
+
+		/// <summary>
+		/// Creates an instance of the JS engine switcher
+		/// </summary>
+		/// <param name="options">Options of the JS engine switcher</param>
+		/// <returns>Instance of the JS engine switcher</returns>
+		private static IJsEngineSwitcher CreateJsEngineSwitcher(JsEngineSwitcherOptions options)
+		{
+			IJsEngineSwitcher engineSwitcher = options.AllowCurrentProperty ?
+				JsEngineSwitcher.Current
+				:
+				new JsEngineSwitcher()
+				;
+
+			return engineSwitcher;
+		}
+
+		/// <summary>
+		/// Gets a instance of the JS engine switcher
+		/// </summary>
+		/// <param name="engineSwitcher">Instance of the JS engine switcher</param>
+		/// <param name="options">Options of the JS engine switcher</param>
+		/// <returns>Current instance of the JS engine switcher</returns>
+		private static IJsEngineSwitcher GetJsEngineSwitcher(IJsEngineSwitcher engineSwitcher, JsEngineSwitcherOptions options)
+		{
+			IJsEngineSwitcher currentEngineSwitcher = options.AllowCurrentProperty ?
+				JsEngineSwitcher.Current
+				:
+				engineSwitcher
+				;
+
+			return currentEngineSwitcher;
+		}
+
+		/// <summary>
+		/// Applies a options to the JS engine switcher
+		/// </summary>
+		/// <param name="engineSwitcher">Instance of the JS engine switcher</param>
+		/// <param name="options">Options of the JS engine switcher</param>
+		private static void ApplyOptionsToJsEngineSwitcher(IJsEngineSwitcher engineSwitcher, JsEngineSwitcherOptions options)
+		{
+			JsEngineSwitcher.AllowCurrentProperty = options.AllowCurrentProperty;
+			engineSwitcher.DefaultEngineName = options.DefaultEngineName;
+		}
+
+		/// <summary>
+		/// Registers a instance of the JS engine switcher
+		/// </summary>
+		/// <param name="services">The services available in the application</param>
+		/// <param name="engineSwitcher">Instance of the JS engine switcher</param>
+		/// <param name="options">Options of the JS engine switcher</param>
+		private static void RegisterJsEngineSwitcher(IServiceCollection services, IJsEngineSwitcher engineSwitcher,
+			JsEngineSwitcherOptions options)
+		{
+			// Register the current instance of JS engine switcher as a service
+			services.AddSingleton(engineSwitcher);
+
+			// Set the current instance of JS engine switcher
+			if (options.AllowCurrentProperty)
+			{
+				JsEngineSwitcher.Current = engineSwitcher;
+			}
+		}
+
+		#endregion
 	}
 }

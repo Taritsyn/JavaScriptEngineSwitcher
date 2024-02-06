@@ -147,8 +147,14 @@
   <data name="Common_ValueTypeCannotBeNull" xml:space="preserve">
     <value>Невозможно преобразовать null в значимый тип!</value>
   </data>
+  <data name="Configuration_AssigningToJsEngineSwitcherCurrentPropertyForbidden" xml:space="preserve">
+    <value>Присвоение экземпляра JS engine switcher свойству `Current` класса `JsEngineSwitcher` запрещено. Для регистрации экземпляра JS engine switcher используйте интерфейс `IServiceCollection` или присвойте свойству `AllowCurrentProperty` класса `JsEngineSwitcher` значение равное `true`.</value>
+  </data>
   <data name="Configuration_DefaultJsEngineNameNotSpecified" xml:space="preserve">
     <value>Не указано имя JavaScript-движка, который должен использоваться по умолчанию!</value>
+  </data>
+  <data name="Configuration_GettingFromJsEngineSwitcherCurrentPropertyForbidden" xml:space="preserve">
+    <value>Присвоение экземпляра JS engine switcher свойству `Current` класса `JsEngineSwitcher` запрещено. Для регистрации экземпляра JS engine switcher используйте интерфейс `IServiceCollection` или присвойте свойству `AllowCurrentProperty` класса `JsEngineSwitcher` значение равное `true`.</value>
   </data>
   <data name="Configuration_JsEngineFactoryNotFound" xml:space="preserve">
     <value>Не удалось найти фабрику, создающую экземпляр JavaScript-движка с именем `{0}`!</value>

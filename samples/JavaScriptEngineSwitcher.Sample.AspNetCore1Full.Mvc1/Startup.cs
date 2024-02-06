@@ -53,8 +53,10 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1
 
 			// Add JavaScriptEngineSwitcher services to the services container.
 			services.AddJsEngineSwitcher(options =>
-				options.DefaultEngineName = ChakraCoreJsEngine.EngineName
-			)
+			{
+				options.AllowCurrentProperty = false;
+				options.DefaultEngineName = ChakraCoreJsEngine.EngineName;
+			})
 				.AddChakraCore()
 				.AddJurassic()
 				.AddMsie(options =>

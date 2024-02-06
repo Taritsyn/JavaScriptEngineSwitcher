@@ -10,6 +10,11 @@ namespace JavaScriptEngineSwitcher.Core
 	public sealed class JsEngineSwitcher : IJsEngineSwitcher
 	{
 		/// <summary>
+		/// Flag for whether to allow usage of the <see cref="Current"/> property
+		/// </summary>
+		private static bool _allowCurrentProperty = true;
+
+		/// <summary>
 		/// Default instance of JS engine switcher
 		/// </summary>
 		private static readonly Lazy<IJsEngineSwitcher> _default
@@ -21,16 +26,41 @@ namespace JavaScriptEngineSwitcher.Core
 		private static IJsEngineSwitcher _current;
 
 		/// <summary>
+		/// Gets or sets a flag for whether to allow usage of the <see cref="Current"/> property
+		/// </summary>
+		/// <remarks>
+		/// Required to ensure the usage of an instance of the JS engine switcher that is registered by using
+		/// the <c>IServiceCollection</c> interface.
+		/// </remarks>
+		public static bool AllowCurrentProperty
+		{
+			get { return _allowCurrentProperty; }
+			set { _allowCurrentProperty = value; }
+		}
+
+		/// <summary>
 		/// Gets or sets a instance of JS engine switcher
 		/// </summary>
 		public static IJsEngineSwitcher Current
 		{
 			get
 			{
+				if (!_allowCurrentProperty)
+				{
+					throw new InvalidOperationException(
+						Strings.Configuration_GettingFromJsEngineSwitcherCurrentPropertyForbidden);
+				}
+
 				return _current ?? _default.Value;
 			}
 			set
 			{
+				if (!_allowCurrentProperty)
+				{
+					throw new InvalidOperationException(
+						Strings.Configuration_AssigningToJsEngineSwitcherCurrentPropertyForbidden);
+				}
+
 				_current = value;
 			}
 		}

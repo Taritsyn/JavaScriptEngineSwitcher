@@ -147,8 +147,14 @@
   <data name="Common_ValueTypeCannotBeNull" xml:space="preserve">
     <value>Cannot convert null to a value type.</value>
   </data>
+  <data name="Configuration_AssigningToJsEngineSwitcherCurrentPropertyForbidden" xml:space="preserve">
+    <value>Assigning an instance of the JS engine switcher to the `Current` property of `JsEngineSwitcher` class is forbidden. To register an instance of the JS engine switcher, use the `IServiceCollection` interface or set the `AllowCurrentProperty` property of `JsEngineSwitcher` class to `true`.</value>
+  </data>
   <data name="Configuration_DefaultJsEngineNameNotSpecified" xml:space="preserve">
     <value>Name of default JavaScript engine not specified.</value>
+  </data>
+  <data name="Configuration_GettingFromJsEngineSwitcherCurrentPropertyForbidden" xml:space="preserve">
+    <value>Getting an instance of the JS engine switcher from the `Current` property of `JsEngineSwitcher` class is forbidden. To get an instance of the JS engine switcher, use the `IServiceCollection` interface or set the `AllowCurrentProperty` property of `JsEngineSwitcher` class to `true`.</value>
   </data>
   <data name="Configuration_JsEngineFactoryNotFound" xml:space="preserve">
     <value>Could not find a factory, that creates an instance of the JavaScript engine with name `{0}`.</value>
