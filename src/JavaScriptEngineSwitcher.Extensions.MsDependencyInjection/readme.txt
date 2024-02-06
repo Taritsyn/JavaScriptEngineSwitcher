@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-          README file for JS Engine Switcher: MS Dependency Injection v3.21.0
+          README file for JS Engine Switcher: MS Dependency Injection v3.24.0
 
    --------------------------------------------------------------------------------
 
@@ -17,13 +17,12 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support for .NET Standard 2.1;
-   2. `AddJsEngineSwitcher(Action<IJsEngineSwitcher>)` and
+   1. `AddJsEngineSwitcher(Action<IJsEngineSwitcher>)` and
       `AddJsEngineSwitcher(IJsEngineSwitcher, Action<IJsEngineSwitcher>)`
       extension methods are replaced by new methods accordingly:
       `AddJsEngineSwitcher(Action<JsEngineSwitcherOptions>)` and
       `AddJsEngineSwitcher(IJsEngineSwitcher, Action<JsEngineSwitcherOptions>)`;
-   3. `AllowCurrentProperty` property of `JsEngineSwitcherOptions` class allows to
+   2. `AllowCurrentProperty` property of `JsEngineSwitcherOptions` class allows to
       forbid usage of the `JsEngineSwitcher.Current` property. This feature can be
       used to fix a error #115 “Concurrency issue when initializing JS engine
       switcher in startup”. Special thanks to Ville Häkli.

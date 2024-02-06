@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.24.0 - February 6, 2024
+ * In the `JsEngineSwitcher` class was added the `AllowCurrentProperty` property (default `true`)
+ * In JavaScriptEngineSwitcher.Extensions.MsDependencyInjection:
+   * `AddJsEngineSwitcher(Action<IJsEngineSwitcher>)` and `AddJsEngineSwitcher(IJsEngineSwitcher, Action<IJsEngineSwitcher>)` extension methods are replaced by new methods accordingly: `AddJsEngineSwitcher(Action<JsEngineSwitcherOptions>)` and `AddJsEngineSwitcher(IJsEngineSwitcher, Action<JsEngineSwitcherOptions>)`
+   * `AllowCurrentProperty` property of `JsEngineSwitcherOptions` class allows to forbid usage of the `JsEngineSwitcher.Current` property. This feature can be used to fix a [error #115](https://github.com/Taritsyn/JavaScriptEngineSwitcher/issues/115) “Concurrency issue when initializing JS engine switcher in startup”. Special thanks to [Ville Häkli](https://github.com/VilleHakli)
+
 ## v3.23.9 - January 20, 2024
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.0.0
 

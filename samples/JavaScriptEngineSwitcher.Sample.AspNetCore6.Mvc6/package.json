@@ -1,7 +1,7 @@
 {
   "name": "javascriptengineswitcher.sample.aspnetcore6.mvc6",
   "private": true,
-  "version": "3.23.9",
+  "version": "3.24.0",
   "devDependencies": {
     "gulp": "4.0.2",
     "del": "5.1.0",

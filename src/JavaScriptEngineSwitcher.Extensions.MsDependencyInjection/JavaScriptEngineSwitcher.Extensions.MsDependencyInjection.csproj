@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: MS Dependency Injection</Product>
-    <VersionPrefix>3.21.0</VersionPrefix>
-    <TargetFrameworks>net45;netstandard1.3;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <VersionPrefix>3.24.0</VersionPrefix>
+    <TargetFrameworks>net45;netstandard1.3;netstandard2.0</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -19,9 +19,8 @@
     <Description>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</Description>
     <PackageTags>$(PackageCommonTags);DI</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Extensions_MsDependencyInjection_Logo128x128.png</PackageIconFullPath>
-    <PackageReleaseNotes>1. Added support for .NET Standard 2.1;
-2. `AddJsEngineSwitcher(Action&lt;IJsEngineSwitcher&gt;)` and `AddJsEngineSwitcher(IJsEngineSwitcher, Action&lt;IJsEngineSwitcher&gt;)` extension methods are replaced by new methods accordingly: `AddJsEngineSwitcher(Action&lt;JsEngineSwitcherOptions&gt;)` and `AddJsEngineSwitcher(IJsEngineSwitcher, Action&lt;JsEngineSwitcherOptions&gt;)`;
-3. `AllowCurrentProperty` property of `JsEngineSwitcherOptions` class allows to forbid usage of the `JsEngineSwitcher.Current` property. This feature can be used to fix a error #115 “Concurrency issue when initializing JS engine switcher in startup”. Special thanks to Ville Häkli.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. `AddJsEngineSwitcher(Action&lt;IJsEngineSwitcher&gt;)` and `AddJsEngineSwitcher(IJsEngineSwitcher, Action&lt;IJsEngineSwitcher&gt;)` extension methods are replaced by new methods accordingly: `AddJsEngineSwitcher(Action&lt;JsEngineSwitcherOptions&gt;)` and `AddJsEngineSwitcher(IJsEngineSwitcher, Action&lt;JsEngineSwitcherOptions&gt;)`;
+2. `AllowCurrentProperty` property of `JsEngineSwitcherOptions` class allows to forbid usage of the `JsEngineSwitcher.Current` property. This feature can be used to fix a error #115 “Concurrency issue when initializing JS engine switcher in startup”. Special thanks to Ville Häkli.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,10 +33,6 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
