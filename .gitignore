@@ -59,7 +59,7 @@ PublishProfiles/
 
 # NuGet Packages
 packages/
-*.nupkg
+nuget/
 
 # Others
 .build/
@@ -78,3 +78,5 @@ _UpgradeReport_Files/
 Backup*/
 UpgradeLog.htm
 UpgradeLog*.XML
+
+.idea
