@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <None Include="$(PackageLicenseFullPath)">
-      <PackagePath>$(PackageLicenseFile)</PackagePath>
+      <PackagePath>/</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
     </None>

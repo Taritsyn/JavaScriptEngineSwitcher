@@ -2,7 +2,6 @@
   <PropertyGroup>
     <Title>$(Product)</Title>
     <Authors>Andrey Taritsyn</Authors>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageCommonTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript</PackageCommonTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageLicenseFullPath>../../LICENSE.txt</PackageLicenseFullPath>

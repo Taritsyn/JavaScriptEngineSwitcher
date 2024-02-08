@@ -42,8 +42,11 @@
       </_LicenseElement>
 
       <_LicenseFileElement/>
-      <_LicenseFileElement Condition="'$(PackageLicenseFile)' != ''">
+      <_LicenseFileElement Condition="'$(PackageLicenseFullPath)' != '' and '$(PackageLicenseFile)' != ''">
         <file src="$(PackageLicenseFullPath)" target="$(PackageLicenseFile)" />
+      </_LicenseFileElement>
+      <_LicenseFileElement Condition="'$(PackageLicenseFullPath)' != '' and '$(PackageLicenseFile)' == ''">
+        <file src="$(PackageLicenseFullPath)" target="/" />
       </_LicenseFileElement>
 
       <_TagsElement/>
