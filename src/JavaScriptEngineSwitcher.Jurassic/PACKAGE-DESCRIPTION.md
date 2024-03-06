@@ -1,0 +1,1 @@
+JavaScriptEngineSwitcher.Jurassic contains a `JurassicJsEngine` adapter (wrapper for the [Jurassic](http://github.com/paulbartrum/jurassic) version of November 1, 2023).

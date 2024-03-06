@@ -35,11 +35,4 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
-      <Pack>true</Pack>
-    </Content>
-  </ItemGroup>
-
 </Project>

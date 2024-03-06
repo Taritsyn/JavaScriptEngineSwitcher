@@ -19,9 +19,7 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS) version 7.0.0).
-
-This package does not contain the `node.exe`. Therefore, you need to install the Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path` environment variable (automatically done by the official installer).</Description>
+    <Description>JavaScriptEngineSwitcher.Node contains a `NodeJsEngine` adapter (wrapper for the Jering.Javascript.NodeJS).</Description>
     <PackageTags>$(PackageCommonTags);Node.js;Jering.Javascript.NodeJS</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>Jering.Javascript.NodeJS was updated to version 7.0.0.</PackageReleaseNotes>
@@ -34,21 +32,8 @@ This package does not contain the `node.exe`. Therefore, you need to install the
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../Licenses/jering-javascript-nodejs-license.txt">
-      <PackagePath>jering-javascript-nodejs-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../Licenses/nodejs-license.txt">
-      <PackagePath>nodejs-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
-      <Pack>true</Pack>
-    </Content>
+    <None Include="../../Licenses/jering-javascript-nodejs-license.txt" PackagePath="/" Pack="true" Visible="false" />
+    <None Include="../../Licenses/nodejs-license.txt" PackagePath="/" Pack="true" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>

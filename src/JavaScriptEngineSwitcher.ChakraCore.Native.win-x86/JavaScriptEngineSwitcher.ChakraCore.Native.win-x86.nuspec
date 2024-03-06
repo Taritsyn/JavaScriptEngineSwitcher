@@ -9,7 +9,6 @@
     <file src="build/JavaScriptEngineSwitcher.ChakraCore.Native.win-x86.props" target="build/" />
     <file src="tools/Install.ps1" target="tools/" />
     <file src="tools/Uninstall.ps1" target="tools/" />
-    <file src="../../Licenses/chakra-core-license.txt" target="chakra-core-license.txt" />
-    <file src="readme.txt" />
+    <file src="../../Licenses/chakra-core-license.txt" target="/" />
   </files>
 </package>

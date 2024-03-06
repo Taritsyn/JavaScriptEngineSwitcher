@@ -12,15 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(PackageLicenseFullPath)">
-      <PackagePath>/</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="$(PackageIconFullPath)">
-      <PackagePath>$(PackageIcon)</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
+    <None Include="$(PackageLicenseFullPath)" PackagePath="/" Pack="true" Visible="false" />
+    <None Include="$(PackageIconFullPath)" PackagePath="$(PackageIcon)" Pack="true" Visible="false" />
+
+    <Content Include="$(PackageReadmeFullPath)" PackagePath="$(PackageReadmeFile)" Pack="true" />
+    <Content Include="readme.txt" PackagePath="/" Pack="true" />
   </ItemGroup>
 </Project>

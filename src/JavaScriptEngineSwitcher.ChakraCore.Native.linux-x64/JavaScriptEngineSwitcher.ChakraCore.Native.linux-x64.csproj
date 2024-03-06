@@ -11,9 +11,7 @@
   <Import Project="../../build/initialize-standard-nuspec-properties.targets" />
 
   <PropertyGroup>
-    <Description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore version of January 26, 2023 for Linux (x64).
-
-This package is only compatible with .NET Core.</Description>
+    <Description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore for Linux (x64).</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore;Linux;x64</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>ChakraCore was updated to version of January 26, 2023.</PackageReleaseNotes>

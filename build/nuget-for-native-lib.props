@@ -4,5 +4,8 @@
   <PropertyGroup>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <NuspecFile>$(MSBuildProjectName).nuspec</NuspecFile>
+    <CommonFileElements>
+      <file src="readme.txt" />
+    </CommonFileElements>
   </PropertyGroup>
 </Project>

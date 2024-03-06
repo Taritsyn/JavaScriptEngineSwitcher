@@ -16,7 +16,7 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic) version of November 1, 2023).</Description>
+    <Description>JavaScriptEngineSwitcher.Jurassic contains a `JurassicJsEngine` adapter (wrapper for the Jurassic).</Description>
     <PackageTags>$(PackageCommonTags);Jurassic</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>Jurassic was updated to version of November 1, 2023.</PackageReleaseNotes>
@@ -29,16 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../Licenses/jurassic-license.txt">
-      <PackagePath>jurassic-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
-      <Pack>true</Pack>
-    </Content>
+    <None Include="../../Licenses/jurassic-license.txt" PackagePath="/" Pack="true" Visible="false" />
   </ItemGroup>
 
 </Project>

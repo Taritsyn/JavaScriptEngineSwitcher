@@ -6,7 +6,6 @@
   <files>
     $CommonFileElements$
     <file src="../../lib/ChakraCore/runtimes/osx-x64/native/libChakraCore.dylib" target="runtimes/osx-x64/native/" />
-    <file src="../../Licenses/chakra-core-license.txt" target="chakra-core-license.txt" />
-    <file src="readme.txt" />
+    <file src="../../Licenses/chakra-core-license.txt" target="/" />
   </files>
 </package>

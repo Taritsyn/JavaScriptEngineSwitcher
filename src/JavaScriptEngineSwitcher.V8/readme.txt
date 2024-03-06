@@ -11,7 +11,7 @@
    ===========
    DESCRIPTION
    ===========
-   JavaScriptEngineSwitcher.V8 contains adapter `V8JsEngine` (wrapper for the
+   JavaScriptEngineSwitcher.V8 contains a `V8JsEngine` adapter (wrapper for the
    Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version
    7.4.4).
 

@@ -11,7 +11,7 @@
    ===========
    DESCRIPTION
    ===========
-   JavaScriptEngineSwitcher.Node contains adapter `NodeJsEngine` (wrapper for the
+   JavaScriptEngineSwitcher.Node contains a `NodeJsEngine` adapter (wrapper for the
    Jering.Javascript.NodeJS (https://github.com/JeringTech/Javascript.NodeJS)
    version 7.0.0).
 

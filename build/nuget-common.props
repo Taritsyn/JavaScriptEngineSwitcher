@@ -2,6 +2,8 @@
   <PropertyGroup>
     <Title>$(Product)</Title>
     <Authors>Andrey Taritsyn</Authors>
+    <PackageReadmeFile>PACKAGE-DESCRIPTION.md</PackageReadmeFile>
+    <PackageReadmeFullPath>$(PackageReadmeFile)</PackageReadmeFullPath>
     <PackageCommonTags>JavaScriptEngineSwitcher;JavaScript;ECMAScript</PackageCommonTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageLicenseFullPath>../../LICENSE.txt</PackageLicenseFullPath>

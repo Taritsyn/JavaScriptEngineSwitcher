@@ -11,9 +11,9 @@
    ===========
    DESCRIPTION
    ===========
-   JavaScriptEngineSwitcher.Jurassic contains adapter `JurassicJsEngine` (wrapper
-   for the Jurassic JavaScript Engine (http://github.com/paulbartrum/jurassic)
-   version of November 1, 2023).
+   JavaScriptEngineSwitcher.Jurassic contains a `JurassicJsEngine` adapter (wrapper
+   for the Jurassic (http://github.com/paulbartrum/jurassic) version of
+   November 1, 2023).
 
    =============
    RELEASE NOTES

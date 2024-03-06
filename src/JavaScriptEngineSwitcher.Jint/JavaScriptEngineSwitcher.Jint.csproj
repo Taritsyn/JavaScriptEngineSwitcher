@@ -17,7 +17,7 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Jint contains adapter `JintJsEngine` (wrapper for the Jint JavaScript Engine (http://github.com/sebastienros/jint) version 3.0.1).</Description>
+    <Description>JavaScriptEngineSwitcher.Jint contains a `JintJsEngine` adapter (wrapper for the Jint).</Description>
     <PackageTags>$(PackageCommonTags);Jint</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>Jint was updated to version 3.0.1.</PackageReleaseNotes>
@@ -30,21 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../Licenses/advanced-string-builder-license.txt">
-      <PackagePath>advanced-string-builder-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../Licenses/jint-license.txt">
-      <PackagePath>jint-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
-      <Pack>true</Pack>
-    </Content>
+    <None Include="../../Licenses/jint-license.txt" PackagePath="/" Pack="true" Visible="false" />
   </ItemGroup>
 
 </Project>

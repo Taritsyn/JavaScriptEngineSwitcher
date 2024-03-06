@@ -8,8 +8,7 @@
   </metadata>
   <files>
     $CommonFileElements$
-    <file src="../../Licenses/clearscript-license.txt" target="clearscript-license.txt" />
-    <file src="../../Licenses/v8-license.txt" target="v8-license.txt" />
-    <file src="readme.txt" />
+    <file src="../../Licenses/clearscript-license.txt" target="/" />
+    <file src="../../Licenses/v8-license.txt" target="/" />
   </files>
 </package>

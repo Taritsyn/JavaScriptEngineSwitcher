@@ -1,0 +1,1 @@
+JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.

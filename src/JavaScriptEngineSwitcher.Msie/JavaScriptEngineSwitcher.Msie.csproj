@@ -18,7 +18,7 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.Msie contains adapter `MsieJsEngine` (wrapper for the MSIE JavaScript Engine for .NET (http://github.com/Taritsyn/MsieJavaScriptEngine)). For correct working of the MSIE JavaScript Engine it is recommended to install Internet Explorer 9+ or Microsoft Edge Legacy on the machine.</Description>
+    <Description>JavaScriptEngineSwitcher.Msie contains a `MsieJsEngine` adapter (wrapper for the MSIE JavaScript Engine for .NET).</Description>
     <PackageTags>$(PackageCommonTags);MSIE;IE;Chakra</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>MSIE JavaScript Engine was updated to version 3.2.5.</PackageReleaseNotes>
@@ -32,16 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../Licenses/msie-javascript-engine-license.txt">
-      <PackagePath>msie-javascript-engine-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
-      <Pack>true</Pack>
-    </Content>
+    <None Include="../../Licenses/msie-javascript-engine-license.txt" PackagePath="/" Pack="true" Visible="false" />
   </ItemGroup>
 
   <Target Name="ConvertResxToCs" BeforeTargets="BeforeCompile">

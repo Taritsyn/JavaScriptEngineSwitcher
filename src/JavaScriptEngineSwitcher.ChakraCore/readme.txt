@@ -11,7 +11,7 @@
    ===========
    DESCRIPTION
    ===========
-   JavaScriptEngineSwitcher.ChakraCore contains adapter `ChakraCoreJsEngine`
+   JavaScriptEngineSwitcher.ChakraCore contains a `ChakraCoreJsEngine` adapter
    (wrapper for the ChakraCore (https://github.com/chakra-core/ChakraCore)).
    Project was based on the code of Chakra-Samples
    (https://github.com/Microsoft/Chakra-Samples) and jsrt-dotnet

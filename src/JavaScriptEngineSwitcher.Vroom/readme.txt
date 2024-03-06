@@ -11,7 +11,7 @@
    ===========
    DESCRIPTION
    ===========
-   JavaScriptEngineSwitcher.Vroom contains adapter `VroomJsEngine` (wrapper for the
+   JavaScriptEngineSwitcher.Vroom contains a `VroomJsEngine` adapter (wrapper for the
    VroomJs (http://github.com/pauldotknopf/vroomjs-core) version 1.2.3 with support
    of V8 version 3.17.16.2).
 

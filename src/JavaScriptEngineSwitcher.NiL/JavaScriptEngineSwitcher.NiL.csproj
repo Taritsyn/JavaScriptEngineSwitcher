@@ -17,7 +17,7 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
-    <Description>JavaScriptEngineSwitcher.NiL contains adapter `NiLJsEngine` (wrapper for the NiL JavaScript Engine (https://github.com/nilproject/NiL.JS) version 2.5.1677).</Description>
+    <Description>JavaScriptEngineSwitcher.NiL contains a `NiLJsEngine` adapter (wrapper for the NiL.JS).</Description>
     <PackageTags>$(PackageCommonTags);NiL</PackageTags>
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>NiL.JS was updated to version 2.5.1677.</PackageReleaseNotes>
@@ -29,16 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../Licenses/nil-license.txt">
-      <PackagePath>nil-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
-      <Pack>true</Pack>
-    </Content>
+    <None Include="../../Licenses/nil-license.txt" PackagePath="/" Pack="true" Visible="false" />
   </ItemGroup>
 
 </Project>

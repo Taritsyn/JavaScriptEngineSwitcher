@@ -33,6 +33,16 @@
         <title>$(Title)</title>
       </_TitleElement>
 
+      <_ReadmeElement/>
+      <_ReadmeElement Condition="'$(PackageReadmeFile)' != ''">
+        <readme>$(PackageReadmeFile)</readme>
+      </_ReadmeElement>
+
+      <_ReadmeFileElement/>
+      <_ReadmeFileElement Condition="'$(PackageReadmeFile)' != ''">
+        <file src="$(PackageReadmeFullPath)" target="$(PackageReadmeFile)" />
+      </_ReadmeFileElement>
+
       <_LicenseElement/>
       <_LicenseElement Condition="'$(PackageLicenseExpression)' != ''">
         <license type="expression">$(PackageLicenseExpression)</license>
@@ -96,6 +106,7 @@
         <version>$(PackageVersion)</version>
         <authors>$(Authors)</authors>
         <requireLicenseAcceptance>$(PackageRequireLicenseAcceptance)</requireLicenseAcceptance>
+        $(_ReadmeElement)
         $(_TagsElement)
         $(_LicenseElement)
         $(_IconElement)
@@ -110,8 +121,10 @@
       </_CommonMetadataElements>
 
       <_CommonFileElements>
+        $(CommonFileElements)
         $(_IconFileElement)
         $(_LicenseFileElement)
+        $(_ReadmeFileElement)
       </_CommonFileElements>
     </PropertyGroup>
 
