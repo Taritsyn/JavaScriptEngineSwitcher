@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                   README file for JS Engine Switcher: Vroom v3.21.0
+                   README file for JS Engine Switcher: Vroom v3.24.1
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2023 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2024 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========

@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for JS Engine Switcher: V8 v3.23.2
+                    README file for JS Engine Switcher: V8 v3.24.1
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2023 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2024 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -27,11 +27,6 @@
     * Microsoft.ClearScript.V8.Native.linux-arm64
     * Microsoft.ClearScript.V8.Native.osx-x64
     * Microsoft.ClearScript.V8.Native.osx-arm64
-
-   =============
-   RELEASE NOTES
-   =============
-   Microsoft ClearScript.V8 was updated to version 7.4.4.
 
    =============
    DOCUMENTATION

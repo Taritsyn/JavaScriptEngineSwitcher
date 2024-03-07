@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Jurassic</Product>
-    <VersionPrefix>3.23.3</VersionPrefix>
+    <VersionPrefix>3.24.1</VersionPrefix>
     <TargetFrameworks>net40-client;net45;netstandard2.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -20,7 +20,6 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Jurassic contains a `JurassicJsEngine` adapter (wrapper for the Jurassic).</Description>
     <PackageTags>$(PackageCommonTags);Jurassic</PackageTags>
-    <PackageReleaseNotes>Jurassic was updated to version of November 1, 2023.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

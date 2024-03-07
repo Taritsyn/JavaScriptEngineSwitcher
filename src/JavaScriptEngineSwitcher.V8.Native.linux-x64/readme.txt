@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-             README file for JS Engine Switcher: V8 for Linux x64 v3.23.2
+             README file for JS Engine Switcher: V8 for Linux x64 v3.24.1
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2023 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2024 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -13,12 +13,6 @@
    ===========
    This package is deprecated. Instead, it is recommended to use a
    Microsoft.ClearScript.V8.Native.linux-x64 package.
-
-   =============
-   RELEASE NOTES
-   =============
-   Microsoft ClearScript.V8 was updated to version 7.4.4 (support of the V8
-   version 11.8.172.15).
 
    =============
    DOCUMENTATION

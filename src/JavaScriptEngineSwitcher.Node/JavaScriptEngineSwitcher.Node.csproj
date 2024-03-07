@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Node</Product>
-    <VersionPrefix>3.23.1</VersionPrefix>
+    <VersionPrefix>3.24.1</VersionPrefix>
     <TargetFrameworks>net461;netstandard2.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -23,7 +23,6 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Node contains a `NodeJsEngine` adapter (wrapper for the Jering.Javascript.NodeJS).</Description>
     <PackageTags>$(PackageCommonTags);Node.js;Jering.Javascript.NodeJS</PackageTags>
-    <PackageReleaseNotes>Jering.Javascript.NodeJS was updated to version 7.0.0.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

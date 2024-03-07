@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                README file for JS Engine Switcher: ChakraCore v3.23.7
+                README file for JS Engine Switcher: ChakraCore v3.24.1
 
    --------------------------------------------------------------------------------
 
@@ -27,12 +27,6 @@
     * JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64
     * JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64
     * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64
-
-   =============
-   RELEASE NOTES
-   =============
-   Fixed a error that occurred in the `ReflectionHelpers.IsAllowedProperty` method
-   when running on .NET Core 1.0.
 
    =============
    DOCUMENTATION

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: ChakraCore</Product>
-    <VersionPrefix>3.23.7</VersionPrefix>
+    <VersionPrefix>3.24.1</VersionPrefix>
     <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netstandard2.1</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
@@ -23,7 +23,6 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.ChakraCore contains a `ChakraCoreJsEngine` adapter (wrapper for the ChakraCore).</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore</PackageTags>
-    <PackageReleaseNotes>Fixed a error that occurred in the `ReflectionHelpers.IsAllowedProperty` method when running on .NET Core 1.0.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,8 +32,8 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
-    <PackageReference Include="PolyfillsForOldDotNet.System.Buffers" Version="0.1.1" />
-    <PackageReference Include="PolyfillsForOldDotNet.System.Runtime.InteropServices.RuntimeInformation" Version="0.1.1" />
+    <PackageReference Include="PolyfillsForOldDotNet.System.Buffers" Version="0.1.2" />
+    <PackageReference Include="PolyfillsForOldDotNet.System.Runtime.InteropServices.RuntimeInformation" Version="0.1.2" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">

@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                  README file for JS Engine Switcher: Yantra v3.23.4
+                  README file for JS Engine Switcher: Yantra v3.24.1
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2023 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2024 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -13,11 +13,6 @@
    ===========
    JavaScriptEngineSwitcher.Yantra contains a `YantraJsEngine` adapter (wrapper for the
    YantraJS (https://yantrajs.com) version 1.2.206).
-
-   =============
-   RELEASE NOTES
-   =============
-   YantraJS was updated to version 1.2.206.
 
    =============
    DOCUMENTATION

@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.24.1 - March 7, 2024
+ * Minor improvements in metadata of NuGet packages
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.0.1
+ * In JavaScriptEngineSwitcher.Msie added support for the MSIE JavaScript Engine version 3.2.5
+
 ## v3.24.0 - February 6, 2024
  * In the `JsEngineSwitcher` class was added the `AllowCurrentProperty` property (default `true`)
  * In JavaScriptEngineSwitcher.Extensions.MsDependencyInjection:

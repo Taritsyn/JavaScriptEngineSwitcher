@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-         README file for JS Engine Switcher: ChakraCore for Linux x64 v3.21.0
+         README file for JS Engine Switcher: ChakraCore for Linux x64 v3.24.1
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2023 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2024 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -16,11 +16,6 @@
    for Linux (x64).
 
    This package is only compatible with .NET Core.
-
-   =============
-   RELEASE NOTES
-   =============
-   ChakraCore was updated to version of January 26, 2023.
 
    =============
    DOCUMENTATION
