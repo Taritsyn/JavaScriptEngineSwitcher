@@ -16,9 +16,10 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconUrl>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Jurassic contains a `JurassicJsEngine` adapter (wrapper for the Jurassic).</Description>
     <PackageTags>$(PackageCommonTags);Jurassic</PackageTags>
-    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>Jurassic was updated to version of November 1, 2023.</PackageReleaseNotes>
   </PropertyGroup>
 

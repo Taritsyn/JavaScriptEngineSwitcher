@@ -19,9 +19,10 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png</PackageIconUrl>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Node contains a `NodeJsEngine` adapter (wrapper for the Jering.Javascript.NodeJS).</Description>
     <PackageTags>$(PackageCommonTags);Node.js;Jering.Javascript.NodeJS</PackageTags>
-    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>Jering.Javascript.NodeJS was updated to version 7.0.0.</PackageReleaseNotes>
   </PropertyGroup>
 

@@ -11,9 +11,10 @@
   <Import Project="../../build/initialize-standard-nuspec-properties.targets" />
 
   <PropertyGroup>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconUrl>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconFullPath>
     <Description>This package is deprecated. Instead, it is recommended to use a Microsoft.ClearScript.V8.Native.linux-x64 package.</Description>
     <PackageTags>$(PackageCommonTags);V8;ClearScript;Linux;x64</PackageTags>
-    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>Microsoft ClearScript.V8 was updated to version 7.4.4 (support of the V8 version 11.8.172.15).</PackageReleaseNotes>
   </PropertyGroup>
 

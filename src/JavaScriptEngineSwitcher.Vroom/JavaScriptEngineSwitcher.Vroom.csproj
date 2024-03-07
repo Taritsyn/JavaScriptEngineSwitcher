@@ -18,9 +18,10 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconUrl>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Vroom contains a `VroomJsEngine` adapter (wrapper for the VroomJs).</Description>
     <PackageTags>$(PackageCommonTags);VroomJs;V8</PackageTags>
-    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconFullPath>
   </PropertyGroup>
 
   <ItemGroup>

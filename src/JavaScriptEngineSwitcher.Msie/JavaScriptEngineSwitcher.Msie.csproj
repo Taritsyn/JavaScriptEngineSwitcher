@@ -18,9 +18,10 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</PackageIconUrl>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Msie contains a `MsieJsEngine` adapter (wrapper for the MSIE JavaScript Engine for .NET).</Description>
     <PackageTags>$(PackageCommonTags);MSIE;IE;Chakra</PackageTags>
-    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>MSIE JavaScript Engine was updated to version 3.2.5.</PackageReleaseNotes>
   </PropertyGroup>
 

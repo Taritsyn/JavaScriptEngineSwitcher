@@ -19,9 +19,10 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconUrl>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.ChakraCore contains a `ChakraCoreJsEngine` adapter (wrapper for the ChakraCore).</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore</PackageTags>
-    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>Fixed a error that occurred in the `ReflectionHelpers.IsAllowedProperty` method when running on .NET Core 1.0.</PackageReleaseNotes>
   </PropertyGroup>
 

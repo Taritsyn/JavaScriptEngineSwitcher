@@ -17,9 +17,10 @@
   <Import Project="../../build/nuget-for-dotnet-lib.props" />
 
   <PropertyGroup>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/JavaScriptEngineSwitcher/master/Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconUrl>
+    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.NiL contains a `NiLJsEngine` adapter (wrapper for the NiL.JS).</Description>
     <PackageTags>$(PackageCommonTags);NiL</PackageTags>
-    <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconFullPath>
     <PackageReleaseNotes>NiL.JS was updated to version 2.5.1677.</PackageReleaseNotes>
   </PropertyGroup>
 
