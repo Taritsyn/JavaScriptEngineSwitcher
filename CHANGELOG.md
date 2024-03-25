@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.24.2 - March 25, 2024
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.4.5 (support of the V8 version 12.3.219.12)
+   * In configuration settings of the V8 JS engine was added two new properties: `AddPerformanceObject` (default `false`) and `SetTimerResolution` (default `false`)
+
 ## v3.24.1 - March 7, 2024
  * Minor improvements in metadata of NuGet packages
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.0.1

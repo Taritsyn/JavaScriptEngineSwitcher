@@ -236,9 +236,10 @@ namespace JavaScriptEngineSwitcher.V8
 		/// while the current script engine's instance is active
 		/// </summary>
 		/// <remarks>
-		/// This property is ignored if <c><see cref="AddPerformanceObject"/></c> property is <c>false</c>.
-		/// It is only a hint and may be ignored on some systems. On platforms that support it, this
-		/// property can degrade overall system performance or power efficiency, so caution is recommended.
+		/// This property is ignored if value of the <c><see cref="AddPerformanceObject"/></c> property
+		/// is <c>false</c>. It is only a hint and may be ignored on some systems. On platforms that
+		/// support it, this property can degrade overall system performance or power efficiency, so
+		/// caution is recommended.
 		/// </remarks>
 		public bool SetTimerResolution
 		{
