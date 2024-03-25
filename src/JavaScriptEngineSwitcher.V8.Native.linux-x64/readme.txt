@@ -15,6 +15,12 @@
    Microsoft.ClearScript.V8.Native.linux-x64 package.
 
    =============
+   RELEASE NOTES
+   =============
+   Microsoft ClearScript.V8 was updated to version 7.4.5 (support of the V8
+   version 12.3.219.12).
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -

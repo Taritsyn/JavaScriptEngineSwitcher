@@ -47,7 +47,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "11.8.172.15";
+		private const string EngineVersion = "12.3.219.12";
 
 		/// <summary>
 		/// V8 JS engine

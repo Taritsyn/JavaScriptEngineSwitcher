@@ -15,6 +15,7 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconFullPath>
     <Description>This package is deprecated. Instead, it is recommended to use a Microsoft.ClearScript.V8.Native.osx-x64 package.</Description>
     <PackageTags>$(PackageCommonTags);V8;ClearScript;macOS;OSX;x64</PackageTags>
+    <PackageReleaseNotes>Microsoft ClearScript.V8 was updated to version 7.4.5 (support of the V8 version 12.3.219.12).</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
