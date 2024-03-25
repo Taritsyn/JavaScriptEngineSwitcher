@@ -107,6 +107,10 @@ namespace JavaScriptEngineSwitcher.V8
 			};
 
 			OriginalEngineFlags flags = OriginalEngineFlags.None;
+			if (v8Settings.AddPerformanceObject)
+			{
+				flags |= OriginalEngineFlags.AddPerformanceObject;
+			}
 			if (v8Settings.AwaitDebuggerAndPauseOnStart)
 			{
 				flags |= OriginalEngineFlags.AwaitDebuggerAndPauseOnStart;
@@ -122,6 +126,10 @@ namespace JavaScriptEngineSwitcher.V8
 			if (v8Settings.DisableGlobalMembers)
 			{
 				flags |= OriginalEngineFlags.DisableGlobalMembers;
+			}
+			if (v8Settings.SetTimerResolution)
+			{
+				flags |= OriginalEngineFlags.SetTimerResolution;
 			}
 
 			int debugPort = v8Settings.DebugPort;

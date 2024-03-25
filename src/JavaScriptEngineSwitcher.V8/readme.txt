@@ -31,7 +31,10 @@
    =============
    RELEASE NOTES
    =============
-   Microsoft ClearScript.V8 was updated to version 7.4.5.
+   1. Microsoft ClearScript.V8 was updated to version 7.4.5;
+   2. In configuration settings of the V8 JS engine was added two new properties:
+      `AddPerformanceObject` (default `false`) and `SetTimerResolution` (default
+      `false`).
 
    =============
    DOCUMENTATION

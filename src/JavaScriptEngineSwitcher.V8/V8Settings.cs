@@ -8,6 +8,20 @@ namespace JavaScriptEngineSwitcher.V8
 	public sealed class V8Settings
 	{
 		/// <summary>
+		/// Gets or sets a flag for whether to add the
+		/// <c><see href="https://microsoft.github.io/ClearScript/2024/03/21/performance-api.html">Performance</see></c>
+		/// object to the script engine's global namespace
+		/// </summary>
+		/// <remarks>
+		/// This object provides a set of low-level native facilities for performance-sensitive scripts.
+		/// </remarks>
+		public bool AddPerformanceObject
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to allow the usage of reflection API in the script code
 		/// </summary>
 		/// <remarks>
@@ -217,12 +231,28 @@ namespace JavaScriptEngineSwitcher.V8
 			set;
 		}
 
+		/// <summary>
+		/// Gets or sets a flag for whether to set native timers to the highest available resolution
+		/// while the current script engine's instance is active
+		/// </summary>
+		/// <remarks>
+		/// This property is ignored if <c><see cref="AddPerformanceObject"/></c> property is <c>false</c>.
+		/// It is only a hint and may be ignored on some systems. On platforms that support it, this
+		/// property can degrade overall system performance or power efficiency, so caution is recommended.
+		/// </remarks>
+		public bool SetTimerResolution
+		{
+			get;
+			set;
+		}
+
 
 		/// <summary>
 		/// Constructs an instance of the V8 settings
 		/// </summary>
 		public V8Settings()
 		{
+			AddPerformanceObject = false;
 			AllowReflection = false;
 			AwaitDebuggerAndPauseOnStart = false;
 			DebugPort = 9222;
@@ -237,6 +267,7 @@ namespace JavaScriptEngineSwitcher.V8
 			MaxNewSpaceSize = 0;
 			MaxOldSpaceSize = 0;
 			MaxStackUsage = UIntPtr.Zero;
+			SetTimerResolution = false;
 		}
 	}
 }
