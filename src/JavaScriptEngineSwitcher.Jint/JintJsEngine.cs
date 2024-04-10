@@ -12,7 +12,7 @@ using OriginalExecutionCanceledException = Jint.Runtime.ExecutionCanceledExcepti
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
-using OriginalParsedScript = Esprima.Ast.Script;
+using OriginalParsedScript = Jint.Prepared<Esprima.Ast.Script>;
 using OriginalParserException = Esprima.ParserException;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalRuntimeException = Jint.Runtime.JintException;
@@ -50,7 +50,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.0.2";
+		private const string EngineVersion = "3.1.0";
 
 		/// <summary>
 		/// Jint JS engine
