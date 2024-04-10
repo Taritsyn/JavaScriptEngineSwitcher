@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.25.0 - April 10, 2024
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.1.0
+ * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.209
+
 ## v3.24.2 - March 25, 2024
  * In JavaScriptEngineSwitcher.V8:
    * Microsoft ClearScript.V8 was updated to version 7.4.5 (support of the V8 version 12.3.219.12)
