@@ -15,6 +15,11 @@
    YantraJS (https://yantrajs.com) version 1.2.209).
 
    =============
+   RELEASE NOTES
+   =============
+   YantraJS was updated to version 1.2.209.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -
