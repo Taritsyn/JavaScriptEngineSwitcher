@@ -16,7 +16,7 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="xunit" VersionOverride="2.7.0" />
+    <PackageReference Include="xunit" VersionOverride="2.7.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.9.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" />
@@ -67,7 +67,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' And '$(TargetFramework)' != 'net5.0' ">
-    <PackageReference Include="xunit.runner.visualstudio" VersionOverride="2.5.7" />
+    <PackageReference Include="xunit.runner.visualstudio" VersionOverride="2.5.8" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net462' And '$(TargetFramework)' != 'net471' ">

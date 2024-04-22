@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: ChakraCore for Windows (ARM64)</Product>
-    <VersionPrefix>3.24.1</VersionPrefix>
+    <VersionPrefix>3.26.0</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
@@ -15,6 +15,7 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
     <Description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore for Windows (ARM64).</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore;Windows;ARM64</PackageTags>
+    <PackageReleaseNotes>ChakraCore was updated to version of April 21, 2024.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

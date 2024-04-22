@@ -29,6 +29,11 @@
     * JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64
 
    =============
+   RELEASE NOTES
+   =============
+   ChakraCore was updated to version of April 21, 2024.
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -
