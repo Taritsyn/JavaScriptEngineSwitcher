@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.26.0 - April 22, 2024
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version of April 21, 2024
+   * In `JavaScriptEngineSwitcher.ChakraCore.Native.win-*` packages an additional deployment mechanism has been added to MSBuild scripts for the case when the target platform is focused on a specific processor architecture
+
 ## v3.25.0 - April 10, 2024
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.1.0
  * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.209

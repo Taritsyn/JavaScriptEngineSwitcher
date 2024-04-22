@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Sample ASP.NET Core 6.0 MVC 6 Site</Product>
-    <VersionPrefix>3.25.0</VersionPrefix>
+    <VersionPrefix>3.26.0</VersionPrefix>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <OutputType>Exe</OutputType>
