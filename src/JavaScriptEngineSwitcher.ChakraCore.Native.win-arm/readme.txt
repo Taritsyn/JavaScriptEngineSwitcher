@@ -20,7 +20,9 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version of April 21, 2024.
+   1. ChakraCore was updated to version of April 21, 2024.
+   2. An additional deployment mechanism has been added to MSBuild script for the
+      case when the target platform is focused on a specific processor architecture.
 
    =============
    DOCUMENTATION

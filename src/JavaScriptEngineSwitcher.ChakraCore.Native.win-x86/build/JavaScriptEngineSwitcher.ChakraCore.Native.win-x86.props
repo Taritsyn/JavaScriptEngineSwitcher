@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Condition=" '$(TargetFramework)' == '' Or $([System.Text.RegularExpressions.Regex]::Replace('$(TargetFramework)', '\d+(?:\-client)?$', '', System.Text.RegularExpressions.RegexOptions.IgnoreCase)) == 'net' ">
-    <None Include="$(MSBuildThisFileDirectory)../runtimes/win-x86/native/*.*">
+    <None Include="$(MSBuildThisFileDirectory)../runtimes/win-x86/native/*.*" Condition=" '$(PlatformTarget)' == '' Or '$(PlatformTarget)' == 'AnyCPU' ">
       <Link>x86/%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>False</Visible>
+    </None>
+
+    <None Include="$(MSBuildThisFileDirectory)../runtimes/win-x86/native/*.*" Condition=" '$(PlatformTarget)' == 'x86' ">
+      <Link>%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>False</Visible>
     </None>
