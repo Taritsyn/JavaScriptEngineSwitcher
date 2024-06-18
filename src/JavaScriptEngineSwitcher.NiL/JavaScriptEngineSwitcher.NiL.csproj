@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: NiL</Product>
-    <VersionPrefix>3.24.1</VersionPrefix>
+    <VersionPrefix>3.26.1</VersionPrefix>
     <TargetFrameworks>net461;net48;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -23,7 +23,7 @@
     <Description>JavaScriptEngineSwitcher.NiL contains a `NiLJsEngine` adapter (wrapper for the NiL.JS).</Description>
     <PackageTags>$(PackageCommonTags);NiL</PackageTags>
     <PackageReleaseNotes>1. NiL.JS was updated to version 2.5.1684;
-2. Added support of .NET 8.0.</PackageReleaseNotes>
+2. Added support for .NET 8.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

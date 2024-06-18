@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for JS Engine Switcher: NiL v3.24.1
+                    README file for JS Engine Switcher: NiL v3.26.1
 
    --------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@
    RELEASE NOTES
    =============
    1. NiL.JS was updated to version 2.5.1684;
-   2. Added support of .NET 8.0.
+   2. Added support for .NET 8.
 
    =============
    DOCUMENTATION

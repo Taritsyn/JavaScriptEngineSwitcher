@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Jint</Product>
-    <VersionPrefix>3.25.0</VersionPrefix>
+    <VersionPrefix>3.26.1</VersionPrefix>
     <TargetFrameworks>net462;netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
