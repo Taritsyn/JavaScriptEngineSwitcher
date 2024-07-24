@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v3.27.0 - July 24, 2024
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.0.0
+
 ## v3.26.1 - June 18, 2024
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 3.1.3
  * In JavaScriptEngineSwitcher.NiL:

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Tests</Product>
-    <VersionPrefix>3.26.1</VersionPrefix>
+    <VersionPrefix>3.27.0</VersionPrefix>
     <TargetFrameworks>net462;net471;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <LangVersion>latest</LangVersion>
@@ -16,7 +16,7 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="xunit" VersionOverride="2.8.1" />
+    <PackageReference Include="xunit" VersionOverride="2.9.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.10.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" />
@@ -67,7 +67,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' And '$(TargetFramework)' != 'net5.0' ">
-    <PackageReference Include="xunit.runner.visualstudio" VersionOverride="2.8.1" />
+    <PackageReference Include="xunit.runner.visualstudio" VersionOverride="2.8.2" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net462' And '$(TargetFramework)' != 'net471' ">
