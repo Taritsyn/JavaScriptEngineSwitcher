@@ -1,4 +1,4 @@
-﻿using OriginalParsedScript = Jint.Prepared<Esprima.Ast.Script>;
+﻿using OriginalParsedScript = Jint.Prepared<Acornima.Ast.Script>;
 
 using JavaScriptEngineSwitcher.Core;
 

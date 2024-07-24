@@ -46,6 +46,20 @@ namespace JavaScriptEngineSwitcher.Jint.Helpers
 				@"(?<documentName>" + CommonRegExps.DocumentNamePattern + @"):" +
 				@"(?<lineNumber>\d+)(?::(?<columnNumber>\d+))?$");
 
+		/// <summary>
+		/// Regular expression for working with the syntax error message
+		/// </summary>
+		private static readonly Regex _syntaxErrorMessageRegex =
+			new Regex(@"^(?<description>[\s\S]+?) \(" + CommonRegExps.DocumentNamePattern + @":\d+:\d+\)$");
+
+		/// <summary>
+		/// Regular expression for working with the script preparation error message
+		/// </summary>
+		private static readonly Regex _scriptPreparationErrorMessageRegex =
+			new Regex(@"^Could not prepare script: (?<description>[\s\S]+?) " +
+				@"\((?<documentName>" + CommonRegExps.DocumentNamePattern + @"):" +
+				@"(?<lineNumber>\d+):(?<columnNumber>\d+)\)$");
+
 
 		/// <summary>
 		/// Parses a string representation of the script error location to produce an array of
@@ -150,6 +164,50 @@ namespace JavaScriptEngineSwitcher.Jint.Helpers
 			}
 
 			return callStack;
+		}
+
+		/// <summary>
+		/// Gets a description from the syntax error message
+		/// </summary>
+		/// <param name="message">Error message</param>
+		/// <returns>Description of error</returns>
+		public static string GetDescriptionFromSyntaxErrorMessage(string message)
+		{
+			Match messageMatch = _syntaxErrorMessageRegex.Match(message);
+			string description = messageMatch.Success ?
+				messageMatch.Groups["description"].Value : message;
+
+			return description;
+		}
+
+		/// <summary>
+		/// Parses a script preparation error message
+		/// </summary>
+		/// <param name="message">Error message</param>
+		/// <param name="description">Description of error</param>
+		/// <param name="errorLocation">Script error location</param>
+		public static void ParseScriptPreparationErrorMessage(string message, out string description,
+			out ErrorLocationItem errorLocation)
+		{
+			Match messageMatch = _scriptPreparationErrorMessageRegex.Match(message);
+
+			if (messageMatch.Success)
+			{
+				GroupCollection messageGroups = messageMatch.Groups;
+
+				description = messageGroups["description"].Value;
+				errorLocation = new ErrorLocationItem
+				{
+					DocumentName = messageGroups["documentName"].Value,
+					LineNumber = int.Parse(messageGroups["lineNumber"].Value),
+					ColumnNumber = int.Parse(messageGroups["columnNumber"].Value)
+				};
+			}
+			else
+			{
+				description = message;
+				errorLocation = new ErrorLocationItem();
+			}
 		}
 
 		#endregion

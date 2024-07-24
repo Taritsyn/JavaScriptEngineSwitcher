@@ -188,7 +188,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Compilation error", exception.Category);
-			Assert.Equal("Unexpected token ,", exception.Description);
+			Assert.Equal("Unexpected token ','", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("math.js", exception.DocumentName);
 			Assert.Equal(25, exception.LineNumber);
@@ -311,11 +311,11 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Compilation error", exception.Category);
-			Assert.Equal("Unexpected number", exception.Description);
+			Assert.Equal("Invalid or unexpected token", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("second-file.js", exception.DocumentName);
 			Assert.Equal(1, exception.LineNumber);
-			Assert.Equal(8, exception.ColumnNumber);
+			Assert.Equal(6, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
 		}
 

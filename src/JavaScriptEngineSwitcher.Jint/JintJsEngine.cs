@@ -7,15 +7,15 @@ using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
 using OriginalDebuggerEventHandler = Jint.Runtime.Debugger.DebugHandler.DebugEventHandler;
 using OriginalDebuggerStatementHandlingMode = Jint.Runtime.Debugger.DebuggerStatementHandling;
 using OriginalEngine = Jint.Engine;
-using OriginalErrorPosition = Esprima.Position;
+using OriginalErrorPosition = Acornima.Position;
 using OriginalExecutionCanceledException = Jint.Runtime.ExecutionCanceledException;
+using OriginalException = Jint.JintException;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
-using OriginalParsedScript = Jint.Prepared<Esprima.Ast.Script>;
-using OriginalParserException = Esprima.ParserException;
+using OriginalParsedScript = Jint.Prepared<Acornima.Ast.Script>;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
-using OriginalRuntimeException = Jint.Runtime.JintException;
+using OriginalScriptPreparationException = Jint.ScriptPreparationException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
 using OriginalTypeReference = Jint.Runtime.Interop.TypeReference;
 using OriginalTypes = Jint.Runtime.Types;
@@ -30,6 +30,7 @@ using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 using WrapperCompilationException = JavaScriptEngineSwitcher.Core.JsCompilationException;
 using WrapperInterruptedException = JavaScriptEngineSwitcher.Core.JsInterruptedException;
 using WrapperRuntimeException = JavaScriptEngineSwitcher.Core.JsRuntimeException;
+using WrapperScriptException = JavaScriptEngineSwitcher.Core.JsScriptException;
 using WrapperTimeoutException = JavaScriptEngineSwitcher.Core.JsTimeoutException;
 using WrapperUsageException = JavaScriptEngineSwitcher.Core.JsUsageException;
 
@@ -50,7 +51,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "3.1.5";
+		private const string EngineVersion = "4.0.0";
 
 		/// <summary>
 		/// Jint JS engine
@@ -201,33 +202,10 @@ namespace JavaScriptEngineSwitcher.Jint
 			return value.ToObject();
 		}
 
-		private static WrapperCompilationException WrapParserException(OriginalParserException originalParserException)
+		private WrapperScriptException WrapException(OriginalException originalException)
 		{
-			string description = originalParserException.Description;
-			string type = JsErrorType.Syntax;
-			string documentName = originalParserException.SourceLocation ?? string.Empty;
-			int lineNumber = originalParserException.LineNumber;
-			int columnNumber = originalParserException.Column;
-			string message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName, lineNumber,
-				columnNumber);
-
-			var wrapperCompilationException = new WrapperCompilationException(message, EngineName, EngineVersion,
-				originalParserException)
-			{
-				Description = description,
-				Type = type,
-				DocumentName = documentName,
-				LineNumber = lineNumber,
-				ColumnNumber = columnNumber
-			};
-
-			return wrapperCompilationException;
-		}
-
-		private WrapperRuntimeException WrapRuntimeException(OriginalRuntimeException originalRuntimeException)
-		{
-			WrapperRuntimeException wrapperRuntimeException;
-			string message = originalRuntimeException.Message;
+			WrapperScriptException wrapperScriptException;
+			string message = originalException.Message;
 			if (string.IsNullOrWhiteSpace(message))
 			{
 				message = "An unknown error occurred";
@@ -239,10 +217,10 @@ namespace JavaScriptEngineSwitcher.Jint
 			int columnNumber = 0;
 			string callStack = string.Empty;
 
-			if (originalRuntimeException is OriginalJavaScriptException)
+			if (originalException is OriginalJavaScriptException)
 			{
-				var originalJavaScriptException = (OriginalJavaScriptException)originalRuntimeException;
-				documentName = originalJavaScriptException.Location.Source;
+				var originalJavaScriptException = (OriginalJavaScriptException)originalException;
+				documentName = originalJavaScriptException.Location.SourceFile;
 				OriginalErrorPosition errorPosition = originalJavaScriptException.Location.Start;
 				lineNumber = errorPosition.Line;
 				columnNumber = errorPosition.Column + 1;
@@ -272,38 +250,68 @@ namespace JavaScriptEngineSwitcher.Jint
 					type = JsErrorType.Common;
 				}
 
-				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, callStack);
-
-				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
-					originalJavaScriptException);
+				if (type == JsErrorType.Syntax)
+				{
+					description = JintJsErrorHelpers.GetDescriptionFromSyntaxErrorMessage(message);
+					message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName, lineNumber,
+						columnNumber);
+					wrapperScriptException = new WrapperCompilationException(message, EngineName, EngineVersion,
+						originalJavaScriptException);
+				}
+				else
+				{
+					message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, callStack);
+					wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+						originalJavaScriptException)
+					{
+						CallStack = callStack
+					};
+				}
 			}
-			else if (originalRuntimeException is OriginalMemoryLimitExceededException)
+			else if (originalException is OriginalScriptPreparationException)
+			{
+				ErrorLocationItem errorLocation;
+				JintJsErrorHelpers.ParseScriptPreparationErrorMessage(message, out description, out errorLocation);
+
+				type = JsErrorType.Syntax;
+				documentName = errorLocation.DocumentName;
+				lineNumber = errorLocation.LineNumber;
+				columnNumber = errorLocation.ColumnNumber;
+				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, documentName, lineNumber,
+					columnNumber);
+				wrapperScriptException = new WrapperCompilationException(message, EngineName, EngineVersion,
+					originalException);
+			}
+			else if (originalException is OriginalMemoryLimitExceededException)
 			{
 				type = JsErrorType.Common;
 				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty);
 
-				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
-					originalRuntimeException);
+				wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+					originalException);
 			}
-			else if (originalRuntimeException is OriginalRecursionDepthOverflowException)
+			else if (originalException is OriginalRecursionDepthOverflowException)
 			{
-				var originalRecursionException = (OriginalRecursionDepthOverflowException)originalRuntimeException;
+				var originalRecursionException = (OriginalRecursionDepthOverflowException)originalException;
 				callStack = JintJsErrorHelpers.ConvertCallChainToStack(originalRecursionException.CallChain);
 				type = JsErrorType.Range;
 				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, callStack);
 
-				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
-					originalRecursionException);
+				wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+					originalRecursionException)
+				{
+					CallStack = callStack
+				};
 			}
-			else if (originalRuntimeException is OriginalStatementsCountOverflowException)
+			else if (originalException is OriginalStatementsCountOverflowException)
 			{
 				type = JsErrorType.Range;
 				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty);
 
-				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
-					originalRuntimeException);
+				wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+					originalException);
 			}
-			else if (originalRuntimeException is OriginalExecutionCanceledException)
+			else if (originalException is OriginalExecutionCanceledException)
 			{
 				_cancellationTokenSource.Dispose();
 				_cancellationTokenSource = new CancellationTokenSource();
@@ -314,26 +322,25 @@ namespace JavaScriptEngineSwitcher.Jint
 				message = CoreStrings.Runtime_ScriptInterrupted;
 				description = message;
 
-				wrapperRuntimeException = new WrapperInterruptedException(message,
-					EngineName, EngineVersion, originalRuntimeException);
+				wrapperScriptException = new WrapperInterruptedException(message,
+					EngineName, EngineVersion, originalException);
 			}
 			else
 			{
 				type = JsErrorType.Common;
 				message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, string.Empty);
 
-				wrapperRuntimeException = new WrapperRuntimeException(message, EngineName, EngineVersion,
-					originalRuntimeException);
+				wrapperScriptException = new WrapperRuntimeException(message, EngineName, EngineVersion,
+					originalException);
 			}
 
-			wrapperRuntimeException.Description = description;
-			wrapperRuntimeException.Type = type;
-			wrapperRuntimeException.DocumentName = documentName;
-			wrapperRuntimeException.LineNumber = lineNumber;
-			wrapperRuntimeException.ColumnNumber = columnNumber;
-			wrapperRuntimeException.CallStack = callStack;
+			wrapperScriptException.Description = description;
+			wrapperScriptException.Type = type;
+			wrapperScriptException.DocumentName = documentName;
+			wrapperScriptException.LineNumber = lineNumber;
+			wrapperScriptException.ColumnNumber = columnNumber;
 
-			return wrapperRuntimeException;
+			return wrapperScriptException;
 		}
 
 		private static WrapperTimeoutException WrapTimeoutException(TimeoutException originalTimeoutException)
@@ -368,9 +375,9 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				parsedScript = OriginalEngine.PrepareScript(code, uniqueDocumentName, _strictMode);
 			}
-			catch (OriginalParserException e)
+			catch (OriginalException e)
 			{
-				throw WrapParserException(e);
+				throw WrapException(e);
 			}
 
 			return new JintPrecompiledScript(parsedScript);
@@ -394,13 +401,9 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					resultValue = _jsEngine.Evaluate(expression, uniqueDocumentName);
 				}
-				catch (OriginalParserException e)
+				catch (OriginalException e)
 				{
-					throw WrapParserException(e);
-				}
-				catch (OriginalRuntimeException e)
-				{
-					throw WrapRuntimeException(e);
+					throw WrapException(e);
 				}
 				catch (TimeoutException e)
 				{
@@ -440,13 +443,9 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					_jsEngine.Execute(code, uniqueDocumentName);
 				}
-				catch (OriginalParserException e)
+				catch (OriginalException e)
 				{
-					throw WrapParserException(e);
-				}
-				catch (OriginalRuntimeException e)
-				{
-					throw WrapRuntimeException(e);
+					throw WrapException(e);
 				}
 				catch (TimeoutException e)
 				{
@@ -473,9 +472,9 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					_jsEngine.Execute(jintPrecompiledScript.ParsedScript);
 				}
-				catch (OriginalRuntimeException e)
+				catch (OriginalException e)
 				{
-					throw WrapRuntimeException(e);
+					throw WrapException(e);
 				}
 				catch (TimeoutException e)
 				{
@@ -496,9 +495,9 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					functionValue = _jsEngine.GetValue(functionName);
 				}
-				catch (OriginalRuntimeException e)
+				catch (OriginalException e)
 				{
-					throw WrapRuntimeException(e);
+					throw WrapException(e);
 				}
 
 				OriginalValue resultValue;
@@ -507,9 +506,9 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					resultValue = _jsEngine.Invoke(functionValue, args);
 				}
-				catch (OriginalRuntimeException e)
+				catch (OriginalException e)
 				{
-					throw WrapRuntimeException(e);
+					throw WrapException(e);
 				}
 				catch (TimeoutException e)
 				{
@@ -566,9 +565,9 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					variableValue = _jsEngine.GetValue(variableName);
 				}
-				catch (OriginalRuntimeException e)
+				catch (OriginalException e)
 				{
-					throw WrapRuntimeException(e);
+					throw WrapException(e);
 				}
 
 				result = MapToHostType(variableValue);
@@ -594,9 +593,9 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					_jsEngine.SetValue(variableName, processedValue);
 				}
-				catch (OriginalRuntimeException e)
+				catch (OriginalException e)
 				{
-					throw WrapRuntimeException(e);
+					throw WrapException(e);
 				}
 			}
 		}
@@ -616,9 +615,9 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					_jsEngine.SetValue(itemName, processedValue);
 				}
-				catch (OriginalRuntimeException e)
+				catch (OriginalException e)
 				{
-					throw WrapRuntimeException(e);
+					throw WrapException(e);
 				}
 			}
 		}
@@ -633,9 +632,9 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					_jsEngine.SetValue(itemName, typeReference);
 				}
-				catch (OriginalRuntimeException e)
+				catch (OriginalException e)
 				{
-					throw WrapRuntimeException(e);
+					throw WrapException(e);
 				}
 			}
 		}

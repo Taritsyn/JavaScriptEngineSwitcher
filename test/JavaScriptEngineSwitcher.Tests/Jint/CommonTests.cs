@@ -47,7 +47,7 @@ $variable1 + _variable2 - @variable3;";
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Compilation error", exception.Category);
-			Assert.Equal("Unexpected token @", exception.Description);
+			Assert.Equal("Invalid or unexpected token", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("variables.js", exception.DocumentName);
 			Assert.Equal(3, exception.LineNumber);
@@ -126,7 +126,7 @@ factorial(0);";
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Compilation error", exception.Category);
-			Assert.Equal("Unexpected token )", exception.Description);
+			Assert.Equal("Unexpected token ')'", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("factorial.js", exception.DocumentName);
 			Assert.Equal(10, exception.LineNumber);
@@ -250,7 +250,7 @@ for (var i = 0; i < 10000; i++) {
 		}
 
 		[Fact]
-		public void MappingRuntimeErrorDuringMaxJsonParseDepthReached()
+		public void MappingCompilationErrorDuringMaxJsonParseDepthReached()
 		{
 			// Arrange
 			const string input = @"var data = '{\n' +
@@ -270,7 +270,7 @@ for (var i = 0; i < 10000; i++) {
 
 JSON.parse(data);";
 
-			JsRuntimeException exception = null;
+			JsCompilationException exception = null;
 
 			// Act
 			using (var jsEngine = new JintJsEngine(
@@ -284,7 +284,7 @@ JSON.parse(data);";
 				{
 					jsEngine.Execute(input, "menu.js");
 				}
-				catch (JsRuntimeException e)
+				catch (JsCompilationException e)
 				{
 					exception = e;
 				}
@@ -292,18 +292,13 @@ JSON.parse(data);";
 
 			// Assert
 			Assert.NotNull(exception);
-			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Compilation error", exception.Category);
 			Assert.Equal("Max. depth level of JSON reached at position 82", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("menu.js", exception.DocumentName);
 			Assert.Equal(16, exception.LineNumber);
 			Assert.Equal(1, exception.ColumnNumber);
 			Assert.Empty(exception.SourceFragment);
-			Assert.Equal(
-				"   at Global code (parse menu.js:16:12)" + Environment.NewLine +
-				"   at Global code (menu.js:16:1)",
-				exception.CallStack
-			);
 		}
 
 		[Fact]
@@ -499,7 +494,7 @@ regexp.test(str);";
 			const string input = @"var arr = [];
 var obj = {};
 var foo = 'Browser's bar';";
-			string targetOutput = "SyntaxError: Unexpected identifier" + Environment.NewLine +
+			string targetOutput = "SyntaxError: Unexpected identifier 's'" + Environment.NewLine +
 				"   at variables.js:3:20"
 				;
 
