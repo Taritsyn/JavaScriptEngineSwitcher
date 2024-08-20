@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Tests</Product>
-    <VersionPrefix>3.27.0</VersionPrefix>
+    <VersionPrefix>3.27.1</VersionPrefix>
     <TargetFrameworks>net462;net471;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <LangVersion>latest</LangVersion>
@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="xunit" VersionOverride="2.9.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.10.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.11.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
