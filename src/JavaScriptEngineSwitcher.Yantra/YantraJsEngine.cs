@@ -12,6 +12,7 @@ using OriginalClrProxy = YantraJS.Core.Clr.ClrProxy;
 using OriginalClrType = YantraJS.Core.Clr.ClrType;
 using OriginalContext = YantraJS.Core.JSContext;
 using OriginalDate = YantraJS.Core.JSDate;
+using OriginalError = YantraJS.Core.JSError;
 using OriginalException = YantraJS.Core.JSException;
 using OriginalFunction = YantraJS.Core.JSFunction;
 using OriginalJsonObject = YantraJS.Core.JSJSON;
@@ -21,6 +22,7 @@ using OriginalValue = YantraJS.Core.JSValue;
 
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Core.Constants;
+using JavaScriptEngineSwitcher.Core.Extensions;
 using JavaScriptEngineSwitcher.Core.Helpers;
 using JavaScriptEngineSwitcher.Core.Utilities;
 
@@ -47,7 +49,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.2.209";
+		private const string EngineVersion = "1.2.218";
 
 		/// <summary>
 		/// Regular expression for working with the error message
@@ -305,11 +307,11 @@ namespace JavaScriptEngineSwitcher.Yantra
 			int columnNumber = 0;
 			ErrorLocationItem[] callStackItems = null;
 
-			OriginalValue errorValue = originalException.Error;
+			var errorValue = originalException.Error as OriginalError;
 			if (errorValue != null)
 			{
-				message = errorValue.ToString();
-				Match messageMatch = _errorMessageRegex.Match(message);
+				string messageWithType = errorValue.ToString();
+				Match messageMatch = _errorMessageRegex.Match(messageWithType);
 
 				if (messageMatch.Success)
 				{
@@ -322,7 +324,20 @@ namespace JavaScriptEngineSwitcher.Yantra
 						int.Parse(messageGroups["columnNumber"].Value) : 0;
 				}
 
-				string rawCallStack = errorValue["stack"].AsStringOrDefault();
+				string rawCallStack;
+
+				if (type == JsErrorType.Syntax)
+				{
+					rawCallStack = originalException.JSStackTrace.AsStringOrDefault();
+				}
+				else
+				{
+					string messageWithTypeAndCallStack = errorValue.Stack ?? errorValue["stack"].AsStringOrDefault();
+					rawCallStack = messageWithTypeAndCallStack
+						.TrimStart(messageWithType)
+						.TrimStart(new char[] { '\n', '\r' })
+						;
+				}
 
 				callStackItems = YantraJsErrorHelpers.ParseErrorLocation(rawCallStack);
 				callStackItems = YantraJsErrorHelpers.FilterErrorLocationItems(callStackItems);
