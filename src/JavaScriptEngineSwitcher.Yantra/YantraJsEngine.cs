@@ -49,7 +49,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.2.218";
+		private const string EngineVersion = "1.2.225";
 
 		/// <summary>
 		/// Regular expression for working with the error message
@@ -324,20 +324,12 @@ namespace JavaScriptEngineSwitcher.Yantra
 						int.Parse(messageGroups["columnNumber"].Value) : 0;
 				}
 
-				string rawCallStack;
-
-				if (type == JsErrorType.Syntax)
-				{
-					rawCallStack = originalException.JSStackTrace.AsStringOrDefault();
-				}
-				else
-				{
-					string messageWithTypeAndCallStack = errorValue.Stack ?? errorValue["stack"].AsStringOrDefault();
-					rawCallStack = messageWithTypeAndCallStack
-						.TrimStart(messageWithType)
-						.TrimStart(new char[] { '\n', '\r' })
-						;
-				}
+				string messageWithCallStack = type == JsErrorType.Syntax ?
+					originalException.JSStackTrace.AsStringOrDefault()
+					:
+					errorValue.Stack ?? errorValue["stack"].AsStringOrDefault()
+					;
+				string rawCallStack = GetRawCallStack(message, messageWithType, messageWithCallStack);
 
 				callStackItems = YantraJsErrorHelpers.ParseErrorLocation(rawCallStack);
 				callStackItems = YantraJsErrorHelpers.FilterErrorLocationItems(callStackItems);
@@ -394,6 +386,17 @@ namespace JavaScriptEngineSwitcher.Yantra
 			wrapperException.Description = description;
 
 			return wrapperException;
+		}
+
+		private static string GetRawCallStack(string message, string messageWithType, string messageWithCallStack)
+		{
+			string baseMessage = messageWithCallStack.StartsWith(messageWithType) ? messageWithType : message;
+			string rawCallStack = messageWithCallStack
+				.TrimStart(baseMessage)
+				.TrimStart(new char[] { '\n', '\r' })
+				;
+
+			return rawCallStack;
 		}
 
 		private void OnConsoleWrite(OriginalContext context, string type, in OriginalArguments args)
