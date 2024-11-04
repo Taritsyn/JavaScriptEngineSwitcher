@@ -16,8 +16,8 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="xunit" VersionOverride="2.9.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.11.0" />
+    <PackageReference Include="xunit" VersionOverride="2.9.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.11.1" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
