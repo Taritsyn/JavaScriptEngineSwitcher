@@ -3,12 +3,13 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Tests</Product>
     <VersionPrefix>3.27.2</VersionPrefix>
-    <TargetFrameworks>net462;net471;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net462;net471;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <TestTfmsInParallel>false</TestTfmsInParallel>
     <IsTestProject>true</IsTestProject>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -17,7 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="xunit" VersionOverride="2.9.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.11.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.12.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
@@ -60,6 +61,10 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
     <PackageReference Include="System.Text.Encoding.CodePages" VersionOverride="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net9.0' ">
+    <PackageReference Include="System.Text.Encoding.CodePages" VersionOverride="9.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)' == 'net5.0' ">

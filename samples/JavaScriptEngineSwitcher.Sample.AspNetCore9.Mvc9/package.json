@@ -1,0 +1,16 @@
+{
+  "name": "javascriptengineswitcher.sample.aspnetcore9.mvc9",
+  "private": true,
+  "version": "3.27.2",
+  "devDependencies": {
+    "gulp": "4.0.2",
+    "del": "5.1.0",
+    "gulp-sourcemaps": "2.6.5",
+    "gulp-rename": "2.0.0",
+    "gulp-concat": "2.6.1",
+    "gulp-less": "4.0.1",
+    "gulp-autoprefixer": "7.0.1",
+    "gulp-clean-css": "4.2.0",
+    "gulp-uglify": "3.0.2"
+  }
+}

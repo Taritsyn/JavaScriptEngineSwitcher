@@ -3,10 +3,11 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Infrastructure for ASP.NET Core Samples</Product>
     <VersionPrefix>3.27.2</VersionPrefix>
-    <TargetFrameworks>net451;netstandard1.6;netstandard2.0;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net451;netstandard1.6;netstandard2.0;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);NETSDK1215;NU1902;NU1903;NU1904</NoWarn>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
     <IsPackable>false</IsPackable>
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
@@ -33,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="6.0.35" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="6.0.36" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
@@ -41,7 +42,11 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="8.0.10" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="8.0.11" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net9.0' ">
+    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="9.0.0" />
   </ItemGroup>
 
 </Project>

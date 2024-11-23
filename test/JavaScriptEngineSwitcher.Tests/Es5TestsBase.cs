@@ -353,13 +353,14 @@ engines.forEach(function(value, index, array) {{
 		{
 			// Arrange
 			const string input = "Date.now();";
-			DateTime targetOutput = DateTime.Now.ToUniversalTime();
+			DateTime targetOutput;
 
 			// Act
 			DateTime output;
 
 			using (var jsEngine = CreateJsEngine())
 			{
+				targetOutput = DateTime.Now.ToUniversalTime();
 				output = new DateTime(1970, 01, 01).AddMilliseconds(jsEngine.Evaluate<double>(input));
 			}
 

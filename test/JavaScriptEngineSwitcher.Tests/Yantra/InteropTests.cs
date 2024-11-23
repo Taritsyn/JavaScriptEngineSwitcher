@@ -437,6 +437,12 @@ product.Price *= 1.15;";
 
 		#region Types with fields
 
+#if NET9_0_OR_GREATER
+		[Fact]
+		public override void EmbeddingOfBuiltinValueTypeWithField()
+		{ }
+
+#endif
 		[Fact]
 		public override void EmbeddingOfCustomReferenceTypeWithField()
 		{
