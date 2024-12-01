@@ -108,6 +108,38 @@ product.Price *= 1.15;";
 		public override void EmbeddingOfInstanceOfCustomValueTypeWithProperties()
 		{ }
 
+		[Fact]
+		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithProperties()
+		{
+			// Arrange
+			var person = new Person("Vanya", "Ivanov");
+			const string updateCode = @"person.LastName = person.LastName.substr(0, 5) + 'ff';
+person.Patronymic = '';";
+
+			const string input1 = "person.FirstName";
+			const string targetOutput1 = "Vanya";
+
+			const string input2 = "person.LastName";
+			const string targetOutput2 = "Ivanoff";
+
+			// Act
+			string output1;
+			string output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("person", person);
+				jsEngine.Execute(updateCode);
+
+				output1 = jsEngine.Evaluate<string>(input1);
+				output2 = jsEngine.Evaluate<string>(input2);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
+		}
+
 		#endregion
 
 		#region Objects with methods
@@ -437,12 +469,6 @@ product.Price *= 1.15;";
 
 		#region Types with fields
 
-#if NET9_0_OR_GREATER
-		[Fact]
-		public override void EmbeddingOfBuiltinValueTypeWithField()
-		{ }
-
-#endif
 		[Fact]
 		public override void EmbeddingOfCustomReferenceTypeWithField()
 		{
