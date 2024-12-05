@@ -145,10 +145,6 @@ person.Patronymic = '';";
 		#region Objects with methods
 
 		[Fact]
-		public override void EmbeddingOfInstanceOfBuiltinValueTypeWithMethods()
-		{ }
-
-		[Fact]
 		public override void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
 		{
 			// Arrange
@@ -497,19 +493,7 @@ person.Patronymic = '';";
 
 		#endregion
 
-		#region Types with properties
-
-		[Fact]
-		public override void EmbeddingOfBuiltinValueTypeWithProperty()
-		{ }
-
-		#endregion
-
 		#region Types with methods
-
-		[Fact]
-		public override void EmbeddingOfBuiltinValueTypeWithMethod()
-		{ }
 
 		[Fact]
 		public override void EmbeddingOfBuiltinReferenceTypeWithMethods()
