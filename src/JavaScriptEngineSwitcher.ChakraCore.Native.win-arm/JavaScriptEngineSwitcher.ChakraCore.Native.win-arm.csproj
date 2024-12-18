@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: ChakraCore for Windows (ARM)</Product>
-    <VersionPrefix>3.26.0</VersionPrefix>
+    <VersionPrefix>3.27.3</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
@@ -15,8 +15,7 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
     <Description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore for Windows (ARM).</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore;Windows;ARM</PackageTags>
-    <PackageReleaseNotes>1. ChakraCore was updated to version of April 21, 2024.
-2. An additional deployment mechanism has been added to MSBuild script for the case when the target platform is focused on a specific processor architecture.</PackageReleaseNotes>
+    <PackageReleaseNotes>ChakraCore was updated to version of August 1, 2024.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

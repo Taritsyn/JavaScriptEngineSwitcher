@@ -24,7 +24,7 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.ChakraCore contains a `ChakraCoreJsEngine` adapter (wrapper for the ChakraCore).</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore</PackageTags>
-    <PackageReleaseNotes>ChakraCore was updated to version of April 21, 2024.</PackageReleaseNotes>
+    <PackageReleaseNotes>ChakraCore was updated to version of August 1, 2024.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
