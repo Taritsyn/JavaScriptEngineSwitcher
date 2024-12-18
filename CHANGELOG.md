@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.27.3 - December 18, 2024
+ * In JavaScriptEngineSwitcher.ChakraCore added support for the ChakraCore version of August 1, 2024
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.1.0
+ * In JavaScriptEngineSwitcher.Jurassic added support for the Jurassic version of November 22, 2024
+ * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.246
+
 ## v3.27.2 - September 1, 2024
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.0.2
  * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.225
