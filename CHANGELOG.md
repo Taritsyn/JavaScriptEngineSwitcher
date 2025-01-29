@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.28.0 - January 29, 2025
+ * In JavaScriptEngineSwitcher.Jint:
+   * Jint was updated to version 4.2.0
+   * No longer supports a .NET 6
+
 ## v3.27.3 - December 18, 2024
  * In JavaScriptEngineSwitcher.ChakraCore added support for the ChakraCore version of August 1, 2024
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.1.0
