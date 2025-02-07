@@ -21,11 +21,11 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Jurassic contains a `JurassicJsEngine` adapter (wrapper for the Jurassic).</Description>
     <PackageTags>$(PackageCommonTags);Jurassic</PackageTags>
-    <PackageReleaseNotes>Jurassic was updated to version of November 22, 2024.</PackageReleaseNotes>
+    <PackageReleaseNotes>Jurassic was updated to version of February 4, 2025.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jurassic.Unofficial" Version="2024.11.22" />
+    <PackageReference Include="Jurassic.Unofficial" Version="2025.2.4" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>

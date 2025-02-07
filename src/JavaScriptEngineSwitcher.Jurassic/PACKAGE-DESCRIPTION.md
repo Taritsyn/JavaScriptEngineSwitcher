@@ -1,1 +1,1 @@
-JavaScriptEngineSwitcher.Jurassic contains a `JurassicJsEngine` adapter (wrapper for the [Jurassic](http://github.com/paulbartrum/jurassic) version of November 22, 2024).
+JavaScriptEngineSwitcher.Jurassic contains a `JurassicJsEngine` adapter (wrapper for the [Jurassic](http://github.com/paulbartrum/jurassic) version of February 4, 2025).
