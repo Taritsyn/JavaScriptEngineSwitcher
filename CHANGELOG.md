@@ -1,6 +1,14 @@
 Change log
 ==========
 
+## v3.29.0 - March 8, 2025
+ * In JavaScriptEngineSwitcher.Jurassic added support for the Jurassic version of February 4, 2025
+ * In JavaScriptEngineSwitcher.V8:
+   * Microsoft ClearScript.V8 was updated to version 7.5 (support of the V8 version 13.3.415.23)
+   * No longer supports a .NET Framework 4.5
+   * Added support for .NET Framework 4.6.2
+ * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.282
+
 ## v3.28.0 - January 29, 2025
  * In JavaScriptEngineSwitcher.Jint:
    * Jint was updated to version 4.2.0

@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for JS Engine Switcher: V8 v3.24.2
+                    README file for JS Engine Switcher: V8 v3.29.0
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2024 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2025 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
