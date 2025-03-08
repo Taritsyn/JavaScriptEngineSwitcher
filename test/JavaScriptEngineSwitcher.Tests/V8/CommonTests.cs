@@ -181,7 +181,6 @@ factorial(0);";
 			);
 		}
 
-		/*
 		[Fact]
 		public void MappingRuntimeErrorDuringOutOfMemory()
 		{
@@ -217,7 +216,6 @@ for (var i = 0; i < 10000; i++) {
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("The V8 runtime has exceeded its memory limit", exception.Description);
 		}
-		*/
 
 		#endregion
 

@@ -13,7 +13,7 @@
    ===========
    JavaScriptEngineSwitcher.V8 contains a `V8JsEngine` adapter (wrapper for the
    Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version
-   7.4.5).
+   7.5).
 
    This package does not contain the native ClearScript.V8 assemblies.
    Therefore, you need to choose and install the most appropriate package(s) for
@@ -31,10 +31,9 @@
    =============
    RELEASE NOTES
    =============
-   1. Microsoft ClearScript.V8 was updated to version 7.4.5;
-   2. In configuration settings of the V8 JS engine was added two new properties:
-      `AddPerformanceObject` (default `false`) and `SetTimerResolution` (default
-      `false`).
+   1. Microsoft ClearScript.V8 was updated to version 7.5;
+   2. No longer supports a .NET Framework 4.5;
+   3. Added support for .NET Framework 4.6.2.
 
    =============
    DOCUMENTATION

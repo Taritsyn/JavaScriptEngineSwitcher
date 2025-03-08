@@ -102,14 +102,14 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Cannot read properties of null (reading '5')", exception.Description);
 			Assert.Equal("TypeError", exception.Type);
-			Assert.Equal("get-item.js", exception.DocumentName);
+			Assert.Equal("get-item [2].js", exception.DocumentName);
 			Assert.Equal(2, exception.LineNumber);
 			Assert.Equal(18, exception.ColumnNumber);
 			Assert.Equal("	var item = items[itemIndex];", exception.SourceFragment);
 			Assert.Equal(
-				"   at getItem (get-item.js:2:18)" + Environment.NewLine +
-				"   at get-item.js:9:10" + Environment.NewLine +
-				"   at get-item.js:13:3",
+				"   at getItem (get-item [2].js:2:18)" + Environment.NewLine +
+				"   at get-item [2].js:9:10" + Environment.NewLine +
+				"   at get-item [2].js:13:3",
 				exception.CallStack
 			);
 		}
@@ -177,10 +177,10 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 	return getFullName(firstName, lastName);
 })(getFullName);";
 			string targetOutput = "ReferenceError: middleName is not defined" + Environment.NewLine +
-				"   at getFullName (get-full-name.js:2:35) -> 	var fullName = firstName + " +
+				"   at getFullName (get-full-name [2].js:2:35) -> 	var fullName = firstName + " +
 				"' ' + middleName + ' ' + lastName;" + Environment.NewLine +
-				"   at get-full-name.js:12:9" + Environment.NewLine +
-				"   at get-full-name.js:13:3"
+				"   at get-full-name [2].js:12:9" + Environment.NewLine +
+				"   at get-full-name [2].js:13:3"
 				;
 
 			JsRuntimeException exception = null;

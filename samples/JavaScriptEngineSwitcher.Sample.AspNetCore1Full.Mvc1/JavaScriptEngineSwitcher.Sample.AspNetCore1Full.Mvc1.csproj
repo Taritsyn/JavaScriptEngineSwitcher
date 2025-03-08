@@ -31,9 +31,6 @@
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-arm64" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x86" />
 
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
@@ -42,7 +39,6 @@
     <ProjectReference Include="../JavaScriptEngineSwitcher.Sample.AspNetCore.Infrastructure/JavaScriptEngineSwitcher.Sample.AspNetCore.Infrastructure.csproj" />
     <ProjectReference Include="../JavaScriptEngineSwitcher.Sample.Logic/JavaScriptEngineSwitcher.Sample.Logic.csproj" />
     <ProjectReference Include="../JavaScriptEngineSwitcher.Sample.Resources/JavaScriptEngineSwitcher.Sample.Resources.csproj" />
-    <ProjectReference Include="../../src/JavaScriptEngineSwitcher.V8/JavaScriptEngineSwitcher.V8.csproj" />
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
   </ItemGroup>
 
