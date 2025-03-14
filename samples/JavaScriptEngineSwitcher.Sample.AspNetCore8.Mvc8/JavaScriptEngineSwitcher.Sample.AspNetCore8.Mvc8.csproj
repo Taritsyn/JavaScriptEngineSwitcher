@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Sample ASP.NET Core 8.0 MVC 8 Site</Product>
-    <VersionPrefix>3.29.0</VersionPrefix>
+    <VersionPrefix>3.29.1</VersionPrefix>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <OutputType>Exe</OutputType>

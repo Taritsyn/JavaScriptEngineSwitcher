@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.29.1 - March 14, 2025
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.2.1
+ * In JavaScriptEngineSwitcher.V8 performed a migration to a modern API for pre-compilation of scripts
+
 ## v3.29.0 - March 8, 2025
  * In JavaScriptEngineSwitcher.Jurassic added support for the Jurassic version of February 4, 2025
  * In JavaScriptEngineSwitcher.V8:
