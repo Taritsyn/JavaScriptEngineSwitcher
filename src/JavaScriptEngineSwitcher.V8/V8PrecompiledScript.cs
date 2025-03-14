@@ -1,4 +1,5 @@
 ﻿using OriginalCacheKind = Microsoft.ClearScript.V8.V8CacheKind;
+using OriginalDocumentInfo = Microsoft.ClearScript.DocumentInfo;
 
 using JavaScriptEngineSwitcher.Core;
 
@@ -37,9 +38,9 @@ namespace JavaScriptEngineSwitcher.V8
 		}
 
 		/// <summary>
-		/// Gets a document name
+		/// Gets a meta-information for the document
 		/// </summary>
-		public string DocumentName
+		public OriginalDocumentInfo DocumentInfo
 		{
 			get;
 			private set;
@@ -52,14 +53,14 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <param name="code">The source code of the script</param>
 		/// <param name="cacheKind">The kind of cache data to be generated</param>
 		/// <param name="cachedBytes">Cached data for accelerated recompilation</param>
-		/// <param name="documentName">Document name</param>
+		/// <param name="documentInfo">Meta-information for the document</param>
 		public V8PrecompiledScript(string code, OriginalCacheKind cacheKind, byte[] cachedBytes,
-			string documentName)
+			OriginalDocumentInfo documentInfo)
 		{
 			Code = code;
 			CacheKind = cacheKind;
 			CachedBytes = cachedBytes;
-			DocumentName = documentName;
+			DocumentInfo = documentInfo;
 		}
 
 

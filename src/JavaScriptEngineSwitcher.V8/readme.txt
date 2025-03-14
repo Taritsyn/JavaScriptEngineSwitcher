@@ -31,9 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Microsoft ClearScript.V8 was updated to version 7.5;
-   2. No longer supports a .NET Framework 4.5;
-   3. Added support for .NET Framework 4.6.2.
+   Performed a migration to a modern API for pre-compilation of scripts.
 
    =============
    DOCUMENTATION

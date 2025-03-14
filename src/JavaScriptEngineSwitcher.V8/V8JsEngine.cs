@@ -4,6 +4,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 using OriginalCacheKind = Microsoft.ClearScript.V8.V8CacheKind;
+using OriginalCacheResult = Microsoft.ClearScript.V8.V8CacheResult;
+using OriginalDocumentFlags = Microsoft.ClearScript.DocumentFlags;
+using OriginalDocumentInfo = Microsoft.ClearScript.DocumentInfo;
 using OriginalEngine = Microsoft.ClearScript.V8.V8ScriptEngine;
 using OriginalEngineFlags = Microsoft.ClearScript.V8.V8ScriptEngineFlags;
 using OriginalException = Microsoft.ClearScript.ScriptEngineException;
@@ -364,12 +367,13 @@ namespace JavaScriptEngineSwitcher.V8
 
 		protected override IPrecompiledScript InnerPrecompile(string code, string documentName)
 		{
+			var documentInfo = new OriginalDocumentInfo(documentName);
 			var cacheKind = OriginalCacheKind.Code;
 			byte[] cachedBytes;
 
 			try
 			{
-				using (OriginalScript generalScript = _jsEngine.Compile(documentName, code, cacheKind,
+				using (OriginalScript generalScript = _jsEngine.Compile(documentInfo, code, cacheKind,
 					out cachedBytes))
 				{ }
 			}
@@ -378,7 +382,7 @@ namespace JavaScriptEngineSwitcher.V8
 				throw WrapScriptEngineException(e);
 			}
 
-			return new V8PrecompiledScript(code, cacheKind, cachedBytes, documentName);
+			return new V8PrecompiledScript(code, cacheKind, cachedBytes, documentInfo);
 		}
 
 		protected override object InnerEvaluate(string expression)
@@ -388,11 +392,15 @@ namespace JavaScriptEngineSwitcher.V8
 
 		protected override object InnerEvaluate(string expression, string documentName)
 		{
+			var documentInfo = new OriginalDocumentInfo(documentName)
+			{
+				Flags = OriginalDocumentFlags.None
+			};
 			object result;
 
 			try
 			{
-				result = _jsEngine.Evaluate(documentName, false, expression);
+				result = _jsEngine.Evaluate(documentInfo, expression);
 			}
 			catch (OriginalException e)
 			{
@@ -427,9 +435,14 @@ namespace JavaScriptEngineSwitcher.V8
 
 		protected override void InnerExecute(string code, string documentName)
 		{
+			var documentInfo = new OriginalDocumentInfo(documentName)
+			{
+				Flags = OriginalDocumentFlags.None
+			};
+
 			try
 			{
-				_jsEngine.Execute(documentName, false, code);
+				_jsEngine.Execute(documentInfo, code);
 			}
 			catch (OriginalException e)
 			{
@@ -453,15 +466,15 @@ namespace JavaScriptEngineSwitcher.V8
 				);
 			}
 
-			bool cacheAccepted;
+			byte[] cachedBytes = v8PrecompiledScript.CachedBytes;
 
 			try
 			{
-				using (OriginalScript script = _jsEngine.Compile(v8PrecompiledScript.DocumentName,
-					v8PrecompiledScript.Code, v8PrecompiledScript.CacheKind, v8PrecompiledScript.CachedBytes,
-					out cacheAccepted))
+				using (OriginalScript script = _jsEngine.Compile(v8PrecompiledScript.DocumentInfo,
+					v8PrecompiledScript.Code, v8PrecompiledScript.CacheKind, ref cachedBytes,
+					out var cacheResult))
 				{
-					if (!cacheAccepted)
+					if (cacheResult != OriginalCacheResult.Accepted && cacheResult != OriginalCacheResult.Verified)
 					{
 						throw new WrapperUsageException(Strings.Usage_PrecompiledScriptNotAccepted, Name, Version);
 					}
