@@ -1,6 +1,13 @@
 Change log
 ==========
 
+## v3.30.0 - June 16, 2025
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.2.2
+ * In JavaScriptEngineSwitcher.NiL:
+   * NiL.JS was updated to version 2.6.1700
+   * No longer supports a .NET 5 and 7
+   * Added support for .NET 9
+
 ## v3.29.1 - March 14, 2025
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.2.1
  * In JavaScriptEngineSwitcher.V8 performed a migration to a modern API for pre-compilation of scripts
