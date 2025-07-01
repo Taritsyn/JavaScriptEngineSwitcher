@@ -25,26 +25,30 @@ namespace JavaScriptEngineSwitcher.Jint.Helpers
 		private const string DelegateFunctionName = "delegate";
 
 		/// <summary>
+		/// Pattern for working with document names with coordinates
+		/// </summary>
+		private static readonly string DocumentNameWithCoordinatesPattern =
+			@"(?<documentName>" + CommonRegExps.DocumentNamePattern + @"):" +
+			@"(?<lineNumber>\d+)(?::(?<columnNumber>\d+))?";
+
+		/// <summary>
 		/// Regular expression for working with line of the script error location
 		/// </summary>
 		private static readonly Regex _errorLocationLineRegex =
-			new Regex(@"^[ ]{3}at " +
+			new Regex(@"^[ ]{4}at " +
 				@"(?:" +
-					@"(?:" +
-						@"(?<functionName>" +
-							@"[\w][\w ]*" +
-							@"|" +
-							CommonRegExps.JsFullNamePattern +
-							@"|" +
-							Regex.Escape(OriginalAnonymousFunctionName) +
-						@") " +
-						@"\((?:" + CommonRegExps.JsFullNamePattern + @"(?:, " + CommonRegExps.JsFullNamePattern + @")*)?\)" +
+					@"(?<functionName>" +
+						@"[\w][\w ]*" +
 						@"|" +
-						@"(?<functionName>" + Regex.Escape(DelegateFunctionName) + @")" +
+						CommonRegExps.JsFullNamePattern +
+						@"|" +
+						Regex.Escape(OriginalAnonymousFunctionName) +
 					@") " +
-				@")?" +
-				@"(?<documentName>" + CommonRegExps.DocumentNamePattern + @"):" +
-				@"(?<lineNumber>\d+)(?::(?<columnNumber>\d+))?$");
+					@"\(" + DocumentNameWithCoordinatesPattern + @"\)" +
+					@"|" +
+					DocumentNameWithCoordinatesPattern +
+				@")" +
+			"$");
 
 		/// <summary>
 		/// Regular expression for working with the syntax error message
