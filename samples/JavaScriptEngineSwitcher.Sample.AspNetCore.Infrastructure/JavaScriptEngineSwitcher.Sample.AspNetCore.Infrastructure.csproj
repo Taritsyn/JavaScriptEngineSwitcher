@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Infrastructure for ASP.NET Core Samples</Product>
-    <VersionPrefix>3.30.1</VersionPrefix>
+    <VersionPrefix>3.30.2</VersionPrefix>
     <TargetFrameworks>net451;netstandard1.6;netstandard2.0;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
