@@ -12,12 +12,12 @@
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.Yantra contains a `YantraJsEngine` adapter (wrapper for the
-   YantraJS (https://yantrajs.com) version 1.2.290).
+   YantraJS (https://github.com/yantrajs/yantra) version 1.2.293).
 
    =============
    RELEASE NOTES
    =============
-   YantraJS was updated to version 1.2.290.
+   YantraJS was updated to version 1.2.293.
 
    =============
    DOCUMENTATION
