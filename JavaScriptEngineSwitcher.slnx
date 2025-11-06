@@ -1,0 +1,84 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="CHANGELOG.md" />
+    <File Path="global.json" />
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/build/">
+    <File Path="build/common.props" />
+    <File Path="build/initialize-standard-nuspec-properties.targets" />
+    <File Path="build/Key.snk" />
+    <File Path="build/net40-client-target.props" />
+    <File Path="build/nuget-common.props" />
+    <File Path="build/nuget-for-dotnet-lib.props" />
+    <File Path="build/nuget-for-native-lib.props" />
+    <File Path="build/strong-name-signing.props" />
+  </Folder>
+  <Folder Name="/licenses/">
+    <File Path="Licenses/advanced-string-builder-license.txt" />
+    <File Path="Licenses/chakra-core-license.txt" />
+    <File Path="Licenses/chakra-samples-license.txt" />
+    <File Path="Licenses/clearscript-license.txt" />
+    <File Path="Licenses/jering-javascript-nodejs-license.txt" />
+    <File Path="Licenses/jint-license.txt" />
+    <File Path="Licenses/jsrt-dotnet-license.txt" />
+    <File Path="Licenses/jurassic-license.txt" />
+    <File Path="Licenses/microsoft-dotnet-arcade-sdk-license.txt" />
+    <File Path="Licenses/msie-javascript-engine-license.txt" />
+    <File Path="Licenses/nil-license.txt" />
+    <File Path="Licenses/nodejs-license.txt" />
+    <File Path="Licenses/polyfills-for-old-dot-net-license.txt" />
+    <File Path="Licenses/v8-license.txt" />
+    <File Path="Licenses/vroomjs-core-license.txt" />
+    <File Path="Licenses/yantra-license.txt" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.ChakraCore/JavaScriptEngineSwitcher.ChakraCore.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.ChakraCore.Native.win-x86/JavaScriptEngineSwitcher.ChakraCore.Native.win-x86.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.ChakraCore.Native.win-x64/JavaScriptEngineSwitcher.ChakraCore.Native.win-x64.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.ChakraCore.Native.win-arm/JavaScriptEngineSwitcher.ChakraCore.Native.win-arm.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64/JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64/JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64/JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.Jint/JavaScriptEngineSwitcher.Jint.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.Jurassic/JavaScriptEngineSwitcher.Jurassic.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.Msie/JavaScriptEngineSwitcher.Msie.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.NiL/JavaScriptEngineSwitcher.NiL.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.Node/JavaScriptEngineSwitcher.Node.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.V8/JavaScriptEngineSwitcher.V8.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.V8.Native.win-x86/JavaScriptEngineSwitcher.V8.Native.win-x86.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.V8.Native.win-x64/JavaScriptEngineSwitcher.V8.Native.win-x64.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.V8.Native.linux-x64/JavaScriptEngineSwitcher.V8.Native.linux-x64.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.V8.Native.osx-x64/JavaScriptEngineSwitcher.V8.Native.osx-x64.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.Vroom/JavaScriptEngineSwitcher.Vroom.csproj" />
+    <Project Path="src/JavaScriptEngineSwitcher.Yantra/JavaScriptEngineSwitcher.Yantra.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/JavaScriptEngineSwitcher.Benchmarks/JavaScriptEngineSwitcher.Benchmarks.csproj" />
+    <Project Path="test/JavaScriptEngineSwitcher.Tests/JavaScriptEngineSwitcher.Tests.csproj" />
+  </Folder>
+  <Folder Name="/samples/SharedData/" />
+  <Folder Name="/samples/SharedData/text-content/">
+    <File Path="samples/SharedData/text-content/contact.html" />
+    <File Path="samples/SharedData/text-content/index.html" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.Resources/JavaScriptEngineSwitcher.Sample.Resources.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.Logic/JavaScriptEngineSwitcher.Sample.Logic.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4/JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4.csproj" Id="8124df18-4a0b-4648-8b90-4a6d3e4ef2f3" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore.Infrastructure/JavaScriptEngineSwitcher.Sample.AspNetCore.Infrastructure.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1/JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1/JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21/JavaScriptEngineSwitcher.Sample.AspNetCore21.Mvc21.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31/JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5/JavaScriptEngineSwitcher.Sample.AspNetCore5.Mvc5.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore6.Mvc6/JavaScriptEngineSwitcher.Sample.AspNetCore6.Mvc6.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore7.Mvc7/JavaScriptEngineSwitcher.Sample.AspNetCore7.Mvc7.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore8.Mvc8/JavaScriptEngineSwitcher.Sample.AspNetCore8.Mvc8.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore9.Mvc9/JavaScriptEngineSwitcher.Sample.AspNetCore9.Mvc9.csproj" />
+  </Folder>
+</Solution>
