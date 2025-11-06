@@ -22,12 +22,12 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_NiL_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.NiL contains a `NiLJsEngine` adapter (wrapper for the NiL.JS).</Description>
     <PackageTags>$(PackageCommonTags);NiL</PackageTags>
-    <PackageReleaseNotes>NiL.JS was updated to version 2.6.1706.</PackageReleaseNotes>
+    <PackageReleaseNotes>NiL.JS was updated to version 2.6.1707.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
-    <PackageReference Include="NiL.JS" Version="2.6.1706" />
+    <PackageReference Include="NiL.JS" Version="2.6.1707" />
   </ItemGroup>
 
   <ItemGroup>
