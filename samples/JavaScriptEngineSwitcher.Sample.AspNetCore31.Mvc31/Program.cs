@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System.IO;
+
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -15,6 +17,10 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore31.Mvc31
 			Host.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
+					webBuilder.UseWebRoot(Path.Combine(
+						Directory.GetCurrentDirectory(),
+						"../JavaScriptEngineSwitcher.Sample.AspNetCore.ClientSideAssets/wwwroot"
+					));
 					webBuilder.UseStartup<Startup>();
 				})
 				.ConfigureLogging((hostingContext, logging) =>

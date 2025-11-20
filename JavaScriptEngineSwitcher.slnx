@@ -70,6 +70,7 @@
     <Project Path="samples/JavaScriptEngineSwitcher.Sample.Resources/JavaScriptEngineSwitcher.Sample.Resources.csproj" />
     <Project Path="samples/JavaScriptEngineSwitcher.Sample.Logic/JavaScriptEngineSwitcher.Sample.Logic.csproj" />
     <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4/JavaScriptEngineSwitcher.Sample.AspNet4.Mvc4.csproj" Id="8124df18-4a0b-4648-8b90-4a6d3e4ef2f3" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore.ClientSideAssets/JavaScriptEngineSwitcher.Sample.AspNetCore.ClientSideAssets.csproj" />
     <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore.Infrastructure/JavaScriptEngineSwitcher.Sample.AspNetCore.Infrastructure.csproj" />
     <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1/JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1.csproj" />
     <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1/JavaScriptEngineSwitcher.Sample.AspNetCore1Full.Mvc1.csproj" />

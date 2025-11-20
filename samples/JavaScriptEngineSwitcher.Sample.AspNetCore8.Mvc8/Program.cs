@@ -13,7 +13,13 @@ using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Vroom;
 using JavaScriptEngineSwitcher.Yantra;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
+{
+	WebRootPath = Path.Combine(
+		Directory.GetCurrentDirectory(),
+		"../JavaScriptEngineSwitcher.Sample.AspNetCore.ClientSideAssets/wwwroot"
+	)
+});
 var env = builder.Environment;
 var configuration = new ConfigurationBuilder()
 	.SetBasePath(env.ContentRootPath)

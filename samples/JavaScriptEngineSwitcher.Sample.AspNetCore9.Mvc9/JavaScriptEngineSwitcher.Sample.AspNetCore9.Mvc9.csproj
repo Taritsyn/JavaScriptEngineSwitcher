@@ -44,22 +44,6 @@
     <ProjectReference Include="../../src/JavaScriptEngineSwitcher.Yantra/JavaScriptEngineSwitcher.Yantra.csproj" />
   </ItemGroup>
 
-  <Target Name="NodePackageInstallation" BeforeTargets="BeforeBuild;BeforeClean">
-    <Exec Command="npm install" ConsoleToMsBuild="true" />
-  </Target>
-  <Target Name="BowerPackagesInstallation" AfterTargets="AfterBuild">
-    <Exec Command="bower install" ConsoleToMsBuild="true" />
-  </Target>
-  <Target Name="GulpClean" AfterTargets="AfterClean">
-    <Exec Command="gulp cleanBuildedAssets" ConsoleToMsBuild="true" />
-  </Target>
-  <Target Name="GulpBuild" AfterTargets="BowerPackagesInstallation">
-    <Exec Command="gulp buildAssets" ConsoleToMsBuild="true" />
-  </Target>
-  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
-    <Exec Command="npm install" />
-    <Exec Command="bower install" />
-    <Exec Command="gulp" />
-  </Target>
+  <Import Project="../JavaScriptEngineSwitcher.Sample.AspNetCore.ClientSideAssets/ensure-client-side-assets-builded.targets" />
 
 </Project>

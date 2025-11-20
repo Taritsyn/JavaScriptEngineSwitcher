@@ -8,9 +8,14 @@ namespace JavaScriptEngineSwitcher.Sample.AspNetCore1.Mvc1
 	{
 		public static void Main(string[] args)
 		{
+			string currentDirectory = Directory.GetCurrentDirectory();
 			var host = new WebHostBuilder()
 				.UseKestrel()
-				.UseContentRoot(Directory.GetCurrentDirectory())
+				.UseContentRoot(currentDirectory)
+				.UseWebRoot(Path.Combine(
+					currentDirectory,
+					"../JavaScriptEngineSwitcher.Sample.AspNetCore.ClientSideAssets/wwwroot"
+				))
 				.UseIISIntegration()
 				.UseStartup<Startup>()
 				.Build()
