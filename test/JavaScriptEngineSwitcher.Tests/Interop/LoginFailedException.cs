@@ -1,7 +1,5 @@
 ﻿using System;
-#if !NET8_0_OR_GREATER
 using System.Runtime.Serialization;
-#endif
 
 namespace JavaScriptEngineSwitcher.Tests.Interop
 {
@@ -27,8 +25,10 @@ namespace JavaScriptEngineSwitcher.Tests.Interop
 		public LoginFailedException(string message, Exception innerException)
 			: base(message, innerException)
 		{ }
-#if !NET8_0_OR_GREATER
 
+#if NET8_0_OR_GREATER
+		[Obsolete(DiagnosticId = "SYSLIB0051")]
+#endif
 		protected LoginFailedException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
@@ -39,6 +39,9 @@ namespace JavaScriptEngineSwitcher.Tests.Interop
 		}
 
 
+#if NET8_0_OR_GREATER
+		[Obsolete(DiagnosticId = "SYSLIB0051")]
+#endif
 		public override void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
 			if (info == null)
@@ -49,6 +52,5 @@ namespace JavaScriptEngineSwitcher.Tests.Interop
 			base.GetObjectData(info, context);
 			info.AddValue("UserName", this._userName);
 		}
-#endif
 	}
 }
