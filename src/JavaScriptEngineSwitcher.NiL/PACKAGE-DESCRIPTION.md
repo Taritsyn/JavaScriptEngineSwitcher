@@ -1,1 +1,1 @@
-JavaScriptEngineSwitcher.NiL contains a `NiLJsEngine` adapter (wrapper for the [NiL.JS](https://github.com/nilproject/NiL.JS) version 2.6.1709).
+JavaScriptEngineSwitcher.NiL contains a `NiLJsEngine` adapter (wrapper for the [NiL.JS](https://github.com/nilproject/NiL.JS) version 2.6.1712).
