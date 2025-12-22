@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: NiL</Product>
-    <VersionPrefix>3.30.0</VersionPrefix>
+    <VersionPrefix>3.30.3</VersionPrefix>
     <TargetFrameworks>net461;net48;netcoreapp3.1;net6.0;net8.0;net9.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
