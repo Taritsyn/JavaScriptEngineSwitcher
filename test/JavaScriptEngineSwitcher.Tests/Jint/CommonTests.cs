@@ -47,7 +47,7 @@ $variable1 + _variable2 - @variable3;";
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Compilation error", exception.Category);
-			Assert.Equal("Invalid or unexpected token", exception.Description);
+			Assert.Equal("Unexpected token '@'", exception.Description);
 			Assert.Equal("SyntaxError", exception.Type);
 			Assert.Equal("variables.js", exception.DocumentName);
 			Assert.Equal(3, exception.LineNumber);

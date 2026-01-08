@@ -22,11 +22,11 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Jint contains a `JintJsEngine` adapter (wrapper for the Jint).</Description>
     <PackageTags>$(PackageCommonTags);Jint</PackageTags>
-    <PackageReleaseNotes>Jint was updated to version 4.4.2.</PackageReleaseNotes>
+    <PackageReleaseNotes>Jint was updated to version 4.5.0.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jint" Version="4.4.2" />
+    <PackageReference Include="Jint" Version="4.5.0" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
