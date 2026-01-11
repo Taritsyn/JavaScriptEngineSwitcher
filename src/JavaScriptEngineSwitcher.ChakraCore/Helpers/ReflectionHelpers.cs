@@ -1,7 +1,14 @@
 ﻿using System;
+#if NET45_OR_GREATER || NETSTANDARD
+using System.Buffers;
+#endif
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+#if NET40
+
+using PolyfillsForOldDotNet.System.Buffers;
+#endif
 
 using JavaScriptEngineSwitcher.Core.Utilities;
 
@@ -113,6 +120,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 		public static void FixArgumentTypes(ref object[] argValues, ParameterInfo[] parameters)
 		{
 			int argCount = argValues.Length;
+			if (argCount == 0)
+			{
+				return;
+			}
+
 			int parameterCount = parameters.Length;
 
 			for (int argIndex = 0; argIndex < argCount; argIndex++)
@@ -147,54 +159,72 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 		public static MethodBase GetBestFitMethod(MethodBase[] methods, object[] argValues)
 		{
-			MethodWithMetadata[] methodCandidates = methods
-				.Select(m => new MethodWithMetadata
-				{
-					Method = m,
-					ParameterTypes = m.GetParameters()
-						.Select(p => p.ParameterType)
-						.ToArray()
-				})
-				.ToArray()
-				;
-			int argCount = argValues.Length;
-			MethodWithMetadata[] sameArityMethods = methodCandidates
-				.Where(m => m.ParameterTypes.Length == argCount)
-				.ToArray()
-				;
-
-			int sameArityMethodCount = sameArityMethods.Length;
-			if (sameArityMethodCount == 0)
+			int methodCount = methods.Length;
+			if (methodCount == 0)
 			{
 				return null;
 			}
 
-			Type[] argTypes = argValues
-				.Select(a => a != null ? a.GetType() : typeof(object))
-				.ToArray()
-				;
-			var compatibleMethods = new List<MethodWithMetadata>();
-
-			for (int methodIndex = 0; methodIndex < sameArityMethodCount; methodIndex++)
+			if (methodCount == 1)
 			{
-				MethodWithMetadata method = sameArityMethods[methodIndex];
-				ushort compatibilityScore;
+				MethodBase method = methods[0];
+				ParameterInfo[] parameters = method.GetParameters();
 
-				if (CompareParameterTypes(argValues, argTypes, method.ParameterTypes, out compatibilityScore))
+				MethodBase bestFitMethod = null;
+				if (CompareParameterTypes(argValues, parameters, out _))
 				{
-					method.CompatibilityScore = compatibilityScore;
-					compatibleMethods.Add(method);
+					bestFitMethod = method;
 				}
+
+				return bestFitMethod;
 			}
 
-			int compatibleMethodCount = compatibleMethods.Count;
-			if (compatibleMethodCount > 0)
+			MethodWithMetadata[] compatibleMethods = null;
+			int compatibleMethodCount = 0;
+
+			var methodArrayPool = ArrayPool<MethodWithMetadata>.Shared;
+			MethodWithMetadata[] buffer = methodArrayPool.Rent(methodCount);
+
+			try
 			{
-				if (compatibleMethodCount == 1)
+				for (int methodIndex = 0; methodIndex < methodCount; methodIndex++)
 				{
-					return compatibleMethods[0].Method;
+					MethodBase method = methods[methodIndex];
+					ParameterInfo[] parameters = method.GetParameters();
+					ushort compatibilityScore;
+
+					if (CompareParameterTypes(argValues, parameters, out compatibilityScore))
+					{
+						compatibleMethodCount++;
+
+						int compatibleMethodIndex = compatibleMethodCount - 1;
+						buffer[compatibleMethodIndex] = new MethodWithMetadata
+						{
+							Method = method,
+							CompatibilityScore = compatibilityScore
+						};
+					}
 				}
 
+				if (compatibleMethodCount > 0)
+				{
+					if (compatibleMethodCount == 1)
+					{
+						return buffer[0].Method;
+					}
+
+					compatibleMethods = new MethodWithMetadata[compatibleMethodCount];
+					Array.Copy(buffer, compatibleMethods, compatibleMethodCount);
+				}
+			}
+			finally
+			{
+				bool clearArray = compatibleMethodCount > 0;
+				methodArrayPool.Return(buffer, clearArray);
+			}
+
+			if (compatibleMethods != null)
+			{
 				MethodWithMetadata bestFitMethod = compatibleMethods
 					.OrderByDescending(m => m.CompatibilityScore)
 					.First()
@@ -206,24 +236,29 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			return null;
 		}
 
-		private static bool CompareParameterTypes(object[] argValues, Type[] argTypes, Type[] parameterTypes,
+		private static bool CompareParameterTypes(object[] argValues, ParameterInfo[] parameters,
 			out ushort compatibilityScore)
 		{
-			int argValueCount = argValues.Length;
-			int argTypeCount = argTypes.Length;
-			int parameterCount = parameterTypes.Length;
+			int argCount = argValues.Length;
+			int parameterCount = parameters.Length;
 			compatibilityScore = 0;
 
-			if (argValueCount != argTypeCount || argTypeCount != parameterCount)
+			if (argCount != parameterCount)
 			{
 				return false;
 			}
+			else if (argCount == 0)
+			{
+				compatibilityScore = ushort.MaxValue;
+				return true;
+			}
 
-			for (int argIndex = 0; argIndex < argValueCount; argIndex++)
+			for (int argIndex = 0; argIndex < argCount; argIndex++)
 			{
 				object argValue = argValues[argIndex];
-				Type argType = argTypes[argIndex];
-				Type parameterType = parameterTypes[argIndex];
+				Type argType = argValue != null ? argValue.GetType() : typeof(object);
+				ParameterInfo parameter = parameters[argIndex];
+				Type parameterType = parameter.ParameterType;
 
 				if (argType == parameterType)
 				{
@@ -239,8 +274,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 					{
 						return false;
 					}
-
-					continue;
 				}
 			}
 
@@ -292,12 +325,6 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 		private sealed class MethodWithMetadata
 		{
 			public MethodBase Method
-			{
-				get;
-				set;
-			}
-
-			public Type[] ParameterTypes
 			{
 				get;
 				set;

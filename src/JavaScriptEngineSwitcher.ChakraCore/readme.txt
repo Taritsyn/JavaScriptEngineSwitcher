@@ -31,7 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   ChakraCore was updated to version of August 1, 2024.
+   Optimized a memory usage in the `ReflectionHelpers.GetBestFitMethod` method.
 
    =============
    DOCUMENTATION
