@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.30.4 - January 11, 2026
+ * In JavaScriptEngineSwitcher.ChakraCore optimized a memory usage in the `ReflectionHelpers.GetBestFitMethod` method
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.5.0
+
 ## v3.30.3 - December 22, 2025
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.4.2
  * In JavaScriptEngineSwitcher.NiL added support for the NiL.JS version 2.6.1712

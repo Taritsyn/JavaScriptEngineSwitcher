@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: Client-Side Assets for ASP.NET Core Samples</Product>
-    <VersionPrefix>3.30.3</VersionPrefix>
+    <VersionPrefix>3.30.4</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
     <IsPackable>false</IsPackable>
