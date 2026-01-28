@@ -5,19 +5,19 @@
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2025 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2026 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.Yantra contains a `YantraJsEngine` adapter (wrapper for the
-   YantraJS (https://github.com/yantrajs/yantra) version 1.2.299).
+   YantraJS (https://github.com/yantrajs/yantra) version 1.2.301).
 
    =============
    RELEASE NOTES
    =============
-   YantraJS was updated to version 1.2.299.
+   YantraJS was updated to version 1.2.301.
 
    =============
    DOCUMENTATION
