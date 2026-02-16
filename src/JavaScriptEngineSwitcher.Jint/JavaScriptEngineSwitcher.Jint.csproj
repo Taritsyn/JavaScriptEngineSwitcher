@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Jint</Product>
     <VersionPrefix>3.30.4</VersionPrefix>
-    <TargetFrameworks>net462;netstandard2.0;netstandard2.1;net8.0</TargetFrameworks>
+    <TargetFrameworks>net462;netstandard2.0;netstandard2.1;net8.0;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591;NU5104</NoWarn>
@@ -22,11 +22,12 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jint_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Jint contains a `JintJsEngine` adapter (wrapper for the Jint).</Description>
     <PackageTags>$(PackageCommonTags);Jint</PackageTags>
-    <PackageReleaseNotes>Jint was updated to version 4.5.0.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Jint was updated to version 4.6.0;
+2. Added support for .NET 10.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jint" Version="4.5.0" />
+    <PackageReference Include="Jint" Version="4.6.0" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>

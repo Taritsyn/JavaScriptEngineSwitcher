@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Threading;
+#if NET10_0_OR_GREATER
+using Lock = System.Threading.Lock;
+#else
+using Lock = System.Object;
+#endif
 
 using Jint;
 using IOriginalPrimitive = Jint.Native.IJsPrimitive;
@@ -51,7 +56,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "4.5.0";
+		private const string EngineVersion = "4.6.0";
 
 		/// <summary>
 		/// Jint JS engine
@@ -86,7 +91,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Synchronizer of script execution
 		/// </summary>
-		private readonly object _executionSynchronizer = new object();
+		private readonly Lock _executionSynchronizer = new Lock();
 
 		/// <summary>
 		/// Unique document name manager
