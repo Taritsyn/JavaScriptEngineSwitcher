@@ -2,6 +2,8 @@
 
 using Xunit;
 
+using JavaScriptEngineSwitcher.Tests.Interop;
+
 namespace JavaScriptEngineSwitcher.Tests.Jurassic
 {
 	public class InteropTests : InteropTestsBase
@@ -12,6 +14,34 @@ namespace JavaScriptEngineSwitcher.Tests.Jurassic
 		}
 
 		#region Embedding of objects
+
+		#region Objects with fields
+
+		public override void EmbeddingOfInstanceOfCustomValueTypeWithReadonlyField()
+		{
+			// Arrange
+			var age = new Age(1979);
+			const string updateCode = "age.Year = 1982;";
+
+			const string input = "age.Year";
+			const int targetOutput = 1982;
+
+			// Act
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("age", age);
+				jsEngine.Execute(updateCode);
+
+				output = jsEngine.Evaluate<int>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		#endregion
 
 		#region Objects with properties
 

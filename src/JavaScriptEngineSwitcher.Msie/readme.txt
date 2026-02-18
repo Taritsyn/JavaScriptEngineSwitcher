@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2024 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2026 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -19,7 +19,8 @@
    =============
    RELEASE NOTES
    =============
-   MSIE JavaScript Engine was updated to version 3.2.5.
+   1. MSIE JavaScript Engine was updated to version 3.3.0;
+   2. Added support for .NET Standard 2.1 and .NET 10.
 
    =============
    DOCUMENTATION

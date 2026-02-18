@@ -32,6 +32,14 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 
 		#region Embedding of objects
 
+		#region Objects with fields
+
+		[Fact]
+		public override void EmbeddingOfInstanceOfCustomValueTypeWithReadonlyField()
+		{ }
+
+		#endregion
+
 		#region Objects with methods
 
 		[Fact]
@@ -457,6 +465,14 @@ namespace JavaScriptEngineSwitcher.Tests.ChakraCore
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Object doesn't support property or method 'GetType'", exception.Description);
 		}
+
+		#endregion
+
+		#region Types with fields
+
+		[Fact]
+		public override void EmbeddingOfCustomReferenceTypeWithReadonlyFields()
+		{ }
 
 		#endregion
 

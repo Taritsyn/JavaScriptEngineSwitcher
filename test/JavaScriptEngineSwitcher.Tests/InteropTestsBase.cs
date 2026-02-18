@@ -60,6 +60,31 @@ namespace JavaScriptEngineSwitcher.Tests
 		}
 
 		[Fact]
+		public virtual void EmbeddingOfInstanceOfCustomValueTypeWithReadonlyField()
+		{
+			// Arrange
+			var age = new Age(1979);
+			const string updateCode = "age.Year = 1982;";
+
+			const string input = "age.Year";
+			const int targetOutput = 1979;
+
+			// Act
+			int output;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostObject("age", age);
+				jsEngine.Execute(updateCode);
+
+				output = jsEngine.Evaluate<int>(input);
+			}
+
+			// Assert
+			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
 		public virtual void EmbeddingOfInstanceOfCustomReferenceTypeWithFields()
 		{
 			// Arrange
@@ -1172,6 +1197,47 @@ DefaultLogger.Current = new ThrowExceptionLogger();";
 
 			// Assert
 			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public virtual void EmbeddingOfCustomReferenceTypeWithReadonlyFields()
+		{
+			// Arrange
+			Type runtimeConstantsType = typeof(RuntimeConstants);
+			const string updateCode = @"var oldMinValue = RuntimeConstants.MinValue;
+var oldMaxValue = RuntimeConstants.MaxValue;
+
+RuntimeConstants.MinValue = 1;
+RuntimeConstants.MaxValue = 100;";
+			const string rollbackCode = @"RuntimeConstants.MinValue = oldMinValue;
+RuntimeConstants.MaxValue = oldMaxValue;";
+
+			const string input1 = "RuntimeConstants.MinValue";
+			const int targetOutput1 = 0;
+
+			const string input2 = "RuntimeConstants.MaxValue";
+			const int targetOutput2 = 999;
+
+			// Act
+			int output1;
+			int output2;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				jsEngine.EmbedHostType("RuntimeConstants", runtimeConstantsType);
+
+				lock (RuntimeConstants.SyncRoot)
+				{
+					jsEngine.Execute(updateCode);
+					output1 = jsEngine.Evaluate<int>(input1);
+					output2 = jsEngine.Evaluate<int>(input2);
+					jsEngine.Execute(rollbackCode);
+				}
+			}
+
+			// Assert
+			Assert.Equal(targetOutput1, output1);
+			Assert.Equal(targetOutput2, output2);
 		}
 
 		#endregion

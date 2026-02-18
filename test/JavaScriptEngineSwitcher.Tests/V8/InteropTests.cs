@@ -31,6 +31,38 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 
 		#region Embedding of objects
 
+		#region Objects with fields
+
+		public override void EmbeddingOfInstanceOfCustomValueTypeWithReadonlyField()
+		{
+			// Arrange
+			var age = new Age(1979);
+			const string updateCode = "age.Year = 1982;";
+
+			// Act
+			JsRuntimeException exception = null;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				try
+				{
+					jsEngine.EmbedHostObject("age", age);
+					jsEngine.Execute(updateCode);
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("The field is read-only", exception.Description);
+		}
+
+		#endregion
+
 		#region Objects with methods
 
 		public override void EmbeddingOfInstanceOfCustomValueTypeAndCallingOfItsGetTypeMethod()
@@ -178,6 +210,43 @@ namespace JavaScriptEngineSwitcher.Tests.V8
 			var exception = Assert.Throws<JsRuntimeException>(() => TestAllowReflectionSetting(false));
 			Assert.Equal("Runtime error", exception.Category);
 			Assert.Equal("Use of reflection is prohibited in this script engine", exception.Description);
+		}
+
+		#endregion
+
+		#region Types with fields
+
+		public override void EmbeddingOfCustomReferenceTypeWithReadonlyFields()
+		{
+			// Arrange
+			Type runtimeConstantsType = typeof(RuntimeConstants);
+			const string updateCode = @"RuntimeConstants.MinValue = 1;
+RuntimeConstants.MaxValue = 100;";
+
+			// Act
+			JsRuntimeException exception = null;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				try
+				{
+					jsEngine.EmbedHostType("RuntimeConstants", runtimeConstantsType);
+
+					lock (RuntimeConstants.SyncRoot)
+					{
+						jsEngine.Execute(updateCode);
+					}
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("The field is read-only", exception.Description);
 		}
 
 		#endregion

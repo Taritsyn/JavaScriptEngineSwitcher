@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: MSIE</Product>
     <VersionPrefix>3.24.1</VersionPrefix>
-    <TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0;netstandard2.1;net10.0</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -23,11 +23,12 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Msie_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Msie contains a `MsieJsEngine` adapter (wrapper for the MSIE JavaScript Engine for .NET).</Description>
     <PackageTags>$(PackageCommonTags);MSIE;IE;Chakra</PackageTags>
-    <PackageReleaseNotes>MSIE JavaScript Engine was updated to version 3.2.5.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. MSIE JavaScript Engine was updated to version 3.3.0;
+2. Added support for .NET Standard 2.1 and .NET 10.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MsieJavaScriptEngine" Version="3.2.5" />
+    <PackageReference Include="MsieJavaScriptEngine" Version="3.3.0" />
     <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha7" PrivateAssets="All" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />

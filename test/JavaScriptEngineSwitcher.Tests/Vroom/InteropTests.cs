@@ -15,6 +15,9 @@
 		public override void EmbeddingOfInstanceOfCustomValueTypeWithFields()
 		{ }
 
+		public override void EmbeddingOfInstanceOfCustomValueTypeWithReadonlyField()
+		{ }
+
 		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithFields()
 		{ }
 
@@ -82,6 +85,9 @@
 		{ }
 
 		public override void EmbeddingOfCustomReferenceTypeWithField()
+		{ }
+
+		public override void EmbeddingOfCustomReferenceTypeWithReadonlyFields()
 		{ }
 
 		#endregion

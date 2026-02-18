@@ -59,6 +59,35 @@ namespace JavaScriptEngineSwitcher.Tests.Yantra
 		}
 
 		[Fact]
+		public override void EmbeddingOfInstanceOfCustomValueTypeWithReadonlyField()
+		{
+			// Arrange
+			var age = new Age(1979);
+			const string updateCode = "age.Year = 1982;";
+
+			// Act
+			JsRuntimeException exception = null;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				try
+				{
+					jsEngine.EmbedHostObject("age", age);
+					jsEngine.Execute(updateCode);
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Cannot modify property Year of 47 which has only a getter", exception.Description);
+		}
+
+		[Fact]
 		public override void EmbeddingOfInstanceOfCustomReferenceTypeWithFields()
 		{
 			// Arrange
@@ -489,6 +518,44 @@ person.Patronymic = '';";
 
 			// Assert
 			Assert.Equal(targetOutput, output);
+		}
+
+		[Fact]
+		public override void EmbeddingOfCustomReferenceTypeWithReadonlyFields()
+		{
+			// Arrange
+			Type runtimeConstantsType = typeof(RuntimeConstants);
+			const string updateCode = @"RuntimeConstants.MinValue = 1;
+RuntimeConstants.MaxValue = 100;";
+
+			// Act
+			JsRuntimeException exception = null;
+
+			using (var jsEngine = CreateJsEngine())
+			{
+				try
+				{
+					jsEngine.EmbedHostType("RuntimeConstants", runtimeConstantsType);
+
+					lock (RuntimeConstants.SyncRoot)
+					{
+						jsEngine.Execute(updateCode);
+					}
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal(
+				"Cannot modify property MinValue of function RuntimeConstants() { [clr-native] }" +
+				" which has only a getter",
+				exception.Description
+			);
 		}
 
 		#endregion
