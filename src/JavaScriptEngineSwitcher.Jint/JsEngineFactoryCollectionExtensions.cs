@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJint(this JsEngineFactoryCollection source)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
@@ -35,12 +35,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		public static JsEngineFactoryCollection AddJint(this JsEngineFactoryCollection source,
 			Action<JintSettings> configure)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -60,12 +60,12 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJint(this JsEngineFactoryCollection source, JintSettings settings)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (settings == null)
+			if (settings is null)
 			{
 				throw new ArgumentNullException(nameof(settings));
 			}

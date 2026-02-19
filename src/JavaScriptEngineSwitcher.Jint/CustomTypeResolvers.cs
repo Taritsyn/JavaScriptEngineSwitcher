@@ -89,11 +89,11 @@ namespace JavaScriptEngineSwitcher.Jint
 
 			public override bool Equals(T x, T y)
 			{
-				if (x == null && y == null)
+				if (x is null && y is null)
 				{
 					return true;
 				}
-				else if (x == null || y == null)
+				else if (x is null || y is null)
 				{
 					return false;
 				}
@@ -103,7 +103,7 @@ namespace JavaScriptEngineSwitcher.Jint
 
 			public override int GetHashCode(T obj)
 			{
-				return obj != null ? obj.GetHashCode() : 0;
+				return obj is not null ? obj.GetHashCode() : 0;
 			}
 
 			#endregion

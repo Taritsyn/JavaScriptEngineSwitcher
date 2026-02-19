@@ -104,7 +104,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 					Debugger = yantraSettings.Debugger
 				};
 
-				if (_consoleCallback != null)
+				if (_consoleCallback is not null)
 				{
 					_jsContext.ConsoleEvent += OnConsoleWrite;
 				}
@@ -257,7 +257,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 					result = del.DynamicInvoke(processedArgs);
 				}
 				catch (Exception e) when ((e is TargetInvocationException || e is WrapperException)
-					&& e.InnerException != null)
+					&& e.InnerException is not null)
 				{
 					OriginalException originalException = OriginalException.From(e.InnerException);
 					throw originalException;
@@ -308,7 +308,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 			ErrorLocationItem[] callStackItems = null;
 
 			var errorValue = originalException.Error as OriginalError;
-			if (errorValue != null)
+			if (errorValue is not null)
 			{
 				string messageWithType = errorValue.ToString();
 				Match messageMatch = _errorMessageRegex.Match(messageWithType);
@@ -361,7 +361,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 				}
 				else
 				{
-					string callStack = callStackItems != null ?
+					string callStack = callStackItems is not null ?
 						JsErrorHelpers.StringifyErrorLocationItems(callStackItems) : string.Empty;
 					message = JsErrorHelpers.GenerateScriptErrorMessage(type, description, callStack);
 
@@ -462,7 +462,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 				throw WrapJsException(e);
 			}
 			catch (Exception e) when ((e is TargetInvocationException || e is WrapperException)
-				&& e.InnerException != null)
+				&& e.InnerException is not null)
 			{
 				OriginalException originalException = OriginalException.From(e.InnerException);
 				throw originalException;
@@ -495,7 +495,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 				throw WrapJsException(e);
 			}
 			catch (Exception e) when ((e is TargetInvocationException || e is WrapperException)
-				&& e.InnerException != null)
+				&& e.InnerException is not null)
 			{
 				OriginalException originalException = OriginalException.From(e.InnerException);
 				throw originalException;
@@ -588,7 +588,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 				throw WrapJsException(e);
 			}
 			catch (Exception e) when ((e is TargetInvocationException || e is WrapperException)
-				&& e.InnerException != null)
+				&& e.InnerException is not null)
 			{
 				OriginalException originalException = OriginalException.From(e.InnerException);
 				throw originalException;
@@ -777,9 +777,9 @@ namespace JavaScriptEngineSwitcher.Yantra
 			{
 				lock (_executionSynchronizer)
 				{
-					if (_jsContext != null)
+					if (_jsContext is not null)
 					{
-						if (_consoleCallback != null)
+						if (_consoleCallback is not null)
 						{
 							_jsContext.ConsoleEvent -= OnConsoleWrite;
 							_consoleCallback = null;

@@ -21,7 +21,7 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Jurassic contains a `JurassicJsEngine` adapter (wrapper for the Jurassic).</Description>
     <PackageTags>$(PackageCommonTags);Jurassic</PackageTags>
-    <PackageReleaseNotes>Jurassic was updated to version of February 4, 2025.</PackageReleaseNotes>
+    <PackageReleaseNotes>Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

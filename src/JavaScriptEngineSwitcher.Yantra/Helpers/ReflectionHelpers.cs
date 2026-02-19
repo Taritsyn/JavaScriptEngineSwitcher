@@ -23,7 +23,7 @@ namespace JavaScriptEngineSwitcher.Yantra.Helpers
 				}
 
 				object argValue = argValues[argIndex];
-				if (argValue == null)
+				if (argValue is null)
 				{
 					continue;
 				}

@@ -79,7 +79,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		private static bool ConvertObjectToType(object obj, Type type, bool throwOnError,
 			out object convertedObject)
 		{
-			if (obj == null)
+			if (obj is null)
 			{
 				if (IsNonNullableValueType(type))
 				{
@@ -96,7 +96,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 				return true;
 			}
 
-			if (type != null && obj.GetType() != type)
+			if (type is not null && obj.GetType() != type)
 			{
 				return InnerConvertObjectToType(obj, type, throwOnError, out convertedObject);
 			}
@@ -174,7 +174,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 
 		private static bool IsNonNullableValueType(Type type)
 		{
-			if (type == null)
+			if (type is null)
 			{
 				return false;
 			}

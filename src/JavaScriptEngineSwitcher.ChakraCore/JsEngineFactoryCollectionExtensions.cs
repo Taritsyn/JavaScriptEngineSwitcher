@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddChakraCore(this JsEngineFactoryCollection source)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
@@ -35,12 +35,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		public static JsEngineFactoryCollection AddChakraCore(this JsEngineFactoryCollection source,
 			Action<ChakraCoreSettings> configure)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -60,12 +60,12 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddChakraCore(this JsEngineFactoryCollection source, ChakraCoreSettings settings)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (settings == null)
+			if (settings is null)
 			{
 				throw new ArgumentNullException(nameof(settings));
 			}

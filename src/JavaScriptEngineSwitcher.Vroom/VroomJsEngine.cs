@@ -127,10 +127,10 @@ namespace JavaScriptEngineSwitcher.Vroom
 			catch (TypeInitializationException e)
 			{
 				Exception innerException = e.InnerException;
-				if (innerException != null)
+				if (innerException is not null)
 				{
 					var dllNotFoundException = innerException as DllNotFoundException;
-					if (dllNotFoundException != null)
+					if (dllNotFoundException is not null)
 					{
 						throw WrapDllNotFoundException(dllNotFoundException);
 					}
@@ -149,7 +149,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 			}
 			finally
 			{
-				if (_jsContext == null)
+				if (_jsContext is null)
 				{
 					Dispose();
 				}
@@ -221,7 +221,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 			{
 				wrapperException = new WrapperException(message, EngineName, EngineVersion, originalException);
 			}
-			else if (type == null && message.Equals(":  at line: 0 column: 1.", StringComparison.Ordinal))
+			else if (type is null && message.Equals(":  at line: 0 column: 1.", StringComparison.Ordinal))
 			{
 				wrapperException = new WrapperInterruptedException(CoreStrings.Runtime_ScriptInterrupted,
 					EngineName, EngineVersion, originalException);
@@ -592,7 +592,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 				try
 				{
 					var delegateValue = value as Delegate;
-					if (delegateValue != null)
+					if (delegateValue is not null)
 					{
 						_jsContext.SetFunction(itemName, delegateValue);
 					}
@@ -603,7 +603,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 				}
 				catch (OriginalException e)
 				{
-					if (oldValue != null)
+					if (oldValue is not null)
 					{
 						_hostItems[itemName] = oldValue;
 					}
@@ -664,13 +664,13 @@ namespace JavaScriptEngineSwitcher.Vroom
 			{
 				lock (_executionSynchronizer)
 				{
-					if (_jsContext != null)
+					if (_jsContext is not null)
 					{
 						_jsContext.Dispose();
 						_jsContext = null;
 					}
 
-					if (_jsEngine != null)
+					if (_jsEngine is not null)
 					{
 						_jsEngine.Dispose();
 						_jsEngine = null;

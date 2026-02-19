@@ -122,7 +122,7 @@ namespace JavaScriptEngineSwitcher.Core
 			IJsEngine engine;
 			IJsEngineFactory engineFactory = EngineFactories.Get(name);
 
-			if (engineFactory != null)
+			if (engineFactory is not null)
 			{
 				engine = engineFactory.CreateEngine();
 			}

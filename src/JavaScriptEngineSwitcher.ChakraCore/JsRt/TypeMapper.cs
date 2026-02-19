@@ -159,7 +159,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <returns>The mapped value</returns>
 		public JsValue MapToScriptType(object value)
 		{
-			if (value == null)
+			if (value is null)
 			{
 				return JsValue.Null;
 			}
@@ -258,7 +258,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		private EmbeddedObject CreateEmbeddedObjectOrFunction(object obj)
 		{
 			var del = obj as Delegate;
-			EmbeddedObject embeddedObject = del != null ?
+			EmbeddedObject embeddedObject = del is not null ?
 				CreateEmbeddedFunction(del) : CreateEmbeddedObject(obj);
 
 			return embeddedObject;
@@ -307,7 +307,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					JsValue undefinedValue = JsValue.Undefined;
 					Exception exception = UnwrapException(e);
 					var wrapperException = exception as WrapperException;
-					JsValue errorValue = wrapperException != null ?
+					JsValue errorValue = wrapperException is not null ?
 						CreateErrorFromWrapperException(wrapperException)
 						:
 						JsErrorHelpers.CreateError(string.Format(
@@ -347,7 +347,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			object obj = objHandle.Target;
 			var lazyEmbeddedObjects = _lazyEmbeddedObjects;
 
-			if (obj != null && lazyEmbeddedObjects != null)
+			if (obj is not null && lazyEmbeddedObjects is not null)
 			{
 				var embeddedObjectKey = new EmbeddedObjectKey(obj);
 				Lazy<EmbeddedObject> lazyEmbeddedObject;
@@ -396,7 +396,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 				var bestFitConstructor = (ConstructorInfo)ReflectionHelpers.GetBestFitMethod(
 					constructors, processedArgs);
-				if (bestFitConstructor == null)
+				if (bestFitConstructor is null)
 				{
 					CreateAndSetReferenceError(string.Format(
 						Strings.Runtime_SuitableConstructorOfHostTypeNotFound, typeName));
@@ -413,7 +413,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					Exception exception = UnwrapException(e);
 					var wrapperException = exception as WrapperException;
-					JsValue errorValue = wrapperException != null ?
+					JsValue errorValue = wrapperException is not null ?
 						CreateErrorFromWrapperException(wrapperException)
 						:
 						JsErrorHelpers.CreateError(string.Format(
@@ -459,7 +459,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			string embeddedTypeKey = type.AssemblyQualifiedName;
 			var lazyEmbeddedTypes = _lazyEmbeddedTypes;
 
-			if (!string.IsNullOrEmpty(embeddedTypeKey) && lazyEmbeddedTypes != null)
+			if (!string.IsNullOrEmpty(embeddedTypeKey) && lazyEmbeddedTypes is not null)
 			{
 				Lazy<EmbeddedType> lazyEmbeddedType;
 
@@ -495,7 +495,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					JsValue undefinedValue = JsValue.Undefined;
 
-					if (instance && obj == null)
+					if (instance && obj is null)
 					{
 						CreateAndSetTypeError(string.Format(
 							Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
@@ -514,7 +514,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						var wrapperException = exception as WrapperException;
 						JsValue errorValue;
 
-						if (wrapperException != null)
+						if (wrapperException is not null)
 						{
 							errorValue = CreateErrorFromWrapperException(wrapperException);
 						}
@@ -547,7 +547,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					JsValue undefinedValue = JsValue.Undefined;
 
-					if (instance && obj == null)
+					if (instance && obj is null)
 					{
 						CreateAndSetTypeError(string.Format(
 							Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
@@ -567,7 +567,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						var wrapperException = exception as WrapperException;
 						JsValue errorValue;
 
-						if (wrapperException != null)
+						if (wrapperException is not null)
 						{
 							errorValue = CreateErrorFromWrapperException(wrapperException);
 						}
@@ -622,13 +622,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsValue descriptorValue = JsValue.CreateObject();
 				descriptorValue.SetProperty("enumerable", JsValue.True, true);
 
-				if (property.GetGetMethod() != null)
+				if (property.GetGetMethod() is not null)
 				{
 					JsNativeFunction nativeGetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 					{
 						JsValue undefinedValue = JsValue.Undefined;
 
-						if (instance && obj == null)
+						if (instance && obj is null)
 						{
 							CreateAndSetTypeError(string.Format(
 								Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
@@ -647,7 +647,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 							var wrapperException = exception as WrapperException;
 							JsValue errorValue;
 
-							if (wrapperException != null)
+							if (wrapperException is not null)
 							{
 								errorValue = CreateErrorFromWrapperException(wrapperException);
 							}
@@ -677,13 +677,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					descriptorValue.SetProperty("get", getMethodValue, true);
 				}
 
-				if (property.GetSetMethod() != null)
+				if (property.GetSetMethod() is not null)
 				{
 					JsNativeFunction nativeSetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 					{
 						JsValue undefinedValue = JsValue.Undefined;
 
-						if (instance && obj == null)
+						if (instance && obj is null)
 						{
 							CreateAndSetTypeError(string.Format(
 								Strings.Runtime_InvalidThisContextForHostObjectProperty, propertyName));
@@ -703,7 +703,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 							var wrapperException = exception as WrapperException;
 							JsValue errorValue;
 
-							if (wrapperException != null)
+							if (wrapperException is not null)
 							{
 								errorValue = CreateErrorFromWrapperException(wrapperException);
 							}
@@ -757,7 +757,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				{
 					JsValue undefinedValue = JsValue.Undefined;
 
-					if (instance && obj == null)
+					if (instance && obj is null)
 					{
 						CreateAndSetTypeError(string.Format(
 							Strings.Runtime_InvalidThisContextForHostObjectMethod, methodName));
@@ -768,7 +768,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 					var bestFitMethod = (MethodInfo)ReflectionHelpers.GetBestFitMethod(
 						methodCandidates, processedArgs);
-					if (bestFitMethod == null)
+					if (bestFitMethod is null)
 					{
 						CreateAndSetReferenceError(string.Format(
 							Strings.Runtime_SuitableMethodOfHostObjectNotFound, methodName));
@@ -789,7 +789,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 						var wrapperException = exception as WrapperException;
 						JsValue errorValue;
 
-						if (wrapperException != null)
+						if (wrapperException is not null)
 						{
 							errorValue = CreateErrorFromWrapperException(wrapperException);
 						}
@@ -871,7 +871,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 		private object[] GetHostItemMemberArguments(JsValue[] args, int maxArgCount = -1)
 		{
-			if (args == null)
+			if (args is null)
 			{
 				throw new ArgumentNullException(nameof(args));
 			}
@@ -950,10 +950,10 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			Exception originalException = exception;
 			var targetInvocationException = exception as TargetInvocationException;
 
-			if (targetInvocationException != null)
+			if (targetInvocationException is not null)
 			{
 				Exception innerException = targetInvocationException.InnerException;
-				if (innerException != null)
+				if (innerException is not null)
 				{
 					originalException = innerException;
 				}
@@ -965,7 +965,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		private static JsValue CreateErrorFromWrapperException(WrapperException exception)
 		{
 			var originalException = exception.InnerException as JsException;
-			JsErrorCode errorCode = originalException != null ?
+			JsErrorCode errorCode = originalException is not null ?
 				originalException.ErrorCode : JsErrorCode.NoError;
 			string description = exception.Description;
 
@@ -975,7 +975,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsValue metadataValue = JsValue.CreateObject();
 
 			var scriptException = exception as WrapperScriptException;
-			if (scriptException != null)
+			if (scriptException is not null)
 			{
 				string type = scriptException.Type;
 				string documentName = scriptException.DocumentName;
@@ -994,7 +994,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				innerErrorValue.SetProperty("name", JsValue.FromString(type), true);
 
 				var runtimeException = scriptException as WrapperRuntimeException;
-				if (runtimeException != null)
+				if (runtimeException is not null)
 				{
 					var errorNumber = (int)errorCode;
 					string callStack = runtimeException.CallStack;
@@ -1039,7 +1039,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			if (_disposedFlag.Set())
 			{
 				var lazyEmbeddedObjects = _lazyEmbeddedObjects;
-				if (lazyEmbeddedObjects != null)
+				if (lazyEmbeddedObjects is not null)
 				{
 					if (lazyEmbeddedObjects.Count > 0)
 					{
@@ -1062,7 +1062,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				_embeddedObjectFinalizeCallback = null;
 
 				var lazyEmbeddedTypes = _lazyEmbeddedTypes;
-				if (lazyEmbeddedTypes != null)
+				if (lazyEmbeddedTypes is not null)
 				{
 					if (lazyEmbeddedTypes.Count > 0)
 					{

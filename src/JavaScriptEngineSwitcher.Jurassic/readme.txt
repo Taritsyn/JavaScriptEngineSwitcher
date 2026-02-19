@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2025 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2026 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -18,7 +18,7 @@
    =============
    RELEASE NOTES
    =============
-   Jurassic was updated to version of February 4, 2025.
+   Performed a migration to the modern C# null/not-null checks.
 
    =============
    DOCUMENTATION

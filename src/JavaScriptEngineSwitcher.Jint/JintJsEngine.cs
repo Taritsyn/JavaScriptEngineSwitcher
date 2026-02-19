@@ -152,11 +152,11 @@ namespace JavaScriptEngineSwitcher.Jint
 						CustomTypeResolvers.AllowingReflection : CustomTypeResolvers.DisallowingReflection);
 				});
 				_cancellationConstraint = _jsEngine.Constraints.Find<OriginalCancellationConstraint>();
-				if (_debuggerBreakCallback != null)
+				if (_debuggerBreakCallback is not null)
 				{
 					_jsEngine.Debugger.Break += _debuggerBreakCallback;
 				}
-				if (_debuggerStepCallback != null)
+				if (_debuggerStepCallback is not null)
 				{
 					_jsEngine.Debugger.Step += _debuggerStepCallback;
 				}
@@ -462,7 +462,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		protected override void InnerExecute(IPrecompiledScript precompiledScript)
 		{
 			var jintPrecompiledScript = precompiledScript as JintPrecompiledScript;
-			if (jintPrecompiledScript == null)
+			if (jintPrecompiledScript is null)
 			{
 				throw new WrapperUsageException(
 					string.Format(CoreStrings.Usage_CannotConvertPrecompiledScriptToInternalType,
@@ -691,14 +691,14 @@ namespace JavaScriptEngineSwitcher.Jint
 			{
 				lock (_executionSynchronizer)
 				{
-					if (_jsEngine != null)
+					if (_jsEngine is not null)
 					{
-						if (_debuggerStepCallback != null)
+						if (_debuggerStepCallback is not null)
 						{
 							_jsEngine.Debugger.Step -= _debuggerStepCallback;
 						}
 
-						if (_debuggerBreakCallback != null)
+						if (_debuggerBreakCallback is not null)
 						{
 							_jsEngine.Debugger.Break -= _debuggerBreakCallback;
 						}
@@ -711,7 +711,7 @@ namespace JavaScriptEngineSwitcher.Jint
 					_debuggerBreakCallback = null;
 					_cancellationConstraint = null;
 
-					if (_cancellationTokenSource != null)
+					if (_cancellationTokenSource is not null)
 					{
 						_cancellationTokenSource.Dispose();
 						_cancellationTokenSource = null;

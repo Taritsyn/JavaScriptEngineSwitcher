@@ -15,7 +15,7 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 		/// <param name="source">The exception</param>
 		public static void PreserveStackTrace(this Exception source)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}

@@ -136,12 +136,12 @@ namespace JavaScriptEngineSwitcher.Msie
 			WrapperException wrapperException;
 
 			var originalScriptException = originalException as OriginalScriptException;
-			if (originalScriptException != null)
+			if (originalScriptException is not null)
 			{
 				WrapperScriptException wrapperScriptException;
 
 				var originalRuntimeException = originalScriptException as OriginalRuntimeException;
-				if (originalRuntimeException != null)
+				if (originalRuntimeException is not null)
 				{
 					WrapperRuntimeException wrapperRuntimeException;
 					if (originalRuntimeException is OriginalInterruptedException)
@@ -294,7 +294,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		protected override void InnerExecute(IPrecompiledScript precompiledScript)
 		{
 			var msiePrecompiledScript = precompiledScript as MsiePrecompiledScript;
-			if (msiePrecompiledScript == null)
+			if (msiePrecompiledScript is null)
 			{
 				throw new WrapperUsageException(
 					string.Format(CoreStrings.Usage_CannotConvertPrecompiledScriptToInternalType,
@@ -483,7 +483,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		{
 			VerifyNotDisposed();
 
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 					nameof(path),
@@ -529,7 +529,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		{
 			VerifyNotDisposed();
 
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -537,7 +537,7 @@ namespace JavaScriptEngineSwitcher.Msie
 				);
 			}
 
-			if (type == null)
+			if (type is null)
 			{
 				throw new ArgumentNullException(
 					nameof(type),
@@ -583,7 +583,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		{
 			VerifyNotDisposed();
 
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -591,7 +591,7 @@ namespace JavaScriptEngineSwitcher.Msie
 				);
 			}
 
-			if (assembly == null)
+			if (assembly is null)
 			{
 				throw new ArgumentNullException(
 					nameof(assembly),
@@ -637,7 +637,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		{
 			VerifyNotDisposed();
 
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 					nameof(path),
@@ -679,7 +679,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		{
 			VerifyNotDisposed();
 
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -687,7 +687,7 @@ namespace JavaScriptEngineSwitcher.Msie
 				);
 			}
 
-			if (type == null)
+			if (type is null)
 			{
 				throw new ArgumentNullException(
 					nameof(type),
@@ -729,7 +729,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		{
 			VerifyNotDisposed();
 
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -737,7 +737,7 @@ namespace JavaScriptEngineSwitcher.Msie
 				);
 			}
 
-			if (assembly == null)
+			if (assembly is null)
 			{
 				throw new ArgumentNullException(
 					nameof(assembly),
@@ -783,7 +783,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		{
 			if (_disposedFlag.Set())
 			{
-				if (_jsEngine != null)
+				if (_jsEngine is not null)
 				{
 					_jsEngine.Dispose();
 					_jsEngine = null;

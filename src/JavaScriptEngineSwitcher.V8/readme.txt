@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2025 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2026 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -31,7 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   Performed a migration to a modern API for pre-compilation of scripts.
+   Performed a migration to the modern C# null/not-null checks.
 
    =============
    DOCUMENTATION

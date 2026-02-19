@@ -96,7 +96,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		public static string StringifyErrorLocationItems(ErrorLocationItem[] errorLocationItems,
 			bool omitSourceFragment = false)
 		{
-			if (errorLocationItems == null)
+			if (errorLocationItems is null)
 			{
 				throw new ArgumentException(nameof(errorLocationItems));
 			}
@@ -201,7 +201,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		public static string GenerateEngineLoadErrorMessage(string description, string engineName,
 			bool quoteDescription = false)
 		{
-			if (engineName == null)
+			if (engineName is null)
 			{
 				throw new ArgumentNullException(nameof(engineName));
 			}
@@ -286,7 +286,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		private static string GenerateScriptErrorMessage(string type, string description, string documentName,
 			int lineNumber, int columnNumber, string sourceFragment, string callStack)
 		{
-			if (description == null)
+			if (description is null)
 			{
 				throw new ArgumentNullException(nameof(description));
 			}
@@ -341,7 +341,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// <returns>Detailed error message</returns>
 		public static string GenerateErrorDetails(JsException jsException, bool omitMessage = false)
 		{
-			if (jsException == null)
+			if (jsException is null)
 			{
 				throw new ArgumentNullException(nameof(jsException));
 			}
@@ -351,12 +351,12 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 			WriteCommonErrorDetails(detailsBuilder, jsException, omitMessage);
 
 			var jsScriptException = jsException as JsScriptException;
-			if (jsScriptException != null)
+			if (jsScriptException is not null)
 			{
 				WriteScriptErrorDetails(detailsBuilder, jsScriptException);
 
 				var jsRuntimeException = jsScriptException as JsRuntimeException;
-				if (jsRuntimeException != null)
+				if (jsRuntimeException is not null)
 				{
 					WriteRuntimeErrorDetails(detailsBuilder, jsRuntimeException);
 				}
@@ -379,7 +379,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		public static string GenerateErrorDetails(JsScriptException jsScriptException,
 			bool omitMessage = false)
 		{
-			if (jsScriptException == null)
+			if (jsScriptException is null)
 			{
 				throw new ArgumentNullException(nameof(jsScriptException));
 			}
@@ -390,7 +390,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 			WriteScriptErrorDetails(detailsBuilder, jsScriptException);
 
 			var jsRuntimeException = jsScriptException as JsRuntimeException;
-			if (jsRuntimeException != null)
+			if (jsRuntimeException is not null)
 			{
 				WriteRuntimeErrorDetails(detailsBuilder, jsRuntimeException);
 			}
@@ -412,7 +412,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		public static string GenerateErrorDetails(JsRuntimeException jsRuntimeException,
 			bool omitMessage = false)
 		{
-			if (jsRuntimeException == null)
+			if (jsRuntimeException is null)
 			{
 				throw new ArgumentNullException(nameof(jsRuntimeException));
 			}

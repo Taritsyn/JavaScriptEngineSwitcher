@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddV8(this JsEngineFactoryCollection source)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
@@ -35,12 +35,12 @@ namespace JavaScriptEngineSwitcher.V8
 		public static JsEngineFactoryCollection AddV8(this JsEngineFactoryCollection source,
 			Action<V8Settings> configure)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -61,12 +61,12 @@ namespace JavaScriptEngineSwitcher.V8
 		public static JsEngineFactoryCollection AddV8(this JsEngineFactoryCollection source,
 			V8Settings settings)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (settings == null)
+			if (settings is null)
 			{
 				throw new ArgumentNullException(nameof(settings));
 			}

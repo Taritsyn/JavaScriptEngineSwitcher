@@ -24,7 +24,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// </summary>
 		static Utils()
 		{
-			_isMonoRuntime = Type.GetType("Mono.Runtime") != null;
+			_isMonoRuntime = Type.GetType("Mono.Runtime") is not null;
 		}
 
 
@@ -62,7 +62,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <returns>Content of the embedded resource as string</returns>
 		public static string GetResourceAsString(string resourceName, Type type)
 		{
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -70,7 +70,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 				);
 			}
 
-			if (type == null)
+			if (type is null)
 			{
 				throw new ArgumentNullException(
 					nameof(type),
@@ -92,7 +92,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 			Assembly assembly = type.GetTypeInfo().Assembly;
 #endif
 			string nameSpace = type.Namespace;
-			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
+			string resourceFullName = nameSpace is not null ? nameSpace + "." + resourceName : resourceName;
 
 			return InnerGetResourceAsString(resourceFullName, assembly);
 		}
@@ -105,7 +105,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <returns>Content of the embedded resource as string</returns>
 		public static string GetResourceAsString(string resourceName, Assembly assembly)
 		{
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -113,7 +113,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 				);
 			}
 
-			if (assembly == null)
+			if (assembly is null)
 			{
 				throw new ArgumentNullException(
 					nameof(assembly),
@@ -136,7 +136,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		{
 			using (Stream stream = assembly.GetManifestResourceStream(resourceName))
 			{
-				if (stream == null)
+				if (stream is null)
 				{
 					throw new NullReferenceException(
 						string.Format(Strings.Common_ResourceIsNull, resourceName)

@@ -117,7 +117,7 @@ namespace JavaScriptEngineSwitcher.Node
 		/// <param name="settings">Settings of the Node JS engine</param>
 		public NodeJsEngine(INodeJSService service, NodeSettings settings)
 		{
-			if (service == null)
+			if (service is null)
 			{
 				throw new ArgumentNullException(nameof(service));
 			}

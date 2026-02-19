@@ -85,7 +85,7 @@ namespace JavaScriptEngineSwitcher.Sample.Logic.Services
 			}
 			finally
 			{
-				if (engine != null)
+				if (engine is not null)
 				{
 					engine.Dispose();
 				}

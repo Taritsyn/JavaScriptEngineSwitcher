@@ -85,7 +85,7 @@ namespace JavaScriptEngineSwitcher.NiL
 			{
 				_jsContext = new OriginalContext(niLSettings.StrictMode);
 				_jsContext.Debugging = niLSettings.EnableDebugging;
-				if (_debuggerCallback != null)
+				if (_debuggerCallback is not null)
 				{
 					_jsContext.DebuggerCallback += _debuggerCallback;
 				}
@@ -106,7 +106,7 @@ namespace JavaScriptEngineSwitcher.NiL
 		/// <returns>The mapped value</returns>
 		private static OriginalValue MapToScriptType(object value)
 		{
-			if (value == null)
+			if (value is null)
 			{
 				return OriginalValue.Null;
 			}
@@ -173,7 +173,7 @@ namespace JavaScriptEngineSwitcher.NiL
 			string sourceFragment = string.Empty;
 
 			var errorValue = originalException.Error?.Value as OriginalError;
-			if (errorValue != null)
+			if (errorValue is not null)
 			{
 				message = errorValue.message.As<string>();
 				description = message;
@@ -203,7 +203,7 @@ namespace JavaScriptEngineSwitcher.NiL
 				{
 					string sourceCode = originalException.SourceCode;
 					OriginalCodeCoordinates codeCoordinates = originalException.CodeCoordinates;
-					if (codeCoordinates != null)
+					if (codeCoordinates is not null)
 					{
 						lineNumber = codeCoordinates.Line;
 						columnNumber = codeCoordinates.Column;
@@ -352,7 +352,7 @@ namespace JavaScriptEngineSwitcher.NiL
 				{
 					OriginalValue functionValue = _jsContext.GetVariable(functionName);
 					var function = functionValue.As<OriginalFunction>();
-					if (function == null)
+					if (function is null)
 					{
 						throw new WrapperRuntimeException(
 							string.Format(CoreStrings.Runtime_FunctionNotExist, functionName));
@@ -567,9 +567,9 @@ namespace JavaScriptEngineSwitcher.NiL
 			{
 				lock (_synchronizer)
 				{
-					if (_jsContext != null)
+					if (_jsContext is not null)
 					{
-						if (_debuggerCallback != null)
+						if (_debuggerCallback is not null)
 						{
 							_jsContext.DebuggerCallback -= _debuggerCallback;
 							_debuggerCallback = null;

@@ -20,7 +20,7 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 			TypeCode typeCode;
 
 #if NETSTANDARD1_3
-			if (source == null)
+			if (source is null)
 			{
 				typeCode = TypeCode.Empty;
 			}

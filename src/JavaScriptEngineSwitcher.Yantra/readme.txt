@@ -17,7 +17,8 @@
    =============
    RELEASE NOTES
    =============
-   YantraJS was updated to version 1.2.301.
+   1. YantraJS was updated to version 1.2.301;
+   2. Performed a migration to the modern C# null/not-null checks.
 
    =============
    DOCUMENTATION

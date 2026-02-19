@@ -55,7 +55,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <param name="factory">The factory to add to the collection</param>
 		public void Add(IJsEngineFactory factory)
 		{
-			if (factory == null)
+			if (factory is null)
 			{
 				throw new ArgumentNullException(nameof(factory));
 			}
@@ -78,7 +78,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <returns>A boolean value indicating whether the factory was succesfully removed from the collection</returns>
 		public bool Remove(string engineName)
 		{
-			if (engineName == null)
+			if (engineName is null)
 			{
 				throw new ArgumentNullException(nameof(engineName));
 			}
@@ -93,7 +93,7 @@ namespace JavaScriptEngineSwitcher.Core
 		/// <returns>A boolean value indicating whether the factory was succesfully removed from the collection</returns>
 		public bool Remove(IJsEngineFactory factory)
 		{
-			if (factory == null)
+			if (factory is null)
 			{
 				throw new ArgumentNullException(nameof(factory));
 			}

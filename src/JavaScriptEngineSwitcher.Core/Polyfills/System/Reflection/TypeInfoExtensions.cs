@@ -8,12 +8,12 @@ namespace JavaScriptEngineSwitcher.Core.Polyfills.System.Reflection
 	{
 		public static bool IsInstanceOfType(this TypeInfo source, object o)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (o == null)
+			if (o is null)
 			{
 				return false;
 			}

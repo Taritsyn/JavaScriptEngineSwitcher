@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.NiL
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNiL(this JsEngineFactoryCollection source)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
@@ -35,12 +35,12 @@ namespace JavaScriptEngineSwitcher.NiL
 		public static JsEngineFactoryCollection AddNiL(this JsEngineFactoryCollection source,
 			Action<NiLSettings> configure)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -60,12 +60,12 @@ namespace JavaScriptEngineSwitcher.NiL
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNiL(this JsEngineFactoryCollection source, NiLSettings settings)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (settings == null)
+			if (settings is null)
 			{
 				throw new ArgumentNullException(nameof(settings));
 			}

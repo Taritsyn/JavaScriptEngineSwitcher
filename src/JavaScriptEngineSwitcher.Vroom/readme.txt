@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2024 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2026 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -18,6 +18,11 @@
    For correct working of the VroomJs on Windows require the Visual C++
    Redistributable for Visual Studio 2012 and the Microsoft Visual C++ 2015
    Redistributable.
+
+   =============
+   RELEASE NOTES
+   =============
+   Performed a migration to the modern C# null/not-null checks.
 
    ====================
    POST-INSTALL ACTIONS

@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddYantra(this JsEngineFactoryCollection source)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
@@ -35,12 +35,12 @@ namespace JavaScriptEngineSwitcher.Yantra
 		public static JsEngineFactoryCollection AddYantra(this JsEngineFactoryCollection source,
 			Action<YantraSettings> configure)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -60,12 +60,12 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddYantra(this JsEngineFactoryCollection source, YantraSettings settings)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (settings == null)
+			if (settings is null)
 			{
 				throw new ArgumentNullException(nameof(settings));
 			}

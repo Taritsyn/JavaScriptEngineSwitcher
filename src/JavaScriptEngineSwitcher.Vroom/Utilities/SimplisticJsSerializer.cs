@@ -25,7 +25,7 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 		/// <returns>The serialized JavaScript string</returns>
 		public static string Serialize(object value)
 		{
-			if (value == null)
+			if (value is null)
 			{
 				return "null";
 			}
@@ -46,7 +46,7 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 					break;
 				case TypeCode.Int32:
 					var convertible = value as IConvertible;
-					serializedValue = (convertible != null) ?
+					serializedValue = (convertible is not null) ?
 						convertible.ToString(CultureInfo.InvariantCulture) : value.ToString();
 					break;
 				case TypeCode.Double:
@@ -96,7 +96,7 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 
 				if (CharRequiresJsEncoding(charValue))
 				{
-					if (sb == null)
+					if (sb is null)
 					{
 						sb = stringBuilderPool.Rent();
 					}
@@ -143,7 +143,7 @@ namespace JavaScriptEngineSwitcher.Vroom.Utilities
 				}
 			}
 
-			if (sb == null)
+			if (sb is null)
 			{
 				return value;
 			}

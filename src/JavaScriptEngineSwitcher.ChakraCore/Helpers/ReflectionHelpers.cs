@@ -77,7 +77,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 		public static void FixFieldValueType(ref object value, FieldInfo field)
 		{
-			if (value == null)
+			if (value is null)
 			{
 				return;
 			}
@@ -98,7 +98,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 		public static void FixPropertyValueType(ref object value, PropertyInfo property)
 		{
-			if (value == null)
+			if (value is null)
 			{
 				return;
 			}
@@ -135,7 +135,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				}
 
 				object argValue = argValues[argIndex];
-				if (argValue == null)
+				if (argValue is null)
 				{
 					continue;
 				}
@@ -223,7 +223,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 				methodArrayPool.Return(buffer, clearArray);
 			}
 
-			if (compatibleMethods != null)
+			if (compatibleMethods is not null)
 			{
 				MethodWithMetadata bestFitMethod = compatibleMethods
 					.OrderByDescending(m => m.CompatibilityScore)
@@ -256,7 +256,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 			for (int argIndex = 0; argIndex < argCount; argIndex++)
 			{
 				object argValue = argValues[argIndex];
-				Type argType = argValue != null ? argValue.GetType() : typeof(object);
+				Type argType = argValue is not null ? argValue.GetType() : typeof(object);
 				ParameterInfo parameter = parameters[argIndex];
 				Type parameterType = parameter.ParameterType;
 
@@ -295,11 +295,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 			public override bool Equals(T x, T y)
 			{
-				if (x == null && y == null)
+				if (x is null && y is null)
 				{
 					return true;
 				}
-				else if (x == null || y == null)
+				else if (x is null || y is null)
 				{
 					return false;
 				}
@@ -316,7 +316,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 			public override int GetHashCode(T obj)
 			{
-				return obj != null ? obj.GetHashCode() : 0;
+				return obj is not null ? obj.GetHashCode() : 0;
 			}
 
 			#endregion

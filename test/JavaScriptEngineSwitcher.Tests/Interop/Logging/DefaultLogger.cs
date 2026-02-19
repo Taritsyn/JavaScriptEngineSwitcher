@@ -2,7 +2,7 @@
 {
 	public class DefaultLogger
 	{
-		public static object SyncRoot = new object();
+		public static readonly object SyncRoot = new object();
 		public static ILogger Current = new NullLogger();
 	}
 }

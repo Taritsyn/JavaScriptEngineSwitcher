@@ -450,7 +450,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		/// <returns>The new <c>ArrayBuffer</c> object</returns>
 		public static JsValue CreateExternalArrayBuffer(byte[] buffer)
 		{
-			if (buffer == null)
+			if (buffer is null)
 			{
 				throw new ArgumentNullException(nameof(buffer));
 			}

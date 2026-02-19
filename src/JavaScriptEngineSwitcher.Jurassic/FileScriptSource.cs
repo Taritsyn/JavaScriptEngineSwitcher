@@ -37,7 +37,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <param name="encoding">The text encoding</param>
 		public FileScriptSource(string documentName, string path, Encoding encoding = null)
 		{
-			if (documentName == null)
+			if (documentName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(documentName),
@@ -45,7 +45,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 					nameof(path),

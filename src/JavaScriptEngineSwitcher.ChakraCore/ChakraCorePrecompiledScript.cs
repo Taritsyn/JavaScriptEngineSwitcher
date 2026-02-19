@@ -117,11 +117,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		private bool LoadScriptSourceCode(JsSourceContext sourceContext, out JsValue value,
 			out JsParseScriptAttributes parseAttributes)
 		{
-			if (_codeBytes == null)
+			if (_codeBytes is null)
 			{
 				lock (_scriptLoadingSynchronizer)
 				{
-					if (_codeBytes == null)
+					if (_codeBytes is null)
 					{
 						Encoding encoding = _parseAttributes.HasFlag(JsParseScriptAttributes.ArrayBufferIsUtf16Encoded) ?
 							Encoding.Unicode : Encoding.UTF8;

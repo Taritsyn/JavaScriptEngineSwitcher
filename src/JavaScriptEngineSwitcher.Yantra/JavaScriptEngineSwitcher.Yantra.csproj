@@ -19,7 +19,8 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Yantra_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Yantra contains a `YantraJsEngine` adapter (wrapper for the YantraJS).</Description>
     <PackageTags>$(PackageCommonTags);Yantra;YantraJS</PackageTags>
-    <PackageReleaseNotes>YantraJS was updated to version 1.2.301.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. YantraJS was updated to version 1.2.301;
+2. Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

@@ -128,7 +128,7 @@ namespace JavaScriptEngineSwitcher.Core
 		protected JsException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
-			if (info != null)
+			if (info is not null)
 			{
 				_engineName = info.GetString("EngineName");
 				_engineVersion = info.GetString("EngineVersion");
@@ -148,7 +148,7 @@ namespace JavaScriptEngineSwitcher.Core
 		[SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
 		public override void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
-			if (info == null)
+			if (info is null)
 			{
 				throw new ArgumentNullException(nameof(info));
 			}
@@ -186,13 +186,13 @@ namespace JavaScriptEngineSwitcher.Core
 				resultBuilder.Append(errorDetails);
 			}
 
-			if (this.InnerException != null)
+			if (this.InnerException is not null)
 			{
 				resultBuilder.Append(" ---> ");
 				resultBuilder.Append(this.InnerException.ToString());
 			}
 
-			if (this.StackTrace != null)
+			if (this.StackTrace is not null)
 			{
 				resultBuilder.AppendLine();
 				resultBuilder.AppendLine(this.StackTrace);

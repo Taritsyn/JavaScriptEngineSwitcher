@@ -20,7 +20,7 @@ namespace JavaScriptEngineSwitcher.Node
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
@@ -40,12 +40,12 @@ namespace JavaScriptEngineSwitcher.Node
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			INodeJSService service)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (service == null)
+			if (service is null)
 			{
 				throw new ArgumentNullException(nameof(service));
 			}
@@ -65,12 +65,12 @@ namespace JavaScriptEngineSwitcher.Node
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			IServiceCollection services)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (services == null)
+			if (services is null)
 			{
 				throw new ArgumentNullException(nameof(services));
 			}
@@ -90,12 +90,12 @@ namespace JavaScriptEngineSwitcher.Node
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			Action<NodeSettings> configure)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -118,12 +118,12 @@ namespace JavaScriptEngineSwitcher.Node
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			NodeSettings settings)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (settings == null)
+			if (settings is null)
 			{
 				throw new ArgumentNullException(nameof(settings));
 			}
@@ -144,17 +144,17 @@ namespace JavaScriptEngineSwitcher.Node
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			INodeJSService service, Action<NodeSettings> configure)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (service == null)
+			if (service is null)
 			{
 				throw new ArgumentNullException(nameof(service));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -178,17 +178,17 @@ namespace JavaScriptEngineSwitcher.Node
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			INodeJSService service, NodeSettings settings)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (service == null)
+			if (service is null)
 			{
 				throw new ArgumentNullException(nameof(service));
 			}
 
-			if (settings == null)
+			if (settings is null)
 			{
 				throw new ArgumentNullException(nameof(settings));
 			}
@@ -209,17 +209,17 @@ namespace JavaScriptEngineSwitcher.Node
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			IServiceCollection services, Action<NodeSettings> configure)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (services == null)
+			if (services is null)
 			{
 				throw new ArgumentNullException(nameof(services));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -243,17 +243,17 @@ namespace JavaScriptEngineSwitcher.Node
 		public static JsEngineFactoryCollection AddNode(this JsEngineFactoryCollection source,
 			IServiceCollection services, NodeSettings settings)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (services == null)
+			if (services is null)
 			{
 				throw new ArgumentNullException(nameof(services));
 			}
 
-			if (settings == null)
+			if (settings is null)
 			{
 				throw new ArgumentNullException(nameof(settings));
 			}

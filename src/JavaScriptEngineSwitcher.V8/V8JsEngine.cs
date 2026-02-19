@@ -457,7 +457,7 @@ namespace JavaScriptEngineSwitcher.V8
 		protected override void InnerExecute(IPrecompiledScript precompiledScript)
 		{
 			var v8PrecompiledScript = precompiledScript as V8PrecompiledScript;
-			if (v8PrecompiledScript == null)
+			if (v8PrecompiledScript is null)
 			{
 				throw new WrapperUsageException(
 					string.Format(CoreStrings.Usage_CannotConvertPrecompiledScriptToInternalType,
@@ -694,7 +694,7 @@ namespace JavaScriptEngineSwitcher.V8
 		{
 			if (_disposedFlag.Set())
 			{
-				if (_jsEngine != null)
+				if (_jsEngine is not null)
 				{
 					_jsEngine.Dispose();
 					_jsEngine = null;

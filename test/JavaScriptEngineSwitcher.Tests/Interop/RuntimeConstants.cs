@@ -2,7 +2,7 @@
 {
 	public static class RuntimeConstants
 	{
-		public static object SyncRoot = new object();
+		public static readonly object SyncRoot = new object();
 
 
 		public static readonly int MinValue = 0;

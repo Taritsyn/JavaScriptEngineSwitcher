@@ -106,7 +106,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <returns>The mapped value</returns>
 		private static object MapToScriptType(object value)
 		{
-			if (value == null)
+			if (value is null)
 			{
 				return OriginalNull.Value;
 			}
@@ -196,7 +196,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			}
 			catch (ArgumentException e)
 			{
-				if (targetType == typeof(string) && value != null)
+				if (targetType == typeof(string) && value is not null)
 				{
 					return (T)(object)value.ToString();
 				}
@@ -243,7 +243,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 
 			object errorObject = originalJavaScriptException.GetErrorObject(engine);
 			var errorValue = errorObject as OriginalErrorInstance;
-			if (errorValue != null)
+			if (errorValue is not null)
 			{
 				messageWithCallStack = errorValue.Stack;
 			}
@@ -498,7 +498,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		protected override void InnerExecute(IPrecompiledScript precompiledScript)
 		{
 			var jurassicPrecompiledScript = precompiledScript as JurassicPrecompiledScript;
-			if (jurassicPrecompiledScript == null)
+			if (jurassicPrecompiledScript is null)
 			{
 				throw new WrapperUsageException(
 					string.Format(CoreStrings.Usage_CannotConvertPrecompiledScriptToInternalType,
@@ -624,7 +624,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				try
 				{
 					var delegateValue = processedValue as Delegate;
-					if (delegateValue != null)
+					if (delegateValue is not null)
 					{
 						_jsEngine.SetGlobalFunction(itemName, delegateValue);
 					}
@@ -697,7 +697,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			VerifyNotDisposed();
 
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 					nameof(path),
@@ -748,7 +748,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			VerifyNotDisposed();
 
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -756,7 +756,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
-			if (type == null)
+			if (type is null)
 			{
 				throw new ArgumentNullException(
 					nameof(type),
@@ -786,7 +786,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			Assembly assembly = type.GetTypeInfo().Assembly;
 #endif
 			string nameSpace = type.Namespace;
-			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
+			string resourceFullName = nameSpace is not null ? nameSpace + "." + resourceName : resourceName;
 
 			OriginalCompiledScript compiledScript;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(resourceFullName);
@@ -815,7 +815,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			VerifyNotDisposed();
 
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -823,7 +823,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
-			if (assembly == null)
+			if (assembly is null)
 			{
 				throw new ArgumentNullException(
 					nameof(assembly),
@@ -874,7 +874,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			VerifyNotDisposed();
 
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 					nameof(path),
@@ -922,7 +922,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			VerifyNotDisposed();
 
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -930,7 +930,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
-			if (type == null)
+			if (type is null)
 			{
 				throw new ArgumentNullException(
 					nameof(type),
@@ -960,7 +960,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 			Assembly assembly = type.GetTypeInfo().Assembly;
 #endif
 			string nameSpace = type.Namespace;
-			string resourceFullName = nameSpace != null ? nameSpace + "." + resourceName : resourceName;
+			string resourceFullName = nameSpace is not null ? nameSpace + "." + resourceName : resourceName;
 			string uniqueDocumentName = _documentNameManager.GetUniqueName(resourceFullName);
 
 			lock (_executionSynchronizer)
@@ -985,7 +985,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			VerifyNotDisposed();
 
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -993,7 +993,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
-			if (assembly == null)
+			if (assembly is null)
 			{
 				throw new ArgumentNullException(
 					nameof(assembly),

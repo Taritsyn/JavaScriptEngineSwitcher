@@ -31,7 +31,7 @@
    =============
    RELEASE NOTES
    =============
-   Optimized a memory usage in the `ReflectionHelpers.GetBestFitMethod` method.
+   Performed a migration to the modern C# null/not-null checks.
 
    =============
    DOCUMENTATION

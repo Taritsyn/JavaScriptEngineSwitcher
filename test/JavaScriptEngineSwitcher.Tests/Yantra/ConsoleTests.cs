@@ -201,7 +201,7 @@ console.warn('It is forbidden to watch!');";
 					object arg = args[argIndex] ?? "null";
 					var formattableArg = arg as IFormattable;
 
-					if (formattableArg != null)
+					if (formattableArg is not null)
 					{
 						if (formattableArg is DateTime)
 						{

@@ -101,11 +101,11 @@ namespace JavaScriptEngineSwitcher.Node
 		/// <returns>Instance of the Node JS engine</returns>
 		public IJsEngine CreateEngine()
 		{
-			if (_services != null && _jsService == null)
+			if (_services is not null && _jsService is null)
 			{
 				lock (_creationSynchronizer)
 				{
-					if (_jsService == null)
+					if (_jsService is null)
 					{
 						ServiceProvider serviceProvider = _services.BuildServiceProvider();
 						_jsService = serviceProvider.GetRequiredService<INodeJSService>();
@@ -113,7 +113,7 @@ namespace JavaScriptEngineSwitcher.Node
 				}
 			}
 
-			IJsEngine engine = _jsService != null ?
+			IJsEngine engine = _jsService is not null ?
 				new NodeJsEngine(_jsService, _settings) : new NodeJsEngine(_settings);
 
 			return engine;

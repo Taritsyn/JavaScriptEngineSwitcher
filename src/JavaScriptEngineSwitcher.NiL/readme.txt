@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2025 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2026 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -17,7 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   NiL.JS was updated to version 2.6.1712.
+   Performed a migration to the modern C# null/not-null checks.
 
    =============
    DOCUMENTATION

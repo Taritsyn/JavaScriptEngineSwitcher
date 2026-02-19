@@ -57,7 +57,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		protected JsException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
-			if (info != null)
+			if (info is not null)
 			{
 				_errorCode = (JsErrorCode)info.GetUInt32("ErrorCode");
 			}
@@ -74,7 +74,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 		[SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
 		public override void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
-			if (info == null)
+			if (info is null)
 			{
 				throw new ArgumentNullException(nameof(info));
 			}

@@ -92,7 +92,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					if (_taskQueue.Count > 0)
 					{
 						task = _taskQueue.Dequeue();
-						if (task == null)
+						if (task is null)
 						{
 							_taskQueue.Clear();
 							return;
@@ -100,7 +100,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 					}
 				}
 
-				if (task != null)
+				if (task is not null)
 				{
 					task.Run();
 				}
@@ -135,7 +135,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			task.Wait();
 
 			Exception exception = task.Exception;
-			if (exception != null)
+			if (exception is not null)
 			{
 #if NET45_OR_GREATER || NETSTANDARD
 				ExceptionDispatchInfo.Capture(exception).Throw();
@@ -161,7 +161,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			VerifyNotDisposed();
 
-			if (func == null)
+			if (func is null)
 			{
 				throw new ArgumentNullException(nameof(func));
 			}
@@ -187,7 +187,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		{
 			VerifyNotDisposed();
 
-			if (action == null)
+			if (action is null)
 			{
 				throw new ArgumentNullException(nameof(action));
 			}
@@ -215,13 +215,13 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			{
 				EnqueueTask(null);
 
-				if (_thread != null)
+				if (_thread is not null)
 				{
 					_thread.Join();
 					_thread = null;
 				}
 
-				if (_waitHandle != null)
+				if (_waitHandle is not null)
 				{
 					_waitHandle.Dispose();
 					_waitHandle = null;
@@ -296,7 +296,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			/// </summary>
 			public virtual void Dispose()
 			{
-				if (_waitHandle != null)
+				if (_waitHandle is not null)
 				{
 					_waitHandle.Dispose();
 					_waitHandle = null;

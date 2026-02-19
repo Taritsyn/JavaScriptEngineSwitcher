@@ -3,5 +3,6 @@
     <Copyright>Copyright © 2013-2026 Andrey Taritsyn</Copyright>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <LangVersion>14.0</LangVersion>
   </PropertyGroup>
 </Project>

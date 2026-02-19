@@ -23,6 +23,7 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Vroom_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Vroom contains a `VroomJsEngine` adapter (wrapper for the VroomJs).</Description>
     <PackageTags>$(PackageCommonTags);VroomJs;V8</PackageTags>
+    <PackageReleaseNotes>Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

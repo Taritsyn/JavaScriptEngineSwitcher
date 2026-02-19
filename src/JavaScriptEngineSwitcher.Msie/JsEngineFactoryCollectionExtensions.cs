@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.Msie
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddMsie(this JsEngineFactoryCollection source)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
@@ -35,12 +35,12 @@ namespace JavaScriptEngineSwitcher.Msie
 		public static JsEngineFactoryCollection AddMsie(this JsEngineFactoryCollection source,
 			Action<MsieSettings> configure)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -61,12 +61,12 @@ namespace JavaScriptEngineSwitcher.Msie
 		public static JsEngineFactoryCollection AddMsie(this JsEngineFactoryCollection source,
 			MsieSettings settings)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (settings == null)
+			if (settings is null)
 			{
 				throw new ArgumentNullException(nameof(settings));
 			}

@@ -106,7 +106,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt.Embedding
 				_hostObject = null;
 
 				IList<JsNativeFunction> nativeFunctions = _nativeFunctions;
-				if (nativeFunctions != null)
+				if (nativeFunctions is not null)
 				{
 					nativeFunctions.Clear();
 					_nativeFunctions = null;

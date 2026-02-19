@@ -15,12 +15,12 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 		/// <returns><c>true</c> if the quoted value occurs within this string; otherwise, <c>false</c></returns>
 		public static bool ContainsQuotedValue(this string source, string value)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (value == null)
+			if (value is null)
 			{
 				throw new ArgumentNullException(nameof(value));
 			}
@@ -39,12 +39,12 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 		/// the current string</returns>
 		public static string TrimStart(this string source, string trimString)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (trimString == null)
+			if (trimString is null)
 			{
 				throw new ArgumentNullException(nameof(trimString));
 			}
@@ -70,7 +70,7 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 		/// <returns>An array of lines</returns>
 		public static string[] SplitToLines(this string source)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
@@ -92,7 +92,7 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 		/// <returns><c>true</c> if the character was received successfully; otherwise, <c>false</c></returns>
 		internal static bool TryGetChar(this string source, int index, out char result)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}

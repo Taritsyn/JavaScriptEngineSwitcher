@@ -33,7 +33,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <param name="defaultName">Default document name</param>
 		public UniqueDocumentNameManager(string defaultName)
 		{
-			if (defaultName == null)
+			if (defaultName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(defaultName),

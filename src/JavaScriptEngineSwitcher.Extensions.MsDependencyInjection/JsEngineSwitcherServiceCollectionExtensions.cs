@@ -18,7 +18,7 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 		/// <returns>Instance of the <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services)
 		{
-			if (services == null)
+			if (services is null)
 			{
 				throw new ArgumentNullException(nameof(services));
 			}
@@ -41,12 +41,12 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services,
 			IJsEngineSwitcher engineSwitcher)
 		{
-			if (services == null)
+			if (services is null)
 			{
 				throw new ArgumentNullException(nameof(services));
 			}
 
-			if (engineSwitcher == null)
+			if (engineSwitcher is null)
 			{
 				throw new ArgumentNullException(nameof(engineSwitcher));
 			}
@@ -69,12 +69,12 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services,
 			Action<JsEngineSwitcherOptions> configure)
 		{
-			if (services == null)
+			if (services is null)
 			{
 				throw new ArgumentNullException(nameof(services));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -99,17 +99,17 @@ namespace JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
 		public static JsEngineFactoryCollection AddJsEngineSwitcher(this IServiceCollection services,
 			IJsEngineSwitcher engineSwitcher, Action<JsEngineSwitcherOptions> configure)
 		{
-			if (services == null)
+			if (services is null)
 			{
 				throw new ArgumentNullException(nameof(services));
 			}
 
-			if (engineSwitcher == null)
+			if (engineSwitcher is null)
 			{
 				throw new ArgumentNullException(nameof(engineSwitcher));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}

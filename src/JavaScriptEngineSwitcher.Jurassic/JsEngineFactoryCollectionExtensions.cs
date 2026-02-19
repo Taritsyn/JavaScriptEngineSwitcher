@@ -17,7 +17,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <returns>Instance of <see cref="JsEngineFactoryCollection"/></returns>
 		public static JsEngineFactoryCollection AddJurassic(this JsEngineFactoryCollection source)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
@@ -35,12 +35,12 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		public static JsEngineFactoryCollection AddJurassic(this JsEngineFactoryCollection source,
 			Action<JurassicSettings> configure)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (configure == null)
+			if (configure is null)
 			{
 				throw new ArgumentNullException(nameof(configure));
 			}
@@ -61,12 +61,12 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		public static JsEngineFactoryCollection AddJurassic(this JsEngineFactoryCollection source,
 			JurassicSettings settings)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			if (settings == null)
+			if (settings is null)
 			{
 				throw new ArgumentNullException(nameof(settings));
 			}

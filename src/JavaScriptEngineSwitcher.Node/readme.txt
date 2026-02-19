@@ -5,7 +5,7 @@
 
    --------------------------------------------------------------------------------
 
-      Copyright (c) 2013-2024 Andrey Taritsyn - http://www.taritsyn.ru
+      Copyright (c) 2013-2026 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -18,6 +18,11 @@
    This package does not contain the `node.exe`. Therefore, you need to install the
    Node.js (https://nodejs.org) and add the `node.exe`'s directory to the `Path`
    environment variable (automatically done by the official installer).
+
+   =============
+   RELEASE NOTES
+   =============
+   Performed a migration to the modern C# null/not-null checks.
 
    =============
    DOCUMENTATION

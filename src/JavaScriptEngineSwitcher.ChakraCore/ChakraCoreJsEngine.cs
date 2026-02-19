@@ -316,7 +316,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			string sourceFragment = string.Empty;
 
 			var originalScriptException = originalException as OriginalScriptException;
-			if (originalScriptException != null)
+			if (originalScriptException is not null)
 			{
 				JsValue metadataValue = originalScriptException.Metadata;
 
@@ -782,7 +782,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		protected override void InnerExecute(IPrecompiledScript precompiledScript)
 		{
 			var chakraCorePrecompiledScript = precompiledScript as ChakraCorePrecompiledScript;
-			if (chakraCorePrecompiledScript == null)
+			if (chakraCorePrecompiledScript is null)
 			{
 				throw new WrapperUsageException(
 					string.Format(CoreStrings.Usage_CannotConvertPrecompiledScriptToInternalType,
@@ -1099,7 +1099,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 			{
 				if (_disposedFlag.Set())
 				{
-					if (_dispatcher != null)
+					if (_dispatcher is not null)
 					{
 						_dispatcher.Invoke(DisposeUnmanagedResources);
 
@@ -1107,7 +1107,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 						_dispatcher = null;
 					}
 
-					if (_typeMapper != null)
+					if (_typeMapper is not null)
 					{
 						_typeMapper.Dispose();
 						_typeMapper = null;

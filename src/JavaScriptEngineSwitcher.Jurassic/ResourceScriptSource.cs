@@ -37,7 +37,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <param name="assembly">The assembly, which contains the embedded resource</param>
 		public ResourceScriptSource(string documentName, string resourceName, Assembly assembly)
 		{
-			if (documentName == null)
+			if (documentName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(documentName),
@@ -45,7 +45,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
-			if (resourceName == null)
+			if (resourceName is null)
 			{
 				throw new ArgumentNullException(
 					nameof(resourceName),
@@ -53,7 +53,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				);
 			}
 
-			if (assembly == null)
+			if (assembly is null)
 			{
 				throw new ArgumentNullException(
 					nameof(assembly),
@@ -103,7 +103,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		{
 			Stream stream = _assembly.GetManifestResourceStream(_resourceName);
 
-			if (stream == null)
+			if (stream is null)
 			{
 				throw new NullReferenceException(
 					string.Format(CoreStrings.Common_ResourceIsNull, _resourceName));
