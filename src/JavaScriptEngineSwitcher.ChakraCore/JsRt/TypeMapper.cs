@@ -543,56 +543,59 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsValue getMethodValue = JsValue.CreateFunction(nativeGetFunction);
 				descriptorValue.SetProperty("get", getMethodValue, true);
 
-				JsNativeFunction nativeSetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
+				if (!field.IsInitOnly)
 				{
-					JsValue undefinedValue = JsValue.Undefined;
-
-					if (instance && obj is null)
+					JsNativeFunction nativeSetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 					{
-						CreateAndSetTypeError(string.Format(
-							Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
-						return undefinedValue;
-					}
+						JsValue undefinedValue = JsValue.Undefined;
 
-					object value = MapToHostType(args[1]);
-					ReflectionHelpers.FixFieldValueType(ref value, field);
-
-					try
-					{
-						field.SetValue(obj, value);
-					}
-					catch (Exception e)
-					{
-						Exception exception = UnwrapException(e);
-						var wrapperException = exception as WrapperException;
-						JsValue errorValue;
-
-						if (wrapperException is not null)
+						if (instance && obj is null)
 						{
-							errorValue = CreateErrorFromWrapperException(wrapperException);
+							CreateAndSetTypeError(string.Format(
+								Strings.Runtime_InvalidThisContextForHostObjectField, fieldName));
+							return undefinedValue;
 						}
-						else
+
+						object value = MapToHostType(args[1]);
+						ReflectionHelpers.FixFieldValueType(ref value, field);
+
+						try
 						{
-							string errorMessage = instance ?
-								string.Format(Strings.Runtime_HostObjectFieldSettingFailed, fieldName,
-									exception.Message)
-								:
-								string.Format(Strings.Runtime_HostTypeFieldSettingFailed, fieldName, typeName,
-									exception.Message)
-								;
-							errorValue = JsErrorHelpers.CreateError(errorMessage);
+							field.SetValue(obj, value);
 						}
-						JsContext.SetException(errorValue);
+						catch (Exception e)
+						{
+							Exception exception = UnwrapException(e);
+							var wrapperException = exception as WrapperException;
+							JsValue errorValue;
+
+							if (wrapperException is not null)
+							{
+								errorValue = CreateErrorFromWrapperException(wrapperException);
+							}
+							else
+							{
+								string errorMessage = instance ?
+									string.Format(Strings.Runtime_HostObjectFieldSettingFailed, fieldName,
+										exception.Message)
+									:
+									string.Format(Strings.Runtime_HostTypeFieldSettingFailed, fieldName, typeName,
+										exception.Message)
+									;
+								errorValue = JsErrorHelpers.CreateError(errorMessage);
+							}
+							JsContext.SetException(errorValue);
+
+							return undefinedValue;
+						}
 
 						return undefinedValue;
-					}
+					};
+					nativeFunctions.Add(nativeSetFunction);
 
-					return undefinedValue;
-				};
-				nativeFunctions.Add(nativeSetFunction);
-
-				JsValue setMethodValue = JsValue.CreateFunction(nativeSetFunction);
-				descriptorValue.SetProperty("set", setMethodValue, true);
+					JsValue setMethodValue = JsValue.CreateFunction(nativeSetFunction);
+					descriptorValue.SetProperty("set", setMethodValue, true);
+				}
 
 				typeValue.DefineProperty(fieldName, descriptorValue);
 			}
@@ -622,7 +625,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				JsValue descriptorValue = JsValue.CreateObject();
 				descriptorValue.SetProperty("enumerable", JsValue.True, true);
 
-				if (property.GetGetMethod() is not null)
+				if (property.CanRead)
 				{
 					JsNativeFunction nativeGetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 					{
@@ -677,7 +680,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 					descriptorValue.SetProperty("get", getMethodValue, true);
 				}
 
-				if (property.GetSetMethod() is not null)
+				if (property.CanWrite)
 				{
 					JsNativeFunction nativeSetFunction = (callee, isConstructCall, args, argCount, callbackData) =>
 					{

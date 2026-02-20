@@ -24,7 +24,8 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.ChakraCore contains a `ChakraCoreJsEngine` adapter (wrapper for the ChakraCore).</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore</PackageTags>
-    <PackageReleaseNotes>Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Performed a migration to the modern C# null/not-null checks;
+2. The value of a read-only field in an embedded object or type can no longer be changed.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
