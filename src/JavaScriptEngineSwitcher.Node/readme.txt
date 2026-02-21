@@ -22,7 +22,8 @@
    =============
    RELEASE NOTES
    =============
-   Performed a migration to the modern C# null/not-null checks.
+   1. Added support for .NET 10;
+   2. Performed a migration to the modern C# null/not-null checks.
 
    =============
    DOCUMENTATION

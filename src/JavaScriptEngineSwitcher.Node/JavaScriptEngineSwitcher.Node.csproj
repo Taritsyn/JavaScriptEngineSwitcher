@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Node</Product>
     <VersionPrefix>3.24.1</VersionPrefix>
-    <TargetFrameworks>net461;netstandard2.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard2.0;netcoreapp3.1;net5.0;net6.0;net7.0;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -24,7 +24,8 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Node contains a `NodeJsEngine` adapter (wrapper for the Jering.Javascript.NodeJS).</Description>
     <PackageTags>$(PackageCommonTags);Node.js;Jering.Javascript.NodeJS</PackageTags>
-    <PackageReleaseNotes>Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Added support for .NET 10;
+2. Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

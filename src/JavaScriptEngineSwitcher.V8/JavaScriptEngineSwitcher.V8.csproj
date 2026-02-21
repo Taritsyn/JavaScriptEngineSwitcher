@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: V8</Product>
     <VersionPrefix>3.29.1</VersionPrefix>
-    <TargetFrameworks>net462;net471;netstandard2.1;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>net462;net471;netstandard2.1;netcoreapp3.1;net5.0;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591;NU1903</NoWarn>
@@ -22,7 +22,8 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.V8 contains a `V8JsEngine` adapter (wrapper for the Microsoft ClearScript.V8).</Description>
     <PackageTags>$(PackageCommonTags);V8;ClearScript</PackageTags>
-    <PackageReleaseNotes>Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Added support for .NET 10;
+2. Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

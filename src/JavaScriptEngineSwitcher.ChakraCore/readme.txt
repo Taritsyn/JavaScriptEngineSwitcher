@@ -31,9 +31,10 @@
    =============
    RELEASE NOTES
    =============
-   1. Performed a migration to the modern C# null/not-null checks;
-   2. The value of a read-only field in an embedded object or type can no longer be
-      changed.
+   1. The value of a read-only field in an embedded object or type can no longer be
+      changed;
+   2. Added support for .NET 10;
+   3. Performed a migration to the modern C# null/not-null checks.
 
    =============
    DOCUMENTATION

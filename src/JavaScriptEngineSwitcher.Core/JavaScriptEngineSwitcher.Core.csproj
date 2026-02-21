@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Core</Product>
     <VersionPrefix>3.24.1</VersionPrefix>
-    <TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0;net10.0</TargetFrameworks>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -23,11 +23,12 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Core_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines. This library allows you to quickly and easily switch to using of another JavaScript engine.</Description>
     <PackageTags>$(PackageCommonTags)</PackageTags>
-    <PackageReleaseNotes>Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Added support for .NET 10;
+2. Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AdvancedStringBuilder" Version="0.1.1" />
+    <PackageReference Include="AdvancedStringBuilder" Version="0.2.0" />
     <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha7" PrivateAssets="All" />
   </ItemGroup>
 

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Jurassic</Product>
     <VersionPrefix>3.29.0</VersionPrefix>
-    <TargetFrameworks>net40-client;net45;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40-client;net45;netstandard2.0;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
@@ -21,7 +21,8 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Jurassic_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Jurassic contains a `JurassicJsEngine` adapter (wrapper for the Jurassic).</Description>
     <PackageTags>$(PackageCommonTags);Jurassic</PackageTags>
-    <PackageReleaseNotes>Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Added support for .NET 10;
+2. Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

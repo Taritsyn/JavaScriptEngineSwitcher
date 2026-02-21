@@ -1,7 +1,9 @@
 ﻿using System;
 #if !NETSTANDARD1_3
 using System.Runtime.Serialization;
+#if !NET10_0_OR_GREATER
 using System.Security.Permissions;
+#endif
 #endif
 
 using JavaScriptEngineSwitcher.Core.Constants;
@@ -87,6 +89,9 @@ namespace JavaScriptEngineSwitcher.Core
 		/// </summary>
 		/// <param name="info">The object that holds the serialized data</param>
 		/// <param name="context">The contextual information about the source or destination</param>
+#if NET10_0_OR_GREATER
+		[Obsolete(DiagnosticId = "SYSLIB0051")]
+#endif
 		protected JsRuntimeException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
@@ -104,7 +109,11 @@ namespace JavaScriptEngineSwitcher.Core
 		/// </summary>
 		/// <param name="info">The <see cref="SerializationInfo"/> to populate with data</param>
 		/// <param name="context">The destination (see <see cref="StreamingContext"/>) for this serialization</param>
+#if NET10_0_OR_GREATER
+		[Obsolete(DiagnosticId = "SYSLIB0051")]
+#else
 		[SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
+#endif
 		public override void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
 			if (info is null)

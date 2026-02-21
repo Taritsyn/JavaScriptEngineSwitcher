@@ -71,6 +71,9 @@ namespace JavaScriptEngineSwitcher.Core
 		/// </summary>
 		/// <param name="info">The object that holds the serialized data</param>
 		/// <param name="context">The contextual information about the source or destination</param>
+#if NET10_0_OR_GREATER
+		[Obsolete(DiagnosticId = "SYSLIB0051")]
+#endif
 		private JsFatalException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{ }
