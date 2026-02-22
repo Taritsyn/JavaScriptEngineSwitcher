@@ -1,4 +1,10 @@
-﻿using Jering.Javascript.NodeJS;
+﻿#if NET10_0_OR_GREATER
+using Lock = System.Threading.Lock;
+#else
+using Lock = System.Object;
+#endif
+
+using Jering.Javascript.NodeJS;
 using Microsoft.Extensions.DependencyInjection;
 
 using JavaScriptEngineSwitcher.Core;
@@ -28,7 +34,7 @@ namespace JavaScriptEngineSwitcher.Node
 		/// <summary>
 		/// Synchronizer of Node JS service creation
 		/// </summary>
-		private readonly object _creationSynchronizer = new object();
+		private readonly Lock _creationSynchronizer = new Lock();
 
 
 		/// <summary>

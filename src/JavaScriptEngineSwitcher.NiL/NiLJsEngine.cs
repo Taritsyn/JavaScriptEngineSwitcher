@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+#if NET9_0_OR_GREATER
+using Lock = System.Threading.Lock;
+#else
+using Lock = System.Object;
+#endif
 
 using NiL.JS.Extensions;
 
@@ -62,7 +67,7 @@ namespace JavaScriptEngineSwitcher.NiL
 		/// <summary>
 		/// Synchronizer
 		/// </summary>
-		private readonly object _synchronizer = new object();
+		private readonly Lock _synchronizer = new Lock();
 
 
 		/// <summary>

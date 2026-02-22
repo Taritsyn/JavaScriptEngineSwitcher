@@ -45,7 +45,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Synchronizer of the script source code loading
 		/// </summary>
-		private readonly object _scriptLoadingSynchronizer = new object();
+		private readonly Lock _scriptLoadingSynchronizer = new Lock();
 
 		/// <summary>
 		/// Gets a source code of the script

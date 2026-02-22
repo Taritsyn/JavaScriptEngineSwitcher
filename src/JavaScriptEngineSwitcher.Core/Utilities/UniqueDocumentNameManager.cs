@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+#if NET10_0_OR_GREATER
+using Lock = System.Threading.Lock;
+#else
+using Lock = System.Object;
+#endif
 
 using JavaScriptEngineSwitcher.Core.Resources;
 
@@ -24,7 +29,7 @@ namespace JavaScriptEngineSwitcher.Core.Utilities
 		/// <summary>
 		/// Synchronizer of unique name storage
 		/// </summary>
-		private readonly object _storageSynchronizer = new object();
+		private readonly Lock _storageSynchronizer = new Lock();
 
 
 		/// <summary>

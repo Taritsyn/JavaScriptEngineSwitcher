@@ -36,7 +36,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Synchronizer of script task queue
 		/// </summary>
-		private readonly object _taskQueueSynchronizer = new object();
+		private readonly Lock _taskQueueSynchronizer = new Lock();
 
 		/// <summary>
 		/// Flag that object is destroyed

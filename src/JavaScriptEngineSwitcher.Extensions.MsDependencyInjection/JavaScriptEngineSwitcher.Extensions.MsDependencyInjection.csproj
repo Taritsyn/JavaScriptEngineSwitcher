@@ -21,8 +21,8 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Extensions_MsDependencyInjection_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Extensions.MsDependencyInjection contains extension methods for adding the JS engine switcher in an `IServiceCollection`.</Description>
     <PackageTags>$(PackageCommonTags);DI</PackageTags>
-    <PackageReleaseNotes>1. Added support for .NET 10;
-2. Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Performed a migration to the modern C# null/not-null checks;
+2. Added support for .NET 10.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

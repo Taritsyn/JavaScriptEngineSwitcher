@@ -5,6 +5,11 @@ using System.Runtime.InteropServices;
 #endif
 using System.Text;
 using System.Text.RegularExpressions;
+#if NET10_0_OR_GREATER
+using Lock = System.Threading.Lock;
+#else
+using Lock = System.Object;
+#endif
 
 using AdvancedStringBuilder;
 #if NET40
@@ -75,7 +80,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 		/// <summary>
 		/// Synchronizer of code execution
 		/// </summary>
-		private readonly object _executionSynchronizer = new object();
+		private readonly Lock _executionSynchronizer = new Lock();
 
 		/// <summary>
 		/// List of host items
@@ -85,7 +90,7 @@ namespace JavaScriptEngineSwitcher.Vroom
 		/// <summary>
 		/// Synchronizer of JS engine initialization
 		/// </summary>
-		private static readonly object _initializationSynchronizer = new object();
+		private static readonly Lock _initializationSynchronizer = new Lock();
 
 		/// <summary>
 		/// Flag indicating whether the JS engine is initialized

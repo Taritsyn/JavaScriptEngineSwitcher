@@ -24,8 +24,9 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Node_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Node contains a `NodeJsEngine` adapter (wrapper for the Jering.Javascript.NodeJS).</Description>
     <PackageTags>$(PackageCommonTags);Node.js;Jering.Javascript.NodeJS</PackageTags>
-    <PackageReleaseNotes>1. Added support for .NET 10;
-2. Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Performed a migration to the modern C# null/not-null checks;
+2. Added support for .NET 10;
+3. In the `lock` statements for .NET 10 target now uses a instances of the `System.Threading.Lock` class.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

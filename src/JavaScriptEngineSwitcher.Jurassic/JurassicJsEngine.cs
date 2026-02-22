@@ -4,6 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+#if NET10_0_OR_GREATER
+using Lock = System.Threading.Lock;
+#else
+using Lock = System.Object;
+#endif
 
 using OriginalCompatibilityMode = Jurassic.CompatibilityMode;
 using OriginalCompiledScript = Jurassic.CompiledScript;
@@ -55,7 +60,7 @@ namespace JavaScriptEngineSwitcher.Jurassic
 		/// <summary>
 		/// Synchronizer of code execution
 		/// </summary>
-		private readonly object _executionSynchronizer = new object();
+		private readonly Lock _executionSynchronizer = new Lock();
 
 		/// <summary>
 		/// Unique document name manager

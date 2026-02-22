@@ -4,7 +4,7 @@
 	{
 		private static bool _enableOptimizations = true;
 
-		public static readonly object SyncRoot = new object();
+		public static readonly Lock SyncRoot = new Lock();
 
 		public static bool EnableOptimizations
 		{

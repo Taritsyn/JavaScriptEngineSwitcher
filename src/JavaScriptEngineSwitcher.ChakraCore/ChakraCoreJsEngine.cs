@@ -94,7 +94,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 		/// <summary>
 		/// Synchronizer of JS engine initialization
 		/// </summary>
-		private static readonly object _initializationSynchronizer = new object();
+		private static readonly Lock _initializationSynchronizer = new Lock();
 
 		/// <summary>
 		/// Flag indicating whether the JS engine is initialized

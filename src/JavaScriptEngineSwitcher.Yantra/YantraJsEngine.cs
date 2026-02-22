@@ -3,6 +3,11 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+#if NET10_0_OR_GREATER
+using Lock = System.Threading.Lock;
+#else
+using Lock = System.Object;
+#endif
 
 using YantraJS.Core;
 
@@ -71,7 +76,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// <summary>
 		/// Synchronizer of code execution
 		/// </summary>
-		private readonly object _executionSynchronizer = new object();
+		private readonly Lock _executionSynchronizer = new Lock();
 
 		/// <summary>
 		/// Unique document name manager

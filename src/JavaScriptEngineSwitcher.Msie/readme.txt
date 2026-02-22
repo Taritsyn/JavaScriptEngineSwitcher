@@ -20,8 +20,8 @@
    RELEASE NOTES
    =============
    1. MSIE JavaScript Engine was updated to version 3.3.0;
-   2. Added support for .NET Standard 2.1 and .NET 10;
-   3. Performed a migration to the modern C# null/not-null checks.
+   2. Performed a migration to the modern C# null/not-null checks;
+   3. Added support for .NET Standard 2.1 and .NET 10.
 
    =============
    DOCUMENTATION

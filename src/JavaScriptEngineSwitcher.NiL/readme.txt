@@ -17,7 +17,9 @@
    =============
    RELEASE NOTES
    =============
-   Performed a migration to the modern C# null/not-null checks.
+   1. Performed a migration to the modern C# null/not-null checks;
+   2. In the `lock` statements for .NET 9 target now uses a instances of the
+      `System.Threading.Lock` class.
 
    =============
    DOCUMENTATION

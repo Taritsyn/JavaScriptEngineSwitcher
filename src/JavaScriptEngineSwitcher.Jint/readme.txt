@@ -18,8 +18,10 @@
    RELEASE NOTES
    =============
    1. Jint was updated to version 4.6.0;
-   2. Added support for .NET 10;
-   3. Performed a migration to the modern C# null/not-null checks.
+   2. Performed a migration to the modern C# null/not-null checks;
+   3. Added support for .NET 10;
+   4. In the `lock` statements for .NET 10 target now uses a instances of the
+      `System.Threading.Lock` class.
 
    =============
    DOCUMENTATION

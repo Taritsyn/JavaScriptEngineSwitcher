@@ -22,8 +22,10 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support for .NET 10;
-   2. Performed a migration to the modern C# null/not-null checks.
+   1. Performed a migration to the modern C# null/not-null checks;
+   2. Added support for .NET 10;
+   3. In the `lock` statements for .NET 10 target now uses a instances of the
+      `System.Threading.Lock` class.
 
    =============
    DOCUMENTATION
