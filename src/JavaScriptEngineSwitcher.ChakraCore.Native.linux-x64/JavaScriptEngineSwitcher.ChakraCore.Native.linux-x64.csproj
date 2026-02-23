@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: ChakraCore for Linux (x64)</Product>
-    <VersionPrefix>3.27.3</VersionPrefix>
+    <VersionPrefix>3.31.0</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
@@ -15,7 +15,7 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_ChakraCore_Logo128x128.png</PackageIconFullPath>
     <Description>This package complements the JavaScriptEngineSwitcher.ChakraCore package and contains the native implementation of ChakraCore for Linux (x64).</Description>
     <PackageTags>$(PackageCommonTags);ChakraCore;Linux;x64</PackageTags>
-    <PackageReleaseNotes>ChakraCore was updated to version of August 1, 2024.</PackageReleaseNotes>
+    <PackageReleaseNotes>ChakraCore was updated to version of February 19, 2026.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

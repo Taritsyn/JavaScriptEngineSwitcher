@@ -31,13 +31,14 @@
    =============
    RELEASE NOTES
    =============
-   1. The value of a read-only field in an embedded object or type can no longer be
+   1. ChakraCore was updated to version of February 19, 2026;
+   2. The value of a read-only field in an embedded object or type can no longer be
       changed;
-   2. Performed a migration to the modern C# null/not-null checks;
-   3. Added support for .NET 10;
-   4. In the `lock` statements for .NET 10 target now uses a instances of the
+   3. Performed a migration to the modern C# null/not-null checks;
+   4. Added support for .NET 10;
+   5. In the `lock` statements for .NET 10 target now uses a instances of the
       `System.Threading.Lock` class;
-   5. Reduced a memory allocation by using collection expressions.
+   6. Reduced a memory allocation by using collection expressions.
 
    =============
    DOCUMENTATION
