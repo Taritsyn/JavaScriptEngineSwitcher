@@ -16,23 +16,23 @@ The supported .NET types are as follows:
 This library can be installed through NuGet:
 
 ### Core
- * [JS Engine Switcher: Core](http://nuget.org/packages/JavaScriptEngineSwitcher.Core) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Standard 1.3 and .NET Standard 2.0)
- * [JS Engine Switcher: MS Dependency Injection](http://nuget.org/packages/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection) (supports .NET Framework 4.5, .NET Standard 1.3 and .NET Standard 2.0)
+ * [JS Engine Switcher: Core](http://nuget.org/packages/JavaScriptEngineSwitcher.Core) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Standard 1.3, .NET Standard 2.0 and .NET 10)
+ * [JS Engine Switcher: MS Dependency Injection](http://nuget.org/packages/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection) (supports .NET Framework 4.5, .NET Standard 1.3, .NET Standard 2.0 and .NET 10)
 
 ### JS engines
- * [JS Engine Switcher: ChakraCore](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Framework 4.7.1, .NET Standard 1.3, .NET Standard 2.0 and .NET Standard 2.1)
+ * [JS Engine Switcher: ChakraCore](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Framework 4.7.1, .NET Standard 1.3, .NET Standard 2.0, .NET Standard 2.1 and .NET 10)
    * [Windows (x86)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.win-x86)
    * [Windows (x64)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.win-x64)
    * [Windows (ARM)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.win-arm)
    * [Windows (ARM64)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.win-arm64)
    * [Linux (x64)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64)
    * [OS X (x64)](http://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64)
- * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint) (supports .NET Framework 4.6.2, .NET Standard 2.0, .NET Standard 2.1 and .NET 8)
- * [JS Engine Switcher: Jurassic](http://nuget.org/packages/JavaScriptEngineSwitcher.Jurassic) (supports .NET Framework 4.0 Client, .NET Framework 4.5 and .NET Standard 2.0)
- * [JS Engine Switcher: MSIE](http://nuget.org/packages/JavaScriptEngineSwitcher.Msie) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Standard 1.3 and .NET Standard 2.0)
+ * [JS Engine Switcher: Jint](http://nuget.org/packages/JavaScriptEngineSwitcher.Jint) (supports .NET Framework 4.6.2, .NET Standard 2.0, .NET Standard 2.1, .NET 8 and .NET 10)
+ * [JS Engine Switcher: Jurassic](http://nuget.org/packages/JavaScriptEngineSwitcher.Jurassic) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Standard 2.0 and .NET 10)
+ * [JS Engine Switcher: MSIE](http://nuget.org/packages/JavaScriptEngineSwitcher.Msie) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Standard 1.3, .NET Standard 2.0, .NET Standard 2.1 and .NET 10)
  * [JS Engine Switcher: NiL](http://nuget.org/packages/JavaScriptEngineSwitcher.NiL) (supports .NET Framework 4.6.1, .NET Framework 4.8, .NET Core App 3.1, .NET 6, .NET 8 and .NET 9)
- * [JS Engine Switcher: Node](http://nuget.org/packages/JavaScriptEngineSwitcher.Node) (supports .NET Framework 4.6.1, .NET Standard 2.0, .NET Core App 3.1, .NET 5.0, .NET 6 and .NET 7)
- * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8) (supports .NET Framework 4.6.2, .NET Framework 4.7.1, .NET Standard 2.1, .NET Core App 3.1 and .NET 5.0)
+ * [JS Engine Switcher: Node](http://nuget.org/packages/JavaScriptEngineSwitcher.Node) (supports .NET Framework 4.6.1, .NET Standard 2.0, .NET Core App 3.1, .NET 5.0, .NET 6, .NET 7 and .NET 10)
+ * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8) (supports .NET Framework 4.6.2, .NET Framework 4.7.1, .NET Standard 2.1, .NET Core App 3.1, .NET 5.0 and .NET 10)
    * [Microsoft ClearScript.V8 for Windows (x86)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-x86)
    * [Microsoft ClearScript.V8 for Windows (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-x64)
    * [Microsoft ClearScript.V8 for Windows (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-arm64)
@@ -41,8 +41,8 @@ This library can be installed through NuGet:
    * [Microsoft ClearScript.V8 for Linux (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.linux-arm64)
    * [Microsoft ClearScript.V8 for OS X (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.osx-x64)
    * [Microsoft ClearScript.V8 for OS X (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.osx-arm64)
- * [JS Engine Switcher: Vroom](http://nuget.org/packages/JavaScriptEngineSwitcher.Vroom) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Framework 4.7.1, .NET Standard 1.6 and .NET Standard 2.0)
- * [JS Engine Switcher: Yantra](http://nuget.org/packages/JavaScriptEngineSwitcher.Yantra) (supports .NET Standard 2.0 and .NET Standard 2.1)
+ * [JS Engine Switcher: Vroom](http://nuget.org/packages/JavaScriptEngineSwitcher.Vroom) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Framework 4.7.1, .NET Standard 1.6, .NET Standard 2.0 and .NET 10)
+ * [JS Engine Switcher: Yantra](http://nuget.org/packages/JavaScriptEngineSwitcher.Yantra) (supports .NET Standard 2.0, .NET Standard 2.1 and .NET 10)
 
 If you have used the JavaScript Engine Switcher version 2.X, then I recommend to first read [“How to upgrade applications to version 3.X”](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/How-to-upgrade-applications-to-version-3.X) section of the documentation.
 

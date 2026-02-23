@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>JS Engine Switcher: V8 for Windows (x86)</Product>
-    <VersionPrefix>3.29.0</VersionPrefix>
+    <VersionPrefix>3.31.0</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
@@ -15,7 +15,6 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_V8_Logo128x128.png</PackageIconFullPath>
     <Description>This package is deprecated. Instead, it is recommended to use a Microsoft.ClearScript.V8.Native.win-x86 package.</Description>
     <PackageTags>$(PackageCommonTags);V8;ClearScript;Windows;x86</PackageTags>
-    <PackageReleaseNotes>Microsoft ClearScript.V8 was updated to version 7.5 (support of the V8 version 13.3.415.23).</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

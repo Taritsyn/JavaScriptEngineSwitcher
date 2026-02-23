@@ -1,6 +1,18 @@
 Change log
 ==========
 
+## v3.31.0 - February 23, 2026
+ * Performed a migration to the modern C# null/not-null checks
+ * Added support for .NET 10
+ * In the `lock` statements for .NET 9 and 10 targets now uses a instances of the `System.Threading.Lock` class
+ * Reduced a memory allocation by using collection expressions
+ * In JavaScriptEngineSwitcher.ChakraCore:
+   * ChakraCore was updated to version of February 19, 2026
+   * The value of a read-only field in an embedded object or type can no longer be changed
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.6.0
+ * In JavaScriptEngineSwitcher.Msie added support for the MSIE JavaScript Engine version 3.3.1
+ * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.301
+
 ## v3.30.4 - January 11, 2026
  * In JavaScriptEngineSwitcher.ChakraCore optimized a memory usage in the `ReflectionHelpers.GetBestFitMethod` method
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.5.0

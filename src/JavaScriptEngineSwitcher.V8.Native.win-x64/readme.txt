@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-            README file for JS Engine Switcher: V8 for Windows x64 v3.29.0
+            README file for JS Engine Switcher: V8 for Windows x64 v3.31.0
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2013-2025 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2013-2026 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -13,12 +13,6 @@
    ===========
    This package is deprecated. Instead, it is recommended to use a
    Microsoft.ClearScript.V8.Native.win-x64 package.
-
-   =============
-   RELEASE NOTES
-   =============
-   Microsoft ClearScript.V8 was updated to version 7.5 (support of the V8
-   version 13.3.415.23).
 
    =============
    DOCUMENTATION
