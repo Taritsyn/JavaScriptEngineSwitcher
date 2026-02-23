@@ -6,7 +6,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 {
 	internal static class Assert
 	{
-		private static readonly char[] _lineBreakChars = new[] { '\r', '\n' };
+		private static readonly char[] _lineBreakChars = ['\r', '\n'];
 
 
 		public static void Equal(string expected, string actual, bool ignoreLineBreaks = false)

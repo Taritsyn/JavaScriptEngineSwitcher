@@ -14,16 +14,16 @@ namespace JavaScriptEngineSwitcher.Jint
 	internal static class CustomTypeResolvers
 	{
 		private static readonly PropertyInfo[] _disallowedProperties =
-		{
+		[
 			typeof(Delegate).GetProperty("Method"),
 			typeof(Exception).GetProperty("TargetSite")
-		};
+		];
 
 		private static readonly MethodInfo[] _disallowedMethods =
-		{
+		[
 			typeof(object).GetMethod("GetType"),
 			typeof(Exception).GetMethod("GetType")
-		};
+		];
 
 		private static readonly Lazy<OriginalTypeResolver> _allowingReflection = new Lazy<OriginalTypeResolver>(
 			() => new OriginalTypeResolver() { MemberFilter = _ => true });

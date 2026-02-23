@@ -23,9 +23,10 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Core_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines. This library allows you to quickly and easily switch to using of another JavaScript engine.</Description>
     <PackageTags>$(PackageCommonTags)</PackageTags>
-    <PackageReleaseNotes>1. Added support for .NET 10;
-2. In the `lock` statements for .NET 10 target now uses a instances of the `System.Threading.Lock` class;
-3. Performed a migration to the modern C# null/not-null checks.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Performed a migration to the modern C# null/not-null checks;
+2. Added support for .NET 10;
+3. In the `lock` statements for .NET 10 target now uses a instances of the `System.Threading.Lock` class;
+4. Reduced a memory allocation by using collection expressions.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

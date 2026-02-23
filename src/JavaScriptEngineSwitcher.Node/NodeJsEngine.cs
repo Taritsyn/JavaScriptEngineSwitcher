@@ -143,7 +143,7 @@ namespace JavaScriptEngineSwitcher.Node
 			_executionTimeout = (int)nodeSettings.TimeoutInterval.TotalMilliseconds;
 			_engineId = JsEngineIdGenerator.GetNextId();
 
-			InvokeEngineHelper("addContext", new object[] { _engineId, nodeSettings.UseBuiltinLibrary });
+			InvokeEngineHelper("addContext", [_engineId, nodeSettings.UseBuiltinLibrary]);
 		}
 
 
@@ -292,7 +292,7 @@ namespace JavaScriptEngineSwitcher.Node
 				}
 				else
 				{
-					var errorLocationItems = new ErrorLocationItem[0];
+					ErrorLocationItem[] errorLocationItems = [];
 					int messageLength = message.Length;
 					int messageWithTypeLength = messageWithTypeMatch.Length;
 
@@ -383,8 +383,8 @@ namespace JavaScriptEngineSwitcher.Node
 
 			try
 			{
-				result = InvokeEngineHelper<T>("evaluate", new object[] { _engineId, expression, uniqueDocumentName,
-					_executionTimeout });
+				result = InvokeEngineHelper<T>("evaluate", [_engineId, expression, uniqueDocumentName,
+					_executionTimeout]);
 			}
 			catch (InvocationException e)
 			{
@@ -405,7 +405,7 @@ namespace JavaScriptEngineSwitcher.Node
 
 			try
 			{
-				InvokeEngineHelper("execute", new object[] { _engineId, code, uniqueDocumentName, _executionTimeout });
+				InvokeEngineHelper("execute", [_engineId, code, uniqueDocumentName, _executionTimeout]);
 			}
 			catch (InvocationException e)
 			{
@@ -430,8 +430,8 @@ namespace JavaScriptEngineSwitcher.Node
 
 			try
 			{
-				result = InvokeEngineHelper<T>("callFunction", new object[] { _engineId, functionName, processedArgs,
-					_executionTimeout });
+				result = InvokeEngineHelper<T>("callFunction", [_engineId, functionName, processedArgs,
+					_executionTimeout]);
 			}
 			catch (InvocationException e)
 			{
@@ -443,7 +443,7 @@ namespace JavaScriptEngineSwitcher.Node
 
 		protected override bool InnerHasVariable(string variableName)
 		{
-			return InvokeEngineHelper<bool>("hasVariable", new [] { _engineId, variableName });
+			return InvokeEngineHelper<bool>("hasVariable", [_engineId, variableName]);
 		}
 
 		protected override object InnerGetVariableValue(string variableName)
@@ -457,7 +457,7 @@ namespace JavaScriptEngineSwitcher.Node
 
 			try
 			{
-				result = InvokeEngineHelper<T>("getVariableValue", new[] { _engineId, variableName });
+				result = InvokeEngineHelper<T>("getVariableValue", [_engineId, variableName]);
 			}
 			catch (InvocationException e)
 			{
@@ -473,7 +473,7 @@ namespace JavaScriptEngineSwitcher.Node
 
 			try
 			{
-				InvokeEngineHelper("setVariableValue", new[] { _engineId, variableName, processedValue });
+				InvokeEngineHelper("setVariableValue", [_engineId, variableName, processedValue]);
 			}
 			catch (InvocationException e)
 			{
@@ -485,7 +485,7 @@ namespace JavaScriptEngineSwitcher.Node
 		{
 			try
 			{
-				InvokeEngineHelper("removeVariable", new[] { _engineId, variableName });
+				InvokeEngineHelper("removeVariable", [_engineId, variableName]);
 			}
 			catch (InvocationException e)
 			{
@@ -548,7 +548,7 @@ namespace JavaScriptEngineSwitcher.Node
 		{
 			if (_disposedFlag.Set())
 			{
-				InvokeEngineHelper("removeContext", new[] { _engineId });
+				InvokeEngineHelper("removeContext", [_engineId]);
 				_jsService = null;
 			}
 		}

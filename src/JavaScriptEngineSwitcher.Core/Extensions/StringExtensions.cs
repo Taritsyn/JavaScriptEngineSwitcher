@@ -8,6 +8,12 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 	public static class StringExtensions
 	{
 		/// <summary>
+		/// Array of strings used to find the newline
+		/// </summary>
+		private static readonly string[] _newLineStrings = ["\r\n", "\r", "\n"];
+
+
+		/// <summary>
 		/// Returns a value indicating whether the specified quoted string occurs within this string
 		/// </summary>
 		/// <param name="source">Instance of <see cref="String"/></param>
@@ -68,6 +74,7 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 		/// </summary>
 		/// <param name="source">Instance of <see cref="String"/></param>
 		/// <returns>An array of lines</returns>
+		[Obsolete]
 		public static string[] SplitToLines(this string source)
 		{
 			if (source is null)
@@ -75,7 +82,27 @@ namespace JavaScriptEngineSwitcher.Core.Extensions
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			string[] result = source.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+			string[] result = source.Split(_newLineStrings, StringSplitOptions.None);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Splits a string into lines
+		/// </summary>
+		/// <param name="source">Instance of <see cref="String"/></param>
+		/// <param name="options"><see cref="StringSplitOptions.RemoveEmptyEntries"/> to omit empty array
+		/// elements from the array returned; or <see cref="StringSplitOptions.None"/> to include empty
+		/// array elements in the array returned</param>
+		/// <returns>An array of lines</returns>
+		internal static string[] SplitToLines(this string source, StringSplitOptions options)
+		{
+			if (source is null)
+			{
+				throw new ArgumentNullException(nameof(source));
+			}
+
+			string[] result = source.Split(_newLineStrings, options);
 
 			return result;
 		}

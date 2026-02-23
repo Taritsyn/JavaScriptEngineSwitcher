@@ -286,7 +286,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 			int argCount = args.Length;
 			if (argCount == 0)
 			{
-				return new object[0];
+				return [];
 			}
 
 			int processedArgCount = Math.Min(argCount, maxArgCount);
@@ -396,10 +396,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 		private static string GetRawCallStack(string message, string messageWithType, string messageWithCallStack)
 		{
 			string baseMessage = messageWithCallStack.StartsWith(messageWithType) ? messageWithType : message;
-			string rawCallStack = messageWithCallStack
-				.TrimStart(baseMessage)
-				.TrimStart(new char[] { '\n', '\r' })
-				;
+			string rawCallStack = JsErrorHelpers.GetErrorLocationFromMessage(messageWithCallStack, baseMessage);
 
 			return rawCallStack;
 		}

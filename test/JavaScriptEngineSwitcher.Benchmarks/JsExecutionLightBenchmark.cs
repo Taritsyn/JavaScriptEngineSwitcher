@@ -74,13 +74,13 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		{
 			_libraryCode = Utils.GetResourceAsString(
 				$"Resources.{LibraryFileName}", typeof(JsExecutionLightBenchmark));
-			_inputTypes = new string[ItemCount]
-			{
+			_inputTypes =
+			[
 				"basic", "letters-numbers", "gost-16876-71", "gost-7-79-2000", "police", "foreign-passport",
 				"yandex-friendly-url"
-			};
-			_inputStrings = new string[ItemCount]
-			{
+			];
+			_inputStrings =
+			[
 				"SOLID — мнемонический акроним, введённый Майклом Фэзерсом для первых пяти принципов, названных " +
 				"Робертом Мартином в начале 2000-х, которые означали пять основных принципов объектно-ориентированного " +
 				"программирования и проектирования.",
@@ -101,9 +101,9 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 				"«Зависимость на Абстракциях. Нет зависимости на что-то конкретное.»",
 
 				"SOLID (объектно-ориентированное программирование)"
-			};
-			_targetOutputStrings = new string[ItemCount]
-			{
+			];
+			_targetOutputStrings =
+			[
 				"SOLID — mnemonicheskij akronim, vvedjonnyj Majklom Fjezersom dlja pervyh pjati principov, nazvannyh " +
 				"Robertom Martinom v nachale 2000-h, kotorye oznachali pjat' osnovnyh principov ob#ektno-orientirovannogo " +
 				"programmirovanija i proektirovanija.",
@@ -126,7 +126,7 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 				"«Zavisimost na Abstraktciiakh. Net zavisimosti na chto-to konkretnoe.»",
 
 				"solid-obektno-orientirovannoe-programmirovanie"
-			};
+			];
 		}
 
 		/// <summary>

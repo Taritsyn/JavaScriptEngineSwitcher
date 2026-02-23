@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 
 using AdvancedStringBuilder;
 
-using JavaScriptEngineSwitcher.Core.Extensions;
 using JavaScriptEngineSwitcher.Core.Helpers;
-
-using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 
 namespace JavaScriptEngineSwitcher.Jint.Helpers
 {
@@ -64,6 +59,11 @@ namespace JavaScriptEngineSwitcher.Jint.Helpers
 				@"\((?<documentName>" + CommonRegExps.DocumentNamePattern + @"):" +
 				@"(?<lineNumber>\d+):(?<columnNumber>\d+)\)$");
 
+		/// <summary>
+		/// Call chain separator
+		/// </summary>
+		private static readonly string[] _callChainSeparator = ["->"];
+
 
 		/// <summary>
 		/// Parses a string representation of the script error location to produce an array of
@@ -73,42 +73,28 @@ namespace JavaScriptEngineSwitcher.Jint.Helpers
 		/// <returns>An array of <see cref="ErrorLocationItem"/> instances</returns>
 		public static ErrorLocationItem[] ParseErrorLocation(string errorLocation)
 		{
-			if (string.IsNullOrWhiteSpace(errorLocation))
+			return JsErrorHelpers.ParseErrorLocation(errorLocation, MapErrorLocationItem);
+		}
+
+		private static ErrorLocationItem MapErrorLocationItem(string errorLocationLine)
+		{
+			ErrorLocationItem item = null;
+			Match lineMatch = _errorLocationLineRegex.Match(errorLocationLine);
+
+			if (lineMatch.Success)
 			{
-				return new ErrorLocationItem[0];
+				GroupCollection lineGroups = lineMatch.Groups;
+				item = new ErrorLocationItem
+				{
+					FunctionName = lineGroups["functionName"].Value,
+					DocumentName = lineGroups["documentName"].Value,
+					LineNumber = int.Parse(lineGroups["lineNumber"].Value),
+					ColumnNumber = lineGroups["columnNumber"].Success ?
+						int.Parse(lineGroups["columnNumber"].Value) : 0
+				};
 			}
 
-			var errorLocationItems = new List<ErrorLocationItem>();
-			string[] lines = errorLocation.SplitToLines();
-			int lineCount = lines.Length;
-
-			for (int lineIndex = 0; lineIndex < lineCount; lineIndex++)
-			{
-				string line = lines[lineIndex];
-				Match lineMatch = _errorLocationLineRegex.Match(line);
-
-				if (lineMatch.Success)
-				{
-					GroupCollection lineGroups = lineMatch.Groups;
-
-					var errorLocationItem = new ErrorLocationItem
-					{
-						FunctionName = lineGroups["functionName"].Value,
-						DocumentName = lineGroups["documentName"].Value,
-						LineNumber = int.Parse(lineGroups["lineNumber"].Value),
-						ColumnNumber = lineGroups["columnNumber"].Success ?
-							int.Parse(lineGroups["columnNumber"].Value) : 0
-					};
-					errorLocationItems.Add(errorLocationItem);
-				}
-				else
-				{
-					Debug.WriteLine(string.Format(CoreStrings.Runtime_InvalidErrorLocationLineFormat, line));
-					return new ErrorLocationItem[0];
-				}
-			}
-
-			return errorLocationItems.ToArray();
+			return item;
 		}
 
 		/// <summary>
@@ -140,7 +126,7 @@ namespace JavaScriptEngineSwitcher.Jint.Helpers
 		{
 			string callStack = string.Empty;
 			string[] callChainItems = callChain
-				.Split(new string[] { "->" }, StringSplitOptions.None)
+				.Split(_callChainSeparator, StringSplitOptions.None)
 				;
 
 			if (callChainItems.Length > 0)

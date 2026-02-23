@@ -268,10 +268,8 @@ namespace JavaScriptEngineSwitcher.Jurassic
 				{
 					if (message.Length < messageWithCallStack.Length)
 					{
-						string rawCallStack = messageWithCallStack
-							.TrimStart(message)
-							.TrimStart(new char[] { '\n', '\r' })
-							;
+						string rawCallStack = JsErrorHelpers.GetErrorLocationFromMessage(
+							messageWithCallStack, message);
 						ErrorLocationItem[] callStackItems = JsErrorHelpers.ParseErrorLocation(rawCallStack);
 
 						if (callStackItems.Length > 0)

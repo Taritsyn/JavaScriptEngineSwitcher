@@ -40,12 +40,12 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		/// <summary>
 		/// List of items
 		/// </summary>
-		private static ContentItem[] _contentItems = new[] {
+		private static ContentItem[] _contentItems = [
 			new ContentItem("hello-world"),
 			new ContentItem("contacts"),
 			new ContentItem("js-engines"),
 			new ContentItem("web-browser-family-tree")
-		};
+		];
 
 
 		/// <summary>

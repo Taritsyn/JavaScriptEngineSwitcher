@@ -263,7 +263,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 				if (bufferLength == 0)
 				{
-					return new byte[0];
+					return [];
 				}
 
 				var buffer = new byte[bufferLength];

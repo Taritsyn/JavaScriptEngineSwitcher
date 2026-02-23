@@ -4,6 +4,7 @@ using System.Text;
 using AdvancedStringBuilder;
 
 using JavaScriptEngineSwitcher.Core.Extensions;
+using JavaScriptEngineSwitcher.Core.Utilities;
 
 namespace JavaScriptEngineSwitcher.Core.Helpers
 {
@@ -15,7 +16,7 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// <summary>
 		/// Array of characters used to find the next line break
 		/// </summary>
-		private static readonly char[] _nextLineBreakChars = new char[] { '\r', '\n' };
+		private static readonly char[] _nextLineBreakChars = EnvironmentShortcuts.NewLineChars;
 
 
 		/// <summary>

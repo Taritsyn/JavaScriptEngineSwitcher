@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 
-using JavaScriptEngineSwitcher.Core.Extensions;
 using JavaScriptEngineSwitcher.Core.Helpers;
-
-using CoreStrings = JavaScriptEngineSwitcher.Core.Resources.Strings;
 
 namespace JavaScriptEngineSwitcher.Node.Helpers
 {
@@ -57,49 +52,32 @@ namespace JavaScriptEngineSwitcher.Node.Helpers
 		/// <returns>An array of <see cref="ErrorLocationItem"/> instances</returns>
 		public static ErrorLocationItem[] ParseErrorLocation(string errorLocation)
 		{
-			if (string.IsNullOrWhiteSpace(errorLocation))
+			return JsErrorHelpers.ParseErrorLocation(errorLocation, MapErrorLocationItem);
+		}
+
+		private static ErrorLocationItem MapErrorLocationItem(string errorLocationLine)
+		{
+			ErrorLocationItem item = null;
+			Match lineMatch = _errorLocationLineRegex.Match(errorLocationLine);
+
+			if (lineMatch.Success)
 			{
-				return new ErrorLocationItem[0];
+				GroupCollection lineGroups = lineMatch.Groups;
+				Group lineNumberGroup = lineGroups["lineNumber"];
+				Group columnNumberGroup = lineGroups["columnNumber"];
+
+				item = new ErrorLocationItem
+				{
+					FunctionName = lineGroups["functionName"].Value,
+					DocumentName = lineGroups["documentName"].Value,
+					LineNumber = lineNumberGroup.Success ? int.Parse(lineNumberGroup.Value) : 0,
+					ColumnNumber = columnNumberGroup.Success ? int.Parse(columnNumberGroup.Value) : 0,
+					SourceFragment = lineGroups["sourceFragment"].Value
+				};
 			}
 
-			var errorLocationItems = new List<ErrorLocationItem>();
-			string[] lines = errorLocation.SplitToLines();
-			int lineCount = lines.Length;
 
-			for (int lineIndex = 0; lineIndex < lineCount; lineIndex++)
-			{
-				string line = lines[lineIndex];
-				if (line.Length == 0)
-				{
-					continue;
-				}
-
-				Match lineMatch = _errorLocationLineRegex.Match(line);
-
-				if (lineMatch.Success)
-				{
-					GroupCollection lineGroups = lineMatch.Groups;
-					Group lineNumberGroup = lineGroups["lineNumber"];
-					Group columnNumberGroup = lineGroups["columnNumber"];
-
-					var errorLocationItem = new ErrorLocationItem
-					{
-						FunctionName = lineGroups["functionName"].Value,
-						DocumentName = lineGroups["documentName"].Value,
-						LineNumber = lineNumberGroup.Success ? int.Parse(lineNumberGroup.Value) : 0,
-						ColumnNumber = columnNumberGroup.Success ? int.Parse(columnNumberGroup.Value) : 0,
-						SourceFragment = lineGroups["sourceFragment"].Value
-					};
-					errorLocationItems.Add(errorLocationItem);
-				}
-				else
-				{
-					Debug.WriteLine(string.Format(CoreStrings.Runtime_InvalidErrorLocationLineFormat, line));
-					return new ErrorLocationItem[0];
-				}
-			}
-
-			return errorLocationItems.ToArray();
+			return item;
 		}
 
 		/// <summary>

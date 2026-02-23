@@ -216,8 +216,11 @@ namespace JavaScriptEngineSwitcher.NiL
 
 					sourceFragment = TextHelpers.GetTextFragment(sourceCode, lineNumber, columnNumber);
 					string callStack = string.Empty;
-					ErrorLocationItem[] callStackItems = NiLJsErrorHelpers.ParseErrorLocation(
+					string jsStackTrace = NiLJsErrorHelpers.RemoveDotNetStackTraceFromErrorLocation(
 						originalException.StackTrace);
+					ErrorLocationItem[] callStackItems = NiLJsErrorHelpers.ParseErrorLocation(
+						jsStackTrace);
+
 					if (callStackItems.Length > 0)
 					{
 						NiLJsErrorHelpers.FixErrorLocationItems(callStackItems);

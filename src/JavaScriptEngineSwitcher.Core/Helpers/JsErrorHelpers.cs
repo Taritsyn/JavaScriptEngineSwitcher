@@ -9,6 +9,7 @@ using AdvancedStringBuilder;
 
 using JavaScriptEngineSwitcher.Core.Extensions;
 using JavaScriptEngineSwitcher.Core.Resources;
+using JavaScriptEngineSwitcher.Core.Utilities;
 
 namespace JavaScriptEngineSwitcher.Core.Helpers
 {
@@ -39,6 +40,33 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 				@")" +
 				@"(?: -> (?<sourceFragment>[^\n\r]+))?$");
 
+
+		/// <summary>
+		/// Gets a string representation of the script error location
+		/// </summary>
+		/// <param name="message">Error message with the script error location</param>
+		/// <param name="messageWithoutErrorLocation">Error message without the script error location</param>
+		/// <returns>String representation of the script error location</returns>
+		public static string GetErrorLocationFromMessage(string message, string messageWithoutErrorLocation)
+		{
+			if (string.IsNullOrWhiteSpace(message))
+			{
+				return string.Empty;
+			}
+
+			if (string.IsNullOrWhiteSpace(messageWithoutErrorLocation))
+			{
+				return message;
+			}
+
+			string errorLocation = message
+				.TrimStart(messageWithoutErrorLocation)
+				.TrimStart(EnvironmentShortcuts.NewLineChars)
+				;
+
+			return errorLocation;
+		}
+
 		/// <summary>
 		/// Parses a string representation of the script error location to produce an array of
 		/// <see cref="ErrorLocationItem"/> instances
@@ -47,43 +75,70 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// <returns>An array of <see cref="ErrorLocationItem"/> instances</returns>
 		public static ErrorLocationItem[] ParseErrorLocation(string errorLocation)
 		{
+			return ParseErrorLocation(errorLocation, MapErrorLocationItem);
+		}
+
+		/// <summary>
+		/// Parses a string representation of the script error location to produce an array of
+		/// <see cref="ErrorLocationItem"/> instances
+		/// </summary>
+		/// <param name="errorLocation">String representation of the script error location</param>
+		/// <param name="itemMapper">Error location item mapper</param>
+		/// <returns>An array of <see cref="ErrorLocationItem"/> instances</returns>
+		public static ErrorLocationItem[] ParseErrorLocation(string errorLocation,
+			Func<string, ErrorLocationItem> itemMapper)
+		{
 			if (string.IsNullOrWhiteSpace(errorLocation))
 			{
-				return new ErrorLocationItem[0];
+				return [];
 			}
 
-			var errorLocationItems = new List<ErrorLocationItem>();
-			string[] lines = errorLocation.SplitToLines();
-			int lineCount = lines.Length;
-
-			for (int lineIndex = 0; lineIndex < lineCount; lineIndex++)
+			if (itemMapper is null)
 			{
-				string line = lines[lineIndex];
-				Match lineMatch = _errorLocationLineRegex.Match(line);
+				throw new ArgumentNullException(nameof(itemMapper));
+			}
 
-				if (lineMatch.Success)
+			string[] lines = errorLocation.SplitToLines(StringSplitOptions.RemoveEmptyEntries);
+			int lineCount = lines.Length;
+			var errorLocationItems = new List<ErrorLocationItem>(lineCount);
+
+			foreach (string line in lines)
+			{
+				ErrorLocationItem errorLocationItem = itemMapper(line);
+				if (errorLocationItem is not null)
 				{
-					GroupCollection lineGroups = lineMatch.Groups;
-
-					var errorLocationItem = new ErrorLocationItem
-					{
-						FunctionName = lineGroups["functionName"].Value,
-						DocumentName = lineGroups["documentName"].Value,
-						LineNumber = int.Parse(lineGroups["lineNumber"].Value),
-						ColumnNumber = lineGroups["columnNumber"].Success ?
-							int.Parse(lineGroups["columnNumber"].Value) : 0,
-						SourceFragment = lineGroups["sourceFragment"].Value
-					};
 					errorLocationItems.Add(errorLocationItem);
 				}
 				else
 				{
 					Debug.WriteLine(string.Format(Strings.Runtime_InvalidErrorLocationLineFormat, line));
-					return new ErrorLocationItem[0];
+					return [];
 				}
 			}
 
 			return errorLocationItems.ToArray();
+		}
+
+		private static ErrorLocationItem MapErrorLocationItem(string errorLocationLine)
+		{
+			ErrorLocationItem item = null;
+			Match lineMatch = _errorLocationLineRegex.Match(errorLocationLine);
+
+			if (lineMatch.Success)
+			{
+				GroupCollection lineGroups = lineMatch.Groups;
+				item = new ErrorLocationItem
+				{
+					FunctionName = lineGroups["functionName"].Value,
+					DocumentName = lineGroups["documentName"].Value,
+					LineNumber = int.Parse(lineGroups["lineNumber"].Value),
+					ColumnNumber = lineGroups["columnNumber"].Success ?
+						int.Parse(lineGroups["columnNumber"].Value) : 0,
+					SourceFragment = lineGroups["sourceFragment"].Value
+				};
+			}
+
+			return item;
 		}
 
 		/// <summary>

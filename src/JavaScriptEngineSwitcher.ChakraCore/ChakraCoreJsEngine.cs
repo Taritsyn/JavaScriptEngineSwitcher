@@ -427,14 +427,11 @@ namespace JavaScriptEngineSwitcher.ChakraCore
 							string messageWithTypeAndCallStack = stackPropertyValue.ValueType == JsValueType.String ?
 								stackPropertyValue.ToString() : string.Empty;
 							string messageWithType = errorValue.ConvertToString().ToString();
-							string rawCallStack = messageWithTypeAndCallStack
-								.TrimStart(messageWithType)
-								.TrimStart("Error")
-								.TrimStart(new char[] { '\n', '\r' })
-								;
+							string rawCallStack = CoreErrorHelpers.GetErrorLocationFromMessage(
+								messageWithTypeAndCallStack, messageWithType);
 							string callStackWithSourceFragment = string.Empty;
-
 							ErrorLocationItem[] callStackItems = CoreErrorHelpers.ParseErrorLocation(rawCallStack);
+
 							if (callStackItems.Length > 0)
 							{
 								ErrorLocationItem firstCallStackItem = callStackItems[0];

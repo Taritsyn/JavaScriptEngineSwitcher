@@ -15,21 +15,21 @@ namespace JavaScriptEngineSwitcher.Core.Helpers
 		/// List of supported types
 		/// </summary>
 		private static readonly Type[] _supportedTypes =
-		{
+		[
 			typeof(Undefined), typeof(Boolean), typeof(Int32), typeof(Double), typeof(String)
-		};
+		];
 
 		/// <summary>
 		/// List of primitive type codes
 		/// </summary>
 		private static readonly TypeCode[] _primitiveTypeCodes =
-		{
+		[
 			TypeCode.Boolean,
 			TypeCode.SByte, TypeCode.Byte,
 			TypeCode.Int16, TypeCode.UInt16, TypeCode.Int32, TypeCode.UInt32, TypeCode.Int64, TypeCode.UInt64,
 			TypeCode.Single, TypeCode.Double, TypeCode.Decimal,
 			TypeCode.Char, TypeCode.String
-		};
+		];
 
 		/// <summary>
 		/// Regular expression for working with JS names

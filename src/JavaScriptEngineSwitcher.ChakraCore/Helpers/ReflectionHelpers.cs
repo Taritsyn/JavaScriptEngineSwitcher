@@ -20,16 +20,16 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 	internal static class ReflectionHelpers
 	{
 		private static readonly PropertyInfo[] _disallowedProperties =
-		{
+		[
 			typeof(Delegate).GetProperty("Method"),
 			typeof(Exception).GetProperty("TargetSite")
-		};
+		];
 
 		private static readonly MethodInfo[] _disallowedMethods =
-		{
+		[
 			typeof(object).GetMethod("GetType"),
 			typeof(Exception).GetMethod("GetType")
-		};
+		];
 
 
 		public static BindingFlags GetDefaultBindingFlags(bool instance)
@@ -187,9 +187,8 @@ namespace JavaScriptEngineSwitcher.ChakraCore.Helpers
 
 			try
 			{
-				for (int methodIndex = 0; methodIndex < methodCount; methodIndex++)
+				foreach (MethodBase method in methods)
 				{
-					MethodBase method = methods[methodIndex];
 					ParameterInfo[] parameters = method.GetParameters();
 					ushort compatibilityScore;
 

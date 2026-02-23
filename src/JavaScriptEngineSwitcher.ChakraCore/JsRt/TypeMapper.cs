@@ -330,8 +330,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			JsValue functionValue = JsValue.CreateFunction(nativeFunction);
 			SetNonEnumerableProperty(functionValue, ExternalObjectPropertyName, objValue);
 
-			var embeddedObject = new EmbeddedObject(del, functionValue,
-				new List<JsNativeFunction> { nativeFunction });
+			var embeddedObject = new EmbeddedObject(del, functionValue, [nativeFunction]);
 
 			return embeddedObject;
 		}
@@ -642,7 +641,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 						try
 						{
-							result = property.GetValue(obj, new object[0]);
+							result = property.GetValue(obj, []);
 						}
 						catch (Exception e)
 						{
@@ -698,7 +697,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 
 						try
 						{
-							property.SetValue(obj, value, new object[0]);
+							property.SetValue(obj, value, []);
 						}
 						catch (Exception e)
 						{
@@ -842,7 +841,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			int methodCount = methods.Length;
 			if (methodCount == 0)
 			{
-				return new Dictionary<string, List<MethodInfo>>();
+				return [];
 			}
 
 			var availableMethodGroups = new Dictionary<string, List<MethodInfo>>(methodCount);
@@ -864,7 +863,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 				}
 				else
 				{
-					methodGroup = new List<MethodInfo> { method };
+					methodGroup = [method];
 					availableMethodGroups.Add(methodName, methodGroup);
 				}
 			}
@@ -899,7 +898,7 @@ namespace JavaScriptEngineSwitcher.ChakraCore.JsRt
 			}
 			else
 			{
-				processedArgs = new object[0];
+				processedArgs = [];
 			}
 
 			return processedArgs;

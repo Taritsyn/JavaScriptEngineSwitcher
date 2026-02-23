@@ -23,7 +23,8 @@
     <Description>JavaScriptEngineSwitcher.V8 contains a `V8JsEngine` adapter (wrapper for the Microsoft ClearScript.V8).</Description>
     <PackageTags>$(PackageCommonTags);V8;ClearScript</PackageTags>
     <PackageReleaseNotes>1. Performed a migration to the modern C# null/not-null checks;
-2. Added support for .NET 10.</PackageReleaseNotes>
+2. Added support for .NET 10;
+3. Reduced a memory allocation by using collection expressions.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

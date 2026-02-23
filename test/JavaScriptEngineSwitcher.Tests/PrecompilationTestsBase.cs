@@ -41,8 +41,8 @@ function declinationOfSeconds(number) {
 			const string functionName = "declinationOfSeconds";
 			const int itemCount = 4;
 
-			int[] inputSeconds = new int[itemCount] { 0, 1, 42, 600 };
-			string[] targetOutputStrings = new string[itemCount] { "секунд", "секунда", "секунды", "секунд" };
+			int[] inputSeconds = [0, 1, 42, 600];
+			string[] targetOutputStrings = ["секунд", "секунда", "секунды", "секунд"];
 			string[] outputStrings = new string[itemCount];
 
 			// Act
@@ -91,8 +91,8 @@ function declinationOfSeconds(number) {
 			const string functionName = "declinationOfMinutes";
 			const int itemCount = 4;
 
-			int[] inputMinutes = new int[itemCount] { 0, 1, 22, 88 };
-			string[] targetOutputStrings = new string[itemCount] { "минут", "минута", "минуты", "минут" };
+			int[] inputMinutes = [0, 1, 22, 88];
+			string[] targetOutputStrings = ["минут", "минута", "минуты", "минут"];
 			string[] outputStrings = new string[itemCount];
 
 			// Act
@@ -141,8 +141,8 @@ function declinationOfSeconds(number) {
 			const string functionName = "declinationOfHours";
 			const int itemCount = 4;
 
-			int[] inputHours = new int[itemCount] { 0, 1, 24, 48 };
-			string[] targetOutputStrings = new string[itemCount] { "часов", "час", "часа", "часов" };
+			int[] inputHours = [0, 1, 24, 48];
+			string[] targetOutputStrings = ["часов", "час", "часа", "часов"];
 			string[] outputStrings = new string[itemCount];
 
 			// Act
@@ -191,8 +191,8 @@ function declinationOfSeconds(number) {
 			const string functionName = "declinationOfDays";
 			const int itemCount = 4;
 
-			int[] inputDays = new int[itemCount] { 0, 1, 3, 80 };
-			string[] targetOutputStrings = new string[itemCount] { "дней", "день", "дня", "дней" };
+			int[] inputDays = [0, 1, 3, 80];
+			string[] targetOutputStrings = ["дней", "день", "дня", "дней"];
 			string[] outputStrings = new string[itemCount];
 
 			// Act

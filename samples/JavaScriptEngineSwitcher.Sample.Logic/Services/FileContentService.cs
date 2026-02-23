@@ -88,7 +88,7 @@ namespace JavaScriptEngineSwitcher.Sample.Logic.Services
 #endif
 			string physicalFilePath = Path.Combine(
 				applicationDirectoryPath,
-				filePath.Replace('/', '\\').TrimStart(new char[] { '\\' })
+				filePath.Replace('/', '\\').TrimStart(['\\'])
 			);
 
 			return physicalFilePath;

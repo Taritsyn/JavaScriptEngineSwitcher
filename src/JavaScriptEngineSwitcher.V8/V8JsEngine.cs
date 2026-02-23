@@ -225,16 +225,14 @@ namespace JavaScriptEngineSwitcher.V8
 					GroupCollection messageWithTypeGroups = messageWithTypeMatch.Groups;
 					type = messageWithTypeGroups["type"].Value;
 					description = messageWithTypeGroups["description"].Value;
-					var errorLocationItems = new ErrorLocationItem[0];
+					ErrorLocationItem[] errorLocationItems = [];
 
 					if (message.Length < messageWithErrorLocation.Length)
 					{
-						string errorLocation = messageWithErrorLocation
-							.TrimStart(message)
-							.TrimStart(new char[] { '\n', '\r' })
-							;
-
+						string errorLocation = JsErrorHelpers.GetErrorLocationFromMessage(
+							messageWithErrorLocation, message);
 						errorLocationItems = JsErrorHelpers.ParseErrorLocation(errorLocation);
+
 						if (errorLocationItems.Length > 0)
 						{
 							ErrorLocationItem firstErrorLocationItem = errorLocationItems[0];
