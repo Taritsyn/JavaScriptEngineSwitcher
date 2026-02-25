@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 using JavaScriptEngineSwitcher.Core.Helpers;
 
@@ -47,7 +48,7 @@ namespace JavaScriptEngineSwitcher.NiL.Helpers
 			}
 
 			string jsErrorLocation = errorLocation;
-			int dotNetStackTraceIndex = errorLocation.IndexOf(DotNetStackTraceLinePrefix);
+			int dotNetStackTraceIndex = errorLocation.IndexOf(DotNetStackTraceLinePrefix, StringComparison.Ordinal);
 
 			if (dotNetStackTraceIndex != -1)
 			{

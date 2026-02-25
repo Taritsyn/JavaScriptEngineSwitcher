@@ -8,7 +8,9 @@ using JavaScriptEngineSwitcher.Core.Utilities;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
+#if NIL_JS
 using JavaScriptEngineSwitcher.NiL;
+#endif
 using JavaScriptEngineSwitcher.Node;
 using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Vroom;
@@ -37,7 +39,9 @@ namespace JavaScriptEngineSwitcher.Tests
 					{
 						EngineMode = JsEngineMode.ChakraIeJsRt
 					})
+#if NIL_JS
 					.AddNiL()
+#endif
 					.AddNode()
 					.AddV8()
 					.AddVroom()

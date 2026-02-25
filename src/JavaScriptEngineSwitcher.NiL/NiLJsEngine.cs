@@ -46,13 +46,13 @@ namespace JavaScriptEngineSwitcher.NiL
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "2.6.1712";
+		private const string EngineVersion = "2.6.1714";
 
 		/// <summary>
 		/// Regular expression for working with the syntax error message
 		/// </summary>
 		private static readonly Regex _syntaxErrorMessageRegex =
-			new Regex(@"^(?<description>[\s\S]+?) (?:at )?\((?<lineNumber>\d+):(?<columnNumber>\d+)\)$");
+			new Regex(@"^(?<description>[\s\S]+?) (?:at )?\((?<lineNumber>\d+):(?<columnNumber>\d+)(?:\*\d+)?\)$");
 
 		/// <summary>
 		/// NiL JS context

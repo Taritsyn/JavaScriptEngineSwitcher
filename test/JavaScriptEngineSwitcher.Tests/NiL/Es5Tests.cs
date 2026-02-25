@@ -1,4 +1,5 @@
-﻿namespace JavaScriptEngineSwitcher.Tests.NiL
+﻿#if NIL_JS
+namespace JavaScriptEngineSwitcher.Tests.NiL
 {
 	public class Es5Tests : Es5TestsBase
 	{
@@ -8,3 +9,4 @@
 		}
 	}
 }
+#endif
