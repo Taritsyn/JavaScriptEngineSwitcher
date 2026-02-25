@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v3.32.0 - February 25, 2026
+ * In JavaScriptEngineSwitcher.NiL:
+   * NiL.JS was updated to version 2.6.1714
+   * No longer supports a .NET Core App 3.1 and .NET 6
+   * Added support for .NET 10
+
 ## v3.31.0 - February 23, 2026
  * Performed a migration to the modern C# null/not-null checks
  * Added support for .NET 10
