@@ -12,17 +12,12 @@
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.Yantra contains a `YantraJsEngine` adapter (wrapper for the
-   YantraJS (https://github.com/yantrajs/yantra) version 1.2.301).
+   YantraJS (https://github.com/yantrajs/yantra) version 1.2.302).
 
    =============
    RELEASE NOTES
    =============
-   1. YantraJS was updated to version 1.2.301;
-   2. Performed a migration to the modern C# null/not-null checks;
-   3. Added support for .NET 10;
-   4. In the `lock` statements for .NET 10 target now uses a instances of the
-      `System.Threading.Lock` class;
-   5. Reduced a memory allocation by using collection expressions.
+   YantraJS was updated to version 1.2.302.
 
    =============
    DOCUMENTATION

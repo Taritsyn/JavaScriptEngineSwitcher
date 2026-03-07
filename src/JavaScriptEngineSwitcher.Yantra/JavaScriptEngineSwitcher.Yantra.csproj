@@ -19,15 +19,11 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Yantra_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Yantra contains a `YantraJsEngine` adapter (wrapper for the YantraJS).</Description>
     <PackageTags>$(PackageCommonTags);Yantra;YantraJS</PackageTags>
-    <PackageReleaseNotes>1. YantraJS was updated to version 1.2.301;
-2. Performed a migration to the modern C# null/not-null checks;
-3. Added support for .NET 10;
-4. In the `lock` statements for .NET 10 target now uses a instances of the `System.Threading.Lock` class;
-5. Reduced a memory allocation by using collection expressions.</PackageReleaseNotes>
+    <PackageReleaseNotes>YantraJS was updated to version 1.2.302.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="YantraJS.Core" Version="1.2.301" />
+    <PackageReference Include="YantraJS.Core" Version="1.2.302" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
