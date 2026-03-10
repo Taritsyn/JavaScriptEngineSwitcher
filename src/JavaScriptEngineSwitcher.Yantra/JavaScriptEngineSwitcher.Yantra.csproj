@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>JS Engine Switcher: Yantra</Product>
     <VersionPrefix>3.31.0</VersionPrefix>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net10.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net8.0;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
@@ -19,11 +19,12 @@
     <PackageIconFullPath>../../Icons/JavaScriptEngineSwitcher_Yantra_Logo128x128.png</PackageIconFullPath>
     <Description>JavaScriptEngineSwitcher.Yantra contains a `YantraJsEngine` adapter (wrapper for the YantraJS).</Description>
     <PackageTags>$(PackageCommonTags);Yantra;YantraJS</PackageTags>
-    <PackageReleaseNotes>YantraJS was updated to version 1.2.302.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. YantraJS was updated to version 1.2.306;
+2. Added support for .NET 8.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="YantraJS.Core" Version="1.2.302" />
+    <PackageReference Include="YantraJS.Core" Version="1.2.306" />
 
     <ProjectReference Include="../JavaScriptEngineSwitcher.Core/JavaScriptEngineSwitcher.Core.csproj" />
   </ItemGroup>
