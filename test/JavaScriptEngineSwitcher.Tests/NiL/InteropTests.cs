@@ -1,5 +1,4 @@
-﻿#if NIL_JS
-using System;
+﻿using System;
 
 using Xunit;
 
@@ -205,4 +204,3 @@ namespace JavaScriptEngineSwitcher.Tests.NiL
 		#endregion
 	}
 }
-#endif

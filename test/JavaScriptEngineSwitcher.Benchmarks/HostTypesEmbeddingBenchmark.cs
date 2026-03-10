@@ -10,9 +10,7 @@ using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-#if NIL_JS
 using JavaScriptEngineSwitcher.NiL;
-#endif
 using JavaScriptEngineSwitcher.V8;
 
 using JavaScriptEngineSwitcher.Benchmarks.Interop.TypesEmbedding;
@@ -141,7 +139,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			});
 			EmbedAndUseHostTypes(createJsEngine);
 		}
-#if NIL_JS
 
 		[Benchmark]
 		public void NiL()
@@ -149,7 +146,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
 			EmbedAndUseHostTypes(createJsEngine);
 		}
-#endif
 
 		[Benchmark]
 		[Arguments(false)]

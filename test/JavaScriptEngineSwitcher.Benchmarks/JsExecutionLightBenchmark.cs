@@ -10,9 +10,7 @@ using JavaScriptEngineSwitcher.Core.Utilities;
 using JavaScriptEngineSwitcher.Jint;
 using JavaScriptEngineSwitcher.Jurassic;
 using JavaScriptEngineSwitcher.Msie;
-#if NIL_JS
 using JavaScriptEngineSwitcher.NiL;
-#endif
 using JavaScriptEngineSwitcher.Node;
 using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Vroom;
@@ -258,7 +256,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			});
 			TransliterateStrings(createJsEngine, withPrecompilation);
 		}
-#if NIL_JS
 
 		[Benchmark]
 		public void NiL()
@@ -266,7 +263,6 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
 			TransliterateStrings(createJsEngine, false);
 		}
-#endif
 
 		[Benchmark]
 		public void Node()
