@@ -1,6 +1,15 @@
 Change log
 ==========
 
+## v3.33.0 - March 10, 2026
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.6.2
+ * In JavaScriptEngineSwitcher.NiL:
+   * NiL.JS was updated to version 2.6.1721
+   * Added support for .NET Standard 2.1
+ * In JavaScriptEngineSwitcher.Yantra:
+   * YantraJS was updated to version 1.2.306
+   * Added support for .NET 8
+
 ## v3.32.0 - February 25, 2026
  * In JavaScriptEngineSwitcher.NiL:
    * NiL.JS was updated to version 2.6.1714
