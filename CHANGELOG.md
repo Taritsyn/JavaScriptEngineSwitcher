@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v3.33.1 - March 12, 2026
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.6.3
+ * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.314
+
 ## v3.33.0 - March 10, 2026
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.6.2
  * In JavaScriptEngineSwitcher.NiL:
