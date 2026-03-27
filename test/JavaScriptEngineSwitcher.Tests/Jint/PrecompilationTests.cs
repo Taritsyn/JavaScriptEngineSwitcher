@@ -100,7 +100,7 @@ namespace JavaScriptEngineSwitcher.Tests.Jint
 			// Assert
 			Assert.NotNull(exception);
 			Assert.Equal("Runtime error", exception.Category);
-			Assert.Equal("Cannot read property '5' of null", exception.Description);
+			Assert.Equal("Cannot read properties of null (reading '5')", exception.Description);
 			Assert.Equal("TypeError", exception.Type);
 			Assert.Equal("get-item.js", exception.DocumentName);
 			Assert.Equal(2, exception.LineNumber);
