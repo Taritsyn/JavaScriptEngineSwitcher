@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 using OriginalDebuggerEventHandler = Jint.Runtime.Debugger.DebugHandler.DebugEventHandler;
 
@@ -31,6 +32,19 @@ namespace JavaScriptEngineSwitcher.Jint
 		{
 			get { return DebuggerStatementHandlingMode == JsDebuggerStatementHandlingMode.Clr; }
 			set { DebuggerStatementHandlingMode = value ? JsDebuggerStatementHandlingMode.Clr : JsDebuggerStatementHandlingMode.Ignore; }
+		}
+
+		/// <summary>
+		/// Gets or sets a value that determines whether to create compiled instances of regular
+		/// expressions during script pre-compilation:
+		///    <c>true</c> - regular expression are compiled by using the <see cref="RegexOptions.Compiled"/> option;
+		///    <c>false</c> - interpreted .NET regular expression instances are created;
+		///    <c>null</c> - inherits from the base options of original JS engine.
+		/// </summary>
+		public bool? CompileRegex
+		{
+			get;
+			set;
 		}
 
 		/// <summary>
@@ -183,6 +197,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		public JintSettings()
 		{
 			AllowReflection = false;
+			CompileRegex = false;
 			DebuggerBreakCallback = null;
 			DebuggerStatementHandlingMode = JsDebuggerStatementHandlingMode.Ignore;
 			DebuggerStepCallback = null;

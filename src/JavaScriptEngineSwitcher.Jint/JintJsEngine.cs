@@ -19,6 +19,8 @@ using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
 using OriginalParsedScript = Jint.Prepared<Acornima.Ast.Script>;
+using OriginalParsingOptions = Jint.ScriptParsingOptions;
+using OriginalPreparationOptions = Jint.ScriptPreparationOptions;
 using OriginalRecursionDepthOverflowException = Jint.Runtime.RecursionDepthOverflowException;
 using OriginalScriptPreparationException = Jint.ScriptPreparationException;
 using OriginalStatementsCountOverflowException = Jint.Runtime.StatementsCountOverflowException;
@@ -64,6 +66,11 @@ namespace JavaScriptEngineSwitcher.Jint
 		private OriginalEngine _jsEngine;
 
 		/// <summary>
+		/// Script preparation options
+		/// </summary>
+		private OriginalPreparationOptions _preparationOptions;
+
+		/// <summary>
 		/// Token source for canceling of script execution
 		/// </summary>
 		private CancellationTokenSource _cancellationTokenSource;
@@ -86,7 +93,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Flag for whether to allow run the script in strict mode
 		/// </summary>
-		private bool _strictMode;
+		private readonly bool _strictMode;
 
 		/// <summary>
 		/// Synchronizer of script execution
@@ -151,6 +158,14 @@ namespace JavaScriptEngineSwitcher.Jint
 					options.SetTypeResolver(jintSettings.AllowReflection ?
 						CustomTypeResolvers.AllowingReflection : CustomTypeResolvers.DisallowingReflection);
 				});
+				_preparationOptions = new OriginalPreparationOptions
+				{
+					ParsingOptions = new OriginalParsingOptions
+					{
+						CompileRegex = settings.CompileRegex,
+						RegexTimeout = settings.RegexTimeoutInterval
+					}
+				};
 				_cancellationConstraint = _jsEngine.Constraints.Find<OriginalCancellationConstraint>();
 				if (_debuggerBreakCallback is not null)
 				{
@@ -378,7 +393,8 @@ namespace JavaScriptEngineSwitcher.Jint
 
 			try
 			{
-				parsedScript = OriginalEngine.PrepareScript(code, uniqueDocumentName, _strictMode);
+				parsedScript = OriginalEngine.PrepareScript(code, uniqueDocumentName, _strictMode,
+					_preparationOptions);
 			}
 			catch (OriginalException e)
 			{
@@ -710,6 +726,7 @@ namespace JavaScriptEngineSwitcher.Jint
 					_debuggerStepCallback = null;
 					_debuggerBreakCallback = null;
 					_cancellationConstraint = null;
+					_preparationOptions = null;
 
 					if (_cancellationTokenSource is not null)
 					{

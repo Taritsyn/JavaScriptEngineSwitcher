@@ -17,7 +17,9 @@
    =============
    RELEASE NOTES
    =============
-   Jint was updated to version 4.8.0.
+   1. Jint was updated to version 4.8.0;
+   2. In configuration settings of the Jint JS engine was added one new property -
+      `CompileRegex` (default `false`).
 
    =============
    DOCUMENTATION
