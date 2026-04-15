@@ -18,8 +18,9 @@
    RELEASE NOTES
    =============
    1. Jint was updated to version 4.8.0;
-   2. In configuration settings of the Jint JS engine was added one new property -
-      `CompileRegex` (default `false`).
+   2. In configuration settings of the Jint JS engine was added two new properties:
+      `CompileRegex` (default `false`) and `DebuggerExceptionThrownCallback`
+      (default `null`).
 
    =============
    DOCUMENTATION

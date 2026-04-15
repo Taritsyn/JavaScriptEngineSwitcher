@@ -10,11 +10,12 @@ using Jint;
 using IOriginalPrimitive = Jint.Native.IJsPrimitive;
 using OriginalCancellationConstraint = Jint.Constraints.CancellationConstraint;
 using OriginalDebuggerEventHandler = Jint.Runtime.Debugger.DebugHandler.DebugEventHandler;
+using OriginalDebuggerExceptionThrownEventHandler = Jint.Runtime.Debugger.DebugHandler.ExceptionThrownEventHandler;
 using OriginalDebuggerStatementHandlingMode = Jint.Runtime.Debugger.DebuggerStatementHandling;
 using OriginalEngine = Jint.Engine;
 using OriginalErrorPosition = Acornima.Position;
-using OriginalExecutionCanceledException = Jint.Runtime.ExecutionCanceledException;
 using OriginalException = Jint.JintException;
+using OriginalExecutionCanceledException = Jint.Runtime.ExecutionCanceledException;
 using OriginalJavaScriptException = Jint.Runtime.JavaScriptException;
 using OriginalMemoryLimitExceededException = Jint.Runtime.MemoryLimitExceededException;
 using OriginalObjectInstance = Jint.Native.Object.ObjectInstance;
@@ -91,6 +92,11 @@ namespace JavaScriptEngineSwitcher.Jint
 		private OriginalDebuggerEventHandler _debuggerStepCallback;
 
 		/// <summary>
+		/// Debugger exception thrown callback
+		/// </summary>
+		private OriginalDebuggerExceptionThrownEventHandler _debuggerExceptionThrownCallback;
+
+		/// <summary>
 		/// Flag for whether to allow run the script in strict mode
 		/// </summary>
 		private readonly bool _strictMode;
@@ -125,6 +131,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			JintSettings jintSettings = settings ?? new JintSettings();
 			_debuggerBreakCallback = jintSettings.DebuggerBreakCallback;
 			_debuggerStepCallback = jintSettings.DebuggerStepCallback;
+			_debuggerExceptionThrownCallback = jintSettings.DebuggerExceptionThrownCallback;
 			var debuggerStatementHandlingMode = Utils.GetEnumFromOtherEnum<JsDebuggerStatementHandlingMode, OriginalDebuggerStatementHandlingMode>(
 				jintSettings.DebuggerStatementHandlingMode);
 
@@ -174,6 +181,10 @@ namespace JavaScriptEngineSwitcher.Jint
 				if (_debuggerStepCallback is not null)
 				{
 					_jsEngine.Debugger.Step += _debuggerStepCallback;
+				}
+				if (_debuggerExceptionThrownCallback is not null)
+				{
+					_jsEngine.Debugger.ExceptionThrown += _debuggerExceptionThrownCallback;
 				}
 				_strictMode = settings.StrictMode;
 			}
@@ -709,6 +720,11 @@ namespace JavaScriptEngineSwitcher.Jint
 				{
 					if (_jsEngine is not null)
 					{
+						if (_debuggerExceptionThrownCallback is not null)
+						{
+							_jsEngine.Debugger.ExceptionThrown -= _debuggerExceptionThrownCallback;
+						}
+
 						if (_debuggerStepCallback is not null)
 						{
 							_jsEngine.Debugger.Step -= _debuggerStepCallback;
@@ -723,6 +739,7 @@ namespace JavaScriptEngineSwitcher.Jint
 						_jsEngine = null;
 					}
 
+					_debuggerExceptionThrownCallback = null;
 					_debuggerStepCallback = null;
 					_debuggerBreakCallback = null;
 					_cancellationConstraint = null;

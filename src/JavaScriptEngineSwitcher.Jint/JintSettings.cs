@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 
 using OriginalDebuggerEventHandler = Jint.Runtime.Debugger.DebugHandler.DebugEventHandler;
+using OriginalDebuggerExceptionThrownEventHandler = Jint.Runtime.Debugger.DebugHandler.ExceptionThrownEventHandler;
 
 namespace JavaScriptEngineSwitcher.Jint
 {
@@ -51,6 +52,15 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// Gets or sets a debugger break callback
 		/// </summary>
 		public OriginalDebuggerEventHandler DebuggerBreakCallback
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets a debugger exception thrown callback
+		/// </summary>
+		public OriginalDebuggerExceptionThrownEventHandler DebuggerExceptionThrownCallback
 		{
 			get;
 			set;
@@ -199,6 +209,7 @@ namespace JavaScriptEngineSwitcher.Jint
 			AllowReflection = false;
 			CompileRegex = false;
 			DebuggerBreakCallback = null;
+			DebuggerExceptionThrownCallback = null;
 			DebuggerStatementHandlingMode = JsDebuggerStatementHandlingMode.Ignore;
 			DebuggerStepCallback = null;
 			DisableEval = false;

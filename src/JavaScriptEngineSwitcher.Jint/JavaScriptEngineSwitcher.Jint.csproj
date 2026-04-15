@@ -23,7 +23,7 @@
     <Description>JavaScriptEngineSwitcher.Jint contains a `JintJsEngine` adapter (wrapper for the Jint).</Description>
     <PackageTags>$(PackageCommonTags);Jint</PackageTags>
     <PackageReleaseNotes>1. Jint was updated to version 4.8.0;
-2. In configuration settings of the Jint JS engine was added one new property - `CompileRegex` (default `false`).</PackageReleaseNotes>
+2. In configuration settings of the Jint JS engine was added two new properties: `CompileRegex` (default `false`) and `DebuggerExceptionThrownCallback` (default `null`).</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
