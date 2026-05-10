@@ -54,7 +54,7 @@ namespace JavaScriptEngineSwitcher.Yantra
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "1.2.342";
+		private const string EngineVersion = "1.2.348";
 
 		/// <summary>
 		/// Regular expression for working with the error message
@@ -395,18 +395,8 @@ namespace JavaScriptEngineSwitcher.Yantra
 
 		private static string GetRawCallStack(string message, string messageWithType, string messageWithCallStack)
 		{
-			const string errorFunctionTypePrefix = "Function: ";
-			string processedMessageWithCallStack = messageWithCallStack;
-
-			if (messageWithCallStack.StartsWith(errorFunctionTypePrefix))
-			{
-				processedMessageWithCallStack = messageWithCallStack.Substring(errorFunctionTypePrefix.Length);
-			}
-
-			string baseMessage = processedMessageWithCallStack.StartsWith(messageWithType) ?
-				messageWithType : message;
-			string rawCallStack = JsErrorHelpers.GetErrorLocationFromMessage(processedMessageWithCallStack,
-				baseMessage);
+			string baseMessage = messageWithCallStack.StartsWith(messageWithType) ? messageWithType : message;
+			string rawCallStack = JsErrorHelpers.GetErrorLocationFromMessage(messageWithCallStack, baseMessage);
 
 			return rawCallStack;
 		}
