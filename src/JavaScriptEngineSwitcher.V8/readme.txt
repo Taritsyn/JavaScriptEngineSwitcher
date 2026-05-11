@@ -12,8 +12,7 @@
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.V8 contains a `V8JsEngine` adapter (wrapper for the
-   Microsoft ClearScript.V8 (http://github.com/Microsoft/ClearScript) version
-   7.5).
+   ClearScript.V8 (http://github.com/Microsoft/ClearScript) version 7.5.1).
 
    This package does not contain the native ClearScript.V8 assemblies.
    Therefore, you need to choose and install the most appropriate package(s) for
@@ -31,9 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Performed a migration to the modern C# null/not-null checks;
-   2. Added support for .NET 10;
-   3. Reduced a memory allocation by using collection expressions.
+   ClearScript.V8 was updated to version 7.5.1.
 
    =============
    DOCUMENTATION

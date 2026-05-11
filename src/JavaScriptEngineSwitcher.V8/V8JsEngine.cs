@@ -38,7 +38,7 @@ using JavaScriptEngineSwitcher.V8.Resources;
 namespace JavaScriptEngineSwitcher.V8
 {
 	/// <summary>
-	/// Adapter for the V8 JS engine (Microsoft ClearScript.V8)
+	/// Adapter for the V8 JS engine (ClearScript.V8)
 	/// </summary>
 	public sealed class V8JsEngine : JsEngineBase
 	{
@@ -50,7 +50,7 @@ namespace JavaScriptEngineSwitcher.V8
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "13.3.415.23";
+		private const string EngineVersion = "14.7.173.23";
 
 		/// <summary>
 		/// V8 JS engine
@@ -87,14 +87,14 @@ namespace JavaScriptEngineSwitcher.V8
 
 
 		/// <summary>
-		/// Constructs an instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
+		/// Constructs an instance of adapter for the V8 JS engine (ClearScript.V8)
 		/// </summary>
 		public V8JsEngine()
 			: this(new V8Settings())
 		{ }
 
 		/// <summary>
-		/// Constructs an instance of adapter for the V8 JS engine (Microsoft ClearScript.V8)
+		/// Constructs an instance of adapter for the V8 JS engine (ClearScript.V8)
 		/// </summary>
 		/// <param name="settings">Settings of the V8 JS engine</param>
 		public V8JsEngine(V8Settings settings)

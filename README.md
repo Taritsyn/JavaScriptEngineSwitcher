@@ -1,7 +1,7 @@
 JavaScript Engine Switcher [![NuGet version](http://img.shields.io/nuget/v/JavaScriptEngineSwitcher.Core.svg)](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Core/)  [![Download count](https://img.shields.io/nuget/dt/JavaScriptEngineSwitcher.Core.svg)](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Core/)
 ==========================
 
-JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([ChakraCore](https://github.com/chakra-core/ChakraCore), [Jint](https://github.com/sebastienros/jint), [Jurassic](https://github.com/paulbartrum/jurassic), [MSIE JavaScript Engine for .NET](https://github.com/Taritsyn/MsieJavaScriptEngine), [NiL.JS](https://github.com/nilproject/NiL.JS), [Jering.Javascript.NodeJS](https://github.com/JeringTech/Javascript.NodeJS), [Microsoft ClearScript.V8](https://github.com/Microsoft/ClearScript), [VroomJs](https://github.com/pauldotknopf/vroomjs-core) and [YantraJS](https://github.com/yantrajs/yantra)).
+JavaScript Engine Switcher determines unified interface for access to the basic features of popular JavaScript engines ([ChakraCore](https://github.com/chakra-core/ChakraCore), [Jint](https://github.com/sebastienros/jint), [Jurassic](https://github.com/paulbartrum/jurassic), [MSIE JavaScript Engine for .NET](https://github.com/Taritsyn/MsieJavaScriptEngine), [NiL.JS](https://github.com/nilproject/NiL.JS), [Jering.Javascript.NodeJS](https://github.com/JeringTech/Javascript.NodeJS), [ClearScript.V8](https://github.com/ClearFoundry/ClearScript), [VroomJs](https://github.com/pauldotknopf/vroomjs-core) and [YantraJS](https://github.com/yantrajs/yantra)).
 This library allows you to quickly and easily switch to using of another JavaScript engine.
 
 The supported .NET types are as follows:
@@ -33,14 +33,14 @@ This library can be installed through NuGet:
  * [JS Engine Switcher: NiL](http://nuget.org/packages/JavaScriptEngineSwitcher.NiL) (supports .NET Framework 4.6.1, .NET Framework 4.8, .NET Standard 2.1, .NET 8, .NET 9 and .NET 10)
  * [JS Engine Switcher: Node](http://nuget.org/packages/JavaScriptEngineSwitcher.Node) (supports .NET Framework 4.6.1, .NET Standard 2.0, .NET Core App 3.1, .NET 5.0, .NET 6, .NET 7 and .NET 10)
  * [JS Engine Switcher: V8](http://nuget.org/packages/JavaScriptEngineSwitcher.V8) (supports .NET Framework 4.6.2, .NET Framework 4.7.1, .NET Standard 2.1, .NET Core App 3.1, .NET 5.0 and .NET 10)
-   * [Microsoft ClearScript.V8 for Windows (x86)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-x86)
-   * [Microsoft ClearScript.V8 for Windows (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-x64)
-   * [Microsoft ClearScript.V8 for Windows (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-arm64)
-   * [Microsoft ClearScript.V8 for Linux (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.linux-x64)
-   * [Microsoft ClearScript.V8 for Linux (ARM)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.linux-arm)
-   * [Microsoft ClearScript.V8 for Linux (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.linux-arm64)
-   * [Microsoft ClearScript.V8 for OS X (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.osx-x64)
-   * [Microsoft ClearScript.V8 for OS X (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.osx-arm64)
+   * [ClearScript.V8 for Windows (x86)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-x86)
+   * [ClearScript.V8 for Windows (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-x64)
+   * [ClearScript.V8 for Windows (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.win-arm64)
+   * [ClearScript.V8 for Linux (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.linux-x64)
+   * [ClearScript.V8 for Linux (ARM)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.linux-arm)
+   * [ClearScript.V8 for Linux (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.linux-arm64)
+   * [ClearScript.V8 for OS X (x64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.osx-x64)
+   * [ClearScript.V8 for OS X (ARM64)](https://www.nuget.org/packages/Microsoft.ClearScript.V8.Native.osx-arm64)
  * [JS Engine Switcher: Vroom](http://nuget.org/packages/JavaScriptEngineSwitcher.Vroom) (supports .NET Framework 4.0 Client, .NET Framework 4.5, .NET Framework 4.7.1, .NET Standard 1.6, .NET Standard 2.0 and .NET 10)
  * [JS Engine Switcher: Yantra](http://nuget.org/packages/JavaScriptEngineSwitcher.Yantra) (supports .NET Standard 2.0, .NET Standard 2.1, .NET 8 and .NET 10)
 

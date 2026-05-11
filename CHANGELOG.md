@@ -1303,7 +1303,7 @@ Change log
 
 ## v1.1.1 - January 17, 2014
 
- * In JavaScriptEngineSwitcher.V8 added support of the [ClearScript](http://github.com/Microsoft/ClearScript) version 5.3.11 (support of V8 version 3.24.17)
+ * In JavaScriptEngineSwitcher.V8 added support of the [ClearScript](https://github.com/ClearFoundry/ClearScript) version 5.3.11 (support of V8 version 3.24.17)
 
 ## v1.1.0 - January 16, 2014
 
@@ -1318,7 +1318,7 @@ Change log
 
 ## v0.9.5 - December 7, 2013
 
- * In JavaScriptEngineSwitcher.V8 the [Noesis Javascript .NET](http://github.com/JavascriptNet/Javascript.Net) was replaced by the [Microsoft ClearScript.V8](http://github.com/Microsoft/ClearScript) library (solves a problem of `V8JsEngine` stable work on 64-bit version of IIS 8.X)
+ * In JavaScriptEngineSwitcher.V8 the [Noesis Javascript .NET](http://github.com/JavascriptNet/Javascript.Net) was replaced by the [Microsoft ClearScript.V8](https://github.com/ClearFoundry/ClearScript) library (solves a problem of `V8JsEngine` stable work on 64-bit version of IIS 8.X)
  * In JavaScriptEngineSwitcher.Jurassic added support of [Jurassic](http://github.com/paulbartrum/jurassic) version of September 30, 2013
 
 ## v0.9.3 - November 19, 2013

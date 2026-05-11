@@ -15,6 +15,12 @@
    Microsoft.ClearScript.V8.Native.win-x86 package.
 
    =============
+   RELEASE NOTES
+   =============
+   ClearScript.V8 was updated to version 7.5.1 (support of the V8 version
+   14.7.173.23).
+
+   =============
    DOCUMENTATION
    =============
    See documentation on GitHub -
