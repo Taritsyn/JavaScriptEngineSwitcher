@@ -12,15 +12,12 @@
    DESCRIPTION
    ===========
    JavaScriptEngineSwitcher.Jint contains a `JintJsEngine` adapter (wrapper for the
-   Jint (http://github.com/sebastienros/jint) version 4.8.0).
+   Jint (http://github.com/sebastienros/jint) version 4.9.0).
 
    =============
    RELEASE NOTES
    =============
-   1. Jint was updated to version 4.8.0;
-   2. In configuration settings of the Jint JS engine was added two new properties:
-      `CompileRegex` (default `false`) and `DebuggerExceptionThrownCallback`
-      (default `null`).
+   Jint was updated to version 4.9.0.
 
    =============
    DOCUMENTATION
