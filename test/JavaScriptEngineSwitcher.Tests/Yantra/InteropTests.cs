@@ -274,27 +274,48 @@ person.Patronymic = '';";
 			// Arrange
 			const string directoryPath = "Files/recursive-evaluation/runtime-error";
 			const string input = "evaluateFile('index').calculateResult();";
-			const double targetOutput = double.NaN;
 
 			// Act
-			double output;
+			JsRuntimeException exception = null;
 
 			using (var jsEngine = CreateJsEngine())
 			{
-				Func<string, object> evaluateFile = path => {
-					string absolutePath = Path.Combine(directoryPath, $"{path}.js");
-					string code = File.ReadAllText(absolutePath);
-					object result = jsEngine.Evaluate(code, absolutePath);
+				try
+				{
+					Func<string, object> evaluateFile = path => {
+						string absolutePath = Path.Combine(directoryPath, $"{path}.js");
+						string code = File.ReadAllText(absolutePath);
+						object result = jsEngine.Evaluate(code, absolutePath);
 
-					return result;
-				};
+						return result;
+					};
 
-				jsEngine.EmbedHostObject("evaluateFile", evaluateFile);
-				output = jsEngine.Evaluate<double>(input);
+					jsEngine.EmbedHostObject("evaluateFile", evaluateFile);
+					double output = jsEngine.Evaluate<double>(input);
+				}
+				catch (JsRuntimeException e)
+				{
+					exception = e;
+				}
 			}
 
 			// Assert
-			Assert.Equal(targetOutput, output);
+			Assert.NotNull(exception);
+			Assert.Equal("Runtime error", exception.Category);
+			Assert.Equal("Cannot get property $0 of undefined", exception.Description);
+			Assert.Equal("TypeError", exception.Type);
+			Assert.Equal("math.js", exception.DocumentName);
+			Assert.Equal(10, exception.LineNumber);
+			Assert.Equal(3, exception.ColumnNumber);
+			Assert.Empty(exception.SourceFragment);
+			Assert.Equal(
+				"   at sum (math.js:10:3)" + Environment.NewLine +
+				"   at square (math.js:17:2)" + Environment.NewLine +
+				"   at cube (math.js:21:2)" + Environment.NewLine +
+				"   at calculateResult (index.js:6:2)" + Environment.NewLine +
+				"   at Global code (Script Document:1:1)",
+				exception.CallStack
+			);
 		}
 
 		[Fact]
