@@ -553,7 +553,7 @@ greeter.name = 'Vasya'";
 			const string targetOutput3 = "2,7,100";
 
 			const string initCode4 = @"var myObj = function() { };
-myObj.prototype = { getFoo: { value: function () { return this.foo } } };;
+myObj.prototype = { getFoo: { value: function () { return this.foo } } };
 myObj.foo = 1;
 ";
 			const string input4 = "Object.keys(myObj).toString();";
