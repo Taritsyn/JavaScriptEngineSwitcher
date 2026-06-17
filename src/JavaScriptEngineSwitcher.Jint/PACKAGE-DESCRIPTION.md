@@ -1,1 +1,1 @@
-JavaScriptEngineSwitcher.Jint contains a `JintJsEngine` adapter (wrapper for the [Jint](http://github.com/sebastienros/jint) version 4.9.3).
+JavaScriptEngineSwitcher.Jint contains a `JintJsEngine` adapter (wrapper for the [Jint](http://github.com/sebastienros/jint) version 4.10.0).

@@ -97,17 +97,17 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		/// <summary>
 		/// Render a templates
 		/// </summary>
-		/// <param name="createJsEngine">Delegate for create an instance of the JS engine</param>
-		/// <param name="withPrecompilation">Flag for whether to allow execution of JS code with pre-compilation</param>
-		private static void RenderTemplates(Func<IJsEngine> createJsEngine, bool withPrecompilation)
+		/// <param name="jsEngineFactory">JS engine factory</param>
+		/// <param name="precompileScript">Flag for whether to allow execution of JS code with pre-compilation</param>
+		private static void RenderTemplates(IJsEngineFactory jsEngineFactory, bool precompileScript)
 		{
 			// Arrange
 			IPrecompiledScript precompiledCode = null;
 
 			// Act
-			using (var jsEngine = createJsEngine())
+			using (var jsEngine = jsEngineFactory.CreateEngine())
 			{
-				if (withPrecompilation)
+				if (precompileScript)
 				{
 					if (!jsEngine.SupportsScriptPrecompilation)
 					{
@@ -128,9 +128,9 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 
 			for (int itemIndex = 1; itemIndex < _contentItems.Length; itemIndex++)
 			{
-				using (var jsEngine = createJsEngine())
+				using (var jsEngine = jsEngineFactory.CreateEngine())
 				{
-					if (withPrecompilation)
+					if (precompileScript)
 					{
 						jsEngine.Execute(precompiledCode);
 					}
@@ -153,111 +153,116 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void ChakraCore(bool withPrecompilation)
+		public void ChakraCore(bool precompileScript)
 		{
-			Func<IJsEngine> createJsEngine = () => new ChakraCoreJsEngine();
-			RenderTemplates(createJsEngine, withPrecompilation);
+			IJsEngineFactory jsEngineFactory = new ChakraCoreJsEngineFactory();
+			RenderTemplates(jsEngineFactory, precompileScript);
+		}
+
+		[Benchmark]
+		[Arguments(false, false)]
+		[Arguments(true, false)]
+		[Arguments(true, true)]
+		public void Jint(bool precompileScript, bool compileRegex)
+		{
+			IJsEngineFactory jsEngineFactory = new JintJsEngineFactory(new JintSettings
+			{
+				CompileRegex = compileRegex
+			});
+			RenderTemplates(jsEngineFactory, precompileScript);
 		}
 
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void Jint(bool withPrecompilation)
+		public void Jurassic(bool precompileScript)
 		{
-			Func<IJsEngine> createJsEngine = () => new JintJsEngine();
-			RenderTemplates(createJsEngine, withPrecompilation);
-		}
-
-		[Benchmark]
-		[Arguments(false)]
-		[Arguments(true)]
-		public void Jurassic(bool withPrecompilation)
-		{
-			Func<IJsEngine> createJsEngine = () => new JurassicJsEngine();
-			RenderTemplates(createJsEngine, withPrecompilation);
+			IJsEngineFactory jsEngineFactory = new JurassicJsEngineFactory();
+			RenderTemplates(jsEngineFactory, precompileScript);
 		}
 #if NET462
 
 		[Benchmark]
 		public void MsieClassic()
 		{
-			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			IJsEngineFactory jsEngineFactory = new MsieJsEngineFactory(new MsieSettings
 			{
 				EngineMode = JsEngineMode.Classic,
+				UseEcmaScript5Polyfill = true,
 				UseJson2Library = true
 			});
-			RenderTemplates(createJsEngine, false);
+			RenderTemplates(jsEngineFactory, false);
 		}
 
 		[Benchmark]
 		public void MsieChakraActiveScript()
 		{
-			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			IJsEngineFactory jsEngineFactory = new MsieJsEngineFactory(new MsieSettings
 			{
 				EngineMode = JsEngineMode.ChakraActiveScript
 			});
-			RenderTemplates(createJsEngine, false);
+			RenderTemplates(jsEngineFactory, false);
 		}
 #endif
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void MsieChakraIeJsRt(bool withPrecompilation)
+		public void MsieChakraIeJsRt(bool precompileScript)
 		{
-			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			IJsEngineFactory jsEngineFactory = new MsieJsEngineFactory(new MsieSettings
 			{
 				EngineMode = JsEngineMode.ChakraIeJsRt
 			});
-			RenderTemplates(createJsEngine, withPrecompilation);
+			RenderTemplates(jsEngineFactory, precompileScript);
 		}
 
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void MsieChakraEdgeJsRt(bool withPrecompilation)
+		public void MsieChakraEdgeJsRt(bool precompileScript)
 		{
-			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			IJsEngineFactory jsEngineFactory = new MsieJsEngineFactory(new MsieSettings
 			{
 				EngineMode = JsEngineMode.ChakraEdgeJsRt
 			});
-			RenderTemplates(createJsEngine, withPrecompilation);
+			RenderTemplates(jsEngineFactory, precompileScript);
 		}
 
 		[Benchmark]
 		public void NiL()
 		{
-			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
-			RenderTemplates(createJsEngine, false);
+			IJsEngineFactory jsEngineFactory = new NiLJsEngineFactory();
+			RenderTemplates(jsEngineFactory, false);
 		}
 
 		[Benchmark]
 		public void Node()
 		{
-			Func<IJsEngine> createJsEngine = () => new NodeJsEngine();
-			RenderTemplates(createJsEngine, false);
+			IJsEngineFactory jsEngineFactory = new NodeJsEngineFactory();
+			RenderTemplates(jsEngineFactory, false);
 		}
 
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void V8(bool withPrecompilation)
+		public void V8(bool precompileScript)
 		{
-			Func<IJsEngine> createJsEngine = () => new V8JsEngine();
-			RenderTemplates(createJsEngine, withPrecompilation);
+			IJsEngineFactory jsEngineFactory = new V8JsEngineFactory();
+			RenderTemplates(jsEngineFactory, precompileScript);
 		}
 
 		[Benchmark]
 		public void Vroom()
 		{
-			Func<IJsEngine> createJsEngine = () => new VroomJsEngine();
-			RenderTemplates(createJsEngine, false);
+			IJsEngineFactory jsEngineFactory = new VroomJsEngineFactory();
+			RenderTemplates(jsEngineFactory, false);
 		}
 
 		[Benchmark]
 		public void Yantra()
 		{
-			Func<IJsEngine> createJsEngine = () => new YantraJsEngine();
-			RenderTemplates(createJsEngine, false);
+			IJsEngineFactory jsEngineFactory = new YantraJsEngineFactory();
+			RenderTemplates(jsEngineFactory, false);
 		}
 
 		#region Internal types

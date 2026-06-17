@@ -132,18 +132,18 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		/// <summary>
 		/// Transliterates a strings
 		/// </summary>
-		/// <param name="createJsEngine">Delegate for create an instance of the JS engine</param>
-		/// <param name="withPrecompilation">Flag for whether to allow execution of JS code with pre-compilation</param>
-		private static void TransliterateStrings(Func<IJsEngine> createJsEngine, bool withPrecompilation)
+		/// <param name="jsEngineFactory">JS engine factory</param>
+		/// <param name="precompileScript">Flag for whether to allow execution of JS code with pre-compilation</param>
+		private static void TransliterateStrings(IJsEngineFactory jsEngineFactory, bool precompileScript)
 		{
 			// Arrange
 			string[] outputStrings = new string[ItemCount];
 			IPrecompiledScript precompiledCode = null;
 
 			// Act
-			using (var jsEngine = createJsEngine())
+			using (var jsEngine = jsEngineFactory.CreateEngine())
 			{
-				if (withPrecompilation)
+				if (precompileScript)
 				{
 					if (!jsEngine.SupportsScriptPrecompilation)
 					{
@@ -163,9 +163,9 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 
 			for (int itemIndex = 1; itemIndex < ItemCount; itemIndex++)
 			{
-				using (var jsEngine = createJsEngine())
+				using (var jsEngine = jsEngineFactory.CreateEngine())
 				{
-					if (withPrecompilation)
+					if (precompileScript)
 					{
 						jsEngine.Execute(precompiledCode);
 					}
@@ -188,110 +188,114 @@ namespace JavaScriptEngineSwitcher.Benchmarks
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void ChakraCore(bool withPrecompilation)
+		public void ChakraCore(bool precompileScript)
 		{
-			Func<IJsEngine> createJsEngine = () => new ChakraCoreJsEngine();
-			TransliterateStrings(createJsEngine, withPrecompilation);
+			IJsEngineFactory jsEngineFactory = new ChakraCoreJsEngineFactory();
+			TransliterateStrings(jsEngineFactory, precompileScript);
+		}
+
+		[Benchmark]
+		[Arguments(false, false)]
+		[Arguments(true, false)]
+		[Arguments(true, true)]
+		public void Jint(bool precompileScript, bool compileRegex)
+		{
+			IJsEngineFactory jsEngineFactory = new JintJsEngineFactory(new JintSettings
+			{
+				CompileRegex = compileRegex
+			});
+			TransliterateStrings(jsEngineFactory, precompileScript);
 		}
 
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void Jint(bool withPrecompilation)
+		public void Jurassic(bool precompileScript)
 		{
-			Func<IJsEngine> createJsEngine = () => new JintJsEngine();
-			TransliterateStrings(createJsEngine, withPrecompilation);
-		}
-
-		[Benchmark]
-		[Arguments(false)]
-		[Arguments(true)]
-		public void Jurassic(bool withPrecompilation)
-		{
-			Func<IJsEngine> createJsEngine = () => new JurassicJsEngine();
-			TransliterateStrings(createJsEngine, withPrecompilation);
+			IJsEngineFactory jsEngineFactory = new JurassicJsEngineFactory();
+			TransliterateStrings(jsEngineFactory, precompileScript);
 		}
 #if NET462
 
 		[Benchmark]
 		public void MsieClassic()
 		{
-			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			IJsEngineFactory jsEngineFactory = new MsieJsEngineFactory(new MsieSettings
 			{
 				EngineMode = JsEngineMode.Classic
 			});
-			TransliterateStrings(createJsEngine, false);
+			TransliterateStrings(jsEngineFactory, false);
 		}
 
 		[Benchmark]
 		public void MsieChakraActiveScript()
 		{
-			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			IJsEngineFactory jsEngineFactory = new MsieJsEngineFactory(new MsieSettings
 			{
 				EngineMode = JsEngineMode.ChakraActiveScript
 			});
-			TransliterateStrings(createJsEngine, false);
+			TransliterateStrings(jsEngineFactory, false);
 		}
 #endif
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void MsieChakraIeJsRt(bool withPrecompilation)
+		public void MsieChakraIeJsRt(bool precompileScript)
 		{
-			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			IJsEngineFactory jsEngineFactory = new MsieJsEngineFactory(new MsieSettings
 			{
 				EngineMode = JsEngineMode.ChakraIeJsRt
 			});
-			TransliterateStrings(createJsEngine, withPrecompilation);
+			TransliterateStrings(jsEngineFactory, precompileScript);
 		}
 
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void MsieChakraEdgeJsRt(bool withPrecompilation)
+		public void MsieChakraEdgeJsRt(bool precompileScript)
 		{
-			Func<IJsEngine> createJsEngine = () => new MsieJsEngine(new MsieSettings
+			IJsEngineFactory jsEngineFactory = new MsieJsEngineFactory(new MsieSettings
 			{
 				EngineMode = JsEngineMode.ChakraEdgeJsRt
 			});
-			TransliterateStrings(createJsEngine, withPrecompilation);
+			TransliterateStrings(jsEngineFactory, precompileScript);
 		}
 
 		[Benchmark]
 		public void NiL()
 		{
-			Func<IJsEngine> createJsEngine = () => new NiLJsEngine();
-			TransliterateStrings(createJsEngine, false);
+			IJsEngineFactory jsEngineFactory = new NiLJsEngineFactory();
+			TransliterateStrings(jsEngineFactory, false);
 		}
 
 		[Benchmark]
 		public void Node()
 		{
-			Func<IJsEngine> createJsEngine = () => new NodeJsEngine();
-			TransliterateStrings(createJsEngine, false);
+			IJsEngineFactory jsEngineFactory = new NodeJsEngineFactory();
+			TransliterateStrings(jsEngineFactory, false);
 		}
 
 		[Benchmark]
 		[Arguments(false)]
 		[Arguments(true)]
-		public void V8(bool withPrecompilation)
+		public void V8(bool precompileScript)
 		{
-			Func<IJsEngine> createJsEngine = () => new V8JsEngine();
-			TransliterateStrings(createJsEngine, withPrecompilation);
+			IJsEngineFactory jsEngineFactory = new V8JsEngineFactory();
+			TransliterateStrings(jsEngineFactory, precompileScript);
 		}
 
 		[Benchmark]
 		public void Vroom()
 		{
-			Func<IJsEngine> createJsEngine = () => new VroomJsEngine();
-			TransliterateStrings(createJsEngine, false);
+			IJsEngineFactory jsEngineFactory = new VroomJsEngineFactory();
+			TransliterateStrings(jsEngineFactory, false);
 		}
 
 		[Benchmark]
 		public void Yantra()
 		{
-			Func<IJsEngine> createJsEngine = () => new YantraJsEngine();
-			TransliterateStrings(createJsEngine, false);
+			IJsEngineFactory jsEngineFactory = new YantraJsEngineFactory();
+			TransliterateStrings(jsEngineFactory, false);
 		}
 	}
 }
