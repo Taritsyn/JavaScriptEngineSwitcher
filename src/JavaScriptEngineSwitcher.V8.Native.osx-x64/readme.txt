@@ -17,7 +17,7 @@
    =============
    RELEASE NOTES
    =============
-   ClearScript.V8 was updated to version 7.5.1 (support of the V8 version
+   ClearScript.V8 was updated to version 7.5.1.1 (support of the V8 version
    14.7.173.23).
 
    =============
