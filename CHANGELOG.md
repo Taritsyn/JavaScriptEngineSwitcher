@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v3.35.2 - September 5, 2026
+ * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.16.1
+ * In JavaScriptEngineSwitcher.V8 added support for the ClearScript.V8 version 7.5.1.1
+ * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.463
+
 ## v3.35.1 - August 3, 2026
  * In JavaScriptEngineSwitcher.Jint added support for the Jint version 4.15.3
  * In JavaScriptEngineSwitcher.Yantra added support for the YantraJS version 1.2.421
