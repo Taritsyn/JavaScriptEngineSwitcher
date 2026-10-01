@@ -59,7 +59,7 @@ namespace JavaScriptEngineSwitcher.Jint
 		/// <summary>
 		/// Version of original JS engine
 		/// </summary>
-		private const string EngineVersion = "4.16.3";
+		private const string EngineVersion = "4.16.4";
 
 		/// <summary>
 		/// Jint JS engine
