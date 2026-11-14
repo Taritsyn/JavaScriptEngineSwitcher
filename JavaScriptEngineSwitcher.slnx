@@ -82,5 +82,6 @@
     <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore8.Mvc8/JavaScriptEngineSwitcher.Sample.AspNetCore8.Mvc8.csproj" />
     <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore9.Mvc9/JavaScriptEngineSwitcher.Sample.AspNetCore9.Mvc9.csproj" />
     <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore10.Mvc10/JavaScriptEngineSwitcher.Sample.AspNetCore10.Mvc10.csproj" />
+    <Project Path="samples/JavaScriptEngineSwitcher.Sample.AspNetCore11.Mvc11/JavaScriptEngineSwitcher.Sample.AspNetCore11.Mvc11.csproj" />
   </Folder>
 </Solution>
